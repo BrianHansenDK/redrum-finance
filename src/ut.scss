@@ -1,0 +1,43 @@
+.txt-center {
+    text-align: center;
+}
+
+.txt-left {
+    text-align: left;
+}
+
+.txt-right {
+    text-align: right;
+}
+
+.bold {
+    font-weight: 700;
+}
+
+a.nav-ul {
+    color: #fefefe;
+    text-decoration: none;
+    transition: all 100ms ease-in-out;
+    font-weight: bold;
+
+    &:hover {
+        color: #fefefe;
+        background: none !important;
+        text-decoration: none;
+        border-bottom: 3px solid rgb(230, 123, 0);
+    }
+}
+
+.shadow {
+    box-shadow: 0 5px 15px 0 rgba(0, 0, 29, .15);
+    transition: all 300ms ease-in-out;
+
+    &:hover {
+        box-shadow: 0 3px 10px 0 rgba(0, 0, 29, .25);
+    }
+}
+
+.sq-shadow {
+    box-shadow: rgb(67 76 94 / 70%) 20px 24px 4px 0px;
+    ;
+}

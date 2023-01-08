@@ -1,0 +1,71 @@
+$dark: #141628;
+$grey: #f5f8fa;
+$main: #0205d3;
+$white: #fefefe;
+
+#brand {
+    color: $white;
+
+    &:hover {
+        color: $white;
+    }
+}
+
+.dark-bg {
+    background-color: $dark !important;
+}
+
+.grey-bg {
+    background-color: $grey !important;
+}
+
+.no-bg {
+    background-color: rgba(0, 0, 0, 0) !important;
+}
+
+.txt-dark {
+    color: $dark !important;
+}
+
+.txt-grey {
+    color: $grey !important;
+}
+
+.txt-main {
+    color: $main;
+}
+
+.txt-white {
+    color: $white;
+}
+
+.btn-outline-grey {
+    border: 1px solid $grey !important;
+    color: $grey !important;
+
+    &:active {
+        opacity: .8 !important;
+    }
+}
+
+button.main-btn {
+    font-size: 20px;
+    font-weight: 500;
+    transition: all 300ms ease-in-out;
+
+    &.white {
+        background-color: $white ;
+        color: $dark ;
+
+        &.hidden {
+            color: $white;
+            background: none;
+            border: none;
+
+            &:hover {
+                color: rgb(241, 188, 0);
+                border: 2px solid rgb(73, 75, 116);
+            }
+        }
+    }
+}

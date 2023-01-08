@@ -1,0 +1,292 @@
+@font-face {
+  font-family: poppins;
+  src: url('./components/fonts/Poppins/Poppins-Light.ttf');
+  font-weight: light;
+}
+
+@font-face {
+  font-family: poppins;
+  src: url('./components/fonts/Poppins/Poppins-Regular.ttf');
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: poppins;
+  src: url('./components/fonts/Poppins/Poppins-Medium.ttf');
+  font-weight: medium;
+}
+
+@font-face {
+  font-family: poppins;
+  src: url('./components/fonts/Poppins/Poppins-Bold.ttf');
+  font-weight: bold;
+}
+
+:root {
+  font-family: poppins, Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: #fefefe;
+}
+
+#navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 99;
+}
+
+.trans {
+  transition: all 300ms ease-in-out;
+}
+
+$index1: 1rem;
+$index2: 2rem;
+$index3: 3rem;
+$index4: 4rem;
+$index5: 5rem;
+
+.txt-1 {
+  font-size: $index1 !important;
+}
+
+.txt-2 {
+  font-size: $index2 !important;
+}
+
+.txt-3 {
+  font-size: $index3 !important;
+}
+
+.txt-4 {
+  font-size: $index4 !important;
+}
+
+.txt-5 {
+  font-size: $index5 !important;
+}
+
+.mt-1 {
+  margin-top: $index1 !important;
+}
+
+.mt-2 {
+  margin-top: $index2 !important;
+}
+
+.mt-3 {
+  margin-top: $index3 !important;
+}
+
+.mt-4 {
+  margin-top: $index4 !important;
+}
+
+.mt-5 {
+  margin-top: $index5 !important;
+}
+
+.ml-1 {
+  margin-left: $index1 !important;
+}
+
+.ml-2 {
+  margin-left: $index2 !important;
+}
+
+.ml-3 {
+  margin-left: $index3 !important;
+}
+
+.ml-4 {
+  margin-left: $index4 !important;
+}
+
+.ml-5 {
+  margin-left: $index5 !important;
+}
+
+.mr-1 {
+  margin-right: $index1 !important;
+}
+
+.mr-2 {
+  margin-right: $index2 !important;
+}
+
+.mr-3 {
+  margin-right: $index3 !important;
+}
+
+.mr-4 {
+  margin-right: $index4 !important;
+}
+
+.mr-5 {
+  margin-right: $index5 !important;
+}
+
+.mb-1 {
+  margin-bottom: $index1 !important;
+}
+
+.mb-2 {
+  margin-bottom: $index2 !important;
+}
+
+.mb-3 {
+  margin-bottom: $index3 !important;
+}
+
+.mb-4 {
+  margin-bottom: $index4 !important;
+}
+
+.mb-5 {
+  margin-bottom: $index5 !important;
+}
+
+.m-auto {
+  margin: auto !important;
+}
+
+.pd-1 {
+  padding: $index1 !important;
+}
+
+.pd-2 {
+  padding: $index2 !important;
+}
+
+.pd-3 {
+  padding: $index3 !important;
+}
+
+.pd-4 {
+  padding: $index4 !important;
+}
+
+.pd-5 {
+  padding: $index5 !important;
+}
+
+.pt-1 {
+  padding-top: $index1 !important;
+}
+
+.pt-2 {
+  padding-top: $index2 !important;
+}
+
+.pt-3 {
+  padding-top: $index3 !important;
+}
+
+.pt-4 {
+  padding-top: $index4 !important;
+}
+
+.pt-5 {
+  padding-top: $index5 !important;
+}
+
+.pl-1 {
+  padding-left: $index1 !important;
+}
+
+.pl-2 {
+  padding-left: $index2 !important;
+}
+
+.pl-3 {
+  padding-left: $index3 !important;
+}
+
+.pl-4 {
+  padding-left: $index4 !important;
+}
+
+.pl-5 {
+  padding-left: $index5 !important;
+}
+
+.pr-1 {
+  padding-right: $index1 !important;
+}
+
+.pr-2 {
+  padding-right: $index2 !important;
+}
+
+.pr-3 {
+  padding-right: $index3 !important;
+}
+
+.pr-4 {
+  padding-right: $index4 !important;
+}
+
+.pr-5 {
+  padding-right: $index5 !important;
+}
+
+.pb-1 {
+  padding-bottom: $index1 !important;
+}
+
+.pb-2 {
+  padding-bottom: $index2 !important;
+}
+
+.pb-3 {
+  padding-bottom: $index3 !important;
+}
+
+.pb-4 {
+  padding-bottom: $index4 !important;
+}
+
+.pb-5 {
+  padding-bottom: $index5 !important;
+}
+
+img {
+  object-fit: cover;
+}
+
+.pd-page {
+  padding: 50px !important;
+}
+
+.hero-img {
+  background-image: url('./components/images/hero_bg.svg') !important;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+}
+
+.d-flex {
+  display: flex !important;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.align-center {
+  align-items: center !important;
+}
+
+.justify-center {
+  justify-content: center !important;
+}
