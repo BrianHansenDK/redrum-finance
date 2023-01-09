@@ -11,7 +11,7 @@ const CtaUp = () => {
             <p className='txt-center txt-white'>
                 Next to stocks, ETF's and real estate, the perfect addition to your investment strategy.
             </p>
-            <Button className='mt-2' size='lg'>
+            <Button className='mt-2 main-btn white shadow' size='lg'>
                 Learn more
             </Button>
         </div>

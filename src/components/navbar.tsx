@@ -33,8 +33,15 @@ const APPLINKS = [
 
 const MainNavbar = () => {
     const [isActive, setActive] = useState(false);
+    window.addEventListener('load', () => {
+        location.pathname != '/' ? setActive(true) : setActive(false)
+    })
     window.addEventListener('scroll', () => {
-        window.scrollY >= 50 ? setActive(true) : setActive(false)
+        if (window.scrollY < 50 && location.pathname == '/') {
+            setActive(false)
+        } else {
+            setActive(true)
+        }
     })
     return (
         <Navbar id='navbar' appearance='subtle' className={`${isActive ? 'dark-bg' : 'no-bg'} trans`} style={{ paddingRight: 25 }}>
@@ -58,7 +65,7 @@ const MainNavbar = () => {
                         </Link>
                     ))
                 }
-                <Button appearance='primary' className='main-btn white pl-3 pr-3' size='lg' >
+                <Button appearance='primary' className='main-btn white pl-3 pr-3 bold' size='lg' >
                     Invest Now
                 </Button>
                 <NavMenu as={Link} className='nav-ul' title='EN'>

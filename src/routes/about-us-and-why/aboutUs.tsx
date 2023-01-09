@@ -7,6 +7,7 @@ import IMG1 from '../../components/images/about_us_page_imgs/ab_img1.svg'
 import IMG2 from '../../components/images/about_us_page_imgs/ab_img2.svg'
 import IMG3 from '../../components/images/about_us_page_imgs/ab_img3.svg'
 import IMG4 from '../../components/images/about_us_page_imgs/ab_img4.svg'
+import './styles/about.scss'
 
 const AboutUsPage = () => {
     return (

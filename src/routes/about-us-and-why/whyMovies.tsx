@@ -7,23 +7,24 @@ import IMG2 from '../../components/images/about_us_page_imgs/wm_img2.svg'
 import IMG3 from '../../components/images/about_us_page_imgs/wm_img3.svg'
 import BlockR from './blockR'
 import { Button } from 'rsuite'
+import './styles/about.scss'
 
 const WhyMovies = () => {
     return (
         <MainLayout>
             <div className='pt-5 pl-2 pr-2 pb-5 d-flex flex-column align-center'>
-                <h1>
+                <h1 className='title-mid'>
                     Why movies?
                 </h1>
-                <p className=' txt-center mb-2'>
+                <p className=' txt-center mb-2 mid-des'>
                     In creating this business plan, we kept running into the following question,
                     "Why should I invest in a film instead of buying Tesla stock? Wh-why the Redrum Film Finance App?"
                 </p>
                 <img src={IMG1} alt="Invest easy with our App" width={90 + '%'} className='m-auto sq-shadow' />
-                <h1 className="mt-2">
+                <h1 className="mt-2 title-mid">
                     Minimized risk
                 </h1>
-                <p className="txt-center">
+                <p className="txt-center mid-des">
                     In our opinion, one does not exclude the other. A good and risk-minimized investment portfolio should always be broadly diversified. Be it stocks, ETF's, real estate, precious metals or cryptocurrencies. With its film projects, the Redrum Finance App offers not only an exciting, but also a high-return addition to any portfolio.
                 </p>
             </div>
@@ -50,11 +51,11 @@ const WhyMovies = () => {
                 img={IMG2}
             />
             <div className="pt-5 pl-2 pr-2 pb-5 d-flex flex-column align-center justify-center">
-                <h1>Growth</h1>
-                <p className='txt-center mb-2' style={{ maxWidth: 75 + '%' }}>
+                <h1 className='title-mid'>Growth</h1>
+                <p className='txt-center mb-2 mid-des' style={{ maxWidth: 75 + '%' }}>
                     The Redrum Film Finance App combines these two growth markets by benefiting from both the strong demand of the film market and the growing willingness of investors to invest. The app not only offers the opportunity to discover new financial products, but also bridges the gap between investment, art and culture.
                 </p>
-                <Button size='lg'>
+                <Button size='lg' appearance='primary' color='blue' className='main-btn shadow'>
                     Become an investor
                 </Button>
             </div>
