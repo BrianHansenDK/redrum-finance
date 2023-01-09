@@ -16,17 +16,17 @@ const Hero = () => {
                 </div>
                 <div id='hero' >
                     <div id='hero-left'>
-                        <h1>
+                        <h1 className='mt-4'>
                             Invest in movies & gain revenue
                         </h1>
                         <div>
                             And here is the supporting text for your headline. A short paragraph that provides extra info.
                         </div>
-                        <div id='btn-group' className='mt-2 txt-1 '>
-                            <Button appearance='primary' size='lg' className='main-btn blue mr-1 shadow'>
+                        <div id='btn-group'>
+                            <Button appearance='primary' className=' shadow btn-1'>
                                 <MOUSE /> Start investing
                             </Button>
-                            <Button appearance='ghost' size='lg' className='main-btn white hidden'>
+                            <Button appearance='subtle' className=' ml-1 btn-2'>
                                 Learn more
                             </Button>
                         </div>

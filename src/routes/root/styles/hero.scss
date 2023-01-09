@@ -34,6 +34,7 @@ div#hero-wrap {
         flex-shrink: 0;
         width: 100%;
         margin: 0px;
+        margin-bottom: 50px;
         justify-content: flex-start;
         overflow: visible;
         border-radius: 0px;
@@ -44,7 +45,7 @@ div#hero-wrap {
         z-index: 6;
         align-self: center;
         min-width: 280px;
-        max-width: 1100px;
+        max-width: 1150px;
         order: 3;
         min-height: 0px;
         height: max-content;
@@ -103,7 +104,7 @@ div#hero-wrap {
                 word-break: break-word;
                 font-family: Poppins;
                 font-size: 48px;
-                font-weight: 500;
+                font-weight: 600;
                 color: rgb(255, 255, 255);
                 line-height: 1.2;
                 border-radius: 0px;
@@ -145,28 +146,29 @@ div#hero-wrap {
             align-self: center;
             min-width: 200px;
             max-width: 300px;
-            min-height: 250px;
+            min-height: 225px;
             order: 2;
-            width: 200px;
+            width: 250px;
+            height: 250px;
             flex-grow: 1;
             margin: 0px;
             border-radius: 0px;
             position: relative;
-            overflow: hidden;
             box-sizing: border-box;
             height: auto;
 
             & img {
                 position: absolute;
-                top: 0px;
-                left: 0px;
+                top: 35px;
+                left: -45px;
                 display: block;
-                width: 100%;
+                width: 115%;
                 height: 100%;
                 margin: 0px;
                 border-radius: 0px;
                 padding: 0;
                 border: 0;
+                object-fit: fill;
             }
         }
 
@@ -237,4 +239,59 @@ div#hero-wrap {
             }
         }
     }
+}
+
+.btn-1 {
+    align-self: flex-start;
+    min-width: 150px;
+    max-width: 150px;
+    min-height: 44px;
+    width: 150px;
+    flex-grow: 1;
+    height: max-content;
+    margin: 0px;
+    white-space: pre-wrap;
+    overflow: visible;
+    word-break: break-word;
+    font-family: Poppins;
+    font-size: 14px;
+    font-weight: 500;
+    color: rgb(239, 242, 245);
+    text-align: center;
+    letter-spacing: 0.3px;
+    line-height: 1.4;
+    border-radius: 5px;
+    box-shadow: rgb(0 0 0 / 25%) 0px 2px 4px 0px;
+    cursor: pointer;
+    text-decoration: none;
+    font-style: normal;
+    transition: color 200ms ease 0s, background 200ms ease 0s;
+}
+
+.btn-2 {
+    align-self: flex-start;
+    min-width: 150px;
+    max-width: 150px;
+    min-height: 44px;
+    width: 150px;
+    flex-grow: 1;
+    height: max-content;
+    margin: 0px;
+    white-space: pre-wrap;
+    overflow: visible;
+    word-break: break-word;
+    font-family: Poppins;
+    font-size: 14px;
+    font-weight: 500;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    letter-spacing: 0.3px;
+    line-height: 1.4;
+    border-radius: 5px;
+    transition: color 200ms ease 0s, background 200ms ease 0s;
+    text-decoration: none;
+    font-style: normal;
+    border-style: none;
+    border-width: 1px;
+    border-color: rgb(107, 107, 107);
 }

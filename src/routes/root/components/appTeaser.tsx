@@ -16,32 +16,32 @@ const AppTeaser = () => {
                 <h1>
                     Download our App easy 🚀
                 </h1>
-                <p className='txt-1 mt-1'>
+                <p className='txt-1 mt-1 app-des'>
                     A justo tempus, in felis, aliquam blandit vel cubilia varius. Eu lacinia nostra proin, fusce neque sociosqu, sodales fames sollicitudin maecenas adipiscing ultricies tortor nisi. Sit vehicula bibendum, leo aptent nam metus suspendisse. Pretium conubia cubilia, quisque facilisis in elit congue. Sociosqu quisque potenti, porttitor praesent, sapien nunc interdum placerat iaculis mollis sem.
                 </p>
                 <div className='mt-3' >
 
-                    <Button appearance='primary' color='green' className='shadow pd-1 dark-bg' style={{ width: 275 }}>
+                    <Button appearance='primary' color='green' className='app-btn' style={{ width: 275 }}>
                         <div className='d-flex'>
-                            <div className='mr-1'>
-                                <GPLAY className='txt-3' />
+                            <div className='mr-1 d-flex'>
+                                <GPLAY style={{ fontSize: 30, alignSelf: 'center' }} />
                             </div>
                             <div>
-                                <p className='txt-1'>Get it on</p>
-                                <p className='txt-2'>Google play</p>
+                                <p className='get-on'>Get it on</p>
+                                <p className='provider'>Google play</p>
                             </div>
                         </div>
                     </Button>
                 </div>
                 <div className='mt-1' >
-                    <Button appearance='primary' color='blue' className='shadow pd-1 dark-bg' style={{ width: 275 }}>
+                    <Button appearance='primary' color='blue' className='app-btn' style={{ width: 275 }}>
                         <div className='d-flex'>
-                            <div className='mr-1'>
-                                <APPLE className='txt-3' />
+                            <div className='mr-1 d-flex'>
+                                <APPLE style={{ fontSize: 30, alignSelf: 'center' }} />
                             </div>
                             <div>
-                                <p className='txt-1'>Get it on</p>
-                                <p className='txt-2'>App store</p>
+                                <p className='get-on'>Get it on</p>
+                                <p className='provider'>App store</p>
                             </div>
                         </div>
                     </Button>

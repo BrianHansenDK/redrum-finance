@@ -1,0 +1,43 @@
+.split-wrap {
+    align-self: flex-start;
+    min-width: 100%;
+    max-width: 100%;
+    order: 8;
+    min-height: 150px;
+    height: max-content;
+    flex-grow: 0;
+    flex-shrink: 0;
+    width: 100%;
+    margin: 0px;
+    border-radius: 0px;
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.left-split-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+}
+
+.left-split-bottom svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 150px;
+    transform: rotateY(180deg);
+}
+
+.left-split-bottom .shape-fill {
+    fill: #F5F8FA;
+}
+
+#jus1,
+#jus2 {
+    text-align: justify !important;
+}

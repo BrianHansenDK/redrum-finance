@@ -39,6 +39,18 @@ $white: #fefefe;
     color: $white;
 }
 
+.txt-start {
+    text-align: start;
+}
+
+.txt-center {
+    text-align: center;
+}
+
+.txt-end {
+    text-align: end;
+}
+
 .btn-outline-grey {
     border: 1px solid $grey !important;
     color: $grey !important;
@@ -51,16 +63,28 @@ $white: #fefefe;
 button.main-btn {
     font-size: 20px;
     font-weight: 700 !important;
+    border-radius: 10px;
     transition: all 300ms ease-in-out;
+    font-family: Poppins;
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+    letter-spacing: 0.3px;
+    line-height: 1.4;
+    border-radius: 10px;
+
 
     &.white {
         background-color: $white ;
         color: $dark ;
+        padding: 10px 25px;
+        box-sizing: content-box !important;
 
         &.hidden {
             color: $white;
             background: none;
-            border: none;
+            border: 2px solid rgba(0, 0, 0, 0);
+
 
             &:hover {
                 color: rgb(241, 188, 0);

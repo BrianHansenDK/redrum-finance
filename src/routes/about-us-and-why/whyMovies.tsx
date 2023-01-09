@@ -8,27 +8,43 @@ import IMG3 from '../../components/images/about_us_page_imgs/wm_img3.svg'
 import BlockR from './blockR'
 import { Button } from 'rsuite'
 import './styles/about.scss'
+import './styles/why-movies.scss'
+import TrianlgeBottom from './triangleBottom'
+import TriangleTop from './triangleTop'
+import LineShape from './lineShape'
 
 const WhyMovies = () => {
     return (
         <MainLayout>
-            <div className='pt-5 pl-2 pr-2 pb-5 d-flex flex-column align-center'>
-                <h1 className='title-mid'>
-                    Why movies?
-                </h1>
-                <p className=' txt-center mb-2 mid-des'>
-                    In creating this business plan, we kept running into the following question,
-                    "Why should I invest in a film instead of buying Tesla stock? Wh-why the Redrum Film Finance App?"
-                </p>
-                <img src={IMG1} alt="Invest easy with our App" width={90 + '%'} className='m-auto sq-shadow' />
-                <h1 className="mt-2 title-mid">
-                    Minimized risk
-                </h1>
-                <p className="txt-center mid-des">
-                    In our opinion, one does not exclude the other. A good and risk-minimized investment portfolio should always be broadly diversified. Be it stocks, ETF's, real estate, precious metals or cryptocurrencies. With its film projects, the Redrum Finance App offers not only an exciting, but also a high-return addition to any portfolio.
-                </p>
+            <div style={{ position: 'relative', paddingBottom: 150 }}>
+
+                <div className='top-div'>
+                    <div className='top-title-con'>
+
+                        <h1 className='t1'>
+                            Why movies?
+                        </h1>
+                        <p className='p1'>
+                            In creating this business plan, we kept running into the following question,
+                            "Why should I invest in a film instead of buying Tesla stock? Wh-why the Redrum Film Finance App?"
+                        </p>
+                    </div>
+                    <div style={{ backgroundImage: 'url(' + IMG1 + ')' }} className='big-img' />
+                    <div className='top-title-con'>
+                        <h1 className='t1 mt-5'>
+                            Minimized risk
+                        </h1>
+                        <p className='p1'>
+                            In our opinion, one does not exclude the other. A good and risk-minimized investment portfolio should always be broadly diversified. Be it stocks, ETF's, real estate, precious metals or cryptocurrencies. With its film projects, the Redrum Finance App offers not only an exciting, but also a high-return addition to any portfolio.
+                        </p>
+                    </div>
+                </div>
+                <TrianlgeBottom />
             </div>
-            <BlockL
+            <div style={{ position: 'relative' }}>
+                <TriangleTop />
+            </div>
+            <BlockR
                 title='The Film Industry'
                 txt={
                     <p>
@@ -39,25 +55,28 @@ const WhyMovies = () => {
                 }
                 img={IMG2}
             />
-            <BlockR
-                title='Investing as a new trend'
-                txt={
-                    <p>
-                        In addition to the streaming market, another growth market has spread in Germany in recent years: the investment market. More and more people, especially of younger age, are interested in the topic of old-age provision and capital investment.
-                        <br /> <br />
-                        This can be seen from the surveys of the "Deutsches Aktieninstitut", which determined a total number of shareholders of 12.1 million for the year 2021. Investment apps such as Trade Republic, Scalable Capital or Timeless can confirm the trend based on the strongly increasing number of users, because investing is not only an investment in the future nowadays, but rather a lifestyle.
+            <LineShape />
+            <div className="grey-bg">
+                <BlockL
+                    title='Investing as a new trend'
+                    txt={
+                        <p>
+                            In addition to the streaming market, another growth market has spread in Germany in recent years: the investment market. More and more people, especially of younger age, are interested in the topic of old-age provision and capital investment.
+                            <br /> <br />
+                            This can be seen from the surveys of the "Deutsches Aktieninstitut", which determined a total number of shareholders of 12.1 million for the year 2021. Investment apps such as Trade Republic, Scalable Capital or Timeless can confirm the trend based on the strongly increasing number of users, because investing is not only an investment in the future nowadays, but rather a lifestyle.
+                        </p>
+                    }
+                    img={IMG3}
+                />
+                <div className="growth-div mt-3">
+                    <h1 className='title-mid'>Growth</h1>
+                    <p className='mid-des'>
+                        The Redrum Film Finance App combines these two growth markets by benefiting from both the strong demand of the film market and the growing willingness of investors to invest. The app not only offers the opportunity to discover new financial products, but also bridges the gap between investment, art and culture.
                     </p>
-                }
-                img={IMG2}
-            />
-            <div className="pt-5 pl-2 pr-2 pb-5 d-flex flex-column align-center justify-center">
-                <h1 className='title-mid'>Growth</h1>
-                <p className='txt-center mb-2 mid-des' style={{ maxWidth: 75 + '%' }}>
-                    The Redrum Film Finance App combines these two growth markets by benefiting from both the strong demand of the film market and the growing willingness of investors to invest. The app not only offers the opportunity to discover new financial products, but also bridges the gap between investment, art and culture.
-                </p>
-                <Button size='lg' appearance='primary' color='blue' className='main-btn shadow'>
-                    Become an investor
-                </Button>
+                    <Button size='lg' appearance='primary' className='main-btn white shadow mt-3 mb-5' style={{ width: 250, margin: 'auto' }}>
+                        Become an investor
+                    </Button>
+                </div>
             </div>
         </MainLayout>
     )

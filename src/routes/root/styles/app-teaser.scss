@@ -1,3 +1,111 @@
 #app-teaser {
     background: -webkit-linear-gradient(left, rgb(19, 22, 40) 0%, rgb(73, 75, 116) 100%);
+
+    & h1 {
+        z-index: 2;
+        align-self: flex-start;
+        min-width: 0px;
+        order: 1;
+        min-height: 48px;
+        height: max-content;
+        flex-grow: 0;
+        flex-shrink: 0;
+        width: calc(100% - 0px);
+        margin: 0px 0px 16px;
+        white-space: pre-wrap;
+        overflow: visible;
+        word-break: break-word;
+        font-family: Poppins;
+        font-size: 36px;
+        font-weight: 700;
+        line-height: 1;
+        border-radius: 0px;
+    }
+
+    & .app-des {
+        z-index: 3;
+        align-self: flex-start;
+        min-width: 0px;
+        order: 2;
+        min-height: 96px;
+        height: max-content;
+        flex-grow: 0;
+        flex-shrink: 0;
+        width: calc(100% - 0px);
+        margin: 0px 0px 25px;
+        white-space: pre-wrap;
+        overflow: visible;
+        word-break: break-word;
+        font-family: Poppins;
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 1.4;
+        border-radius: 0px;
+        opacity: .8;
+    }
+
+    & .get-on {
+        z-index: 2;
+        align-self: flex-start;
+        min-width: 0px;
+        order: 1;
+        min-height: 0px;
+        height: max-content;
+        flex-grow: 0;
+        flex-shrink: 0;
+        width: auto;
+        margin: 0px;
+        white-space: pre-wrap;
+        overflow: visible;
+        word-break: break-word;
+        font-family: Poppins;
+        font-size: 14px;
+        font-weight: 600;
+        opacity: .8;
+        line-height: 1.4;
+        border-radius: 0px;
+    }
+
+    & .provider {
+        z-index: 3;
+        align-self: flex-start;
+        min-width: 0px;
+        order: 2;
+        min-height: 0px;
+        height: max-content;
+        flex-grow: 0;
+        flex-shrink: 0;
+        width: auto;
+        margin: 0px;
+        white-space: pre-wrap;
+        overflow: visible;
+        word-break: break-word;
+        font-family: Poppins;
+        font-size: 26px;
+        font-weight: 600;
+        opacity: .9;
+        line-height: 1.4;
+        border-radius: 0px;
+    }
+
+    & .app-btn {
+        z-index: 10;
+        align-self: flex-start;
+        min-width: 225px;
+        max-width: 225px;
+        order: 9;
+        min-height: 65px;
+        height: max-content;
+        flex-grow: 0;
+        flex-shrink: 0;
+        width: 225px;
+        margin: 0px 0px 25px;
+        justify-content: flex-start;
+        overflow: visible;
+        background-color: rgb(11, 13, 22);
+        border-radius: 15px;
+        box-shadow: rgb(0 0 0 / 25%) 0px 4px 8px 1px;
+        padding: 0px 0px 0px 15px;
+        transition: box-shadow 200ms ease 0s;
+    }
 }

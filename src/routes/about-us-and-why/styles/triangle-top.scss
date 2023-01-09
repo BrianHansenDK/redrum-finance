@@ -1,0 +1,77 @@
+.triangle-top-wrap {
+    align-self: flex-start;
+    min-width: 100%;
+    max-width: 100%;
+    order: 6;
+    min-height: 0px;
+    height: max-content;
+    flex-grow: 0;
+    flex-shrink: 0;
+    width: 100%;
+    margin: 0px;
+    justify-content: flex-start;
+    overflow: visible;
+    background-color: rgb(67, 76, 94);
+    border-radius: 0px;
+    flex-direction: column;
+    flex-wrap: nowrap;
+
+    & .triangle-top-wrap-inner {
+        align-self: flex-start;
+        min-width: 100%;
+        max-width: 100%;
+        min-height: 150px;
+        height: max-content;
+        flex-grow: 0;
+        flex-shrink: 0;
+        width: 100%;
+        margin: 0px;
+        border-radius: 0px;
+        position: relative;
+        overflow: hidden;
+        box-sizing: border-box;
+    }
+}
+
+.triangle-top {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+}
+
+.triangle-top.weis svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 150px;
+}
+
+.triangle-top.weis .shape-fill {
+    fill: #fff;
+}
+
+#bgplant {
+    background-position: center -175px !important;
+}
+
+@media screen and (max-width: 1800px) {
+    #bgplant {
+        background-position: center -125px !important;
+    }
+}
+
+@media screen and (max-width: 1350px) {
+    #bgplant {
+        background-position: center -75px !important;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    #bgplant {
+        background-position: center center !important;
+    }
+}

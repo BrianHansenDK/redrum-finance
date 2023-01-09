@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import NavMenu from 'rsuite/esm/Nav/NavMenu';
 import NavItem from 'rsuite/esm/Nav/NavItem';
 
-const MAINLINKS = [
+export const MAINLINKS = [
     {
         t: 'About us',
         to: '/about-us'
@@ -19,7 +19,7 @@ const MAINLINKS = [
     },
 ];
 
-const APPLINKS = [
+export const APPLINKS = [
     {
         t: 'Blog',
     },
@@ -28,6 +28,7 @@ const APPLINKS = [
     },
     {
         t: 'Sign in',
+        to: 'sign-in'
     }
 ]
 
@@ -44,11 +45,11 @@ const MainNavbar = () => {
         }
     })
     return (
-        <Navbar id='navbar' appearance='subtle' className={`${isActive ? 'dark-bg' : 'no-bg'} trans`} style={{ paddingRight: 25 }}>
+        <Navbar id='navbar' appearance='subtle' className={`${isActive ? 'dark-bg shadow' : 'no-bg'} trans`} style={{ paddingRight: 25 }}>
             <Navbar.Brand id='brand' className='bold d-flex align-center' as={Link} to='/' style={{ height: 75, fontSize: 20 }}>
                 Redrum Media Invest
             </Navbar.Brand>
-            <Nav className='d-flex align-center ' style={{ height: 75, flex: 0, columnGap: 15, fontSize: 17.5 }}>
+            <Nav className='d-flex align-center ' style={{ height: 75, flex: 0, columnGap: 15, fontSize: 12.75, fontWeight: 400 }}>
                 {
                     MAINLINKS.map(l => (
                         <Link to={l.to} className='nav-ul'>
@@ -57,10 +58,10 @@ const MainNavbar = () => {
                     ))
                 }
             </Nav>
-            <Nav pullRight className='d-flex align-center' style={{ height: 75, columnGap: 15, fontSize: 17.5 }}>
+            <Nav pullRight className='d-flex align-center' style={{ height: 75, columnGap: 15, fontSize: 12.75, fontWeight: 400 }}>
                 {
                     APPLINKS.map(l => (
-                        <Link to='/' className='nav-ul'>
+                        <Link to={`${l.to ? l.to : '/'}`} className='nav-ul'>
                             {l.t}
                         </Link>
                     ))
@@ -68,7 +69,7 @@ const MainNavbar = () => {
                 <Button appearance='primary' className='main-btn white pl-3 pr-3 bold' size='lg' >
                     Invest Now
                 </Button>
-                <NavMenu as={Link} className='nav-ul' title='EN'>
+                <NavMenu as={Link} className='nav-ul' title='EN' style={{ padding: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                     <NavItem>
                         EN
                     </NavItem>

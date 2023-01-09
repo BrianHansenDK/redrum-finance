@@ -47,6 +47,10 @@ a.nav-ul {
     &:hover {
         box-shadow: 0 3px 10px 0 rgba(0, 0, 29, .25);
     }
+
+    &:active {
+        box-shadow: 0 1.5px 5px 0 rgba(0, 0, 29, .35);
+    }
 }
 
 .sq-shadow {

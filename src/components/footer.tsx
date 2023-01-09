@@ -1,5 +1,7 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { Col, Grid, Nav, Row } from 'rsuite'
+import { MAINLINKS, APPLINKS } from './navbar'
 
 const MainFooter = () => {
     return (
@@ -13,11 +15,11 @@ const MainFooter = () => {
                 <Col lg={6} >
                     <h3>Company</h3>
                     <Nav vertical >
-                        <Nav.Item eventKey="home" >
-                            Home
-                        </Nav.Item>
-                        <Nav.Item eventKey="news">About us</Nav.Item>
-                        <Nav.Item eventKey="solutions">Why movies?</Nav.Item>
+                        {MAINLINKS.map(l => (
+                            <Nav.Item eventKey={l.t} as={Link} to={l.to} >
+                                {l.t}
+                            </Nav.Item>
+                        ))}
                     </Nav>
                 </Col>
                 <Col lg={6} >
@@ -25,11 +27,11 @@ const MainFooter = () => {
                         App
                     </h3>
                     <Nav vertical>
-                        <Nav.Item eventKey="home" >
-                            Home
-                        </Nav.Item>
-                        <Nav.Item eventKey="news">How it works</Nav.Item>
-                        <Nav.Item eventKey="solutions">Sign up</Nav.Item>
+                        {APPLINKS.map(l => (
+                            <Nav.Item eventKey={l.t} >
+                                {l.t}
+                            </Nav.Item>
+                        ))}
                     </Nav>
                 </Col>
             </Row>

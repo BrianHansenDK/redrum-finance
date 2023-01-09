@@ -2,24 +2,27 @@ import React from 'react'
 import { FlexboxGrid } from 'rsuite'
 import FlexboxGridItem from 'rsuite/esm/FlexboxGrid/FlexboxGridItem'
 
-const FeaturesRight = ({ img, alt, title, txt }: { img: any, alt: any, title: any, txt: any }) => {
+const FeaturesRight = ({ img, alt, title, txt, mainTitle }: { img: any, alt: any, title: any, txt: any, mainTitle: any }) => {
     return (
-        <FlexboxGrid justify='center' align='middle'>
-            <FlexboxGridItem colspan={8} className='d-flex flex-column justify-center mt-5 mb-5 pr-1'
-                style={{ borderRight: '2px solid #141628', height: 'max-content' }}
+        <div className='feature-ttl-div'>
+            {
+                mainTitle ? (<h1 className='main-title'>
+                    {mainTitle}
+                </h1>) : null
+            }
+            <div className='txt-div-right'
             >
-                <h2 className='txt-right' style={{ lineHeight: 40 + 'px' }}>
+                <h2 className='txt-title right'>
                     {title}
                 </h2>
-                <p className='txt-right'>
+                <p className='txt-des right' style={{ textAlign: 'right' }}>
                     {txt}
                 </p>
-            </FlexboxGridItem>
-            <FlexboxGridItem colspan={8} className='d-flex align-center justify-center'>
+            </div>
+            <div className='img-div'>
                 <img src={img} alt={alt} height={200} width={200} />
-            </FlexboxGridItem>
-
-        </FlexboxGrid>
+            </div>
+        </div>
     )
 }
 
