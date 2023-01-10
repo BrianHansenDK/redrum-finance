@@ -1,38 +1,34 @@
-import React, { forwardRef } from 'react'
-import { Button, ButtonToolbar, DatePicker, Form, Input, InputGroup, InputNumber } from 'rsuite'
-import GPLUS from '@rsuite/icons/legacy/GooglePlusCircle'
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth'
+import React, { forwardRef, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
+import { Button } from 'rsuite'
+import GPLAY from '@rsuite/icons/legacy/GooglePlusCircle'
 
 const SignUpForm = () => {
+    const auth = getAuth()
+    const navigate = useNavigate()
+    const [authing, setAuthing] = useState(false)
+
+    const signInWithGoogle = async () => {
+        setAuthing(true)
+
+        signInWithPopup(auth, new GoogleAuthProvider())
+        .then((response) => {
+            console.log(response.user.uid)
+            navigate('/account')
+        })
+        .catch((err) => {
+            console.log(err.message)
+            setAuthing(false)
+        })
+    }
 
     return (
-        <div className='' style={{ maxWidth: 750 }}>
-            <Form fluid>
-                <br />
-                <Form.Group controlId="username">
-                    <Form.ControlLabel>Username</Form.ControlLabel> <br />
-                    <Form.Control placeholder='Username' name="username" type='text' />
-                </Form.Group>
-                <br />
-                <br />
-                <Form.Group controlId="email-1">
-                    <Form.ControlLabel>Email</Form.ControlLabel> <br />
-                    <Form.Control placeholder='Email address' name="email" type='email' />
-                </Form.Group>
-                <br />
-                <Form.Group controlId="password-1">
-                    <Form.ControlLabel>Password</Form.ControlLabel> <br />
-                    <Form.Control name="password" placeholder='Password' type="password" autoComplete="off" />
-                </Form.Group>
-                <Form.Group>
-                    <ButtonToolbar>
-                        <Button appearance="primary">Sign Up</Button>
-                        <Button appearance='primary' color='green'> <GPLUS /> Sing up with Google</Button>
-                    </ButtonToolbar>
-                </Form.Group>
-            </Form>
-
-        </div>
+        <Button 
+        appearance='primary' color='green' className='main-btn' 
+        onClick={() => signInWithGoogle} disabled={authing}>
+            <GPLAY/> Login with google
+        </Button>
     )
 }
 

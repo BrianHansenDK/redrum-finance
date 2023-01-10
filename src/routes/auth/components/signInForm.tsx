@@ -1,30 +1,38 @@
-import React, { forwardRef } from 'react'
-import { Button, ButtonToolbar, DatePicker, Form, Input, InputGroup, InputNumber } from 'rsuite'
-import GPLUS from '@rsuite/icons/legacy/GooglePlusCircle'
+import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth"
+import React, { useState } from "react"
+import { Form, useNavigate } from "react-router-dom"
+import { Button } from "rsuite"
+import GPLAY from '@rsuite/icons/legacy/GooglePlusCircle'
+import FormControl from "rsuite/esm/FormControl"
 
 const SignInForm = () => {
-    return (
-        <div className='' style={{ maxWidth: 750 }}>
-            <Form fluid>
-                <br />
-                <Form.Group controlId="email-1">
-                    <Form.ControlLabel>Email</Form.ControlLabel> <br />
-                    <Form.Control placeholder='Email address' name="email" type='email' />
-                </Form.Group>
-                <br />
-                <Form.Group controlId="password-1">
-                    <Form.ControlLabel>Password</Form.ControlLabel> <br />
-                    <Form.Control name="password" placeholder='Password' type="password" autoComplete="off" />
-                </Form.Group>
-                <Form.Group>
-                    <ButtonToolbar>
-                        <Button appearance="primary">Login</Button>
-                        <Button appearance='primary' color='green'> <GPLUS /> Sing in with Google</Button>
-                    </ButtonToolbar>
-                </Form.Group>
-            </Form>
+    const auth = getAuth()
+    const navigate = useNavigate()
+    const [authing, setAuthing] = useState(false)
 
-        </div>
+    const signInWithGoogle = async () => {
+        setAuthing(true)
+
+        signInWithPopup(auth, new GoogleAuthProvider())
+        .then((response) => {
+            console.log(response.user.uid)
+            navigate('/app')
+        })
+        .catch((err) => {
+            console.log(err.message)
+            setAuthing(false)
+        })
+        .finally(() => setAuthing(false))
+    }
+
+    return (
+        
+             <Button 
+        appearance='primary' color='green' className='main-btn' style={{width: 50 + '%'}}
+        onClick={signInWithGoogle} disabled={authing}>
+            <GPLAY/> Login with google
+        </Button>
+       
     )
 }
 

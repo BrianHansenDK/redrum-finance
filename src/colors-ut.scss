@@ -67,11 +67,14 @@ button.main-btn {
     transition: all 300ms ease-in-out;
     font-family: Poppins;
     font-size: 18px;
-    font-weight: 600;
     text-align: center;
     letter-spacing: 0.3px;
     line-height: 1.4;
     border-radius: 10px;
+
+    &.thin {
+        font-weight: 400!important;
+    }
 
 
     &.white {

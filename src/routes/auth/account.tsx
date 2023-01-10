@@ -1,16 +1,21 @@
 import React from 'react'
 import { Button } from 'rsuite'
+import { getAuth } from 'firebase/auth'
 
-const AccountPage = () => {
+export interface IAccountPageProps {}
+
+const AccountPage: React.FunctionComponent<IAccountPageProps> = (props) => {
+    const auth = getAuth()
+
     return (
         <div>
             <h1>
-                Account
+                Account {auth.currentUser?.displayName}
             </h1>
             <p>
-                User Email:
+                User Email: {auth.currentUser?.email}
             </p>
-            <Button>Logout</Button>
+            <Button onClick={() => auth.signOut()} >Logout</Button>
         </div>
     )
 }

@@ -16,7 +16,7 @@ const MainFooter = () => {
                     <h3>Company</h3>
                     <Nav vertical >
                         {MAINLINKS.map(l => (
-                            <Nav.Item eventKey={l.t} as={Link} to={l.to} >
+                            <Nav.Item eventKey={l.t} as={Link} to={l.to} key={l.t}>
                                 {l.t}
                             </Nav.Item>
                         ))}
@@ -28,7 +28,7 @@ const MainFooter = () => {
                     </h3>
                     <Nav vertical>
                         {APPLINKS.map(l => (
-                            <Nav.Item eventKey={l.t} >
+                            <Nav.Item eventKey={l.t} key={l.t}>
                                 {l.t}
                             </Nav.Item>
                         ))}

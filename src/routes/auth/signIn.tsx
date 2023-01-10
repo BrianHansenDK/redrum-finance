@@ -4,15 +4,21 @@ import SignInForm from './components/signInForm'
 
 const SignInPage = () => {
     return (
-        <div className='pl-4'>
-            <h1 className='txt-center'>Sign In Page</h1>
+        <div 
+        className='pl-4 pr-4 dark-bg d-flex flex-column align-center' 
+        style={{height: 100 + 'vh', justifyContent: 'flex-start'}}
+        >
             <div>
-                <h1>Sign in to your account</h1>
-                <p>
-                    Don't have an account? <Link to='/sign-up'>Sign up</Link>
-                </p>
+                <h1 className='txt-white txt-center mt-4 mb-3'>Sign in</h1>
+
             </div>
             <SignInForm />
+            <p className='txt-white mt-1' >
+                <span style={{opacity: .75}}>
+                    Don't have an account? &nbsp;
+                </span> 
+                <Link to='/sign-up'>Sign up</Link>
+            </p>
         </div>
     )
 }

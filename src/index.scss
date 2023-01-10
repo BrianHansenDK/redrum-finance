@@ -305,6 +305,11 @@ img {
   background-repeat: no-repeat !important;
 }
 
+.rs-modal-content {
+  border-radius: 10px!important;
+  background-color: #f5f8fa!important;
+}
+
 .d-flex {
   display: flex !important;
 }
@@ -319,4 +324,8 @@ img {
 
 .justify-center {
   justify-content: center !important;
+}
+
+.justify-around {
+  justify-content: space-around!important;
 }

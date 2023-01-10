@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
-import { Button, Nav, Navbar } from 'rsuite'
-import { Link } from 'react-router-dom';
+import { Button, Nav, Navbar, Notification, useToaster } from 'rsuite'
+import { Link, useNavigate } from 'react-router-dom';
 import NavMenu from 'rsuite/esm/Nav/NavMenu';
 import NavItem from 'rsuite/esm/Nav/NavItem';
+import AuthModal from './AuthModal';
 
 export const MAINLINKS = [
     {
@@ -28,12 +29,18 @@ export const APPLINKS = [
     },
     {
         t: 'Sign in',
-        to: 'sign-in'
+        to: '/sign-in'
     }
 ]
 
 const MainNavbar = () => {
     const [isActive, setActive] = useState(false);
+    const [isVisible, setVisible] = useState(false)
+    const openModal = () => setVisible(true)
+    const closeModal = () => setVisible(false)
+
+    
+    
     window.addEventListener('load', () => {
         location.pathname != '/' ? setActive(true) : setActive(false)
     })
@@ -45,6 +52,7 @@ const MainNavbar = () => {
         }
     })
     return (
+        <>
         <Navbar id='navbar' appearance='subtle' className={`${isActive ? 'dark-bg shadow' : 'no-bg'} trans`} style={{ paddingRight: 25 }}>
             <Navbar.Brand id='brand' className='bold d-flex align-center' as={Link} to='/' style={{ height: 75, fontSize: 20 }}>
                 Redrum Media Invest
@@ -52,7 +60,7 @@ const MainNavbar = () => {
             <Nav className='d-flex align-center ' style={{ height: 75, flex: 0, columnGap: 15, fontSize: 12.75, fontWeight: 400 }}>
                 {
                     MAINLINKS.map(l => (
-                        <Link to={l.to} className='nav-ul'>
+                        <Link to={l.to} className='nav-ul' key={l.t}>
                             {l.t}
                         </Link>
                     ))
@@ -61,15 +69,15 @@ const MainNavbar = () => {
             <Nav pullRight className='d-flex align-center' style={{ height: 75, columnGap: 15, fontSize: 12.75, fontWeight: 400 }}>
                 {
                     APPLINKS.map(l => (
-                        <Link to={`${l.to ? l.to : '/'}`} className='nav-ul'>
+                        <Link to={`${l.to ? l.to : '/'}`} className='nav-ul' key={l.t}>
                             {l.t}
                         </Link>
                     ))
                 }
-                <Button appearance='primary' className='main-btn white pl-3 pr-3 bold' size='lg' >
+                <Button appearance='primary' className='main-btn white pl-3 pr-3 bold' size='lg' onClick={openModal} >
                     Invest Now
                 </Button>
-                <NavMenu as={Link} className='nav-ul' title='EN' style={{ padding: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <NavMenu className='nav-ul' title='EN' style={{ padding: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                     <NavItem>
                         EN
                     </NavItem>
@@ -79,6 +87,8 @@ const MainNavbar = () => {
                 </NavMenu>
             </Nav>
         </Navbar>
+        <AuthModal isVisible={isVisible} close={closeModal} />
+        </>
     )
 }
 

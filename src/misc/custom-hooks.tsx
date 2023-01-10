@@ -2,10 +2,10 @@ import { useState } from "react";
 
 export const modalContext = () => {
     const [isVisible, setVisible] = useState(false)
-    const show = () => {
+    const openModal = () => {
         setVisible(true)
     }
-    const hide = () => {
+    const closeModal = () => {
         setVisible(false)
     }
 }

@@ -2,7 +2,7 @@ import React from 'react'
 import { FlexboxGrid } from 'rsuite'
 import FlexboxGridItem from 'rsuite/esm/FlexboxGrid/FlexboxGridItem'
 
-const FeaturesRight = ({ img, alt, title, txt, mainTitle }: { img: any, alt: any, title: any, txt: any, mainTitle: any }) => {
+const FeaturesRight = ({ img, alt, title, txt, mainTitle }: {img:string, alt:string, title:string, txt:any, mainTitle:any}) => {
     return (
         <div className='feature-ttl-div'>
             {
