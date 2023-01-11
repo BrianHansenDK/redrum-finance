@@ -2,7 +2,7 @@ import React from 'react'
 import { FlexboxGrid } from 'rsuite'
 import FlexboxGridItem from 'rsuite/esm/FlexboxGrid/FlexboxGridItem'
 
-const BlockR = ({ img, title, txt }: {img:string, title:string, txt:any}) => {
+const BlockR = ({ img, title, txt }: {img:string, title:any, txt:any}) => {
     return (
         <div className="section" style={{ background: 'none' }}>
             <div className="right">

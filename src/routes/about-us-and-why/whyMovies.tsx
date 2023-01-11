@@ -13,9 +13,9 @@ import TrianlgeBottom from './triangleBottom'
 import TriangleTop from './triangleTop'
 import LineShape from './lineShape'
 
-const WhyMovies = () => {
+const WhyMovies = ({ isVisible, openModal, closeModal }: { isVisible: any, openModal: any, closeModal: Function }) => {
     return (
-        <MainLayout>
+        <MainLayout isVisible={isVisible} openModal={openModal} closeModal={closeModal}>
             <div style={{ position: 'relative', paddingBottom: 150 }}>
 
                 <div className='top-div'>

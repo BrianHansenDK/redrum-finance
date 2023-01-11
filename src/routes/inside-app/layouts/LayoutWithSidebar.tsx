@@ -11,7 +11,9 @@ const LayoutWithSidebar: React.FunctionComponent<ILayoutWithSidebarProps> = (pro
             <AppNavBar/>
             <div className='d-flex'>
                 <SideBar/>
+                <div className='pl-2 pr-5 pt-2' style={{flex: 1}}>
                 {children}
+                </div>
             </div>
         </>
     )

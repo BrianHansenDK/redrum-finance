@@ -1,9 +1,8 @@
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth"
 import React, { useState } from "react"
-import { Form, useNavigate } from "react-router-dom"
-import { Button } from "rsuite"
+import { useNavigate } from "react-router-dom"
+import { Button, Divider } from "rsuite"
 import GPLAY from '@rsuite/icons/legacy/GooglePlusCircle'
-import FormControl from "rsuite/esm/FormControl"
 
 const SignInForm = () => {
     const auth = getAuth()
@@ -27,11 +26,35 @@ const SignInForm = () => {
 
     return (
         
-             <Button 
-        appearance='primary' color='green' className='main-btn' style={{width: 50 + '%'}}
-        onClick={signInWithGoogle} disabled={authing}>
-            <GPLAY/> Login with google
-        </Button>
+        <>
+        <form className="d-flex mb-1" style={{width: 50 + '%'}}>
+                    <div className="col">
+                        
+                        <Button 
+                            appearance='primary' color='blue' className='main-btn white-with-border mb-3' 
+                            onClick={signInWithGoogle} block disabled={authing}
+                            >
+                                <GPLAY/> Login with Google
+                        </Button>
+                        <Divider/>
+                        <div className="form-floating mb-2">
+                            <input type="email" className="form-control" id="email" placeholder="name@example.com" />
+                            <label >Email address</label>
+                        </div>
+                        <div className="form-floating mb-2">
+                            <input type="password" className="form-control" id="password" placeholder="password" />
+                            <label >Password</label>
+                        </div>
+                        
+                            <Button appearance='primary' block className='main-btn mt-1 mb-1'
+                            >
+                                Login
+                            </Button>
+                            
+                    </div>
+                </form>
+             
+            </>
        
     )
 }

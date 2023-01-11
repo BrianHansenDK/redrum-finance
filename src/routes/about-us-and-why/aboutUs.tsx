@@ -9,9 +9,9 @@ import IMG3 from '../../components/images/about_us_page_imgs/ab_img3.svg'
 import IMG4 from '../../components/images/about_us_page_imgs/ab_img4.svg'
 import './styles/about.scss'
 
-const AboutUsPage = () => {
+const AboutUsPage = ({ isVisible, openModal, closeModal }: { isVisible: any, openModal: any, closeModal: Function }) => {
     return (
-        <MainLayout>
+        <MainLayout isVisible={isVisible} openModal={openModal} closeModal={closeModal}>
             <BlockL
                 img={IMG1}
                 title='About Redrum'

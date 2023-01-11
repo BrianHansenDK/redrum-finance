@@ -1,5 +1,5 @@
 import { getAuth } from 'firebase/auth'
-import React from 'react'
+import React, { useState } from 'react'
 import MainLayout from '../layouts/mainLayout'
 import AppTeaser from './components/appTeaser'
 import CtaDown from './components/ctaDown'
@@ -9,16 +9,17 @@ import Hero from './components/hero'
 
 
 
-const Root = () => {
+const Root = ({ isVisible, openModal, closeModal }: { isVisible: any, openModal: any, closeModal: Function }) => {
     const auth = getAuth()
+
     return (
         <>
-            <MainLayout>
+            <MainLayout isVisible={isVisible} openModal={openModal} closeModal={closeModal} >
                 <Hero />
                 <CtaUp />
                 <Features />
                 <AppTeaser />
-                <CtaDown />
+                <CtaDown openModal={openModal} />
             </MainLayout>
         </>
     )
