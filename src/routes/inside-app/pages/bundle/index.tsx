@@ -4,29 +4,35 @@ import { Col, Container, FlexboxGrid, Grid, Header, Row } from 'rsuite'
 import FlexboxGridItem from 'rsuite/esm/FlexboxGrid/FlexboxGridItem'
 import AppNavBar from '../../components/AppNavBar'
 import { PROJECTS } from '../dashboard/components/util'
+import LeftSide from './components/left/LeftSide'
+import RightSide from './components/right/RightSide'
 
 const ProjectDetailsPage = () => {
     const { bundleId } = useParams()
     const project = PROJECTS[Number(bundleId)]
     return (
-        <Container>
+        <Container style={styles.page}>
             <AppNavBar />
-            <Grid className='pt-5'>
+            <Grid style={styles.wrapper} fluid>
                 <Row>
-                    <Col xs={24} sm={24} md={16} >
-                        <FlexboxGrid>
-                            <FlexboxGridItem colspan={6}>
-                                <img src={project.backgroundImg} alt={project.title} width={100} height={100} />
-                            </FlexboxGridItem>
-                            <FlexboxGridItem colspan={18}>
-                                <h1>{project.title}</h1>
-                            </FlexboxGridItem>
-                        </FlexboxGrid>
-                    </Col>
+                    <LeftSide project={project} />
+                    <RightSide project={project} />
                 </Row>
             </Grid>
         </Container>
     )
+}
+
+const styles = {
+    page: {
+        backgroundColor: '#efefef',
+    },
+    wrapper: {
+        paddingLeft: 10 + 'rem',
+        paddingRight: 10 + 'rem',
+        paddingBottom: 5 + 'rem',
+    },
+
 }
 
 export default ProjectDetailsPage

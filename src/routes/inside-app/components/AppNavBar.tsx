@@ -43,6 +43,8 @@ const styles = {
         right: 0,
         zIndex: 10,
         display: 'flex',
+        backgroundColor: '#fbfbfb',
+        borderBottom: '1px solid black',
     },
     navBarInner: {
         display: 'flex',
