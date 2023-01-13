@@ -1,8 +1,8 @@
 import React from 'react'
 import { Progress } from 'rsuite';
-import PlayIcon from '@rsuite/icons/legacy/Play'
 import '../pages/dashboard/styles/showcase.scss'
 import { Link } from 'react-router-dom';
+import { toFixedIfNecessary } from '../../../misc/custom-hooks';
 
 export interface IProjectShowcase {
     index: number,
@@ -14,10 +14,6 @@ export interface IProjectShowcase {
 
 const ProjectShowcase: React.FunctionComponent<IProjectShowcase> = (props) => {
     const { title, maxAmount, currentlyInvested, backgroundImg, index } = props
-
-    function toFixedIfNecessary(value: any, dp: any) {
-        return +parseFloat(value).toFixed(dp);
-    }
 
     const percentage = toFixedIfNecessary((currentlyInvested / maxAmount) * 100, 2)
     return (

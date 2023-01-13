@@ -11,15 +11,19 @@ export const PROJECTS = [
         currentlyInvested: 10000,
         yearlyReturn: 67.5,
         returnSum: 368.91,
+        endDate: new Date('2025-01-06'),
+        value: 950000,
     },
     {
         index: 1,
         backgroundImg: PLACEHOLDER2,
         title: 'Bundle 2',
         description: 'This bundle is not out yet, but it is very cool. It covers a lot of horror movies for 2023',
-        maxAmount: 92500,
-        currentlyInvested: 7800,
+        maxAmount: 9250000,
+        currentlyInvested: 7805000,
         yearlyReturn: 45.7,
         returnSum: 238.2,
+        endDate: new Date('2028-08-27'),
+        value: 10000000,
     }
 ]

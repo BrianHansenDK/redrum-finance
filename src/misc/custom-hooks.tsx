@@ -9,3 +9,7 @@ export const modalContext = () => {
         setVisible(false)
     }
 }
+
+export function toFixedIfNecessary(value: any, dp: any) {
+    return +parseFloat(value).toFixed(dp);
+}

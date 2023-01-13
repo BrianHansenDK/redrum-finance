@@ -17,6 +17,7 @@ const InfoTag = ({ project }: { project: any }) => {
 const styles = {
     wrapper: {
         width: 100 + '%',
+        marginBottom: 25,
     }
 }
 

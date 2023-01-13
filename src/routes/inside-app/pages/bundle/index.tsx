@@ -14,7 +14,7 @@ const ProjectDetailsPage = () => {
         <Container style={styles.page}>
             <AppNavBar />
             <Grid style={styles.wrapper} fluid>
-                <Row>
+                <Row style={styles.wrapperInner}>
                     <LeftSide project={project} />
                     <RightSide project={project} />
                 </Row>
@@ -28,10 +28,14 @@ const styles = {
         backgroundColor: '#efefef',
     },
     wrapper: {
-        paddingLeft: 10 + 'rem',
-        paddingRight: 10 + 'rem',
+        paddingLeft: 8 + 'rem',
+        paddingRight: 8 + 'rem',
         paddingBottom: 5 + 'rem',
     },
+    wrapperInner: {
+        display: 'flex',
+        justifyContent: 'space-between',
+    }
 
 }
 
