@@ -4,29 +4,11 @@ import LayoutWithSidebar from '../../layouts/LayoutWithSidebar'
 import { Button } from 'rsuite'
 import './styles/index.scss'
 import BannerComponent from './components/banner'
-import ProjectShowcase from './components/ProjectShowcase'
-import PLACEHOLDER from '../../../../components/images/about_us_page_imgs/ab_img1.svg'
+import ProjectShowcase from '../../components/ProjectShowcase'
+import { PROJECTS } from './components/util'
 import MainBtn from '../../components/MainBtn'
 
-const PROJECTS = [
-  {
-    backgroundImg: PLACEHOLDER,
-    title: 'Bundle 1',
-    maxAmount: 25000,
-    currentlyInvested: 10000,
-    index: 0,
-  },
-  {
-    backgroundImg: PLACEHOLDER,
-    title: 'Bundle 2',
-    maxAmount: 92500,
-    currentlyInvested: 7800,
-    index: 1,
-  }
-]
-
 const AppRoot = () => {
-  const auth = getAuth()
 
 
   function toFixedIfNecessary(value: any, dp: any) {
@@ -38,11 +20,11 @@ const AppRoot = () => {
       {
         PROJECTS.map((project) => (
           <ProjectShowcase
+            index={project.index}
             backgroundImg={project.backgroundImg}
             title={project.title}
             maxAmount={project.maxAmount}
             currentlyInvested={project.currentlyInvested}
-            percentage={toFixedIfNecessary((project.currentlyInvested / project.maxAmount) * 100, 2)}
             key={project.index}
           />
         ))

@@ -11,6 +11,8 @@ import { config } from './config/config.js';
 import AuthRoute from './routes/auth/components/AuthRoute';
 import { getAuth } from 'firebase/auth';
 import AppRoot from './routes/inside-app/pages/dashboard/AppRoot';
+import InvestmentPage from './routes/inside-app/pages/investments/index.js';
+import ProjectDetailsPage from './routes/inside-app/pages/bundle/index.js';
 
 initializeApp(config.firebaseConfig)
 
@@ -23,8 +25,10 @@ const App = () => {
     <Routes>
       <Route path='/' element={<Root isVisible={isVisible} openModal={openModal} closeModal={closeModal} />} />
       <Route path='/app' element={<AuthRoute link='/'><AppRoot /></AuthRoute>} />
-      <Route path='/about-us' element={<AboutUsPage isVisible={isVisible} openModal={openModal} closeModal={closeModal}/>} />
-      <Route path='/why-movies' element={<WhyMovies isVisible={isVisible} openModal={openModal} closeModal={closeModal}/>} />
+      <Route path='/app/investments' element={<InvestmentPage />} />
+      <Route path='/app/bundle/:bundleId' element={<ProjectDetailsPage />} />
+      <Route path='/about-us' element={<AboutUsPage isVisible={isVisible} openModal={openModal} closeModal={closeModal} />} />
+      <Route path='/why-movies' element={<WhyMovies isVisible={isVisible} openModal={openModal} closeModal={closeModal} />} />
       <Route path='/sign-in' element={<SignInPage />} />
       <Route path='/sign-up' element={<SignUpPage />} />
       <Route path='/account' element={<AuthRoute link='/sign-in'> <AccountPage /> </AuthRoute>} />

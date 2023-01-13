@@ -16,6 +16,8 @@ const MainBtn: React.FunctionComponent<IMainBtnProps> = (props) => {
     const { content, pressed, btnColor, btnAppearance, btnSize, isBlock } = props
     const styles = {
         btn: {
+            fontSize: 14.2,
+            lineHeight: 1,
             borderRadius: 10,
             paddingHorizontal: 15,
             paddingVertical: 5,

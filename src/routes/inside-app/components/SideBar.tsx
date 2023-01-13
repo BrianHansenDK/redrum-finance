@@ -23,12 +23,12 @@ const SideBar = () => {
     <>
       <Sidenav defaultOpenKeys={['3', '4']} style={styles.sideNav} className='sidebar' >
         <Sidenav.Body>
-          <Nav activeKey="1">
+          <Nav activeKey={location.pathname == '/app/investments' ? '2' : '1'}>
             <h3 className='d-flex justify-center'>Investments</h3>
-            <Nav.Item eventKey="1" icon={<DashboardIcon />}>
+            <Nav.Item eventKey="1" as={Link} to='/app' icon={<DashboardIcon />}>
               Dashboard
             </Nav.Item>
-            <Nav.Item eventKey="2" as={Link} to='investments' icon={<GroupIcon />}>
+            <Nav.Item eventKey="2" as={Link} to='/app/investments' icon={<GroupIcon />}>
               Investments
             </Nav.Item>
             <Nav.Item eventKey='3' icon={<MagicIcon />}>
