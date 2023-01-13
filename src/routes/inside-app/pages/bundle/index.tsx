@@ -28,8 +28,8 @@ const styles = {
         backgroundColor: '#efefef',
     },
     wrapper: {
-        paddingLeft: 8 + 'rem',
-        paddingRight: 8 + 'rem',
+        paddingLeft: 5 + 'rem',
+        paddingRight: 5 + 'rem',
         paddingBottom: 5 + 'rem',
     },
     wrapperInner: {

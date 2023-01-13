@@ -8,7 +8,7 @@ const InfoLines = ({ project }: { project: any }) => {
             <SingleLineInfo title='Finance goal' info={project.maxAmount.toString()} type='€' />
             <SingleLineInfo title='Minimal investment' info={3} type='€' />
             <SingleLineInfo title='Bundle value' info={project.value.toString()} type='€' />
-            <SingleLineInfo title='Facilitator' info='Redrum Gmbh' />
+            <SingleLineInfo title='Facilitator' info='Redrum Gmbh' line={false} />
         </>
     )
 }

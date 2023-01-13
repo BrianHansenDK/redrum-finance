@@ -12,6 +12,7 @@ import DOCS from '@rsuite/icons/legacy/Database'
 import INV from '@rsuite/icons/legacy/Share'
 import REDRUMCAT from '@rsuite/icons/legacy/Anchor'
 import TooltipForAccount from './TooltipForAccount';
+import { Link } from 'react-router-dom';
 
 const ACCOUNTNAV = [
     {
@@ -36,6 +37,45 @@ const ACCOUNTNAV = [
     },
 ]
 
+const AppNavBar = () => {
+    const auth = getAuth()
+    const logout = () => {
+        auth.signOut().then(() => window.location.reload())
+    }
+
+    const AccountTooltip = (
+        <Tooltip className='grey-bg pl-2 pr-1 pt-1 pb-1 shadow' style={{ borderRadius: 10, minWidth: 40 + '%' }}>
+            <TooltipForAccount ACCOUNTNAV={ACCOUNTNAV} auth={auth} logout={logout} />
+        </Tooltip>
+    )
+    return (
+        <Navbar className='navbar' style={styles.navBar}>
+            <div style={styles.navBarInner}>
+
+                <NavbarBrand style={styles.brand}>
+                    <REDRUMCAT /> Redrum media invest
+                </NavbarBrand>
+                <Nav pullRight className='d-flex align-center' style={{ height: 60 }} activeKey={`${location.pathname == '/app' ? '1' : null}`}>
+                    <NavItem as={Link} to='/app' eventKey='1' className='d-flex flex-column align-center justify-around' style={styles.navLink}>
+                        <DashboardIcon /> Dashboard
+                    </NavItem>
+                    <Whisper placement='bottom' controlId='control-id-click' trigger='click' speaker={AccountTooltip} >
+                        <NavItem className='d-flex flex-column align-center justify-around' style={styles.navLink}>
+                            <USER /> <span>My account <OPENMENU /> </span>
+                        </NavItem>
+                    </Whisper>
+                    <NavItem className='d-flex flex-column align-center justify-around' style={styles.navLink}>
+                        <HOME /> Home
+                    </NavItem>
+                    <NavItem className='d-flex flex-column align-center justify-around' style={styles.navLink}>
+                        <HOME /> Home
+                    </NavItem>
+                </Nav>
+            </div>
+        </Navbar>
+    )
+}
+
 const styles = {
     navBar: {
         top: 0,
@@ -55,45 +95,11 @@ const styles = {
         fontSize: 21.5,
         fontWeight: '700',
     },
-}
-
-const AppNavBar = () => {
-    const auth = getAuth()
-    const logout = () => {
-        auth.signOut().then(() => window.location.reload())
+    navLink: {
+        flex: 1,
+        width: 125,
+        marginRight: 15,
     }
-
-    const AccountTooltip = (
-        <Tooltip className='grey-bg pl-2 pr-1 pt-1 pb-1 shadow' style={{ borderRadius: 10, minWidth: 40 + '%' }}>
-            <TooltipForAccount ACCOUNTNAV={ACCOUNTNAV} auth={auth} logout={logout} />
-        </Tooltip>
-    )
-    return (
-        <Navbar className='navbar' style={styles.navBar}>
-            <div style={styles.navBarInner}>
-
-                <NavbarBrand style={styles.brand}>
-                    <REDRUMCAT /> Redrum media invest
-                </NavbarBrand>
-                <Nav pullRight className='d-flex align-center' style={{ height: 60 }}>
-                    <NavItem className='d-flex flex-column align-center justify-around' style={{ flex: 1, width: 125, marginRight: 15 }}>
-                        <DashboardIcon /> Dashboard
-                    </NavItem>
-                    <Whisper placement='bottom' controlId='control-id-click' trigger='click' speaker={AccountTooltip} >
-                        <NavItem className='d-flex flex-column align-center justify-around' style={{ flex: 1, width: 125, marginRight: 15 }}>
-                            <USER /> <span>My account <OPENMENU /> </span>
-                        </NavItem>
-                    </Whisper>
-                    <NavItem className='d-flex flex-column align-center justify-around' style={{ flex: 1, width: 125, marginRight: 15 }}>
-                        <HOME /> Home
-                    </NavItem>
-                    <NavItem className='d-flex flex-column align-center justify-around' style={{ flex: 1, width: 125, marginRight: 15 }}>
-                        <HOME /> Home
-                    </NavItem>
-                </Nav>
-            </div>
-        </Navbar>
-    )
 }
 
 export default AppNavBar

@@ -4,9 +4,9 @@ import BundleIntro from './BundleIntro'
 
 const LeftSide = ({ project }: { project: any }) => {
     return (
-        <Col xs={24} sm={24} md={14} className='pr-2 pt-5'>
+        <Col xs={24} sm={24} md={15} className='pr-1 pt-3'>
             <BundleIntro project={project} />
-            <img src={project.backgroundImg} alt={`The ${project.title} video`} style={styles.bigImg} />
+            <img src={project.backgroundImg} className='sq-shadow' alt={`The ${project.title} video`} style={styles.bigImg} />
         </Col>
     )
 }
@@ -15,7 +15,8 @@ const styles = {
     bigImg: {
         width: 100 + '%',
         height: 'auto',
-        marginTop: 3 + 'rem',
+        maxHeight: 400,
+        marginTop: 2 + 'rem',
     }
 }
 

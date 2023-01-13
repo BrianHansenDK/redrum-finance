@@ -1,6 +1,6 @@
 import React from 'react'
 
-const SingleLineInfo = ({ title, info, type }: { title: string, info: any, type?: any }) => {
+const SingleLineInfo = ({ title, info, type, line = true }: { title: string, info: any, type?: any, line?: boolean }) => {
     return (
         <>
             <div style={styles.wrapper}>
@@ -11,7 +11,11 @@ const SingleLineInfo = ({ title, info, type }: { title: string, info: any, type?
                     {info} {type}
                 </p>
             </div>
-            <div style={styles.line} />
+            {
+                line ? (
+                    <div style={styles.line} />
+                ) : null
+            }
         </>
     )
 }
