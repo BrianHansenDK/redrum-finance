@@ -13,10 +13,16 @@ const InvestmentPage = () => {
                 PROJECTS.map((project) => (
                     <ProjectShowcase
                         index={project.index}
-                        title={project.title}
+                        name={project.name}
+                        description={project.description}
+                        endDate={project.endDate}
+                        goal={project.goal}
                         currentlyInvested={project.currentlyInvested}
-                        maxAmount={project.maxAmount}
-                        backgroundImg={project.backgroundImg}
+                        yearlyReturn={project.yearlyReturn}
+                        returnSum={project.returnSum}
+                        value={project.value}
+                        image={project.image}
+                        movies={project.movies}
                         key={project.index}
                     />
                 ))

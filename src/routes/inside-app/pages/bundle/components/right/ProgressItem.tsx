@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Tooltip, Whisper } from 'rsuite'
 import ProgressLine from 'rsuite/esm/Progress/ProgressLine'
-import { toFixedIfNecessary } from '../../../../../../misc/custom-hooks'
+import { numberWithCommas, toFixedIfNecessary } from '../../../../../../misc/custom-hooks'
 import { mainColors } from '../../../../themes/colors'
 
 
@@ -9,11 +9,11 @@ import { mainColors } from '../../../../themes/colors'
 const ProgressItem = ({ project }: { project: any }) => {
     const tooltip = (
         <Tooltip>
-            Currently invested: {project.currentlyInvested} €
+            Currently invested: {numberWithCommas(project.goal)} €
         </Tooltip>
     )
 
-    const percent = toFixedIfNecessary((project.currentlyInvested / project.maxAmount) * 100, 2)
+    const percent = toFixedIfNecessary((project.currentlyInvested / project.goal) * 100, 2)
     return (
         <Whisper speaker={tooltip} trigger='hover' placement='top' >
             <div style={styles.progressWrap}>
@@ -24,7 +24,7 @@ const ProgressItem = ({ project }: { project: any }) => {
                 <ProgressLine style={styles.bar} percent={percent} status={`${percent == 100 ? 'success' : 'active'}`} />
                 <div style={styles.goalWrap}>
                     <p style={styles.goalTxt}>Goal</p>
-                    <p style={styles.goalTxt}>{project.maxAmount} €</p>
+                    <p style={styles.goalTxt}>{numberWithCommas(project.goal)} €</p>
                 </div>
             </div>
         </Whisper>

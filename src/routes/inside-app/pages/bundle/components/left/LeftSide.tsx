@@ -6,7 +6,7 @@ const LeftSide = ({ project }: { project: any }) => {
     return (
         <Col xs={24} sm={24} md={15} className='pr-1 pt-3'>
             <BundleIntro project={project} />
-            <img src={project.backgroundImg} className='' alt={`The ${project.title} video`} style={styles.bigImg} />
+            <img src={project.image} className='' alt={`The ${project.name} video`} style={styles.bigImg} />
         </Col>
     )
 }

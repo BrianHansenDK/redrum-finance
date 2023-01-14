@@ -13,3 +13,7 @@ export const modalContext = () => {
 export function toFixedIfNecessary(value: any, dp: any) {
     return +parseFloat(value).toFixed(dp);
 }
+
+export function numberWithCommas(x: number) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+}

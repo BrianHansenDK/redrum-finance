@@ -1,4 +1,5 @@
 import React from 'react'
+import { numberWithCommas } from '../../../../../../misc/custom-hooks'
 
 const SingleLineInfo = ({ title, info, type, line = true }: { title: string, info: any, type?: any, line?: boolean }) => {
     return (
@@ -8,7 +9,7 @@ const SingleLineInfo = ({ title, info, type, line = true }: { title: string, inf
                     {title}
                 </p>
                 <p style={styles.info}>
-                    {info} {type}
+                    {numberWithCommas(info)} {type}
                 </p>
             </div>
             {
@@ -26,8 +27,7 @@ const styles = {
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
-        paddingLeft: 25,
-        paddingRight: 25,
+        padding: 5,
     },
     title: {
         fontSize: 18.2,
@@ -35,6 +35,7 @@ const styles = {
     info: {
         fontSize: 18.2,
         fontWeight: '700',
+        marginTop: 0,
     },
     line: {
         width: 100 + '%',
