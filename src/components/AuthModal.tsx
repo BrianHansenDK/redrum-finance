@@ -106,7 +106,7 @@ const AuthModal = ({ isVisible, close }: { isVisible: boolean, close: any }) => 
                     <span style={{ opacity: .75 }}>
                         Already have an account? &nbsp;
                     </span>
-                    <Link to='/sign-up'>Sign in</Link>
+                    <Link to='/sign-in'>Sign in</Link>
                 </p>
             </ModalBody>
         </Modal>

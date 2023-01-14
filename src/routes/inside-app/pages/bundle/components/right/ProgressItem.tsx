@@ -34,6 +34,7 @@ const ProgressItem = ({ project }: { project: any }) => {
 const styles = {
     progressWrap: {
         width: 100 + '%',
+        marginTop: 15,
         paddingTop: 7.5,
         paddingBottom: 7.5,
         paddingLeft: 20,

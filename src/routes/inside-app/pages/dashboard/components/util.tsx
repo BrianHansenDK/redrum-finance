@@ -1,6 +1,28 @@
 import PLACEHOLDER from '../../../../../components/images/about_us_page_imgs/ab_img3.svg'
 import PLACEHOLDER2 from '../../../../../components/images/about_us_page_imgs/wm_img2.svg'
 
+interface Project {
+    index: number,
+    name: string,
+    description: string,
+    endDate: Date,
+    goal: number,
+    currentlyInvested: number,
+    yearlyReturn: number,
+    returnSum: number,
+    value: number,
+    image: string,
+    movies: Array<Movie>,
+}
+
+interface Movie {
+    title: string,
+    description: string,
+    trailer: string,
+    genres: Array<String>,
+    cover: string,
+}
+
 export const PROJECTS = [
     {
         index: 0,
