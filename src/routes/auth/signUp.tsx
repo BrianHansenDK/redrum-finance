@@ -1,14 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import SignUpForm from './components/signUpForm'
-import './styles/signup-page.scss'
 
 const SignUpPage = () => {
     return (
         <>
             <div
                 className='pl-4 pr-4 dark-bg d-flex flex-column align-center'
-                style={{ height: 100 + 'vh', justifyContent: 'flex-start' }}
+                style={{ justifyContent: 'flex-start', paddingBottom: 75 }}
             >
                 <div>
                     <h1 className='txt-white txt-center mt-4 mb-3'>Sign up</h1>
