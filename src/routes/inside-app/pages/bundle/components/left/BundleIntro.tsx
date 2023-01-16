@@ -15,7 +15,7 @@ const BundleIntro = ({ project }: { project: any }) => {
             </FlexboxGridItem>
             <FlexboxGridItem className='ml-1' colspan={16}>
                 <h1 style={styles.title}>{project.name}</h1>
-                <p style={styles.des}>{project.description}</p>
+                <p style={styles.des}>{project.intro}</p>
             </FlexboxGridItem>
         </FlexboxGrid>
     )

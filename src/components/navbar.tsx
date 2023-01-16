@@ -39,7 +39,7 @@ const MainNavbar = ({ openModal, closeModal, isVisible }: { openModal: any, clos
 
 
     window.addEventListener('load', () => {
-        location.pathname != '/' ? setActive(true) : setActive(false)
+        location.pathname !== '/' ? setActive(true) : setActive(false)
     })
     window.addEventListener('scroll', () => {
         if (window.scrollY < 50 && location.pathname == '/') {

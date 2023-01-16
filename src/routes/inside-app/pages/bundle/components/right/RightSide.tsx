@@ -1,5 +1,6 @@
 import React from 'react'
 import { Col } from 'rsuite'
+import MainBtn from '../../../../components/MainBtn'
 import InfoLines from './InfoLines'
 import InfoTag from './InfoTag'
 import ProgressItem from './ProgressItem'
@@ -15,6 +16,14 @@ const RightSide = ({ project }: { project: any }) => {
                 <InfoTag project={project} />
                 <InfoLines project={project} />
             </div>
+            <MainBtn
+                content={'Invest now'}
+                pressed={() => null}
+                btnColor='blue'
+                btnAppearance='primary'
+                btnSize='lg'
+                isBlock={true}
+            />
         </Col>
     )
 }
@@ -27,10 +36,11 @@ const styles = {
         paddingTop: 8 + 'rem',
     },
     card: {
-        height: 100 + '%',
+        height: 400,
         width: 100 + '%',
         backgroundColor: '#fbfbfb',
         marginTop: 1.5 + 'rem',
+        marginBottom: 1.5 + 'rem',
         paddingTop: 2 + 'rem',
         display: 'flex',
         alignItems: 'center',

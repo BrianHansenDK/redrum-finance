@@ -17,7 +17,7 @@ const LayoutWithSidebar: React.FunctionComponent<ILayoutWithSidebarProps> = (pro
     const { children } = props
     return (
         <>
-            <AppNavBar />
+            <AppNavBar fixed />
             <div className='d-flex'>
                 <SideBar />
                 <div className='' style={styles.innerPage}>

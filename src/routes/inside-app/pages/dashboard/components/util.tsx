@@ -4,6 +4,7 @@ import PLACEHOLDER2 from '../../../../../components/images/about_us_page_imgs/wm
 interface IProject {
     index: number,
     name: string,
+    intro: string,
     description: string,
     endDate: Date,
     goal: number,
@@ -28,27 +29,28 @@ const testMovie: IMovie = {
     description: 'Description for movie number 1',
     trailer: 'No trailer at the moment',
     genres: ['Horror', 'Comedy', 'Christmas'],
-    cover: 'No cover',
+    cover: PLACEHOLDER,
 }
 const testMovie2: IMovie = {
     title: 'Test 2',
     description: 'Description for movie number 1',
     trailer: 'No trailer at the moment',
     genres: ['Horror', 'Comedy', 'Christmas'],
-    cover: 'No cover',
+    cover: PLACEHOLDER,
 }
 const testMovie3: IMovie = {
     title: 'Test 3',
     description: 'Description for movie number 1',
     trailer: 'No trailer at the moment',
     genres: ['Horror', 'Comedy', 'Christmas'],
-    cover: 'No cover',
+    cover: PLACEHOLDER,
 }
 
 const winterBundle: IProject = {
     index: 0,
     name: 'Winter 2023',
-    description: 'The investment project of 2023 near realease of the App',
+    intro: 'The investment project of 2023 near realease of the App',
+    description: 'The investment project of 2023 near realease of the App and so forth and so forth. This is just a very long and detailed description about the project.',
     endDate: new Date('2025-01-06'),
     goal: 25000,
     currentlyInvested: 10000,
@@ -62,7 +64,8 @@ const winterBundle: IProject = {
 const bundle2: IProject = {
     index: 1,
     name: 'Test bundle nr 2',
-    description: 'The investment project of 2023 near realease of the App',
+    intro: 'The investment project of 2023 near realease of the App',
+    description: 'The investment project of 2023 near realease of the App and so forth and so forth. This is just a very long and detailed description about the project.',
     endDate: new Date('2025-01-06'),
     goal: 6859300,
     currentlyInvested: 5930229,

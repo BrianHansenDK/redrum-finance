@@ -37,7 +37,7 @@ const ACCOUNTNAV = [
     },
 ]
 
-const AppNavBar = () => {
+const AppNavBar = ({ fixed = true }: { fixed: boolean }) => {
     const auth = getAuth()
     const logout = () => {
         auth.signOut().then(() => window.location.reload())
@@ -49,7 +49,7 @@ const AppNavBar = () => {
         </Tooltip>
     )
     return (
-        <Navbar className='navbar' style={styles.navBar}>
+        <Navbar style={styles.navBar} className={`navbar ${fixed ? '' : 'navbarhidden'}`}>
             <div style={styles.navBarInner}>
 
                 <NavbarBrand style={styles.brand}>
