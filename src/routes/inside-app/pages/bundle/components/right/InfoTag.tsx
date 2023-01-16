@@ -9,7 +9,6 @@ const InfoTag = ({ project }: { project: any }) => {
             <Tag color='blue'>
                 <InfoIcon /> Click here to learn how to read given information
             </Tag>
-            <InfoTagNumbers project={project} />
         </div>
     )
 }

@@ -52,7 +52,7 @@ const MainNavbar = ({ openModal, closeModal, isVisible }: { openModal: any, clos
         <>
             <Navbar id='navbar' appearance='subtle' className={`${isActive ? 'dark-bg shadow' : 'no-bg'} trans`} style={{ paddingRight: 25 }}>
                 <Navbar.Brand id='brand' className='bold d-flex align-center' as={Link} to='/' style={{ height: 75, fontSize: 20 }}>
-                    Redrum Media Invest
+                    Redrum Pro
                 </Navbar.Brand>
                 <Nav className='d-flex align-center ' style={{ height: 75, flex: 0, columnGap: 15, fontSize: 12.75, fontWeight: 400 }}>
                     {

@@ -53,7 +53,7 @@ const AppNavBar = ({ fixed = true }: { fixed: boolean }) => {
             <div style={styles.navBarInner}>
 
                 <NavbarBrand style={styles.brand}>
-                    <REDRUMCAT /> Redrum media invest
+                    <REDRUMCAT /> Redrum Pro
                 </NavbarBrand>
                 <Nav pullRight className='d-flex align-center' style={{ height: 60 }} activeKey={`${location.pathname == '/app' ? '1' : null}`}>
                     <NavItem as={Link} to='/app' eventKey='1' className='d-flex flex-column align-center justify-around' style={styles.navLink}>
