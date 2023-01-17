@@ -2,6 +2,7 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getAuth } from "firebase/auth";
+import { getDatabase } from 'firebase/database'
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -14,12 +15,14 @@ const firebaseConfig = {
     storageBucket: "redrum-finance.appspot.com",
     messagingSenderId: "218650221731",
     appId: "1:218650221731:web:eb1fb0a6e723f9a8413316",
-    measurementId: "G-J0YXF6TLHY"
+    measurementId: "G-J0YXF6TLHY",
+    databaseUrl: "https://redrum-finance-default-rtdb.europe-west1.firebasedatabase.app",
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
-export const auth = getAuth(app);
+const auth = getAuth(app);
+const database = getDatabase(app)
 
 export default app

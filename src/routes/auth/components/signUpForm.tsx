@@ -1,10 +1,19 @@
-import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth"
-import React, { useState } from "react"
+import { getAuth, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword } from "firebase/auth"
+import React, { Component, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { Button, Toggle, Tooltip, Whisper } from "rsuite"
+import { Button, Form, Input, InputGroup, Schema, Toggle, Tooltip, Whisper } from "rsuite"
 import GPLAY from '@rsuite/icons/legacy/GooglePlusCircle'
 import CheckIcon from '@rsuite/icons/Check';
 import CloseIcon from '@rsuite/icons/Close';
+import EyeIcon from '@rsuite/icons/legacy/Eye';
+import EyeSlashIcon from '@rsuite/icons/legacy/EyeSlash';
+import EnvelopeIcon from '@rsuite/icons/legacy/Envelope'
+import AvatarIcon from '@rsuite/icons/legacy/Avatar';
+import { getDatabase, ref, set } from "firebase/database"
+import InputGroupAddon from "rsuite/esm/InputGroup/InputGroupAddon"
+import { mainColors } from "../../inside-app/themes/colors"
+import FormGroup from "rsuite/esm/FormGroup"
+import FormControl from "rsuite/esm/FormControl"
 
 const tooltip = (
     <Tooltip>
@@ -12,11 +21,25 @@ const tooltip = (
     </Tooltip>
 )
 
-const SignUpForm = () => {
+function SignUpForm() {
+
     const auth = getAuth()
     const navigate = useNavigate()
+
     const [authing, setAuthing] = useState(false)
     const [isChecked, setChecked] = useState(false)
+    const [password1Visible, setPassword1Visible] = useState(false)
+    const [password2Visible, setPassword2Visible] = useState(false)
+
+    const [userName, setUserName] = useState('')
+    const [userEmail, setEmail] = useState('')
+    const [userPassword, setUserPassword] = useState('')
+    const [userConfirmedPassword, setUserConfirmedPassword] = useState('')
+
+    const formValue = { userName, userEmail, userPassword, userConfirmedPassword }
+
+    const showPassword1 = () => setPassword1Visible(!password1Visible)
+    const showPassword2 = () => setPassword2Visible(!password2Visible)
 
     const signInWithGoogle = async () => {
         setAuthing(true)
@@ -33,10 +56,29 @@ const SignUpForm = () => {
             .finally(() => setAuthing(false))
     }
 
+    const createAccount = async () => {
+        createUserWithEmailAndPassword(auth, userEmail, userConfirmedPassword)
+            .then((userCredentials) => {
+                const user = userCredentials.user
+                function writeUserData(userId: string, name: string, email: string) {
+                    const db = getDatabase()
+                    set(ref(db, 'users/' + userId), {
+                        displayName: name,
+                        email: email,
+                    })
+                }
+                writeUserData(user.uid, userName, userEmail)
+                navigate('/app')
+            })
+            .catch((err) => {
+                console.log(err.message)
+            })
+    }
+
     return (
 
         <>
-            <form className="d-flex mb-1" style={{ width: 50 + '%' }}>
+            <Form fluid className="d-flex mb-1" style={{ width: 50 + '%' }}>
                 <div className="col">
                     <Whisper speaker={tooltip} placement="top" controlId="control-id-hover" trigger={`${isChecked ? 'none' : 'hover'}`}>
                         <Button
@@ -46,43 +88,59 @@ const SignUpForm = () => {
                         </Button>
                     </Whisper>
 
-                    <div className="form-floating mb-1">
-                        <select defaultValue='1' className="form-select" id="floatingSelect" aria-label="Floating label select example">
-                            <option value='1' >He/Him</option>
-                            <option value="2">She/Her</option>
-                            <option value="3">They/Them</option>
-                        </select>
-                        <label>Pronouns</label>
-                    </div>
-                    <div className="form-floating mb-1">
-                        <input type="name" className="form-control" id="username" placeholder="Ninjacat" />
-                        <label >Username</label>
-                    </div>
-                    <div className="form-floating mb-1">
-                        <input type="email" className="form-control" id="email" placeholder="name@example.com" />
-                        <label >Email address</label>
-                    </div>
-                    <div className="form-floating mb-1">
-                        <input type="password" className="form-control" id="password" placeholder="password" />
-                        <label >Password</label>
-                    </div>
-                    <div className="form-floating mb-1">
-                        <input type="password" className="form-control" id="password_confirm" placeholder="password" />
-                        <label >Confirm Password</label>
-                    </div>
+                    <FormGroup controlId="username">
+                        <InputGroup inside className="mb-2">
+                            <InputGroupAddon>
+                                <AvatarIcon />
+                            </InputGroupAddon>
+                            <FormControl defaultValue={userName} onChange={setUserName} name="userName" placeholder="Username" type="text" />
+                        </InputGroup>
+                    </FormGroup>
+
+                    <FormGroup controlId="email">
+                        <InputGroup inside className="mb-2">
+                            <InputGroupAddon>
+                                <EnvelopeIcon />
+                            </InputGroupAddon>
+                            <FormControl defaultValue={userEmail} onChange={setEmail} name="emailAddress" placeholder="Email address" type="email" />
+                        </InputGroup>
+                    </FormGroup>
+
+                    <FormGroup controlId="password">
+                        <InputGroup inside className="mb-2" >
+                            <FormControl defaultValue={userPassword} onChange={setUserPassword} placeholder="Password" name="password" type={password1Visible ? 'text' : 'password'} />
+                            <InputGroup.Button onClick={showPassword1}>
+                                {password1Visible ? <EyeIcon /> : <EyeSlashIcon />}
+                            </InputGroup.Button>
+                        </InputGroup>
+                    </FormGroup>
+
+                    <FormGroup controlId="password-1">
+                        <InputGroup inside className="mb-2" >
+                            <FormControl defaultValue={userConfirmedPassword} onChange={setUserConfirmedPassword} placeholder="Confirm Password" name="password-confirm" type={password2Visible ? 'text' : 'password'} />
+                            <InputGroup.Button onClick={showPassword2}>
+                                {password2Visible ? <EyeIcon /> : <EyeSlashIcon />}
+                            </InputGroup.Button>
+                        </InputGroup>
+                    </FormGroup>
+
                     <div className='d-flex'>
                         <Toggle onChange={() => setChecked(!isChecked)} checkedChildren={<CheckIcon />} unCheckedChildren={<CloseIcon />} />
-                        <p className='ml-1'>
+                        <p className='ml-1' style={{ color: mainColors.white }} >
                             I agree to the Redrum media invest Terms & Conditions and the Privacy Policy. I further agree to receiving marketing via e-mails from Redrum media invest Gmbh regarding product categories, which I can withdraw any time.
                         </p>
                     </div>
-                    <Whisper placement="top" controlId="control-id-hover" trigger={`${isChecked ? 'none' : 'hover'}`} speaker={tooltip}>
-                        <Button appearance='primary' disabled={!isChecked} size='lg' block className='main-btn mt-1 shadow'>
-                            Get started
-                        </Button>
-                    </Whisper>
+
+                    <FormGroup>
+
+                        <Whisper placement="top" controlId="control-id-hover" trigger={`${isChecked ? 'none' : 'hover'}`} speaker={tooltip}>
+                            <Button appearance='primary' disabled={!isChecked} size='lg' block className='main-btn mt-1 shadow' onClick={createAccount}>
+                                Get started
+                            </Button>
+                        </Whisper>
+                    </FormGroup>
                 </div>
-            </form>
+            </Form>
 
         </>
 
