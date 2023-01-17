@@ -19,10 +19,8 @@ import BundleUpdatesDetails from './routes/inside-app/pages/bundle/extras/update
 import BundleInvestorsDetails from './routes/inside-app/pages/bundle/extras/investors/index.js';
 import BundleOverview from './routes/inside-app/pages/bundle/extras/overview/index.js';
 
-initializeApp(config.firebaseConfig)
 
 const App = () => {
-  const auth = getAuth()
   const [isVisible, setVisible] = useState(false)
   const openModal = () => setVisible(true)
   const closeModal = () => setVisible(false)

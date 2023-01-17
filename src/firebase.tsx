@@ -2,7 +2,7 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getAuth } from "firebase/auth";
-import { getDatabase } from 'firebase/database'
+import { getDatabase, onValue, ref, set } from 'firebase/database';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -11,18 +11,36 @@ import { getDatabase } from 'firebase/database'
 const firebaseConfig = {
     apiKey: "AIzaSyAcfZUCp3ZxypYvVMutvopwUkpOKPwL38E",
     authDomain: "redrum-finance.firebaseapp.com",
+    databaseURL: "https://redrum-finance-default-rtdb.europe-west1.firebasedatabase.app",
     projectId: "redrum-finance",
     storageBucket: "redrum-finance.appspot.com",
     messagingSenderId: "218650221731",
     appId: "1:218650221731:web:eb1fb0a6e723f9a8413316",
-    measurementId: "G-J0YXF6TLHY",
-    databaseUrl: "https://redrum-finance-default-rtdb.europe-west1.firebasedatabase.app",
+    measurementId: "G-J0YXF6TLHY"
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-const auth = getAuth(app);
-const database = getDatabase(app)
+export const app = initializeApp(firebaseConfig);
+export const analytics = getAnalytics(app);
+export const auth = getAuth(app);
+export const database = getDatabase(app);
 
-export default app
+export function writeUserData(userId: string, name: string, email: string, image: string | undefined) {
+    const reference = ref(database, 'users/' + userId)
+    set(reference, {
+        username: name,
+        email: email,
+        image: image,
+    })
+    const investmentRef = ref(database, 'investments/')
+    set(investmentRef, {
+        userId: {
+            amount: 0,
+            projects: null,
+        }
+    })
+}
+
+export const userRef = (userId: any, query: string) => {
+    return ref(database, 'users/' + userId + query)
+}

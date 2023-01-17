@@ -14,6 +14,7 @@ import InputGroupAddon from "rsuite/esm/InputGroup/InputGroupAddon"
 import { mainColors } from "../../inside-app/themes/colors"
 import FormGroup from "rsuite/esm/FormGroup"
 import FormControl from "rsuite/esm/FormControl"
+import { database, writeUserData } from "../../../firebase"
 
 const tooltip = (
     <Tooltip>
@@ -41,13 +42,24 @@ function SignUpForm() {
     const showPassword1 = () => setPassword1Visible(!password1Visible)
     const showPassword2 = () => setPassword2Visible(!password2Visible)
 
+
+
     const signInWithGoogle = async () => {
         setAuthing(true)
 
         signInWithPopup(auth, new GoogleAuthProvider())
             .then((response) => {
-                console.log(response.user.uid)
-                navigate('/app')
+                if (response.user.email) {
+
+                    console.log(response.user.uid)
+                    navigate('/app')
+                    writeUserData(
+                        response.user.uid,
+                        response.user.displayName ? response.user.displayName : 'Unknown',
+                        response.user.email ? response.user.email : 'Nonexistent',
+                        response.user.photoURL ? response.user.photoURL : undefined
+                    )
+                }
             })
             .catch((err) => {
                 console.log(err.message)
@@ -60,15 +72,9 @@ function SignUpForm() {
         createUserWithEmailAndPassword(auth, userEmail, userConfirmedPassword)
             .then((userCredentials) => {
                 const user = userCredentials.user
-                function writeUserData(userId: string, name: string, email: string) {
-                    const db = getDatabase()
-                    set(ref(db, 'users/' + userId), {
-                        displayName: name,
-                        email: email,
-                    })
-                }
-                writeUserData(user.uid, userName, userEmail)
+                writeUserData(user.uid, userName, userEmail, undefined)
                 navigate('/app')
+                console.log()
             })
             .catch((err) => {
                 console.log(err.message)

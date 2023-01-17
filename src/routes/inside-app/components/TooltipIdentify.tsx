@@ -1,4 +1,6 @@
-import React from 'react'
+import { onValue } from 'firebase/database'
+import React, { useEffect, useState } from 'react'
+import { userRef } from '../../../firebase'
 
 export interface ITooltipIdentifyProps { auth: any }
 
@@ -30,15 +32,37 @@ const styles = {
 }
 
 const TooltipIdentify: React.FunctionComponent<ITooltipIdentifyProps> = (props) => {
+    const [username, setUsername] = useState('')
+    const [userMail, setUserMail] = useState('')
     const { auth } = props
+    const getUserInfo = async () => {
+        useEffect(() => {
+            onValue(userRef(auth.currentUser.uid, '/username'), (snap) => {
+                const data = snap.val()
+                setUsername(data)
+            })
+            onValue(userRef(auth.currentUser.uid, '/email'), (snap) => {
+                const data = snap.val()
+                setUserMail(data)
+            })
+        }, [])
+
+
+    }
+
+    getUserInfo()
+
     return (
         <div style={styles.wrap}>
             <div className='dark-bg' style={styles.avatar} >
-                {auth.currentUser?.displayName?.split(' ').map((el: any) => el[0]).join('')}
+                {
+                    username.split(' ').length == 2 ? username.split(' ').map((w) => w[0]).join('.') : username.slice(0, 1)
+
+                }
             </div>
             <p className='ml-1' style={styles.name}>
-                {auth.currentUser?.displayName} <br />
-                <span style={styles.mail}>{auth.currentUser?.email}</span>
+                {username} <br />
+                <span style={styles.mail}>{userMail}</span>
             </p>
         </div>
     )
