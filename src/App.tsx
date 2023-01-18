@@ -18,6 +18,8 @@ import BundleQAndADetails from './routes/inside-app/pages/bundle/extras/q-and-a/
 import BundleUpdatesDetails from './routes/inside-app/pages/bundle/extras/updates/index.js';
 import BundleInvestorsDetails from './routes/inside-app/pages/bundle/extras/investors/index.js';
 import BundleOverview from './routes/inside-app/pages/bundle/extras/overview/index.js';
+import CreateProjectPage from './routes/createproject/index.js';
+import CreateMoviePage from './routes/createmovie/index.js';
 
 
 const App = () => {
@@ -27,6 +29,8 @@ const App = () => {
   return (
     <Routes>
       <Route path='/' element={<Root isVisible={isVisible} openModal={openModal} closeModal={closeModal} />} />
+      <Route path='/create-project' element={<CreateProjectPage />} />
+      <Route path='/create-movie' element={<CreateMoviePage />} />
       <Route path='/app' element={<AuthRoute link='/'><AppRoot /></AuthRoute>} />
       <Route path='/app/investments' element={<InvestmentPage />} />
       <Route path='/app/bundle/:bundleId' element={<ProjectDetailsPage />} >

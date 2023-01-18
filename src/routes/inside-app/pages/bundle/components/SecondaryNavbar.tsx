@@ -9,37 +9,37 @@ import InverstorsIcon from '@rsuite/icons/Peoples'
 import SecondaryNavbarItem from './SecondaryNavbarItem'
 import MainBtn from '../../../components/MainBtn'
 
-const SecondaryNavbar = ({ id, isFixed }: { id: any, isFixed: boolean }) => {
+const SecondaryNavbar = ({ project, isFixed }: { project: any, isFixed: boolean }) => {
     const NAVS = [
         {
             index: 0,
             txt: 'Overview',
             icon: <OverviewIcon />,
-            to: `/app/bundle/${id}`
+            to: `/app/bundle/${project.id}`
         },
         {
             index: 1,
             txt: 'Movies',
             icon: <MovieIcon />,
-            to: `/app/bundle/${id}/extras/movies`
+            to: `/app/bundle/${project.id}/extras/movies`
         },
         {
             index: 2,
             txt: 'Q & A',
             icon: <InfoIcon />,
-            to: `/app/bundle/${id}/extras/q-and-a`
+            to: `/app/bundle/${project.id}/extras/q-and-a`
         },
         {
             index: 3,
             txt: 'Updates',
             icon: <UpdatesIcon />,
-            to: `/app/bundle/${id}/extras/updates`
+            to: `/app/bundle/${project.id}/extras/updates`
         },
         {
             index: 4,
             txt: 'Investors',
             icon: <InverstorsIcon />,
-            to: `/app/bundle/${id}/extras/investors`
+            to: `/app/bundle/${project.id}/extras/investors`
         },
     ]
     const styles = {

@@ -14,6 +14,7 @@ export interface IProject {
     value: number,
     image: string,
     movies: Array<IMovie>,
+    files: Array<IFile>,
 }
 
 export interface IMovie {
@@ -22,6 +23,20 @@ export interface IMovie {
     trailer: string,
     genres: Array<String>,
     cover: string,
+}
+
+export interface IFile {
+    name: string,
+}
+
+const mainFile: IFile = {
+    name: 'General project information',
+}
+const secondFile: IFile = {
+    name: 'Investment analysis',
+}
+const thirdFile: IFile = {
+    name: 'Extra documents',
 }
 
 const testMovie: IMovie = {
@@ -58,6 +73,7 @@ const winterBundle: IProject = {
     value: 950000,
     image: PLACEHOLDER,
     movies: [testMovie, testMovie2, testMovie3],
+    files: [mainFile, secondFile, thirdFile],
 }
 
 const bundle2: IProject = {
@@ -72,6 +88,7 @@ const bundle2: IProject = {
     value: 9550000,
     image: PLACEHOLDER2,
     movies: [testMovie3, testMovie, testMovie2],
+    files: [mainFile, secondFile, thirdFile],
 }
 
 export const PROJECTS = [

@@ -1,0 +1,10 @@
+label {
+    font-size: large;
+    color: #fefefe;
+}
+
+.rs-checkbox-checker {
+    & label {
+        color: #333;
+    }
+}

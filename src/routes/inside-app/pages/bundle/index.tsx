@@ -1,7 +1,9 @@
+import { onValue, ref } from 'firebase/database'
 import React, { useState } from 'react'
 import { Outlet, useParams } from 'react-router-dom'
 import { Col, Container, FlexboxGrid, Grid, Header, Row } from 'rsuite'
 import FlexboxGridItem from 'rsuite/esm/FlexboxGrid/FlexboxGridItem'
+import { database } from '../../../../firebase'
 import AppNavBar from '../../components/AppNavBar'
 import { PROJECTS } from '../dashboard/components/util'
 import LeftSide from './components/left/LeftSide'
@@ -10,8 +12,14 @@ import SecondaryNavbar from './components/SecondaryNavbar'
 
 const ProjectDetailsPage = () => {
     const { bundleId } = useParams()
-    const project = PROJECTS[Number(bundleId)]
 
+
+    const projectRef = ref(database, 'projects/' + bundleId)
+    let data: any[] = []
+    onValue(projectRef, (snap) => {
+        data.push(snap.val())
+    })
+    const project = data.map((project) => project)
     const [topFixed, setTopFixed] = useState(true)
     const [bottomFixed, setBottomFixed] = useState(false)
 
@@ -40,7 +48,7 @@ const ProjectDetailsPage = () => {
                     <RightSide project={project} />
                 </Row>
             </Grid>
-            <SecondaryNavbar id={project.index} isFixed={bottomFixed} />
+            <SecondaryNavbar project={project} isFixed={bottomFixed} />
             <div style={styles.extrasWrap}>
                 <Outlet />
             </div>
@@ -51,7 +59,6 @@ const ProjectDetailsPage = () => {
 const styles = {
     page: {
         backgroundColor: '#efefef',
-        paddingBottom: 750,
     },
     wrapper: {
         paddingLeft: 5 + 'rem',

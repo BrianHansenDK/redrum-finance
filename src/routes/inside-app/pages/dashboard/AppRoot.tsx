@@ -6,27 +6,36 @@ import BannerComponent from './components/banner'
 import ProjectShowcase from '../../components/ProjectShowcase'
 import { PROJECTS } from './components/util'
 import MainBtn from '../../components/MainBtn'
+import TestProjectsComponent from '../../components/test'
+import { onValue, ref } from 'firebase/database'
+import { database } from '../../../../firebase'
 
 const AppRoot = () => {
+  let data: any[] = []
+  const reference = ref(database, 'projects/')
+  onValue(reference, (snap) => (
+    snap.forEach((project) => {
+      data.push(project.val())
+    })
+  ))
   return (
     <LayoutWithSidebar>
       <BannerComponent />
       {
-        PROJECTS.map((project) => (
+        data.map((project) => (
           <ProjectShowcase
-            index={project.index}
-            image={project.image}
+            id={project.id}
             name={project.name}
             goal={project.goal}
             currentlyInvested={project.currentlyInvested}
-            key={project.index}
+            key={project.id}
             description={project.description}
             endDate={project.endDate}
-            yearlyReturn={project.yearlyReturn}
-            returnSum={project.returnSum}
             value={project.value}
             movies={project.movies}
-          />
+            intro={project.intro}
+            startDate={project.startDate}
+            guaranteedReturn={project.guaranteedReturn} />
         ))
       }
       <div className='pl-2 pt-3 pr-2 pb-3'>
@@ -40,7 +49,7 @@ const AppRoot = () => {
         />
 
       </div>
-
+      <TestProjectsComponent />
     </LayoutWithSidebar>
 
   )

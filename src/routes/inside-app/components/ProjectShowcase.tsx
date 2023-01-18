@@ -3,29 +3,30 @@ import { Progress } from 'rsuite';
 import '../pages/dashboard/styles/showcase.scss'
 import { Link } from 'react-router-dom';
 import { numberWithCommas, toFixedIfNecessary } from '../../../misc/custom-hooks';
+import PLACEHOLDER from '../../../components/images/about_us_page_imgs/ab_img3.svg'
 
 export interface IProjectShowcase {
-    index: number,
+    id: string,
     name: string,
+    intro: string,
     description: string,
+    startDate: Date,
     endDate: Date,
     goal: number,
     currentlyInvested: number,
-    yearlyReturn: number,
-    returnSum: number,
+    guaranteedReturn: number,
     value: number,
-    image: string,
     movies: any,
 }
 
 const ProjectShowcase: React.FunctionComponent<IProjectShowcase> = (props) => {
-    const { name, goal, currentlyInvested, image, index } = props
+    const { id, name, goal, currentlyInvested } = props
 
     const percentage = toFixedIfNecessary((currentlyInvested / goal) * 100, 2)
     return (
-        <Link to={`/app/bundle/${index.toString()}`}>
+        <Link to={`/app/bundle/${id.toString()}`}>
             <div className='bundle mt-2 mb-2 trans-fast'>
-                <div className='bundle-img' style={{ backgroundImage: 'url(' + image + ')' }}>
+                <div className='bundle-img' style={{ backgroundImage: 'url(' + PLACEHOLDER + ')' }}>
 
                 </div>
                 <div className='pl-2 pr-2 pb-2'>
