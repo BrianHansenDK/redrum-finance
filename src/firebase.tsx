@@ -25,12 +25,18 @@ export const analytics = getAnalytics(app);
 export const auth = getAuth(app);
 export const database = getDatabase(app);
 
-export function writeUserData(userId: string, name: string, email: string, image: string | undefined) {
+export function writeUserData(
+    userId: string,
+    name: string,
+    email: string,
+    image: string | undefined,
+    profileCompletion: number) {
     const reference = ref(database, 'users/' + userId)
     set(reference, {
         username: name,
         email: email,
         image: image,
+        completion: profileCompletion,
     })
     const investmentRef = ref(database, 'investments/')
     set(investmentRef, {
@@ -41,6 +47,9 @@ export function writeUserData(userId: string, name: string, email: string, image
     })
 }
 
-export const userRef = (userId: any, query: string) => {
-    return ref(database, 'users/' + userId + query)
+export const userRef = (userId: any, query: string, state: any) => {
+    onValue(ref(database, 'users/' + userId + query), (snap) => {
+        const data = snap.val()
+        state(data)
+    })
 }

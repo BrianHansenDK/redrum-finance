@@ -57,7 +57,8 @@ function SignUpForm() {
                         response.user.uid,
                         response.user.displayName ? response.user.displayName : 'Unknown',
                         response.user.email ? response.user.email : 'Nonexistent',
-                        response.user.photoURL ? response.user.photoURL : undefined
+                        response.user.photoURL ? response.user.photoURL : undefined,
+                        response.user.photoURL ? 20 : 10,
                     )
                 }
             })
@@ -72,7 +73,7 @@ function SignUpForm() {
         createUserWithEmailAndPassword(auth, userEmail, userConfirmedPassword)
             .then((userCredentials) => {
                 const user = userCredentials.user
-                writeUserData(user.uid, userName, userEmail, undefined)
+                writeUserData(user.uid, userName, userEmail, undefined, 10)
                 navigate('/app')
                 console.log()
             })

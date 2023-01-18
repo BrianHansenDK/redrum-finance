@@ -1,8 +1,46 @@
 import { onValue } from 'firebase/database'
 import React, { useEffect, useState } from 'react'
 import { userRef } from '../../../firebase'
+import mainShadows from '../themes/shadows'
 
 export interface ITooltipIdentifyProps { auth: any }
+
+const TooltipIdentify: React.FunctionComponent<ITooltipIdentifyProps> = (props) => {
+    const [username, setUsername] = useState('')
+    const [userMail, setUserMail] = useState('')
+    const [userImg, setUserImg] = useState('')
+    const { auth } = props
+    const getUserInfo = async () => {
+        useEffect(() => {
+            userRef(auth.currentUser.uid, '/username', setUsername)
+            userRef(auth.currentUser.uid, '/email', setUserMail)
+            userRef(auth.currentUser.uid, '/image', setUserImg)
+        }, [])
+
+
+    }
+
+    getUserInfo()
+
+    return (
+        <div style={styles.wrap}>
+            {
+                userImg !== '' ? (
+                    <img src={userImg} alt={username} style={styles.avatarImg} />
+                ) : (
+                    <div className='dark-bg' style={styles.avatar} >
+                        {username.split(' ').length == 2 ? username.split(' ').map((w) => w[0]).join('.') : username.slice(0, 1)}
+
+                    </div>
+                )
+            }
+            <p className='ml-1' style={styles.name}>
+                {username} <br />
+                <span style={styles.mail}>{userMail}</span>
+            </p>
+        </div>
+    )
+}
 
 const styles = {
     wrap: {
@@ -19,6 +57,12 @@ const styles = {
         alignItems: 'center',
         justifyContent: 'center',
     },
+    avatarImg: {
+        width: 50,
+        height: 50,
+        borderRadius: 50 + '%',
+        boxShadow: mainShadows.image,
+    },
     name: {
         color: '#333',
         fontSize: 1 + 'rem',
@@ -29,43 +73,6 @@ const styles = {
         color: '#777',
         fontWeight: '400',
     },
-}
-
-const TooltipIdentify: React.FunctionComponent<ITooltipIdentifyProps> = (props) => {
-    const [username, setUsername] = useState('')
-    const [userMail, setUserMail] = useState('')
-    const { auth } = props
-    const getUserInfo = async () => {
-        useEffect(() => {
-            onValue(userRef(auth.currentUser.uid, '/username'), (snap) => {
-                const data = snap.val()
-                setUsername(data)
-            })
-            onValue(userRef(auth.currentUser.uid, '/email'), (snap) => {
-                const data = snap.val()
-                setUserMail(data)
-            })
-        }, [])
-
-
-    }
-
-    getUserInfo()
-
-    return (
-        <div style={styles.wrap}>
-            <div className='dark-bg' style={styles.avatar} >
-                {
-                    username.split(' ').length == 2 ? username.split(' ').map((w) => w[0]).join('.') : username.slice(0, 1)
-
-                }
-            </div>
-            <p className='ml-1' style={styles.name}>
-                {username} <br />
-                <span style={styles.mail}>{userMail}</span>
-            </p>
-        </div>
-    )
 }
 
 export default TooltipIdentify

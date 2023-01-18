@@ -1,7 +1,8 @@
 import PLACEHOLDER from '../../../../../components/images/about_us_page_imgs/ab_img3.svg'
 import PLACEHOLDER2 from '../../../../../components/images/about_us_page_imgs/wm_img2.svg'
+import PLACEHOLDER3 from '../../../../../components/images/about_us_page_imgs/wm_img1.svg'
 
-interface IProject {
+export interface IProject {
     index: number,
     name: string,
     intro: string,
@@ -15,7 +16,7 @@ interface IProject {
     movies: Array<IMovie>,
 }
 
-interface IMovie {
+export interface IMovie {
     title: string,
     description: string,
     trailer: string,
@@ -35,14 +36,14 @@ const testMovie2: IMovie = {
     description: 'Description for movie number 1',
     trailer: 'No trailer at the moment',
     genres: ['Horror', 'Comedy', 'Christmas'],
-    cover: PLACEHOLDER,
+    cover: PLACEHOLDER2,
 }
 const testMovie3: IMovie = {
     title: 'Test 3',
     description: 'Description for movie number 1',
     trailer: 'No trailer at the moment',
     genres: ['Horror', 'Comedy', 'Christmas'],
-    cover: PLACEHOLDER,
+    cover: PLACEHOLDER3,
 }
 
 const winterBundle: IProject = {
@@ -70,7 +71,7 @@ const bundle2: IProject = {
     guaranteedReturn: 7,
     value: 9550000,
     image: PLACEHOLDER2,
-    movies: [testMovie, testMovie2, testMovie3],
+    movies: [testMovie3, testMovie, testMovie2],
 }
 
 export const PROJECTS = [

@@ -1,0 +1,13 @@
+.cover-wrap {
+    position: relative;
+
+    & .overlay {
+        position: absolute;
+        opacity: 0;
+        transition: all 300ms ease-out;
+    }
+
+    &:hover .overlay {
+        opacity: 1;
+    }
+}
