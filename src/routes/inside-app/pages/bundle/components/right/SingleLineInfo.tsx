@@ -9,7 +9,7 @@ const SingleLineInfo = ({ title, info, type, line = true }: { title: string, inf
                     {title}
                 </p>
                 <p style={styles.info}>
-                    {numberWithCommas(info)} {type}
+                    {type == '€' ? numberWithCommas(info) : info} {type}
                 </p>
             </div>
             {

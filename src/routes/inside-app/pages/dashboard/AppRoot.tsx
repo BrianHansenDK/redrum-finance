@@ -7,37 +7,17 @@ import ProjectShowcase from '../../components/ProjectShowcase'
 import { PROJECTS } from './components/util'
 import MainBtn from '../../components/MainBtn'
 import TestProjectsComponent from '../../components/test'
-import { onValue, ref } from 'firebase/database'
+import { child, get, onValue, ref } from 'firebase/database'
 import { database } from '../../../../firebase'
+import { Loader, useToaster } from 'rsuite'
+import PushNotification from '../../../../components/Notification'
 
 const AppRoot = () => {
-  let data: any[] = []
-  const reference = ref(database, 'projects/')
-  onValue(reference, (snap) => (
-    snap.forEach((project) => {
-      data.push(project.val())
-    })
-  ))
   return (
     <LayoutWithSidebar>
       <BannerComponent />
-      {
-        data.map((project) => (
-          <ProjectShowcase
-            id={project.id}
-            name={project.name}
-            goal={project.goal}
-            currentlyInvested={project.currentlyInvested}
-            key={project.id}
-            description={project.description}
-            endDate={project.endDate}
-            value={project.value}
-            movies={project.movies}
-            intro={project.intro}
-            startDate={project.startDate}
-            guaranteedReturn={project.guaranteedReturn} />
-        ))
-      }
+
+      <ProjectShowcase />
       <div className='pl-2 pt-3 pr-2 pb-3'>
         <MainBtn
           pressed={() => null}

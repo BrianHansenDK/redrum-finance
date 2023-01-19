@@ -10,50 +10,89 @@ import LeftSide from './components/left/LeftSide'
 import RightSide from './components/right/RightSide'
 import SecondaryNavbar from './components/SecondaryNavbar'
 
-const ProjectDetailsPage = () => {
-    const { bundleId } = useParams()
+interface IProps {
+    params: any
+}
 
+interface IState {
+    projectData: any[]
+    topFixed: boolean,
+    bottomFixed: boolean,
+}
 
-    const projectRef = ref(database, 'projects/' + bundleId)
-    let data: any[] = []
-    onValue(projectRef, (snap) => {
-        data.push(snap.val())
-    })
-    const project = data.map((project) => project)
-    const [topFixed, setTopFixed] = useState(true)
-    const [bottomFixed, setBottomFixed] = useState(false)
+class ProjectDetailsPage extends React.Component<IProps, IState> {
 
-    window.addEventListener('scroll', () => {
-        if (window.scrollY <= 600) {
-            setTopFixed(true)
-        } else {
-            setTopFixed(false)
+    constructor(props: IProps) {
+        super(props)
+        this.state = {
+            projectData: [],
+            topFixed: true,
+            bottomFixed: false,
         }
-    })
+    }
 
-    window.addEventListener('scroll', () => {
-        if (window.scrollY >= 675) {
-            setBottomFixed(true)
-        } else {
-            setBottomFixed(false)
-        }
-    })
+    componentDidMount(): void {
+        const reference = ref(database, 'projects/')
+        onValue(reference, (snap) => {
+            let data: any[] = []
+            snap.forEach((project) => {
+                data.push(project.val())
+            })
+            this.setState((_previousState) => ({
+                projectData: data
+            }))
+        })
 
-    return (
-        <Container style={styles.page}>
-            <AppNavBar fixed={topFixed} />
-            <Grid style={styles.wrapper} fluid>
-                <Row style={styles.wrapperInner}>
-                    <LeftSide project={project} />
-                    <RightSide project={project} />
-                </Row>
-            </Grid>
-            <SecondaryNavbar project={project} isFixed={bottomFixed} />
-            <div style={styles.extrasWrap}>
-                <Outlet />
-            </div>
-        </Container>
-    )
+        window.addEventListener('scroll', () => {
+            if (window.scrollY <= 600) {
+                this.setState((_previousState) => ({
+                    topFixed: true
+                }))
+            } else {
+                this.setState((_previousState) => ({
+                    topFixed: false
+                }))
+            }
+        })
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY >= 675) {
+                this.setState((_previousState) => ({
+                    bottomFixed: true
+                }))
+            } else {
+                this.setState((_previousState) => ({
+                    bottomFixed: false
+                }))
+            }
+        })
+    }
+
+
+    render() {
+        const { bundleId } = this.props.params
+
+
+        return (
+            <>
+                {this.state.projectData.map((project) => project.id == bundleId ? (
+                    <Container style={styles.page} key={project.id}>
+                        <AppNavBar fixed={this.state.topFixed} />
+                        <Grid style={styles.wrapper} fluid>
+                            <Row style={styles.wrapperInner}>
+                                <LeftSide project={project} />
+                                <RightSide project={project} />
+                            </Row>
+                        </Grid>
+                        <SecondaryNavbar project={project} isFixed={this.state.bottomFixed} />
+                        <div style={styles.extrasWrap}>
+                            <Outlet />
+                        </div>
+                    </Container>
+                ) : null)}
+            </>
+        )
+    }
 }
 
 const styles = {
@@ -61,6 +100,7 @@ const styles = {
         backgroundColor: '#efefef',
     },
     wrapper: {
+        width: 100 + '%',
         paddingLeft: 5 + 'rem',
         paddingRight: 5 + 'rem',
         paddingBottom: 5 + 'rem',

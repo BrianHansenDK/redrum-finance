@@ -1,28 +1,61 @@
 import React from 'react'
 import MainBtn from '../../../../../components/MainBtn'
 import mainShadows from '../../../../../themes/shadows'
-import { IMovie } from '../../../../dashboard/components/util'
+import PLACEHOLDER from '../../../../../../../components/images/about_us_page_imgs/ab_img3.svg'
+import { onValue, ref } from 'firebase/database'
+import { database } from '../../../../../../../firebase'
 
-const MovieCard = ({ movie }: { movie: IMovie }) => {
-    return (
-        <div>
-            <div className='cover-wrap' style={styles.coverWrap}>
-                <img src={movie.cover} alt={`Cover for ${movie.title}`} style={styles.cover} />
-                <div className='overlay' style={styles.overlay}>
-                    <MainBtn
-                        content={'Read more'}
-                        pressed={() => null}
-                        btnColor='violet'
-                        btnAppearance='primary'
-                        btnSize='lg'
-                        isBlock={false} />
+interface IProps {
+    movieId: any
+}
+
+interface IState {
+    movie: any,
+    title: any
+}
+
+class MovieCard extends React.Component<IProps, IState> {
+    constructor(props: IProps) {
+        super(props)
+        this.state = {
+            movie: undefined,
+            title: undefined
+        }
+    }
+
+    componentDidMount(): void {
+        const reference = ref(database, 'movies/' + this.props.movieId)
+        onValue(reference, (snap) => {
+            this.setState((_previousValue) => ({
+                movie: snap.val()
+            }))
+            this.setState((_previousValue) => ({
+                title: snap.val().title
+            }))
+        })
+    }
+
+    render() {
+        return (
+            <div>
+                <div className='cover-wrap' style={styles.coverWrap}>
+                    <img src={PLACEHOLDER} alt={`Cover for title`} style={styles.cover} />
+                    <div className='overlay' style={styles.overlay}>
+                        <MainBtn
+                            content={'Read more'}
+                            pressed={() => null}
+                            btnColor='violet'
+                            btnAppearance='primary'
+                            btnSize='lg'
+                            isBlock={false} />
+                    </div>
                 </div>
+                <h1 style={styles.title} className='txt-center'>
+                    {this.state.title}
+                </h1>
             </div>
-            <h1 style={styles.title} className='txt-center'>
-                {movie.title}
-            </h1>
-        </div>
-    )
+        )
+    }
 }
 const styles = {
     coverWrap: {

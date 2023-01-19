@@ -1,6 +1,7 @@
 import React from 'react'
 import { mainColors } from '../../../../../themes/colors'
 import mainShadows from '../../../../../themes/shadows'
+import PLACEHOLDER from '../../../../../../../components/images/about_us_page_imgs/ab_img3.svg'
 
 const PresentationCard = ({ project }: { project: any }) => {
     return (
@@ -10,7 +11,7 @@ const PresentationCard = ({ project }: { project: any }) => {
             <p style={styles.description}>
                 {project.description}
             </p>
-            <img src={project.image} alt={project.intro} style={styles.image} />
+            <img src={PLACEHOLDER} alt={project.intro} style={styles.image} />
         </div>
     )
 }

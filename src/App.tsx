@@ -6,20 +6,17 @@ import AccountPage from './routes/auth/account.jsx';
 import SignUpPage from './routes/auth/signUp.jsx';
 import { Route, Routes } from 'react-router-dom';
 import Root from './routes/root/root.jsx';
-import { initializeApp } from 'firebase/app';
-import { config } from './config/config.js';
 import AuthRoute from './routes/auth/components/AuthRoute';
-import { getAuth } from 'firebase/auth';
 import AppRoot from './routes/inside-app/pages/dashboard/AppRoot';
 import InvestmentPage from './routes/inside-app/pages/investments/index.js';
-import ProjectDetailsPage from './routes/inside-app/pages/bundle/index.js';
-import BundleMoviesDetals from './routes/inside-app/pages/bundle/extras/movies/index.js';
-import BundleQAndADetails from './routes/inside-app/pages/bundle/extras/q-and-a/index.js';
-import BundleUpdatesDetails from './routes/inside-app/pages/bundle/extras/updates/index.js';
-import BundleInvestorsDetails from './routes/inside-app/pages/bundle/extras/investors/index.js';
-import BundleOverview from './routes/inside-app/pages/bundle/extras/overview/index.js';
 import CreateProjectPage from './routes/createproject/index.js';
 import CreateMoviePage from './routes/createmovie/index.js';
+import ProjectDetailsPageWrapper from './routes/inside-app/pages/bundle/indexFunction.js';
+import ProjectDetailsOverviewWrapper from './routes/inside-app/pages/bundle/extras/overview/indexFunction'
+import ProjectDetailsMovieWrapper from './routes/inside-app/pages/bundle/extras/movies/indexFunction'
+import ProjectDetailsQAndAWrapper from './routes/inside-app/pages/bundle/extras/q-and-a/indexFunction'
+import ProjectDetailsUpdatesWrapper from './routes/inside-app/pages/bundle/extras/updates/indexFunction'
+import ProjectDetailsInvestorWrapper from './routes/inside-app/pages/bundle/extras/investors/indexFunction'
 
 
 const App = () => {
@@ -33,12 +30,12 @@ const App = () => {
       <Route path='/create-movie' element={<CreateMoviePage />} />
       <Route path='/app' element={<AuthRoute link='/'><AppRoot /></AuthRoute>} />
       <Route path='/app/investments' element={<InvestmentPage />} />
-      <Route path='/app/bundle/:bundleId' element={<ProjectDetailsPage />} >
-        <Route index element={<BundleOverview />} />
-        <Route path='extras/movies' element={<BundleMoviesDetals />} />
-        <Route path='extras/q-and-a' element={<BundleQAndADetails />} />
-        <Route path='extras/updates' element={<BundleUpdatesDetails />} />
-        <Route path='extras/investors' element={<BundleInvestorsDetails />} />
+      <Route path='/app/bundle/:bundleId' element={<ProjectDetailsPageWrapper />} >
+        <Route index element={<ProjectDetailsOverviewWrapper />} />
+        <Route path='extras/movies' element={<ProjectDetailsMovieWrapper />} />
+        <Route path='extras/q-and-a' element={<ProjectDetailsQAndAWrapper />} />
+        <Route path='extras/updates' element={<ProjectDetailsUpdatesWrapper />} />
+        <Route path='extras/investors' element={<ProjectDetailsInvestorWrapper />} />
       </Route>
       <Route path='/about-us' element={<AboutUsPage isVisible={isVisible} openModal={openModal} closeModal={closeModal} />} />
       <Route path='/why-movies' element={<WhyMovies isVisible={isVisible} openModal={openModal} closeModal={closeModal} />} />

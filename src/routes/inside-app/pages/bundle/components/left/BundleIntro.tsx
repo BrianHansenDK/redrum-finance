@@ -1,13 +1,14 @@
 import React from 'react'
 import { FlexboxGrid } from 'rsuite'
 import FlexboxGridItem from 'rsuite/esm/FlexboxGrid/FlexboxGridItem'
+import PLACEHOLDER from '../../../../../../components/images/about_us_page_imgs/ab_img3.svg'
 
 const BundleIntro = ({ project }: { project: any }) => {
     return (
         <FlexboxGrid className='pt-4' justify='start'>
             <FlexboxGridItem colspan={4}>
                 <img
-                    src={project.image}
+                    src={PLACEHOLDER}
                     alt={project.name}
                     style={styles.avatar}
                     className='shadow'

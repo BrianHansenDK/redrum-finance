@@ -6,11 +6,24 @@ import FileIcon from '@rsuite/icons/FileDownload'
 import { IFile, IProject } from '../../../../dashboard/components/util'
 import FileElement from './FileElement'
 
-const FilesCard = ({ date, project }: { date: Date, project: IProject }) => {
+const FILES = [
+    {
+        name: 'General information',
+    },
+    {
+        name: 'Investment analysis',
+    },
+    {
+        name: 'Extra information',
+    },
+
+]
+
+const FilesCard = ({ date }: { date: Date }) => {
     return (
         <List bordered hover style={styles.filesCard} >
             {
-                project.files.map((file) => (
+                FILES.map((file) => (
                     <FileElement date={date} file={file} />
                 ))
             }

@@ -1,9 +1,8 @@
 import React from 'react'
 import { Tag } from 'rsuite'
 import InfoIcon from '@rsuite/icons/legacy/InfoCircle'
-import InfoTagNumbers from './InfoTagNumbers'
 
-const InfoTag = ({ project }: { project: any }) => {
+const InfoTag = () => {
     return (
         <div style={styles.wrapper} className='d-flex flex-column align-center'>
             <Tag color='blue'>

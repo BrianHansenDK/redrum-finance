@@ -8,12 +8,12 @@ import ProgressItem from './ProgressItem'
 const RightSide = ({ project }: { project: any }) => {
 
     return (
-        <Col xs={24} sm={24} md={8}
+        <Col xs={24} sm={24} md={7}
             style={styles.wrapper} className='flex-column'
         >
             <ProgressItem project={project} />
             <div style={styles.card} className='flex-column'>
-                <InfoTag project={project} />
+                <InfoTag />
                 <InfoLines project={project} />
             </div>
             <MainBtn

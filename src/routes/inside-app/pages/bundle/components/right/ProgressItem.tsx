@@ -9,7 +9,7 @@ import { mainColors } from '../../../../themes/colors'
 const ProgressItem = ({ project }: { project: any }) => {
     const tooltip = (
         <Tooltip>
-            Currently invested: {numberWithCommas(project.goal)} €
+            Currently invested: {numberWithCommas(project.currentlyInvested)} €
         </Tooltip>
     )
 
