@@ -17,6 +17,7 @@ import ProjectDetailsMovieWrapper from './routes/inside-app/pages/bundle/extras/
 import ProjectDetailsQAndAWrapper from './routes/inside-app/pages/bundle/extras/q-and-a/indexFunction'
 import ProjectDetailsUpdatesWrapper from './routes/inside-app/pages/bundle/extras/updates/indexFunction'
 import ProjectDetailsInvestorWrapper from './routes/inside-app/pages/bundle/extras/investors/indexFunction'
+import PortfolioPage from './routes/inside-app/pages/portfolio/index.js';
 
 
 const App = () => {
@@ -30,6 +31,7 @@ const App = () => {
       <Route path='/create-movie' element={<CreateMoviePage />} />
       <Route path='/app' element={<AuthRoute link='/'><AppRoot /></AuthRoute>} />
       <Route path='/app/investments' element={<InvestmentPage />} />
+      <Route path='/app/portfolio' element={<PortfolioPage />} />
       <Route path='/app/bundle/:bundleId' element={<ProjectDetailsPageWrapper />} >
         <Route index element={<ProjectDetailsOverviewWrapper />} />
         <Route path='extras/movies' element={<ProjectDetailsMovieWrapper />} />

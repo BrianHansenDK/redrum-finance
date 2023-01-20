@@ -6,6 +6,9 @@ import OPENMENU from '@rsuite/icons/legacy/CaretDown'
 import NavbarBrand from 'rsuite/esm/Navbar/NavbarBrand'
 import { getAuth } from 'firebase/auth';
 import HOME from '@rsuite/icons/legacy/Home'
+import UsersIcon from '@rsuite/icons/legacy/PeopleGroup'
+import MessageIcon from '@rsuite/icons/legacy/Wechat'
+import NotificationsIcon from '@rsuite/icons/legacy/Bell'
 import USER from '@rsuite/icons/legacy/User'
 import GEAR from '@rsuite/icons/legacy/Gear'
 import DOCS from '@rsuite/icons/legacy/Database'
@@ -59,17 +62,21 @@ const AppNavBar = ({ fixed = true }: { fixed: boolean }) => {
                     <NavItem as={Link} to='/app' eventKey='1' className='d-flex flex-column align-center justify-around' style={styles.navLink}>
                         <DashboardIcon /> Dashboard
                     </NavItem>
+                    <NavItem className='d-flex flex-column align-center justify-around' style={styles.navLink}>
+                        <NotificationsIcon /> Notifications
+                    </NavItem>
                     <Whisper placement='bottom' controlId='control-id-click' trigger='click' speaker={AccountTooltip} >
                         <NavItem className='d-flex flex-column align-center justify-around' style={styles.navLink}>
                             <USER /> <span>My account <OPENMENU /> </span>
                         </NavItem>
                     </Whisper>
                     <NavItem className='d-flex flex-column align-center justify-around' style={styles.navLink}>
-                        <HOME /> Home
+                        <UsersIcon /> Network
                     </NavItem>
                     <NavItem className='d-flex flex-column align-center justify-around' style={styles.navLink}>
-                        <HOME /> Home
+                        <MessageIcon /> Messages
                     </NavItem>
+
                 </Nav>
             </div>
         </Navbar>

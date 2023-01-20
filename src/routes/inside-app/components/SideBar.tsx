@@ -21,6 +21,7 @@ const styles = {
 
 const SideBar = () => {
   const [isVisible, setVisible] = useState(false)
+  const [currentKey, setCurrentKey] = useState(1)
   const closeModal = () => {
     setVisible(false)
   }
@@ -31,7 +32,7 @@ const SideBar = () => {
     <>
       <Sidenav defaultOpenKeys={['3', '4']} style={styles.sideNav} className='sidebar' >
         <Sidenav.Body>
-          <Nav activeKey={location.pathname == '/app/investments' ? '2' : '1'}>
+          <Nav activeKey={location.pathname == '/app/investments' ? '2' : location.pathname == '/app/portfolio' ? '4' : '1'}>
             <h3 className='d-flex justify-center'>Investments</h3>
             <Nav.Item eventKey="1" as={Link} to='/app' icon={<DashboardIcon />}>
               Dashboard
@@ -42,7 +43,7 @@ const SideBar = () => {
             <Nav.Item onClick={openModal} eventKey='3' icon={<MagicIcon />}>
               Secondary market
             </Nav.Item>
-            <Nav.Item eventKey='4' icon={<DashboardIcon />}>
+            <Nav.Item as={Link} to='/app/portfolio' eventKey='4' icon={<DashboardIcon />}>
               My Portfolio
             </Nav.Item>
             <h3 className='d-flex justify-center'>Community</h3>
@@ -66,7 +67,7 @@ const SideBar = () => {
       </Sidenav>
       <UpcomingModal
         title={'Coming soon'}
-        body={'Our secondary market is currentlyy under development and is not available for the time being'}
+        body={'Our secondary market is currently under development and is not available for the time being'}
         visible={isVisible}
         close={closeModal} />
     </>

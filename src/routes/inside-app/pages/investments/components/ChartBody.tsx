@@ -26,7 +26,12 @@ class ChartBody extends Component<IProps, {}> {
                                 </h1>
                                 <p>
                                     You have not invested in a project yet. <br />
-                                    You can find them down below or in the Dashboard.
+                                    {
+                                        location.pathname == '/app/investments' ?
+                                            'You can find them down below or in the Dashboard.' :
+                                            'You can find projects under "Investments" or in the "Dashboard".'
+                                    }
+
                                 </p>
                             </div>
                             <img style={styles.image} src={EMPTY} alt="Empty box showcasing yyou have no investments" />
