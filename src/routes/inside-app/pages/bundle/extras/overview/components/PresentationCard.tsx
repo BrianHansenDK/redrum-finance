@@ -8,10 +8,10 @@ const PresentationCard = ({ project }: { project: any }) => {
         <div style={styles.presentationCard} className='flex-column'>
 
             <h1 style={styles.title}>Presentation of the {project.name} project</h1>
+            <img src={PLACEHOLDER} alt={project.intro} style={styles.image} />
             <p style={styles.description}>
                 {project.description}
             </p>
-            <img src={PLACEHOLDER} alt={project.intro} style={styles.image} />
         </div>
     )
 }
@@ -29,12 +29,19 @@ const styles = {
     },
     title: {
         flex: 1,
-        textAling: 'center'
+        fontSize: 35,
+        textAling: 'center',
+        color: mainColors.dark,
+        marginBottom: 25,
     },
     description: {
         flex: 1,
         textAling: 'center',
-        marginBottom: 2 + 'rem',
+        marginTop: 2 + 'rem',
+        fontSize: 22.5,
+        color: mainColors.dark,
+        opacity: .9,
+        width: '80%',
     },
     image: {
         width: 80 + '%',

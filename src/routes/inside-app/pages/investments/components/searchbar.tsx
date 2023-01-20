@@ -25,7 +25,7 @@ const styles = {
         borderRadius: 20
     },
     btnWrap: {
-        height: 49,
+        height: 48,
         width: 50,
         display: 'flex',
         alignItems: 'center',

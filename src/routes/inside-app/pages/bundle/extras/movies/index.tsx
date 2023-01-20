@@ -1,13 +1,11 @@
+import React from 'react'
 import { onValue, ref } from 'firebase/database'
-import React, { useState } from 'react'
-import { useParams } from 'react-router-dom'
-import { Loader } from 'rsuite'
 import { database } from '../../../../../../firebase'
-import MainBtn from '../../../../components/MainBtn'
-import mainShadows from '../../../../themes/shadows'
-import { IMovie, PROJECTS } from '../../../dashboard/components/util'
 import MovieCard from './components/MovieCard'
+
 import './styles/index.scss'
+import NoMovieCard from './components/NoMovieCard'
+import { mainColors } from '../../../../themes/colors'
 
 interface IProps {
     params: any
@@ -54,9 +52,14 @@ class BundleMoviesDetals extends React.Component<IProps, IState>{
                                 <>
                                     <h1 key={project.id} style={styles.pageTitle} className='txt-center'> Movies in {project.name}</h1>
                                     <div style={styles.wrapper}>
-                                        {project.movies.map((movie: any) => (
-                                            <MovieCard movieId={movie} key={movie.id} />
-                                        ))}
+                                        {
+                                            project?.movies ? (
+
+                                                project?.movies?.map((movie: any) => (
+                                                    <MovieCard movieId={movie} key={movie.id} />
+                                                ))
+                                            )
+                                                : <NoMovieCard />}
                                     </div>
                                 </>
                             ) : null
@@ -80,6 +83,7 @@ const styles = {
     },
     pageTitle: {
         marginBottom: 75,
+        color: mainColors.dark,
     },
     wrapper: {
         display: 'flex',

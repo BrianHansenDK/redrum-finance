@@ -4,6 +4,7 @@ import mainShadows from '../../../../../themes/shadows'
 import PLACEHOLDER from '../../../../../../../components/images/about_us_page_imgs/ab_img3.svg'
 import { onValue, ref } from 'firebase/database'
 import { database } from '../../../../../../../firebase'
+import { mainColors } from '../../../../../themes/colors'
 
 interface IProps {
     movieId: any
@@ -78,7 +79,8 @@ const styles = {
         backgroundColor: 'rgba(0, 0, 29, .25)',
     },
     title: {
-        fontSize: 45.5,
+        fontSize: 40.5,
+        color: mainColors.dark,
     },
 }
 

@@ -1,8 +1,9 @@
 import { onValue, ref } from 'firebase/database'
 import React, { useState } from 'react'
 import { Outlet, useParams } from 'react-router-dom'
-import { Col, Container, FlexboxGrid, Grid, Header, Row } from 'rsuite'
+import { Col, Container, FlexboxGrid, Footer, Grid, Header, Row } from 'rsuite'
 import FlexboxGridItem from 'rsuite/esm/FlexboxGrid/FlexboxGridItem'
+import MainFooter from '../../../../components/footer'
 import { database } from '../../../../firebase'
 import AppNavBar from '../../components/AppNavBar'
 import { PROJECTS } from '../dashboard/components/util'
@@ -88,6 +89,9 @@ class ProjectDetailsPage extends React.Component<IProps, IState> {
                         <div style={styles.extrasWrap}>
                             <Outlet />
                         </div>
+                        <Footer className='dark-bg txt-white pd-page'>
+                            <MainFooter />
+                        </Footer>
                     </Container>
                 ) : null)}
             </>

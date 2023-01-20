@@ -6,6 +6,8 @@ import { numberWithCommas, toFixedIfNecessary } from '../../../misc/custom-hooks
 import PLACEHOLDER from '../../../components/images/about_us_page_imgs/ab_img3.svg'
 import { onValue, ref } from 'firebase/database';
 import { database } from '../../../firebase';
+import { mainColors } from '../themes/colors';
+import mainShadows from '../themes/shadows';
 
 interface IProps {
 }
@@ -42,33 +44,70 @@ class ProjectShowcase extends React.Component<IProps, IState> {
             <>
                 {this.state.projectData.map((project) => (
 
-                    <Link to={`/app/bundle/${project.id.toString()}`} key={project.id}>
-                        <div className='bundle mt-2 mb-2 trans-fast'>
-                            <div className='bundle-img' style={{ backgroundImage: 'url(' + PLACEHOLDER + ')' }}>
+                    <Link
+                        style={styles.card}
+                        className='bundle trans-fast'
+                        to={`/app/bundle/${project.id.toString()}`}
+                        key={project.id}>
+                        <div style={styles.image}>
 
-                            </div>
-                            <div className='pl-2 pr-2 pb-2'>
+                        </div>
+                        <div className='pl-2 pr-2 pb-2'>
 
-                                <div className='d-flex jusify-center align-center' style={{ position: 'relative' }}>
-                                    <h1 className='txt-center mt-2' style={{ flex: 1 }}>
-                                        {project.name}
-                                    </h1>
-                                </div>
-                                <div className='d-flex align-center pl-3 pr-3 mt-2' style={{ justifyContent: 'space-between' }}>
-                                    <p>
-                                        Currently invested: {numberWithCommas(project.currentlyInvested)}€
-                                    </p>
-                                    <p>
-                                        Goal: {numberWithCommas(project.goal)}€
-                                    </p>
-                                </div>
-                                <Progress.Line percent={toFixedIfNecessary((project.currentlyInvested / project.goal) * 100, 2)} status={`${toFixedIfNecessary((project.currentlyInvested / project.goal) * 100, 2) < 100 ? 'active' : 'success'}`} />
+                            <div className='d-flex jusify-center align-center' style={{ position: 'relative' }}>
+                                <h1 className='txt-center mt-2' style={styles.title}>
+                                    {project.name}
+                                </h1>
                             </div>
+                            <div className='d-flex align-center pl-1 pr-4 mt-2' style={{ justifyContent: 'space-between' }}>
+                                <p style={styles.numberTxt}>
+                                    Currently invested: <span style={styles.number}>{numberWithCommas(project.currentlyInvested)} € </span>
+                                </p>
+                                <p style={styles.numberTxt}>
+                                    Goal: <span style={styles.number}>{numberWithCommas(project.goal)} € </span>
+                                </p>
+                            </div>
+                            <Progress.Line style={styles.percentageNr} percent={toFixedIfNecessary((project.currentlyInvested / project.goal) * 100, 2)} status={`${toFixedIfNecessary((project.currentlyInvested / project.goal) * 100, 2) < 100 ? 'active' : 'success'}`} />
                         </div>
                     </Link>
                 ))}
             </>
         );
+    }
+}
+
+const styles = {
+    card: {
+        display: 'block',
+        borderRadius: 10,
+        boxShadow: mainShadows.card,
+        textDecoration: 'none',
+        marginBottom: 50,
+    },
+    image: {
+        borderRadius: '10px 10px 0 0',
+        width: '100 %',
+        height: 250,
+        backgroundImage: 'url(' + PLACEHOLDER + ')',
+        backgroundSize: 'cover',
+    },
+    title: {
+        flex: 1,
+        color: mainColors.dark,
+    },
+    numberTxt: {
+        fontSize: 22.5,
+        color: mainColors.dark,
+    },
+    number: {
+        fontSize: 25,
+        fontWeight: 'bold',
+        color: mainColors.dark,
+    },
+    percentageNr: {
+        fontSize: 22,
+        fontWeight: 'bold',
+        color: mainColors.dark,
     }
 }
 

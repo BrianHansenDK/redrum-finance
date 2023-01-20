@@ -112,3 +112,14 @@ export const userRef = (userId: any, query: string, state: any) => {
         state(data)
     })
 }
+
+export function getUsers(this: any) {
+    const reference = ref(database, 'users/')
+    onValue(reference, (snap) => {
+        let data: any[] = []
+        snap.forEach((user) => {
+            data.push(user.val())
+        })
+
+    })
+}

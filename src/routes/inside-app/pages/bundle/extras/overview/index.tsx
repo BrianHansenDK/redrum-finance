@@ -10,6 +10,9 @@ import MainBtn from '../../../../components/MainBtn'
 import FilesSection from './components/FilesSection'
 import { onValue, ref } from 'firebase/database'
 import { database } from '../../../../../../firebase'
+import Warning from './components/Warning'
+import CoInvestorsSection from './components/CoInvestorsSection'
+import NewInvestorsSection from './components/NewInvestorsSection'
 
 interface IProps {
     params: any
@@ -50,7 +53,10 @@ class BundleOverview extends React.Component<IProps, IState> {
                 project.id == bundleId ? (
                     <div style={styles.wrapper} className='flex-column'>
                         <PresentationCard project={project} />
-                        <FilesSection project={project} date={today} />
+                        <FilesSection date={today} />
+                        <CoInvestorsSection />
+                        <NewInvestorsSection project={project} />
+                        <Warning key={3} />
                     </div>
                 ) : null
             ))

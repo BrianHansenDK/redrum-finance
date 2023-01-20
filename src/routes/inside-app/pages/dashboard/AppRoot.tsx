@@ -29,7 +29,6 @@ const AppRoot = () => {
         />
 
       </div>
-      <TestProjectsComponent />
     </LayoutWithSidebar>
 
   )

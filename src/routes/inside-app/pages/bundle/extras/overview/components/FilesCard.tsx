@@ -8,12 +8,15 @@ import FileElement from './FileElement'
 
 const FILES = [
     {
+        index: 0,
         name: 'General information',
     },
     {
+        index: 1,
         name: 'Investment analysis',
     },
     {
+        index: 2,
         name: 'Extra information',
     },
 
@@ -24,7 +27,7 @@ const FilesCard = ({ date }: { date: Date }) => {
         <List bordered hover style={styles.filesCard} >
             {
                 FILES.map((file) => (
-                    <FileElement date={date} file={file} />
+                    <FileElement date={date} file={file} key={file.index} />
                 ))
             }
         </List>
