@@ -72,7 +72,9 @@ const SecondaryNavbar = ({ project, isFixed }: { project: any, isFixed: boolean 
                 <Nav pullRight style={{ minWidth: 250, }}>
                     <MainBtn
                         content={'Invest now'}
-                        pressed={() => null}
+                        pressed={() => confirm(
+                            'You need to be at least 18 years old to invest in Redrum Pro projects. By Pressing "OK" You agree to be over 18 years old and accept full responsibility should this not be true.'
+                        )}
                         btnColor='blue'
                         btnAppearance='primary'
                         btnSize='lg'

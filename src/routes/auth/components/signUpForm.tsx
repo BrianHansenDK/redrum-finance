@@ -69,11 +69,17 @@ function SignUpForm() {
             .finally(() => setAuthing(false))
     }
 
-    const createAccount = async () => {
+    const createAccount = () => {
         createUserWithEmailAndPassword(auth, userEmail, userConfirmedPassword)
             .then((userCredentials) => {
                 const user = userCredentials.user
-                writeUserData(user.uid, userName, userEmail, undefined, 10)
+                const reference = ref(database, 'users/' + user.uid)
+                set(reference, {
+                    id: user.uid,
+                    username: userName,
+                    email: userEmail,
+                    completion: 10,
+                })
                 navigate('/app')
                 console.log()
             })

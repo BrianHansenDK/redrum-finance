@@ -25,7 +25,7 @@ const TooltipIdentify: React.FunctionComponent<ITooltipIdentifyProps> = (props) 
     return (
         <div style={styles.wrap}>
             {
-                userImg !== '' ? (
+                userImg ? (
                     <img src={userImg} alt={username} style={styles.avatarImg} />
                 ) : (
                     <div className='dark-bg' style={styles.avatar} >

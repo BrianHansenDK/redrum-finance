@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Nav, Sidenav } from 'rsuite'
 import DashboardIcon from '@rsuite/icons/legacy/Dashboard';
 import GroupIcon from '@rsuite/icons/legacy/Group';
 import MagicIcon from '@rsuite/icons/legacy/Magic';
 import GearCircleIcon from '@rsuite/icons/legacy/GearCircle';
 import { Link } from 'react-router-dom';
+import UpcomingModal from './UpcomingModal';
 
 const styles = {
   sideNav: {
@@ -19,6 +20,13 @@ const styles = {
 }
 
 const SideBar = () => {
+  const [isVisible, setVisible] = useState(false)
+  const closeModal = () => {
+    setVisible(false)
+  }
+  const openModal = () => {
+    setVisible(true)
+  }
   return (
     <>
       <Sidenav defaultOpenKeys={['3', '4']} style={styles.sideNav} className='sidebar' >
@@ -31,7 +39,7 @@ const SideBar = () => {
             <Nav.Item eventKey="2" as={Link} to='/app/investments' icon={<GroupIcon />}>
               Investments
             </Nav.Item>
-            <Nav.Item eventKey='3' icon={<MagicIcon />}>
+            <Nav.Item onClick={openModal} eventKey='3' icon={<MagicIcon />}>
               Secondary market
             </Nav.Item>
             <Nav.Item eventKey='4' icon={<DashboardIcon />}>
@@ -56,6 +64,11 @@ const SideBar = () => {
           </Nav>
         </Sidenav.Body>
       </Sidenav>
+      <UpcomingModal
+        title={'Coming soon'}
+        body={'Our secondary market is currentlyy under development and is not available for the time being'}
+        visible={isVisible}
+        close={closeModal} />
     </>
   )
 }

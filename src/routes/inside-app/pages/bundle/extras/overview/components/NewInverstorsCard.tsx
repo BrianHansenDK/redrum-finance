@@ -46,6 +46,8 @@ class NewInverstorsCard extends Component<IProps, {}> {
 const styles = {
     wrap: {
         display: 'flex',
+        width: '33%',
+        marginBottom: 50,
     },
     image: {
         width: 100,

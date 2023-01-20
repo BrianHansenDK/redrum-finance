@@ -14,7 +14,7 @@ class NoQuestionsSection extends Component<IProps, {}> {
         return (
             <div style={styles.wrap} className='flex-column'>
                 <h1 style={styles.title}>
-                    No comments yet
+                    No questions yet
                 </h1>
                 <p style={styles.des}>
                     This project does not have any questions.
