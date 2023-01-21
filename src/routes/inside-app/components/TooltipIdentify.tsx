@@ -29,7 +29,7 @@ const TooltipIdentify: React.FunctionComponent<ITooltipIdentifyProps> = (props) 
                     <img src={userImg} alt={username} style={styles.avatarImg} />
                 ) : (
                     <div className='dark-bg' style={styles.avatar} >
-                        {username.split(' ').length == 2 ? username.split(' ').map((w) => w[0]).join('.') : username.slice(0, 1)}
+                        {username?.split(' ').length == 2 ? username?.split(' ').map((w) => w[0]).join('.') : username?.slice(0, 1)}
 
                     </div>
                 )

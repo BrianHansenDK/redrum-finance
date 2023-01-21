@@ -9,7 +9,7 @@ const MainFooter = () => {
             <Row>
                 <Col lg={12}>
                     <h2>
-                        Redrum media invest
+                        Redrum Pro
                     </h2>
                 </Col>
                 <Col lg={6} >

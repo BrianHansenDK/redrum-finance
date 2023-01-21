@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Nav, Navbar } from 'rsuite'
 import NavItem from 'rsuite/esm/Nav/NavItem'
 import OverviewIcon from '@rsuite/icons/Treemap'
@@ -8,6 +8,7 @@ import UpdatesIcon from '@rsuite/icons/Notice'
 import InverstorsIcon from '@rsuite/icons/Peoples'
 import SecondaryNavbarItem from './SecondaryNavbarItem'
 import MainBtn from '../../../components/MainBtn'
+import ConfirmAgeModal from './ConfirmAgeModal'
 
 const SecondaryNavbar = ({ project, isFixed }: { project: any, isFixed: boolean }) => {
     const NAVS = [
@@ -55,6 +56,14 @@ const SecondaryNavbar = ({ project, isFixed }: { project: any, isFixed: boolean 
             zIndex: 2,
         },
     }
+
+    const [isVisible, setVisible] = useState(false)
+    const openModal = () => {
+        setVisible(true)
+    }
+    const closeModal = () => {
+        setVisible(false)
+    }
     return (
         <>
             <Navbar style={styles.navbar} className={`${isFixed ? 'navbar shadow' : 'navbarhidden'}`}>
@@ -72,9 +81,7 @@ const SecondaryNavbar = ({ project, isFixed }: { project: any, isFixed: boolean 
                 <Nav pullRight style={{ minWidth: 250, }}>
                     <MainBtn
                         content={'Invest now'}
-                        pressed={() => confirm(
-                            'You need to be at least 18 years old to invest in Redrum Pro projects. By Pressing "OK" You agree to be over 18 years old and accept full responsibility should this not be true.'
-                        )}
+                        pressed={openModal}
                         btnColor='blue'
                         btnAppearance='primary'
                         btnSize='lg'
@@ -106,6 +113,7 @@ const SecondaryNavbar = ({ project, isFixed }: { project: any, isFixed: boolean 
                     </div>
                 </Nav>
             </Navbar>
+            <ConfirmAgeModal visible={isVisible} close={closeModal} />
         </>
     )
 }

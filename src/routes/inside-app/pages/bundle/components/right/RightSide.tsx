@@ -1,32 +1,40 @@
-import React from 'react'
-import { Col } from 'rsuite'
+import React, { useState } from 'react'
+import { ButtonToolbar, Col, Modal } from 'rsuite'
 import MainBtn from '../../../../components/MainBtn'
+import ConfirmAgeModal from '../ConfirmAgeModal'
 import InfoLines from './InfoLines'
 import InfoTag from './InfoTag'
 import ProgressItem from './ProgressItem'
 
 const RightSide = ({ project }: { project: any }) => {
-
+    const [isVisible, setVisible] = useState(false)
+    const openModal = () => {
+        setVisible(true)
+    }
+    const closeModal = () => {
+        setVisible(false)
+    }
     return (
-        <Col xs={24} sm={24} md={7}
-            style={styles.wrapper} className='flex-column'
-        >
-            <ProgressItem project={project} />
-            <div style={styles.card} className='flex-column'>
-                <InfoTag />
-                <InfoLines project={project} />
-            </div>
-            <MainBtn
-                content={'Invest now'}
-                pressed={() => confirm(
-                    'You need to be at least 18 years old to invest in Redrum Pro projects. By Pressing "OK" You agree to be over 18 years old and accept full responsibility should this not be true.'
-                )}
-                btnColor='blue'
-                btnAppearance='primary'
-                btnSize='lg'
-                isBlock={true}
-            />
-        </Col>
+        <>
+            <Col xs={24} sm={24} md={7}
+                style={styles.wrapper} className='flex-column'
+            >
+                <ProgressItem project={project} />
+                <div style={styles.card} className='flex-column'>
+                    <InfoTag />
+                    <InfoLines project={project} />
+                </div>
+                <MainBtn
+                    content={'Invest now'}
+                    pressed={openModal}
+                    btnColor='blue'
+                    btnAppearance='primary'
+                    btnSize='lg'
+                    isBlock={true}
+                />
+            </Col>
+            <ConfirmAgeModal visible={isVisible} close={closeModal} />
+        </>
     )
 }
 
