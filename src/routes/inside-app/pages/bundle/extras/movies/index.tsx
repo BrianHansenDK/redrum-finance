@@ -86,8 +86,6 @@ const styles = {
         color: mainColors.dark,
     },
     wrapper: {
-        display: 'flex',
-        justifyContent: 'space-evenly',
         width: 100 + '%',
     },
 }

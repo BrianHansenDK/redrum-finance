@@ -5,6 +5,7 @@ import PLACEHOLDER from '../../../../../../../components/images/about_us_page_im
 import { onValue, ref } from 'firebase/database'
 import { database } from '../../../../../../../firebase'
 import { mainColors } from '../../../../../themes/colors'
+import MovieInfo from './MovieInfo'
 
 interface IProps {
     movieId: any
@@ -38,9 +39,9 @@ class MovieCard extends React.Component<IProps, IState> {
 
     render() {
         return (
-            <div>
+            <div style={styles.fullWrap}>
                 <div className='cover-wrap' style={styles.coverWrap}>
-                    <img src={this.state.movie?.image ? this.state.movie?.image : PLACEHOLDER} alt={`Cover for title`} style={styles.cover} />
+                    <img src={this.state.movie?.image ? this.state.movie?.image : PLACEHOLDER} alt={`Cover for ${this.state.title}`} style={styles.cover} />
                     <div className='overlay' style={styles.overlay}>
                         <MainBtn
                             content={'Read more'}
@@ -51,19 +52,24 @@ class MovieCard extends React.Component<IProps, IState> {
                             isBlock={false} />
                     </div>
                 </div>
-                <h1 style={styles.title} className='txt-center'>
-                    {this.state.title}
-                </h1>
+                <MovieInfo movie={this.state.movie} />
             </div>
         )
     }
 }
 const styles = {
+    fullWrap: {
+        display: 'flex',
+        alignItems: 'flex-start',
+        justifyContent: 'center',
+        marginBottom: 50,
+    },
     coverWrap: {
         marginBottom: 15,
         borderRadius: 10,
         overflow: 'hidden',
         boxShadow: mainShadows.card,
+        width: 300,
     },
     cover: {
         width: 300,
@@ -77,10 +83,6 @@ const styles = {
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: 'rgba(0, 0, 29, .25)',
-    },
-    title: {
-        fontSize: 40.5,
-        color: mainColors.dark,
     },
 }
 
