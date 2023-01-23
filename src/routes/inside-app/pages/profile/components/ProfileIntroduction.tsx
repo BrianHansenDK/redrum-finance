@@ -8,19 +8,23 @@ import mainShadows from '../../../themes/shadows';
 import ProfileImage from './ProfileImage';
 import ProfileInformation from './ProfileInformation';
 
+interface IProps {
+    userId: any
+}
+
 interface IState {
     user: any
 }
 
-class ProfileIntroduction extends Component<{}, IState> {
-    constructor(props: any) {
+class ProfileIntroduction extends Component<IProps, IState> {
+    constructor(props: IProps) {
         super(props)
         this.state = {
             user: undefined
         }
     }
     componentDidMount(): void {
-        const reference = ref(database, 'users/' + auth.currentUser?.uid)
+        const reference = ref(database, 'users/' + this.props.userId)
         onValue(reference, (snap) => {
             this.setState((_prev) => ({
                 user: snap.val()
@@ -32,8 +36,8 @@ class ProfileIntroduction extends Component<{}, IState> {
         return (
             <div style={styles.wrap}>
                 <div style={styles.profileInfoWrap}>
-                    <ProfileImage />
-                    <ProfileInformation user={this.state.user} />
+                    <ProfileImage userId={this.props.userId} />
+                    <ProfileInformation userId={this.props.userId} />
                 </div>
 
             </div>

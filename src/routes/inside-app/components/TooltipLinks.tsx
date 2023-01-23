@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Nav } from 'rsuite';
 import NavItem from 'rsuite/esm/Nav/NavItem';
 
@@ -13,7 +14,7 @@ const TooltipLinks: React.FunctionComponent<ITooltipLinksProps> = (props) => {
                 {ACCOUNTNAV.map((i: any) => {
                     return (
                         i.index <= 2 ? (
-                            <NavItem key={i.index} className='txt-1 txt-dark'>
+                            <NavItem as={Link} to={i.to} key={i.index} className='txt-1 txt-dark'>
                                 {i.icon} {i.title}
                             </NavItem>
                         ) : null
@@ -23,7 +24,7 @@ const TooltipLinks: React.FunctionComponent<ITooltipLinksProps> = (props) => {
             <Nav vertical>
                 {ACCOUNTNAV.map((i: any) => (
                     i.index > 2 ? (
-                        <NavItem key={i.index} className='txt-1 txt-dark'>
+                        <NavItem as={Link} to={i.to} key={i.index} className='txt-1 txt-dark'>
                             {i.icon} {i.title}
                         </NavItem>
                     ) : null

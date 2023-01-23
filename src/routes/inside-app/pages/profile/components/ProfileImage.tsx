@@ -1,71 +1,62 @@
 import { onValue, ref } from 'firebase/database'
-import React, { Component, useState } from 'react'
+import React, { Component, useEffect, useState } from 'react'
 import { Avatar } from 'rsuite'
-import { auth, database } from '../../../../../firebase'
+import { auth, database, userRef } from '../../../../../firebase'
 import MainBtn from '../../../components/MainBtn'
 import { mainColors } from '../../../themes/colors'
 import mainShadows from '../../../themes/shadows'
 import EditImageModal from './EditImageModal'
 
-interface IState {
-    user: any,
-    visible: boolean
+interface IProps {
+    userId: any,
 }
 
-class ProfileImage extends Component<{}, IState> {
-    constructor(props: any) {
-        super(props)
-        this.state = {
-            user: undefined,
-            visible: false,
-        }
+const ProfileImage: React.FunctionComponent<IProps> = (props) => {
+    const { userId } = props
+    const [visible, setVisible] = useState(false)
+    const [userImage, setUserImage] = useState('')
+    const [username, setUsername] = useState('')
+
+    useEffect(() => {
+        userRef(userId, '/image', setUserImage)
+        userRef(userId, '/username', setUsername)
+    })
+
+    const openModal = () => {
+        setVisible(true)
     }
-    componentDidMount(): void {
-        const reference = ref(database, 'users/' + auth.currentUser?.uid)
-        onValue(reference, (snap) => {
-            this.setState((_prev) => ({
-                user: snap.val()
-            }))
-        })
+    const closeModal = () => {
+        setVisible(false)
     }
 
-    render(): React.ReactNode {
+    return (
+        <>
+            {
+                userImage !== '' && userImage ? (
+                    <Avatar size='lg' circle src={userImage} />
+                ) : (
+                    <div style={styles.profileImgWrap} className='flex-column'>
 
-        return (
-            <>
-                {
-                    this.state.user?.image ? (
-                        <Avatar size='lg' circle src={this.state.user?.image} />
-                    ) : (
-                        <div style={styles.profileImgWrap} className='flex-column'>
-
-                            <div style={styles.avatar}>
-                                {this.state.user?.username}
-                            </div>
-                            <MainBtn
-                                content={'Add profile image'}
-                                pressed={this.openModal}
-                                btnColor={'blue'}
-                                btnAppearance={'primary'}
-                                btnSize={'lg'}
-                                isBlock={false} />
+                        <div style={styles.avatar}>
+                            {
+                                username.split(' ').length > 1 ?
+                                    username.split(' ').map((w: any) => w[0]).join('.') :
+                                    `${username[0]}.${username[1]}`
+                            }
                         </div>
-                    )
-                }
-                <EditImageModal isVisible={this.state.visible} close={this.closeModal} user={this.state.user} />
-            </>
-        )
-    }
-    openModal = () => {
-        this.setState((_prev) => ({
-            visible: true
-        }))
-    }
-    closeModal = () => {
-        this.setState((_prev) => ({
-            visible: true
-        }))
-    }
+                        <MainBtn
+                            content={'Add profile image'}
+                            pressed={openModal}
+                            btnColor={'blue'}
+                            btnAppearance={'primary'}
+                            btnSize={'lg'}
+                            isBlock={false} />
+                    </div>
+                )
+            }
+            <EditImageModal isVisible={visible} close={closeModal} userId={userId} />
+        </>
+    )
 }
 
 const styles = {

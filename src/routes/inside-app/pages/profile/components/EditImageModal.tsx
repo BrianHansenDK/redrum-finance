@@ -1,13 +1,24 @@
 import { getDownloadURL, uploadBytes } from 'firebase/storage'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button, ButtonGroup, Message, Modal, useToaster } from 'rsuite'
 import PLACEHOLDER from '../../../../../assets/profileimage_placeholder.svg'
-import { auth } from '../../../../../firebase'
+import { auth, userRef } from '../../../../../firebase'
 import { storage, storageRef } from '../../../../../firebaseStorage'
 
-const EditImageModal = ({ user, close, isVisible }: { user: any, close: any, isVisible: boolean }) => {
+interface IProps {
+    userId: any, close: any, isVisible: boolean
+}
+
+const EditImageModal: React.FunctionComponent<IProps> = (props) => {
+    const { userId, close, isVisible } = props
     const [userImage, setUserImage] = useState(null)
     const [imageUrl, setImageUrl] = useState('')
+    const [imageStartUrl, setImageStartUrl] = useState('')
+    const [userName, setUsername] = useState('')
+
+    useEffect(() => {
+        userRef(userId, '/images', setImageStartUrl)
+    })
 
     const toaster = useToaster()
 
@@ -20,7 +31,7 @@ const EditImageModal = ({ user, close, isVisible }: { user: any, close: any, isV
 
     const handleSubmit = () => {
         if (userImage !== null) {
-            const imageRef = storageRef(storage, `images/users/${auth.currentUser?.uid}_profile_image`)
+            const imageRef = storageRef(storage, `images/users/${userId}_profile_image`)
             uploadBytes(imageRef, userImage).then((snap) => {
                 getDownloadURL(imageRef).then((url) => {
                     setImageUrl(url)
@@ -45,7 +56,7 @@ const EditImageModal = ({ user, close, isVisible }: { user: any, close: any, isV
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <img style={styles.image} src={imageUrl !== '' ? imageUrl : PLACEHOLDER} alt={`Profile image for ${user?.username}`} />
+                <img style={styles.image} src={imageUrl !== '' && imageUrl !== null ? imageUrl : PLACEHOLDER} alt={`Profile image for ${userName}`} />
                 <input type="file" onChange={handleImage} />
                 <Button color='green' appearance='primary' onClick={handleSubmit}>
                     Choose Image

@@ -1,14 +1,32 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { auth, userRef } from '../../../../../firebase'
 import { mainColors } from '../../../themes/colors'
 
-const ProfileInformation = ({ user }: { user: any }) => {
+interface IProps {
+    userId: any
+}
+
+const ProfileInformation: React.FunctionComponent<IProps> = (props) => {
+    const { userId } = props
+    const [username, setUsername] = useState('')
+    const [userMail, setUserMail] = useState('')
+    const getUserInfo = async () => {
+        useEffect(() => {
+            userRef(userId, '/username', setUsername)
+            userRef(userId, '/email', setUserMail)
+        }, [])
+
+
+    }
+
+    getUserInfo()
     return (
         <div style={styles.wrap}>
             <h1 style={styles.username}>
-                {user?.username}
+                {username}
             </h1>
             <p style={styles.email}>
-                Email address: {user?.email}
+                Email address: {userMail}
             </p>
         </div>
     )

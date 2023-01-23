@@ -19,7 +19,7 @@ import ProjectDetailsUpdatesWrapper from './routes/inside-app/pages/bundle/extra
 import ProjectDetailsInvestorWrapper from './routes/inside-app/pages/bundle/extras/investors/indexFunction'
 import PortfolioPage from './routes/inside-app/pages/portfolio/index.js';
 import TestPage from './routes/test/index.js';
-import ProfilePage from './routes/inside-app/pages/profile/index.js';
+import ProfilePageWrapper from './routes/inside-app/pages/profile/indexFunction';
 
 
 const App = () => {
@@ -41,7 +41,7 @@ const App = () => {
         <Route path='extras/updates' element={<ProjectDetailsUpdatesWrapper />} />
         <Route path='extras/investors' element={<ProjectDetailsInvestorWrapper />} />
       </Route>
-      <Route path='/app/profile' element={<ProfilePage />}>
+      <Route path='/app/profile/:userId' element={<ProfilePageWrapper />}>
 
       </Route>
       <Route path='/about-us' element={<AboutUsPage isVisible={isVisible} openModal={openModal} closeModal={closeModal} />} />

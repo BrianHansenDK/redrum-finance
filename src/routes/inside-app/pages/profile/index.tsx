@@ -6,6 +6,7 @@ import { mainColors } from '../../themes/colors';
 import ProfileIntroduction from './components/ProfileIntroduction';
 
 interface IProps {
+    params: any
 }
 
 interface IState {
@@ -30,13 +31,14 @@ class ProfilePage extends Component<IProps, IState> {
     }
 
     render() {
+        const { userId } = this.props.params
         return (
             <div style={styles.pageWrap}>
                 <AppNavBar fixed />
                 <h1 style={styles.pageTitle} className='text-center'>
                     Profile page
                 </h1>
-                <ProfileIntroduction />
+                <ProfileIntroduction userId={userId} />
             </div>
         );
     }

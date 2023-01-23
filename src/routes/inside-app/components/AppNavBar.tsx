@@ -17,34 +17,40 @@ import REDRUMCAT from '@rsuite/icons/legacy/Anchor'
 import TooltipForAccount from './TooltipForAccount';
 import { Link } from 'react-router-dom';
 
-const ACCOUNTNAV = [
-    {
-        title: 'Edit profile',
-        icon: <USER />,
-        index: 1,
-    },
-    {
-        title: 'Settings',
-        icon: <GEAR />,
-        index: 2,
-    },
-    {
-        title: 'My data',
-        icon: <DOCS />,
-        index: 3,
-    },
-    {
-        title: 'Investmentpreparations',
-        icon: <INV />,
-        index: 4,
-    },
-]
+
 
 const AppNavBar = ({ fixed = true }: { fixed: boolean }) => {
     const auth = getAuth()
     const logout = () => {
         auth.signOut().then(() => window.location.reload())
     }
+
+    const ACCOUNTNAV = [
+        {
+            title: 'Edit profile',
+            icon: <USER />,
+            index: 1,
+            to: `/app/profile/${auth.currentUser?.uid}`
+        },
+        {
+            title: 'Settings',
+            icon: <GEAR />,
+            index: 2,
+            to: `/app/profile/${auth.currentUser?.uid}`
+        },
+        {
+            title: 'My data',
+            icon: <DOCS />,
+            index: 3,
+            to: `/app/profile/${auth.currentUser?.uid}`
+        },
+        {
+            title: 'Investmentpreparations',
+            icon: <INV />,
+            index: 4,
+            to: `/app/profile/${auth.currentUser?.uid}`
+        },
+    ]
 
     const AccountTooltip = (
         <Tooltip className='grey-bg pl-2 pr-1 pt-1 pb-1 shadow' style={{ borderRadius: 10, minWidth: 40 + '%' }}>
