@@ -18,6 +18,7 @@ import ProjectDetailsQAndAWrapper from './routes/inside-app/pages/bundle/extras/
 import ProjectDetailsUpdatesWrapper from './routes/inside-app/pages/bundle/extras/updates/indexFunction'
 import ProjectDetailsInvestorWrapper from './routes/inside-app/pages/bundle/extras/investors/indexFunction'
 import PortfolioPage from './routes/inside-app/pages/portfolio/index.js';
+import TestPage from './routes/test/index.js';
 
 
 const App = () => {
@@ -44,6 +45,7 @@ const App = () => {
       <Route path='/sign-in' element={<SignInPage />} />
       <Route path='/sign-up' element={<SignUpPage />} />
       <Route path='/account' element={<AuthRoute link='/sign-in'> <AccountPage /> </AuthRoute>} />
+      <Route path='/test' element={<TestPage />} />
     </Routes>
   )
 }

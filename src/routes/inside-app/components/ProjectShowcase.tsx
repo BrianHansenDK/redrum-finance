@@ -49,7 +49,13 @@ class ProjectShowcase extends React.Component<IProps, IState> {
                         className='bundle trans-fast'
                         to={`/app/bundle/${project.id.toString()}`}
                         key={project.id}>
-                        <div style={styles.image}>
+                        <div style={{
+                            borderRadius: '10px 10px 0 0',
+                            width: '100 %',
+                            height: 250,
+                            backgroundImage: 'url(' + project.banner + ')',
+                            backgroundSize: 'cover',
+                        }}>
 
                         </div>
                         <div className='pl-2 pr-2 pb-2'>

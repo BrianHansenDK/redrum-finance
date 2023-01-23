@@ -40,7 +40,7 @@ class MovieCard extends React.Component<IProps, IState> {
         return (
             <div>
                 <div className='cover-wrap' style={styles.coverWrap}>
-                    <img src={PLACEHOLDER} alt={`Cover for title`} style={styles.cover} />
+                    <img src={this.state.movie?.image ? this.state.movie?.image : PLACEHOLDER} alt={`Cover for title`} style={styles.cover} />
                     <div className='overlay' style={styles.overlay}>
                         <MainBtn
                             content={'Read more'}

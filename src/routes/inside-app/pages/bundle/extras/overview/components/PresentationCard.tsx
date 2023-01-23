@@ -8,7 +8,7 @@ const PresentationCard = ({ project }: { project: any }) => {
         <div style={styles.presentationCard} className='flex-column'>
 
             <h1 style={styles.title}>Presentation of the {project.name} project</h1>
-            <img src={PLACEHOLDER} alt={project.intro} style={styles.image} />
+            <img src={project.banner} alt={project.intro} style={styles.image} />
             <p style={styles.description}>
                 {project.description}
             </p>

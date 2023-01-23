@@ -36,6 +36,7 @@ function SignUpForm() {
     const [userEmail, setEmail] = useState('')
     const [userPassword, setUserPassword] = useState('')
     const [userConfirmedPassword, setUserConfirmedPassword] = useState('')
+    const [userImage, setUserImage] = useState('')
 
     const formValue = { userName, userEmail, userPassword, userConfirmedPassword }
 
@@ -50,15 +51,14 @@ function SignUpForm() {
         signInWithPopup(auth, new GoogleAuthProvider())
             .then((response) => {
                 if (response.user.email) {
-
                     console.log(response.user.uid)
                     navigate('/app')
+
                     writeUserData(
                         response.user.uid,
                         response.user.displayName ? response.user.displayName : 'Unknown',
                         response.user.email ? response.user.email : 'Nonexistent',
-                        response.user.photoURL ? response.user.photoURL : undefined,
-                        response.user.photoURL ? 20 : 10,
+                        10,
                     )
                 }
             })

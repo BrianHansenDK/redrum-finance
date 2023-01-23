@@ -1,12 +1,15 @@
 import { onValue, ref } from 'firebase/database'
+import { getDownloadURL, uploadBytes } from 'firebase/storage'
 import React, { useEffect, useState } from 'react'
-import { Button, ButtonGroup, CheckPicker, DatePicker, DateRangePicker, Form, Input, InputGroup, Uploader, useToaster } from 'rsuite'
+import { Avatar, Button, ButtonGroup, CheckPicker, DatePicker, DateRangePicker, Form, Input, InputGroup, Uploader, useToaster } from 'rsuite'
 import FormControlLabel from 'rsuite/esm/FormControlLabel'
 import FormGroup from 'rsuite/esm/FormGroup'
 import PushNotification from '../../components/Notification'
 import { database, writeProjectData } from '../../firebase'
+import { storage, storageRef } from '../../firebaseStorage'
 import MainBtn from '../inside-app/components/MainBtn'
 import { mainColors } from '../inside-app/themes/colors'
+import mainShadows from '../inside-app/themes/shadows'
 import MainLayout from '../layouts/mainLayout'
 import './index.scss'
 
@@ -21,6 +24,8 @@ const CreateProjectPage = () => {
     const [projectValue, setProjectValue] = useState('')
     const [projectReturn, setProjectReturn] = useState('')
     const [projectMovies, setProjectMovies] = useState([])
+    const [image, setImage] = useState(null)
+    const [imageUrl, setUrl] = useState('')
 
     const toaster = useToaster()
 
@@ -40,6 +45,28 @@ const CreateProjectPage = () => {
         }
     ))
 
+    const handleImage = (e: any) => {
+        const target: EventTarget & any = e.target
+        if (target.files[0]) {
+            setImage(target.files[0])
+        }
+    }
+
+    const handleImageSubmit = () => {
+        if (image !== null && projectTitle !== '') {
+            const imageRef = storageRef(storage, `images/project_banners/${projectTitle.split(' ').join('_')}_movie_cover`)
+            uploadBytes(imageRef, image).then((snap) => {
+                getDownloadURL(imageRef).then((url) => {
+                    setUrl(url)
+                }).catch((err) => {
+                    toaster.push(<PushNotification type='error' content={`An error occured: ${err.message}`} />, { placement: 'topCenter' })
+                    window.setTimeout(() => {
+                        toaster.clear()
+                    }, 3000)
+                })
+            })
+        }
+    }
 
     const makeProject = () => {
         writeProjectData(Date.now().toString(), projectTitle, projectIntro, projectDescription,
@@ -50,6 +77,7 @@ const CreateProjectPage = () => {
             Number(projectReturn),
             Number(projectValue),
             projectMovies,
+            imageUrl,
         )
 
         toaster.push(<PushNotification type='success' content='Succesfully added Project/Bundle to the Application 🚀' />, { placement: 'bottomCenter' })
@@ -78,6 +106,16 @@ const CreateProjectPage = () => {
                     <FormGroup>
                         <FormControlLabel>Project description</FormControlLabel>
                         <Input onChange={setProjectDescription} as='textarea' rows={5} maxLength={350} placeholder='The long description of the project/bundle' />
+                    </FormGroup>
+                    <FormGroup style={styles.imageUploader} >
+                        <div className='d-flex flex-column'>
+                            <FormControlLabel>Project banner</FormControlLabel>
+                            <input type='file' onChange={handleImage} />
+                            <Button style={{ marginTop: 15 }} onClick={handleImageSubmit}>
+                                Set cover
+                            </Button>
+                        </div>
+                        <Avatar style={styles.avatar} size='lg' src={imageUrl} />
                     </FormGroup>
                     <FormGroup>
                         <FormControlLabel>Project Movies</FormControlLabel>
@@ -149,6 +187,15 @@ const styles = {
         maxWidth: 750,
         padding: 25,
     },
+    imageUploader: {
+        display: 'flex',
+    },
+    avatar: {
+        boxShadow: mainShadows.image,
+        marginLeft: 50,
+        height: 100,
+        width: 250,
+    }
 }
 
 export default CreateProjectPage

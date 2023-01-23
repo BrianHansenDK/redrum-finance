@@ -30,13 +30,11 @@ export function writeUserData(
     userId: string,
     name: string,
     email: string,
-    image: string | undefined,
     profileCompletion: number) {
     const reference = ref(database, 'users/' + userId)
     set(reference, {
         username: name,
         email: email,
-        image: image,
         completion: profileCompletion,
     })
     const investmentRef = ref(database, 'investments/')
@@ -54,7 +52,9 @@ export function writeMovieData(
     intro: string,
     description: string,
     releaseDate: Date,
-    genres: string) {
+    genres: string,
+    imageUrl: string,
+) {
     const reference = ref(database, 'movies/' + movieId)
     set(reference, {
         id: movieId,
@@ -63,6 +63,7 @@ export function writeMovieData(
         description: description,
         releaseDate: releaseDate.toDateString(),
         genres: genres,
+        image: imageUrl,
     })
 }
 
@@ -78,6 +79,7 @@ export function writeProjectData(
     guaranteedReturn: number,
     value: number,
     movies: Array<any>,
+    imageUrl: string,
 ) {
     const reference = ref(database, 'projects/' + projectId)
     set(reference, {
@@ -92,6 +94,7 @@ export function writeProjectData(
         guaranteedReturn: guaranteedReturn,
         value: value,
         movies: movies,
+        banner: imageUrl,
     })
 }
 
