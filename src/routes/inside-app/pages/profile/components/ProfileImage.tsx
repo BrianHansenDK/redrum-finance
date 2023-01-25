@@ -30,32 +30,29 @@ const ProfileImage: React.FunctionComponent<IProps> = (props) => {
     }
 
     return (
-        <>
+        <div style={styles.profileImgWrap} className='flex-column'>
             {
                 userImage !== '' && userImage ? (
-                    <Avatar size='lg' circle src={userImage} />
+                    <img style={styles.image} src={userImage} alt={username} />
                 ) : (
-                    <div style={styles.profileImgWrap} className='flex-column'>
-
-                        <div style={styles.avatar}>
-                            {
-                                username.split(' ').length > 1 ?
-                                    username.split(' ').map((w: any) => w[0]).join('.') :
-                                    `${username[0]}.${username[1]}`
-                            }
-                        </div>
-                        <MainBtn
-                            content={'Add profile image'}
-                            pressed={openModal}
-                            btnColor={'blue'}
-                            btnAppearance={'primary'}
-                            btnSize={'lg'}
-                            isBlock={false} />
+                    <div style={styles.avatar}>
+                        {
+                            username.split(' ').length > 1 ?
+                                username.split(' ').map((w: any) => w[0]).join('.') :
+                                `${username[0]}.${username[1]}`
+                        }
                     </div>
                 )
             }
+            <MainBtn
+                content={`${userImage !== '' && userImage ? 'Edit profile image' : 'Add profile image'}`}
+                pressed={openModal}
+                btnColor={'blue'}
+                btnAppearance={'primary'}
+                btnSize={'lg'}
+                isBlock={false} />
             <EditImageModal isVisible={visible} close={closeModal} userId={userId} />
-        </>
+        </div>
     )
 }
 
@@ -63,6 +60,13 @@ const styles = {
     profileImgWrap: {
         display: 'flex',
         alignItems: 'center',
+        justifyContent: 'space-between',
+    },
+    image: {
+        width: 150,
+        height: 150,
+        borderRadius: '50%',
+        boxShadow: mainShadows.image,
     },
     avatar: {
         width: 150,
@@ -75,7 +79,6 @@ const styles = {
         alignItems: 'center',
         justifyContent: 'center',
         boxShadow: mainShadows.image,
-        marginBottom: 15,
     }
 }
 

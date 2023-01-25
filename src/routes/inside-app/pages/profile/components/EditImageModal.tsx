@@ -1,8 +1,9 @@
+import { ref, set, update } from 'firebase/database'
 import { getDownloadURL, uploadBytes } from 'firebase/storage'
 import React, { useEffect, useState } from 'react'
 import { Button, ButtonGroup, Message, Modal, useToaster } from 'rsuite'
 import PLACEHOLDER from '../../../../../assets/profileimage_placeholder.svg'
-import { auth, userRef } from '../../../../../firebase'
+import { auth, database, userRef } from '../../../../../firebase'
 import { storage, storageRef } from '../../../../../firebaseStorage'
 
 interface IProps {
@@ -14,10 +15,12 @@ const EditImageModal: React.FunctionComponent<IProps> = (props) => {
     const [userImage, setUserImage] = useState(null)
     const [imageUrl, setImageUrl] = useState('')
     const [imageStartUrl, setImageStartUrl] = useState('')
+    const [userCompletion, setUserCompletion] = useState(0)
     const [userName, setUsername] = useState('')
 
     useEffect(() => {
-        userRef(userId, '/images', setImageStartUrl)
+        userRef(userId, '/image', setImageStartUrl)
+        userRef(userId, '/completion', setUserCompletion)
     })
 
     const toaster = useToaster()
@@ -48,6 +51,23 @@ const EditImageModal: React.FunctionComponent<IProps> = (props) => {
         }
     }
 
+    const onSave = () => {
+        const reference = ref(database)
+        const updates: any = {}
+        updates['/users/' + userId + '/image'] = imageUrl
+        if (imageStartUrl == '' || imageStartUrl == null) {
+            updates['/users/' + userId + '/completion'] = userCompletion + 10
+        }
+        update(reference, updates)
+        close()
+        toaster.push(<Message showIcon type='info'>
+            {imageStartUrl !== '' || imageStartUrl !== null ? 'Profile image was changed' : 'Profile image set'}
+        </Message>, { placement: 'topCenter' })
+        window.setTimeout(() => {
+            toaster.clear()
+        }, 3000)
+    }
+
     return (
         <Modal open={isVisible} onClose={close} >
             <Modal.Header>
@@ -55,19 +75,21 @@ const EditImageModal: React.FunctionComponent<IProps> = (props) => {
                     Profile Image
                 </Modal.Title>
             </Modal.Header>
-            <Modal.Body>
-                <img style={styles.image} src={imageUrl !== '' && imageUrl !== null ? imageUrl : PLACEHOLDER} alt={`Profile image for ${userName}`} />
-                <input type="file" onChange={handleImage} />
-                <Button color='green' appearance='primary' onClick={handleSubmit}>
-                    Choose Image
-                </Button>
+            <Modal.Body style={styles.body}>
+                <input type="file" onChange={handleImage} className='custom-file-input' />
+                <div className='d-flex flex-column'>
+                    <img style={styles.image} src={imageUrl !== '' && imageUrl !== null ? imageUrl : PLACEHOLDER} alt={`Profile image for ${userName}`} />
+                    <Button style={styles.chooseBtn} color='green' appearance='primary' onClick={handleSubmit}>
+                        Choose Image
+                    </Button>
+                </div>
             </Modal.Body>
             <Modal.Footer>
-                <ButtonGroup block>
-                    <Button color='blue' appearance='primary'>
+                <ButtonGroup style={{ width: '100%' }}>
+                    <Button style={styles.btns} onClick={onSave} color='blue' appearance='primary'>
                         Save
                     </Button>
-                    <Button onClick={close} color='blue' appearance='ghost' >
+                    <Button style={styles.btns} onClick={close} color='blue' appearance='ghost' >
                         Cancel
                     </Button>
                 </ButtonGroup>
@@ -77,10 +99,22 @@ const EditImageModal: React.FunctionComponent<IProps> = (props) => {
 }
 
 const styles = {
+    body: {
+        display: 'flex',
+        alignItems: 'center',
+        paddingTop: 50,
+        paddingBottom: 100,
+    },
     image: {
         width: 200,
         height: 200,
         borderRadius: '50%',
+    },
+    chooseBtn: {
+        marginTop: 15,
+    },
+    btns: {
+        width: '50%',
     }
 }
 

@@ -4,6 +4,7 @@ import { auth, database } from '../../../../firebase';
 import AppNavBar from '../../components/AppNavBar';
 import { mainColors } from '../../themes/colors';
 import ProfileIntroduction from './components/ProfileIntroduction';
+import './components/styles/index.scss'
 
 interface IProps {
     params: any

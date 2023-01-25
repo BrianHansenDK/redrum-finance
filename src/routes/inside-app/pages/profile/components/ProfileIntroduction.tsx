@@ -48,10 +48,15 @@ class ProfileIntroduction extends Component<IProps, IState> {
 const styles = {
     wrap: {
         padding: 50,
+        width: '90%',
+        borderRadius: 10,
+        boxShadow: mainShadows.card,
+        margin: 'auto',
+        backgroundColor: mainColors.white
     },
     profileInfoWrap: {
         display: 'flex',
-        alignItems: 'center',
+        alignItems: 'stretch',
     },
 
 }
