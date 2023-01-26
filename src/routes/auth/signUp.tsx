@@ -8,7 +8,7 @@ const SignUpPage = () => {
         <>
             <div
                 className='pl-4 pr-4 dark-bg d-flex flex-column align-center'
-                style={{ justifyContent: 'flex-start', paddingBottom: 75 }}
+                style={styles.wrap}
             >
                 <div>
                     <h1 className='txt-white txt-center mt-4 mb-3'>Sign up</h1>
@@ -25,6 +25,14 @@ const SignUpPage = () => {
 
         </>
     )
+}
+
+const styles = {
+    wrap: {
+        minHeight: '100vh',
+        justifyContent: 'flex-start',
+        paddingBottom: 75,
+    }
 }
 
 export default SignUpPage
