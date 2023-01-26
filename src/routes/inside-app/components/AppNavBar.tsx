@@ -64,7 +64,7 @@ const AppNavBar = ({ fixed = true }: { fixed: boolean }) => {
                 <NavbarBrand style={styles.brand}>
                     <REDRUMCAT /> Redrum Pro
                 </NavbarBrand>
-                <Nav pullRight className='d-flex align-center' style={{ height: 60 }} activeKey={`${location.pathname == '/app' ? '1' : null}`}>
+                <Nav pullRight className='d-flex align-center' style={{ height: 60 }} activeKey={`${location.pathname == '/app' ? '1' : location.pathname == `/app/profile/${auth.currentUser?.uid}` ? '3' : null}`}>
                     <NavItem as={Link} to='/app' eventKey='1' className='d-flex flex-column align-center justify-around' style={styles.navLink}>
                         <DashboardIcon /> Dashboard
                     </NavItem>
@@ -72,7 +72,7 @@ const AppNavBar = ({ fixed = true }: { fixed: boolean }) => {
                         <NotificationsIcon /> Notifications
                     </NavItem>
                     <Whisper placement='bottom' controlId='control-id-click' trigger='click' speaker={AccountTooltip} >
-                        <NavItem className='d-flex flex-column align-center justify-around' style={styles.navLink}>
+                        <NavItem eventKey='3' className='d-flex flex-column align-center justify-around' style={styles.navLink}>
                             <USER /> <span>My account <OPENMENU /> </span>
                         </NavItem>
                     </Whisper>

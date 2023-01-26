@@ -40,11 +40,7 @@ const ProfileInformation: React.FunctionComponent<IProps> = (props) => {
                     Badge: Rookie
                 </p>
             </div>
-            {
-                completion < 100 && (
-                    <ProfileProgress completion={completion} userId={userId} />
-                )
-            }
+            <ProfileProgress completion={completion} userId={userId} />
 
         </div>
     )

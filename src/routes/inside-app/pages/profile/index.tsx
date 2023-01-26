@@ -49,6 +49,7 @@ const styles = {
     pageWrap: {
         paddingTop: 100,
         paddingBottom: 100,
+        minHeight: '100vh',
         backgroundColor: mainColors.blueGrey,
     },
     pageTitle: {

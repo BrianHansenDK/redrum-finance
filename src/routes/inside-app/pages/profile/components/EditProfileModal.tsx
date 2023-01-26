@@ -18,17 +18,12 @@ interface IProps {
 
 const EditProfileModal: React.FunctionComponent<IProps> = (props) => {
     const { userId, close, visible } = props
-    const [userName, setUserName] = useState('')
     const [completion, setCompletion] = useState(0)
 
     const [userNameStart, setUserNameStart] = useState('')
     const [birthDateStart, setBirthDateStart] = useState('')
     const [cityStart, setCityStart] = useState('')
     const [countryStart, setCountryStart] = useState('')
-
-    const [birthDate, setBirthDate] = useState(new Date('01-01-2000'))
-    const [city, setCity] = useState('')
-    const [country, setCountry] = useState('')
 
     const toaster = useToaster()
 
@@ -39,23 +34,32 @@ const EditProfileModal: React.FunctionComponent<IProps> = (props) => {
         userRef(userId, '/city', setCityStart)
         userRef(userId, '/country', setCountryStart)
     })
+
+    const [userName, setUserName] = useState('')
+    const [birthDate, setBirthDate] = useState(new Date('1998-04-15'))
+    const [city, setCity] = useState('')
+    const [country, setCountry] = useState('')
+
     const onSave = () => {
         const reference = ref(database)
         const updates: any = {}
+        let completionData = completion
         updates['/users/' + userId + '/username'] = userName == '' ? userNameStart : userName
-        updates['/users/' + userId + '/birthdate'] = birthDate.toLocaleDateString()
+        if (birthDate !== null) {
+            updates['/users/' + userId + '/birthdate'] = birthDate.toLocaleDateString()
+        }
         updates['/users/' + userId + '/city'] = city == '' ? cityStart : city
         updates['/users/' + userId + '/country'] = country == '' ? countryStart : country
-        if (birthDate !== null && birthDate !== new Date() && (birthDateStart == null || birthDateStart == '')) {
-            setCompletion(completion + 10)
+        if ((birthDate !== null && birthDate !== new Date()) && (birthDateStart == null || birthDateStart == '')) {
+            completionData += 10
         }
-        if (city !== null && city !== '' && (cityStart == '' || cityStart == null)) {
-            setCompletion(completion + 10)
+        if ((city !== null && city !== '') && (cityStart == '' || cityStart == null)) {
+            completionData += 10
         }
-        if (country !== null && country !== '' && (countryStart == '' || countryStart == null)) {
-            setCompletion(completion + 10)
+        if ((country !== null && country !== '') && (countryStart == '' || countryStart == null)) {
+            completionData += 10
         }
-        updates['/users/' + userId + '/completion'] = completion
+        updates['/users/' + userId + '/completion'] = completionData
         update(reference, updates)
         close()
         toaster.push(
@@ -83,7 +87,9 @@ const EditProfileModal: React.FunctionComponent<IProps> = (props) => {
                     </FormGroup>
                     <FormGroup>
                         <FormControlLabel style={styles.label}>BirthDate:</FormControlLabel>
-                        <DatePicker format='dd-MM-yyyy' calendarDefaultDate={new Date('01-01-2000')} onChange={() => setBirthDate} />
+                        <DatePicker format="dd/MM-yy" placeholder={`${birthDateStart !== '' || birthDateStart !== null ? birthDateStart : 'Select date of birth'}`}
+                            onChange={() => setBirthDate}
+                        />
                         <FormHelpText>Required to invest</FormHelpText>
                     </FormGroup>
                     <FormGroup>

@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import { Nav, Sidenav } from 'rsuite'
 import DashboardIcon from '@rsuite/icons/legacy/Dashboard';
+import InvestmentsIcon from '@rsuite/icons/legacy/ChartsLine'
+import SecondaryMarketIcon from '@rsuite/icons/legacy/Money';
+import PortfolioIcon from '@rsuite/icons/legacy/PieChart'
 import GroupIcon from '@rsuite/icons/legacy/Group';
 import MagicIcon from '@rsuite/icons/legacy/Magic';
-import GearCircleIcon from '@rsuite/icons/legacy/GearCircle';
 import { Link } from 'react-router-dom';
 import UpcomingModal from './UpcomingModal';
 
@@ -37,13 +39,13 @@ const SideBar = () => {
             <Nav.Item eventKey="1" as={Link} to='/app' icon={<DashboardIcon />}>
               Dashboard
             </Nav.Item>
-            <Nav.Item eventKey="2" as={Link} to='/app/investments' icon={<GroupIcon />}>
+            <Nav.Item eventKey="2" as={Link} to='/app/investments' icon={<InvestmentsIcon />}>
               Investments
             </Nav.Item>
-            <Nav.Item onClick={openModal} eventKey='3' icon={<MagicIcon />}>
+            <Nav.Item onClick={openModal} eventKey='3' icon={<SecondaryMarketIcon />}>
               Secondary market
             </Nav.Item>
-            <Nav.Item as={Link} to='/app/portfolio' eventKey='4' icon={<DashboardIcon />}>
+            <Nav.Item as={Link} to='/app/portfolio' eventKey='4' icon={<PortfolioIcon />}>
               My Portfolio
             </Nav.Item>
             <h3 className='d-flex justify-center'>Community</h3>
