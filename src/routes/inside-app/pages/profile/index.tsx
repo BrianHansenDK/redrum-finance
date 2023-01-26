@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { auth, database } from '../../../../firebase';
 import AppNavBar from '../../components/AppNavBar';
 import { mainColors } from '../../themes/colors';
+import MoneySection from './components/cash/MoneySection';
 import ProfileIntroduction from './components/ProfileIntroduction';
 import './components/styles/index.scss'
 
@@ -40,6 +41,7 @@ class ProfilePage extends Component<IProps, IState> {
                     Profile page
                 </h1>
                 <ProfileIntroduction userId={userId} />
+                <MoneySection userId={userId} />
             </div>
         );
     }

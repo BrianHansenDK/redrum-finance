@@ -13,7 +13,7 @@ interface IProps {
 const EditImageModal: React.FunctionComponent<IProps> = (props) => {
     const { userId, close, isVisible } = props
     const [userImage, setUserImage] = useState(null)
-    const [imageUrl, setImageUrl] = useState('')
+    const [imageUrl, setImageUrl] = useState(PLACEHOLDER)
     const [imageStartUrl, setImageStartUrl] = useState('')
     const [userCompletion, setUserCompletion] = useState(0)
     const [userName, setUsername] = useState('')
@@ -66,6 +66,7 @@ const EditImageModal: React.FunctionComponent<IProps> = (props) => {
         window.setTimeout(() => {
             toaster.clear()
         }, 3000)
+        setUserImage(null)
     }
 
     return (
@@ -78,8 +79,8 @@ const EditImageModal: React.FunctionComponent<IProps> = (props) => {
             <Modal.Body style={styles.body}>
                 <input type="file" onChange={handleImage} className='custom-file-input' />
                 <div className='d-flex flex-column'>
-                    <img style={styles.image} src={imageStartUrl !== '' && imageStartUrl !== null ? imageStartUrl : PLACEHOLDER} alt={`Profile image for ${userName}`} />
-                    <Button style={styles.chooseBtn} color='green' appearance='primary' onClick={handleSubmit}>
+                    <img style={styles.image} src={imageStartUrl !== null && imageUrl == PLACEHOLDER ? imageStartUrl : imageUrl} alt={`Profile image for ${userName}`} />
+                    <Button disabled={userImage == null} style={styles.chooseBtn} color='green' appearance='primary' onClick={handleSubmit}>
                         {imageStartUrl !== '' && imageStartUrl !== null ? 'Change Image' : 'Choose Image'}
                     </Button>
                 </div>

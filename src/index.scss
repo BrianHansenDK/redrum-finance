@@ -77,6 +77,15 @@ body {
   z-index: 99;
 }
 
+.grow-on-hover {
+  transition: all 150ms ease-out;
+
+  &:hover {
+    transform: scale3d(1.05, 1.05, 1);
+    text-decoration: none;
+  }
+}
+
 .trans {
   transition: all 300ms ease-in-out;
 }

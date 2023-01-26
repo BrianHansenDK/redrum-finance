@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import { Avatar } from 'rsuite';
 import { auth, database } from '../../../../../firebase';
 import MainBtn from '../../../components/MainBtn';
+import { mainCard } from '../../../themes/cardStyles';
 import { mainColors } from '../../../themes/colors';
 import mainShadows from '../../../themes/shadows';
 import ProfileData from './ProfileData';
@@ -48,14 +49,7 @@ class ProfileIntroduction extends Component<IProps, IState> {
 }
 
 const styles = {
-    wrap: {
-        padding: 50,
-        width: '90%',
-        borderRadius: 10,
-        boxShadow: mainShadows.card,
-        margin: 'auto',
-        backgroundColor: mainColors.white
-    },
+    wrap: mainCard,
     profileInfoWrap: {
         display: 'flex',
         alignItems: 'stretch',
