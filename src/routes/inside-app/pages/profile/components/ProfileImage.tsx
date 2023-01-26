@@ -67,6 +67,7 @@ const styles = {
         height: 150,
         borderRadius: '50%',
         boxShadow: mainShadows.image,
+        marginBottom: 15,
     },
     avatar: {
         width: 150,

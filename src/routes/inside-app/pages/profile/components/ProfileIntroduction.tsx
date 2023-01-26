@@ -5,6 +5,7 @@ import { auth, database } from '../../../../../firebase';
 import MainBtn from '../../../components/MainBtn';
 import { mainColors } from '../../../themes/colors';
 import mainShadows from '../../../themes/shadows';
+import ProfileData from './ProfileData';
 import ProfileImage from './ProfileImage';
 import ProfileInformation from './ProfileInformation';
 
@@ -38,6 +39,7 @@ class ProfileIntroduction extends Component<IProps, IState> {
                 <div style={styles.profileInfoWrap}>
                     <ProfileImage userId={this.props.userId} />
                     <ProfileInformation userId={this.props.userId} />
+                    <ProfileData userId={this.props.userId} />
                 </div>
 
             </div>
@@ -57,6 +59,7 @@ const styles = {
     profileInfoWrap: {
         display: 'flex',
         alignItems: 'stretch',
+        justifyContent: 'space-between',
     },
 
 }

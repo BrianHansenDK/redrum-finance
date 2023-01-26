@@ -17,13 +17,6 @@ const SignInForm = () => {
             .then((response) => {
                 console.log(response.user.uid)
                 navigate('/app')
-                writeUserData(
-                    response.user.uid,
-                    response.user.displayName ? response.user.displayName : 'Unknown',
-                    response.user.email ? response.user.email : 'Nonexistent',
-                    response.user.photoURL ? response.user.photoURL : '',
-                    response.user.photoURL ? 20 : 10
-                )
             })
             .catch((err) => {
                 console.log(err.message)

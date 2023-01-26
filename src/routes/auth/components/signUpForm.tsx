@@ -36,9 +36,6 @@ function SignUpForm() {
     const [userEmail, setEmail] = useState('')
     const [userPassword, setUserPassword] = useState('')
     const [userConfirmedPassword, setUserConfirmedPassword] = useState('')
-    const [userImage, setUserImage] = useState('')
-
-    const formValue = { userName, userEmail, userPassword, userConfirmedPassword }
 
     const showPassword1 = () => setPassword1Visible(!password1Visible)
     const showPassword2 = () => setPassword2Visible(!password2Visible)

@@ -28,19 +28,18 @@ const ProfileInformation: React.FunctionComponent<IProps> = (props) => {
 
     getUserInfo()
     return (
-        <div style={styles.wrap}>
-            <h1 style={styles.username}>
-                {username}
-            </h1>
-            <p style={styles.email}>
-                Email address: {userMail}
-            </p>
-            <p style={styles.badge}>
-                Badge: Rookie
-            </p>
-            <p>
-                Age: {userAge !== null ? userAge : 'Unknown'}
-            </p>
+        <div style={styles.wrap} className='flex-column'>
+            <div>
+                <h1 style={styles.username}>
+                    {username}
+                </h1>
+                <p style={styles.email}>
+                    Email address: {userMail}
+                </p>
+                <p style={styles.badge}>
+                    Badge: Rookie
+                </p>
+            </div>
             {
                 completion < 100 && (
                     <ProfileProgress completion={completion} userId={userId} />
@@ -53,7 +52,8 @@ const ProfileInformation: React.FunctionComponent<IProps> = (props) => {
 
 const styles = {
     wrap: {
-        marginLeft: 100,
+        display: 'flex',
+        justifyContent: 'space-between',
     },
     username: {
         fontSize: 32.5,
@@ -69,7 +69,6 @@ const styles = {
     badge: {
         fontSize: 17.5,
         color: mainColors.dark,
-        opacity: .8,
     }
 }
 

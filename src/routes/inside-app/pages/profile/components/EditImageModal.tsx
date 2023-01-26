@@ -78,9 +78,9 @@ const EditImageModal: React.FunctionComponent<IProps> = (props) => {
             <Modal.Body style={styles.body}>
                 <input type="file" onChange={handleImage} className='custom-file-input' />
                 <div className='d-flex flex-column'>
-                    <img style={styles.image} src={imageUrl !== '' && imageUrl !== null ? imageUrl : PLACEHOLDER} alt={`Profile image for ${userName}`} />
+                    <img style={styles.image} src={imageStartUrl !== '' && imageStartUrl !== null ? imageStartUrl : PLACEHOLDER} alt={`Profile image for ${userName}`} />
                     <Button style={styles.chooseBtn} color='green' appearance='primary' onClick={handleSubmit}>
-                        Choose Image
+                        {imageStartUrl !== '' && imageStartUrl !== null ? 'Change Image' : 'Choose Image'}
                     </Button>
                 </div>
             </Modal.Body>

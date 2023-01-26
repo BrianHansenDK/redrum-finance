@@ -48,10 +48,13 @@ class ProfilePage extends Component<IProps, IState> {
 const styles = {
     pageWrap: {
         paddingTop: 100,
+        paddingBottom: 100,
+        backgroundColor: mainColors.blueGrey,
     },
     pageTitle: {
         fontSize: 40.5,
-        color: mainColors.dark,
+        color: mainColors.white,
+        marginBottom: 50,
     }
 }
 
