@@ -2,17 +2,25 @@ import React, { useState } from 'react'
 import { ButtonToolbar, Col, Modal } from 'rsuite'
 import MainBtn from '../../../../components/MainBtn'
 import ConfirmAgeModal from '../ConfirmAgeModal'
+import InvestModal from '../InvestModal'
 import InfoLines from './InfoLines'
 import InfoTag from './InfoTag'
 import ProgressItem from './ProgressItem'
 
 const RightSide = ({ project }: { project: any }) => {
     const [isVisible, setVisible] = useState(false)
+    const [isInvestVisible, setInvestVisible] = useState(false)
     const openModal = () => {
         setVisible(true)
     }
     const closeModal = () => {
         setVisible(false)
+    }
+    const openInvestModal = () => {
+        setInvestVisible(true)
+    }
+    const closeInvestModal = () => {
+        setInvestVisible(false)
     }
     return (
         <>
@@ -26,7 +34,7 @@ const RightSide = ({ project }: { project: any }) => {
                 </div>
                 <MainBtn
                     content={'Invest now'}
-                    pressed={openModal}
+                    pressed={openInvestModal}
                     btnColor='blue'
                     btnAppearance='primary'
                     btnSize='lg'
@@ -34,6 +42,7 @@ const RightSide = ({ project }: { project: any }) => {
                 />
             </Col>
             <ConfirmAgeModal visible={isVisible} close={closeModal} />
+            <InvestModal project={project} close={closeInvestModal} visible={isInvestVisible} />
         </>
     )
 }
