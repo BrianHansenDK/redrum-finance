@@ -24,6 +24,18 @@ const InvestModal: React.FunctionComponent<IProps> = (props) => {
     const toaster = useToaster()
 
     const onInvest = () => {
+        // If no amount is entered
+        if (parseInt(investAmount) == 0 || investAmount == null) {
+            toaster.push(
+                <Message showIcon type='error'>
+                    Please choose a valid amount. Cannot invest 0€
+                </Message>
+                , { placement: 'topCenter' }
+            )
+            window.setTimeout(() => {
+                toaster.clear()
+            }, 5000)
+        }
         // Divisable by movies length
         if (parseInt(investAmount) % project.movies.length !== 0) {
             toaster.push(
@@ -50,7 +62,7 @@ const InvestModal: React.FunctionComponent<IProps> = (props) => {
         }
 
         // Invest if user has enough money and amount is divisible by free
-        if (parseInt(investAmount) % project.movies.length == 0 && parseInt(investAmount) <= available) {
+        if (parseInt(investAmount) % project.movies.length == 0 && parseInt(investAmount) <= available && parseInt(investAmount) !== 0) {
             const investRef = ref(database, 'investments/' + investmentId)
             // Make investment
             set(investRef, {

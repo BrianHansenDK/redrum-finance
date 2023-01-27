@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Nav, Navbar } from 'rsuite'
 import NavItem from 'rsuite/esm/Nav/NavItem'
 import OverviewIcon from '@rsuite/icons/Treemap'
@@ -9,6 +9,9 @@ import InverstorsIcon from '@rsuite/icons/Peoples'
 import SecondaryNavbarItem from './SecondaryNavbarItem'
 import MainBtn from '../../../components/MainBtn'
 import ConfirmAgeModal from './ConfirmAgeModal'
+import { auth, userRef } from '../../../../../firebase'
+import InvestModal from './InvestModal'
+import TransferMoneyModal from './TransferMoneyModal'
 
 const SecondaryNavbar = ({ project, isFixed }: { project: any, isFixed: boolean }) => {
     const NAVS = [
@@ -58,11 +61,26 @@ const SecondaryNavbar = ({ project, isFixed }: { project: any, isFixed: boolean 
     }
 
     const [isVisible, setVisible] = useState(false)
+    const [isInvestVisible, setInvestVisible] = useState(false)
+    const [isTransferVisible, setTransferVisible] = useState(false)
+    const [available, setAvailable] = useState<any>(0)
+    const userId = auth.currentUser?.uid
+    useEffect(() => {
+        userRef(userId, '/money_available', setAvailable)
+    })
     const openModal = () => {
         setVisible(true)
     }
     const closeModal = () => {
         setVisible(false)
+    }
+    const openInvestModal = () => {
+        setVisible(false)
+        available !== null ? setInvestVisible(true) : setTransferVisible(true)
+    }
+    const closeInvestModal = () => {
+        setInvestVisible(false)
+        setTransferVisible(false)
     }
     return (
         <>
@@ -113,7 +131,9 @@ const SecondaryNavbar = ({ project, isFixed }: { project: any, isFixed: boolean 
                     </div>
                 </Nav>
             </Navbar>
-            <ConfirmAgeModal visible={isVisible} close={closeModal} />
+            <ConfirmAgeModal visible={isVisible} close={closeModal} openInvestModal={openInvestModal} />
+            <InvestModal project={project} close={closeInvestModal} visible={isInvestVisible} />
+            <TransferMoneyModal close={closeInvestModal} visible={isTransferVisible} />
         </>
     )
 }

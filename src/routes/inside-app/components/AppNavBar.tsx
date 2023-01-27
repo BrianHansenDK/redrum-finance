@@ -15,14 +15,15 @@ import DOCS from '@rsuite/icons/legacy/Database'
 import INV from '@rsuite/icons/legacy/Share'
 import REDRUMCAT from '@rsuite/icons/legacy/Anchor'
 import TooltipForAccount from './TooltipForAccount';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 
 const AppNavBar = ({ fixed = true }: { fixed: boolean }) => {
     const auth = getAuth()
+    const navigate = useNavigate()
     const logout = () => {
-        auth.signOut().then(() => window.location.reload())
+        auth.signOut().then(() => navigate('/app'))
     }
 
     const ACCOUNTNAV = [
