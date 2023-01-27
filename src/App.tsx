@@ -20,6 +20,8 @@ import ProjectDetailsInvestorWrapper from './routes/inside-app/pages/bundle/extr
 import PortfolioPage from './routes/inside-app/pages/portfolio/index.js';
 import TestPage from './routes/test/index.js';
 import ProfilePageWrapper from './routes/inside-app/pages/profile/indexFunction';
+import AccountAdmin from './routes/edit-accounts/index.js';
+import UserCard from './routes/edit-accounts/components/UserCard.js';
 
 
 const App = () => {
@@ -31,6 +33,10 @@ const App = () => {
       <Route path='/' element={<Root isVisible={isVisible} openModal={openModal} closeModal={closeModal} />} />
       <Route path='/create-project' element={<CreateProjectPage />} />
       <Route path='/create-movie' element={<CreateMoviePage />} />
+      <Route path='/accounts-admin' element={<AccountAdmin />} >
+        <Route path='/accounts-admin/:userId' element={<UserCard />} />
+      </Route>
+
       <Route path='/app' element={<AuthRoute link='/'><AppRoot /></AuthRoute>} />
       <Route path='/app/investments' element={<InvestmentPage />} />
       <Route path='/app/portfolio' element={<PortfolioPage />} />

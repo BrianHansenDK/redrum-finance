@@ -6,9 +6,10 @@ import { minorMovieCard } from '../../../../themes/cardStyles'
 import { profileCardUnderTitle } from '../../../../themes/textStyles'
 interface IProps {
     projectId: any,
+    userId: any
 }
 const ProjectDetail: React.FunctionComponent<IProps> = (props) => {
-    const { projectId } = props
+    const { projectId, userId } = props
     const [projectName, setProjectName] = useState('')
     const [projectImage, setProjectImage] = useState('')
     const [invested, setInvested] = useState(0)
@@ -23,7 +24,7 @@ const ProjectDetail: React.FunctionComponent<IProps> = (props) => {
         let data = 0
         onValue(investRef, (snap) => {
             snap.forEach((inv) => {
-                if (inv.val().project == projectId) {
+                if (inv.val().project == projectId && inv.val().creator == userId) {
                     data += inv.val().amount
                 }
             })

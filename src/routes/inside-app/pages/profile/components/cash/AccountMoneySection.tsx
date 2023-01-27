@@ -65,7 +65,7 @@ class AccountMoneySection extends Component<IProps, IState> {
                 </div>
                 <div>
                     <p>
-                        Invested: {this.state.amount}€
+                        <span>Invested:</span> <span>{this.state.amount.toString()}</span> €
                     </p>
                 </div>
                 <h1 style={profileCardUnderTitle} className='text-center mb-3'>
@@ -73,7 +73,7 @@ class AccountMoneySection extends Component<IProps, IState> {
                 </h1>
                 <div style={styles.projectsWrap}>
                     {_projects.map((project) => (
-                        <ProjectDetail projectId={project} />
+                        <ProjectDetail projectId={project} userId={userId} />
                     ))}
                 </div>
             </div>

@@ -4,6 +4,7 @@ import { Avatar } from 'rsuite'
 import { auth, database, userRef } from '../../../../../firebase'
 import MainBtn from '../../../components/MainBtn'
 import { mainColors } from '../../../themes/colors'
+import { avatarPlaceholder, profileImage } from '../../../themes/imageStyles'
 import mainShadows from '../../../themes/shadows'
 import EditImageModal from './EditImageModal'
 
@@ -62,25 +63,8 @@ const styles = {
         alignItems: 'center',
         justifyContent: 'space-between',
     },
-    image: {
-        width: 150,
-        height: 150,
-        borderRadius: '50%',
-        boxShadow: mainShadows.image,
-        marginBottom: 15,
-    },
-    avatar: {
-        width: 150,
-        height: 150,
-        backgroundColor: mainColors.dark,
-        color: mainColors.white,
-        fontSize: 45,
-        borderRadius: '50%',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        boxShadow: mainShadows.image,
-    }
+    image: profileImage,
+    avatar: avatarPlaceholder,
 }
 
 export default ProfileImage
