@@ -40,7 +40,7 @@ const InvestModal: React.FunctionComponent<IProps> = (props) => {
         if (parseInt(investAmount) > available) {
             toaster.push(
                 <Message showIcon type='error'>
-                    Not enough money in your account. Available: {available}
+                    Not enough money in your account. Available: {available == null ? 0 : available}
                 </Message>
                 , { placement: 'topCenter' }
             )

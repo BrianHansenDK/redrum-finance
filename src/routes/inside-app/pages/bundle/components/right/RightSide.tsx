@@ -1,8 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { ButtonToolbar, Col, Modal } from 'rsuite'
+import { auth, userRef } from '../../../../../../firebase'
 import MainBtn from '../../../../components/MainBtn'
 import ConfirmAgeModal from '../ConfirmAgeModal'
 import InvestModal from '../InvestModal'
+import TransferMoneyModal from '../TransferMoneyModal'
 import InfoLines from './InfoLines'
 import InfoTag from './InfoTag'
 import ProgressItem from './ProgressItem'
@@ -10,6 +12,12 @@ import ProgressItem from './ProgressItem'
 const RightSide = ({ project }: { project: any }) => {
     const [isVisible, setVisible] = useState(false)
     const [isInvestVisible, setInvestVisible] = useState(false)
+    const [isTransferVisible, setTransferVisible] = useState(false)
+    const [available, setAvailable] = useState<any>(0)
+    const userId = auth.currentUser?.uid
+    useEffect(() => {
+        userRef(userId, '/money_available', setAvailable)
+    })
     const openModal = () => {
         setVisible(true)
     }
@@ -17,10 +25,12 @@ const RightSide = ({ project }: { project: any }) => {
         setVisible(false)
     }
     const openInvestModal = () => {
-        setInvestVisible(true)
+        setVisible(false)
+        available !== null ? setInvestVisible(true) : setTransferVisible(true)
     }
     const closeInvestModal = () => {
         setInvestVisible(false)
+        setTransferVisible(false)
     }
     return (
         <>
@@ -34,15 +44,16 @@ const RightSide = ({ project }: { project: any }) => {
                 </div>
                 <MainBtn
                     content={'Invest now'}
-                    pressed={openInvestModal}
+                    pressed={openModal}
                     btnColor='blue'
                     btnAppearance='primary'
                     btnSize='lg'
                     isBlock={true}
                 />
             </Col>
-            <ConfirmAgeModal visible={isVisible} close={closeModal} />
+            <ConfirmAgeModal visible={isVisible} close={closeModal} openInvestModal={openInvestModal} />
             <InvestModal project={project} close={closeInvestModal} visible={isInvestVisible} />
+            <TransferMoneyModal close={closeInvestModal} visible={isTransferVisible} />
         </>
     )
 }

@@ -7,6 +7,7 @@ import { mainColors } from '../../../themes/colors';
 interface IProps {
     visible: boolean,
     close: any,
+    openInvestModal: any,
 }
 
 class ConfirmAgeModal extends Component<IProps, {}> {
@@ -38,7 +39,7 @@ class ConfirmAgeModal extends Component<IProps, {}> {
                     <ButtonToolbar>
                         <MainBtn
                             content={'I am 18 years old or older'}
-                            pressed={this.props.close}
+                            pressed={this.props.openInvestModal}
                             btnColor={'blue'}
                             btnAppearance={'primary'}
                             btnSize={'lg'}

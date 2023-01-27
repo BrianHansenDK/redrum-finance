@@ -46,6 +46,7 @@ const styles = {
     image: {
         width: 80 + '%',
         height: 'auto',
+        maxHeight: 450,
         borderRadius: 10,
         boxShadow: mainShadows.image,
     }
