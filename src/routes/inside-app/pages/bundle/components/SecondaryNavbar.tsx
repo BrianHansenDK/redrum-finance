@@ -105,11 +105,6 @@ const SecondaryNavbar = ({ project, isFixed }: { project: any, isFixed: boolean 
                             to={nav.to}
                         />
                     ))}
-                    {
-                        project.movies.map((movie: any) => (
-                            <MovieNav movieId={movie} bundleId={project.id} />
-                        ))
-                    }
                 </Nav>
                 <Nav pullRight style={{ minWidth: 250, }}>
                     <MainBtn

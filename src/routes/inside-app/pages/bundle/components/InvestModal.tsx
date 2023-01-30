@@ -8,7 +8,6 @@ interface IProps {
     project: any,
     close: any,
     visible: boolean,
-
 }
 
 const InvestModal: React.FunctionComponent<IProps> = (props) => {
@@ -17,9 +16,7 @@ const InvestModal: React.FunctionComponent<IProps> = (props) => {
     const [available, setAvailable] = useState(0)
     const investmentId = Date.now()
 
-    useEffect(() => {
-        userRef(auth.currentUser?.uid, '/money_available', setAvailable)
-    }, [])
+    useEffect(() => { userRef(auth.currentUser?.uid, '/money_available', setAvailable) }, [])
 
     const toaster = useToaster()
 
@@ -29,12 +26,9 @@ const InvestModal: React.FunctionComponent<IProps> = (props) => {
             toaster.push(
                 <Message showIcon type='error'>
                     Please choose a valid amount. Cannot invest 0€
-                </Message>
-                , { placement: 'topCenter' }
+                </Message> , { placement: 'topCenter' }
             )
-            window.setTimeout(() => {
-                toaster.clear()
-            }, 5000)
+            window.setTimeout(() => { toaster.clear() }, 5000)
         }
         // Divisable by movies length
         if (parseInt(investAmount) % project.movies.length !== 0) {
@@ -46,24 +40,17 @@ const InvestModal: React.FunctionComponent<IProps> = (props) => {
                         (parseInt(investAmount) - x) % project.movies.length == 0 && (parseInt(investAmount) - x) !== 0 ? `${parseInt(investAmount) - x} or ${(parseInt(investAmount) - x) + project.movies.length}` : (parseInt(investAmount) - x) % project.movies.length == 0 && (parseInt(investAmount) - x) == 0 && `${(parseInt(investAmount) - x) + project.movies.length}`
                       ))
                     }
-                </Message>
-                , { placement: 'topCenter' }
+                </Message> , { placement: 'topCenter' }
             )
-            window.setTimeout(() => {
-                toaster.clear()
-            }, 5000)
-        }
+            window.setTimeout(() => { toaster.clear() }, 5000) }
         // Must have anough money on account
         if (parseInt(investAmount) > available) {
             toaster.push(
                 <Message showIcon type='error'>
                     Not enough money in your account. Available: {available == null ? 0 : available}
-                </Message>
-                , { placement: 'topCenter' }
+                </Message> , { placement: 'topCenter' }
             )
-            window.setTimeout(() => {
-                toaster.clear()
-            }, 5000)
+            window.setTimeout(() => { toaster.clear() }, 5000)
         }
 
         // Invest if user has enough money and amount is divisible by free
@@ -105,12 +92,10 @@ const InvestModal: React.FunctionComponent<IProps> = (props) => {
             toaster.push(
                 <Message showIcon type='success'>
                     You have invested {investAmount}€ in the project: {project.name}
-                </Message>
-                , { placement: 'topCenter' }
+                </Message> , { placement: 'topCenter' }
             )
-            window.setTimeout(() => {
-                toaster.clear()
-            }, 5000)
+            window.setTimeout(() => { toaster.clear() }, 5000)
+            close()
         }
     }
     return (

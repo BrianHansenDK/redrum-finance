@@ -57,7 +57,7 @@ const RightSide = ({ project }: { project: any }) => {
             </Col>
             <ConfirmAgeModal visible={isVisible} close={closeModal} openInvestModal={openInvestModal} />
             <InvestModal project={project} close={closeInvestModal} visible={isInvestVisible} />
-            <TransferMoneyModal close={closeInvestModal} visible={isTransferVisible} />
+            <TransferMoneyModal close={closeInvestModal} visible={isTransferVisible} openOtherModal={openInvestModal} />
         </>
     )
 }

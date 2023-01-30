@@ -6,18 +6,11 @@ import { mainColors } from '../themes/colors'
 import MainBtn from './MainBtn'
 import TooltipIdentify from './TooltipIdentify'
 import TooltipLinks from './TooltipLinks'
+import TooltipTitle from './TooltipTitle'
 
 export interface ITooltipForAccount { ACCOUNTNAV: Array<{}>, auth: any, logout: MouseEventHandler }
 
 const styles = {
-    titleWrap: {
-        display: 'flex',
-        width: 75 + '%',
-        justifyContent: 'space-between',
-    },
-    title: {
-        color: '#333',
-    },
     topPart: {
         display: 'flex',
         justifyContent: 'flex-start',
@@ -31,10 +24,7 @@ const TooltipForAccount: React.FunctionComponent<ITooltipForAccount> = (props) =
 
     return (
         <>
-            <div style={styles.titleWrap} >
-                <h3 className='' style={styles.title} >Account</h3>
-
-            </div>
+            <TooltipTitle auth={auth}/>
             <div className='mt-1' style={styles.topPart}>
                 <TooltipIdentify auth={auth} />
                 <MainBtn

@@ -19,10 +19,8 @@ class ConfirmAgeModal extends Component<IProps, {}> {
         return (
             <Modal open={this.props.visible} onClose={this.props.close} >
                 <Modal.Header>
-                    <Modal.Title>
-                        <h1 style={styles.title}>
+                    <Modal.Title style={styles.title}>
                             Confirm age
-                        </h1>
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
