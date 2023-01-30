@@ -67,7 +67,7 @@ const styles = {
         height: 100 + '%',
         display: 'flex',
         alignItems: 'center',
-        paddingTop: 8 + 'rem',
+        paddingTop: 7 + 'rem',
     },
     card: {
         height: 400,

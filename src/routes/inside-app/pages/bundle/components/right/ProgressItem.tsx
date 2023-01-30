@@ -23,6 +23,10 @@ const ProgressItem = ({ project }: { project: any }) => {
                 </p>
                 <ProgressLine style={styles.bar} percent={percent} status={`${percent == 100 ? 'success' : 'active'}`} />
                 <div style={styles.goalWrap}>
+                    <p style={styles.goalTxt}>Currently invested</p>
+                    <p style={styles.goalTxt}>{numberWithCommas(project.currentlyInvested)} €</p>
+                </div>
+                <div style={styles.goalWrap}>
                     <p style={styles.goalTxt}>Goal</p>
                     <p style={styles.goalTxt}>{numberWithCommas(project.goal)} €</p>
                 </div>
@@ -34,7 +38,7 @@ const ProgressItem = ({ project }: { project: any }) => {
 const styles = {
     progressWrap: {
         width: 100 + '%',
-        marginTop: 15,
+        marginTop: 7.5,
         paddingTop: 7.5,
         paddingBottom: 7.5,
         paddingLeft: 20,
