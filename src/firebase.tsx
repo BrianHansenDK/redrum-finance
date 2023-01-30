@@ -127,3 +127,16 @@ export function getUsers(arr: any[], keyArr: any[], state: any, keyState: any) {
         keyState(keyArr)
     }, { onlyOnce: true })
 }
+
+export const getUserInvestments = (userId: any, state: any) => {
+  const reference = ref(database, 'investments/')
+  onValue(reference, (snap) => {
+    const data: any[] = []
+    snap.forEach((investment) => {
+      if (investment.val().creator == userId) {
+        data.push(investment.val())
+      }
+    })
+    state(data)
+  })
+}

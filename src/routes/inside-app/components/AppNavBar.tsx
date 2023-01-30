@@ -1,5 +1,5 @@
 import React from 'react'
-import { Nav, Navbar, Tooltip, Whisper } from 'rsuite'
+import { Message, Nav, Navbar, Tooltip, useToaster, Whisper } from 'rsuite'
 import NavItem from 'rsuite/esm/Nav/NavItem'
 import DashboardIcon from '@rsuite/icons/legacy/Dashboard';
 import OPENMENU from '@rsuite/icons/legacy/CaretDown'
@@ -22,8 +22,13 @@ import { Link, useNavigate } from 'react-router-dom';
 const AppNavBar = ({ fixed = true }: { fixed: boolean }) => {
     const auth = getAuth()
     const navigate = useNavigate()
+    const toaster = useToaster()
     const logout = () => {
-        auth.signOut().then(() => navigate('/app'))
+        auth.signOut().then(() => location.pathname == '/app' ? navigate('/') : navigate('/app'))
+        toaster.push(<Message showIcon type='info'>
+          Logged out
+        </Message>, {placement: 'topCenter'})
+        window.setTimeout(() => {toaster.clear()}, 5000)
     }
 
     const ACCOUNTNAV = [

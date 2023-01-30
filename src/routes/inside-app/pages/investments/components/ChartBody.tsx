@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Table } from 'rsuite';
 import EMPTY from '../../../../../assets/empty_img.png'
 import { mainColors } from '../../../themes/colors';
 interface IProps {
@@ -11,13 +12,30 @@ class ChartBody extends Component<IProps, {}> {
         this.state = {};
     }
     render() {
+      const { Column, HeaderCell, Cell } = Table;
+      const userInvestments = this.props.userInvestments
         return (
             <>
                 {
-                    this.props.userInvestments?.length > 0 ? (
-                        <div>
-                            Pie chart here
-                        </div>
+                    userInvestments.length > 0 ? (
+                        <Table data={userInvestments}>
+                            <Column width={150}>
+                              <HeaderCell>Project</HeaderCell>
+                              <Cell dataKey="project" />
+                            </Column>
+                            <Column width={150}>
+                              <HeaderCell>Amount in €</HeaderCell>
+                              <Cell dataKey="amount" />
+                            </Column>
+                            <Column width={150}>
+                              <HeaderCell>Guaranteed return</HeaderCell>
+                              <Cell dataKey="gain" />
+                            </Column>
+                            <Column width={150}>
+                              <HeaderCell>Movies</HeaderCell>
+                              <Cell dataKey="movies" />
+                            </Column>
+                        </Table>
                     ) : (
                         <div style={styles.wrap}>
                             <div style={styles.txtWrap}>

@@ -1,28 +1,23 @@
-import React, { Component } from 'react'
+import React, { Component, useEffect, useState } from 'react'
+import { auth, getUserInvestments, userRef } from '../../../../../firebase';
 import { mainColors } from '../../../themes/colors';
 import mainShadows from '../../../themes/shadows';
 import ChartBody from './ChartBody';
 import ChartTitle from './ChartTitle';
 
-interface IState {
-    userInvestments: any[]
-}
 
-class RadialChart extends Component<{}, IState> {
-    constructor(props: any) {
-        super(props);
-        this.state = {
-            userInvestments: []
-        };
-    }
-    render() {
+
+const RadialChart = () => {
+    const [userInvestments, setUserInvestments] = useState<any[]>([])
+    useEffect(() => {
+      getUserInvestments(auth.currentUser?.uid, setUserInvestments)
+    }, [auth.currentUser?.uid])
         return (
             <div style={styles.wrap} >
                 <ChartTitle />
-                <ChartBody userInvestments={this.state.userInvestments} />
+                <ChartBody userInvestments={userInvestments} />
             </div>
         );
-    }
 }
 
 const styles = {
