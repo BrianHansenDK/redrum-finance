@@ -17,10 +17,12 @@ const TransferMoneyModal: React.FunctionComponent<IProps> = (props) => {
     const userId = auth.currentUser?.uid
     const [username, setUsername] = useState<any>(null)
     const [available, setAvailable] = useState<any>(0)
+    const [completion, setCompletion] = useState<any>(0)
     const [payAmount, setPayAmount] = useState<any>(0)
     useEffect(() => {
         userRef(userId, '/username', setUsername)
         userRef(userId, '/money_available', setAvailable)
+        userRef(userId, '/completion', setCompletion)
     })
 
     // Update user balance when payment is approved
@@ -28,6 +30,7 @@ const TransferMoneyModal: React.FunctionComponent<IProps> = (props) => {
       const reference = ref(database, 'users/' + userId)
       const updates:any = {}
       updates['/money_available'] = available !== null ? parseInt(available) + parseInt(payAmount) : parseInt(payAmount)
+      updates['/completion'] = available !== null ? completion : completion + 50
       return update(reference, updates)
     }
 
@@ -53,18 +56,9 @@ const TransferMoneyModal: React.FunctionComponent<IProps> = (props) => {
                 />
             </Modal.Body>
             <Modal.Footer>
-                <ButtonGroup style={btnsCon}>
-                    <Button
-                        style={bottomBtns}
-                        as='a' href='https://www.paypal.com/' target='_blank' rel='noopener noreferrer'
-                        color='blue' appearance='primary'
-                    >
-                        Go to Paypal
-                    </Button>
-                    <Button style={bottomBtns} color='blue' appearance='ghost' onClick={close}>
+                    <Button style={{width: '100%'}} color='blue' appearance='ghost' onClick={close}>
                         Go back
                     </Button>
-                </ButtonGroup>
             </Modal.Footer>
         </Modal>
     )

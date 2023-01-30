@@ -43,7 +43,8 @@ const InvestModal: React.FunctionComponent<IProps> = (props) => {
                     }€
                 </Message> , { placement: 'topCenter' }
             )
-            window.setTimeout(() => { toaster.clear() }, 5000) }
+            window.setTimeout(() => { toaster.clear() }, 10000) }
+
         // Must have anough money on account
         if (parseInt(investAmount) > available) {
             toaster.push(
@@ -51,7 +52,7 @@ const InvestModal: React.FunctionComponent<IProps> = (props) => {
                     Not enough money in your account. Available: {available == null ? 0 : available}
                 </Message> , { placement: 'topCenter' }
             )
-            window.setTimeout(() => { toaster.clear() }, 5000)
+            window.setTimeout(() => { toaster.clear() }, 10000)
         }
 
         // Invest if user has enough money and amount is divisible by free
