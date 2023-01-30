@@ -23,7 +23,7 @@ const InvestModal: React.FunctionComponent<IProps> = (props) => {
 
     const onInvest = () => {
         // If no amount is entered
-        if (parseInt(investAmount) == 0 || investAmount == null) {
+        if (parseInt(investAmount) == 0 || investAmount == null || investAmount == '') {
             toaster.push(
                 <Message showIcon type='error'>
                     Please choose a valid amount. Cannot invest 0€
@@ -32,15 +32,15 @@ const InvestModal: React.FunctionComponent<IProps> = (props) => {
             window.setTimeout(() => { toaster.clear() }, 5000)
         }
         // Divisable by movies length
-        if (parseInt(investAmount) % project.movies.length !== 0) {
+        if (parseInt(investAmount) % project.movies.length !== 0 && (parseInt(investAmount) !== null && parseInt(investAmount) !== 0 && investAmount !== '')) {
             toaster.push(
                 <Message showIcon type='error'>
                     Investment must have 0 remainders when divided by {project.movies.length}.
                     Possible solution {
                       [...Array(project.movies.length).keys()].map((x) => (
-                        (parseInt(investAmount) - x) % project.movies.length == 0 && (parseInt(investAmount) - x) !== 0 ? `${parseInt(investAmount) - x} or ${(parseInt(investAmount) - x) + project.movies.length}` : (parseInt(investAmount) - x) % project.movies.length == 0 && (parseInt(investAmount) - x) == 0 && `${(parseInt(investAmount) - x) + project.movies.length}`
+                        (parseInt(investAmount) - x) % project.movies.length == 0 && (parseInt(investAmount) - x) !== 0 ? `${parseInt(investAmount) - x}€ or ${(parseInt(investAmount) - x) + project.movies.length}` : (parseInt(investAmount) - x) % project.movies.length == 0 && (parseInt(investAmount) - x) == 0 && `${(parseInt(investAmount) - x) + project.movies.length}`
                       ))
-                    }
+                    }€
                 </Message> , { placement: 'topCenter' }
             )
             window.setTimeout(() => { toaster.clear() }, 5000) }
@@ -108,9 +108,9 @@ const InvestModal: React.FunctionComponent<IProps> = (props) => {
             </Modal.Header>
             <Modal.Body style={styles.body} className='flex-column'>
               <img className='mb-1' src={INVESTIMG} alt="Investments get split into multiple shares" width={250} height={250} />
-              <p className='text-center mb-2'>
-                When you invest in a project, your investment will create an seperate shares equal to the amount of movies/books/audio books in the current project. &nbsp;
-                <span className='bold'>{project.movies?.length} </span> in this case.
+              <p style={styles.info} className='text-center mb-2'>
+                When you invest in a project, your investment will create seperate shares equal to the amount of movies/books/audio books in the current project.&nbsp;
+                <span className='bold'>{project.movies?.length}</span> in this case.
               </p>
                 <Form className='d-flex flex-column align-items-center'>
                     <Form.Group className='text-center'>
@@ -138,6 +138,11 @@ const styles = {
   body: {
     display: 'flex',
     alignItems: 'center',
+  },
+  info: {
+    fontSize: 18.5,
+    color: mainColors.dark,
+    opacity: .9,
   },
     label: {
         color: mainColors.dark,
