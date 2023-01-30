@@ -1,5 +1,6 @@
 import { ref, set, update } from 'firebase/database'
 import React, { useEffect, useState } from 'react'
+import INVESTIMG from '../../../../../assets/investment_growth_icon.svg'
 import { Button, ButtonGroup, Form, InputNumber, Message, Modal, useToaster } from 'rsuite'
 import { auth, database, userRef } from '../../../../../firebase'
 import { mainColors } from '../../../themes/colors'
@@ -105,14 +106,19 @@ const InvestModal: React.FunctionComponent<IProps> = (props) => {
                     Invest in {project.name}
                 </Modal.Title>
             </Modal.Header>
-            <Modal.Body>
-                <Form>
-                    <Form.Group>
+            <Modal.Body style={styles.body} className='flex-column'>
+              <img className='mb-1' src={INVESTIMG} alt="Investments get split into multiple shares" width={250} height={250} />
+              <p className='text-center mb-2'>
+                When you invest in a project, your investment will create an seperate shares equal to the amount of movies/books/audio books in the current project. &nbsp;
+                <span className='bold'>{project.movies?.length} </span> in this case.
+              </p>
+                <Form className='d-flex flex-column align-items-center'>
+                    <Form.Group className='text-center'>
                         <Form.ControlLabel style={styles.label}>Investment amount</Form.ControlLabel>
-                        <InputNumber type='number' onChange={setInvestAmount} placeholder='Select amount to invest' />
-                        <Form.HelpText>Investment will be split in {project.movies?.length} Only whole numbers will be accepted</Form.HelpText>
+                        <InputNumber style={{alignSelf: 'center', marginBottom: 15,}} type='number' onChange={setInvestAmount} placeholder='Select amount to invest' />
                     </Form.Group>
                 </Form>
+                        <p>Investment will be split in {project.movies?.length} Only whole numbers will be accepted</p>
             </Modal.Body>
             <Modal.Footer>
                 <ButtonGroup style={styles.btnWrap}>
@@ -129,6 +135,10 @@ const InvestModal: React.FunctionComponent<IProps> = (props) => {
 }
 
 const styles = {
+  body: {
+    display: 'flex',
+    alignItems: 'center',
+  },
     label: {
         color: mainColors.dark,
     },
