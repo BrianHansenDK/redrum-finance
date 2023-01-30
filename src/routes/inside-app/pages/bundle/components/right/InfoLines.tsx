@@ -8,7 +8,7 @@ const InfoLines = ({ project }: { project: any }) => {
             <SingleLineInfo title='Expected end date' info={project.endDate.split(' ').slice(1).join(' ')} />
             <SingleLineInfo title='Finance goal' info={project.goal.toString()} type='€' />
             <SingleLineInfo title='Minimal investment' info={3} type='€' />
-            <SingleLineInfo title='Currently invested' info={project.currentlyInvested.toString()} type='€' isBlue />
+            <SingleLineInfo title='Received' info={project.currentlyInvested.toString()} type='€' isBlue />
         </>
     )
 }

@@ -17,13 +17,9 @@ const ProgressItem = ({ project }: { project: any }) => {
     return (
         <Whisper speaker={tooltip} trigger='hover' placement='top' >
             <div style={styles.progressWrap}>
-                <p style={styles.title}>
-
-                    Recieved
-                </p>
                 <ProgressLine style={styles.bar} percent={percent} status={`${percent == 100 ? 'success' : 'active'}`} />
                 <div style={styles.goalWrap}>
-                    <p style={styles.goalTxt}>Currently invested</p>
+                    <p style={styles.goalTxt}>Received</p>
                     <p style={styles.goalTxt}>{numberWithCommas(project.currentlyInvested)} €</p>
                 </div>
                 <div style={styles.goalWrap}>
@@ -41,17 +37,9 @@ const styles = {
         marginTop: 7.5,
         paddingTop: 7.5,
         paddingBottom: 7.5,
+        marginBottom: '1rem',
         paddingLeft: 20,
         paddingRight: 20,
-    },
-    title: {
-        width: 100 + '%',
-        display: 'flex',
-        justifyContent: 'flex-start',
-        margin: 0,
-        paddingBottom: 0,
-        color: mainColors.main,
-        fontWeight: '700',
     },
     bar: {
         paddingTop: 0,
