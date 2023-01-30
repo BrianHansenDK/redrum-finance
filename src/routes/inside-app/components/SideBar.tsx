@@ -45,9 +45,9 @@ const SideBar = () => {
             <Nav.Item onClick={openModal} eventKey='3' icon={<SecondaryMarketIcon />}>
               Secondary market
             </Nav.Item>
-            <Nav.Item as={Link} to='/app/portfolio' eventKey='4' icon={<PortfolioIcon />}>
+            {/*} <Nav.Item as={Link} to='/app/portfolio' eventKey='4' icon={<PortfolioIcon />}>
               My Portfolio
-            </Nav.Item>
+  </Nav.Item> {*/}
             <h3 className='d-flex justify-center'>Community</h3>
             <Nav.Item eventKey="5" icon={<DashboardIcon />}>
               Investor databank

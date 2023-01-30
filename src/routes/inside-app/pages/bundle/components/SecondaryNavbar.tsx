@@ -9,9 +9,11 @@ import InverstorsIcon from '@rsuite/icons/Peoples'
 import SecondaryNavbarItem from './SecondaryNavbarItem'
 import MainBtn from '../../../components/MainBtn'
 import ConfirmAgeModal from './ConfirmAgeModal'
-import { auth, userRef } from '../../../../../firebase'
+import { auth, database, userRef } from '../../../../../firebase'
 import InvestModal from './InvestModal'
 import TransferMoneyModal from './TransferMoneyModal'
+import { onValue, ref } from 'firebase/database'
+import MovieNav from './MovieNav'
 
 const SecondaryNavbar = ({ project, isFixed }: { project: any, isFixed: boolean }) => {
     const NAVS = [
@@ -46,6 +48,7 @@ const SecondaryNavbar = ({ project, isFixed }: { project: any, isFixed: boolean 
             to: `/app/bundle/${project.id}/extras/investors`
         },
     ]
+
     const styles = {
         navbar: {
             height: 75,
@@ -64,9 +67,16 @@ const SecondaryNavbar = ({ project, isFixed }: { project: any, isFixed: boolean 
     const [isInvestVisible, setInvestVisible] = useState(false)
     const [isTransferVisible, setTransferVisible] = useState(false)
     const [available, setAvailable] = useState<any>(0)
+    const [movieItems, setMovieItems] = useState<any>(null)
     const userId = auth.currentUser?.uid
+    let data: any[] = []
     useEffect(() => {
         userRef(userId, '/money_available', setAvailable)
+        project.movies.forEach((movie: any) => {
+            onValue(ref(database, 'movies/' + movie), (snap) => {
+                data.push(snap.val())
+            }, { onlyOnce: true })
+        })
     })
     const openModal = () => {
         setVisible(true)
@@ -95,6 +105,11 @@ const SecondaryNavbar = ({ project, isFixed }: { project: any, isFixed: boolean 
                             to={nav.to}
                         />
                     ))}
+                    {
+                        project.movies.map((movie: any) => (
+                            <MovieNav movieId={movie} bundleId={project.id} />
+                        ))
+                    }
                 </Nav>
                 <Nav pullRight style={{ minWidth: 250, }}>
                     <MainBtn
@@ -118,6 +133,7 @@ const SecondaryNavbar = ({ project, isFixed }: { project: any, isFixed: boolean 
                             to={nav.to}
                         />
                     ))}
+
                 </Nav>
                 <Nav pullRight>
                     <div style={{ opacity: 0, }} >

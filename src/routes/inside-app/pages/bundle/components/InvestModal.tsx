@@ -80,7 +80,7 @@ const InvestModal: React.FunctionComponent<IProps> = (props) => {
             update(ref(database, 'projects/' + project.id), projectUpdates).then(() => {
                 console.log(`${investAmount}€ was invested in ${project.name}!`)
             })
-            // Update user 
+            // Update user
             let userUpdates: any = {}
             userUpdates['money_available'] = available - parseInt(investAmount)
             update(ref(database, 'users/' + auth.currentUser?.uid), userUpdates).then(() => {
@@ -127,7 +127,7 @@ const InvestModal: React.FunctionComponent<IProps> = (props) => {
             <Modal.Footer>
                 <ButtonGroup style={styles.btnWrap}>
                     <Button onClick={onInvest} style={styles.btn} appearance='primary' color='blue'>
-                        Invest
+                    Order with obligation to pay
                     </Button>
                     <Button onClick={close} style={styles.btn} appearance='ghost' color='blue'>
                         Cancel

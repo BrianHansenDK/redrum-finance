@@ -26,7 +26,11 @@ const RightSide = ({ project }: { project: any }) => {
     }
     const openInvestModal = () => {
         setVisible(false)
-        available !== null ? setInvestVisible(true) : setTransferVisible(true)
+        if (available == null || available == 0) {
+            setTransferVisible(true)
+        } else {
+            setInvestVisible(true)
+        }
     }
     const closeInvestModal = () => {
         setInvestVisible(false)

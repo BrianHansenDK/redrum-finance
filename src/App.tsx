@@ -39,7 +39,7 @@ const App = () => {
 
       <Route path='/app' element={<AuthRoute link='/'><AppRoot /></AuthRoute>} />
       <Route path='/app/investments' element={<InvestmentPage />} />
-      <Route path='/app/portfolio' element={<PortfolioPage />} />
+      {/* <Route path='/app/portfolio' element={<PortfolioPage />} /> */}
       <Route path='/app/bundle/:bundleId' element={<ProjectDetailsPageWrapper />} >
         <Route index element={<ProjectDetailsOverviewWrapper />} />
         <Route path='extras/movies' element={<ProjectDetailsMovieWrapper />} />

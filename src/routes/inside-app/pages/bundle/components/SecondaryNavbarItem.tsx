@@ -8,10 +8,19 @@ const SecondaryNavbarItem = ({ isActive, icon, txt, to }: { isActive: boolean, i
             active={isActive}
             as={Link}
             to={to}
+            className='text-uppercase'
+            style={styles.txt}
         >
             {icon} {txt}
         </NavItem>
     )
+}
+
+const styles = {
+    txt: {
+        fontSize: 22.5,
+        fontWeight: '700',
+    }
 }
 
 export default SecondaryNavbarItem

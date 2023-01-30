@@ -36,7 +36,7 @@ const ProfileImage: React.FunctionComponent<IProps> = (props) => {
                 userImage !== '' && userImage ? (
                     <img style={styles.image} src={userImage} alt={username} />
                 ) : (
-                    <div style={styles.avatar}>
+                    <div style={styles.avatar} className='mb-1'>
                         {
                             username.split(' ').length > 1 ?
                                 username.split(' ').map((w: any) => w[0]).join('.') :

@@ -22,7 +22,7 @@ const Statistics = () => {
                     <Stat
                         icon={IMG2}
                         title='Money invested'
-                        stats='1.720.611,00 €'
+                        stats='245.801,751 €'
                     />
                 </div>
                 <div className='txt-center'>
