@@ -115,10 +115,10 @@ const InvestModal: React.FunctionComponent<IProps> = (props) => {
                 <Form className='d-flex flex-column align-items-center'>
                     <Form.Group className='text-center'>
                         <Form.ControlLabel style={styles.label}>Investment amount</Form.ControlLabel>
-                        <InputNumber style={{alignSelf: 'center', marginBottom: 15,}} type='number' onChange={setInvestAmount} placeholder='Select amount to invest' />
+                        <InputNumber style={{alignSelf: 'center', marginBottom: 15,}} type='number' onChange={setInvestAmount} placeholder='Select amount to invest*' />
                     </Form.Group>
                 </Form>
-                        <p>Investment will be split in {project.movies?.length} Only whole numbers will be accepted</p>
+                        <p>*Investment will be split in {project.movies?.length} <br/>*Only whole numbers will be accepted</p>
             </Modal.Body>
             <Modal.Footer>
                 <ButtonGroup style={styles.btnWrap}>
