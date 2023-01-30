@@ -1,6 +1,6 @@
 import { ref, set, update } from 'firebase/database'
 import React, { useEffect, useState } from 'react'
-import { Button, ButtonGroup, Form, Input, Message, Modal, useToaster } from 'rsuite'
+import { Button, ButtonGroup, Form, InputNumber, Message, Modal, useToaster } from 'rsuite'
 import { auth, database, userRef } from '../../../../../firebase'
 import { mainColors } from '../../../themes/colors'
 
@@ -41,6 +41,11 @@ const InvestModal: React.FunctionComponent<IProps> = (props) => {
             toaster.push(
                 <Message showIcon type='error'>
                     Investment must have 0 remainders when divided by {project.movies.length}.
+                    Possible solution {
+                      [...Array(project.movies.length).keys()].map((x) => (
+                        (parseInt(investAmount) - x) % project.movies.length == 0 && `${parseInt(investAmount) - x} or ${(parseInt(investAmount) - x) + project.movies.length}`
+                      ))
+                    }
                 </Message>
                 , { placement: 'topCenter' }
             )
@@ -119,8 +124,8 @@ const InvestModal: React.FunctionComponent<IProps> = (props) => {
                 <Form>
                     <Form.Group>
                         <Form.ControlLabel style={styles.label}>Investment amount</Form.ControlLabel>
-                        <Input type='number' onChange={setInvestAmount} placeholder='Select amount to invest' />
-                        <Form.HelpText>Investment will be split in 3</Form.HelpText>
+                        <InputNumber type='number' onChange={setInvestAmount} placeholder='Select amount to invest' />
+                        <Form.HelpText>Investment will be split in {project.movies?.length} Only whole numbers will be accepted</Form.HelpText>
                     </Form.Group>
                 </Form>
             </Modal.Body>
