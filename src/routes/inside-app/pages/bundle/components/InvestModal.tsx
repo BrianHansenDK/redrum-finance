@@ -43,7 +43,7 @@ const InvestModal: React.FunctionComponent<IProps> = (props) => {
                     Investment must have 0 remainders when divided by {project.movies.length}.
                     Possible solution {
                       [...Array(project.movies.length).keys()].map((x) => (
-                        (parseInt(investAmount) - x) % project.movies.length == 0 && `${parseInt(investAmount) - x} or ${(parseInt(investAmount) - x) + project.movies.length}`
+                        (parseInt(investAmount) - x) % project.movies.length == 0 && (parseInt(investAmount) - x) !== 0 ? `${parseInt(investAmount) - x} or ${(parseInt(investAmount) - x) + project.movies.length}` : (parseInt(investAmount) - x) % project.movies.length == 0 && (parseInt(investAmount) - x) == 0 && `${(parseInt(investAmount) - x) + project.movies.length}`
                       ))
                     }
                 </Message>
