@@ -44,7 +44,7 @@ class NewInvestorsSection extends Component<IProps, IState> {
                 <div style={styles.userWrap} className='flex-wrap'>
 
                     {
-                        this.state.userData.map((user) => (
+                        this.state.userData.slice(-6).map((user) => (
                             <NewInverstorsCard user={user} key={user?.email} />
                         ))
                     }
