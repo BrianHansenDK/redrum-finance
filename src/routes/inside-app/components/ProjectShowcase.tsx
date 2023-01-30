@@ -52,7 +52,7 @@ class ProjectShowcase extends React.Component<IProps, IState> {
                         <div style={{
                             borderRadius: '10px 10px 0 0',
                             width: '100 %',
-                            height: 250,
+                            height: 355,
                             backgroundImage: 'url(' + project.banner + ')',
                             backgroundSize: 'cover',
                         }}>
@@ -61,11 +61,11 @@ class ProjectShowcase extends React.Component<IProps, IState> {
                         <div className='pl-2 pr-2 pb-2'>
 
                             <div className='d-flex jusify-center align-center' style={{ position: 'relative' }}>
-                                <h1 className='txt-center mt-2' style={styles.title}>
-                                    {project.name}
-                                </h1>
+                                <p className='txt-center mt-1' style={styles.intro}>
+                                    {project.intro}
+                                </p>
                             </div>
-                            <div className='d-flex align-center pl-1 pr-4 mt-2' style={{ justifyContent: 'space-between' }}>
+                            <div className='d-flex align-center pl-1 pr-4' style={{ justifyContent: 'space-between' }}>
                                 <p style={styles.numberTxt}>
                                     Currently invested: <span style={styles.number}>{numberWithCommas(project.currentlyInvested)} € </span>
                                 </p>
@@ -93,13 +93,14 @@ const styles = {
     image: {
         borderRadius: '10px 10px 0 0',
         width: '100 %',
-        height: 250,
+        height: 355,
         backgroundImage: 'url(' + PLACEHOLDER + ')',
         backgroundSize: 'cover',
     },
-    title: {
+    intro: {
         flex: 1,
         color: mainColors.dark,
+        lineHeight: 1,
     },
     numberTxt: {
         fontSize: 22.5,
