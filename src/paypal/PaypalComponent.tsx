@@ -46,7 +46,7 @@ const PaypalComponent: React.FunctionComponent<IProps> = (props) => {
   return (
     <PayPalScriptProvider
     options={{
-      "client-id": "ARX5PmQchcq7C5ARza5dhdEI3IDkxN_K0OSp667F8HTLQIf9AKPKNbHGyymNbx5JBgeXsELnDKRV-MDm",
+      "client-id": "Ac-WLnlqTQB5NRhVK_KwJxjwqBVZ4K1M1UO2vlHD9oLtKz32JP7jDZ2ICqGxJWnQiOY0NqXcSo-86km0",
       currency: "EUR"
      }}
     >
