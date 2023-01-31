@@ -15,7 +15,7 @@ import LineShape from './lineShape'
 
 const WhyMovies = ({ isVisible, openModal, closeModal }: { isVisible: any, openModal: any, closeModal: Function }) => {
     return (
-        <MainLayout isVisible={isVisible} openModal={openModal} closeModal={closeModal}>
+        <MainLayout isVisible={isVisible} openModal={openModal} closeModal={closeModal} dark={true}>
             <div style={{ position: 'relative', paddingBottom: 150 }}>
 
                 <div className='top-div'>

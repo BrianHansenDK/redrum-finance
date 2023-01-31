@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button, Nav, Navbar, Notification, useToaster } from 'rsuite'
 import { Link, useNavigate } from 'react-router-dom';
 import NavMenu from 'rsuite/esm/Nav/NavMenu';
@@ -33,24 +33,11 @@ export const APPLINKS = [
     }
 ]
 
-const MainNavbar = ({ openModal, closeModal, isVisible }: { openModal: any, closeModal: Function, isVisible: any }) => {
-    const [isActive, setActive] = useState(false);
+const MainNavbar = ({ openModal, closeModal, isVisible, dark }: { openModal: any, closeModal: Function, isVisible: any, dark: boolean }) => {
 
-
-
-    window.addEventListener('load', () => {
-        location.pathname !== '/' ? setActive(true) : setActive(false)
-    })
-    window.addEventListener('scroll', () => {
-        if (window.scrollY < 50 && location.pathname == '/') {
-            setActive(false)
-        } else {
-            setActive(true)
-        }
-    })
     return (
         <>
-            <Navbar id='navbar' appearance='subtle' className={`${isActive ? 'dark-bg shadow' : 'no-bg'} trans`} style={{ paddingRight: 25 }}>
+            <Navbar id='navbar' appearance='subtle' className={`${dark ? 'dark-bg shadow' : 'no-bg'} trans`} style={{ paddingRight: 25 }}>
                 <Navbar.Brand id='brand' className='bold d-flex align-center' as={Link} to='/' style={{ height: 75, fontSize: 20 }}>
                     Redrum Pro
                 </Navbar.Brand>

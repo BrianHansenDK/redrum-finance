@@ -11,10 +11,19 @@ import Hero from './components/hero'
 
 const Root = ({ isVisible, openModal, closeModal }: { isVisible: any, openModal: any, closeModal: Function }) => {
     const auth = getAuth()
+    const [active, setActive] = useState(false)
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY < 50) {
+          setActive(false)
+      } else {
+          setActive(true)
+      }
+  })
 
     return (
         <>
-            <MainLayout isVisible={isVisible} openModal={openModal} closeModal={closeModal} >
+            <MainLayout isVisible={isVisible} openModal={openModal} closeModal={closeModal} dark={active} >
                 <Hero />
                 <CtaUp />
                 <Features />

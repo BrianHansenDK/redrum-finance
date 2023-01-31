@@ -11,7 +11,7 @@ import './styles/about.scss'
 
 const AboutUsPage = ({ isVisible, openModal, closeModal }: { isVisible: any, openModal: any, closeModal: Function }) => {
     return (
-        <MainLayout isVisible={isVisible} openModal={openModal} closeModal={closeModal}>
+        <MainLayout isVisible={isVisible} openModal={openModal} closeModal={closeModal} dark={true}>
             <BlockL
                 img={IMG1}
                 title='About Redrum'

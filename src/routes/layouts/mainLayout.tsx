@@ -3,11 +3,11 @@ import { Container, Content, Footer, Header } from 'rsuite'
 import MainFooter from '../../components/footer'
 import MainNavbar from '../../components/navbar'
 
-const MainLayout = ({ children, openModal, closeModal, isVisible }: { children: any, openModal: any, closeModal: Function, isVisible: any }) => {
+const MainLayout = ({ children, openModal, closeModal, isVisible, dark }: { children: any, openModal: any, closeModal: Function, isVisible: any, dark: boolean }) => {
     return (
         <Container>
             <Header>
-                <MainNavbar openModal={openModal} closeModal={closeModal} isVisible={isVisible} />
+                <MainNavbar openModal={openModal} closeModal={closeModal} isVisible={isVisible} dark={dark} />
             </Header>
             <Content>
                 {children}
