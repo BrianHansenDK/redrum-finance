@@ -1,5 +1,5 @@
 import { getAuth } from 'firebase/auth'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import MainLayout from '../layouts/mainLayout'
 import AppTeaser from './components/appTeaser'
 import CtaDown from './components/ctaDown'
@@ -10,7 +10,7 @@ import Hero from './components/hero'
 
 
 const Root = ({ isVisible, openModal, closeModal }: { isVisible: any, openModal: any, closeModal: Function }) => {
-    const auth = getAuth()
+  const auth = getAuth()
     const [active, setActive] = useState(false)
 
     window.addEventListener('scroll', () => {
