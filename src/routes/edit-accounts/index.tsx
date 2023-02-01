@@ -20,7 +20,7 @@ const AccountAdmin: React.FunctionComponent<IProps> = (props) => {
         getUsers(data, keyData, setUsers, setUserIds)
     })
     return (
-        <MainLayout openModal={undefined} closeModal={() => null} isVisible={false}>
+        <MainLayout dark={true} openModal={() => null} closeModal={() => null} isVisible={false}>
             <div style={styles.pageWrap}>
 
                 <h1 style={styles.title} className='txt-center'>

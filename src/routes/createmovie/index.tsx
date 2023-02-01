@@ -69,7 +69,7 @@ const CreateMoviePage = () => {
 
 
     return (
-        <MainLayout openModal={null} closeModal={() => null} isVisible={false}>
+        <MainLayout dark={true} openModal={null} closeModal={() => null} isVisible={false}>
             <div style={styles.contentWrap} className='flex-column'>
                 <h1 style={styles.pageTitle} className='txt-center'>Create Movie</h1>
 
