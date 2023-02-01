@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Nav, Sidenav } from 'rsuite'
 import DashboardIcon from '@rsuite/icons/legacy/Dashboard';
 import InvestmentsIcon from '@rsuite/icons/legacy/ChartsLine'
@@ -23,7 +23,18 @@ const styles = {
 
 const SideBar = () => {
   const [isVisible, setVisible] = useState(false)
-  const [currentKey, setCurrentKey] = useState(1)
+  const [currentKey, setCurrentKey] = useState('1')
+  useEffect(() => {
+    if (location.pathname == '/app') {
+      setCurrentKey('1')
+    }
+    else if (location.pathname == '/app/investments') {
+      setCurrentKey('2')
+    }
+    else if (location.pathname == '/app/databank') {
+      setCurrentKey('4')
+    }
+  })
   const closeModal = () => {
     setVisible(false)
   }
@@ -34,7 +45,7 @@ const SideBar = () => {
     <>
       <Sidenav defaultOpenKeys={['3', '4']} style={styles.sideNav} className='sidebar' >
         <Sidenav.Body>
-          <Nav activeKey={location.pathname == '/app/investments' ? '2' : location.pathname == '/app/portfolio' ? '4' : '1'}>
+          <Nav activeKey={currentKey}>
             <h3 className='d-flex justify-center'>Investments</h3>
             <Nav.Item eventKey="1" as={Link} to='/app' icon={<DashboardIcon />}>
               Dashboard
@@ -45,11 +56,8 @@ const SideBar = () => {
             <Nav.Item onClick={openModal} eventKey='3' icon={<SecondaryMarketIcon />}>
               Secondary market
             </Nav.Item>
-            {/*} <Nav.Item as={Link} to='/app/portfolio' eventKey='4' icon={<PortfolioIcon />}>
-              My Portfolio
-  </Nav.Item> {*/}
             <h3 className='d-flex justify-center'>Community</h3>
-            <Nav.Item eventKey="5" icon={<DashboardIcon />}>
+            <Nav.Item eventKey="4" icon={<DashboardIcon />} as={Link} to='/app/databank'>
               Investor databank
             </Nav.Item>
             <Nav.Item eventKey="6" icon={<GroupIcon />}>

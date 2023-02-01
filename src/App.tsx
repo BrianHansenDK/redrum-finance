@@ -24,6 +24,7 @@ import AccountAdmin from './routes/edit-accounts/index.js';
 import UserCard from './routes/edit-accounts/components/UserCard.js';
 import ScrollToTop from './components/ScollToTop.js';
 import PageNotFound from './routes/not-found/index.js';
+import DatabankPage from './routes/inside-app/pages/databank/index.js';
 
 
 const App = () => {
@@ -46,6 +47,7 @@ const App = () => {
 
       <Route path='/app' element={<AuthRoute link='/'><AppRoot /></AuthRoute>} />
       <Route path='/app/investments' element={<InvestmentPage />} />
+      <Route path='/app/databank' element={<DatabankPage />} />
       {/* <Route path='/app/portfolio' element={<PortfolioPage />} /> */}
       <Route path='/app/bundle/:bundleId' element={<ProjectDetailsPageWrapper />} >
         <Route index element={<ProjectDetailsOverviewWrapper />} />
