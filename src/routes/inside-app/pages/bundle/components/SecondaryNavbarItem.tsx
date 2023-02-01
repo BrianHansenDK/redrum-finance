@@ -10,6 +10,7 @@ const SecondaryNavbarItem = ({ isActive, icon, txt, to }: { isActive: boolean, i
             to={to}
             className='text-uppercase'
             style={styles.txt}
+            preventScrollReset={true}
         >
             {icon} {txt}
         </NavItem>

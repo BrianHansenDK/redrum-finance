@@ -44,7 +44,7 @@ const MainNavbar = ({ openModal, closeModal, isVisible, dark }: { openModal: any
                 <Nav className='d-flex align-center ' style={{ height: 75, flex: 0, columnGap: 15, fontSize: 12.75, fontWeight: 400 }}>
                     {
                         MAINLINKS.map(l => (
-                            <Link to={l.to} className='nav-ul' key={l.t}>
+                            <Link to={l.to} className='nav-ul' key={l.t} preventScrollReset={false}>
                                 {l.t}
                             </Link>
                         ))
@@ -53,7 +53,7 @@ const MainNavbar = ({ openModal, closeModal, isVisible, dark }: { openModal: any
                 <Nav pullRight className='d-flex align-center' style={{ height: 75, columnGap: 15, fontSize: 12.75, fontWeight: 400 }}>
                     {
                         APPLINKS.map(l => (
-                            <Link to={`${l.to ? l.to : '/'}`} className='nav-ul' key={l.t}>
+                            <Link to={`${l.to ? l.to : '/'}`} className='nav-ul' key={l.t} preventScrollReset={false}>
                                 {l.t}
                             </Link>
                         ))

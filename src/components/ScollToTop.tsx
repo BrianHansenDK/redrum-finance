@@ -5,7 +5,12 @@ import { useLocation } from "react-router";
 const ScrollToTop = ({children}: {children: any}) => {
   const location = useLocation();
   useEffect(() => {
-    window.scrollTo(0, 0);
+    if (location.pathname.includes('extras')) {
+      window.scrollTo(0, 675);
+    }
+    else {
+      window.scrollTo(0, 0);
+    }
   }, [location]);
 
   return <>{children}</>
