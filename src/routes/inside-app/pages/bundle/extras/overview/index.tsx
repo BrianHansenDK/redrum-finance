@@ -54,7 +54,7 @@ class BundleOverview extends React.Component<IProps, IState> {
                     <div style={styles.wrapper} className='flex-column' key={project.id}>
                         <PresentationCard project={project} />
                         <FilesSection date={today} />
-                        <CoInvestorsSection />
+                        <CoInvestorsSection projectId={project.id.toString()} />
                         <NewInvestorsSection project={project} />
                         <Warning key={3} />
                     </div>

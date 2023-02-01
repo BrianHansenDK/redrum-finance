@@ -1,43 +1,53 @@
 import { onValue, ref } from 'firebase/database';
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Divider } from 'rsuite';
-import { database } from '../../../../../../../firebase';
+import { database, getAllUserObjectsInfo, userRef } from '../../../../../../../firebase';
 import { mainColors } from '../../../../../themes/colors';
 import CoInvestorCard from './CoInvestorCard';
-interface IProps { }
+interface IProps {
+  projectId: string
+ }
 
 interface IState {
-    userData: any[]
+    userData: any,
+    projectInvestments: any[],
 }
 
-class CoInvestorsSection extends React.Component<IProps, IState> {
-    constructor(props: IProps) {
-        super(props);
-        this.state = {
-            userData: []
-        };
-    }
-    componentDidMount(): void {
-        const reference = ref(database, 'users/')
-        onValue(reference, (snap) => {
-            let data: any[] = []
-            snap.forEach((user) => {
-                data.push(user.val())
-            })
-            this.setState((_previousState) => ({
-                userData: data
-            }))
+const CoInvestorsSection: React.FunctionComponent<IProps> = (props) => {
+  const {projectId} = props
+  const [projectInvestments, setProjectInvestments] = useState<any>([])
+    useEffect(() =>  {
+      const investRef = ref(database, 'investments/')
+      onValue(investRef, (snap) => {
+        let data: any[] = []
+        snap.forEach((inv) => {
+          if (inv.val().project == projectId) {
+            data.push(inv.val())
+          }
         })
-    }
-    render() {
+        setProjectInvestments(data)
+      })
+    }, [])
         return (
             <div style={styles.wrap}>
-                <h2 style={styles.title}>Co-investors</h2>
+                <h2 style={styles.title}>Last investment</h2>
                 <Divider style={styles.divider} />
-                <CoInvestorCard user={this.state.userData[0]} users={this.state.userData} />
+                {
+                  projectInvestments.length > 0 ? (
+                    <CoInvestorCard
+                  amount={projectInvestments[projectInvestments.length - 1]?.amount}
+                  userId={projectInvestments[projectInvestments.length - 1]?.creator}
+                  investments={projectInvestments}
+                  />
+                  ) : (
+                    <h1>
+                      No investments yet.
+                    </h1>
+                  )
+                }
+
             </div>
         );
-    }
 }
 
 const styles = {

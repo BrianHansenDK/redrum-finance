@@ -1,17 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { mainColors } from '../../../../../themes/colors'
 
-const CoInvestorRightSide = ({ user, users }: { user: any, users: any[] }) => {
+const CoInvestorRightSide = ({ amount, userName, investments }: { amount: number, userName: any, investments: any[] }) => {
     return (
         <div>
             <h3 style={styles.name}>
-                {user?.username}
+                {userName}
             </h3>
             <p style={styles.others}>
-                {users?.length} other investors
+                {investments?.length} other investments
             </p>
             <p style={styles.amount}>
-                420 €
+                {amount} €
             </p>
         </div>
     )

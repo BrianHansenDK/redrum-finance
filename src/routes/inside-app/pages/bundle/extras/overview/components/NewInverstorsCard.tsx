@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { auth } from '../../../../../../../firebase';
 import { mainColors } from '../../../../../themes/colors';
 import mainShadows from '../../../../../themes/shadows';
 
@@ -25,14 +26,12 @@ class NewInverstorsCard extends Component<IProps, {}> {
                 }
                 <div style={styles.txtWrap}>
                     <h1 style={styles.userName}>
-                        {this.props.user?.username}
+                        {this.props.user?.email == auth.currentUser?.email ? 'You' : this.props.user?.username}
                     </h1>
                     <p>
                         <span style={styles.role}>
-                            {this.props.user?.role ? this.props.user?.role : 'Redrum Pro investor'}
+                            {this.props.user?.money_available !== undefined ? 'Redrum Pro investor' : 'Redrum Pro member'}
                         </span>
-                        {this.props.user?.company ? this.props.user?.company : 'Company not set'} <br />
-
                         {this.props.user?.city ? (
                             `${this.props.user?.city}, ${this.props.user?.country}`
                         ) : 'Location unknown'}
