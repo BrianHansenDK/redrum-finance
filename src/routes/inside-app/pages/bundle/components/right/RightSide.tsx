@@ -4,6 +4,7 @@ import { auth, userRef } from '../../../../../../firebase'
 import MainBtn from '../../../../components/MainBtn'
 import ConfirmAgeModal from '../ConfirmAgeModal'
 import InvestModal from '../InvestModal'
+import RecieptModal from '../RecieptModal'
 import TransferMoneyModal from '../TransferMoneyModal'
 import InfoLines from './InfoLines'
 import InfoTag from './InfoTag'
@@ -14,6 +15,7 @@ const RightSide = ({ project }: { project: any }) => {
     const [isInvestVisible, setInvestVisible] = useState(false)
     const [isTransferVisible, setTransferVisible] = useState(false)
     const [available, setAvailable] = useState<any>(0)
+    const [reciept, setReciept] = useState(false)
     const userId = auth.currentUser?.uid
     useEffect(() => {
         userRef(userId, '/money_available', setAvailable)
@@ -32,9 +34,16 @@ const RightSide = ({ project }: { project: any }) => {
             setInvestVisible(true)
         }
     }
+
     const closeInvestModal = () => {
         setInvestVisible(false)
         setTransferVisible(false)
+    }
+    const showReciept = () => {
+      setReciept(true)
+    }
+    const hideReciept = () => {
+      setReciept(false)
     }
     return (
         <>
@@ -56,8 +65,9 @@ const RightSide = ({ project }: { project: any }) => {
                 />
             </Col>
             <ConfirmAgeModal visible={isVisible} close={closeModal} openInvestModal={openInvestModal} />
-            <InvestModal project={project} close={closeInvestModal} visible={isInvestVisible} />
+            <InvestModal project={project} close={closeInvestModal} visible={isInvestVisible} showReciept={showReciept} />
             <TransferMoneyModal close={closeInvestModal} visible={isTransferVisible} />
+            <RecieptModal close={hideReciept} isVisible={reciept} />
         </>
     )
 }

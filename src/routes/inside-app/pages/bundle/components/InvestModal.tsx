@@ -9,10 +9,11 @@ interface IProps {
     project: any,
     close: any,
     visible: boolean,
+    showReciept: any,
 }
 
 const InvestModal: React.FunctionComponent<IProps> = (props) => {
-    const { project, close, visible } = props
+    const { project, close, visible, showReciept } = props
     const [investAmount, setInvestAmount] = useState<any>(0)
     const [available, setAvailable] = useState(0)
     const investmentId = Date.now()
@@ -98,6 +99,7 @@ const InvestModal: React.FunctionComponent<IProps> = (props) => {
             )
             window.setTimeout(() => { toaster.clear() }, 5000)
             close()
+            showReciept()
         }
     }
     return (
