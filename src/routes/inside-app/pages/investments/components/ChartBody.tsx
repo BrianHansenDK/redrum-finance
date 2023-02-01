@@ -1,9 +1,10 @@
 import { onValue, ref } from 'firebase/database';
 import React, { Component, useEffect, useState } from 'react'
-import { Table } from 'rsuite';
+import { Divider, Table } from 'rsuite';
 import EMPTY from '../../../../../assets/empty_img.png'
 import { database } from '../../../../../firebase';
 import { mainColors } from '../../../themes/colors';
+import InvestmentsTable from './InvestmentsTable';
 interface IProps {
     userInvestments: any[]
 }
@@ -14,8 +15,8 @@ const ChartBody: React.FunctionComponent<IProps> = (props) => {
   const [projects, setProjects] = useState<any[]>([])
   const [movies, setMovies] = useState<any>([])
   useEffect(() => {
-    let data: any[] = []
-    let movieData: any[] = []
+  let data: any[] = []
+  let movieData: any[] = []
     userInvestments.forEach((inv) => {
       const reference = ref(database, 'projects/' + inv.project)
       onValue(reference, (snap) => {
@@ -25,29 +26,12 @@ const ChartBody: React.FunctionComponent<IProps> = (props) => {
     })
     setProjects(data)
     setMovies(movieData)
-  })
+  }, [])
   return (
     <>
       {
         userInvestments.length > 0 ? (
-            <Table data={userInvestments}>
-                <Column width={200}>
-                  <HeaderCell>Project</HeaderCell>
-                  <Cell> {projects[0].name} </Cell>
-                </Column>
-                <Column width={150}>
-                  <HeaderCell>Amount in €</HeaderCell>
-                  <Cell dataKey='amount' />
-                </Column>
-                <Column width={150}>
-                  <HeaderCell>Guaranteed return</HeaderCell>
-                  <Cell dataKey="gain" />
-                </Column>
-                <Column width={150}>
-                  <HeaderCell>Movies</HeaderCell>
-                  <Cell>{movies.length}</Cell>
-                </Column>
-            </Table>
+          <InvestmentsTable investments={userInvestments}/>
         ) : (
             <div style={styles.wrap}>
                 <div style={styles.txtWrap}>

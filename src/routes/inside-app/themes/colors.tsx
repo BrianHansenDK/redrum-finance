@@ -8,4 +8,5 @@ export const mainColors = {
     warning: '#fca311',
     active: '#34c3ff',
     success: '#4caf50',
+    red: '#c30010',
 }
