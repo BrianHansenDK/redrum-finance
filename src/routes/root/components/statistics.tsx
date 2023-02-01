@@ -3,15 +3,15 @@ import { FlexboxGrid } from 'rsuite'
 import IMG1 from '../../../components/images/stats_1.svg'
 import IMG2 from '../../../components/images/stats_2.svg'
 import IMG3 from '../../../components/images/stats_3.svg'
-import { getAllUserObjects } from '../../../firebase'
+import { getAllUserObjectsInfo } from '../../../firebase'
 import Stat from './stat'
 
 
 const Statistics = () => {
   const [users, setUsers] = React.useState<any>([])
   useEffect(() => {
-    getAllUserObjects(setUsers)
-  })
+    getAllUserObjectsInfo(setUsers)
+  }, [])
     return (
         <div id='stats'>
             <div id='stats-inner'>
