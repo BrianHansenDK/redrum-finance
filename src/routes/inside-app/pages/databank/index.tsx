@@ -21,7 +21,6 @@ const DatabankPage = () => {
   }, [auth])
   return (
     <LayoutWithSidebar>
-      <h1 style={styles.pageTitle} className='text-center'>Your Databank</h1>
       <RecieptsList investments={investments}/>
     </LayoutWithSidebar>
   )

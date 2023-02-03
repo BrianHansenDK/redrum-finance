@@ -21,7 +21,7 @@ const InvestmentTableRow = ({investment, projectId}: {investment: any, projectId
           {width: 200, color: investment.gain > investment.amount ? mainColors.success : mainColors.red}
         }
         >
-          {numberWithCommas(investment.gain)}€
+          {numberWithCommas(investment.gain.toFixed(2).toString().replace(".", ",")).toString()}€
         </div>
         <div style={styles.titleElement}>{investment.movies.length}</div>
       </div>
