@@ -9,7 +9,8 @@ const InvestmentsTableHeader = () => {
         <div style={styles.titleElement}>Project</div>
         <div style={styles.titleElement}>Amount invested</div>
         <div style={styles.titleElement}>Guaranteed return</div>
-        <div style={styles.titleElement}>Movies</div>
+        <div style={{width: 100}}>Movies</div>
+        <div style={styles.titleElement}>Created</div>
       </div>
       <Divider style={styles.divider} />
     </>
@@ -24,12 +25,13 @@ const styles = {
     color: mainColors.dark,
     opacity: .7,
     paddingTop: 25,
+    paddingLeft: 10,
   },
   titleElement: {
-    width: 200,
+    width: 150,
   },
   divider: {
-    margin: '7.5px 50px 15px 0'
+    margin: '7.5px 50px 0 0'
   }
 }
 
