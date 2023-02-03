@@ -4,7 +4,7 @@ import { auth, database } from '../../../../firebase';
 import AppNavBar from '../../components/AppNavBar';
 import { mainColors } from '../../themes/colors';
 import MoneySection from './components/cash/MoneySection';
-import ProfileIntroduction from './components/ProfileIntroduction';
+import ProfileIntroduction from './components/identification/ProfileIntroduction';
 import './components/styles/index.scss'
 
 interface IProps {

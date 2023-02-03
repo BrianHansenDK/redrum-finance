@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { auth, userRef } from '../../../../../firebase'
-import { mainColors } from '../../../themes/colors'
+import { auth, userRef } from '../../../../../../firebase'
+import { mainColors } from '../../../../themes/colors'
 import ProfileProgress from './ProfileProgress'
 
 interface IProps {

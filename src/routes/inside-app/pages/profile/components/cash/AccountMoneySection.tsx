@@ -69,7 +69,7 @@ class AccountMoneySection extends Component<IProps, IState> {
                     </p>
                 </div>
                 <h1 style={profileCardUnderTitle} className='text-center mb-3'>
-                    Projects invested in
+                    Projects you have invested in
                 </h1>
                 <div style={styles.projectsWrap}>
                     {_projects.map((project) => (

@@ -14,6 +14,6 @@ export const minorMovieCard = {
     paddingBottom: 15,
     borderRadius: 10,
     boxShadow: mainShadows.card,
-    backgroundColor: mainColors.white,
+    backgroundColor: '#fefefe',
     width: 300,
 }

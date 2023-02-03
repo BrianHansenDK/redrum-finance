@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import PinIcon from '@rsuite/icons/Location'
 import CalendarIcon from '@rsuite/icons/legacy/Calendar'
-import { userRef } from '../../../../../firebase'
-import { mainColors } from '../../../themes/colors'
-import MainBtn from '../../../components/MainBtn'
+import { userRef } from '../../../../../../firebase'
+import { mainColors } from '../../../../themes/colors'
+import MainBtn from '../../../../components/MainBtn'
 import EditProfileModal from './EditProfileModal'
 interface IProps {
     userId: any

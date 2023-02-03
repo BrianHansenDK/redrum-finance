@@ -8,8 +8,8 @@ import ModalBody from 'rsuite/esm/Modal/ModalBody'
 import ModalFooter from 'rsuite/esm/Modal/ModalFooter'
 import ModalHeader from 'rsuite/esm/Modal/ModalHeader'
 import ModalTitle from 'rsuite/esm/Modal/ModalTitle'
-import { database, userRef } from '../../../../../firebase'
-import { mainColors } from '../../../themes/colors'
+import { database, userRef } from '../../../../../../firebase'
+import { mainColors } from '../../../../themes/colors'
 interface IProps {
     userId: any,
     close: any,

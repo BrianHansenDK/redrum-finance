@@ -1,11 +1,11 @@
 import { onValue, ref } from 'firebase/database'
 import React, { Component, useEffect, useState } from 'react'
 import { Avatar } from 'rsuite'
-import { auth, database, userRef } from '../../../../../firebase'
-import MainBtn from '../../../components/MainBtn'
-import { mainColors } from '../../../themes/colors'
-import { avatarPlaceholder, profileImage } from '../../../themes/imageStyles'
-import mainShadows from '../../../themes/shadows'
+import { auth, database, userRef } from '../../../../../../firebase'
+import MainBtn from '../../../../components/MainBtn'
+import { mainColors } from '../../../../themes/colors'
+import { avatarPlaceholder, profileImage } from '../../../../themes/imageStyles'
+import mainShadows from '../../../../themes/shadows'
 import EditImageModal from './EditImageModal'
 
 interface IProps {

@@ -1,11 +1,11 @@
 import { onValue, ref } from 'firebase/database';
 import React, { Component } from 'react'
 import { Avatar } from 'rsuite';
-import { auth, database } from '../../../../../firebase';
-import MainBtn from '../../../components/MainBtn';
-import { mainCard } from '../../../themes/cardStyles';
-import { mainColors } from '../../../themes/colors';
-import mainShadows from '../../../themes/shadows';
+import { auth, database } from '../../../../../../firebase';
+import MainBtn from '../../../../components/MainBtn';
+import { mainCard } from '../../../../themes/cardStyles';
+import { mainColors } from '../../../../themes/colors';
+import mainShadows from '../../../../themes/shadows';
 import ProfileData from './ProfileData';
 import ProfileImage from './ProfileImage';
 import ProfileInformation from './ProfileInformation';

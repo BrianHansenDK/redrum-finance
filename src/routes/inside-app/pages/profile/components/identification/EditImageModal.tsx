@@ -2,9 +2,9 @@ import { ref, set, update } from 'firebase/database'
 import { getDownloadURL, uploadBytes } from 'firebase/storage'
 import React, { useEffect, useState } from 'react'
 import { Button, ButtonGroup, Message, Modal, useToaster } from 'rsuite'
-import PLACEHOLDER from '../../../../../assets/profileimage_placeholder.svg'
-import { auth, database, userRef } from '../../../../../firebase'
-import { storage, storageRef } from '../../../../../firebaseStorage'
+import PLACEHOLDER from '../../../../../../assets/profileimage_placeholder.svg'
+import { auth, database, userRef } from '../../../../../../firebase'
+import { storage, storageRef } from '../../../../../../firebaseStorage'
 
 interface IProps {
     userId: any, close: any, isVisible: boolean

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Badge, Popover, Progress, Whisper } from 'rsuite'
-import { mainColors } from '../../../themes/colors'
+import { mainColors } from '../../../../themes/colors'
 import InfoIcon from '@rsuite/icons/InfoRound'
 import { Link } from 'react-router-dom'
 

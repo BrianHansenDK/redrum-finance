@@ -2,7 +2,9 @@ import { onValue, ref } from 'firebase/database'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { database } from '../../../../../../firebase'
+import { numberWithCommas } from '../../../../../../misc/custom-hooks'
 import { minorMovieCard } from '../../../../themes/cardStyles'
+import { mainColors } from '../../../../themes/colors'
 import { profileCardUnderTitle } from '../../../../themes/textStyles'
 interface IProps {
     projectId: any,
@@ -37,8 +39,8 @@ const ProjectDetail: React.FunctionComponent<IProps> = (props) => {
             <h2 style={profileCardUnderTitle} className='text-center mt-1'>
                 {projectName}
             </h2>
-            <p>
-                Invested: {invested}
+            <p style={styles.investedAmount} className='text-center'>
+                Invested: {numberWithCommas(invested)}€ <span style={styles.additionalInfo}>in project</span>
             </p>
         </Link>
     )
@@ -50,6 +52,16 @@ const styles = {
         width: 300,
         height: 100,
     },
+    investedAmount: {
+      fontSize: 18.5,
+      color: mainColors.dark,
+      marginTop: 15,
+    },
+    additionalInfo: {
+      fontSize: 16.25,
+      color: mainColors.dark,
+      opacity: .6,
+    }
 }
 
 export default ProjectDetail
