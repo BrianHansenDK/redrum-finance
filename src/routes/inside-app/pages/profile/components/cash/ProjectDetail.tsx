@@ -15,6 +15,7 @@ const ProjectDetail: React.FunctionComponent<IProps> = (props) => {
     const [projectName, setProjectName] = useState('')
     const [projectImage, setProjectImage] = useState('')
     const [invested, setInvested] = useState(0)
+    const [gainSum, setGainSum] = useState<any>(0)
     useEffect(() => {
         const reference = ref(database, 'projects/' + projectId)
         onValue(reference, (snap) => {
@@ -24,33 +25,50 @@ const ProjectDetail: React.FunctionComponent<IProps> = (props) => {
 
         const investRef = ref(database, 'investments/')
         let data = 0
+        let gainData = 0
         onValue(investRef, (snap) => {
             snap.forEach((inv) => {
                 if (inv.val().project == projectId && inv.val().creator == userId) {
                     data += inv.val().amount
+                    gainData += inv.val().gain
                 }
             })
             setInvested(data)
+            setGainSum(gainData - data)
         }, { onlyOnce: true })
     })
     return (
+      <div style={styles.wrap}>
         <Link to={`/app/bundle/${projectId}`} style={minorMovieCard} className='grow-on-hover'>
             <img src={projectImage} alt={projectName} style={styles.image} />
             <h2 style={profileCardUnderTitle} className='text-center mt-1'>
                 {projectName}
             </h2>
-            <p style={styles.investedAmount} className='text-center'>
-                Invested: {numberWithCommas(invested)}€ <span style={styles.additionalInfo}>in project</span>
-            </p>
         </Link>
+        <div style={styles.infoWrap}>
+          <p style={styles.investedAmount}>
+            You have invested: {numberWithCommas(invested)}€ <span style={styles.additionalInfo}>in project</span>
+          </p>
+          <p style={styles.investedAmount}>
+            You are guaranteed to gain: {numberWithCommas(gainSum.toFixed(2).toString().replace('.',',')).toString()}€
+          </p>
+        </div>
+      </div>
     )
 }
 
 const styles = {
+  wrap: {
+    display: 'flex',
+    marginBottom: 50,
+  },
     image: {
         borderRadius: '10px 10px 0 0',
         width: 300,
         height: 100,
+    },
+    infoWrap: {
+      marginLeft: 50,
     },
     investedAmount: {
       fontSize: 18.5,

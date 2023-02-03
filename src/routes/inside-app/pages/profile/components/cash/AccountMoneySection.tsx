@@ -60,31 +60,16 @@ class AccountMoneySection extends Component<IProps, IState> {
 
         return (
             <div>
-                <div>
-                    Investments: {_investments.length}
-                </div>
-                <div>
-                    <p>
-                        <span>Invested:</span> <span>{this.state.amount.toString()}</span> €
-                    </p>
-                </div>
                 <h1 style={profileCardUnderTitle} className='text-center mb-3'>
                     Projects you have invested in
                 </h1>
-                <div style={styles.projectsWrap}>
+                <div>
                     {_projects.map((project) => (
                         <ProjectDetail projectId={project} userId={userId} />
                     ))}
                 </div>
             </div>
         )
-    }
-}
-
-const styles = {
-    projectsWrap: {
-        display: 'flex',
-        justifyContent: 'space-evenly',
     }
 }
 
