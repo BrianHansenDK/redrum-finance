@@ -9,7 +9,9 @@ const InvestmentPage = () => {
 
     return (
         <LayoutWithSidebar>
-            <Searchbar />
+            {
+            // When we have more projects <Searchbar />
+            }
             <RadialChart />
             <ProjectShowcase />
 

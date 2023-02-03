@@ -19,7 +19,6 @@ const styles = {
   title: {
     fontSize: 38.5,
     color: mainColors.dark,
-    marginTop: 50,
   }
 }
 
