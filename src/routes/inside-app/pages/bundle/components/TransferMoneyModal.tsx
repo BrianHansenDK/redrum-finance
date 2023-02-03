@@ -4,6 +4,7 @@ import { auth, database, userRef } from '../../../../../firebase'
 import { bottomBtns, btnsCon } from '../../../themes/modalStyles'
 import { mainP, profileCardTitle, profileCardUnderTitle } from '../../../themes/textStyles'
 import OOM from '../../../../../assets/out_of_money.svg'
+import INV from '../../../../../assets/investment-growth-svgrepo-com.svg'
 import PaypalComponent from '../../../../../paypal/PaypalComponent'
 import { ref, update } from 'firebase/database'
 
@@ -38,16 +39,24 @@ const TransferMoneyModal: React.FunctionComponent<IProps> = (props) => {
         <Modal onClose={close} open={visible}>
             <Modal.Header>
                 <Modal.Title style={profileCardTitle} className='text-center bold'>
-                        {available == null ? 'No money transfered' : 'Out of money'}
+                        {location.pathname.includes('profile') ? 'Add to your balance' : available == null ? 'No money transfered' : 'Out of money'}
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body className='d-flex flex-column align-center'>
-                <img src={OOM} alt="Businessman with empty pockets." width={200} height={200} className='mb-2' />
+                <img src={location.pathname.includes('profile') ? INV : OOM} alt="Businessman with empty pockets." width={200} height={200} className='mb-2' />
+                {
+                  location.pathname.includes('profile') ? (
+                    <p style={mainP} className='text-center mb-2'>
+                    To transfer money to your account, you simply need to transfer the wished amount via Paypal or Credit Card. <br /> <br />
+                    </p>
+                  ) : (
+                    <p style={mainP} className='text-center mb-2'>
+                      {available !== null ? 'Your account has run out of money. ' : 'You have not yet transfered money to your account. '}
+                      To transfer money to your account, you simply need to transfer the wished amount via Paypal or Credit Card. <br /> <br />
+                    </p>
+                  )
+                }
 
-                <p style={mainP} className='text-center mb-2'>
-                    {available !== null ? 'Your account has run out of money. ' : 'You have not yet transfered money to your account. '}
-                    To transfer money to your account, you simply need to transfer the wished amount to our Paypal account. <br /> <br />
-                </p>
                 <InputNumber style={styles.input} placeholder='Select wished amount' onChange={setPayAmount} />
                 <PaypalComponent
                 amountToPay={payAmount.toString()}

@@ -5,7 +5,6 @@ import DashboardIcon from '@rsuite/icons/legacy/Dashboard';
 import OPENMENU from '@rsuite/icons/legacy/CaretDown'
 import NavbarBrand from 'rsuite/esm/Navbar/NavbarBrand'
 import { getAuth } from 'firebase/auth';
-import HOME from '@rsuite/icons/legacy/Home'
 import UsersIcon from '@rsuite/icons/legacy/PeopleGroup'
 import MessageIcon from '@rsuite/icons/legacy/Wechat'
 import NotificationsIcon from '@rsuite/icons/legacy/Bell'
@@ -53,7 +52,7 @@ const AppNavBar = ({ fixed = true }: { fixed: boolean }) => {
             to: `/app/profile/${auth.currentUser?.uid}`
         },
         {
-            title: 'Investmentpreparations',
+            title: 'Add balance',
             icon: <INV />,
             index: 4,
             to: `/app/profile/${auth.currentUser?.uid}`

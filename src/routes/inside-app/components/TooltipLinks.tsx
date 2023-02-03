@@ -7,7 +7,6 @@ export interface ITooltipLinksProps { ACCOUNTNAV: Array<{}> }
 
 const TooltipLinks: React.FunctionComponent<ITooltipLinksProps> = (props) => {
     const { ACCOUNTNAV } = props
-
     return (
         <div className='d-flex mt-2 mr-5' style={{ justifyContent: 'space-between' }}>
             <Nav vertical>
