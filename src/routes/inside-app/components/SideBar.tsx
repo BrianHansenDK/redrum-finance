@@ -8,6 +8,7 @@ import GroupIcon from '@rsuite/icons/legacy/Group';
 import MagicIcon from '@rsuite/icons/legacy/Magic';
 import { Link } from 'react-router-dom';
 import UpcomingModal from './UpcomingModal';
+import mainShadows from '../themes/shadows';
 
 const styles = {
   sideNav: {
@@ -15,7 +16,8 @@ const styles = {
     height: 100 + 'vh',
     top: 0,
     left: 0,
-    paddingTop: 100
+    paddingTop: 100,
+    boxShadow: mainShadows.card,
   }
 
 

@@ -16,6 +16,8 @@ import INV from '@rsuite/icons/legacy/Share'
 import REDRUMCAT from '@rsuite/icons/legacy/Anchor'
 import TooltipForAccount from './TooltipForAccount';
 import { Link, useNavigate } from 'react-router-dom';
+import mainShadows from '../themes/shadows';
+import { mainColors } from '../themes/colors';
 
 
 
@@ -102,8 +104,8 @@ const styles = {
         right: 0,
         zIndex: 10,
         display: 'flex',
-        backgroundColor: '#fbfbfb',
-        borderBottom: '1px solid black',
+        boxShadow: mainShadows.navBar,
+        backgroundColor: mainColors.dark,
     },
     navBarInner: {
         display: 'flex',
@@ -113,6 +115,7 @@ const styles = {
     brand: {
         fontSize: 21.5,
         fontWeight: '700',
+        color: mainColors.white,
     },
     navLink: {
         flex: 1,
