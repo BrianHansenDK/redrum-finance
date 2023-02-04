@@ -2,6 +2,9 @@ import { onValue, ref } from 'firebase/database'
 import React, { useEffect, useState } from 'react'
 import { auth, database } from '../../../../../../firebase'
 import ProjectTitle from './ProjectTitle'
+import ShareRow from './ShareRow'
+import ShareTitles from './ShareTitles'
+import './table.scss'
 
 const SharesTable = () => {
   const [shares, setShares] = useState<any>(null)
@@ -36,14 +39,26 @@ const SharesTable = () => {
         setInvestments(invData)
         setProjectIds(projectData)
       }, {onlyOnce: true})
-    // Set investments
-    console.log(investments)
   }, [])
   return (
     <div>
       {
         projectIds.map((projectId: any) => (
+          <>
           <ProjectTitle projectId={projectId} key={projectId} />
+          <table>
+            <ShareTitles />
+          {
+            shares.map((share: any) => (
+              <>
+              {share.project == projectId ? (
+                <ShareRow share={share} />
+                ): null }
+                </>
+            ))
+          }
+          </table>
+          </>
         ))
       }
     </div>

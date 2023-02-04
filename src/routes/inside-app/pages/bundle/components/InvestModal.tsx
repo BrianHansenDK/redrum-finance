@@ -88,7 +88,8 @@ const InvestModal: React.FunctionComponent<IProps> = (props) => {
                     owner: auth.currentUser?.uid,
                     amount: parseInt(investAmount) / project.movies.length,
                     movie: movie,
-                    investment: investmentId
+                    investment: investmentId,
+                    project: project.id
                 })
             })
 
