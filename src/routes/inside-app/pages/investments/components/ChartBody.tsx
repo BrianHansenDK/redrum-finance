@@ -5,15 +5,13 @@ import EMPTY from '../../../../../assets/empty_img.png'
 import { database } from '../../../../../firebase';
 import { mainColors } from '../../../themes/colors';
 import InvestmentsTable from './InvestmentsTable';
+import SharesTable from './table/SharesTable';
 interface IProps {
     userInvestments: any[]
 }
 
 const ChartBody: React.FunctionComponent<IProps> = (props) => {
   const {userInvestments} = props
-  const { Column, HeaderCell, Cell } = Table;
-  const [projects, setProjects] = useState<any[]>([])
-  const [movies, setMovies] = useState<any>([])
   useEffect(() => {
   let data: any[] = []
   let movieData: any[] = []
@@ -24,14 +22,18 @@ const ChartBody: React.FunctionComponent<IProps> = (props) => {
         movieData.push(snap.val().movies)
       })
     })
-    setProjects(data)
-    setMovies(movieData)
   }, [])
   return (
     <>
       {
         userInvestments.length > 0 ? (
-          <InvestmentsTable investments={userInvestments}/>
+          <>
+          <SharesTable />
+          {/*
+
+            <InvestmentsTable investments={userInvestments}/>
+          */}
+          </>
         ) : (
             <div style={styles.wrap}>
                 <div style={styles.txtWrap}>
@@ -47,7 +49,7 @@ const ChartBody: React.FunctionComponent<IProps> = (props) => {
                         }
                      </p>
                 </div>
-                <img style={styles.image} src={EMPTY} alt="Empty box showcasing yyou have no investments" />
+                <img style={styles.image} src={EMPTY} alt="Empty box showcasing you have no investments" />
             </div>
         )
       }
