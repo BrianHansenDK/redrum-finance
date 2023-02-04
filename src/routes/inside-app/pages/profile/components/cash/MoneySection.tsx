@@ -22,7 +22,7 @@ const MoneySection: React.FunctionComponent<IProps> = (props) => {
               <MainBtn
               content={'View reciepts'}
               pressed={() => navigate('/app/databank')}
-              btnColor={'violet'}
+              btnColor={'blue'}
               btnAppearance={'primary'}
               btnSize={'lg'}
               isBlock

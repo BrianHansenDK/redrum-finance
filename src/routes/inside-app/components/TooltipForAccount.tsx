@@ -25,9 +25,9 @@ const TooltipForAccount: React.FunctionComponent<ITooltipForAccount> = (props) =
                 <TooltipIdentify auth={auth} />
                 <MainBtn
                     content='Logout'
-                    btnColor='red'
+                    btnColor='blue'
                     btnAppearance='primary'
-                    btnSize='md'
+                    btnSize='lg'
                     isBlock={false}
                     pressed={logout} />
             </div>

@@ -12,8 +12,7 @@ import ConfirmAgeModal from './ConfirmAgeModal'
 import { auth, database, userRef } from '../../../../../firebase'
 import InvestModal from './InvestModal'
 import TransferMoneyModal from './TransferMoneyModal'
-import { onValue, ref } from 'firebase/database'
-import MovieNav from './MovieNav'
+import '../styles/bundlepage.scss'
 
 const SecondaryNavbar = ({ project, isFixed }: { project: any, isFixed: boolean }) => {
     const NAVS = [
@@ -67,16 +66,10 @@ const SecondaryNavbar = ({ project, isFixed }: { project: any, isFixed: boolean 
     const [isInvestVisible, setInvestVisible] = useState(false)
     const [isTransferVisible, setTransferVisible] = useState(false)
     const [available, setAvailable] = useState<any>(0)
-    const [movieItems, setMovieItems] = useState<any>(null)
     const userId = auth.currentUser?.uid
     let data: any[] = []
     useEffect(() => {
         userRef(userId, '/money_available', setAvailable)
-        project.movies.forEach((movie: any) => {
-            onValue(ref(database, 'movies/' + movie), (snap) => {
-                data.push(snap.val())
-            }, { onlyOnce: true })
-        })
     })
     const openModal = () => {
         setVisible(true)

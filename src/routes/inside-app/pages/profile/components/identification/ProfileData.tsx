@@ -41,7 +41,7 @@ const ProfileData: React.FunctionComponent<IProps> = (props) => {
                 <MainBtn
                     content={'Edit profile'}
                     pressed={openModal}
-                    btnColor={'violet'}
+                    btnColor={'blue'}
                     btnAppearance={'primary'}
                     btnSize={'lg'}
                     isBlock={true} />

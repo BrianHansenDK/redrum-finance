@@ -120,6 +120,7 @@ const styles = {
         flex: 1,
         width: 125,
         marginRight: 15,
+        color: mainColors.white,
     }
 }
 
