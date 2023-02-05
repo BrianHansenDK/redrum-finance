@@ -1,5 +1,6 @@
 import { onValue, ref } from 'firebase/database'
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { Button, CheckPicker, Nav, Navbar, SelectPicker } from 'rsuite'
 import NavbarBrand from 'rsuite/esm/Navbar/NavbarBrand'
 import { database, getUsers } from '../../../../firebase'
@@ -10,6 +11,8 @@ const VanumoNavbar = () => {
   const [users, setUsers] = useState<any[]>([])
   const [userIds, setUserIds] = useState<any[]>([])
   const [userId, setUserId] = useState<any>(null)
+
+  const navigate = useNavigate()
 
   let keyData: any[] = []
   let data: any[] = []
@@ -30,6 +33,11 @@ const VanumoNavbar = () => {
       <NavbarBrand style={styles.brandWrap}>
         <img style={styles.logo} src={LOGO} alt="Vanumo logo" /> <p style={styles.brandTxt}> Vanumo</p>
       </NavbarBrand>
+      <Nav style={styles.searchWrap}>
+      <Button appearance='subtle' color='blue' style={styles.subtleBtn} onClick={() => navigate('/')}>
+          Back to RedrumPro
+        </Button>
+      </Nav>
       <Nav pullRight style={styles.searchWrap}>
       <SelectPicker
       onChange={setUserId}
@@ -77,6 +85,9 @@ const styles = {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  subtleBtn: {
+    color: vanumoColors.white,
   },
   searchbar: {
     alignSelf: 'center',
