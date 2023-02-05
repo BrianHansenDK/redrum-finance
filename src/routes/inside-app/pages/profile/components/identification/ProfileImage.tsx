@@ -38,21 +38,28 @@ const ProfileImage: React.FunctionComponent<IProps> = (props) => {
                 ) : (
                     <div style={styles.avatar} className='mb-1'>
                         {
-                            username.split(' ').length > 1 ?
-                                username.split(' ').map((w: any) => w[0]).join('.') :
-                                `${username[0]}.${username[1]}`
+                          username.split(' ').length > 1 ?
+                          username.split(' ').map((w: any) => w[0]).join('.') :
+                          `${username[0]}.${username[1]}`
                         }
                     </div>
                 )
-            }
-            <MainBtn
+              }
+            {
+              userId == auth.currentUser?.uid ? (
+                <>
+                <MainBtn
                 content={`${userImage !== '' && userImage ? 'Edit profile image' : 'Add profile image'}`}
                 pressed={openModal}
                 btnColor={'blue'}
                 btnAppearance={'primary'}
                 btnSize={'lg'}
                 isBlock={false} />
-            <EditImageModal isVisible={visible} close={closeModal} userId={userId} />
+                <EditImageModal isVisible={visible} close={closeModal} userId={userId} />
+                </>
+              ) : null
+            }
+
         </div>
     )
 }

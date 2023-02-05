@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import PinIcon from '@rsuite/icons/Location'
 import CalendarIcon from '@rsuite/icons/legacy/Calendar'
-import { userRef } from '../../../../../../firebase'
+import { auth, userRef } from '../../../../../../firebase'
 import { mainColors } from '../../../../themes/colors'
 import MainBtn from '../../../../components/MainBtn'
 import EditProfileModal from './EditProfileModal'
@@ -38,13 +38,18 @@ const ProfileData: React.FunctionComponent<IProps> = (props) => {
                         <PinIcon style={styles.icon} /> Location: {city !== '' && city !== null ? city : 'Unknown'}, {country !== '' && country !== null ? country : 'Unknown'}
                     </p>
                 </div>
-                <MainBtn
+                {
+                  userId == auth.currentUser?.uid ? (
+                    <MainBtn
                     content={'Edit profile'}
                     pressed={openModal}
                     btnColor={'blue'}
                     btnAppearance={'primary'}
                     btnSize={'lg'}
                     isBlock={true} />
+                  ) : null
+                }
+
             </div>
             <EditProfileModal userId={userId} close={closeModal} visible={visible} />
         </>

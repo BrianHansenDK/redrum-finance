@@ -1,6 +1,30 @@
 {
   "rules": {
-    ".read": true,
-    ".write": true
+    "users": {
+      "$user": {
+    		".write": "$user == auth.uid"
+      	},
+      ".read": "auth.uid !== null"
+    	},
+    	"investments": {
+        ".read": true,
+        ".write": true
+    	},
+    	"projects": {
+      	".read": true,
+    		".write": true
+    	},
+    	"shares": {
+      	".read": true,
+    		".write": true
+    	},
+    	"movies": {
+      	".read": true,
+      	".write": true
+    	},
+    	"questions": {
+        ".read": true,
+        ".write": "auth.uid !== null"
+      }
   }
 }

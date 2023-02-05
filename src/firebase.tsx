@@ -37,13 +37,6 @@ export function writeUserData(
         email: email,
         completion: profileCompletion,
     })
-    const investmentRef = ref(database, 'investments/')
-    set(investmentRef, {
-        userId: {
-            amount: 0,
-            moneyInvested: 0,
-        }
-    })
 }
 
 export function writeMovieData(

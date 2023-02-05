@@ -2,7 +2,8 @@ import React from 'react'
 
 const ShareTitles = () => {
   return (
-    <tr>
+    <thead>
+      <tr>
       <th>
         Movie
       </th>
@@ -15,7 +16,8 @@ const ShareTitles = () => {
       <th>
         Bought at
       </th>
-    </tr>
+      </tr>
+    </thead>
   )
 }
 

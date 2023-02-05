@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { auth, userRef } from '../../../../../../firebase'
+import MainBtn from '../../../../components/MainBtn'
 import { mainColors } from '../../../../themes/colors'
 import ProfileProgress from './ProfileProgress'
 
@@ -40,7 +41,17 @@ const ProfileInformation: React.FunctionComponent<IProps> = (props) => {
                     Badge: Rookie
                 </p>
             </div>
-            <ProfileProgress completion={completion} userId={userId} />
+            {
+              userId == auth.currentUser?.uid ? (
+                <ProfileProgress completion={completion} userId={userId} />
+              ) : <MainBtn
+              content={'Add friend'}
+              pressed={() => null}
+              btnColor={'blue'}
+              btnAppearance={'primary'}
+              btnSize={'lg'}
+              isBlock={false} />
+            }
 
         </div>
     )

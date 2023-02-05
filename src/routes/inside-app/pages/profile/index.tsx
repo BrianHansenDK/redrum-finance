@@ -42,8 +42,13 @@ class ProfilePage extends Component<IProps, IState> {
                     Profile page
                 </h1>
                 <ProfileIntroduction userId={userId} />
-                <MoneySection userId={userId} />
-                <AddBalanceCard userId={userId} />
+                {userId == auth.currentUser?.uid ? (
+                  <>
+                    <MoneySection userId={userId} />
+                    <AddBalanceCard userId={userId} />
+                  </>
+                ): null}
+
             </div>
         );
     }

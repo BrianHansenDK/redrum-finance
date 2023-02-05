@@ -40,6 +40,7 @@ const SharesTable = () => {
         setProjectIds(projectData)
       }, {onlyOnce: true})
   }, [])
+  console.log(shares)
   return (
     <div>
       {
@@ -50,11 +51,11 @@ const SharesTable = () => {
             <ShareTitles />
           {
             shares.map((share: any) => (
-              <>
+              <tbody>
               {share.project == projectId ? (
-                <ShareRow share={share} />
+                <ShareRow share={share} key={share.id} />
                 ): null }
-                </>
+                </tbody>
             ))
           }
           </table>

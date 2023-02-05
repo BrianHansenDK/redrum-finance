@@ -25,6 +25,7 @@ import UserCard from './routes/edit-accounts/components/UserCard.js';
 import ScrollToTop from './components/ScollToTop.js';
 import PageNotFound from './routes/not-found/index.js';
 import DatabankPage from './routes/inside-app/pages/databank/index.js';
+import VanumoDashboard from './admin/dashboard/index.js';
 
 
 const App = () => {
@@ -37,18 +38,23 @@ const App = () => {
       <ScrollToTop>
 
     <Routes>
-      <Route path='*' element={<PageNotFound isVisible={isVisible} openModal={openModal} closeModal={closeModal}/>} />
-      <Route path='/' element={<Root isVisible={isVisible} openModal={openModal} closeModal={closeModal} />} />
+
+      {/* Vanumo / Admin */}
+      <Route path='/vanumo' element={<VanumoDashboard />}>
+
+      </Route>
+
+      {/* Test admin */}
       <Route path='/create-project' element={<CreateProjectPage />} />
       <Route path='/create-movie' element={<CreateMoviePage />} />
       <Route path='/accounts-admin' element={<AccountAdmin />} >
         <Route path='/accounts-admin/:userId' element={<UserCard />} />
       </Route>
 
+      {/* The App itself */}
       <Route path='/app' element={<AuthRoute link='/'><AppRoot /></AuthRoute>} />
       <Route path='/app/investments' element={<InvestmentPage />} />
       <Route path='/app/databank' element={<DatabankPage />} />
-      {/* <Route path='/app/portfolio' element={<PortfolioPage />} /> */}
       <Route path='/app/bundle/:bundleId' element={<ProjectDetailsPageWrapper />} >
         <Route index element={<ProjectDetailsOverviewWrapper />} />
         <Route path='extras/movies' element={<ProjectDetailsMovieWrapper />} />
@@ -59,7 +65,9 @@ const App = () => {
       <Route path='/app/profile/:userId' element={<ProfilePageWrapper />}>
 
       </Route>
-
+      {/* Outside of App */}
+      <Route path='*' element={<PageNotFound isVisible={isVisible} openModal={openModal} closeModal={closeModal}/>} />
+      <Route path='/' element={<Root isVisible={isVisible} openModal={openModal} closeModal={closeModal} />} />
       <Route path='/about-us' element={<AboutUsPage isVisible={isVisible} openModal={openModal} closeModal={closeModal} />} />
       <Route path='/why-movies' element={<WhyMovies isVisible={isVisible} openModal={openModal} closeModal={closeModal} />} />
       <Route path='/sign-in' element={<SignInPage />} />

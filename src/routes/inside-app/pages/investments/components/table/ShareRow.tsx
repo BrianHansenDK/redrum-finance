@@ -19,6 +19,7 @@ const ShareRow = ({share}: {share: any}) => {
       setGReturn(snap.val().guaranteedReturn)
     })
   })
+  console.log(movieTitle)
   return (
       <tr>
         <td>
@@ -32,7 +33,7 @@ const ShareRow = ({share}: {share: any}) => {
           color: share.amount < share.amount + (share.amount * ((gReturn / 3) / 100)) ? mainColors.success : mainColors.red
         }}
         >
-          {numberWithCommas((share.amount + (share.amount * ((gReturn / 3) / 100)))
+          {numberWithCommas((share.amount + (share.amount * ((gReturn / 3) / 100))).toFixed(2)
           .toString().replace('.', ','))}€
         </td>
         <td>

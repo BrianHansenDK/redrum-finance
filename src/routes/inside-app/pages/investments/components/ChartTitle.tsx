@@ -13,7 +13,7 @@ class ChartTitle extends Component<{}, {}> {
                 <div style={styles.txtWrap}>
                     <h1 style={styles.title}>Investments</h1>
                     <p>
-                        Your investments
+                        Your shares
                     </p>
                 </div>
                 <Divider style={styles.divider} />
