@@ -66,10 +66,12 @@ const SecondaryNavbar = ({ project, isFixed }: { project: any, isFixed: boolean 
     const [isInvestVisible, setInvestVisible] = useState(false)
     const [isTransferVisible, setTransferVisible] = useState(false)
     const [available, setAvailable] = useState<any>(0)
+    const [birthYear, setBirthYear] = useState(0)
     const userId = auth.currentUser?.uid
     let data: any[] = []
     useEffect(() => {
         userRef(userId, '/money_available', setAvailable)
+        userRef(userId, '/birthYear', setBirthYear)
     })
     const openModal = () => {
         setVisible(true)
@@ -79,12 +81,15 @@ const SecondaryNavbar = ({ project, isFixed }: { project: any, isFixed: boolean 
     }
     const openInvestModal = () => {
         setVisible(false)
-        available !== null ? setInvestVisible(true) : setTransferVisible(true)
+        available !== null && available !== 0 ? setInvestVisible(true) : setTransferVisible(true)
     }
     const closeInvestModal = () => {
         setInvestVisible(false)
         setTransferVisible(false)
     }
+    const date = Date.now()
+    const today = new Date(date)
+    const age = today.getFullYear() - birthYear
     return (
         <>
             <Navbar style={styles.navbar} className={`${isFixed ? 'navbar shadow' : 'navbarhidden'}`}>
@@ -102,7 +107,7 @@ const SecondaryNavbar = ({ project, isFixed }: { project: any, isFixed: boolean 
                 <Nav pullRight style={{ minWidth: 250, }}>
                     <MainBtn
                         content={'Invest now'}
-                        pressed={openModal}
+                        pressed={age >= 18 && age !== null ? openInvestModal : openModal}
                         btnColor='blue'
                         btnAppearance='primary'
                         btnSize='lg'

@@ -1,4 +1,4 @@
-import React, { Children, useLayoutEffect, useState } from 'react'
+import React, { Children, useEffect, useLayoutEffect, useState } from 'react'
 import AboutUsPage from './routes/about-us-and-why/aboutUs.jsx';
 import WhyMovies from './routes/about-us-and-why/whyMovies.jsx';
 import SignInPage from './routes/auth/signIn.jsx';
@@ -30,9 +30,16 @@ import VanumoDashboard from './admin/dashboard/index.js';
 
 const App = () => {
   const [isVisible, setVisible] = useState(false)
+  const [isEnglish, setEnglish] = useState(true)
+  const [language, setLanguage] = useState('DE')
   const openModal = () => setVisible(true)
   const closeModal = () => setVisible(false)
   const location = useLocation();
+
+  const changeLan = () => {
+    setEnglish(!isEnglish)
+  }
+
   return (
     <>
       <ScrollToTop>
@@ -67,9 +74,9 @@ const App = () => {
       </Route>
       {/* Outside of App */}
       <Route path='*' element={<PageNotFound isVisible={isVisible} openModal={openModal} closeModal={closeModal}/>} />
-      <Route path='/' element={<Root isVisible={isVisible} openModal={openModal} closeModal={closeModal} />} />
-      <Route path='/about-us' element={<AboutUsPage isVisible={isVisible} openModal={openModal} closeModal={closeModal} />} />
-      <Route path='/why-movies' element={<WhyMovies isVisible={isVisible} openModal={openModal} closeModal={closeModal} />} />
+      <Route path='/' element={<Root en={isEnglish} setEn={changeLan} isVisible={isVisible} openModal={openModal} closeModal={closeModal} />} />
+      <Route path='/about-us' element={<AboutUsPage en={isEnglish} setEn={changeLan} isVisible={isVisible} openModal={openModal} closeModal={closeModal} />} />
+      <Route path='/why-movies' element={<WhyMovies en={isEnglish} setEn={changeLan} isVisible={isVisible} openModal={openModal} closeModal={closeModal} />} />
       <Route path='/sign-in' element={<SignInPage />} />
       <Route path='/sign-up' element={<SignUpPage />} />
       <Route path='/account' element={<AuthRoute link='/sign-in'> <AccountPage /> </AuthRoute>} />

@@ -1,0 +1,12 @@
+.logout-btn {
+  background-color: rgba(0,0,0, .0)!important;
+  transition: all 300ms ease-out;
+  &:hover {
+    background-color: #c30010!important;
+    color: white!important;
+  }
+  &:active {
+    background-color: #95030f!important;
+    color: rgb(215, 214, 214)!important;
+  }
+}

@@ -4,23 +4,31 @@ import { Link, useNavigate } from 'react-router-dom';
 import NavMenu from 'rsuite/esm/Nav/NavMenu';
 import NavItem from 'rsuite/esm/Nav/NavItem';
 import AuthModal from './AuthModal';
+import { landingPageStrings } from '../library/string/Landinspage';
 
-export const MAINLINKS = [
+interface IProps {
+  openModal: any, closeModal: Function, isVisible: any, dark: boolean, en: boolean, setEn: any
+}
+
+const MainNavbar: React.FunctionComponent<IProps> = (props) => {
+  const { openModal, closeModal, isVisible, dark, en, setEn } = props
+
+  const MAINLINKS = [
     {
-        t: 'About us',
+        t:  en ? landingPageStrings.navbarEN.aU : landingPageStrings.navbarDE.aU,
         to: '/about-us'
     },
     {
-        t: 'Why movies?',
+        t: en ? landingPageStrings.navbarEN.wM : landingPageStrings.navbarDE.wM,
         to: '/why-movies'
     },
     {
-        t: 'How it works',
+        t: en ? landingPageStrings.navbarEN.how : landingPageStrings.navbarDE.how,
         to: '/how-to'
     },
 ];
 
-export const APPLINKS = [
+ const APPLINKS = [
     {
         t: 'Blog',
     },
@@ -28,12 +36,10 @@ export const APPLINKS = [
         t: 'FAQ',
     },
     {
-        t: 'Sign in',
+        t: en ? landingPageStrings.navbarEN.sI : landingPageStrings.navbarDE.sI,
         to: '/sign-in'
     }
 ]
-
-const MainNavbar = ({ openModal, closeModal, isVisible, dark }: { openModal: any, closeModal: Function, isVisible: any, dark: boolean }) => {
 
     return (
         <>
@@ -59,14 +65,11 @@ const MainNavbar = ({ openModal, closeModal, isVisible, dark }: { openModal: any
                         ))
                     }
                     <Button appearance='primary' className='main-btn white pl-3 pr-3 bold' size='lg' onClick={openModal} >
-                        Invest Now
+                        {en ? landingPageStrings.navbarEN.btn : landingPageStrings.navbarDE.btn}
                     </Button>
-                    <NavMenu className='nav-ul' title='EN' style={{ padding: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                        <NavItem>
-                            EN
-                        </NavItem>
-                        <NavItem>
-                            DE
+                    <NavMenu className='nav-ul' title={`${en ? 'EN' : 'DE'}`} style={{ padding: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <NavItem style={{display: 'block', width: 75}} onClick={setEn} className='text-center'>
+                            {en ? 'DE' : 'EN'}
                         </NavItem>
                     </NavMenu>
                 </Nav>

@@ -1,6 +1,6 @@
 import { ref, update } from 'firebase/database'
 import React, { useEffect, useState } from 'react'
-import { Button, ButtonGroup, DatePicker, Form, Input, Message, Modal, useToaster } from 'rsuite'
+import { Button, ButtonGroup, Form, Input, InputNumber, Message, Modal, useToaster } from 'rsuite'
 import FormControlLabel from 'rsuite/esm/FormControlLabel'
 import FormGroup from 'rsuite/esm/FormGroup'
 import FormHelpText from 'rsuite/esm/FormHelpText'
@@ -22,6 +22,7 @@ const EditProfileModal: React.FunctionComponent<IProps> = (props) => {
 
     const [userNameStart, setUserNameStart] = useState('')
     const [birthDateStart, setBirthDateStart] = useState('')
+    const [birthYearStart, setBirthYearStart] = useState(0)
     const [cityStart, setCityStart] = useState('')
     const [countryStart, setCountryStart] = useState('')
 
@@ -31,12 +32,14 @@ const EditProfileModal: React.FunctionComponent<IProps> = (props) => {
         userRef(userId, '/username', setUserNameStart)
         userRef(userId, '/completion', setCompletion)
         userRef(userId, '/birthdate', setBirthDateStart)
+        userRef(userId, '/birthYear', setBirthYearStart)
         userRef(userId, '/city', setCityStart)
         userRef(userId, '/country', setCountryStart)
     })
 
     const [userName, setUserName] = useState('')
-    const [birthDate, setBirthDate] = useState(new Date('1998-04-15'))
+    const [birthDate, setBirthDate] = useState('')
+    const [birthYear, setBirthYear] = useState<any>(0)
     const [city, setCity] = useState('')
     const [country, setCountry] = useState('')
 
@@ -46,13 +49,19 @@ const EditProfileModal: React.FunctionComponent<IProps> = (props) => {
         let completionData = completion
         updates['/users/' + userId + '/username'] = userName == '' ? userNameStart : userName
         if (birthDate !== null) {
-            updates['/users/' + userId + '/birthdate'] = birthDate.toLocaleDateString()
+            updates['/users/' + userId + '/birthdate'] = birthDate
         }
+        if (birthYear !== 0 && birthYear > 2023 - 100 && birthYear < 2023) {
+          updates['/users/' + userId + '/birthYear'] = birthYear
+      }
         updates['/users/' + userId + '/city'] = city == '' ? cityStart : city
         updates['/users/' + userId + '/country'] = country == '' ? countryStart : country
-        if ((birthDate !== null && birthDate !== new Date()) && (birthDateStart == null || birthDateStart == '')) {
-            completionData += 10
+        if ((birthDate !== null && birthDate !== '') && (birthDateStart == null || birthDateStart == '')) {
+            completionData += 5
         }
+        if ((birthYear !== null && birthYear !== 0 && birthYear > 2023 - 100) && (birthYearStart == null || birthYearStart == 0)) {
+          completionData += 5
+      }
         if ((city !== null && city !== '') && (cityStart == '' || cityStart == null)) {
             completionData += 10
         }
@@ -70,7 +79,6 @@ const EditProfileModal: React.FunctionComponent<IProps> = (props) => {
         window.setTimeout(() => {
             toaster.clear()
         }, 3000)
-        console.log(birthDate.toLocaleDateString())
     }
     return (
         <Modal open={visible} onClose={close} >
@@ -86,9 +94,16 @@ const EditProfileModal: React.FunctionComponent<IProps> = (props) => {
                         <Input defaultValue={userNameStart} onChange={setUserName} />
                     </FormGroup>
                     <FormGroup>
-                        <FormControlLabel style={styles.label}>BirthDate:</FormControlLabel>
-                        <DatePicker format="dd/MM-yy" placeholder={`${birthDateStart !== '' || birthDateStart !== null ? birthDateStart : 'Select date of birth'}`}
-                            onChange={() => setBirthDate}
+                        <FormControlLabel style={styles.label}>Birth date:</FormControlLabel>
+                        <Input placeholder={`${birthDateStart !== '' || birthDateStart !== null ? birthDateStart : 'dd/MM'}`}
+                            onChange={setBirthDate}
+                        />
+                        <FormHelpText>Required to invest</FormHelpText>
+                    </FormGroup>
+                    <FormGroup>
+                        <FormControlLabel style={styles.label}>Birth year:</FormControlLabel>
+                        <InputNumber type={'number'} placeholder={`${birthYearStart !== 0 || birthYearStart !== null ? birthYearStart : 'yyyy'}`}
+                            onChange={setBirthYear}
                         />
                         <FormHelpText>Required to invest</FormHelpText>
                     </FormGroup>

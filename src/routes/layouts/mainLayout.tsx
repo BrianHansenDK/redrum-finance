@@ -3,17 +3,22 @@ import { Container, Content, Footer, Header } from 'rsuite'
 import MainFooter from '../../components/footer'
 import MainNavbar from '../../components/navbar'
 
-const MainLayout = ({ children, openModal, closeModal, isVisible, dark }: { children: any, openModal: any, closeModal: Function, isVisible: any, dark: boolean }) => {
+interface IProps {
+  children: any, openModal: any, closeModal: Function, isVisible: any, dark: boolean, en: boolean, setEn: any
+}
+
+const MainLayout: React.FunctionComponent<IProps> = (props) => {
+  const { children, openModal, closeModal, isVisible, dark, en, setEn } = props
     return (
         <Container>
             <Header>
-                <MainNavbar openModal={openModal} closeModal={closeModal} isVisible={isVisible} dark={dark} />
+                <MainNavbar en={en} setEn={setEn} openModal={openModal} closeModal={closeModal} isVisible={isVisible} dark={dark} />
             </Header>
             <Content>
                 {children}
             </Content>
             <Footer className='dark-bg txt-white pd-page'>
-                <MainFooter />
+                <MainFooter en={en} />
             </Footer>
         </Container>
     )

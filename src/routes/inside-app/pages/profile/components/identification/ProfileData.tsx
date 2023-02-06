@@ -16,8 +16,11 @@ const ProfileData: React.FunctionComponent<IProps> = (props) => {
     const [country, setCountry] = useState('')
 
     const [visible, setVisible] = useState(false)
+
+    const data = Date.now()
+    const today = new Date(data)
     useEffect(() => {
-        userRef(userId, '/birthdate', setAge)
+        userRef(userId, '/birthYear', setAge)
         userRef(userId, '/city', setCity)
         userRef(userId, '/country', setCountry)
     })
@@ -27,12 +30,13 @@ const ProfileData: React.FunctionComponent<IProps> = (props) => {
     const closeModal = () => {
         setVisible(false)
     }
+    const years = today.getFullYear() - age
     return (
         <>
             <div style={styles.wrap} className='flex-column'>
                 <div>
                     <p style={styles.info}>
-                        <CalendarIcon style={styles.icon} /> Birthdate: {age !== 0 && age !== null ? age : 'Unknown'}
+                        <CalendarIcon style={styles.icon} /> Birth year: {age !== 0 && age !== null ? age : 'Unknown'}
                     </p>
                     <p style={styles.info}>
                         <PinIcon style={styles.icon} /> Location: {city !== '' && city !== null ? city : 'Unknown'}, {country !== '' && country !== null ? country : 'Unknown'}

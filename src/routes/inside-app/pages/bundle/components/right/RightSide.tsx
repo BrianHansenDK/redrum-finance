@@ -16,10 +16,17 @@ const RightSide = ({ project }: { project: any }) => {
     const [isTransferVisible, setTransferVisible] = useState(false)
     const [available, setAvailable] = useState<any>(0)
     const [reciept, setReciept] = useState(false)
+    const [birthYear, setBirthYear] = useState(0)
+
     const userId = auth.currentUser?.uid
     useEffect(() => {
         userRef(userId, '/money_available', setAvailable)
+        userRef(userId, '/birthYear', setBirthYear)
     })
+
+    const date = Date.now()
+    const today = new Date(date)
+    const age = today.getFullYear() - birthYear
     const openModal = () => {
         setVisible(true)
     }
@@ -29,9 +36,9 @@ const RightSide = ({ project }: { project: any }) => {
     const openInvestModal = () => {
         setVisible(false)
         if (available == null || available == 0) {
-            setTransferVisible(true)
+          setTransferVisible(true)
         } else {
-            setInvestVisible(true)
+          setInvestVisible(true)
         }
     }
 
@@ -57,7 +64,7 @@ const RightSide = ({ project }: { project: any }) => {
                 </div>
                 <MainBtn
                     content={'Invest now'}
-                    pressed={openModal}
+                    pressed={ age >= 18 && age !== null ? openInvestModal : openModal}
                     btnColor='blue'
                     btnAppearance='primary'
                     btnSize='lg'

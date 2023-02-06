@@ -1,5 +1,5 @@
 import React from 'react'
-import { Message, Nav, Navbar, Tooltip, useToaster, Whisper } from 'rsuite'
+import { Button, Message, Nav, Navbar, Tooltip, useToaster, Whisper } from 'rsuite'
 import NavItem from 'rsuite/esm/Nav/NavItem'
 import DashboardIcon from '@rsuite/icons/legacy/Dashboard';
 import OPENMENU from '@rsuite/icons/legacy/CaretDown'
@@ -89,7 +89,9 @@ const AppNavBar = ({ fixed = true }: { fixed: boolean }) => {
                     <NavItem className='d-flex flex-column align-center justify-around' style={styles.navLink}>
                         <MessageIcon /> Messages
                     </NavItem>
-
+                    <Button style={styles.btn} appearance='primary' size='lg' >
+                      Invest now
+                    </Button>
                 </Nav>
             </div>
         </Navbar>
@@ -121,6 +123,9 @@ const styles = {
         width: 125,
         marginRight: 15,
         color: mainColors.white,
+    },
+    btn: {
+      marginRight: 25
     }
 }
 

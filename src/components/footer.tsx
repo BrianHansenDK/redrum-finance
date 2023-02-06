@@ -1,9 +1,36 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Col, Grid, Nav, Row } from 'rsuite'
-import { MAINLINKS, APPLINKS } from './navbar'
+import { landingPageStrings } from '../library/string/Landinspage';
 
-const MainFooter = () => {
+const MainFooter = ({en}: {en: boolean}) => {
+  const MAINLINKS = [
+    {
+        t:  en ? landingPageStrings.navbarEN.aU : landingPageStrings.navbarDE.aU,
+        to: '/about-us'
+    },
+    {
+        t: en ? landingPageStrings.navbarEN.wM : landingPageStrings.navbarDE.wM,
+        to: '/why-movies'
+    },
+    {
+        t: en ? landingPageStrings.navbarEN.how : landingPageStrings.navbarDE.how,
+        to: '/how-to'
+    },
+];
+
+ const APPLINKS = [
+    {
+        t: 'Blog',
+    },
+    {
+        t: 'FAQ',
+    },
+    {
+        t: en ? landingPageStrings.navbarEN.sI : landingPageStrings.navbarDE.sI,
+        to: '/sign-in'
+    }
+]
     return (
         <Grid>
             <Row>

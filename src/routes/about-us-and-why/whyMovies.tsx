@@ -13,9 +13,14 @@ import TrianlgeBottom from './triangleBottom'
 import TriangleTop from './triangleTop'
 import LineShape from './lineShape'
 
-const WhyMovies = ({ isVisible, openModal, closeModal }: { isVisible: any, openModal: any, closeModal: Function }) => {
+interface IProps {
+  isVisible: any, openModal: any, closeModal: Function, en: boolean, setEn: any
+}
+
+const WhyMovies: React.FunctionComponent<IProps> = (props) => {
+  const { isVisible, openModal, closeModal, en, setEn } = props
     return (
-        <MainLayout isVisible={isVisible} openModal={openModal} closeModal={closeModal} dark={true}>
+        <MainLayout en={en} setEn={setEn} isVisible={isVisible} openModal={openModal} closeModal={closeModal} dark={true}>
             <div style={{ position: 'relative', paddingBottom: 150 }}>
 
                 <div className='top-div'>

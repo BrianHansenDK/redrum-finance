@@ -7,9 +7,12 @@ import CtaUp from './components/ctaUp'
 import Features from './components/features'
 import Hero from './components/hero'
 
+interface IProps {
+  isVisible: any, openModal: any, closeModal: Function, en : boolean, setEn: any
+}
 
-
-const Root = ({ isVisible, openModal, closeModal }: { isVisible: any, openModal: any, closeModal: Function }) => {
+const Root: React.FunctionComponent<IProps> = (props) => {
+  const { isVisible, openModal, closeModal, en, setEn } = props
   const auth = getAuth()
     const [active, setActive] = useState(false)
 
@@ -23,7 +26,7 @@ const Root = ({ isVisible, openModal, closeModal }: { isVisible: any, openModal:
 
     return (
         <>
-            <MainLayout isVisible={isVisible} openModal={openModal} closeModal={closeModal} dark={active} >
+            <MainLayout en={en} setEn={setEn} isVisible={isVisible} openModal={openModal} closeModal={closeModal} dark={active} >
                 <Hero />
                 <CtaUp />
                 <Features />
