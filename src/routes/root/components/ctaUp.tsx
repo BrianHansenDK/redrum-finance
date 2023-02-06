@@ -2,18 +2,19 @@ import React from 'react'
 import { Button } from 'rsuite'
 import '../styles/stats.scss'
 import '../styles/cta-up.scss'
+import { homeStrings } from '../../../library/string/Landinspage'
 
-const CtaUp = () => {
+const CtaUp = ({en} : {en: boolean}) => {
     return (
         <div className='cta-up align-center'>
             <h1 className='title'>
-                Start building your movie portfolio with just 1€
+                {en ? homeStrings.ctaUpperEN.title : homeStrings.ctaUpperDE.title}
             </h1>
             <p className='des'>
-                Next to stocks, ETF's and real estate, the perfect addition to your investment strategy.
+            {en ? homeStrings.ctaUpperEN.sentence : homeStrings.ctaUpperDE.sentence}
             </p>
             <Button className=' main-btn white shadow' size='lg' style={{ width: 250 }}>
-                Learn more
+            {en ? homeStrings.ctaUpperEN.btn : homeStrings.ctaUpperDE.btn}
             </Button>
         </div>
     )

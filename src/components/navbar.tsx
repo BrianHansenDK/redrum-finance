@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import NavMenu from 'rsuite/esm/Nav/NavMenu';
 import NavItem from 'rsuite/esm/Nav/NavItem';
 import AuthModal from './AuthModal';
-import { landingPageStrings } from '../library/string/Landinspage';
+import { navbarStrings } from '../library/string/Landinspage';
 
 interface IProps {
   openModal: any, closeModal: Function, isVisible: any, dark: boolean, en: boolean, setEn: any
@@ -15,15 +15,15 @@ const MainNavbar: React.FunctionComponent<IProps> = (props) => {
 
   const MAINLINKS = [
     {
-        t:  en ? landingPageStrings.navbarEN.aU : landingPageStrings.navbarDE.aU,
+        t:  en ? navbarStrings.navbarEN.aU : navbarStrings.navbarDE.aU,
         to: '/about-us'
     },
     {
-        t: en ? landingPageStrings.navbarEN.wM : landingPageStrings.navbarDE.wM,
+        t: en ? navbarStrings.navbarEN.wM : navbarStrings.navbarDE.wM,
         to: '/why-movies'
     },
     {
-        t: en ? landingPageStrings.navbarEN.how : landingPageStrings.navbarDE.how,
+        t: en ? navbarStrings.navbarEN.how : navbarStrings.navbarDE.how,
         to: '/how-to'
     },
 ];
@@ -36,7 +36,7 @@ const MainNavbar: React.FunctionComponent<IProps> = (props) => {
         t: 'FAQ',
     },
     {
-        t: en ? landingPageStrings.navbarEN.sI : landingPageStrings.navbarDE.sI,
+        t: en ? navbarStrings.navbarEN.sI : navbarStrings.navbarDE.sI,
         to: '/sign-in'
     }
 ]
@@ -65,7 +65,7 @@ const MainNavbar: React.FunctionComponent<IProps> = (props) => {
                         ))
                     }
                     <Button appearance='primary' className='main-btn white pl-3 pr-3 bold' size='lg' onClick={openModal} >
-                        {en ? landingPageStrings.navbarEN.btn : landingPageStrings.navbarDE.btn}
+                        {en ? navbarStrings.navbarEN.btn : navbarStrings.navbarDE.btn}
                     </Button>
                     <NavMenu className='nav-ul' title={`${en ? 'EN' : 'DE'}`} style={{ padding: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                         <NavItem style={{display: 'block', width: 75}} onClick={setEn} className='text-center'>

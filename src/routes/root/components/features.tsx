@@ -3,39 +3,38 @@ import FeatureLeft from './featureLeft'
 import FeaturesRight from './featuresRight'
 import PLACEHOLDER from '../../../components/images/Placeholder_icon.svg'
 import '../styles/features.scss'
+import { homeStrings } from '../../../library/string/Landinspage'
 
-const Features = () => {
+const Features = ({en} : {en: boolean}) => {
     return (
 
         <>
             <FeatureLeft
-                mainTitle='Become an investor with just a few clicks'
+                mainTitle={en ? homeStrings.featuresEN.mainTitle : homeStrings.featuresDE.mainTitle}
+                subTitle={en ? homeStrings.featuresEN.subTitle : homeStrings.featuresDE.subTitle}
                 img={PLACEHOLDER}
                 alt='Placeholder'
-                title='Create account'
-                txt='Dictum porttitor, ornare id ante placerat. Mollis cursus fusce cubilia, iaculis donec torquent litora eros. At augue diam platea, egestas fringilla mollis, fusce senectus vivamus tellus sapien nisl.'
-            />
+                title={en ? homeStrings.featuresEN.t1 : homeStrings.featuresDE.t1}
+              />
             <FeaturesRight
                 mainTitle={null}
                 img={PLACEHOLDER}
                 alt='Placeholder'
-                title='Deposit capital'
-                txt='Dictum porttitor, ornare id ante placerat. Mollis cursus fusce cubilia, iaculis donec torquent litora eros. At augue diam platea, egestas fringilla mollis, fusce senectus vivamus tellus sapien nisl.'
-            />
+                title={en ? homeStrings.featuresEN.t2 : homeStrings.featuresDE.t2}
+                />
             <FeatureLeft
                 mainTitle={null}
+                subTitle={null}
                 img={PLACEHOLDER}
                 alt='Placeholder'
-                title='Invest'
-                txt='Dictum porttitor, ornare id ante placerat. Mollis cursus fusce cubilia, iaculis donec torquent litora eros. At augue diam platea, egestas fringilla mollis, fusce senectus vivamus tellus sapien nisl.'
-            />
+                title={en ? homeStrings.featuresEN.t3 : homeStrings.featuresDE.t3}
+                />
             <FeaturesRight
                 mainTitle={null}
                 img={PLACEHOLDER}
                 alt='Placeholder'
-                title='Gain profit by interest'
-                txt='Dictum porttitor, ornare id ante placerat. Mollis cursus fusce cubilia, iaculis donec torquent litora eros. At augue diam platea, egestas fringilla mollis, fusce senectus vivamus tellus sapien nisl.'
-            />
+                title={en ? homeStrings.featuresEN.t4 : homeStrings.featuresDE.t4}
+                />
         </>
     )
 }

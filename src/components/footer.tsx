@@ -1,20 +1,20 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Col, Grid, Nav, Row } from 'rsuite'
-import { landingPageStrings } from '../library/string/Landinspage';
+import { navbarStrings } from '../library/string/Landinspage';
 
 const MainFooter = ({en}: {en: boolean}) => {
   const MAINLINKS = [
     {
-        t:  en ? landingPageStrings.navbarEN.aU : landingPageStrings.navbarDE.aU,
+        t:  en ? navbarStrings.navbarEN.aU : navbarStrings.navbarDE.aU,
         to: '/about-us'
     },
     {
-        t: en ? landingPageStrings.navbarEN.wM : landingPageStrings.navbarDE.wM,
+        t: en ? navbarStrings.navbarEN.wM : navbarStrings.navbarDE.wM,
         to: '/why-movies'
     },
     {
-        t: en ? landingPageStrings.navbarEN.how : landingPageStrings.navbarDE.how,
+        t: en ? navbarStrings.navbarEN.how : navbarStrings.navbarDE.how,
         to: '/how-to'
     },
 ];
@@ -27,7 +27,7 @@ const MainFooter = ({en}: {en: boolean}) => {
         t: 'FAQ',
     },
     {
-        t: en ? landingPageStrings.navbarEN.sI : landingPageStrings.navbarDE.sI,
+        t: en ? navbarStrings.navbarEN.sI : navbarStrings.navbarDE.sI,
         to: '/sign-in'
     }
 ]

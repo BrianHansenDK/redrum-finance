@@ -27,9 +27,9 @@ const Root: React.FunctionComponent<IProps> = (props) => {
     return (
         <>
             <MainLayout en={en} setEn={setEn} isVisible={isVisible} openModal={openModal} closeModal={closeModal} dark={active} >
-                <Hero />
-                <CtaUp />
-                <Features />
+                <Hero en={en} />
+                <CtaUp en={en} />
+                <Features en={en} />
                 <AppTeaser />
                 <CtaDown openModal={openModal} />
             </MainLayout>

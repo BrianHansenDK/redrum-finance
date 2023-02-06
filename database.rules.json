@@ -4,7 +4,7 @@
       "$user": {
     		".write": "$user == auth.uid"
       	},
-      ".read": "auth.uid !== null"
+      ".read": true
     	},
     	"investments": {
         ".read": true,
