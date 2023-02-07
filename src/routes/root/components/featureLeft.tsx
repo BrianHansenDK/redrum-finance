@@ -16,9 +16,12 @@ const FeatureLeft: React.FunctionComponent<IProps> = (props) => {
                 </h1>) : null
             }
             {
-                subTitle ? (<h2 style={{width: '100%', fontSize: 27.5, fontWeight: '600', marginBottom: 50,}} className='main-title text-center'>
-                    {subTitle}
-                </h2>) : null
+                subTitle ? (
+                  <h2
+                    style={{width: '100%', fontSize: 27.5, fontWeight: '600', marginBottom: 50,}}
+                    className='main-title text-center'>
+                      {subTitle}
+                  </h2>) : null
             }
             <div className='img-div'>
                 <img src={img} alt={alt} height={200} width={200} />

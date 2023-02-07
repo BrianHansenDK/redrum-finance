@@ -12,6 +12,7 @@ import './styles/why-movies.scss'
 import TrianlgeBottom from './triangleBottom'
 import TriangleTop from './triangleTop'
 import LineShape from './lineShape'
+import { whyMoviesStrings } from '../../library/string/Landinspage'
 
 interface IProps {
   isVisible: any, openModal: any, closeModal: Function, en: boolean, setEn: any
@@ -27,20 +28,16 @@ const WhyMovies: React.FunctionComponent<IProps> = (props) => {
                     <div className='top-title-con'>
 
                         <h1 className='t1'>
-                            Why movies?
+                            {en ? whyMoviesStrings.topPartEN.title : whyMoviesStrings.topPartDE.title}
                         </h1>
-                        <p className='p1'>
-                            In creating this business plan, we kept running into the following question,
-                            "Why should I invest in a film instead of buying Tesla stock? Wh-why the Redrum Film Finance App?"
+                        <p className='p1 text-center'>
+                          {en ? whyMoviesStrings.topPartEN.sentence : whyMoviesStrings.topPartDE.sentence}
                         </p>
                     </div>
                     <div style={{ backgroundImage: 'url(' + IMG1 + ')' }} className='big-img' />
                     <div className='top-title-con'>
-                        <h1 className='t1 mt-5'>
-                            Minimized risk
-                        </h1>
-                        <p className='p1'>
-                            In our opinion, one does not exclude the other. A good and risk-minimized investment portfolio should always be broadly diversified. Be it stocks, ETF's, real estate, precious metals or cryptocurrencies. With its film projects, the Redrum Finance App offers not only an exciting, but also a high-return addition to any portfolio.
+                        <p className='p1 mt-5'>
+                          {en ? whyMoviesStrings.opinionEn : whyMoviesStrings.opinionDE}
                         </p>
                     </div>
                 </div>
@@ -50,12 +47,10 @@ const WhyMovies: React.FunctionComponent<IProps> = (props) => {
                 <TriangleTop />
             </div>
             <BlockR
-                title='The Film Industry'
+            title={null}
                 txt={
                     <p>
-                        The film market, especially with regard to the booming streaming services, is an enormous growth market. Global companies such as Amazon, Netflix and Apple are investing large sums in the development and production of their streaming offerings.
-                        <br /> <br />
-                        Renowned production studios are also following the trend and establishing their own streaming services. As a result, there is a real battle for good content in order to stand out from the immense competition in the VOD landscape. Above all, constant investment in new productions is crucial for success. Netflix led the way with "House of Money," "Narcos" and "Stranger Things.
+                      {en ? whyMoviesStrings.industryEN : whyMoviesStrings.industryDE}
                     </p>
                 }
                 img={IMG2}

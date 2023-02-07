@@ -30,8 +30,8 @@ const Root: React.FunctionComponent<IProps> = (props) => {
                 <Hero en={en} />
                 <CtaUp en={en} />
                 <Features en={en} />
-                <AppTeaser />
-                <CtaDown openModal={openModal} />
+                <AppTeaser en={en} />
+                <CtaDown openModal={openModal} en={en} />
             </MainLayout>
         </>
     )

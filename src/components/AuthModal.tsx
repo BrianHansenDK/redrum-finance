@@ -16,6 +16,7 @@ import InputGroupAddon from 'rsuite/esm/InputGroup/InputGroupAddon'
 import FormControl from 'rsuite/esm/FormControl'
 import { database, writeUserData } from '../firebase'
 import { ref, set } from 'firebase/database'
+import signUpModalStrings from '../library/string/SignUpModal'
 
 const tooltip = (
     <Tooltip>
@@ -23,7 +24,7 @@ const tooltip = (
     </Tooltip>
 )
 
-const AuthModal = ({ isVisible, close }: { isVisible: boolean, close: any }) => {
+const AuthModal = ({ isVisible, close, en }: { isVisible: boolean, close: any, en: boolean }) => {
     const auth = getAuth()
     const navigate = useNavigate()
     const toaster = useToaster()
@@ -112,10 +113,9 @@ const AuthModal = ({ isVisible, close }: { isVisible: boolean, close: any }) => 
             <ModalHeader>
             </ModalHeader>
             <ModalBody>
-                <h3 className='txt-center' style={{ color: 'black' }}>Redrum Media Invest</h3>
+                <h3 className='txt-center' style={{ color: 'black' }}>Redrum Pro</h3>
                 <h3 className='txt-center'>
-
-                    Please register to start investing
+                  {en ? signUpModalStrings.EN.please : signUpModalStrings.DE.please}
                 </h3>
                 <div className='d-flex justify-center mt-2'>
                     <Whisper placement="bottom" controlId="control-id-hover" trigger={`${isChecked ? 'none' : 'hover'}`} speaker={tooltip}>
@@ -136,7 +136,12 @@ const AuthModal = ({ isVisible, close }: { isVisible: boolean, close: any }) => 
                             <InputGroupAddon>
                                 <AvatarIcon />
                             </InputGroupAddon>
-                            <FormControl defaultValue={userName} onChange={setUserName} name="userName" placeholder="Username" type="text" />
+                            <FormControl
+                            defaultValue={userName}
+                            onChange={setUserName}
+                            name="userName"
+                            placeholder={en ? signUpModalStrings.EN.un : signUpModalStrings.DE.un}
+                            type="text" />
                         </InputGroup>
                     </FormGroup>
                     <FormGroup controlId="email">
@@ -144,12 +149,22 @@ const AuthModal = ({ isVisible, close }: { isVisible: boolean, close: any }) => 
                             <InputGroupAddon>
                                 <EnvelopeIcon />
                             </InputGroupAddon>
-                            <FormControl defaultValue={userEmail} onChange={setEmail} name="emailAddress" placeholder="Email address" type="email" />
+                            <FormControl
+                            defaultValue={userEmail}
+                            onChange={setEmail}
+                            name="emailAddress"
+                            placeholder={en ? signUpModalStrings.EN.mail : signUpModalStrings.DE.mail}
+                            type="email" />
                         </InputGroup>
                     </FormGroup>
                     <FormGroup controlId="password">
                         <InputGroup inside className="mb-2" >
-                            <FormControl defaultValue={userPassword} onChange={setUserPassword} placeholder="Password" name="password" type={password1Visible ? 'text' : 'password'} />
+                            <FormControl
+                            defaultValue={userPassword}
+                            onChange={setUserPassword}
+                            placeholder="Password"
+                            name={en ? signUpModalStrings.EN.ps : signUpModalStrings.DE.ps}
+                            type={password1Visible ? 'text' : 'password'} />
                             <InputGroup.Button onClick={showPassword1}>
                                 {password1Visible ? <EyeIcon /> : <EyeSlashIcon />}
                             </InputGroup.Button>
@@ -157,7 +172,12 @@ const AuthModal = ({ isVisible, close }: { isVisible: boolean, close: any }) => 
                     </FormGroup>
                     <FormGroup controlId="password-1">
                         <InputGroup inside className="mb-2" >
-                            <FormControl defaultValue={userConfirmedPassword} onChange={setUserConfirmedPassword} placeholder="Confirm Password" name="password-confirm" type={password2Visible ? 'text' : 'password'} />
+                            <FormControl
+                            defaultValue={userConfirmedPassword}
+                            onChange={setUserConfirmedPassword}
+                            placeholder={en ? signUpModalStrings.EN.cPs : signUpModalStrings.DE.cPs}
+                            name='passwordConfirm'
+                            type={password2Visible ? 'text' : 'password'} />
                             <InputGroup.Button onClick={showPassword2}>
                                 {password2Visible ? <EyeIcon /> : <EyeSlashIcon />}
                             </InputGroup.Button>
@@ -166,21 +186,24 @@ const AuthModal = ({ isVisible, close }: { isVisible: boolean, close: any }) => 
                         <div className='d-flex'>
                             <Toggle onChange={() => setChecked(!isChecked)} checkedChildren={<CheckIcon />} unCheckedChildren={<CloseIcon />} />
                             <p className='ml-1'>
-                                I agree to the Redrum media invest Terms & Conditions and the Privacy Policy. I further agree to receiving marketing via e-mails from Redrum media invest Gmbh regarding product categories, which I can withdraw any time.
+                                {en ? signUpModalStrings.EN.tAndC : signUpModalStrings.DE.tAndC} &nbsp;
+                                <Link to='/'>
+                                  {en ? signUpModalStrings.EN.read : signUpModalStrings.DE.read}
+                                </Link>
                             </p>
                         </div>
                         <Whisper placement="top" controlId="control-id-hover" trigger={`${isChecked ? 'none' : 'hover'}`} speaker={tooltip}>
                             <Button appearance='primary' disabled={!isChecked} size='lg' block className='main-btn mt-1' onClick={createAccount}>
-                                Get started
+                                {en ? signUpModalStrings.EN.btn : signUpModalStrings.DE.btn}
                             </Button>
                         </Whisper>
                         </div>
                 </Form>
                 <p className=' mt-3 d-flex justify-center' >
                     <span style={{ opacity: .75 }}>
-                        Already have an account? &nbsp;
+                        {en ? signUpModalStrings.EN.login : signUpModalStrings.DE.login} &nbsp;
                     </span>
-                    <Link to='/sign-in'>Sign in</Link>
+                    <Link to='/sign-in'>Login</Link>
                 </p>
             </ModalBody>
         </Modal>

@@ -74,7 +74,7 @@ const MainNavbar: React.FunctionComponent<IProps> = (props) => {
                     </NavMenu>
                 </Nav>
             </Navbar>
-            <AuthModal isVisible={isVisible} close={closeModal} />
+            <AuthModal isVisible={isVisible} close={closeModal} en={en} />
         </>
     )
 }

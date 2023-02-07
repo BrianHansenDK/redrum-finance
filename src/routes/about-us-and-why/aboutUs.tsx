@@ -8,6 +8,7 @@ import IMG2 from '../../components/images/about_us_page_imgs/ab_img2.svg'
 import IMG3 from '../../components/images/about_us_page_imgs/ab_img3.svg'
 import IMG4 from '../../components/images/about_us_page_imgs/ab_img4.svg'
 import './styles/about.scss'
+import { aboutUsStrings } from '../../library/string/Landinspage'
 
 interface IProps {
   isVisible: any, openModal: any, closeModal: Function, en: boolean, setEn: any
@@ -19,10 +20,11 @@ const AboutUsPage: React.FunctionComponent<IProps> = (props) => {
         <MainLayout en={en} setEn = {setEn} isVisible={isVisible} openModal={openModal} closeModal={closeModal} dark={true}>
             <BlockL
                 img={IMG1}
-                title='About Redrum'
+                title={null}
                 txt={<p>
-                    The Redrum Film Finance App was founded with the goal for every small and large investor to participate in a unique film production with just a few clicks. Besides investing in a profitable capital investment, every single investor writes a piece of film history for eternity. <br /> <br />
-                    A film production is not easy to realize. It takes much more than just a good idea. It needs a concept, script, director, cameraman, actors and much more. What you need above all is the necessary capital, expertise and time. The cost of a film production is so high that investing in such projects is reserved only for the major film studios, television stations, streaming services and wealthy private investors.
+                  {en ? aboutUsStrings.section1EN.p1 : aboutUsStrings.section1DE.p1}
+                  <br/> <br/>
+                  {en ? aboutUsStrings.section1EN.p2 : aboutUsStrings.section1DE.p2}
                 </p>}
             />
             <BlockR
@@ -30,32 +32,23 @@ const AboutUsPage: React.FunctionComponent<IProps> = (props) => {
                 title={null}
                 txt={
                     <p>
-                        Never before have small investors had the opportunity to participate directly in a promising film production from the very beginning. Those who could independently raise the money for a film production as a budding film producer faced many problems during production. Due to the lack of contacts or partners, he carried the sole financial risk.
-                        <br />
-                        Building a professional team takes a lot of time and experience and once the team finished the production, the film had to be successfully marketed and distributed both nationally and internationally.
+                      <span className='bold'>
+                        {en ? aboutUsStrings.section2EN.fat : aboutUsStrings.section2DE.fat} &nbsp;
+                      </span>
+                      {en ? aboutUsStrings.section2EN.p1 : aboutUsStrings.section2DE.p1}
                     </p>
                 }
             />
             <BlockL
                 img={IMG3}
                 title={null}
-                txt={<p>
-                    With the Redrum App, we solve all these problems in one fell swoop. We produce and distribute exclusive and unique film projects. Our investors can participate in a production from as little as 1€.
+                txt={<p >
+                  {en ? aboutUsStrings.section3EN.p1 : aboutUsStrings.section3DE.p1}
                     <br /> <br />
-                    Simple, digital and secure.
+                    {en ? aboutUsStrings.section3EN.p2 : aboutUsStrings.section3DE.p2}
                 </p>}
             />
-            <BlockR
-                img={IMG4}
-                title='Asset'
-                txt={
-                    <p>
-                        Sit back and let time work for you or actively trade the acquired shares on the integrated market.
-                        <br /> <br />
-                        As soon as the film production is exploited, our investors receive a fixed return of 7% on their invested capital in the first year and can profit from the respective profit distributions in the following years.
-                    </p>
-                }
-            />
+            <div style={{marginBottom: 75}}></div>
         </MainLayout>
     )
 }

@@ -77,8 +77,8 @@ const App = () => {
       <Route path='/' element={<Root en={isEnglish} setEn={changeLan} isVisible={isVisible} openModal={openModal} closeModal={closeModal} />} />
       <Route path='/about-us' element={<AboutUsPage en={isEnglish} setEn={changeLan} isVisible={isVisible} openModal={openModal} closeModal={closeModal} />} />
       <Route path='/why-movies' element={<WhyMovies en={isEnglish} setEn={changeLan} isVisible={isVisible} openModal={openModal} closeModal={closeModal} />} />
-      <Route path='/sign-in' element={<SignInPage />} />
-      <Route path='/sign-up' element={<SignUpPage />} />
+      <Route path='/sign-in' element={<SignInPage en={isEnglish} setEn={changeLan} />} />
+      <Route path='/sign-up' element={<SignUpPage en={isEnglish} setEn={changeLan} />} />
       <Route path='/account' element={<AuthRoute link='/sign-in'> <AccountPage /> </AuthRoute>} />
       <Route path='/test' element={<TestPage />} />
     </Routes>

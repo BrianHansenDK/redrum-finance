@@ -14,7 +14,6 @@ const BlockL = ({ img, title, txt }: {img:string, title:any, txt:any}) => {
                         {title}
                     </h1>
                 ) : null}
-
                 {txt}
             </div>
         </div>

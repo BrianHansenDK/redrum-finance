@@ -1,6 +1,6 @@
 import { getAuth, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth"
 import React, { Component, useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { Button, Form, Input, InputGroup, Message, Schema, Toggle, Tooltip, useToaster, Whisper } from "rsuite"
 import GPLAY from '@rsuite/icons/legacy/GooglePlusCircle'
 import CheckIcon from '@rsuite/icons/Check';
@@ -16,6 +16,8 @@ import FormGroup from "rsuite/esm/FormGroup"
 import FormControl from "rsuite/esm/FormControl"
 import { database, getAllUserObjectsInfo, writeUserData } from "../../../firebase"
 import EmailIMG from '../../../assets/mail-svgrepo-com.svg'
+import signInPageStrings from "../../../library/string/SignInPage"
+import signUpModalStrings from "../../../library/string/SignUpModal"
 
 const tooltip = (
     <Tooltip>
@@ -23,7 +25,7 @@ const tooltip = (
     </Tooltip>
 )
 
-function SignUpForm() {
+function SignUpForm({en} : {en: boolean}) {
 
     const auth = getAuth()
     const navigate = useNavigate()
@@ -122,9 +124,11 @@ function SignUpForm() {
                 <div className="col">
                     <Whisper speaker={tooltip} placement="top" controlId="control-id-hover" trigger={`${isChecked ? 'none' : 'hover'}`}>
                         <Button
-                            appearance='primary' color='green' className='main-btn white-with-border mb-3 shadow'
-                            block onClick={signInWithGoogle} disabled={authing}>
-                            <GPLAY /> Login with google
+                            appearance='primary' color='green' className='main-btn mb-3 shadow'
+                            block onClick={signInWithGoogle} disabled={authing}
+                            style={{color: mainColors.rSuiteBlue, border: '2px solid' + mainColors.rSuiteBlue, backgroundColor: mainColors.white}}
+                            >
+                            <GPLAY /> {en ? signInPageStrings.EN.google : signInPageStrings.DE.google}
                         </Button>
                     </Whisper>
 
@@ -133,7 +137,13 @@ function SignUpForm() {
                             <InputGroupAddon>
                                 <AvatarIcon />
                             </InputGroupAddon>
-                            <FormControl pattern="[a-zA-Z]+(\s[a-zA-Z]*){0,2}" defaultValue={userName} onChange={setUserName} name="userName" placeholder="Username" type="text" />
+                            <FormControl
+                            pattern="[a-zA-Z]+(\s[a-zA-Z]*){0,2}"
+                            defaultValue={userName}
+                            onChange={setUserName}
+                            name="userName"
+                            placeholder={en ? signUpModalStrings.EN.un : signUpModalStrings.DE.un}
+                            type="text" />
                         </InputGroup>
                     </FormGroup>
 
@@ -142,13 +152,23 @@ function SignUpForm() {
                             <InputGroupAddon>
                                 <EnvelopeIcon />
                             </InputGroupAddon>
-                            <FormControl defaultValue={userEmail} onChange={setEmail} name="emailAddress" placeholder="Email address" type="email" />
+                            <FormControl
+                            defaultValue={userEmail}
+                            onChange={setEmail}
+                            name="emailAddress"
+                            placeholder={en ? signUpModalStrings.EN.mail : signUpModalStrings.DE.mail}
+                            type="email" />
                         </InputGroup>
                     </FormGroup>
 
                     <FormGroup controlId="password">
                         <InputGroup inside className="mb-2" >
-                            <FormControl defaultValue={userPassword} onChange={setUserPassword} placeholder="Password" name="password" type={password1Visible ? 'text' : 'password'} />
+                            <FormControl
+                            defaultValue={userPassword}
+                            onChange={setUserPassword}
+                            placeholder={en ? signUpModalStrings.EN.ps : signUpModalStrings.DE.ps}
+                            name="password"
+                            type={password1Visible ? 'text' : 'password'} />
                             <InputGroup.Button onClick={showPassword1}>
                                 {password1Visible ? <EyeIcon /> : <EyeSlashIcon />}
                             </InputGroup.Button>
@@ -157,7 +177,12 @@ function SignUpForm() {
 
                     <FormGroup controlId="password-1">
                         <InputGroup inside className="mb-2" >
-                            <FormControl defaultValue={userConfirmedPassword} onChange={setUserConfirmedPassword} placeholder="Confirm Password" name="password-confirm" type={password2Visible ? 'text' : 'password'} />
+                            <FormControl
+                            defaultValue={userConfirmedPassword}
+                            onChange={setUserConfirmedPassword}
+                            placeholder={en ? signUpModalStrings.EN.cPs : signUpModalStrings.DE.cPs}
+                            name="password-confirm"
+                            type={password2Visible ? 'text' : 'password'} />
                             <InputGroup.Button onClick={showPassword2}>
                                 {password2Visible ? <EyeIcon /> : <EyeSlashIcon />}
                             </InputGroup.Button>
@@ -166,16 +191,19 @@ function SignUpForm() {
 
                     <div className='d-flex'>
                         <Toggle onChange={() => setChecked(!isChecked)} checkedChildren={<CheckIcon />} unCheckedChildren={<CloseIcon />} />
-                        <p className='ml-1' style={{ color: mainColors.white }} >
-                            I agree to the Redrum media invest Terms & Conditions and the Privacy Policy. I further agree to receiving marketing via e-mails from Redrum media invest Gmbh regarding product categories, which I can withdraw any time.
-                        </p>
+                        <p className='ml-1' style={{color: mainColors.white}}>
+                                {en ? signUpModalStrings.EN.tAndC : signUpModalStrings.DE.tAndC} &nbsp;
+                                <Link to='/'>
+                                  {en ? signUpModalStrings.EN.read : signUpModalStrings.DE.read}
+                                </Link>
+                            </p>
                     </div>
 
                     <FormGroup>
 
                         <Whisper placement="top" controlId="control-id-hover" trigger={`${isChecked ? 'none' : 'hover'}`} speaker={tooltip}>
                             <Button appearance='primary' disabled={!isChecked} size='lg' block className='main-btn mt-1 shadow' onClick={createAccount}>
-                                Get started
+                              {en ? signUpModalStrings.EN.btn : signUpModalStrings.DE.btn}
                             </Button>
                         </Whisper>
                     </FormGroup>
