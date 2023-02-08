@@ -59,7 +59,7 @@ const App = () => {
       </Route>
 
       {/* The App itself */}
-      <Route path='/app' element={<AuthRoute link='/'><AppRoot /></AuthRoute>} />
+      <Route path='/app' element={<AuthRoute link='/'><AppRoot en={isEnglish} /></AuthRoute>} />
       <Route path='/app/investments' element={<InvestmentPage />} />
       <Route path='/app/databank' element={<DatabankPage />} />
       <Route path='/app/bundle/:bundleId' element={<ProjectDetailsPageWrapper />} >

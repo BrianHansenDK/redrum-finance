@@ -17,10 +17,11 @@ import TooltipForAccount from './TooltipForAccount';
 import { Link, useNavigate } from 'react-router-dom';
 import mainShadows from '../themes/shadows';
 import { mainColors } from '../themes/colors';
+import dashboardStrings from '../../../library/string/Dashboard';
 
 
 
-const AppNavBar = ({ fixed = true }: { fixed: boolean }) => {
+const AppNavBar = ({ fixed = true, en }: { fixed: boolean, en: boolean }) => {
     const auth = getAuth()
     const navigate = useNavigate()
     const toaster = useToaster()
@@ -73,24 +74,24 @@ const AppNavBar = ({ fixed = true }: { fixed: boolean }) => {
                 </NavbarBrand>
                 <Nav pullRight className='d-flex align-center' style={{ height: 60 }} activeKey={`${location.pathname == '/app' ? '1' : location.pathname == `/app/profile/${auth.currentUser?.uid}` ? '3' : null}`}>
                     <NavItem as={Link} to='/app' eventKey='1' className='d-flex flex-column align-center justify-around' style={styles.navLink}>
-                        <DashboardIcon /> Dashboard
+                        <DashboardIcon /> {en ? dashboardStrings.navbarEN.home : dashboardStrings.navbarDE.home}
                     </NavItem>
                     <NavItem className='d-flex flex-column align-center justify-around' style={styles.navLink}>
-                        <NotificationsIcon /> Notifications
+                        <NotificationsIcon /> {en ? dashboardStrings.navbarEN.not : dashboardStrings.navbarDE.not}
                     </NavItem>
                     <Whisper placement='bottom' controlId='control-id-click' trigger='click' speaker={AccountTooltip} >
                         <NavItem eventKey='3' className='d-flex flex-column align-center justify-around' style={styles.navLink}>
-                            <USER /> <span>My account <OPENMENU /> </span>
+                            <USER /> <span>{en ? dashboardStrings.navbarEN.acc : dashboardStrings.navbarDE.acc} <OPENMENU /> </span>
                         </NavItem>
                     </Whisper>
                     <NavItem className='d-flex flex-column align-center justify-around' style={styles.navLink}>
-                        <UsersIcon /> Network
+                        <UsersIcon /> {en ? dashboardStrings.navbarEN.nw : dashboardStrings.navbarDE.nw}
                     </NavItem>
                     <NavItem className='d-flex flex-column align-center justify-around' style={styles.navLink}>
-                        <MessageIcon /> Messages
+                        <MessageIcon /> {en ? dashboardStrings.navbarEN.event : dashboardStrings.navbarDE.event}
                     </NavItem>
                     <Button style={styles.btn} appearance='primary' size='lg' >
-                      Invest now
+                    {en ? dashboardStrings.navbarEN.btn : dashboardStrings.navbarDE.btn}
                     </Button>
                 </Nav>
             </div>
