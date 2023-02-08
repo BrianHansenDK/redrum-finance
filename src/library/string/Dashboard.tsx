@@ -35,6 +35,14 @@ const dashboardStrings = {
     nw: 'Dein Netzwerk',
     news: 'Nachrichten',
   },
+  projectShowcaseEN: {
+    cI: 'Currently invested',
+    mA: 'Max. amount',
+  },
+  projectShowcaseDE: {
+    cI: 'Bereits investiert',
+    mA: 'Investitionsziel',
+  },
 }
 
 export default dashboardStrings

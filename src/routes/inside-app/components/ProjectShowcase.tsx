@@ -8,8 +8,10 @@ import { onValue, ref } from 'firebase/database';
 import { database } from '../../../firebase';
 import { mainColors } from '../themes/colors';
 import mainShadows from '../themes/shadows';
+import dashboardStrings from '../../../library/string/Dashboard';
 
 interface IProps {
+  en: boolean
 }
 
 interface IState {
@@ -67,10 +69,12 @@ class ProjectShowcase extends React.Component<IProps, IState> {
                             </div>
                             <div className='d-flex align-center pl-1 pr-4' style={{ justifyContent: 'space-between' }}>
                                 <p style={styles.numberTxt}>
-                                    Currently invested: <span style={styles.number}>{numberWithCommas(project.currentlyInvested)} € </span>
+                                    {this.props.en ? dashboardStrings.projectShowcaseEN.cI : dashboardStrings.projectShowcaseDE.cI}: &nbsp;
+                                    <span style={styles.number}>{numberWithCommas(project.currentlyInvested)} € </span>
                                 </p>
                                 <p style={styles.numberTxt}>
-                                    Goal: <span style={styles.number}>{numberWithCommas(project.goal)} € </span>
+                                {this.props.en ? dashboardStrings.projectShowcaseEN.cI : dashboardStrings.projectShowcaseDE.cI}: &nbsp;
+                                    <span style={styles.number}>{numberWithCommas(project.goal)} € </span>
                                 </p>
                             </div>
                             <Progress.Line style={styles.percentageNr} percent={toFixedIfNecessary((project.currentlyInvested / project.goal) * 100, 2)} status={`${toFixedIfNecessary((project.currentlyInvested / project.goal) * 100, 2) < 100 ? 'active' : 'success'}`} />

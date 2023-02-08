@@ -17,7 +17,7 @@ const AppRoot = ({en, setEn} : {en: boolean, setEn: any}) => {
     <LayoutWithSidebar en={en} setEn={setEn}>
       <BannerComponent />
 
-      <ProjectShowcase />
+      <ProjectShowcase en={en} />
       <div className='pl-2 pt-3 pr-2 pb-3'>
         <MainBtn
           pressed={() => null}
