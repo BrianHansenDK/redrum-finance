@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Nav, Sidenav } from 'rsuite'
+import { Nav, Sidenav, Toggle } from 'rsuite'
 import DashboardIcon from '@rsuite/icons/legacy/Dashboard';
 import InvestmentsIcon from '@rsuite/icons/legacy/ChartsLine'
 import SecondaryMarketIcon from '@rsuite/icons/legacy/Money';
@@ -12,6 +12,7 @@ import { Link } from 'react-router-dom';
 import UpcomingModal from './UpcomingModal';
 import mainShadows from '../themes/shadows';
 import dashboardStrings from '../../../library/string/Dashboard';
+import LanguageToggle from './LanguageToggle';
 
 const styles = {
   sideNav: {
@@ -26,7 +27,7 @@ const styles = {
 
 }
 
-const SideBar = ({en} : {en: boolean}) => {
+const SideBar = ({en, setEn} : {en: boolean, setEn: any}) => {
   const [isVisible, setVisible] = useState(false)
   const [currentKey, setCurrentKey] = useState('1')
   useEffect(() => {
@@ -74,6 +75,7 @@ const SideBar = ({en} : {en: boolean}) => {
             {en ? dashboardStrings.sidebarEN.news : dashboardStrings.sidebarDE.news}
             </Nav.Item>
           </Nav>
+          <LanguageToggle en={en} setEn={setEn} />
         </Sidenav.Body>
       </Sidenav>
       <UpcomingModal

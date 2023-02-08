@@ -12,9 +12,9 @@ import { database } from '../../../../firebase'
 import { Loader, useToaster } from 'rsuite'
 import PushNotification from '../../../../components/Notification'
 
-const AppRoot = ({en} : {en: boolean}) => {
+const AppRoot = ({en, setEn} : {en: boolean, setEn: any}) => {
   return (
-    <LayoutWithSidebar en={en}>
+    <LayoutWithSidebar en={en} setEn={setEn}>
       <BannerComponent />
 
       <ProjectShowcase />
