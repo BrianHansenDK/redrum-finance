@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import { Tooltip, Whisper } from 'rsuite'
 import ProgressLine from 'rsuite/esm/Progress/ProgressLine'
+import bundleStrings from '../../../../../../library/string/Bundle'
 import { numberWithCommas, toFixedIfNecessary } from '../../../../../../misc/custom-hooks'
 import { mainColors } from '../../../../themes/colors'
 
 
 
-const ProgressItem = ({ project }: { project: any }) => {
+const ProgressItem = ({ project, en }: { project: any, en: boolean }) => {
     const tooltip = (
         <Tooltip>
             Currently invested: {numberWithCommas(project.currentlyInvested)} €
@@ -19,11 +20,13 @@ const ProgressItem = ({ project }: { project: any }) => {
             <div style={styles.progressWrap}>
                 <ProgressLine style={styles.bar} percent={percent} status={`${percent == 100 ? 'success' : 'active'}`} />
                 <div style={styles.goalWrap}>
-                    <p style={styles.goalTxt}>Received</p>
+                    <p style={styles.goalTxt}>
+                      {en ? bundleStrings.infoCardEN.aI : bundleStrings.infoCardDE.aI}
+                    </p>
                     <p style={styles.goalTxt}>{numberWithCommas(project.currentlyInvested)} €</p>
                 </div>
                 <div style={styles.goalWrap}>
-                    <p style={styles.goalTxt}>Goal</p>
+                    <p style={styles.goalTxt}>{en ? bundleStrings.infoCardEN.iT : bundleStrings.infoCardDE.iT}</p>
                     <p style={styles.goalTxt}>{numberWithCommas(project.goal)} €</p>
                 </div>
             </div>

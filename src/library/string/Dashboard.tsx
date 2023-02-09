@@ -43,6 +43,22 @@ const dashboardStrings = {
     cI: 'Bereits investiert',
     mA: 'Investitionsziel',
   },
+  tooltipEN: {
+    t: 'My account',
+    btn: 'Logout',
+    l1: 'Edit Profile',
+    l2: 'Settings',
+    l3: 'My data',
+    l4: 'Deposit money',
+  },
+  tooltipDE: {
+    t: 'Mein Account',
+    btn: 'Abmelden',
+    l1: 'Profil bearbeiten',
+    l2: 'Einstellungen',
+    l3: 'Meine Daten',
+    l4: 'Geld einzahlen',
+  },
 }
 
 export default dashboardStrings

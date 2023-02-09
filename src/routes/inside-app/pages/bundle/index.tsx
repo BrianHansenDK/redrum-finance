@@ -12,7 +12,9 @@ import RightSide from './components/right/RightSide'
 import SecondaryNavbar from './components/SecondaryNavbar'
 
 interface IProps {
-    params: any
+    params: any,
+    en: boolean,
+    setEn: any,
 }
 
 interface IState {
@@ -78,19 +80,19 @@ class ProjectDetailsPage extends React.Component<IProps, IState> {
             <>
                 {this.state.projectData.map((project) => project.id == bundleId ? (
                     <Container style={styles.page} key={project.id}>
-                        <AppNavBar fixed={this.state.topFixed} />
+                        <AppNavBar fixed={this.state.topFixed} en={this.props.en} />
                         <Grid style={styles.wrapper} fluid>
                             <Row style={styles.wrapperInner}>
                                 <LeftSide project={project} />
-                                <RightSide project={project} />
+                                <RightSide project={project} en={this.props.en} setEn={this.props.setEn} />
                             </Row>
                         </Grid>
-                        <SecondaryNavbar project={project} isFixed={this.state.bottomFixed} />
+                        <SecondaryNavbar project={project} isFixed={this.state.bottomFixed} en={this.props.en} />
                         <div style={styles.extrasWrap}>
                             <Outlet />
                         </div>
                         <Footer className='dark-bg txt-white pd-page'>
-                            <MainFooter />
+                            <MainFooter en={this.props.en} />
                         </Footer>
                     </Container>
                 ) : null)}

@@ -1,16 +1,40 @@
 import React from 'react'
+import bundleStrings from '../../../../../../library/string/Bundle'
 import SingleLineInfo from './SingleLineInfo'
 
-const InfoLines = ({ project }: { project: any }) => {
+const InfoLines = ({ project, en }: { project: any, en: boolean }) => {
     return (
-        <>
-            <SingleLineInfo title='Guaranteed return' info={project.guaranteedReturn.toString()} type='%' />
-            <SingleLineInfo title='Expected end date' info={project.endDate.split(' ').slice(1).join(' ')} />
-            <SingleLineInfo title='Finance goal' info={project.goal.toString()} type='€' />
-            <SingleLineInfo title='Minimal investment' info={3} type='€' />
-            <SingleLineInfo title='Received' info={project.currentlyInvested.toString()} type='€' isBlue />
-        </>
+        <div style={styles.wrap}>
+            <SingleLineInfo
+            title={en ? bundleStrings.infoCardEN.aR : bundleStrings.infoCardDE.aR}
+            info={project.guaranteedReturn.toString()} type='%'
+            />
+            <SingleLineInfo
+            title={en ? bundleStrings.infoCardEN.iD : bundleStrings.infoCardDE.iD}
+            info={project.endDate.split(' ').slice(1).join(' ')}
+            />
+            <SingleLineInfo
+            title={en ? bundleStrings.infoCardEN.iT : bundleStrings.infoCardDE.iT}
+            info={project.goal.toString()}
+            type='€'
+            />
+            <SingleLineInfo
+            title={en ? bundleStrings.infoCardEN.mI : bundleStrings.infoCardDE.mI}
+            info={3} type='€' />
+            <SingleLineInfo
+            title={en ? bundleStrings.infoCardEN.publication : bundleStrings.infoCardDE.publication}
+            info={'8-12 M'} />
+            <SingleLineInfo
+            title={en ? bundleStrings.infoCardEN.aI : bundleStrings.infoCardDE.aI}
+            info={project.currentlyInvested.toString()}
+            type='€'
+            isBlue
+            />
+        </div>
     )
+}
+const styles = {
+  wrap: {marginBottom: 15, width: '100%'}
 }
 
 export default InfoLines

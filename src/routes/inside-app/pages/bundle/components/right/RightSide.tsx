@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { ButtonToolbar, Col, Modal } from 'rsuite'
 import { auth, userRef } from '../../../../../../firebase'
+import LanguageToggle from '../../../../components/LanguageToggle'
 import MainBtn from '../../../../components/MainBtn'
 import ConfirmAgeModal from '../ConfirmAgeModal'
 import InvestModal from '../InvestModal'
@@ -10,7 +11,7 @@ import InfoLines from './InfoLines'
 import InfoTag from './InfoTag'
 import ProgressItem from './ProgressItem'
 
-const RightSide = ({ project }: { project: any }) => {
+const RightSide = ({ project, en, setEn }: { project: any, en: boolean, setEn: any }) => {
     const [isVisible, setVisible] = useState(false)
     const [isInvestVisible, setInvestVisible] = useState(false)
     const [isTransferVisible, setTransferVisible] = useState(false)
@@ -57,10 +58,11 @@ const RightSide = ({ project }: { project: any }) => {
             <Col xs={24} sm={24} md={7}
                 style={styles.wrapper} className='flex-column'
             >
-                <ProgressItem project={project} />
+                <ProgressItem project={project} en={en} />
                 <div style={styles.card} className='flex-column'>
                     <InfoTag />
-                    <InfoLines project={project} />
+                    <InfoLines project={project} en={en} />
+                    <LanguageToggle en={en} setEn={setEn} />
                 </div>
                 <MainBtn
                     content={'Invest now'}
@@ -71,7 +73,7 @@ const RightSide = ({ project }: { project: any }) => {
                     isBlock={true}
                 />
             </Col>
-            <ConfirmAgeModal visible={isVisible} close={closeModal} openInvestModal={openInvestModal} />
+            <ConfirmAgeModal visible={isVisible} close={closeModal} openInvestModal={openInvestModal} en={en}/>
             <InvestModal project={project} close={closeInvestModal} visible={isInvestVisible} showReciept={showReciept} />
             <TransferMoneyModal close={closeInvestModal} visible={isTransferVisible} />
             <RecieptModal close={hideReciept} isVisible={reciept} />

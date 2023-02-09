@@ -28,32 +28,32 @@ const AppNavBar = ({ fixed = true, en }: { fixed: boolean, en: boolean }) => {
     const logout = () => {
         auth.signOut().then(() => location.pathname == '/app' ? navigate('/') : navigate('/app'))
         toaster.push(<Message showIcon type='info'>
-          Logged out
+          {en ? 'Logged out' : 'Abmeldet'}
         </Message>, {placement: 'topCenter'})
         window.setTimeout(() => {toaster.clear()}, 5000)
     }
 
     const ACCOUNTNAV = [
         {
-            title: 'Edit profile',
+            title: en ? dashboardStrings.tooltipEN.l1 : dashboardStrings.tooltipDE.l1,
             icon: <USER />,
             index: 1,
             to: `/app/profile/${auth.currentUser?.uid}`
         },
         {
-            title: 'Settings',
+            title: en ? dashboardStrings.tooltipEN.l2 : dashboardStrings.tooltipDE.l2,
             icon: <GEAR />,
             index: 2,
             to: `/app/profile/${auth.currentUser?.uid}`
         },
         {
-            title: 'My data',
+            title: en ? dashboardStrings.tooltipEN.l3 : dashboardStrings.tooltipDE.l3,
             icon: <DOCS />,
             index: 3,
             to: `/app/profile/${auth.currentUser?.uid}`
         },
         {
-            title: 'Add balance',
+            title: en ? dashboardStrings.tooltipEN.l4 : dashboardStrings.tooltipDE.l4,
             icon: <INV />,
             index: 4,
             to: `/app/profile/${auth.currentUser?.uid}`
@@ -62,7 +62,7 @@ const AppNavBar = ({ fixed = true, en }: { fixed: boolean, en: boolean }) => {
 
     const AccountTooltip = (
         <Tooltip className='grey-bg pl-2 pr-1 pt-1 pb-1 shadow' style={{ borderRadius: 10, minWidth: 40 + '%' }}>
-            <TooltipForAccount ACCOUNTNAV={ACCOUNTNAV} auth={auth} logout={logout} />
+            <TooltipForAccount ACCOUNTNAV={ACCOUNTNAV} auth={auth} logout={logout} en={en} />
         </Tooltip>
     )
     return (

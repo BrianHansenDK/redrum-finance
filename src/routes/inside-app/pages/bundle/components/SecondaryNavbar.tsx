@@ -14,7 +14,7 @@ import InvestModal from './InvestModal'
 import TransferMoneyModal from './TransferMoneyModal'
 import '../styles/bundlepage.scss'
 
-const SecondaryNavbar = ({ project, isFixed }: { project: any, isFixed: boolean }) => {
+const SecondaryNavbar = ({ project, isFixed, en }: { project: any, isFixed: boolean, en: boolean }) => {
     const NAVS = [
         {
             index: 0,
@@ -140,7 +140,7 @@ const SecondaryNavbar = ({ project, isFixed }: { project: any, isFixed: boolean 
                     </div>
                 </Nav>
             </Navbar>
-            <ConfirmAgeModal visible={isVisible} close={closeModal} openInvestModal={openInvestModal} />
+            <ConfirmAgeModal visible={isVisible} close={closeModal} openInvestModal={openInvestModal} en={en} />
             <InvestModal project={project} close={closeInvestModal} visible={isInvestVisible} showReciept={() => null} />
             <TransferMoneyModal close={closeInvestModal} visible={isTransferVisible} />
         </>

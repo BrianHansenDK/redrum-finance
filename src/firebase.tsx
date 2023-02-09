@@ -67,12 +67,16 @@ export function writeProjectData(
     description: string,
     startDate: string,
     endDate: string,
+    publication: string,
     goal: number,
     currentlyInvested: number,
     guaranteedReturn: number,
     value: number,
     movies: Array<any>,
+    avatarUrl: string,
     imageUrl: string,
+    overviewUrl: string,
+    presentationUrl: string,
 ) {
     const reference = ref(database, 'projects/' + projectId)
     set(reference, {
@@ -82,12 +86,16 @@ export function writeProjectData(
         description: description,
         startDate: startDate,
         endDate: endDate,
+        publication: publication,
         goal: goal,
         currentlyInvested: currentlyInvested,
         guaranteedReturn: guaranteedReturn,
         value: value,
         movies: movies,
+        smallImage: avatarUrl,
         banner: imageUrl,
+        overviewImage: overviewUrl,
+        presentationImage: presentationUrl,
     })
 }
 

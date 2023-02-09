@@ -1,7 +1,7 @@
 import { onValue, ref } from 'firebase/database'
 import { getDownloadURL, uploadBytes } from 'firebase/storage'
 import React, { useEffect, useState } from 'react'
-import { Avatar, Button, ButtonGroup, CheckPicker, DatePicker, DateRangePicker, Form, Input, InputGroup, Uploader, useToaster } from 'rsuite'
+import { Avatar, Button, ButtonGroup, CheckPicker, DatePicker, DateRangePicker, Divider, Form, Input, InputGroup, Uploader, useToaster } from 'rsuite'
 import FormControlLabel from 'rsuite/esm/FormControlLabel'
 import FormGroup from 'rsuite/esm/FormGroup'
 import PushNotification from '../../components/Notification'
@@ -11,21 +11,29 @@ import MainBtn from '../inside-app/components/MainBtn'
 import { mainColors } from '../inside-app/themes/colors'
 import mainShadows from '../inside-app/themes/shadows'
 import MainLayout from '../layouts/mainLayout'
+import PLACEHOLDER from '../../assets/profileimage_placeholder.svg'
 import './index.scss'
 
 const CreateProjectPage = () => {
     const [projectTitle, setProjectTitle] = useState('')
     const [projectIntro, setProjectIntro] = useState('')
     const [projectDescription, setProjectDescription] = useState('')
-    const [projectStartDate, setProjectStartDate] = useState(new Date('2023-09-25 17:00'))
-    const [projectEndDate, setProjectEndDate] = useState(new Date('2023-09-25 17:00'))
+    const [projectStartDate, setProjectStartDate] = useState('')
+    const [projectEndDate, setProjectEndDate] = useState('')
+    const [projectPublication, setProjectPublication] = useState('')
     const [projectGoal, setProjectGoal] = useState('')
     const [projectInvested, setProjectInvested] = useState('')
     const [projectValue, setProjectValue] = useState('')
     const [projectReturn, setProjectReturn] = useState('')
     const [projectMovies, setProjectMovies] = useState([])
-    const [image, setImage] = useState(null)
-    const [imageUrl, setUrl] = useState('')
+    const [avatar, setAvatar] = useState(null)
+    const [avatarUrl, setAvatarUrl] = useState('')
+    const [banner, setBanner] = useState(null)
+    const [bannerUrl, setBannerUrl] = useState('')
+    const [overview, setOverview] = useState(null)
+    const [overviewUrl, setOverviewUrl] = useState('')
+    const [presentation, setPresentation] = useState(null)
+    const [presentationUrl, setPresentationUrl] = useState('')
 
     const toaster = useToaster()
 
@@ -45,19 +53,42 @@ const CreateProjectPage = () => {
         }
     ))
 
-    const handleImage = (e: any) => {
-        const target: EventTarget & any = e.target
-        if (target.files[0]) {
-            setImage(target.files[0])
-        }
+    const handleAvatar = (e: any) => {
+      const target: EventTarget & any = e.target
+      if (target.files[0]) {
+          setAvatar(target.files[0])
+      }
     }
 
-    const handleImageSubmit = () => {
-        if (image !== null && projectTitle !== '') {
-            const imageRef = storageRef(storage, `images/project_banners/${projectTitle.split(' ').join('_')}_movie_cover`)
-            uploadBytes(imageRef, image).then((snap) => {
+    const handleAvatarSubmit = () => {
+      if (avatar !== null && projectTitle !== '') {
+          const imageRef = storageRef(storage, `images/projects/${projectTitle.split(' ').join('_')}/avatar`)
+          uploadBytes(imageRef, avatar).then((snap) => {
+              getDownloadURL(imageRef).then((url) => {
+                  setAvatarUrl(url)
+              }).catch((err) => {
+                  toaster.push(<PushNotification type='error' content={`An error occured: ${err.message}`} />, { placement: 'topCenter' })
+                  window.setTimeout(() => {
+                      toaster.clear()
+                  }, 3000)
+              })
+          })
+      }
+  }
+
+  const handleBanner = (e: any) => {
+    const target: EventTarget & any = e.target
+    if (target.files[0]) {
+        setBanner(target.files[0])
+    }
+  }
+
+    const handleBannerSubmit = () => {
+        if (banner !== null && projectTitle !== '') {
+            const imageRef = storageRef(storage, `images/projects/${projectTitle.split(' ').join('_')}/banner`)
+            uploadBytes(imageRef, banner).then((snap) => {
                 getDownloadURL(imageRef).then((url) => {
-                    setUrl(url)
+                    setBannerUrl(url)
                 }).catch((err) => {
                     toaster.push(<PushNotification type='error' content={`An error occured: ${err.message}`} />, { placement: 'topCenter' })
                     window.setTimeout(() => {
@@ -68,16 +99,65 @@ const CreateProjectPage = () => {
         }
     }
 
+    const handleOverview = (e: any) => {
+      const target: EventTarget & any = e.target
+      if (target.files[0]) {
+          setOverview(target.files[0])
+      }
+    }
+
+      const handleOverviewSubmit = () => {
+          if (overview !== null && projectTitle !== '') {
+              const imageRef = storageRef(storage, `images/projects/${projectTitle.split(' ').join('_')}/overview`)
+              uploadBytes(imageRef, overview).then((snap) => {
+                  getDownloadURL(imageRef).then((url) => {
+                      setOverviewUrl(url)
+                  }).catch((err) => {
+                      toaster.push(<PushNotification type='error' content={`An error occured: ${err.message}`} />, { placement: 'topCenter' })
+                      window.setTimeout(() => {
+                          toaster.clear()
+                      }, 3000)
+                  })
+              })
+          }
+      }
+      const handlePresentation = (e: any) => {
+        const target: EventTarget & any = e.target
+        if (target.files[0]) {
+            setPresentation(target.files[0])
+        }
+      }
+
+        const handlePresentationSubmit = () => {
+            if (presentation !== null && projectTitle !== '') {
+                const imageRef = storageRef(storage, `images/projects/${projectTitle.split(' ').join('_')}/presentation`)
+                uploadBytes(imageRef, presentation).then((snap) => {
+                    getDownloadURL(imageRef).then((url) => {
+                        setPresentationUrl(url)
+                    }).catch((err) => {
+                        toaster.push(<PushNotification type='error' content={`An error occured: ${err.message}`} />, { placement: 'topCenter' })
+                        window.setTimeout(() => {
+                            toaster.clear()
+                        }, 3000)
+                    })
+                })
+            }
+        }
+
     const makeProject = () => {
         writeProjectData(Date.now().toString(), projectTitle, projectIntro, projectDescription,
-            projectStartDate.toDateString(),
-            projectEndDate.toDateString(),
+            new Date(projectStartDate).toDateString(),
+            new Date(projectEndDate).toDateString(),
+            projectPublication,
             Number(projectGoal),
             Number(projectInvested),
             Number(projectReturn),
             Number(projectValue),
             projectMovies,
-            imageUrl,
+            avatarUrl,
+            bannerUrl,
+            overviewUrl,
+            presentationUrl
         )
 
         toaster.push(<PushNotification type='success' content='Succesfully added Project/Bundle to the Application 🚀' />, { placement: 'bottomCenter' })
@@ -89,7 +169,7 @@ const CreateProjectPage = () => {
 
 
     return (
-        <MainLayout dark={true} openModal={null} closeModal={() => null} isVisible={false}>
+        <MainLayout dark={true} openModal={null} closeModal={() => null} isVisible={false} en={true} setEn={() => null}>
             <div style={styles.contentWrap} className='flex-column'>
                 <h1 style={styles.pageTitle} className='txt-center'>Create Project</h1>
 
@@ -107,16 +187,55 @@ const CreateProjectPage = () => {
                         <FormControlLabel>Project description</FormControlLabel>
                         <Input onChange={setProjectDescription} as='textarea' rows={5} maxLength={350} placeholder='The long description of the project/bundle' />
                     </FormGroup>
+
+                    <FormGroup style={styles.imageUploader} >
+                        <div className='d-flex flex-column'>
+                            <FormControlLabel>Project Avatar</FormControlLabel>
+                            <input type='file' onChange={handleAvatar} />
+                            <Button style={{ marginTop: 15 }} onClick={handleAvatarSubmit}>
+                                Set avatar
+                            </Button>
+                        </div>
+                        <Avatar circle size='lg' src={avatarUrl !== '' ? avatarUrl : PLACEHOLDER} />
+                    </FormGroup>
+                    <Divider />
+
                     <FormGroup style={styles.imageUploader} >
                         <div className='d-flex flex-column'>
                             <FormControlLabel>Project banner</FormControlLabel>
-                            <input type='file' onChange={handleImage} />
-                            <Button style={{ marginTop: 15 }} onClick={handleImageSubmit}>
-                                Set cover
+                            <input type='file' onChange={handleBanner} />
+                            <Button style={{ marginTop: 15 }} onClick={handleBannerSubmit}>
+                                Set banner
                             </Button>
                         </div>
-                        <Avatar style={styles.avatar} size='lg' src={imageUrl} />
+                        <img style={styles.avatar} src={bannerUrl !== '' ? bannerUrl : PLACEHOLDER} />
                     </FormGroup>
+                    <Divider />
+
+                    <FormGroup style={styles.imageUploader} >
+                        <div className='d-flex flex-column'>
+                            <FormControlLabel>Project overview</FormControlLabel>
+                            <input type='file' onChange={handleOverview} />
+                            <Button style={{ marginTop: 15 }} onClick={handleOverviewSubmit}>
+                                Set overview
+                            </Button>
+                        </div>
+                        <img style={styles.avatar} src={overviewUrl !== '' ? overviewUrl : PLACEHOLDER} />
+                    </FormGroup>
+                    <Divider />
+
+                    <FormGroup style={styles.imageUploader} >
+                        <div className='d-flex flex-column'>
+                            <FormControlLabel>Project presentation</FormControlLabel>
+                            <input type='file' onChange={handlePresentation} />
+                            <Button style={{ marginTop: 15 }} onClick={handlePresentationSubmit}>
+                                Set presentation
+                            </Button>
+                        </div>
+                        <img style={styles.avatar} src={presentationUrl !== '' ? presentationUrl : PLACEHOLDER} />
+                    </FormGroup>
+                    <Divider />
+
                     <FormGroup>
                         <FormControlLabel>Project Movies</FormControlLabel>
                         <CheckPicker
@@ -126,17 +245,21 @@ const CreateProjectPage = () => {
                     </FormGroup>
                     <FormGroup>
                         <FormControlLabel>Start date</FormControlLabel>
-                        <DatePicker
-                            format="yyyy-MM-dd HH:mm" placeholder='Select start date'
+                        <Input
+                            placeholder='YYYY-MM-dd'
                             onChange={() => setProjectStartDate}
                         />
                     </FormGroup>
                     <FormGroup>
                         <FormControlLabel>End date</FormControlLabel>
-                        <DatePicker
-                            format="yyyy-MM-dd HH:mm" placeholder='Select end date'
+                        <Input
+                            placeholder='YYYY-MM-dd'
                             onChange={() => setProjectEndDate}
                         />
+                    </FormGroup>
+                    <FormGroup>
+                        <FormControlLabel>Publication</FormControlLabel>
+                        <Input onChange={setProjectPublication} placeholder='Write the publication' />
                     </FormGroup>
                     <FormGroup>
                         <FormControlLabel>Investment goal</FormControlLabel>

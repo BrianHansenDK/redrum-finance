@@ -62,7 +62,7 @@ const App = () => {
       <Route path='/app' element={<AuthRoute link='/'><AppRoot en={isEnglish} setEn={changeLan} /></AuthRoute>} />
       <Route path='/app/investments' element={<InvestmentPage />} />
       <Route path='/app/databank' element={<DatabankPage />} />
-      <Route path='/app/bundle/:bundleId' element={<ProjectDetailsPageWrapper />} >
+      <Route path='/app/bundle/:bundleId' element={<ProjectDetailsPageWrapper en={isEnglish} setEn={changeLan} />} >
         <Route index element={<ProjectDetailsOverviewWrapper />} />
         <Route path='extras/movies' element={<ProjectDetailsMovieWrapper />} />
         <Route path='extras/q-and-a' element={<ProjectDetailsQAndAWrapper />} />

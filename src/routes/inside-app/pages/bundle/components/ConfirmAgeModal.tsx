@@ -3,11 +3,13 @@ import { ButtonToolbar, Modal } from 'rsuite';
 import MainBtn from '../../../components/MainBtn';
 import PLUS from '../../../../../assets/18_above_img.svg'
 import { mainColors } from '../../../themes/colors';
+import bundleStrings from '../../../../../library/string/Bundle';
 
 interface IProps {
     visible: boolean,
     close: any,
     openInvestModal: any,
+    en: boolean,
 }
 
 class ConfirmAgeModal extends Component<IProps, {}> {
@@ -20,16 +22,15 @@ class ConfirmAgeModal extends Component<IProps, {}> {
             <Modal open={this.props.visible} onClose={this.props.close} >
                 <Modal.Header>
                     <Modal.Title style={styles.title}>
-                            Confirm age
+                            {this.props.en ? bundleStrings.ageModalEN.title : bundleStrings.ageModalDE.title}
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <div style={styles.contentWrap} className='flex-column'>
                         <img style={styles.image} src={PLUS} alt="You have to be minimum 18 years old" />
                         <p style={styles.txt}>
-                            You need to be at least 18 years old to invest in Redrum Pro projects. <br />
-                            By confirming you are over 18 years old, you agree that this information is correct.
-                            Also you accept full responsibility should this not be true.
+                        {this.props.en ? bundleStrings.ageModalEN.txt[0] : bundleStrings.ageModalDE.txt[0]} <br />
+                        {this.props.en ? bundleStrings.ageModalEN.txt[1] : bundleStrings.ageModalDE.txt[1]}
                         </p>
                     </div>
                 </Modal.Body>

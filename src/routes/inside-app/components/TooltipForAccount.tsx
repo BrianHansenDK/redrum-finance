@@ -6,8 +6,14 @@ import TooltipIdentify from './TooltipIdentify'
 import TooltipLinks from './TooltipLinks'
 import TooltipTitle from './TooltipTitle'
 import './styles/navbar.scss'
+import dashboardStrings from '../../../library/string/Dashboard'
 
-export interface ITooltipForAccount { ACCOUNTNAV: Array<{}>, auth: any, logout: MouseEventHandler }
+export interface ITooltipForAccount {
+  ACCOUNTNAV: Array<{}>,
+  auth: any,
+  logout: MouseEventHandler,
+  en: boolean
+}
 
 const styles = {
     topPart: {
@@ -30,7 +36,7 @@ window.addEventListener('mouseenter', (event) => {
 })
 
 const TooltipForAccount: React.FunctionComponent<ITooltipForAccount> = (props) => {
-    const { ACCOUNTNAV, auth, logout } = props
+    const { ACCOUNTNAV, auth, logout, en } = props
 
     return (
         <>
@@ -38,7 +44,7 @@ const TooltipForAccount: React.FunctionComponent<ITooltipForAccount> = (props) =
             <div className='mt-1' style={styles.topPart}>
                 <TooltipIdentify auth={auth} />
                 <Button style={styles.btn} className='logout-btn' color='red' appearance='ghost' size='lg' onClick={logout}>
-                  Logout
+                  {en ? dashboardStrings.tooltipEN.btn : dashboardStrings.tooltipDE.btn}
                 </Button>
             </div>
             <TooltipLinks ACCOUNTNAV={ACCOUNTNAV} />
