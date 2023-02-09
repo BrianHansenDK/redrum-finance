@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Button, Message, Nav, Navbar, Tooltip, useToaster, Whisper } from 'rsuite'
 import NavItem from 'rsuite/esm/Nav/NavItem'
 import DashboardIcon from '@rsuite/icons/legacy/Dashboard';
@@ -18,6 +18,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import mainShadows from '../themes/shadows';
 import { mainColors } from '../themes/colors';
 import dashboardStrings from '../../../library/string/Dashboard';
+import DepositMoneyModal from './money/DepositMoneyModal';
 
 
 
@@ -25,6 +26,14 @@ const AppNavBar = ({ fixed = true, en }: { fixed: boolean, en: boolean }) => {
     const auth = getAuth()
     const navigate = useNavigate()
     const toaster = useToaster()
+    const [visible, setVisible] = useState(false)
+
+    const openModal = () => {
+      setVisible(true)
+    }
+    const closeModal = () => {
+      setVisible(false)
+    }
     const logout = () => {
         auth.signOut().then(() => location.pathname == '/app' ? navigate('/') : navigate('/app'))
         toaster.push(<Message showIcon type='info'>
@@ -66,6 +75,7 @@ const AppNavBar = ({ fixed = true, en }: { fixed: boolean, en: boolean }) => {
         </Tooltip>
     )
     return (
+      <>
         <Navbar style={styles.navBar} className={`navbar ${fixed ? '' : 'navbarhidden'}`}>
             <div style={styles.navBarInner}>
 
@@ -90,12 +100,14 @@ const AppNavBar = ({ fixed = true, en }: { fixed: boolean, en: boolean }) => {
                     <NavItem className='d-flex flex-column align-center justify-around' style={styles.navLink}>
                         <MessageIcon /> {en ? dashboardStrings.navbarEN.event : dashboardStrings.navbarDE.event}
                     </NavItem>
-                    <Button style={styles.btn} appearance='primary' size='lg' >
+                    <Button style={styles.btn} appearance='primary' size='lg' onClick={openModal} >
                     {en ? dashboardStrings.navbarEN.btn : dashboardStrings.navbarDE.btn}
                     </Button>
                 </Nav>
             </div>
         </Navbar>
+        <DepositMoneyModal userId={auth.currentUser?.uid} visible={visible} close={closeModal} />
+      </>
     )
 }
 

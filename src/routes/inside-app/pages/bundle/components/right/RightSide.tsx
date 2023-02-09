@@ -73,7 +73,7 @@ const RightSide = ({ project, en, setEn }: { project: any, en: boolean, setEn: a
                     isBlock={true}
                 />
             </Col>
-            <ConfirmAgeModal visible={isVisible} close={closeModal} openInvestModal={openModal} en={en}/>
+            <ConfirmAgeModal visible={isVisible} close={closeModal} openInvestModal={openInvestModal} en={en}/>
             <InvestModal project={project} close={closeInvestModal} visible={isInvestVisible} showReciept={showReciept} />
             <TransferMoneyModal close={closeInvestModal} visible={isTransferVisible} />
             <RecieptModal close={hideReciept} isVisible={reciept} />

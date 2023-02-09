@@ -36,7 +36,7 @@ const PaypalComponent: React.FunctionComponent<IProps> = (props) => {
       updateUserBalance().then(() => {
         // Notify user of succesfull payment
         toaster.push(<Message showIcon type='success'>
-          Your payment has been recieved and {amountToPay}€ was successfully added to yyour account
+          Your payment has been recieved and {amountToPay}€ was successfully added to your account
         </Message>, {placement: 'topCenter'})
         closeModal()
       })

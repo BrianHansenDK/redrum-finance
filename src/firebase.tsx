@@ -110,6 +110,19 @@ function getMovies() {
     })
 }
 
+export const getCurrentUser = (userId: any, obj: any, state: any ) => {
+  const reference = ref(database, 'users/')
+  onValue(reference, (snap) => {
+    snap.forEach((user) => {
+      if (user.key?.toString() == userId.toString()) {
+        obj.setState((_prev: any) => ({
+          state: snap.val()
+        }))
+      }
+    })
+  })
+}
+
 export const userRef = (userId: any, query: string, state: any) => {
     onValue(ref(database, 'users/' + userId + query), (snap) => {
         const data = snap.val()
