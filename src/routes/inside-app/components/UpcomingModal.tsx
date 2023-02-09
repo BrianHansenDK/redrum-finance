@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 import { Button, Modal } from 'rsuite';
+import dashboardStrings from '../../../library/string/Dashboard';
 
 interface IProps {
     title: string,
     body: string,
     visible: boolean,
     close: any,
+    en: boolean,
 }
 
 class UpcomingModal extends Component<IProps, {}> {
@@ -26,7 +28,7 @@ class UpcomingModal extends Component<IProps, {}> {
                 </Modal.Body>
                 <Modal.Footer>
                     <Button appearance='primary' color='red' onClick={this.props.close}>
-                        Close
+                        {this.props.en ? dashboardStrings.comingSoonEN.btn : dashboardStrings.comingSoonDE.btn}
                     </Button>
                 </Modal.Footer>
             </Modal>

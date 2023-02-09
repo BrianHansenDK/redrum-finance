@@ -13,36 +13,37 @@ import { auth, database, userRef } from '../../../../../firebase'
 import InvestModal from './InvestModal'
 import TransferMoneyModal from './TransferMoneyModal'
 import '../styles/bundlepage.scss'
+import bundleStrings from '../../../../../library/string/Bundle'
 
 const SecondaryNavbar = ({ project, isFixed, en }: { project: any, isFixed: boolean, en: boolean }) => {
     const NAVS = [
         {
             index: 0,
-            txt: 'Overview',
+            txt: en ? bundleStrings.secondaryNavbarEN.home : bundleStrings.secondaryNavbarDE.home,
             icon: <OverviewIcon />,
             to: `/app/bundle/${project.id}`
         },
         {
             index: 1,
-            txt: 'Movies',
+            txt: en ? bundleStrings.secondaryNavbarEN.mv : bundleStrings.secondaryNavbarDE.mv,
             icon: <MovieIcon />,
             to: `/app/bundle/${project.id}/extras/movies`
         },
         {
             index: 2,
-            txt: 'Q & A',
+            txt: en ? bundleStrings.secondaryNavbarEN.qa : bundleStrings.secondaryNavbarDE.qa,
             icon: <InfoIcon />,
             to: `/app/bundle/${project.id}/extras/q-and-a`
         },
         {
             index: 3,
-            txt: 'Updates',
+            txt: en ? bundleStrings.secondaryNavbarEN.up : bundleStrings.secondaryNavbarDE.up,
             icon: <UpdatesIcon />,
             to: `/app/bundle/${project.id}/extras/updates`
         },
         {
             index: 4,
-            txt: 'Investors',
+            txt: en ? bundleStrings.secondaryNavbarEN.iv : bundleStrings.secondaryNavbarDE.iv,
             icon: <InverstorsIcon />,
             to: `/app/bundle/${project.id}/extras/investors`
         },

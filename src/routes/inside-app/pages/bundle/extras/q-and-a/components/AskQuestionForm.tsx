@@ -3,10 +3,11 @@ import React, { Component, useState } from 'react';
 import { Button, Input, Message, useToaster } from 'rsuite';
 import PushNotification from '../../../../../../../components/Notification';
 import { auth, database } from '../../../../../../../firebase';
+import bundleStrings from '../../../../../../../library/string/Bundle';
 import MainBtn from '../../../../../components/MainBtn';
 import { mainColors } from '../../../../../themes/colors';
 
-const AskQuestionForm = ({ bundleId, questionsData }: { bundleId: string, questionsData: any[] }) => {
+const AskQuestionForm = ({ bundleId, questionsData, en }: { bundleId: string, questionsData: any[], en: boolean }) => {
 
     const [question, setQuestion] = useState('')
 
@@ -50,11 +51,17 @@ const AskQuestionForm = ({ bundleId, questionsData }: { bundleId: string, questi
 
     return (
         <>
-            <Input style={styles.input} onChange={setQuestion} as='textarea' rows={5} placeholder='Write question here' />
+            <Input
+            style={styles.input}
+            onChange={setQuestion}
+            as='textarea'
+            rows={5}
+            placeholder={en ? bundleStrings.qaEN.placeholder : bundleStrings.qaDE.placeholder}
+            />
             <MainBtn
-                content={'Add question'}
+                content={en ? bundleStrings.qaEN.btn : bundleStrings.qaDE.btn}
                 pressed={addQuestionToProject}
-                btnColor='green'
+                btnColor='blue'
                 btnAppearance='primary'
                 btnSize='lg'
                 isBlock={false} />

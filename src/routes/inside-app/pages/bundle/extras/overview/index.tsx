@@ -15,7 +15,8 @@ import CoInvestorsSection from './components/CoInvestorsSection'
 import NewInvestorsSection from './components/NewInvestorsSection'
 
 interface IProps {
-    params: any
+    params: any,
+    en: boolean
 }
 
 interface IState {
@@ -53,9 +54,9 @@ class BundleOverview extends React.Component<IProps, IState> {
                 project.id == bundleId ? (
                     <div style={styles.wrapper} className='flex-column' key={project.id}>
                         <PresentationCard project={project} />
-                        <FilesSection date={today} />
-                        <CoInvestorsSection projectId={project.id.toString()} />
-                        <NewInvestorsSection project={project} />
+                        <FilesSection date={today} en={this.props.en} />
+                        <CoInvestorsSection projectId={project.id.toString()} en={this.props.en} />
+                        <NewInvestorsSection project={project} en={this.props.en} />
                         <Warning key={3} />
                     </div>
                 ) : null

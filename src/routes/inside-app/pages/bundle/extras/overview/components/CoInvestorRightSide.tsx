@@ -1,14 +1,18 @@
 import React, { useState } from 'react'
+import bundleStrings from '../../../../../../../library/string/Bundle'
 import { mainColors } from '../../../../../themes/colors'
 
-const CoInvestorRightSide = ({ amount, userName, investments }: { amount: number, userName: any, investments: any[] }) => {
+interface IProps { amount: number, userName: any, investments: any[], en: boolean }
+
+const CoInvestorRightSide: React.FunctionComponent<IProps> = (props) => {
+  const { amount, userName, investments, en } = props
     return (
         <div>
             <h3 style={styles.name}>
                 {userName}
             </h3>
             <p style={styles.others}>
-                {investments?.length} other investments
+                {investments?.length} {en ? bundleStrings.coInvEN.content : bundleStrings.coInvDE.content}
             </p>
             <p style={styles.amount}>
                 {amount} €

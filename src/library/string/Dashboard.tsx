@@ -59,6 +59,20 @@ const dashboardStrings = {
     l3: 'Meine Daten',
     l4: 'Geld einzahlen',
   },
+  comingSoonEN: {
+    body: [
+      'The secondary market is currently still under construction.',
+      ' Here you will soon be able to trade your shares with other producers.'
+    ],
+    btn: 'close',
+  },
+  comingSoonDE: {
+    body: [
+      'Der Sekundärmarkt ist aktuell noch in Arbeit.',
+      ' Hier kannst du bald deine Anteile mit den anderen Producern traden.'
+    ],
+    btn: 'schließen',
+  },
 }
 
 export default dashboardStrings

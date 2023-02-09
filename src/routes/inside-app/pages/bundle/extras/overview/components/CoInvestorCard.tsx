@@ -4,7 +4,10 @@ import { mainColors } from '../../../../../themes/colors'
 import mainShadows from '../../../../../themes/shadows'
 import CoInvestorRightSide from './CoInvestorRightSide'
 
-const CoInvestorCard = ({ userId, investments, amount }: { userId: any, investments: any[], amount: number }) => {
+interface IProps { userId: any, investments: any[], amount: number, en: boolean }
+
+const CoInvestorCard: React.FunctionComponent<IProps> = (props) => {
+  const { userId, investments, amount, en } = props
   const [userImage, setUserImage] = useState('')
   const [userName, setUserName] = useState('')
   const [userEmail, setUserEmail] = useState('')
@@ -22,7 +25,12 @@ const CoInvestorCard = ({ userId, investments, amount }: { userId: any, investme
                     {userName.split(' ').length == 2 ? userName.split(' ').map((w: any) => w[0]).join('.') : userName.slice(0, 1)}
                 </div>
             )}
-            <CoInvestorRightSide amount={amount} userName={userEmail == auth.currentUser?.email ? 'You' : userName} investments={investments} />
+            <CoInvestorRightSide
+            amount={amount}
+            userName={userEmail == auth.currentUser?.email ? 'You' : userName}
+            investments={investments}
+            en={en}
+            />
         </div>
     )
 }

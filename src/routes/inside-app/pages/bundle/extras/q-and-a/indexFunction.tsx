@@ -2,11 +2,14 @@ import React from 'react'
 import { useParams } from 'react-router-dom'
 import BundleQAndADetails from '.'
 
-const ProjectDetailsQAndAWrapper = (WrappedComponent: any) => (props: any) => {
+interface IProps {en: boolean}
+
+const ProjectDetailsQAndAWrapper = (WrappedComponent: any) => (props: IProps) => {
     const params = useParams()
+    const {en} = props
     return (
         <>
-            <WrappedComponent params={params} />
+            <WrappedComponent params={params} en={en}/>
         </>
     )
 }

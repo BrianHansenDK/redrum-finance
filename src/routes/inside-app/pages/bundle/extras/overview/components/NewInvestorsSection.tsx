@@ -3,11 +3,13 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Divider } from 'rsuite';
 import { database, getUsers } from '../../../../../../../firebase';
+import bundleStrings from '../../../../../../../library/string/Bundle';
 import { mainColors } from '../../../../../themes/colors';
 import NewInverstorsCard from './NewInverstorsCard';
 
 interface IProps {
-    project: any
+    project: any,
+    en: boolean,
 }
 
 interface IState {
@@ -38,7 +40,7 @@ class NewInvestorsSection extends Component<IProps, IState> {
             <div style={styles.wrap}>
 
                 <h3 style={styles.title}>
-                    Newest investors
+                    {this.props.en ? bundleStrings.newInvEN.title : bundleStrings.newInvDE.title}
                 </h3>
                 <Divider style={styles.divider} />
                 <div style={styles.userWrap} className='flex-wrap'>
@@ -49,11 +51,11 @@ class NewInvestorsSection extends Component<IProps, IState> {
                         ))
                     }
                 </div>
-                <p style={styles.linkWrap}>
+                <h3 style={styles.linkWrap}>
                     <Link style={styles.link} to={`/app/bundle/${this.props.project?.id}/extras/investors`}>
-                        See all investors
+                        {this.props.en ? bundleStrings.newInvEN.link : bundleStrings.newInvDE.link}
                     </Link>
-                </p>
+                </h3>
             </div>
         );
     }
@@ -80,7 +82,6 @@ const styles = {
         marginTop: 20,
     },
     link: {
-        fontSize: 20,
         color: mainColors.dark,
         opacity: .9,
     }

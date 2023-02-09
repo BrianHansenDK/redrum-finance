@@ -17,7 +17,7 @@ const FileElement = ({ date, file }: { date: Date, file: IFile }) => {
                 <MainBtn
                     content={'Download'}
                     pressed={() => null}
-                    btnColor='green'
+                    btnColor='blue'
                     btnAppearance='primary'
                     btnSize='md'
                     isBlock={false} />

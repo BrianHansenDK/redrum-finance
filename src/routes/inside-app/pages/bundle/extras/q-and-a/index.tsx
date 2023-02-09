@@ -7,8 +7,10 @@ import { mainColors } from '../../../../themes/colors'
 import NoQuestionsSection from './components/NoQuestionsSection'
 import AskQuestionForm from './components/AskQuestionForm'
 import QuestionAndAnswer from './components/QuestionAndAnswer'
+import bundleStrings from '../../../../../../library/string/Bundle'
 interface IProps {
-    params: any
+    params: any,
+    en: boolean,
 }
 
 interface IState {
@@ -67,10 +69,12 @@ class BundleQAndADetails extends React.Component<IProps, IState> {
 
                     <h1 style={styles.title}>
                         {
-                            this.state.questionsData?.length > 0 ? 'Ask a question' : 'Be the first to ask a question'
+                            this.state.questionsData?.length > 0 ?
+                            this.props.en ? bundleStrings.qaEN.title : bundleStrings.qaDE.title
+                            : this.props.en ? bundleStrings.qaEN.fTitle : bundleStrings.qaDE.fTitle
                         }
                     </h1>
-                    <AskQuestionForm bundleId={bundleId} questionsData={this.state?.questionsData} />
+                    <AskQuestionForm bundleId={bundleId} questionsData={this.state?.questionsData} en={this.props.en} />
                 </div>
             </div>
         )

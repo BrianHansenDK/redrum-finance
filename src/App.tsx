@@ -63,9 +63,9 @@ const App = () => {
       <Route path='/app/investments' element={<InvestmentPage />} />
       <Route path='/app/databank' element={<DatabankPage />} />
       <Route path='/app/bundle/:bundleId' element={<ProjectDetailsPageWrapper en={isEnglish} setEn={changeLan} />} >
-        <Route index element={<ProjectDetailsOverviewWrapper />} />
+        <Route index element={<ProjectDetailsOverviewWrapper en={isEnglish} />} />
         <Route path='extras/movies' element={<ProjectDetailsMovieWrapper />} />
-        <Route path='extras/q-and-a' element={<ProjectDetailsQAndAWrapper />} />
+        <Route path='extras/q-and-a' element={<ProjectDetailsQAndAWrapper en={isEnglish} />} />
         <Route path='extras/updates' element={<ProjectDetailsUpdatesWrapper />} />
         <Route path='extras/investors' element={<ProjectDetailsInvestorWrapper />} />
       </Route>

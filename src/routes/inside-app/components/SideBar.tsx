@@ -80,9 +80,10 @@ const SideBar = ({en, setEn} : {en: boolean, setEn: any}) => {
       </Sidenav>
       <UpcomingModal
         title={'Coming soon'}
-        body={'Our secondary market is currently under development and is not available for the time being'}
+        body={en ? dashboardStrings.comingSoonEN.body.join('') : dashboardStrings.comingSoonDE.body.join('')}
         visible={isVisible}
-        close={closeModal} />
+        close={closeModal}
+        en={en} />
     </>
   )
 }

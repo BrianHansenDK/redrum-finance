@@ -29,6 +29,50 @@ const bundleStrings = {
       'Hiermit bestätigst du, dass du 18 Jahre oder älter bist.'
       ]
   },
+  secondaryNavbarEN: {
+    home: 'Overview',
+    mv: 'Films',
+    qa: 'Q&A',
+    up: 'Updates',
+    iv: 'Investors'
+  },
+  secondaryNavbarDE: {
+    home: 'Übersicht',
+    mv: 'Filme',
+    qa: 'Q&A',
+    up: 'Updates',
+    iv: 'Investoren'
+  },
+  overviewDocsEN: 'Documents',
+  overviewDocsDE: 'Dokumente',
+  coInvEN: {
+    title: 'Last investments',
+    content: 'other investments',
+  },
+  coInvDE: {
+    title: 'Letzte investments',
+    content: 'weitere investments',
+  },
+  newInvEN: {
+    title: 'Recent investors',
+    link: 'See all investors',
+  },
+  newInvDE: {
+    title: 'Neueste Investoren',
+    link: 'Siehe alle Investoren',
+  },
+  qaEN: {
+    title: 'Ask a question',
+    fTitle: 'Be the first to ask a question',
+    placeholder: 'Write question here',
+    btn: 'Add question',
+  },
+  qaDE: {
+    title: 'Stelle eine Frage',
+    fTitle: 'Be the first to ask a question',
+    placeholder: 'Beschreibe deine Frage',
+    btn: 'Frage hinzufügen',
+  }
 }
 
 export default bundleStrings

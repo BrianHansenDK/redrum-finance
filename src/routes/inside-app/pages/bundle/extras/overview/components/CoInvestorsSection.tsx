@@ -2,10 +2,12 @@ import { onValue, ref } from 'firebase/database';
 import React, { useEffect, useState } from 'react'
 import { Divider } from 'rsuite';
 import { database, getAllUserObjectsInfo, userRef } from '../../../../../../../firebase';
+import bundleStrings from '../../../../../../../library/string/Bundle';
 import { mainColors } from '../../../../../themes/colors';
 import CoInvestorCard from './CoInvestorCard';
 interface IProps {
-  projectId: string
+  projectId: string,
+  en: boolean,
  }
 
 interface IState {
@@ -14,7 +16,7 @@ interface IState {
 }
 
 const CoInvestorsSection: React.FunctionComponent<IProps> = (props) => {
-  const {projectId} = props
+  const {projectId, en} = props
   const [projectInvestments, setProjectInvestments] = useState<any>([])
     useEffect(() =>  {
       const investRef = ref(database, 'investments/')
@@ -30,7 +32,7 @@ const CoInvestorsSection: React.FunctionComponent<IProps> = (props) => {
     }, [])
         return (
             <div style={styles.wrap}>
-                <h2 style={styles.title}>Last investment</h2>
+                <h2 style={styles.title}>{en ? bundleStrings.coInvEN.title : bundleStrings.coInvDE.title}</h2>
                 <Divider style={styles.divider} />
                 {
                   projectInvestments.length > 0 ? (
@@ -38,6 +40,7 @@ const CoInvestorsSection: React.FunctionComponent<IProps> = (props) => {
                   amount={projectInvestments[projectInvestments.length - 1]?.amount}
                   userId={projectInvestments[projectInvestments.length - 1]?.creator}
                   investments={projectInvestments}
+                  en={en}
                   />
                   ) : (
                     <h1>

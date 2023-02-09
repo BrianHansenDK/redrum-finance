@@ -6,11 +6,12 @@ import mainShadows from '../../../../../themes/shadows'
 import FilesCard from './FilesCard'
 import { IProject } from '../../../../dashboard/components/util'
 import { mainColors } from '../../../../../themes/colors'
+import bundleStrings from '../../../../../../../library/string/Bundle'
 
-const FilesSection = ({ date }: { date: Date }) => {
+const FilesSection = ({ date, en }: { date: Date, en: boolean }) => {
     return (
         <div style={styles.filesWrap}>
-            <h2 style={styles.title}>Project files</h2>
+            <h2 style={styles.title}>{en ? bundleStrings.overviewDocsEN : bundleStrings.overviewDocsDE}</h2>
             <FilesCard date={date} />
         </div>
     )
