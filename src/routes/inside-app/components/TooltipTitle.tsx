@@ -1,11 +1,12 @@
 import React from 'react'
 import { userRef } from '../../../firebase'
+import dashboardStrings from '../../../library/string/Dashboard'
 import { mainColors } from '../themes/colors'
 
-interface IProps {auth:any}
+interface IProps {auth:any, en: boolean}
 
 const TooltipTitle: React.FunctionComponent<IProps> = (props) => {
-  const {auth} = props
+  const {auth, en} = props
   const [available, setAvailable] = React.useState<any>(0)
 
   React.useEffect(() => {
@@ -14,7 +15,7 @@ const TooltipTitle: React.FunctionComponent<IProps> = (props) => {
 
   return (
     <div style={styles.titleWrap} >
-      <h3 className='' style={styles.title} >Account</h3>
+      <h3 className='' style={styles.title} >{en ? dashboardStrings.tooltipEN.t : dashboardStrings.tooltipDE.t}</h3>
       <p style={styles.desc}>Account balance: {available !== null ? `${available}` : '0'} €</p>
     </div>
   )

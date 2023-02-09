@@ -40,7 +40,7 @@ const TooltipForAccount: React.FunctionComponent<ITooltipForAccount> = (props) =
 
     return (
         <>
-            <TooltipTitle auth={auth}/>
+            <TooltipTitle auth={auth} en={en}/>
             <div className='mt-1' style={styles.topPart}>
                 <TooltipIdentify auth={auth} />
                 <Button style={styles.btn} className='logout-btn' color='red' appearance='ghost' size='lg' onClick={logout}>
