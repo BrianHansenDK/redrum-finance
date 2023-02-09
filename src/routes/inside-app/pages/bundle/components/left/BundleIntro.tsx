@@ -8,7 +8,7 @@ const BundleIntro = ({ project }: { project: any }) => {
         <FlexboxGrid className='pt-4' justify='start'>
             <FlexboxGridItem colspan={4}>
                 <img
-                    src={project.banner}
+                    src={project.smallImage}
                     alt={project.name}
                     style={styles.avatar}
                     className='shadow'

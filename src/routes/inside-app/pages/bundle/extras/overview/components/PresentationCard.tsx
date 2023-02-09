@@ -8,7 +8,7 @@ const PresentationCard = ({ project }: { project: any }) => {
         <div style={styles.presentationCard} className='flex-column'>
 
             <h1 style={styles.title}>Presentation of the {project.name} project</h1>
-            <img src={project.banner} alt={project.intro} style={styles.image} />
+            <img src={project.overviewImage} alt={project.intro} style={styles.image} />
             <p style={styles.description}>
                 {project.description}
             </p>
@@ -46,7 +46,6 @@ const styles = {
     image: {
         width: 80 + '%',
         height: 'auto',
-        maxHeight: 450,
         borderRadius: 10,
         boxShadow: mainShadows.image,
     }

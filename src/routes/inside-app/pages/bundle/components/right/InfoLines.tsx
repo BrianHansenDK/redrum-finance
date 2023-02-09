@@ -11,7 +11,7 @@ const InfoLines = ({ project, en }: { project: any, en: boolean }) => {
             />
             <SingleLineInfo
             title={en ? bundleStrings.infoCardEN.iD : bundleStrings.infoCardDE.iD}
-            info={project.endDate.split(' ').slice(1).join(' ')}
+            info={project.endDate.split(' ').slice(1,3).join(' ')}
             />
             <SingleLineInfo
             title={en ? bundleStrings.infoCardEN.iT : bundleStrings.infoCardDE.iT}
@@ -23,7 +23,7 @@ const InfoLines = ({ project, en }: { project: any, en: boolean }) => {
             info={3} type='€' />
             <SingleLineInfo
             title={en ? bundleStrings.infoCardEN.publication : bundleStrings.infoCardDE.publication}
-            info={'8-12 M'} />
+            info={`${project.publication} ${en ? 'Months' : 'Monate'}`} />
             <SingleLineInfo
             title={en ? bundleStrings.infoCardEN.aI : bundleStrings.infoCardDE.aI}
             info={project.currentlyInvested.toString()}

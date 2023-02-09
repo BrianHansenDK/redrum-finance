@@ -247,14 +247,14 @@ const CreateProjectPage = () => {
                         <FormControlLabel>Start date</FormControlLabel>
                         <Input
                             placeholder='YYYY-MM-dd'
-                            onChange={() => setProjectStartDate}
+                            onChange={setProjectStartDate}
                         />
                     </FormGroup>
                     <FormGroup>
                         <FormControlLabel>End date</FormControlLabel>
                         <Input
                             placeholder='YYYY-MM-dd'
-                            onChange={() => setProjectEndDate}
+                            onChange={setProjectEndDate}
                         />
                     </FormGroup>
                     <FormGroup>
