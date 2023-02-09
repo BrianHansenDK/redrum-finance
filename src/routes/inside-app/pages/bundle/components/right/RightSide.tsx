@@ -66,14 +66,14 @@ const RightSide = ({ project, en, setEn }: { project: any, en: boolean, setEn: a
                 </div>
                 <MainBtn
                     content={'Invest now'}
-                    pressed={ age >= 18 && age !== null ? openInvestModal : openModal}
+                    pressed={ age >= 18 && age !== null ? openModal : openInvestModal}
                     btnColor='blue'
                     btnAppearance='primary'
                     btnSize='lg'
                     isBlock={true}
                 />
             </Col>
-            <ConfirmAgeModal visible={isVisible} close={closeModal} openInvestModal={openInvestModal} en={en}/>
+            <ConfirmAgeModal visible={isVisible} close={closeModal} openInvestModal={openModal} en={en}/>
             <InvestModal project={project} close={closeInvestModal} visible={isInvestVisible} showReciept={showReciept} />
             <TransferMoneyModal close={closeInvestModal} visible={isTransferVisible} />
             <RecieptModal close={hideReciept} isVisible={reciept} />

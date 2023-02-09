@@ -2,11 +2,14 @@ import React from 'react'
 import { useParams } from 'react-router-dom'
 import ProfilePage from '.'
 
-const ProfilePageWrapper = (WrappedComponent: any) => (props: any) => {
+interface IProps {en: boolean}
+
+const ProfilePageWrapper = (WrappedComponent: any) => (props: IProps) => {
     const params = useParams()
+    const {en} = props
     return (
         <>
-            <WrappedComponent params={params} />
+            <WrappedComponent params={params} en={en}/>
         </>
     )
 }

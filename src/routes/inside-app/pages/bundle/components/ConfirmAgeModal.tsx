@@ -46,8 +46,8 @@ class ConfirmAgeModal extends Component<IProps, {}> {
                         <MainBtn
                             content={'I am under 18 years old'}
                             pressed={this.props.close}
-                            btnColor={'red'}
-                            btnAppearance={'primary'}
+                            btnColor={null}
+                            btnAppearance={'default'}
                             btnSize={'lg'}
                             isBlock={false} />
                     </ButtonToolbar>

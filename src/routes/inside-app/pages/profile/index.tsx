@@ -9,7 +9,8 @@ import ProfileIntroduction from './components/identification/ProfileIntroduction
 import './components/styles/index.scss'
 
 interface IProps {
-    params: any
+    params: any,
+    en: boolean
 }
 
 interface IState {
@@ -37,7 +38,7 @@ class ProfilePage extends Component<IProps, IState> {
         const { userId } = this.props.params
         return (
             <div style={styles.pageWrap}>
-                <AppNavBar fixed />
+                <AppNavBar fixed en={this.props.en} />
                 <h1 style={styles.pageTitle} className='text-center'>
                     Profile page
                 </h1>

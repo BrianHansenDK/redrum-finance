@@ -5,10 +5,11 @@ import { getUsers } from '../../firebase';
 import MainBtn from '../inside-app/components/MainBtn';
 import { mainColors } from '../inside-app/themes/colors';
 import MainLayout from '../layouts/mainLayout';
-interface IProps { }
+interface IProps { en: boolean, setEn: any}
 
 
 const AccountAdmin: React.FunctionComponent<IProps> = (props) => {
+  const {en, setEn} = props
     const [users, setUsers] = useState<any[]>([])
     const [userIds, setUserIds] = useState<any[]>([])
     const [userId, setUserId] = useState(null)
@@ -20,7 +21,7 @@ const AccountAdmin: React.FunctionComponent<IProps> = (props) => {
         getUsers(data, keyData, setUsers, setUserIds)
     })
     return (
-        <MainLayout dark={true} openModal={() => null} closeModal={() => null} isVisible={false}>
+        <MainLayout dark={true} openModal={() => null} closeModal={() => null} isVisible={false} en={en} setEn={setEn}>
             <div style={styles.pageWrap}>
 
                 <h1 style={styles.title} className='txt-center'>

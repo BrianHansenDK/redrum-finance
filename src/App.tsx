@@ -53,16 +53,16 @@ const App = () => {
       </Route>
 
       {/* Test admin */}
-      <Route path='/create-project' element={<CreateProjectPage />} />
-      <Route path='/create-movie' element={<CreateMoviePage />} />
-      <Route path='/accounts-admin' element={<AccountAdmin />} >
+      <Route path='/create-project' element={<CreateProjectPage en={isEnglish} setEn={changeLan} />} />
+      <Route path='/create-movie' element={<CreateMoviePage en={isEnglish} setEn={changeLan} />} />
+      <Route path='/accounts-admin' element={<AccountAdmin en={isEnglish} setEn={changeLan} />} >
         <Route path='/accounts-admin/:userId' element={<UserCard />} />
       </Route>
 
       {/* The App itself */}
       <Route path='/app' element={<AuthRoute link='/'><AppRoot en={isEnglish} setEn={changeLan} /></AuthRoute>} />
-      <Route path='/app/investments' element={<InvestmentPage />} />
-      <Route path='/app/databank' element={<DatabankPage />} />
+      <Route path='/app/investments' element={<InvestmentPage en={isEnglish} setEn={changeLan} />} />
+      <Route path='/app/databank' element={<DatabankPage en={isEnglish} setEn={changeLan}/>} />
       <Route path='/app/bundle/:bundleId' element={<ProjectDetailsPageWrapper en={isEnglish} setEn={changeLan} />} >
         <Route index element={<ProjectDetailsOverviewWrapper en={isEnglish} />} />
         <Route path='extras/movies' element={<ProjectDetailsMovieWrapper />} />
@@ -70,11 +70,11 @@ const App = () => {
         <Route path='extras/updates' element={<ProjectDetailsUpdatesWrapper />} />
         <Route path='extras/investors' element={<ProjectDetailsInvestorWrapper />} />
       </Route>
-      <Route path='/app/profile/:userId' element={<ProfilePageWrapper />}>
+      <Route path='/app/profile/:userId' element={<ProfilePageWrapper en={isEnglish} />}>
 
       </Route>
       {/* Outside of App */}
-      <Route path='*' element={<PageNotFound isVisible={isVisible} openModal={openModal} closeModal={closeModal}/>} />
+      <Route path='*' element={<PageNotFound en={isEnglish} setEn={changeLan} isVisible={isVisible} openModal={openModal} closeModal={closeModal}/>} />
       <Route path='/' element={<Root en={isEnglish} setEn={changeLan} isVisible={isVisible} openModal={openModal} closeModal={closeModal} />} />
       <Route path='/about-us' element={<AboutUsPage en={isEnglish} setEn={changeLan} isVisible={isVisible} openModal={openModal} closeModal={closeModal} />} />
       <Route path='/why-movies' element={<WhyMovies en={isEnglish} setEn={changeLan} isVisible={isVisible} openModal={openModal} closeModal={closeModal} />} />

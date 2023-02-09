@@ -12,7 +12,7 @@ import { mainColors } from '../inside-app/themes/colors'
 import mainShadows from '../inside-app/themes/shadows'
 import MainLayout from '../layouts/mainLayout'
 
-const CreateMoviePage = () => {
+const CreateMoviePage = ({en, setEn}: {en: boolean, setEn: any}) => {
     const [title, setTitle] = useState('')
     const [intro, setIntro] = useState('')
     const [des, setDes] = useState('')
@@ -69,7 +69,7 @@ const CreateMoviePage = () => {
 
 
     return (
-        <MainLayout dark={true} openModal={null} closeModal={() => null} isVisible={false}>
+        <MainLayout dark={true} openModal={null} closeModal={() => null} isVisible={false} en={en} setEn={setEn}>
             <div style={styles.contentWrap} className='flex-column'>
                 <h1 style={styles.pageTitle} className='txt-center'>Create Movie</h1>
 

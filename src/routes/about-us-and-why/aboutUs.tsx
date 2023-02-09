@@ -20,7 +20,7 @@ const AboutUsPage: React.FunctionComponent<IProps> = (props) => {
         <MainLayout en={en} setEn = {setEn} isVisible={isVisible} openModal={openModal} closeModal={closeModal} dark={true}>
             <BlockL
                 img={IMG1}
-                title={null}
+                title={'About Redrum'}
                 txt={<p>
                   {en ? aboutUsStrings.section1EN.p1 : aboutUsStrings.section1DE.p1}
                   <br/> <br/>

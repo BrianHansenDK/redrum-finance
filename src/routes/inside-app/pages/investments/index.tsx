@@ -5,15 +5,15 @@ import { PROJECTS } from '../dashboard/components/util';
 import RadialChart from './components/RadialChart';
 import Searchbar from './components/searchbar';
 
-const InvestmentPage = () => {
+const InvestmentPage = ({en, setEn} : {en: boolean, setEn: any}) => {
 
     return (
-        <LayoutWithSidebar>
+        <LayoutWithSidebar en={en} setEn={setEn}>
             {
             // When we have more projects <Searchbar />
             }
             <RadialChart />
-            <ProjectShowcase />
+            <ProjectShowcase en={en} />
 
         </LayoutWithSidebar>
     )

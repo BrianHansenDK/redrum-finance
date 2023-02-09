@@ -10,12 +10,14 @@ interface IProps {
   isVisible: any,
   openModal: any,
   closeModal: any,
+  en: boolean,
+  setEn: any,
 }
 const PageNotFound: React.FunctionComponent<IProps> = (props) => {
-  const {isVisible, openModal, closeModal} = props
+  const {isVisible, openModal, closeModal, en, setEn} = props
   const navigate = useNavigate()
   return (
-    <MainLayout dark={true} openModal={openModal} closeModal={closeModal} isVisible={isVisible}>
+    <MainLayout dark={true} openModal={openModal} closeModal={closeModal} isVisible={isVisible} en={en} setEn={setEn}>
       <div style={styles.contentCon} className='flex-column'>
       <h1 style={styles.pageTitle}>Code 404</h1>
       <img src={NOTFOUNDIMG} alt="Sad html page" width={300} height={300} />

@@ -14,7 +14,7 @@ import MainLayout from '../layouts/mainLayout'
 import PLACEHOLDER from '../../assets/profileimage_placeholder.svg'
 import './index.scss'
 
-const CreateProjectPage = () => {
+const CreateProjectPage = ({en, setEn}: {en: boolean, setEn: any}) => {
     const [projectTitle, setProjectTitle] = useState('')
     const [projectIntro, setProjectIntro] = useState('')
     const [projectDescription, setProjectDescription] = useState('')
@@ -169,7 +169,7 @@ const CreateProjectPage = () => {
 
 
     return (
-        <MainLayout dark={true} openModal={null} closeModal={() => null} isVisible={false} en={true} setEn={() => null}>
+        <MainLayout dark={true} openModal={null} closeModal={() => null} isVisible={false} en={en} setEn={setEn}>
             <div style={styles.contentWrap} className='flex-column'>
                 <h1 style={styles.pageTitle} className='txt-center'>Create Project</h1>
 
