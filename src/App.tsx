@@ -26,6 +26,7 @@ import ScrollToTop from './components/ScollToTop.js';
 import PageNotFound from './routes/not-found/index.js';
 import DatabankPage from './routes/inside-app/pages/databank/index.js';
 import VanumoDashboard from './admin/dashboard/index.js';
+import HowItWorksPage from './routes/how-it-works/index.js';
 
 
 const App = () => {
@@ -77,8 +78,10 @@ const App = () => {
       <Route path='/' element={<Root en={isEnglish} setEn={changeLan} isVisible={isVisible} openModal={openModal} closeModal={closeModal} />} />
       <Route path='/about-us' element={<AboutUsPage en={isEnglish} setEn={changeLan} isVisible={isVisible} openModal={openModal} closeModal={closeModal} />} />
       <Route path='/why-movies' element={<WhyMovies en={isEnglish} setEn={changeLan} isVisible={isVisible} openModal={openModal} closeModal={closeModal} />} />
+      <Route path='/how-it-works' element={<HowItWorksPage en={isEnglish} setEn={changeLan} isVisible={isVisible} openModal={openModal} closeModal={closeModal} />} />
       <Route path='/sign-in' element={<SignInPage en={isEnglish} setEn={changeLan} />} />
       <Route path='/sign-up' element={<SignUpPage en={isEnglish} setEn={changeLan} />} />
+
       <Route path='/account' element={<AuthRoute link='/sign-in'> <AccountPage /> </AuthRoute>} />
       <Route path='/test' element={<TestPage />} />
     </Routes>

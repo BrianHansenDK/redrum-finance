@@ -24,7 +24,7 @@ const MainNavbar: React.FunctionComponent<IProps> = (props) => {
     },
     {
         t: en ? navbarStrings.navbarEN.how : navbarStrings.navbarDE.how,
-        to: '/how-to'
+        to: '/how-it-works'
     },
 ];
 
