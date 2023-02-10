@@ -27,6 +27,8 @@ import PageNotFound from './routes/not-found/index.js';
 import DatabankPage from './routes/inside-app/pages/databank/index.js';
 import VanumoDashboard from './admin/dashboard/index.js';
 import HowItWorksPage from './routes/how-it-works/index.js';
+import TermsAndConditionsPage from './routes/terms-and-conditions/index.js';
+import MovieTAC from './routes/terms-and-conditions/MovieTAC.js';
 
 
 const App = () => {
@@ -81,6 +83,9 @@ const App = () => {
       <Route path='/how-it-works' element={<HowItWorksPage en={isEnglish} setEn={changeLan} isVisible={isVisible} openModal={openModal} closeModal={closeModal} />} />
       <Route path='/sign-in' element={<SignInPage en={isEnglish} setEn={changeLan} />} />
       <Route path='/sign-up' element={<SignUpPage en={isEnglish} setEn={changeLan} />} />
+      <Route path='/terms-and-conditions' element={<TermsAndConditionsPage en={isEnglish} setEn={changeLan} isVisible={isVisible} openModal={openModal} closeModal={closeModal}/>} >
+        <Route index element={<MovieTAC />} />
+      </Route>
 
       <Route path='/account' element={<AuthRoute link='/sign-in'> <AccountPage /> </AuthRoute>} />
       <Route path='/test' element={<TestPage />} />

@@ -11,10 +11,11 @@ import { ref, update } from 'firebase/database'
 interface IProps {
     close: any,
     visible: any,
+    navPressed: boolean
 }
 
 const TransferMoneyModal: React.FunctionComponent<IProps> = (props) => {
-    const { close, visible } = props
+    const { close, visible, navPressed } = props
     const userId = auth.currentUser?.uid
     const [username, setUsername] = useState<any>(null)
     const [available, setAvailable] = useState<any>(0)
@@ -39,13 +40,13 @@ const TransferMoneyModal: React.FunctionComponent<IProps> = (props) => {
         <Modal onClose={close} open={visible}>
             <Modal.Header>
                 <Modal.Title style={profileCardTitle} className='text-center bold'>
-                        {location.pathname.includes('profile') ? 'Add to your balance' : available == null ? 'No money transfered' : 'Out of money'}
+                        {location.pathname.includes('profile') || navPressed ? 'Add to your balance' : available == null ? 'No money transfered' : 'Out of money'}
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body className='d-flex flex-column align-center'>
-                <img src={location.pathname.includes('profile') ? INV : OOM} alt="Businessman with empty pockets." width={200} height={200} className='mb-2' />
+                <img src={location.pathname.includes('profile') || navPressed ? INV : OOM} alt="Businessman with empty pockets." width={200} height={200} className='mb-2' />
                 {
-                  location.pathname.includes('profile') ? (
+                  location.pathname.includes('profile') || navPressed ? (
                     <p style={mainP} className='text-center mb-2'>
                     To transfer money to your account, you simply need to transfer the wished amount via Paypal or Credit Card. <br /> <br />
                     </p>

@@ -17,11 +17,17 @@ const MainLayout: React.FunctionComponent<IProps> = (props) => {
             <Content>
                 {children}
             </Content>
-            <Footer className='dark-bg txt-white pd-page'>
+            <Footer style={styles.footer} className='dark-bg txt-white pd-page'>
                 <MainFooter en={en} />
             </Footer>
         </Container>
     )
+}
+
+const styles = {
+  footer: {
+    zIndex: 5,
+  }
 }
 
 export default MainLayout

@@ -143,7 +143,7 @@ const SecondaryNavbar = ({ project, isFixed, en }: { project: any, isFixed: bool
             </Navbar>
             <ConfirmAgeModal visible={isVisible} close={closeModal} openInvestModal={openInvestModal} en={en} />
             <InvestModal project={project} close={closeInvestModal} visible={isInvestVisible} showReciept={() => null} />
-            <TransferMoneyModal close={closeInvestModal} visible={isTransferVisible} />
+            <TransferMoneyModal navPressed={false} close={closeInvestModal} visible={isTransferVisible} />
         </>
     )
 }

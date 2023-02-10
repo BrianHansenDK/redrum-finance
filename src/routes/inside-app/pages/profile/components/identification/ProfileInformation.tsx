@@ -25,8 +25,6 @@ const ProfileInformation: React.FunctionComponent<IProps> = (props) => {
 
     }
 
-    console.log(userAge)
-
     getUserInfo()
     return (
         <div style={styles.wrap} className='flex-column'>

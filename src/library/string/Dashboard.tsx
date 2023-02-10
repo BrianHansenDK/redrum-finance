@@ -5,7 +5,7 @@ const dashboardStrings = {
     not: 'Notifications',
     nw: 'Network',
     event: 'Messages',
-    btn: 'deposit',
+    btn: 'Deposit',
   },
   navbarDE: {
     home: 'Dashboard',

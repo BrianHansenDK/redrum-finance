@@ -18,7 +18,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import mainShadows from '../themes/shadows';
 import { mainColors } from '../themes/colors';
 import dashboardStrings from '../../../library/string/Dashboard';
-import DepositMoneyModal from './money/DepositMoneyModal';
+import DepositMoneyModal from './money/WithdrawMoneyModal';
+import TransferMoneyModal from '../pages/bundle/components/TransferMoneyModal';
 
 
 
@@ -106,7 +107,7 @@ const AppNavBar = ({ fixed = true, en }: { fixed: boolean, en: boolean }) => {
                 </Nav>
             </div>
         </Navbar>
-        <DepositMoneyModal userId={auth.currentUser?.uid} visible={visible} close={closeModal} />
+        <TransferMoneyModal navPressed={true} visible={visible} close={closeModal} />
       </>
     )
 }

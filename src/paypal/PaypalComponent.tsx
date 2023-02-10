@@ -54,7 +54,7 @@ const PaypalComponent: React.FunctionComponent<IProps> = (props) => {
       style={{ layout: 'vertical', color:  'blue', shape:  'rect', label:  'paypal'  }}
       forceReRender={[amountToPay]}
       createOrder={makeOrder}
-            onApprove={approvePayment}
+      onApprove={approvePayment}
       />
     </PayPalScriptProvider>
   )
