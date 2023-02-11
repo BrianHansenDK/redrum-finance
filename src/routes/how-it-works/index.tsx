@@ -1,5 +1,9 @@
 import React, {FunctionComponent} from 'react'
 import MainLayout from '../layouts/mainLayout'
+import HIWHero from './components/Hero'
+import HIWIntroSection from './components/Introduction'
+import InvExample from './components/InvExample'
+import HIWRights from './components/Rights'
 interface IProps {
   en: boolean,
   setEn: any,
@@ -19,9 +23,21 @@ const HowItWorksPage: FunctionComponent<IProps> = (props) => {
     isVisible={isVisible}
     dark
     >
-      index
+      <div style={styles.wrap}>
+        <HIWHero en={en} />
+        <HIWIntroSection en={en} />
+        <HIWRights en={en} />
+        <InvExample en={en} />
+      </div>
     </MainLayout>
   )
+}
+
+
+const styles = {
+  wrap: {
+    paddingTop: 150,
+  }
 }
 
 export default HowItWorksPage

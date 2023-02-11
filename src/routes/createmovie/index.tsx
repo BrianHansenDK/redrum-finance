@@ -52,7 +52,7 @@ const CreateMoviePage = ({en, setEn}: {en: boolean, setEn: any}) => {
 
     const handleImageSubmit = () => {
         if (image !== null && title !== '') {
-            const imageRef = storageRef(storage, `images/covers/${title.split(' ').join('_')}_movie_cover`)
+            const imageRef = storageRef(storage, `images/movies/${title.split(' ').join('_')}/cover`)
             uploadBytes(imageRef, image).then((snap) => {
                 getDownloadURL(imageRef).then((url) => {
                     setUrl(url)

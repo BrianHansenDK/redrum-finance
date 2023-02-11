@@ -200,3 +200,113 @@ export const whyMoviesStrings = {
     'Geldes, Narcos oder Stranger Things.',
   ],
 }
+
+export const hIWStrings = {
+  HeroEN: {
+    t: 'How it works',
+    des: 'Example using the currently available horror bundle.'
+  },
+  HeroDE: {
+    t: 'So funktioniert\'s',
+    des: 'Beispiel anhand des aktuell verfügbaren Horror-Bundles.'
+  },
+  introEN: [
+      'The Redrum Pro app publishes a bundle with various films of which you can purchase ',
+      'shares. Your investment automatically gives you a share in all the films in this bundle. This ',
+      'makes you the official producer and shareholder of these films and you can participate in ',
+      'potential profits or trade the shares in the app in the future. The respective bundle ',
+      'determines an individual target sum with which the projects are financed and by when all ',
+      'included films will be released. With each release of the films included in the bundle, you ',
+      'receive a guaranteed return on investment and the option to either keep the shares or get ',
+      'back your initial investment for the respective film in exchange for your shares.',
+  ],
+  introDE: [
+    'Die Redrum Pro-App veröffentlicht ein Bundle mit verschiedenen Filmen, ',
+    'von denen du Anteile erwerben kannst. Durch deine Investition bist du automatisch an allen Filmen dieses Bundles beteiligt. ',
+    'Dadurch bist du offizieller Producer und Anteilseigner dieser Filme und kannst dich an potenziellen ',
+    'Gewinnen beteiligen oder zukünftig die Anteile in der App handeln. ',
+    'Das jeweilige Bundle bestimmt eine individuelle Zielsumme, ',
+    'mit der die Projekte finanziert werden und bis wann alle enthaltenen Filme veröffentlicht werden. ',
+    'Bei jeder Veröffentlichung der im Bundle enthaltenen ',
+    'Filme erhältst du zum einen eine zugesicherte Rendite und zum anderen die Option, ',
+    'die Anteile entweder zu behalten oder du erhältst deine Ausgangsinvestition ',
+    'für den jeweiligen Film im Austausch deiner Anteile wieder zurück.',
+  ],
+  rightsEN: {
+    t: 'Investing in a bundle gives the Producer the following rights:',
+    l1: 'a guaranteed return of 7% of the invested capital on the release date of the film',
+    l2: [
+      'shares in the respective projects, giving him a share of the profits depending on the number ',
+      'of shares and whether he keeps them or not',
+    ],
+    l3: 'an option to repay the amount invested in exchange for the shares received on the release date of the film',
+  },
+  rightsDE: {
+    t: 'Die Investition in ein Bundle verbrieft dem Producer folgende Rechte:',
+    l1: 'eine zugesicherte Rendite in Höhe von 7% des angelegten Kapitals zum Veröffentlichungstermin des Films',
+    l2: [
+      'Anteile an den jeweiligen Projekten, die ihm je nach Anzahl der Anteile und beim ',
+      'Behalten dieser an den Gewinnen beteiligt',
+    ],
+    l3: [
+      'eine Option auf Rückzahlung des investierten Betrags im Austausch gegen die ',
+      'erhaltenen Anteile am Veröffentlichungstermin des Films',
+    ],
+  },
+  exampleTitleEN: 'Example calculation:',
+  exampleTitleDE: 'Beispielrechnung:',
+  phase1EN: {
+    t: 'Phase 1: Investment',
+    l1: 'Your investment:',
+    l2: 'Films in the bundle:',
+    l3: 'Share per film:'
+  },
+  phase1DE: {
+    t: 'Phase 1: Investment',
+    l1: 'Dein Investment:',
+    l2: 'Filme im Bundle:',
+    l3: 'Anteil je Film:'
+  },
+  phase2EN: {
+    t: 'Phase 2: Release + distribution',
+    des: [
+      'The payout is distributed over the respective release dates of the films. In this example, the ',
+      'payout is distributed over three cycles (three film releases). The following calculation is made ',
+      'for each release or distribution date:',
+    ],
+    rel: 'Film 1 release: after 12 months',
+    receive: 'First you receive your fixed, guaranteed return of 7%, therefore 7€.',
+    after: 'After the release of a film you have two additional options:',
+    c1: '1. you keep the shares to potentially receive annual profit distributions or trade the shares in the integrated secondary market',
+    or: 'or',
+    c2: [
+      '2. Redrum Pro offers you a one-time opportunity to return the shares you have purchased in ',
+      'the film to Redrum Pro in exchange for your initial capital of €100 for that particular film. This ',
+      'means you are no longer a shareholder and cannot share in the potential profit distributions.',
+    ],
+    end: 'This process is repeated for each release.'
+  },
+  phase2DE: {
+    t: 'Phase 2: Veröffentlichung + Ausschüttung',
+    des: [
+      'Die Ausschüttung wird dabei auf die jeweiligen Veröffentlichungstermine der Filme verteilt. In ',
+      'diesem Beispiel wird die Ausschüttung auf drei Zyklen (drei Filmveröffentlichungen) verteilt. ',
+      'Bei jedem Veröffentlichungs- bzw. Ausschüttungstag entsteht folgende Rechnung:,',
+    ],
+    rel: 'Film 1 Veröffentlichung: nach 12 Monaten',
+    receive: 'Zunächst erhältst du deine fixe, zugesicherte Rendite in Höhe von 7%, also 7€.',
+    after: 'Nach der Veröffentlichung eines Filmes hast du zusätzlich zwei Optionen:',
+    c1: [
+      '1. Du behältst die Anteile, um potenziell jährliche Gewinnausschüttungen zu erhalten oder ',
+      'die Anteile im integrierten Sekundärmarkt zu handeln'
+    ],
+    or: 'oder',
+    c2: [
+      '2. Redrum Pro bietet dir einmalig die Möglichkeit, die erworbenen Anteile an dem Film ',
+      'wieder an Redrum Pro zu geben und du erhältst im Austausch dein Ausgangskapital in Höhe ',
+      'von 100€ für diesen jeweiligen Film. Dadurch bist du nicht mehr Anteilseigner und kannst ',
+      'nicht an den potenziellen Gewinnausschüttungen teilhaben.',
+    ],
+    end: 'Dieser Prozess wiederholt sich bei jeder Veröffentlichung.'
+  },
+}
