@@ -6,6 +6,7 @@ const bundleStrings = {
     iD: 'Investment deadline',
     publication: 'Publication' ,
     aI: 'Already invested',
+    small: 'After termination'
   },
   infoCardDE: {
     aR: 'Zugesicherte Rendite',
@@ -14,6 +15,7 @@ const bundleStrings = {
     iD: 'Investitionsschluss',
     publication: 'Veröffentlichung' ,
     aI: 'Bereits investiert',
+    small: 'Nach Investitionsschluss'
   },
   ageModalEN: {
     title: 'Confirmation of age:',

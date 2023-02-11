@@ -7,7 +7,7 @@ const InfoLines = ({ project, en }: { project: any, en: boolean }) => {
         <div style={styles.wrap}>
             <SingleLineInfo
             title={en ? bundleStrings.infoCardEN.aR : bundleStrings.infoCardDE.aR}
-            info={project.guaranteedReturn.toString()} type='%'
+            info={project.guaranteedReturn.toString()} type='%' isTopElement={true}
             />
             <SingleLineInfo
             title={en ? bundleStrings.infoCardEN.iD : bundleStrings.infoCardDE.iD}
@@ -23,7 +23,9 @@ const InfoLines = ({ project, en }: { project: any, en: boolean }) => {
             info={3} type='€' />
             <SingleLineInfo
             title={en ? bundleStrings.infoCardEN.publication : bundleStrings.infoCardDE.publication}
-            info={`${project.publication} ${en ? 'Months' : 'Monate'}`} />
+            info={`${project.publication} ${en ? 'Months' : 'Monate'}`} hasSmallTxt
+            smallTxt={en ? bundleStrings.infoCardEN.small : bundleStrings.infoCardDE.small}
+            />
             <SingleLineInfo
             title={en ? bundleStrings.infoCardEN.aI : bundleStrings.infoCardDE.aI}
             info={project.currentlyInvested.toString()}
@@ -34,7 +36,7 @@ const InfoLines = ({ project, en }: { project: any, en: boolean }) => {
     )
 }
 const styles = {
-  wrap: {marginBottom: 15, width: '100%'}
+  wrap: {width: '100%'}
 }
 
 export default InfoLines

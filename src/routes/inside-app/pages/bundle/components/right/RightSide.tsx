@@ -62,16 +62,14 @@ const RightSide = ({ project, en, setEn }: { project: any, en: boolean, setEn: a
                 <div style={styles.card} className='flex-column'>
                     <InfoTag />
                     <InfoLines project={project} en={en} />
-                    <LanguageToggle en={en} setEn={setEn} />
-                </div>
-                <MainBtn
+                    <MainBtn
                     content={'Invest now'}
                     pressed={ age >= 18 && age !== null ? openModal : openInvestModal}
                     btnColor='blue'
                     btnAppearance='primary'
-                    btnSize='lg'
-                    isBlock={true}
-                />
+                    btnSize='md'
+                    isBlock={false} />
+                </div>
             </Col>
             <ConfirmAgeModal visible={isVisible} close={closeModal} openInvestModal={openInvestModal} en={en}/>
             <InvestModal project={project} close={closeInvestModal} visible={isInvestVisible} showReciept={showReciept} />
@@ -94,12 +92,11 @@ const styles = {
         backgroundColor: '#fbfbfb',
         marginTop: 1.5 + 'rem',
         marginBottom: 1.5 + 'rem',
-        paddingTop: 2 + 'rem',
         display: 'flex',
         alignItems: 'center',
+        justifyContent: 'space-evenly',
         paddingRight: 1 + 'rem',
         paddingLeft: 1 + 'rem',
-        paddingBottom: 2 + 'rem',
         boxFit: 'border-box',
         borderRadius: 15,
         boxShadow: ' 0 5px 10px 0 rgba(0,0,29, .15)',

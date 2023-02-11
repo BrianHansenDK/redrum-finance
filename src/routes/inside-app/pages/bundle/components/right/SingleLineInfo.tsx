@@ -1,8 +1,19 @@
-import React from 'react'
+import React, { FunctionComponent } from 'react'
 import { numberWithCommas } from '../../../../../../misc/custom-hooks'
 import { mainColors } from '../../../../themes/colors'
 
-const SingleLineInfo = ({ title, info, type, line = true, isBlue = false }: { title: string, info: any, type?: any, line?: boolean, isBlue?: boolean }) => {
+interface IProps {
+  title: string,
+  info: any,
+  type?: any,
+  line?: boolean,
+  isBlue?: boolean,
+  isTopElement?: boolean,
+  hasSmallTxt?: boolean,
+  smallTxt?: string,
+ }
+const SingleLineInfo: FunctionComponent<IProps> = (props) => {
+  const { title, info, type, line = true, isBlue, isTopElement, hasSmallTxt, smallTxt } = props
   const styles = {
     wrapper: {
         width: 100 + '%',
@@ -10,9 +21,11 @@ const SingleLineInfo = ({ title, info, type, line = true, isBlue = false }: { ti
         justifyContent: 'space-between',
         alignItems: 'center',
         padding: 5,
+        marginTop: isTopElement ? 0 : 2.5,
     },
     title: {
         fontSize: 18.2,
+        lineHeight: 1,
     },
     info: {
         fontSize: 18.2,
@@ -25,14 +38,19 @@ const SingleLineInfo = ({ title, info, type, line = true, isBlue = false }: { ti
         height: 2,
         marginTop: 2.5,
         backgroundColor: '#444',
-        marginBottom: 2.5,
+    },
+    small: {
+      fontSize: 11.5,
+      color: mainColors.dark,
+      lineHeight: 1,
+      fontWeight: '700',
     }
 }
     return (
         <>
             <div style={styles.wrapper}>
                 <p style={styles.title}>
-                    {title}
+                    {title} {hasSmallTxt ? (<> <br/> <span style={styles.small}>{smallTxt}</span> </>) : null}
                 </p>
                 <p style={styles.info}>
                     {type == '€' ? numberWithCommas(info) : info} {type}
