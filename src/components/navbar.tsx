@@ -5,6 +5,7 @@ import NavMenu from 'rsuite/esm/Nav/NavMenu';
 import NavItem from 'rsuite/esm/Nav/NavItem';
 import AuthModal from './AuthModal';
 import { navbarStrings } from '../library/string/Landinspage';
+import ChangeLanBtn from './ChangeLanBtn';
 
 interface IProps {
   openModal: any, closeModal: Function, isVisible: any, dark: boolean, en: boolean, setEn: any
@@ -67,11 +68,7 @@ const MainNavbar: React.FunctionComponent<IProps> = (props) => {
                     <Button appearance='primary' className='main-btn white pl-3 pr-3 bold' size='lg' onClick={openModal} >
                         {en ? navbarStrings.navbarEN.btn : navbarStrings.navbarDE.btn}
                     </Button>
-                    <NavMenu className='nav-ul' title={`${en ? 'EN' : 'DE'}`} style={{ padding: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                        <NavItem style={{display: 'block', width: 75}} onClick={setEn} className='text-center'>
-                            {en ? 'DE' : 'EN'}
-                        </NavItem>
-                    </NavMenu>
+                    <ChangeLanBtn en={en} setEn={setEn} />
                 </Nav>
             </Navbar>
             <AuthModal isVisible={isVisible} close={closeModal} en={en} />

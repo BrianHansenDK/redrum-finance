@@ -80,7 +80,7 @@ class ProjectDetailsPage extends React.Component<IProps, IState> {
             <>
                 {this.state.projectData.map((project) => project.id == bundleId ? (
                     <Container style={styles.page} key={project.id}>
-                        <AppNavBar fixed={this.state.topFixed} en={this.props.en} />
+                        <AppNavBar fixed={this.state.topFixed} en={this.props.en} setEn={this.props.setEn} />
                         <Grid style={styles.wrapper} fluid>
                             <Row style={styles.wrapperInner}>
                                 <LeftSide project={project} />

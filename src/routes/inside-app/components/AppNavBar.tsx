@@ -20,10 +20,11 @@ import { mainColors } from '../themes/colors';
 import dashboardStrings from '../../../library/string/Dashboard';
 import DepositMoneyModal from './money/WithdrawMoneyModal';
 import TransferMoneyModal from '../pages/bundle/components/TransferMoneyModal';
+import ChangeLanBtn from '../../../components/ChangeLanBtn';
 
 
 
-const AppNavBar = ({ fixed = true, en }: { fixed: boolean, en: boolean }) => {
+const AppNavBar = ({ fixed = true, en, setEn }: { fixed: boolean, en: boolean, setEn: any }) => {
     const auth = getAuth()
     const navigate = useNavigate()
     const toaster = useToaster()
@@ -104,6 +105,7 @@ const AppNavBar = ({ fixed = true, en }: { fixed: boolean, en: boolean }) => {
                     <Button style={styles.btn} appearance='primary' size='lg' onClick={openModal} >
                     {en ? dashboardStrings.navbarEN.btn : dashboardStrings.navbarDE.btn}
                     </Button>
+                    <ChangeLanBtn setEn={setEn} en={en} />
                 </Nav>
             </div>
         </Navbar>
@@ -121,6 +123,7 @@ const styles = {
         display: 'flex',
         boxShadow: mainShadows.navBar,
         backgroundColor: mainColors.dark,
+        paddingRight: 25,
     },
     navBarInner: {
         display: 'flex',

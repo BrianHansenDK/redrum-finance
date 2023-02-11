@@ -10,7 +10,8 @@ import './components/styles/index.scss'
 
 interface IProps {
     params: any,
-    en: boolean
+    en: boolean,
+    setEn: any,
 }
 
 interface IState {
@@ -38,7 +39,7 @@ class ProfilePage extends Component<IProps, IState> {
         const { userId } = this.props.params
         return (
             <div style={styles.pageWrap}>
-                <AppNavBar fixed en={this.props.en} />
+                <AppNavBar fixed en={this.props.en} setEn={this.props.setEn} />
                 <h1 style={styles.pageTitle} className='text-center'>
                     Profile page
                 </h1>

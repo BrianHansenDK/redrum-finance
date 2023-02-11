@@ -72,7 +72,7 @@ const App = () => {
         <Route path='extras/updates' element={<ProjectDetailsUpdatesWrapper />} />
         <Route path='extras/investors' element={<ProjectDetailsInvestorWrapper />} />
       </Route>
-      <Route path='/app/profile/:userId' element={<ProfilePageWrapper en={isEnglish} />}>
+      <Route path='/app/profile/:userId' element={<ProfilePageWrapper en={isEnglish} setEn={changeLan} />}>
 
       </Route>
       {/* Outside of App */}

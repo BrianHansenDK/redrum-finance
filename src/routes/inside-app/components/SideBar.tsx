@@ -27,7 +27,7 @@ const styles = {
 
 }
 
-const SideBar = ({en, setEn} : {en: boolean, setEn: any}) => {
+const SideBar = ({en} : {en: boolean}) => {
   const [isVisible, setVisible] = useState(false)
   const [currentKey, setCurrentKey] = useState('1')
   useEffect(() => {
@@ -75,7 +75,6 @@ const SideBar = ({en, setEn} : {en: boolean, setEn: any}) => {
             {en ? dashboardStrings.sidebarEN.news : dashboardStrings.sidebarDE.news}
             </Nav.Item>
           </Nav>
-          <LanguageToggle en={en} setEn={setEn} />
         </Sidenav.Body>
       </Sidenav>
       <UpcomingModal

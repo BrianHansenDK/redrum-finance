@@ -17,9 +17,9 @@ const LayoutWithSidebar: React.FunctionComponent<ILayoutWithSidebarProps> = (pro
     const { children, en, setEn } = props
     return (
         <>
-            <AppNavBar fixed en={en} />
+            <AppNavBar fixed en={en} setEn={setEn} />
             <div className='d-flex'>
-                <SideBar en={en} setEn={setEn}/>
+                <SideBar en={en} />
                 <div className='' style={styles.innerPage}>
                     {children}
                 </div>
