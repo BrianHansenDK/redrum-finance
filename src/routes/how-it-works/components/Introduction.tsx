@@ -1,7 +1,7 @@
 import React from 'react'
 import { Col, FlexboxGrid, Grid } from 'rsuite'
 import FlexboxGridItem from 'rsuite/esm/FlexboxGrid/FlexboxGridItem'
-import PLACEHOLDER from '../../../assets/react.svg'
+import BundleImg from '../../../assets/bundle-overview-no-shadow.svg'
 import { hIWStrings } from '../../../library/string/Landinspage'
 import TextTheme from '../../../library/themes/TextTheme'
 
@@ -14,7 +14,7 @@ const HIWIntroSection = ({en}: {en: boolean}) => {
       </p>
       </FlexboxGridItem>
       <FlexboxGridItem colspan={20} style={styles.gridItem}>
-        <img src={PLACEHOLDER} alt="Placeholder" style={styles.image}/>
+        <img src={BundleImg} alt="This is an image of a bundle inside of the bundle page" style={styles.image}/>
       </FlexboxGridItem>
     </FlexboxGrid>
   )
@@ -27,8 +27,8 @@ const styles = {
     justifyContent: 'center',
   },
   image: {
-    width: 320,
-    height: 300,
+    width: '80%',
+    height: 'auto',
   },
 }
 
