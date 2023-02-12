@@ -29,6 +29,7 @@ import VanumoDashboard from './admin/dashboard/index.js';
 import HowItWorksPage from './routes/how-it-works/index.js';
 import TermsAndConditionsPage from './routes/terms-and-conditions/index.js';
 import MovieTAC from './routes/terms-and-conditions/MovieTAC.js';
+import VanumoDashboardIndex from './admin/dashboard/components/VanumoDashboard.js';
 
 
 const App = () => {
@@ -51,7 +52,7 @@ const App = () => {
 
       {/* Vanumo / Admin */}
       <Route path='/vanumo' element={<VanumoDashboard />}>
-
+        <Route index element={<VanumoDashboardIndex />}/>
       </Route>
 
       {/* Test admin */}

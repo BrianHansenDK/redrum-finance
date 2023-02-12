@@ -1,6 +1,7 @@
 import { get, onValue, ref } from 'firebase/database';
 import React, { Component, useEffect, useState } from 'react'
-import { database } from '../../../firebase';
+import { database } from '../../../../firebase';
+import ProjectCard from './ProjectCard';
 
 const ProjectsSection = () => {
 
@@ -18,21 +19,26 @@ const ProjectsSection = () => {
   }, [])
     return (
       <div style={styles.wrap}>
-        <h1>
+        <h1 className='mb-1'>
           Projects
         </h1>
+        <div className='d-flex'>
         {projects.map((project: any) => (
-        <p>
-          {project.name}
-        </p>
-        ))}
+          <>
+          <ProjectCard project={project} key={project.id}/>
+          <ProjectCard project={project} key={project.id}/>
+          <ProjectCard project={project} key={project.id}/>
+          </>
+          ))}
+        </div>
       </div>
     );
 }
 
 const styles = {
   wrap: {
-    marginTop: 150,
+    margin: ' 150px auto 50px',
+    maxWidth: 1200,
   }
 }
 
