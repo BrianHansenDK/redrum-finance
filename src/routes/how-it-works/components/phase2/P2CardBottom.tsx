@@ -2,12 +2,16 @@ import React from 'react'
 import { hIWStrings } from '../../../../library/string/Landinspage'
 import TextTheme from '../../../../library/themes/TextTheme'
 import PLACEHOLDER from '../../../../assets/react.svg'
+import { Message } from 'rsuite'
+import { mainColors } from '../../../inside-app/themes/colors'
 
 const P2CardBottom = ({en} : {en: boolean}) => {
   return (
     <>
     <div className='d-flex align-items-center justify-content-center mb-1'>
-      <img src={PLACEHOLDER} alt="Placeholder" width={250} height={225} />
+      <Message closable type="info" header="Minimum return">
+        The 7% works as a minimum return. More information will be given below.
+      </Message>
     </div>
     <p style={TextTheme.hiwPara} className='text-center mt-3 mb-5'>
         {en ? hIWStrings.phase2EN.after : hIWStrings.phase2DE.after}

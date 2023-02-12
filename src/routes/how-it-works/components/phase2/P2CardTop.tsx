@@ -1,7 +1,8 @@
 import React from 'react'
 import { hIWStrings } from '../../../../library/string/Landinspage'
 import TextTheme from '../../../../library/themes/TextTheme'
-import PLACEHOLDER from '../../../../assets/react.svg'
+import MovieImg from '../../../../assets/movie-info.svg'
+import mainShadows from '../../../inside-app/themes/shadows'
 
 const P2CardTop = ({en} : {en: boolean}) => {
   return (
@@ -10,7 +11,9 @@ const P2CardTop = ({en} : {en: boolean}) => {
         {en ? hIWStrings.phase2EN.des : hIWStrings.phase2DE.des}
       </p>
       <div className='d-flex align-items-center justify-content-center mb-1'>
-        <img src={PLACEHOLDER} alt="Placeholder" width={250} height={225} />
+        <img src={MovieImg} style={styles.image}
+        alt="Information about a certain movie inside of the Redrum Pro application"
+        />
       </div>
       <p style={TextTheme.mainPara} className='text-center mt-1 mb-1'>
         {en ? hIWStrings.phase2EN.rel : hIWStrings.phase2DE.rel}
@@ -20,6 +23,16 @@ const P2CardTop = ({en} : {en: boolean}) => {
       </p>
     </>
   )
+}
+
+const styles = {
+  image: {
+    width: '100%',
+    height: 'auto',
+    borderRadius: 5,
+    boxShadow: mainShadows.image,
+    border: '1px solid white',
+  }
 }
 
 export default P2CardTop
