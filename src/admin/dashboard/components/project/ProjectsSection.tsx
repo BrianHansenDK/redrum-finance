@@ -26,8 +26,6 @@ const ProjectsSection = () => {
         {projects.map((project: any) => (
           <>
           <ProjectCard project={project} key={project.id}/>
-          <ProjectCard project={project} key={project.id}/>
-          <ProjectCard project={project} key={project.id}/>
           </>
           ))}
         </div>
@@ -37,7 +35,7 @@ const ProjectsSection = () => {
 
 const styles = {
   wrap: {
-    margin: ' 150px auto 50px',
+    margin: 'auto',
     maxWidth: 1200,
   }
 }

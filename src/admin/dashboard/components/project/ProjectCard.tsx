@@ -8,7 +8,7 @@ import ProjectCardTitle from './ProjectCardTitle'
 
 const ProjectCard = ({project}: {project: any}) => {
   return (
-    <Link style={styles.card} to={`vanumo/project/${project.id}`}>
+    <Link style={styles.card} to={`/vanumo/project/${project.id}`}>
       <ProjectCardTitle project={project} />
       <ProjectCardBody project={project} />
     </Link>

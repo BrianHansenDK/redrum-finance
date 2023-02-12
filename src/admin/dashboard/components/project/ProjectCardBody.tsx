@@ -45,6 +45,7 @@ const styles = {
   },
   infoWrap: {
     marginLeft: 25,
+    minWidth: 200,
   },
   progress: {
     width: 100,
