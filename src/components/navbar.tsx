@@ -6,6 +6,7 @@ import NavItem from 'rsuite/esm/Nav/NavItem';
 import AuthModal from './AuthModal';
 import { navbarStrings } from '../library/string/Landinspage';
 import ChangeLanBtn from './ChangeLanBtn';
+import mainShadows from '../routes/inside-app/themes/shadows';
 
 interface IProps {
   openModal: any, closeModal: Function, isVisible: any, dark: boolean, en: boolean, setEn: any
@@ -44,7 +45,12 @@ const MainNavbar: React.FunctionComponent<IProps> = (props) => {
 
     return (
         <>
-            <Navbar id='navbar' appearance='subtle' className={`${dark ? 'dark-bg shadow' : 'no-bg'} trans`} style={{ paddingRight: 25 }}>
+            <Navbar
+            id='navbar'
+            appearance='subtle'
+            className={`${dark ? 'dark-bg shadow' : 'no-bg'} trans`}
+            style={{ paddingRight: 25, boxShadow: dark ? mainShadows.navBar : null }}
+            >
                 <Navbar.Brand id='brand' className='bold d-flex align-center' as={Link} to='/' style={{ height: 75, fontSize: 20 }}>
                     Redrum Pro
                 </Navbar.Brand>

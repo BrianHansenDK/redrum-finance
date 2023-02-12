@@ -27,7 +27,6 @@ const VanumoNavbar = () => {
     setUsers(data)
     setUserIds(keyData)
   }, [])
-  console.log(users)
   return (
     <Navbar style={styles.navbar} className='position-fixed'>
       <NavbarBrand style={styles.brandWrap}>

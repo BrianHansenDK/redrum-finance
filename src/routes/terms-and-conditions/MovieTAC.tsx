@@ -1,9 +1,11 @@
 import React from 'react'
+import MovieDocViewerDE from '../../components/documentviewer/MovieDocViewerDE'
 import { mainP } from '../inside-app/themes/textStyles'
+import './styles/tac.scss'
 
 const MovieTAC = () => {
   return (
-    <>
+    <div style={{textAlign: 'justify'}}>
       <p style={styles.para} className='mt-2'>
         Diese AGB gelten für alle Geschäfte, die mit der Redrum Pro zu
         <span className='bold'> Medien</span>finanzierungszwecken abgeschlossen werden.
@@ -15,11 +17,11 @@ const MovieTAC = () => {
       <p style={styles.para}>
         Der Investierende in solche Mediengeschäfte wird im Folgenden Producer genannt.
       </p>
-      <p style={styles.para}>
+      <p style={styles.para} className='bold mb-2'>
         Es wird ausdrücklich darauf hingewiesen, dass ein Investment in Filmwerke das
         Risiko beinhaltet, das Investment auch komplett zu verlieren.
       </p>
-      <h2>
+      <h2 style={{textAlign: 'start'}}>
       BESONDERE BESTIMMUNGEN UND HINWEISE FÜR INVESTMENTS IN
       FILMWERK-PROJEKTE
       </h2>
@@ -69,19 +71,19 @@ const MovieTAC = () => {
           </p>
         </li>
       </ol>
-      <h3 className='mt-3'>
+      <h3 className='mt-3' style={{textAlign: 'start'}}>
         1. Voraussetzungen des Vertragsabschlusses
       </h3>
       <p style={styles.para} className='mt-1'>
       Redrum Pro stellt in der App und auf der Webseite Filmprojekte zur Investition zur
       Verfügung gegen Beteiligung an den Auswertungserlösen. Dieses sind eigene
       Filmprojekte, die Redrum Pro als Filmhersteller (Produzent) verwirklicht oder Fremd-
-      Projekte. Letztere sind als solche ausdrücklich gekennzeichnet. Ist ein Fremdprojekt
+      Projekte. Letztere sind als solche ausdrücklich gekennzeichnet. <span className='bold'>Ist ein Fremdprojekt
       zur Investition vorgestellt, erfolgt der Vertragsabschluss mit dem Filmhersteller, der
       zu dem Projekt benannt wird und nicht mit der Redrum Pro. Redrum Pro haftet für
-      den Dritt-Hersteller nicht.
+      den Dritt-Hersteller nicht. </span>
       </p>
-      <p>
+      <p style={styles.para}>
         Eine Investition erfordert, was folgt:
       </p>
       <ol style={styles.list}>
@@ -127,7 +129,7 @@ const MovieTAC = () => {
           </p>
         </li>
       </ol>
-      <h3 className='mt-3'>
+      <h3 className='mt-3' style={{textAlign: 'start'}}>
         2. Investition in Filmprojekte
       </h3>
       <ol style={styles.list}>
@@ -160,7 +162,7 @@ const MovieTAC = () => {
           </p>
         </li>
       </ol>
-      <h3 className='mt-3'>
+      <h3 className='mt-3' style={{textAlign: 'start'}}>
         3. Zahlungsabwicklung
       </h3>
       <ol style={styles.list}>
@@ -178,7 +180,7 @@ const MovieTAC = () => {
           </p>
         </li>
       </ol>
-      <h3 className='mt-3'>
+      <h3 className='mt-3' style={{textAlign: 'start'}}>
         4. Provisionen, Agios und Gebühren
       </h3>
       <ol style={styles.list}>
@@ -196,7 +198,7 @@ const MovieTAC = () => {
           </p>
         </li>
       </ol>
-      <h3 className='mt-3'>
+      <h3 className='mt-3' style={{textAlign: 'start'}}>
         5. Status der von Redrum Pro erbrachten Online Dienste
       </h3>
       <ol style={styles.list}>
@@ -214,10 +216,10 @@ const MovieTAC = () => {
           </p>
         </li>
       </ol>
-      <h3 className='mt-3'>
+      <h3 className='mt-3' style={{textAlign: 'start'}}>
         6. Datenschutz
       </h3>
-      <p>
+      <p style={styles.uTPara}>
         Redrum Pro hält sich strikt an die DSGVO.
       </p>
       <ol style={styles.list}>
@@ -249,10 +251,10 @@ const MovieTAC = () => {
           </p>
         </li>
       </ol>
-      <h3 className='mt-3'>
+      <h3 className='mt-3' style={{textAlign: 'start'}}>
       7. Haftungsbeschränkung
       </h3>
-      <p>
+      <p style={styles.uTPara}>
       Für eine Haftung von Redrum Pro auf Schadensersatz gelten unbeschadet der
       sonstigen gesetzlichen Anspruchsvoraussetzungen die folgenden
       Haftungsausschlüsse und -begrenzungen:
@@ -295,17 +297,220 @@ const MovieTAC = () => {
           </p>
         </li>
       </ol>
-    </>
+      <h3 className='mt-3' style={{textAlign: 'start'}}>
+        8. Beendigung des Nutzungsverhältnisses
+      </h3>
+      <ol style={styles.list}>
+        <li style={styles.listItem}>
+          <p>
+          Der Nutzungsvertrag für die Redrum Pro-App und Webseite wird auf unbestimmte
+          Zeit geschlossen und kann von Redrum Pro und dem Producer jederzeit mit sofortiger
+          Wirkung beendet werden. Für die Beendigung des Nutzungsvertrags muss der
+          Producer eine E-Mail an service@Redrumpro.de schreiben.
+          </p>
+        </li>
+        <li style={styles.listItem}>
+          <p>
+          Redrum Pro ist berechtigt, Producer ohne Angabe von Gründen jederzeit von der
+          und neuen Investitionsmöglichkeiten auf Redrum Pro sowie jedem anderen von
+          Redrum Pro angebotenem Bereich, Dienstleistung oder System auszuschließen oder
+          den Zugang teilweise oder in Gänze, zeitweise oder dauerhaft, zu beschränken.
+          </p>
+        </li>
+        <li style={styles.listItem}>
+          <p>
+          Redrum Pro gewährt auch in den Fällen der Beendigung des
+          Nutzungsverhältnisses durch Redrum Pro und im Falle der Beschränkung des Zugangs
+          des Producers denjenigen Producern, die Beteiligungen auf Redrum Pro halten, die
+          Möglichkeit, ihre Beteiligungen auf Redrum Pro zu verwalten (Einsicht in die
+          Beteiligungsübersicht, Einsicht von Updates, Hinterlegung der notwendigen
+          Auszahlungs- und Steuerinformationen, Aktualisierung von Stammdaten,
+          Stimmabgabe bei Poolingabstimmungen). Dies beinhaltet jedoch nicht die Nutzung
+          anderer nicht zwingend für die Wahrnehmung der Rechte aus den Beteiligungen
+          erforderlichen Redrum Pro-Dienste.
+          </p>
+        </li>
+        <li style={styles.listItem}>
+          <p>
+            Das Recht zur Kündigung aus wichtigem Grund bleibt unberührt.
+          </p>
+        </li>
+        <li style={styles.listItem}>
+          <p>
+            Gesetzliche Kündigungsrechte bleiben unberührt.
+          </p>
+        </li>
+      </ol>
+      <h3 className='mt-3' style={{textAlign: 'start'}}>
+        9. Risikohinweise
+      </h3>
+      <ol style={styles.list}>
+        <li style={styles.listItem}>
+          <p>
+          Filminvestitionen bieten Chancen, sind jedoch Risikoinvestments. Im
+          schlechtesten Fall besteht die Gefahr des Verlustes der gesamten Investition.
+          Filminvestitionen sind daher nicht zur Altersvorsorge geeignet. Eine
+          Nachschusspflicht besteht jedoch nicht. Das Risiko kann minimiert werden, indem
+          man als Producer seinen Investmentbetrag auf mehrere Filminvestitionen verteilt und
+          nicht alles in eine Medieninvestitionen investiert, sodass das Risiko auf mehrere
+          Investments gestreut wird. So können erfolgreiche Investments andere, weniger
+          erfolgreiche Investments ausgleichen.
+          </p>
+        </li>
+        <li style={styles.listItem}>
+          <p>
+          Durch Redrum Pro erfolgt keinerlei Anlageberatung oder sonstige Beratung. Ein
+          Auskunfts- oder Beratungsvertrag kommt nicht zustande. Redrum Pro ist nicht
+          verpflichtet, über laufende Entwicklungen des Filmprojektes zu unterrichten.
+          </p>
+        </li>
+        <li style={styles.listItem}>
+          <p>
+          Bei den Beteiligungen der Producer handelt es sich zumeist um partiarische
+          Nachrangdarlehen. Dies sind unternehmerische Beteiligungen mit
+          eigenkapitalähnlichen Eigenschaften. Im Falle einer Insolvenz des Unternehmens
+          werden die Producer erst nach allen anderen Fremdgläubigern aus der
+          Insolvenzmasse bedient.
+          </p>
+        </li>
+        <li style={styles.listItem}>
+          <p>
+          Die Informationen über die Filminvestmentprojekte - <span className='bold'>die nicht von Redrum Pro
+          selbst hergestellt werden -</span> auf der Redrum Pro - App/Webseite werden
+          ausschließlich von den Fremdinvestmentprojekten zur Verfügung gestellt. Eine
+          Prüfung der Wirtschaftlichkeit des Fremdinvestmentprojektes durch Redrum Pro
+          findet nicht statt.
+          </p>
+        </li>
+        <li style={styles.listItem}>
+          <p>
+          Die Informationen über die Medien zur Investition auf der Redrum Pro-Website
+          werden auch von anderen Unternehmen zur Verfügung gestellt. Die von diesen
+          Unternehmen gemachten Prognosen sind keine Garantie für die zukünftige
+          Entwicklung der Medieninvestition. Crowdinvestings sind daher nur für Producer
+          geeignet, die das Risiko eines Totalausfalls des investierten Kapitals verkraften
+          können. Die Entscheidung für ein Investment trifft jeder Producer unabhängig und
+          eigenverantwortlich.
+          </p>
+        </li>
+        <li style={styles.listItem}>
+          <p>
+          Es besteht nur ein eingeschränkter Markt für Beteiligungen an Medienprojekten.
+          Die Veräußerung von Beteiligungen an Medienprojekten ist in Ermangelung eines
+          entsprechenden Marktes nur eingeschränkt möglich.
+          </p>
+        </li>
+        <li style={styles.listItem}>
+          <p>
+          Es obliegt allein dem Producer, zu entscheiden, ob er unter Nutzung der Redrum
+          Pro-App/Webseite in Filmprojekte investiert und in welches Medienprojekt er
+          investiert. Die auf der Redrum Pro-App/Webseite verfügbaren Informationen stellen
+          keine Beratungsleistung von Redrum Pro dar und ersetzen keine fachkundige
+          Beratung. Redrum Pro empfiehlt daher, sich vor der Investition in ein Medienprojekt
+          und auch während der Laufzeit der Beteiligung gegebenenfalls über die rechtlichen,
+          wirtschaftlichen und steuerlichen Folgen einer Beteiligung zu informieren. Jede
+          Beteiligung kann einen Totalverlust der Investitionssumme zur Folge haben. Der
+          Producer sollte daher nur Gelder investieren, deren eventuellen Verlust er sich leisten
+          kann.
+          </p>
+        </li>
+      </ol>
+      <h3 className='mt-3' style={{textAlign: 'start'}}>
+        10. Vertragsübernahme
+      </h3>
+      <p style={{marginTop: 25, fontSize: 20}}>
+        Im Falle der (I) Insolvenz-Anmeldung von Redrum Pro oder (II) wenn über das
+        Vermögen von Redrum Pro das Insolvenzverfahren rechtskräftig eröffnet wird oder (III)
+        die Eröffnung eines solchen Verfahrens mangels Masse abgelehnt wird oder (IV)
+        Redrum Pro liquidiert wird oder (V) Redrum Pro den Geschäftsbetrieb einstellt, sind
+        die Insolvenzverwalter berechtigt, den Vertrag nach ihrer Maßgabe zu übernehmen.
+      </p>
+      <h3 className='mt-3' style={{textAlign: 'start'}}>
+        11. Auszahlungen, Rückzahlungen auf die Investition
+      </h3>
+      <ol style={styles.list}>
+        <li style={styles.listItem}>
+          <p>
+          Die Investition wird mit Gewinnanteil nach der Verwertung in regelmäßigen
+          Tranchen allein aus den bei Redrum Pro eingegangenen Einkünften ausbezahlt. Ist
+          keine Kontoverbindung bekannt oder die bekannte nicht mehr existent, verwahrt
+          Redrum Pro das Geld für den Producer bis zu drei (3) Jahre.
+          </p>
+        </li>
+        <li style={styles.listItem}>
+          <p>
+          Auszahlungen während der Investitionsphase sind nicht möglich. Es besteht ein
+          gewisser Sekundärmarkt für Investitionen, der von Redrum Pro betrieben wird und in
+          dem Investments von einem Teilnehmer auf einen anderen Teilnehmer durch Verkauf
+          übergehen können.
+          </p>
+        </li>
+        <li style={styles.listItem}>
+          <p>
+          Das Investment ist keine gesellschaftsrechtliche Beteiligung. Es berechtigt nicht
+          zur Einsicht in handelsrechtliche Bücher und Abrechnungen oder sonstige
+          gesellschaftsrechtliche Stellungen.
+          </p>
+        </li>
+      </ol>
+      <h3 className='mt-3' style={{textAlign: 'start'}}>
+        12. Schlussbestimmungen
+      </h3>
+      <ol style={styles.list} className='mb-5'>
+        <li style={styles.listItem}>
+          <p>
+          Es gilt deutsches Recht unter Ausschluss des UN-Kaufrechts (CISG). Gerichtsstand
+          für sämtliche Streitigkeiten aus und im Zusammenhang mit diesem Vertrag ist, soweit
+          gesetzlich zulässig, Berlin.
+          </p>
+        </li>
+        <li style={styles.listItem}>
+          <p>
+          Sollte es Widersprüche zwischen diesen AGB und anderen Regelungen geben,
+          die der Producer bestätigt, haben die anderen Regelungen Vorrang. Dies gilt
+          insbesondere für die Verträge zum Beteiligungserwerb.
+          </p>
+        </li>
+        <li style={styles.listItem}>
+          <p>
+          Sollten einzelne Bestimmungen dieser AGB ganz oder teilweise nichtig oder
+          unwirksam sein oder werden, so wird dadurch die Wirksamkeit der übrigen
+          Bestimmungen nicht berührt. An die Stelle von nicht einbezogenen oder unwirksamen
+          Allgemeinen Geschäftsbedingungen tritt das Gesetzesrecht (§ 306 Abs. 2 BGB). Im
+          Übrigen werden die Parteien anstelle der nichtigen oder unwirksamen Bestimmung
+          eine wirksame Regelung treffen, die ihr wirtschaftlich möglichst nahe kommt, soweit
+          keine ergänzende Vertragsauslegung vorrangig oder möglich ist.
+          </p>
+        </li>
+        <li style={styles.listItem}>
+          <p>
+          Redrum Pro behält sich vor, diese AGB jederzeit und ohne Nennung von Gründen
+          zu ändern. Die geänderten Bedingungen werden den Producern per E-Mail
+          spätestens zwei Wochen vor ihrem Inkrafttreten zugesendet. Widerspricht ein
+          Producer der Geltung der neuen AGB nicht innerhalb von vier Wochen nach Empfang
+          der E-Mail schriftlich oder in Textform gegenüber Redrum Pro, gelten die geänderten
+          AGB als angenommen. Redrum Pro wird die Producer in der E-Mail, die die
+          geänderten Bedingungen enthält, auf die Bedeutung dieser Zwei-Wochen-Frist
+          gesondert hinweisen. Die jeweils aktuellen AGB können unter der App abgerufen
+          werden. Wenn ein Producer mit den geänderten Bedingungen nicht einverstanden
+          ist, muss er die Nutzung der Dienste von Redrum Pro einstellen.
+          </p>
+        </li>
+      </ol>
+    </div>
   )
 }
 
 const styles = {
   para: {
-    fontSize: 27.5,
-    marginBottom: '2rem',
+    fontSize: 17.5,
+  },
+  uTPara: {
+    fontSize: 17.5,
+    marginTop: 25,
   },
   list: {
-    fontSize: 22.5,
+    fontSize: 17.5,
   },
   listItem: {
     marginTop: 25,

@@ -57,7 +57,9 @@ const styles = {
     fontFamily: 'Poppins',
     color: mainColors.dark,
     margin: '125px auto 50px',
-    paddingLeft: 150,
+    fontSize: 36,
+    paddingLeft: 200,
+    paddingRight: 200,
   },
   dashboard: {
     width: 150,

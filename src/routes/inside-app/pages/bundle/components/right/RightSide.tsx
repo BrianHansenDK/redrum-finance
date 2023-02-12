@@ -67,7 +67,7 @@ const RightSide = ({ project, en, setEn }: { project: any, en: boolean, setEn: a
                     pressed={ age >= 18 && age !== null ? openModal : openInvestModal}
                     btnColor='blue'
                     btnAppearance='primary'
-                    btnSize='md'
+                    btnSize='lg'
                     isBlock={false} />
                 </div>
             </Col>

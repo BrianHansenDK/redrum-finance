@@ -186,10 +186,11 @@ const AuthModal = ({ isVisible, close, en }: { isVisible: boolean, close: any, e
                         <div className='d-flex'>
                             <Toggle onChange={() => setChecked(!isChecked)} checkedChildren={<CheckIcon />} unCheckedChildren={<CloseIcon />} />
                             <p className='ml-1'>
-                                {en ? signUpModalStrings.EN.tAndC : signUpModalStrings.DE.tAndC} &nbsp;
-                                <Link to='/'>
-                                  {en ? signUpModalStrings.EN.read : signUpModalStrings.DE.read}
-                                </Link>
+                                {en ? signUpModalStrings.EN.tAndC[0] : signUpModalStrings.DE.tAndC[0]}
+                                <a href='/terms-and-conditions' target='_blank' rel='norefferer'>
+                                  {en ? signUpModalStrings.EN.link : signUpModalStrings.DE.link}
+                                </a>
+                                {en ? signUpModalStrings.EN.tAndC[1] : signUpModalStrings.DE.tAndC[1]}
                             </p>
                         </div>
                         <Whisper placement="top" controlId="control-id-hover" trigger={`${isChecked ? 'none' : 'hover'}`} speaker={tooltip}>

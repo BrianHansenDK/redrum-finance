@@ -1,5 +1,6 @@
 import { getAuth } from 'firebase/auth'
 import React, { useEffect, useState } from 'react'
+import MovieDocViewerDE from '../../components/documentviewer/MovieDocViewerDE'
 import MainLayout from '../layouts/mainLayout'
 import AppTeaser from './components/appTeaser'
 import CtaDown from './components/ctaDown'

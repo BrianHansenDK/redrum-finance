@@ -21,6 +21,7 @@ import dashboardStrings from '../../../library/string/Dashboard';
 import DepositMoneyModal from './money/WithdrawMoneyModal';
 import TransferMoneyModal from '../pages/bundle/components/TransferMoneyModal';
 import ChangeLanBtn from '../../../components/ChangeLanBtn';
+import AdminBtn from './AdminBtn';
 
 
 
@@ -110,6 +111,9 @@ const AppNavBar = ({ fixed = true, en, setEn }: { fixed: boolean, en: boolean, s
             </div>
         </Navbar>
         <TransferMoneyModal navPressed={true} visible={visible} close={closeModal} />
+        {auth.currentUser?.email == 'brianhansen.work@gmail.com' || auth.currentUser?.email == 'merhi@gmx.net' ? (
+          <AdminBtn />) : null
+        }
       </>
     )
 }

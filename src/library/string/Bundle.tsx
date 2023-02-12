@@ -4,7 +4,7 @@ const bundleStrings = {
     iT: 'Investment target',
     mI: 'Minimum investment',
     iD: 'Investment deadline',
-    publication: 'Publication' ,
+    publication: 'Publication',
     aI: 'Already invested',
     small: 'After termination'
   },
@@ -13,7 +13,7 @@ const bundleStrings = {
     iT: 'Investitionsziel',
     mI: 'Mindestinvestition',
     iD: 'Investitionsschluss',
-    publication: 'Veröffentlichung' ,
+    publication: 'Veröffentlichung',
     aI: 'Bereits investiert',
     small: 'Nach Investitionsschluss'
   },
