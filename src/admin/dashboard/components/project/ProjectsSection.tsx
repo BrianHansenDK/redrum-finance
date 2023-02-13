@@ -24,9 +24,7 @@ const ProjectsSection = () => {
         </h1>
         <div className='d-flex'>
         {projects.map((project: any) => (
-          <>
           <ProjectCard project={project} key={project.id}/>
-          </>
           ))}
         </div>
       </div>

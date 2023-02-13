@@ -32,6 +32,7 @@ import MovieTAC from './routes/terms-and-conditions/MovieTAC.js';
 import VanumoDashboardIndex from './admin/dashboard/components/VanumoDashboard.js';
 import VanumoProjectPage from './admin/dashboard/components/project/page/VanumoProjectPage.js';
 import VProjectIndex from './admin/dashboard/components/project/page/extra/index/VProjectIndex.js';
+import VProjectSettings from './admin/dashboard/components/project/page/extra/settings/VProjectSettings.js';
 
 
 const App = () => {
@@ -57,6 +58,7 @@ const App = () => {
         <Route index element={<VanumoDashboardIndex />}/>
         <Route path='project/:projectId' element={<VanumoProjectPage />} >
           <Route index element={<VProjectIndex />} />
+          <Route path='settings/' element={<VProjectSettings />}/>
         </Route>
       </Route>
 

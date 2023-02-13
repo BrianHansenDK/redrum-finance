@@ -1,8 +1,9 @@
 import React from 'react'
+import { FirebaseBundle } from '../../../../../../../../database/Objects'
 import { numberWithCommas } from '../../../../../../../../misc/custom-hooks'
 import { vanumoColors } from '../../../../../../../theme/vanumoTheme'
 
-const VanumoProjectPublicInformation = ({project} : {project: any}) => {
+const VanumoProjectPublicInformation = ({project} : {project: FirebaseBundle}) => {
   return (
     <div>
       <p style={styles.info}>
@@ -12,19 +13,25 @@ const VanumoProjectPublicInformation = ({project} : {project: any}) => {
         Description: {project.description}
       </p>
       <p style={styles.info}>
-        Already invested: {numberWithCommas(project.currentlyInvested.toString().replace('.',','))}€
+        Already invested: {numberWithCommas(parseFloat(project.currentlyInvested!.toString().replace('.',',')))}€
       </p>
       <p style={styles.info}>
-        Investment goal: {numberWithCommas(project.goal.toString().replace('.',','))}€
+        Investment goal: {numberWithCommas(parseFloat(project.goal!.toString().replace('.',',')))}€
       </p>
       <p style={styles.info}>
-        Project value: {numberWithCommas(project.value.toString().replace('.',','))}€
+        Project value: {numberWithCommas(parseFloat(project.value!.toString().replace('.',',')))}€
       </p>
       <p style={styles.info}>
         Guaranteed return: {project.guaranteedReturn}%
       </p>
       <p style={styles.info}>
         Publication: {project.publication} Months
+      </p>
+      <p style={styles.info}>
+        Start date: {project.startDate}
+      </p>
+      <p style={styles.info}>
+        End data: {project.endDate}
       </p>
     </div>
   )

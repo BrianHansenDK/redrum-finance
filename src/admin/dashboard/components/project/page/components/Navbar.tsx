@@ -7,7 +7,7 @@ import EditIcon from '@rsuite/icons/legacy/Setting'
 import EventsIcon from '@rsuite/icons/EventDetail'
 import PeopleIcon from '@rsuite/icons/Peoples'
 import FlexboxGridItem from 'rsuite/esm/FlexboxGrid/FlexboxGridItem'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 
 
 const VProjectBottomNavbar = () => {
@@ -18,34 +18,43 @@ const VProjectBottomNavbar = () => {
   return (
     <Navbar className='v-project-navbar' >
       <Nav as={FlexboxGrid} className='inner'>
+        <FlexboxGridItem colspan={6}>
+
         <NavItem
-        icon={<HomeIcon/>}
-        as={FlexboxGridItem}
-        colspan={6}
-        className={`${lastParam == projectId ? 'active' : ''} nav-item`}>
-          {isMobile ? null : 'Base'}
-        </NavItem>
+          icon={<HomeIcon/>}
+          as={Link}
+          to={`/vanumo/project/${projectId}`}
+          className={`${lastParam == projectId ? 'active' : ''} nav-item`}>
+            {isMobile ? null : 'Base'}
+          </NavItem>
+        </FlexboxGridItem>
+        <FlexboxGridItem colspan={6}>
         <NavItem
-        icon={<EditIcon />}
-        as={FlexboxGridItem}
-        colspan={6}
-        className='nav-item'>
-          {isMobile ? null : 'Settings'}
-        </NavItem>
+          icon={<EditIcon/>}
+          as={Link}
+          to={`/vanumo/project/${projectId}/settings`}
+          className={`${lastParam == 'settings' ? 'active' : ''} nav-item`}>
+            {isMobile ? null : 'Settings'}
+          </NavItem>
+        </FlexboxGridItem>
+        <FlexboxGridItem colspan={6}>
         <NavItem
-        icon={<EventsIcon />}
-        as={FlexboxGridItem}
-        colspan={6}
-        className='nav-item'>
-        {isMobile ? null : 'Events'}
-        </NavItem>
+          icon={<EventsIcon/>}
+          as={Link}
+          to={`/vanumo/project/${projectId}/settings`}
+          className={`${lastParam == projectId ? 'active' : ''} nav-item`}>
+            {isMobile ? null : 'Events'}
+          </NavItem>
+        </FlexboxGridItem>
+        <FlexboxGridItem colspan={6}>
         <NavItem
-        icon={<PeopleIcon />}
-        as={FlexboxGridItem}
-        colspan={6}
-        className='nav-item'>
-        {isMobile ? null : 'Investors'}
-        </NavItem>
+          icon={<PeopleIcon/>}
+          as={Link}
+          to={`/vanumo/project/${projectId}`}
+          className={`${lastParam == projectId ? 'active' : ''} nav-item`}>
+            {isMobile ? null : 'Investors'}
+          </NavItem>
+        </FlexboxGridItem>
       </Nav>
     </Navbar>
   )

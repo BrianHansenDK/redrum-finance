@@ -26,7 +26,7 @@ const VanumoDashboard = () => {
 
 const styles = {
   contentWrap: {
-    paddingTop: 150,
+    paddingTop: 100,
   }
 }
 

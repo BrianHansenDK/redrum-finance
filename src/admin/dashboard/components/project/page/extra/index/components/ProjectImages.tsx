@@ -15,7 +15,7 @@ const ProjectImages = ({project} : {project: any}) => {
           <p className='img-title'>
             Avatar image:
           </p>
-          <Avatar src={project.smallImage} alt="Small image" size='lg'/>
+          <Avatar src={project.smallImage} alt="Small image" size='lg' className='small-image'/>
         </FlexboxGridItem>
         <FlexboxGridItem className='img-container' colspan={isMobile ? 24 : 6}>
           <p className='img-title'>

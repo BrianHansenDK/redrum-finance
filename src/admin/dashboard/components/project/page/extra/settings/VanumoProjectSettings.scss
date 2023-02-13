@@ -1,0 +1,92 @@
+$main-color: #A274FF;
+$dark-color: #120037;
+$white-color: #efefef;
+$main-color-shadow: #a274ff3d;
+$image-shadow: 0 5px 10px 0 $main-color-shadow;
+$card-shadow: 0 7.5px 15px 0 $main-color-shadow;
+
+//---------- Edit form
+
+// Left side
+.edit-wrap-left {
+  display: flex;
+  flex-direction: column;
+  row-gap: 15px;
+  & .edit-item {
+    & .edit-label {
+      width: 75px;
+    }
+  }
+}
+// Btns
+.txt-btns-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 25px;
+  margin: 25px 0 0 75px;
+  width: 300px;
+  @media screen and (max-width: 992px) {
+    margin: 25px auto;
+  }
+}
+
+// Right side
+.settings-card-title {
+  font-size: 25px;
+  line-height: 1;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.numbers-card {
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: $card-shadow;
+  & .info-line {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    & .info-number {
+      font-weight: bold;
+      color: $main-color;
+      font-size: 18.5px;
+    }
+  }
+  // slider
+  .rs-slider {
+    // The left side in slider
+    & .rs-slider-progress-bar {
+      background-color: $main-color;
+    }
+    // Handle
+    & .rs-slider-handle::before {
+      border: 2px solid $main-color;
+    }
+  }
+  // Btns
+  .numbers-btns-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 25px;
+    margin-top: 25px;
+  }
+}
+
+// Under form
+.edit-imgs-btn-con {
+  margin: 50px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+// Images modal
+.edit-img-modal-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 25px;
+  row-gap: 10px;
+}

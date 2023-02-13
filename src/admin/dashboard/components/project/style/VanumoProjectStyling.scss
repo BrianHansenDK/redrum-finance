@@ -1,7 +1,9 @@
 $main-color: #A274FF;
 $dark-color: #120037;
 $white-color: #efefef;
-$main-color-shadow: #a274ff3d;
+$image-color-shadow: #a274ff3d;
+$card-color-shadow: #a274ff52;
+$image-shadow: 0 5px 10px 0 $card-color-shadow;
 
 .project-card {
   transition: all 150ms ease-out;
@@ -15,6 +17,11 @@ $main-color-shadow: #a274ff3d;
     border-color: #A274FF transparent transparent;
   }
 }
+h1, h2, h3, h4, h5, h6, p {color: $dark-color;}
+
+.page-wrapper {
+  padding: 0 25px;
+}
 
 .v-project-navbar {
   position: fixed;
@@ -25,6 +32,7 @@ $main-color-shadow: #a274ff3d;
   & .inner {
     width: 100%;
     & .nav-item {
+      display: block;
       text-align: center;
       font-size: 18px;
       font-weight: 700;
@@ -39,15 +47,19 @@ $main-color-shadow: #a274ff3d;
   }
 }
 
+.project-section {
+  padding: 75px 0;
+}
+.section-title {
+  font-size: 30px;
+  font-weight: bold;
+  color: $dark-color;
+  padding-left: 25px;
+}
+
 // Images
 .index-img-section {
-  padding: 75px 0;
-  & .section-title {
-    font-size: 30px;
-    font-weight: bold;
-    color: $dark-color;
-    padding-left: 25px;
-  }
+  padding: 75px 0 0;
   & .img-container {
     padding: 25px;
     & .img-title {
@@ -55,11 +67,30 @@ $main-color-shadow: #a274ff3d;
       font-weight: bold;
       color: $dark-color;
     }
+    & .small-image {
+      box-shadow: $image-shadow;
+    }
     & .big-image {
       width: 100%;
       height: auto;
       border-radius: 5px;
-      box-shadow: 0 5px 10px 0 $main-color-shadow;
+      box-shadow: $image-shadow
+    }
+  }
+}
+
+// Movies
+.project-movies-con {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  & .movie-img-con {
+    padding: 25px;
+    & .movie-image {
+      width: 90%;
+      height: auto;
+      border-radius: 5px;
+      box-shadow: $image-shadow;
     }
   }
 }
