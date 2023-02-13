@@ -1,23 +1,24 @@
 import { ref } from 'firebase/database'
 import { getDownloadURL, uploadBytes } from 'firebase/storage'
 import React, { useEffect, useState } from 'react'
-import { Avatar, Button, ButtonGroup, ButtonToolbar, DatePicker, Form, Input, useToaster } from 'rsuite'
+import { Avatar, Button, ButtonGroup, ButtonToolbar, DatePicker, Form, Input, Message, useToaster } from 'rsuite'
 import FormControlLabel from 'rsuite/esm/FormControlLabel'
 import FormGroup from 'rsuite/esm/FormGroup'
+import { msgInner, pushError, pushSuccess, vanumoColors, vanumoMainBtn } from '../../admin/theme/vanumoTheme'
 import PushNotification from '../../components/Notification'
 import { database, writeMovieData } from '../../firebase'
 import { storage, storageRef } from '../../firebaseStorage'
 import MainBtn from '../inside-app/components/MainBtn'
 import { mainColors } from '../inside-app/themes/colors'
 import mainShadows from '../inside-app/themes/shadows'
-import MainLayout from '../layouts/mainLayout'
+import PLACEHOLDER from '../../assets/empty_img.png'
 
-const CreateMoviePage = ({en, setEn}: {en: boolean, setEn: any}) => {
+const CreateMoviePage = () => {
     const [title, setTitle] = useState('')
     const [intro, setIntro] = useState('')
     const [des, setDes] = useState('')
     const [genres, setGenres] = useState('')
-    const [releaseDate, setReleaseDate] = useState(new Date())
+    const [releaseDate, setReleaseDate] = useState('')
     const [image, setImage] = useState(null)
     const [imageUrl, setUrl] = useState('')
 
@@ -28,19 +29,23 @@ const CreateMoviePage = ({en, setEn}: {en: boolean, setEn: any}) => {
     const makeMovie = () => {
 
         setLoading(true)
-        writeMovieData(Date.now().toString(), title, intro, des, releaseDate, genres, imageUrl)
+        writeMovieData(Date.now().toString(), title, intro, des, new Date(releaseDate), genres, imageUrl)
         setLoading(false)
 
         toaster.push(
-            <PushNotification
+            <Message
                 type='success'
-                content='Movie succesfully added to the database 🚀'
-            />,
+                style={pushSuccess}
+            >
+              <p style={msgInner}>
+               Movie succesfully added to the database 🚀
+              </p>
+            </Message>,
             { placement: 'bottomCenter' }
         )
         window.setTimeout(() => {
             toaster.clear()
-        }, 3000)
+        }, 8000)
     }
 
     const handleImage = (e: any) => {
@@ -57,10 +62,15 @@ const CreateMoviePage = ({en, setEn}: {en: boolean, setEn: any}) => {
                 getDownloadURL(imageRef).then((url) => {
                     setUrl(url)
                 }).catch((err) => {
-                    toaster.push(<PushNotification type='error' content={`An error occured: ${err.message}`} />, { placement: 'topCenter' })
+                    toaster.push(
+                    <Message type='error' style={pushError} >
+                      <p style={msgInner}>
+                        An error occured: ${err.message}
+                      </p>
+                    </Message>, { placement: 'topCenter' })
                     window.setTimeout(() => {
                         toaster.clear()
-                    }, 3000)
+                    }, 8000)
                 })
             })
         }
@@ -69,49 +79,49 @@ const CreateMoviePage = ({en, setEn}: {en: boolean, setEn: any}) => {
 
 
     return (
-        <MainLayout dark={true} openModal={null} closeModal={() => null} isVisible={false} en={en} setEn={setEn}>
+        <>
             <div style={styles.contentWrap} className='flex-column'>
-                <h1 style={styles.pageTitle} className='txt-center'>Create Movie</h1>
+                <h1 className='txt-center v-dash-title mt-2'>Create Movie</h1>
 
                 <Form fluid style={styles.form}>
                     <FormGroup>
-                        <FormControlLabel>Movie title</FormControlLabel>
+                        <FormControlLabel style={styles.label}>Movie title</FormControlLabel>
                         <Input onChange={setTitle} maxLength={20} placeholder='Title of the movie' />
                     </FormGroup>
 
                     <FormGroup>
-                        <FormControlLabel>Movie intro</FormControlLabel>
+                        <FormControlLabel style={styles.label}>Movie intro</FormControlLabel>
                         <Input onChange={setIntro} maxLength={28} placeholder='The short introduction of the movie' />
                     </FormGroup>
                     <FormGroup>
-                        <FormControlLabel>Movie description</FormControlLabel>
+                        <FormControlLabel style={styles.label}>Movie description</FormControlLabel>
                         <Input onChange={setDes} as='textarea' rows={5} maxLength={350} placeholder='The  description of the movie' />
                     </FormGroup>
                     <FormGroup style={styles.imageUploader} >
                         <div className='d-flex flex-column'>
-                            <FormControlLabel>Movie cover</FormControlLabel>
-                            <input type='file' onChange={handleImage} />
-                            <Button style={{ marginTop: 15 }} onClick={handleImageSubmit}>
+                            <FormControlLabel style={styles.label}>Movie cover</FormControlLabel>
+                            <input type='file' onChange={handleImage} className='custom-file-input-prpl' />
+                            <Button style={styles.btn} onClick={handleImageSubmit}>
                                 Set cover
                             </Button>
                         </div>
-                        <Avatar style={styles.avatar} size='lg' src={imageUrl} />
+                        <img style={styles.avatar} src={imageUrl !== '' ? imageUrl : PLACEHOLDER} />
                     </FormGroup>
                     <FormGroup>
-                        <FormControlLabel>Release date</FormControlLabel>
-                        <DatePicker
-                            format="yyyy-MM-dd HH:mm" placeholder='Select release date'
-                            onChange={() => setReleaseDate}
+                        <FormControlLabel style={styles.label}>Release date</FormControlLabel>
+                        <Input
+                        placeholder='Format: yyyy-MM-dd'
+                        onChange={setReleaseDate}
                         />
                     </FormGroup>
                     <FormGroup>
-                        <FormControlLabel>Movie genres</FormControlLabel>
+                        <FormControlLabel style={styles.label}>Movie genres</FormControlLabel>
                         <Input onChange={setGenres} placeholder='Seperate with ,' />
                     </FormGroup>
                     <ButtonGroup>
                         <Button
                             onClick={makeMovie}
-                            color='blue'
+                            style={vanumoMainBtn}
                             appearance='primary'
                             size='lg'
                             block
@@ -122,17 +132,14 @@ const CreateMoviePage = ({en, setEn}: {en: boolean, setEn: any}) => {
 
                     </ButtonGroup>
                 </Form>
-
             </div>
-        </MainLayout>
+        </>
     )
 }
 
 const styles = {
     contentWrap: {
-        paddingTop: 125,
         width: 100 + '%',
-        backgroundColor: mainColors.blueGrey,
         display: 'flex',
         justifyContent: 'flex-start',
         alignItems: 'center',
@@ -152,6 +159,17 @@ const styles = {
         boxShadow: mainShadows.image,
         marginLeft: 50,
         height: 100,
+        width: 'auto',
+    },
+    label: {
+      color: vanumoColors.dark,
+    },
+    btn: {
+      backgroundColor: vanumoMainBtn.backgroundColor,
+      color: vanumoMainBtn.color,
+      fontWeight: vanumoMainBtn.fontWeight,
+      boxShadow: vanumoMainBtn.boxShadow,
+      marginTop: 15,
     }
 }
 

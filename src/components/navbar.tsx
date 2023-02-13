@@ -49,7 +49,7 @@ const MainNavbar: React.FunctionComponent<IProps> = (props) => {
             id='navbar'
             appearance='subtle'
             className={`${dark ? 'dark-bg shadow' : 'no-bg'} trans`}
-            style={{ paddingRight: 25, boxShadow: dark ? mainShadows.navBar : null }}
+            style={{ paddingRight: 25, boxShadow: dark ? mainShadows.navBar : 'none' }}
             >
                 <Navbar.Brand id='brand' className='bold d-flex align-center' as={Link} to='/' style={{ height: 75, fontSize: 20 }}>
                     Redrum Pro

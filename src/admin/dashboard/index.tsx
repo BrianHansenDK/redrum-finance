@@ -5,6 +5,7 @@ import VanumoNavbar from './components/navbar/Navbar'
 import NavCards from './components/NavCards'
 import ProjectsSection from './components/project/ProjectsSection'
 import VanumoSignIn from './sign-in'
+import './components/styles/vanumoMain.scss'
 
 const VanumoDashboard = () => {
   const [signedIn, setSignedIn] = useState<any>(false)

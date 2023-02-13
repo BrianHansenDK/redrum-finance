@@ -4,6 +4,7 @@ export const vanumoColors = {
   main: '#A274FF',
   dark: '#120037',
   white: '#efefef',
+  red: '#db284f'
 }
 export const vanumoShadows = {
   image: '0 5px 10px 0 #a274ff3d',

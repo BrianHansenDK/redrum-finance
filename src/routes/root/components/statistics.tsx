@@ -3,16 +3,24 @@ import { FlexboxGrid } from 'rsuite'
 import IMG1 from '../../../components/images/stats_1.svg'
 import IMG2 from '../../../components/images/stats_2.svg'
 import IMG3 from '../../../components/images/stats_3.svg'
-import { getAllUserObjectsInfo } from '../../../firebase'
+import { getAllUserObjectsInfo, getInvestments } from '../../../firebase'
 import { homeStrings } from '../../../library/string/Landinspage'
+import { numberWithCommas, toFixedIfNecessary } from '../../../misc/custom-hooks'
 import Stat from './stat'
 
 
 const Statistics = ({en}: {en: boolean}) => {
   const [users, setUsers] = React.useState<any>([])
+  const [investments, setInvestments] = React.useState<any>([])
   useEffect(() => {
     getAllUserObjectsInfo(setUsers)
+    getInvestments(setInvestments)
   }, [])
+  let sum = 0;
+  investments.forEach((inv: any) => {
+    sum += inv.amount
+  })
+  const average = sum / investments.length
     return (
         <div id='stats'>
             <div id='stats-inner'>
@@ -28,14 +36,14 @@ const Statistics = ({en}: {en: boolean}) => {
                     <Stat
                         icon={IMG2}
                         title={en ? homeStrings.heroEN.totalInvStat : homeStrings.heroDE.totalInvStat}
-                        stats='245.801,751 €'
+                        stats={`${numberWithCommas(toFixedIfNecessary(parseFloat(sum.toString().replace('.',',')), 2))}€`}
                     />
                 </div>
                 <div className='txt-center'>
                     <Stat
                         icon={IMG3}
                         title={en ? homeStrings.heroEN.averageInvStat : homeStrings.heroDE.averageInvStat}
-                        stats='13.502,27 €'
+                        stats={`${numberWithCommas(toFixedIfNecessary(parseFloat(average.toString().replace('.',',')), 2))}€`}
                     />
                 </div>
             </div>

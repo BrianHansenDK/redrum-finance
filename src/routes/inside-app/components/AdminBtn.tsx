@@ -28,6 +28,7 @@ const styles = {
     alignItems: 'center',
     bottom: 25,
     right: 25,
+    zIndex: 10,
   },
   logo: {
     width: 25,

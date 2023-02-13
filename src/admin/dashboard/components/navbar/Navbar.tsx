@@ -6,7 +6,8 @@ import NavbarBrand from 'rsuite/esm/Navbar/NavbarBrand'
 import { database, getUsers } from '../../../../firebase'
 import LOGO from '../../../assets/vanumo-logo-white.svg'
 import { vanumoColors } from '../../../theme/vanumoTheme'
-import AddIcon from '@rsuite/icons/Plus'
+import AddIcon from '@rsuite/icons/Tree'
+import MovieIcon from '@rsuite/icons/legacy/VideoCamera'
 import { mainColors } from '../../../../routes/inside-app/themes/colors'
 
 const VanumoNavbar = () => {
@@ -40,6 +41,7 @@ const VanumoNavbar = () => {
         </Button>
       </Nav>
       <Nav pullRight style={styles.searchWrap}>
+        <IconButton icon={<MovieIcon/>} as={Link} to={'/vanumo/create-movie'} style={styles.iconBtn} />
         <IconButton icon={<AddIcon/>} as={Link} to={'/vanumo/create-project'} style={styles.iconBtn} />
       <SelectPicker
       onChange={setUserId}
@@ -63,7 +65,7 @@ const styles = {
     top: 0,
     left: 0,
     right: 0,
-    zIndex: 15,
+    zIndex: 7,
     paddingRight: 25,
   },
   brandWrap: {

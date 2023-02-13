@@ -33,6 +33,7 @@ import VanumoDashboardIndex from './admin/dashboard/components/VanumoDashboard.j
 import VanumoProjectPage from './admin/dashboard/components/project/page/VanumoProjectPage.js';
 import VProjectIndex from './admin/dashboard/components/project/page/extra/index/VProjectIndex.js';
 import VProjectSettings from './admin/dashboard/components/project/page/extra/settings/VProjectSettings.js';
+import VanumoMoviesPage from './admin/dashboard/components/movies/page/index.js';
 
 
 const App = () => {
@@ -57,6 +58,7 @@ const App = () => {
       <Route path='/vanumo' element={<VanumoDashboard />}>
         <Route index element={<VanumoDashboardIndex />}/>
         <Route path='create-project/' element={<CreateProjectPage />} />
+        <Route path='create-movie' element={<CreateMoviePage/>} />
         <Route path='users/' element={<AccountAdmin />} >
           <Route path=':userId' element={<UserCard />} />
         </Route>
@@ -64,10 +66,11 @@ const App = () => {
           <Route index element={<VProjectIndex />} />
           <Route path='settings/' element={<VProjectSettings />}/>
         </Route>
+        <Route path='movie/:movieId' element={<VanumoMoviesPage />}/>
       </Route>
 
       {/* Test admin */}
-      <Route path='/create-movie' element={<CreateMoviePage en={isEnglish} setEn={changeLan} />} />
+
 
       {/* The App itself */}
       <Route path='/app' element={<AuthRoute link='/'><AppRoot en={isEnglish} setEn={changeLan} /></AuthRoute>} />

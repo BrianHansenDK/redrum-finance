@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { FlexboxGrid } from 'rsuite'
 import { FirebaseBundle, FirebaseMovie } from '../../../../../../../../database/Objects'
 import { database } from '../../../../../../../../firebase'
+import VanumoLoader from '../../../../../VanumoLoader'
 import VProjectMovieItem from './ProjectMovieItem'
 
 const ProjectMovies = ({project} : {project: FirebaseBundle}) => {
@@ -22,12 +23,18 @@ const ProjectMovies = ({project} : {project: FirebaseBundle}) => {
   }, [project.movies])
   return (
     <div className='project-section' style={{paddingTop: 25}}>
-      <h1 className="section-title">Movies</h1>
-      <FlexboxGrid className='project-movies-con'>
-        {movies.map(movie => (
-          <VProjectMovieItem movie={movie} key={movie.id} />
-        ))}
-      </FlexboxGrid>
+      {loading ? (
+        <VanumoLoader />
+      ) : (
+        <>
+        <h1 className="section-title">Movies</h1>
+        <FlexboxGrid className='project-movies-con'>
+          {movies.map(movie => (
+            <VProjectMovieItem movie={movie} key={movie.id} />
+            ))}
+        </FlexboxGrid>
+        </>
+    )}
     </div>
   )
 }

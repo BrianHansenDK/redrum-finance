@@ -73,7 +73,7 @@ const WhyMovies: React.FunctionComponent<IProps> = (props) => {
                     <p className='mid-des'>
                         The Redrum Film Finance App combines these two growth markets by benefiting from both the strong demand of the film market and the growing willingness of investors to invest. The app not only offers the opportunity to discover new financial products, but also bridges the gap between investment, art and culture.
                     </p>
-                    <Button size='lg' appearance='primary' className='main-btn white shadow mt-3 mb-5' style={{ width: 250, margin: 'auto' }}>
+                    <Button onClick={openModal} size='lg' appearance='primary' className='main-btn white shadow mt-3 mb-5' style={{ width: 250, margin: 'auto' }}>
                         Become an investor
                     </Button>
                 </div>

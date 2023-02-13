@@ -3,6 +3,7 @@ import { Button } from 'rsuite'
 import '../styles/stats.scss'
 import '../styles/cta-up.scss'
 import { homeStrings } from '../../../library/string/Landinspage'
+import { Link } from 'react-router-dom'
 
 const CtaUp = ({en} : {en: boolean}) => {
     return (
@@ -13,7 +14,7 @@ const CtaUp = ({en} : {en: boolean}) => {
             <p className='des'>
             {en ? homeStrings.ctaUpperEN.sentence : homeStrings.ctaUpperDE.sentence}
             </p>
-            <Button className=' main-btn white shadow' size='lg' style={{ width: 250 }}>
+            <Button as={Link} to='/how-it-works' className=' main-btn white shadow' size='lg' style={{ width: 250 }}>
             {en ? homeStrings.ctaUpperEN.btn : homeStrings.ctaUpperDE.btn}
             </Button>
         </div>

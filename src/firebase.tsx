@@ -99,14 +99,16 @@ export function writeProjectData(
     })
 }
 
-function getMovies() {
+export function getMovies(movieState: any, loaderState: any) {
     const reference = ref(database, 'movies/')
     onValue(reference, (snap) => {
-        let data: any[] = []
+      loaderState(true)
+      let data: any[] = []
         snap.forEach((movie) => {
             data.push(movie.val())
         })
-        return data
+        movieState(data)
+        loaderState(false)
     })
 }
 
@@ -151,6 +153,17 @@ export function getUsers(arr: any[], keyArr: any[], state: any, keyState: any) {
         state(arr)
         keyState(keyArr)
     }, { onlyOnce: true })
+}
+
+export function getInvestments(setInvestments: any) {
+  const reference = ref(database, 'investments/')
+  let data: any[] = []
+  onValue(reference, (list) => {
+    list.forEach((investment) => {
+      data.push(investment.val())
+    })
+    setInvestments(data)
+  })
 }
 
 export const getUserInvestments = (userId: any, state: any) => {
