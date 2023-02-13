@@ -1,7 +1,7 @@
 import { onValue, ref } from 'firebase/database'
 import { getDownloadURL, uploadBytes } from 'firebase/storage'
 import React, { useEffect, useState } from 'react'
-import { Avatar, Button, ButtonGroup, CheckPicker, DatePicker, DateRangePicker, Divider, Form, Input, InputGroup, Uploader, useToaster } from 'rsuite'
+import { Avatar, Button, ButtonGroup, CheckPicker, DatePicker, DateRangePicker, Divider, Form, Input, InputGroup, Message, Uploader, useToaster } from 'rsuite'
 import FormControlLabel from 'rsuite/esm/FormControlLabel'
 import FormGroup from 'rsuite/esm/FormGroup'
 import PushNotification from '../../components/Notification'
@@ -13,8 +13,9 @@ import mainShadows from '../inside-app/themes/shadows'
 import MainLayout from '../layouts/mainLayout'
 import PLACEHOLDER from '../../assets/profileimage_placeholder.svg'
 import './index.scss'
+import { msgInner, pushError, pushSuccess, vanumoColors, vanumoMainBtn } from '../../admin/theme/vanumoTheme'
 
-const CreateProjectPage = ({en, setEn}: {en: boolean, setEn: any}) => {
+const CreateProjectPage = () => {
     const [projectTitle, setProjectTitle] = useState('')
     const [projectIntro, setProjectIntro] = useState('')
     const [projectDescription, setProjectDescription] = useState('')
@@ -135,10 +136,12 @@ const CreateProjectPage = ({en, setEn}: {en: boolean, setEn: any}) => {
                     getDownloadURL(imageRef).then((url) => {
                         setPresentationUrl(url)
                     }).catch((err) => {
-                        toaster.push(<PushNotification type='error' content={`An error occured: ${err.message}`} />, { placement: 'topCenter' })
+                        toaster.push(<Message type='error' style={pushError}>
+                          <span style={msgInner}>An error occured: ${err.message}</span>
+                        </Message>, { placement: 'topCenter' })
                         window.setTimeout(() => {
                             toaster.clear()
-                        }, 3000)
+                        }, 8000)
                     })
                 })
             }
@@ -160,39 +163,41 @@ const CreateProjectPage = ({en, setEn}: {en: boolean, setEn: any}) => {
             presentationUrl
         )
 
-        toaster.push(<PushNotification type='success' content='Succesfully added Project/Bundle to the Application 🚀' />, { placement: 'bottomCenter' })
+        toaster.push(<Message type='success' style={pushSuccess}>
+          <span style={msgInner}>Succesfully added Project/Bundle to the Application 🚀</span>
+        </Message>, { placement: 'bottomCenter' })
 
         window.setTimeout(() => {
             toaster.clear()
-        }, 3000)
+        }, 8000)
     }
 
 
     return (
-        <MainLayout dark={true} openModal={null} closeModal={() => null} isVisible={false} en={en} setEn={setEn}>
+        <>
             <div style={styles.contentWrap} className='flex-column'>
                 <h1 style={styles.pageTitle} className='txt-center'>Create Project</h1>
 
                 <Form fluid style={styles.form}>
                     <FormGroup>
-                        <FormControlLabel>Project title</FormControlLabel>
+                        <FormControlLabel style={styles.label}>Project title</FormControlLabel>
                         <Input onChange={setProjectTitle} maxLength={20} placeholder='Title of the project/bundle' />
                     </FormGroup>
 
                     <FormGroup>
-                        <FormControlLabel>Project intro</FormControlLabel>
+                        <FormControlLabel style={styles.label}>Project intro</FormControlLabel>
                         <Input onChange={setProjectIntro} maxLength={28} placeholder='The short description introducing the project/bundle' />
                     </FormGroup>
                     <FormGroup>
-                        <FormControlLabel>Project description</FormControlLabel>
+                        <FormControlLabel style={styles.label}>Project description</FormControlLabel>
                         <Input onChange={setProjectDescription} as='textarea' rows={5} maxLength={350} placeholder='The long description of the project/bundle' />
                     </FormGroup>
 
                     <FormGroup style={styles.imageUploader} >
                         <div className='d-flex flex-column'>
-                            <FormControlLabel>Project Avatar</FormControlLabel>
-                            <input type='file' onChange={handleAvatar} />
-                            <Button style={{ marginTop: 15 }} onClick={handleAvatarSubmit}>
+                            <FormControlLabel style={styles.label}>Project Avatar</FormControlLabel>
+                            <input type='file' onChange={handleAvatar} className='custom-file-input-prpl'/>
+                            <Button style={styles.uploadBtn} onClick={handleAvatarSubmit} disabled={avatar == null}>
                                 Set avatar
                             </Button>
                         </div>
@@ -202,9 +207,9 @@ const CreateProjectPage = ({en, setEn}: {en: boolean, setEn: any}) => {
 
                     <FormGroup style={styles.imageUploader} >
                         <div className='d-flex flex-column'>
-                            <FormControlLabel>Project banner</FormControlLabel>
-                            <input type='file' onChange={handleBanner} />
-                            <Button style={{ marginTop: 15 }} onClick={handleBannerSubmit}>
+                            <FormControlLabel style={styles.label}>Project banner</FormControlLabel>
+                            <input type='file' onChange={handleBanner} className='custom-file-input-prpl'/>
+                            <Button style={styles.uploadBtn} onClick={handleBannerSubmit} disabled={banner == null}>
                                 Set banner
                             </Button>
                         </div>
@@ -214,9 +219,9 @@ const CreateProjectPage = ({en, setEn}: {en: boolean, setEn: any}) => {
 
                     <FormGroup style={styles.imageUploader} >
                         <div className='d-flex flex-column'>
-                            <FormControlLabel>Project overview</FormControlLabel>
-                            <input type='file' onChange={handleOverview} />
-                            <Button style={{ marginTop: 15 }} onClick={handleOverviewSubmit}>
+                            <FormControlLabel style={styles.label}>Project overview</FormControlLabel>
+                            <input type='file' onChange={handleOverview} className='custom-file-input-prpl'/>
+                            <Button style={styles.uploadBtn} onClick={handleOverviewSubmit} disabled={overview == null}>
                                 Set overview
                             </Button>
                         </div>
@@ -226,9 +231,9 @@ const CreateProjectPage = ({en, setEn}: {en: boolean, setEn: any}) => {
 
                     <FormGroup style={styles.imageUploader} >
                         <div className='d-flex flex-column'>
-                            <FormControlLabel>Project presentation</FormControlLabel>
-                            <input type='file' onChange={handlePresentation} />
-                            <Button style={{ marginTop: 15 }} onClick={handlePresentationSubmit}>
+                            <FormControlLabel style={styles.label}>Project presentation</FormControlLabel>
+                            <input type='file' onChange={handlePresentation} className='custom-file-input-prpl'/>
+                            <Button style={styles.uploadBtn} onClick={handlePresentationSubmit} disabled={presentation == null}>
                                 Set presentation
                             </Button>
                         </div>
@@ -237,73 +242,68 @@ const CreateProjectPage = ({en, setEn}: {en: boolean, setEn: any}) => {
                     <Divider />
 
                     <FormGroup>
-                        <FormControlLabel>Project Movies</FormControlLabel>
+                        <FormControlLabel style={styles.label}>Project Movies</FormControlLabel>
                         <CheckPicker
                             onChange={setProjectMovies}
                             label='movies' data={movieData}
                         />
                     </FormGroup>
                     <FormGroup>
-                        <FormControlLabel>Start date</FormControlLabel>
+                        <FormControlLabel style={styles.label}>Start date</FormControlLabel>
                         <Input
                             placeholder='YYYY-MM-dd'
                             onChange={setProjectStartDate}
                         />
                     </FormGroup>
                     <FormGroup>
-                        <FormControlLabel>End date</FormControlLabel>
+                        <FormControlLabel style={styles.label}>End date</FormControlLabel>
                         <Input
                             placeholder='YYYY-MM-dd'
                             onChange={setProjectEndDate}
                         />
                     </FormGroup>
                     <FormGroup>
-                        <FormControlLabel>Publication</FormControlLabel>
+                        <FormControlLabel style={styles.label}>Publication</FormControlLabel>
                         <Input onChange={setProjectPublication} placeholder='Write the publication' />
                     </FormGroup>
                     <FormGroup>
-                        <FormControlLabel>Investment goal</FormControlLabel>
+                        <FormControlLabel style={styles.label}>Investment goal</FormControlLabel>
                         <Input onChange={setProjectGoal} type='number' placeholder='The amount you wish to have invested for the project/bundle' />
                     </FormGroup>
                     <FormGroup>
-                        <FormControlLabel>Pre invested</FormControlLabel>
+                        <FormControlLabel style={styles.label}>Pre invested</FormControlLabel>
                         <Input onChange={setProjectInvested} type='number' placeholder='How much did you already invest in this project?' />
                     </FormGroup>
                     <FormGroup>
-                        <FormControlLabel>Project value</FormControlLabel>
+                        <FormControlLabel style={styles.label}>Project value</FormControlLabel>
                         <Input onChange={setProjectValue} type='number' placeholder='How much is the project worth?' />
                     </FormGroup>
                     <FormGroup>
-                        <FormControlLabel>Guaranteed return</FormControlLabel>
+                        <FormControlLabel style={styles.label}>Guaranteed return</FormControlLabel>
                         <Input onChange={setProjectReturn} type='number' placeholder='How much is guaranteed to recieve back in % ?' />
                     </FormGroup>
                     <ButtonGroup>
-                        <MainBtn content={'Add Project'}
-                            pressed={makeProject}
-                            btnColor='blue'
-                            btnAppearance='primary'
-                            btnSize='lg'
-                            isBlock />
+                      <Button block appearance='primary' style={vanumoMainBtn} onClick={makeProject} size='lg'>
+                        Add Project
+                      </Button>
 
                     </ButtonGroup>
                 </Form>
 
             </div>
-        </MainLayout>
+        </>
     )
 }
 
 const styles = {
     contentWrap: {
-        paddingTop: 125,
         width: 100 + '%',
-        backgroundColor: mainColors.blueGrey,
         display: 'flex',
         justifyContent: 'flex-start',
         alignItems: 'center',
     },
     pageTitle: {
-        color: mainColors.white,
+        color: mainColors.dark,
     },
     form: {
         width: 80 + '%',
@@ -318,7 +318,17 @@ const styles = {
         marginLeft: 50,
         height: 100,
         width: 250,
-    }
+    },
+    label: {
+      color: mainColors.dark,
+    },
+    uploadBtn: {
+      backgroundColor: vanumoMainBtn.backgroundColor,
+      color: vanumoMainBtn.color,
+      fontWeight: vanumoMainBtn.fontWeight,
+      boxShadow: vanumoMainBtn.boxShadow,
+      marginTop: 15,
+    },
 }
 
 export default CreateProjectPage

@@ -56,6 +56,10 @@ const App = () => {
       {/* Vanumo / Admin */}
       <Route path='/vanumo' element={<VanumoDashboard />}>
         <Route index element={<VanumoDashboardIndex />}/>
+        <Route path='create-project/' element={<CreateProjectPage />} />
+        <Route path='users/' element={<AccountAdmin />} >
+          <Route path=':userId' element={<UserCard />} />
+        </Route>
         <Route path='project/:projectId' element={<VanumoProjectPage />} >
           <Route index element={<VProjectIndex />} />
           <Route path='settings/' element={<VProjectSettings />}/>
@@ -63,11 +67,7 @@ const App = () => {
       </Route>
 
       {/* Test admin */}
-      <Route path='/create-project' element={<CreateProjectPage en={isEnglish} setEn={changeLan} />} />
       <Route path='/create-movie' element={<CreateMoviePage en={isEnglish} setEn={changeLan} />} />
-      <Route path='/accounts-admin' element={<AccountAdmin en={isEnglish} setEn={changeLan} />} >
-        <Route path='/accounts-admin/:userId' element={<UserCard />} />
-      </Route>
 
       {/* The App itself */}
       <Route path='/app' element={<AuthRoute link='/'><AppRoot en={isEnglish} setEn={changeLan} /></AuthRoute>} />

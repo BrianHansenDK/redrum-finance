@@ -40,6 +40,11 @@ const VanumoSignIn = ({setSignedIn}: {setSignedIn: any}) => {
         Sign in
       </Button>
       </div>
+      <Button appearance='primary'
+      style={styles.btn} size='lg'
+      onClick={() => setSignedIn(true)}>
+        Am admin
+      </Button>
     </div>
   )
 }

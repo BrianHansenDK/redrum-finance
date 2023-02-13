@@ -1,5 +1,5 @@
 import React from 'react'
-import { Divider, FlexboxGrid, Nav, Navbar } from 'rsuite'
+import { Divider, FlexboxGrid, Nav, Navbar, Tooltip, Whisper } from 'rsuite'
 import NavItem from 'rsuite/esm/Nav/NavItem'
 import { useMediaQuery } from '../../../../../../misc/custom-hooks'
 import HomeIcon from '@rsuite/icons/legacy/Home'
@@ -38,22 +38,27 @@ const VProjectBottomNavbar = () => {
           </NavItem>
         </FlexboxGridItem>
         <FlexboxGridItem colspan={6}>
+        <Whisper speaker={<Tooltip>
+          Feature not available yet but coming soon
+        </Tooltip>} trigger={'click'} placement='top'>
+
         <NavItem
           icon={<EventsIcon/>}
-          as={Link}
-          to={`/vanumo/project/${projectId}/settings`}
-          className={`${lastParam == projectId ? 'active' : ''} nav-item`}>
+          className={` nav-item`}>
             {isMobile ? null : 'Events'}
           </NavItem>
+        </Whisper>
         </FlexboxGridItem>
         <FlexboxGridItem colspan={6}>
+        <Whisper speaker={<Tooltip>
+          Feature not available yet but coming soon
+        </Tooltip>} trigger={'click'} placement='top'>
         <NavItem
           icon={<PeopleIcon/>}
-          as={Link}
-          to={`/vanumo/project/${projectId}`}
-          className={`${lastParam == projectId ? 'active' : ''} nav-item`}>
+          className={` nav-item`}>
             {isMobile ? null : 'Investors'}
           </NavItem>
+          </Whisper>
         </FlexboxGridItem>
       </Nav>
     </Navbar>

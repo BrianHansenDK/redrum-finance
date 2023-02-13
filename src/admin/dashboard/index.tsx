@@ -8,6 +8,7 @@ import VanumoSignIn from './sign-in'
 
 const VanumoDashboard = () => {
   const [signedIn, setSignedIn] = useState<any>(false)
+
   return (
     <div>
       {auth.currentUser?.email == 'brianhansen.work@gmail.com' || auth.currentUser?.email == 'merhi@gmx.net' ? (
@@ -26,7 +27,7 @@ const VanumoDashboard = () => {
 
 const styles = {
   contentWrap: {
-    paddingTop: 100,
+    paddingTop: 75,
   }
 }
 

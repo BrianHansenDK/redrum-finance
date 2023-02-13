@@ -1,11 +1,13 @@
 import { onValue, ref } from 'firebase/database'
 import React, { useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
-import { Button, CheckPicker, Nav, Navbar, SelectPicker } from 'rsuite'
+import { Link, useNavigate, useParams } from 'react-router-dom'
+import { Button, CheckPicker, IconButton, Nav, Navbar, SelectPicker } from 'rsuite'
 import NavbarBrand from 'rsuite/esm/Navbar/NavbarBrand'
 import { database, getUsers } from '../../../../firebase'
 import LOGO from '../../../assets/vanumo-logo-white.svg'
 import { vanumoColors } from '../../../theme/vanumoTheme'
+import AddIcon from '@rsuite/icons/Plus'
+import { mainColors } from '../../../../routes/inside-app/themes/colors'
 
 const VanumoNavbar = () => {
   const [users, setUsers] = useState<any[]>([])
@@ -29,22 +31,23 @@ const VanumoNavbar = () => {
   }, [])
   return (
     <Navbar style={styles.navbar} className='position-fixed'>
-      <NavbarBrand style={styles.brandWrap}>
+      <NavbarBrand style={styles.brandWrap} as={Link} to='/vanumo'>
         <img style={styles.logo} src={LOGO} alt="Vanumo logo" /> <p style={styles.brandTxt}> Vanumo</p>
       </NavbarBrand>
       <Nav style={styles.searchWrap}>
-      <Button appearance='default' color='blue' style={styles.subtleBtn} onClick={() => navigate('/')}>
+      <Button appearance='default' color='blue' style={styles.subtleBtn} as={Link} to='/app'>
           RedrumPro
         </Button>
       </Nav>
       <Nav pullRight style={styles.searchWrap}>
+        <IconButton icon={<AddIcon/>} as={Link} to={'/vanumo/create-project'} style={styles.iconBtn} />
       <SelectPicker
       onChange={setUserId}
       data={users.map((user, index) => ({ label: user.username, value: userIds[index] }))}
       style={{ width: 300 }}
       placeholder='Search user'
       />
-      <Button appearance='primary' style={styles.btn}>
+      <Button appearance='primary' style={styles.btn} as={Link} to={`/vanumo/users/${userId}`}>
         Go
       </Button>
       </Nav>
@@ -60,7 +63,7 @@ const styles = {
     top: 0,
     left: 0,
     right: 0,
-    zIndex: 5,
+    zIndex: 15,
     paddingRight: 25,
   },
   brandWrap: {
@@ -87,6 +90,12 @@ const styles = {
   },
   subtleBtn: {
     color: vanumoColors.main,
+  },
+  iconBtn: {
+    backgroundColor: mainColors.white,
+    color: vanumoColors.main,
+    fontWeight: '700',
+    marginRight: 20,
   },
   searchbar: {
     alignSelf: 'center',
