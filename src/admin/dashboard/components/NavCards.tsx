@@ -12,7 +12,7 @@ const NavCards = () => {
 }
 
 const wrapper = {
-  marginTop: 150,
+  marginTop: 50,
   display: 'flex',
   alignItems: 'flex-start',
   justifyContent: 'space-between',

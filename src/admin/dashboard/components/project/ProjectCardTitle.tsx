@@ -2,6 +2,7 @@ import React from 'react'
 import { Divider } from 'rsuite'
 import BoxThemes from '../../../../library/themes/BoxThemes'
 import { mainColors } from '../../../../routes/inside-app/themes/colors'
+import { vanumoColors } from '../../../theme/vanumoTheme'
 
 const ProjectCardTitle = ({project} : {project: any}) => {
   return (
@@ -21,7 +22,7 @@ const styles = {
     color: mainColors.dark,
   },
   divider: {
-    backgroundColor: mainColors.rSuiteBlue,
+    backgroundColor: vanumoColors.main,
     margin: '15px 0 25px',
   }
 }
