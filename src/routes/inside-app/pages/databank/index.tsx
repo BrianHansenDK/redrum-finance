@@ -5,7 +5,7 @@ import LayoutWithSidebar from '../../layouts/LayoutWithSidebar'
 import { mainColors } from '../../themes/colors'
 import RecieptsList from './components/RecieptsList'
 
-const DatabankPage = ({en, setEn} : {en: boolean, setEn: any}) => {
+const DatabankPage = ({en} : {en: boolean}) => {
   const [investments, setInvestments] = useState<any>([])
   useEffect(() => {
     const reference = ref(database, 'investments/')
@@ -20,9 +20,9 @@ const DatabankPage = ({en, setEn} : {en: boolean, setEn: any}) => {
     })
   }, [auth])
   return (
-    <LayoutWithSidebar en={en} setEn={setEn}>
+    <>
       <RecieptsList investments={investments}/>
-    </LayoutWithSidebar>
+    </>
   )
 }
 

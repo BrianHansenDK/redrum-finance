@@ -13,7 +13,6 @@ const VanumoMoviesSection = () => {
     getMovies(setMovies, setLoading)
   }, [])
   const [activeIndex, setActiveIndex] = React.useState(0);
-  console.log(movies)
   return (
     <div className='vanumo-dashboard-section mt-2'>
       <h1 className='mb-1'>Movies</h1>

@@ -125,6 +125,13 @@ export const getCurrentUser = (userId: any, obj: any, state: any ) => {
   })
 }
 
+export const getCurrentUserFunction = (userId: any, state: any) => {
+  const reference = ref(database, 'users/' + userId)
+  onValue(reference, (snap) => {
+    state(snap.val())
+  })
+}
+
 export const userRef = (userId: any, query: string, state: any) => {
     onValue(ref(database, 'users/' + userId + query), (snap) => {
         const data = snap.val()
@@ -176,5 +183,17 @@ export const getUserInvestments = (userId: any, state: any) => {
       }
     })
     state(data)
+  })
+}
+
+export function createWithdrawalRequest(requestId: number, userId: any, amount: number, createdAt: number) {
+  const reference = ref(database, 'requests/' + requestId)
+  set(reference, {
+    id: requestId,
+    creator: userId,
+    amount: amount,
+    created_at: createdAt,
+    seen: false,
+    state: 'new',
   })
 }

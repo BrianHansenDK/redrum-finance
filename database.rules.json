@@ -25,6 +25,10 @@
     	"questions": {
         ".read": true,
         ".write": "auth.uid !== null"
+      },
+      "requests": {
+        ".read": "auth.uid !== null",
+        ".write": "auth.uid !== null"
       }
   }
 }

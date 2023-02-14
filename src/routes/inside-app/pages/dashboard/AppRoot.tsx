@@ -11,24 +11,13 @@ import { child, get, onValue, ref } from 'firebase/database'
 import { database } from '../../../../firebase'
 import { Loader, useToaster } from 'rsuite'
 import PushNotification from '../../../../components/Notification'
+import { Outlet } from 'react-router-dom'
 
 const AppRoot = ({en, setEn} : {en: boolean, setEn: any}) => {
   return (
     <LayoutWithSidebar en={en} setEn={setEn}>
-      <BannerComponent />
+      <Outlet />
 
-      <ProjectShowcase en={en} />
-      <div className='pl-2 pt-3 pr-2 pb-3'>
-        <MainBtn
-          pressed={() => null}
-          btnColor='blue'
-          btnAppearance='primary'
-          btnSize='lg'
-          isBlock={true}
-          content='How it works'
-        />
-
-      </div>
     </LayoutWithSidebar>
 
   )

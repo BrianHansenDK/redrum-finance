@@ -17,6 +17,9 @@ export function toFixedIfNecessary(value: any, dp: any) {
 export function numberWithCommas(x: number) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 }
+export function numberWithCommasAsString(x: string) {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+}
 
 export const useMediaQuery = (query: any) => {
   const [matches, setMatches] = useState<any>(
@@ -35,3 +38,12 @@ export const useMediaQuery = (query: any) => {
 
   return matches;
 };
+
+export const MakeDateGerman = (date: Date) => {
+  const dateList = date.toLocaleDateString().split('/')
+  return `${dateList[1]}/${parseInt(dateList[0]) < 10 ? `0${dateList[0]}` : dateList[0]}-${dateList[2]}`
+}
+
+export const appReadyNumber = (x: number) => {
+  return numberWithCommasAsString(toFixedIfNecessary(x , 2).toString().replace('.', ','))
+}

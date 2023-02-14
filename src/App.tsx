@@ -34,12 +34,13 @@ import VanumoProjectPage from './admin/dashboard/components/project/page/VanumoP
 import VProjectIndex from './admin/dashboard/components/project/page/extra/index/VProjectIndex.js';
 import VProjectSettings from './admin/dashboard/components/project/page/extra/settings/VProjectSettings.js';
 import VanumoMoviesPage from './admin/dashboard/components/movies/page/index.js';
+import VanumoRequestsPage from './admin/dashboard/components/requests/page/index.js';
+import AppRootIndexPage from './routes/inside-app/pages/dashboard/AppRootIndexPage.js';
 
 
 const App = () => {
   const [isVisible, setVisible] = useState(false)
   const [isEnglish, setEnglish] = useState(true)
-  const [language, setLanguage] = useState('DE')
   const openModal = () => setVisible(true)
   const closeModal = () => setVisible(false)
   const location = useLocation();
@@ -67,15 +68,18 @@ const App = () => {
           <Route path='settings/' element={<VProjectSettings />}/>
         </Route>
         <Route path='movie/:movieId' element={<VanumoMoviesPage />}/>
+        <Route path='requests/' element={<VanumoRequestsPage />} />
       </Route>
 
       {/* Test admin */}
 
 
       {/* The App itself */}
-      <Route path='/app' element={<AuthRoute link='/'><AppRoot en={isEnglish} setEn={changeLan} /></AuthRoute>} />
-      <Route path='/app/investments' element={<InvestmentPage en={isEnglish} setEn={changeLan} />} />
-      <Route path='/app/databank' element={<DatabankPage en={isEnglish} setEn={changeLan}/>} />
+      <Route path='/app' element={<AuthRoute link='/'><AppRoot en={isEnglish} setEn={changeLan} /></AuthRoute>} >
+        <Route index element={<AppRootIndexPage en={isEnglish}/>} />
+        <Route path='investments/' element={<InvestmentPage en={isEnglish}/>} />
+        <Route path='databank/' element={<DatabankPage en={isEnglish}/>} />
+      </Route>
       <Route path='/app/bundle/:bundleId' element={<ProjectDetailsPageWrapper en={isEnglish} setEn={changeLan} />} >
         <Route index element={<ProjectDetailsOverviewWrapper en={isEnglish} />} />
         <Route path='extras/movies' element={<ProjectDetailsMovieWrapper />} />

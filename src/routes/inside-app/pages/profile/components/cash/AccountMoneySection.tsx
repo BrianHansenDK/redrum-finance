@@ -65,7 +65,7 @@ class AccountMoneySection extends Component<IProps, IState> {
                 </h1>
                 <div>
                     {_projects.map((project) => (
-                        <ProjectDetail projectId={project} userId={userId} />
+                        <ProjectDetail projectId={project} userId={userId} key={project}/>
                     ))}
                 </div>
             </div>

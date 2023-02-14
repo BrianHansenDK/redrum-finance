@@ -1,6 +1,6 @@
 import { onValue, ref } from 'firebase/database'
 import React, { useEffect, useState } from 'react'
-import { Table } from 'rsuite'
+import { Loader, Table } from 'rsuite'
 import { database } from '../../../../../../firebase'
 import { numberWithCommas } from '../../../../../../misc/custom-hooks'
 import { mainColors } from '../../../../themes/colors'
@@ -8,8 +8,10 @@ import { mainColors } from '../../../../themes/colors'
 const ShareRow = ({share}: {share: any}) => {
   const [movieTitle, setMovieTitle] = useState('')
   const [gReturn, setGReturn] = useState(0)
+  const [loading, setLoading] = useState<boolean>(false)
   const date = new Date(parseInt(share.id.toString().split('-')[0]))
   useEffect(() => {
+    setLoading(true)
     const movieRef = ref(database, 'movies/' + share.movie)
     onValue(movieRef, (snap) => {
       setMovieTitle(snap.val().title)
@@ -18,9 +20,15 @@ const ShareRow = ({share}: {share: any}) => {
     onValue(projectRef, (snap) => {
       setGReturn(snap.val().guaranteedReturn)
     })
+    setLoading(false)
   })
-  console.log(movieTitle)
   return (
+    <>
+    {loading ? (
+      <div>
+        <Loader size='lg' speed='slow' content='Loading...' />
+      </div>
+    ) : (
       <tr>
         <td>
           {movieTitle}
@@ -40,6 +48,9 @@ const ShareRow = ({share}: {share: any}) => {
           {date.toLocaleDateString()} -  {date.toLocaleTimeString()}
         </td>
       </tr>
+    )}
+
+    </>
   )
 }
 
