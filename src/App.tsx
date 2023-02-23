@@ -36,6 +36,7 @@ import VProjectSettings from './admin/dashboard/components/project/page/extra/se
 import VanumoMoviesPage from './admin/dashboard/components/movies/page/index.js';
 import VanumoRequestsPage from './admin/dashboard/components/requests/page/index.js';
 import AppRootIndexPage from './routes/inside-app/pages/dashboard/AppRootIndexPage.js';
+import NotificationsPage from './routes/inside-app/pages/notifications/index.js';
 
 
 const App = () => {
@@ -79,6 +80,7 @@ const App = () => {
         <Route index element={<AppRootIndexPage en={isEnglish}/>} />
         <Route path='investments/' element={<InvestmentPage en={isEnglish}/>} />
         <Route path='databank/' element={<DatabankPage en={isEnglish}/>} />
+        <Route path='notifications/' element={<NotificationsPage/>}/>
       </Route>
       <Route path='/app/bundle/:bundleId' element={<ProjectDetailsPageWrapper en={isEnglish} setEn={changeLan} />} >
         <Route index element={<ProjectDetailsOverviewWrapper en={isEnglish} />} />

@@ -85,11 +85,14 @@ const AppNavBar = ({ fixed = true, en, setEn }: { fixed: boolean, en: boolean, s
                 <NavbarBrand style={styles.brand}>
                     <REDRUMCAT /> Redrum Pro
                 </NavbarBrand>
-                <Nav pullRight className='d-flex align-center' style={{ height: 60 }} activeKey={`${location.pathname == '/app' ? '1' : location.pathname == `/app/profile/${auth.currentUser?.uid}` ? '3' : null}`}>
+                <Nav pullRight className='d-flex align-center' style={{ height: 60 }}
+                activeKey={`${
+                  location.pathname == '/app' ? '1' :
+                  location.pathname == '/app/notifications' ? '2' : '3' }`}>
                     <NavItem as={Link} to='/app' eventKey='1' className='d-flex flex-column align-center justify-around' style={styles.navLink}>
                         <DashboardIcon /> {en ? dashboardStrings.navbarEN.home : dashboardStrings.navbarDE.home}
                     </NavItem>
-                    <NavItem className='d-flex flex-column align-center justify-around' style={styles.navLink}>
+                    <NavItem as={Link} to='/app/notifications' eventKey='2' className='d-flex flex-column align-center justify-around' style={styles.navLink}>
                         <NotificationsIcon /> {en ? dashboardStrings.navbarEN.not : dashboardStrings.navbarDE.not}
                     </NavItem>
                     <Whisper placement='bottom' controlId='control-id-click' trigger='click' speaker={AccountTooltip} >
