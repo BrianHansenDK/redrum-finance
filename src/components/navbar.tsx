@@ -7,6 +7,7 @@ import AuthModal from './AuthModal';
 import { navbarStrings } from '../library/string/Landinspage';
 import ChangeLanBtn from './ChangeLanBtn';
 import mainShadows from '../routes/inside-app/themes/shadows';
+import { useMediaQuery } from '../misc/custom-hooks';
 
 interface IProps {
   openModal: any, closeModal: Function, isVisible: any, dark: boolean, en: boolean, setEn: any
@@ -14,7 +15,7 @@ interface IProps {
 
 const MainNavbar: React.FunctionComponent<IProps> = (props) => {
   const { openModal, closeModal, isVisible, dark, en, setEn } = props
-
+  const isTablet = useMediaQuery('(max-width: 1100px)')
   const MAINLINKS = [
     {
         t:  en ? navbarStrings.navbarEN.aU : navbarStrings.navbarDE.aU,
@@ -54,10 +55,18 @@ const MainNavbar: React.FunctionComponent<IProps> = (props) => {
                 <Navbar.Brand id='brand' className='bold d-flex align-center' as={Link} to='/' style={{ height: 75, fontSize: 20 }}>
                     Redrum Pro
                 </Navbar.Brand>
-                <Nav className='d-flex align-center ' style={{ height: 75, flex: 0, columnGap: 15, fontSize: 12.75, fontWeight: 400 }}>
+                <>
+                {
+                  isTablet ? (
+                    <div>
+                      Menu
+                    </div>
+                  ) : (
+                    <>
+                    <Nav className='d-flex align-center ' style={{ height: 75, flex: 0, columnGap: 15, fontSize: 12.75, fontWeight: 400 }}>
                     {
-                        MAINLINKS.map(l => (
-                            <Link to={l.to} className='nav-ul' key={l.t} preventScrollReset={false}>
+                      MAINLINKS.map(l => (
+                        <Link to={l.to} className='nav-ul' key={l.t} preventScrollReset={false}>
                                 {l.t}
                             </Link>
                         ))
@@ -76,6 +85,11 @@ const MainNavbar: React.FunctionComponent<IProps> = (props) => {
                     </Button>
                     <ChangeLanBtn en={en} setEn={setEn} />
                 </Nav>
+                    </>
+                  )
+                }
+                  </>
+
             </Navbar>
             <AuthModal isVisible={isVisible} close={closeModal} en={en} />
         </>

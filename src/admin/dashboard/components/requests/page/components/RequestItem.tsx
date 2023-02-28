@@ -26,7 +26,7 @@ const RequestItem = ({request}: {request: FirebaseRequest}) => {
             <RequestCreatorImg user={creator} />
             <RequestCreatorInfo user={creator} />
             <RequestInfo request={request}/>
-            <RequestBadge request={request} />
+            <RequestBadge request={request} user={creator} />
           </div>
         ): null}
       </div>

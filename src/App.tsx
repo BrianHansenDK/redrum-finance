@@ -37,6 +37,7 @@ import VanumoMoviesPage from './admin/dashboard/components/movies/page/index.js'
 import VanumoRequestsPage from './admin/dashboard/components/requests/page/index.js';
 import AppRootIndexPage from './routes/inside-app/pages/dashboard/AppRootIndexPage.js';
 import NotificationsPage from './routes/inside-app/pages/notifications/index.js';
+import './routes/inside-app/components/styles/redrum-pro.scss'
 
 
 const App = () => {

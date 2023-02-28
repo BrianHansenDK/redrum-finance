@@ -2,14 +2,14 @@ import React, { FunctionComponent } from 'react'
 import { Nav } from 'rsuite'
 import NavItem from 'rsuite/esm/Nav/NavItem'
 import NavMenu from 'rsuite/esm/Nav/NavMenu'
-import { FirebaseRequest } from '../../../../../../database/Objects'
+import { FirebaseRequest, FirebaseUser } from '../../../../../../database/Objects'
 import { mainColors } from '../../../../../../routes/inside-app/themes/colors'
 import { vanumoColors } from '../../../../../theme/vanumoTheme'
 import SaveRequestStateBtn from './SaveRequestStateBtn'
 
-interface IProps {request: FirebaseRequest}
+interface IProps {request: FirebaseRequest, user: FirebaseUser}
 const RequestBadge: FunctionComponent<IProps> = (props) => {
-  const {request} = props
+  const {request, user} = props
   const [state, setState] = React.useState<string>(request.state)
   const styles = {
     badge: {
@@ -52,7 +52,7 @@ const RequestBadge: FunctionComponent<IProps> = (props) => {
         </Nav>
       </NavMenu>
     </Nav>
-    <SaveRequestStateBtn request={request} state={state} />
+    <SaveRequestStateBtn request={request} state={state} user={user}/>
     </>
   )
 }

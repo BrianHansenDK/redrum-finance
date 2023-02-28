@@ -134,3 +134,12 @@ $card-shadow: 0 7.5px 15px 0 $card-color-shadow;
   }
 
 }
+
+// Btns
+.r-dash-btns-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 25px;
+  margin-top: 25px;
+}

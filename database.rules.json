@@ -29,6 +29,10 @@
       "requests": {
         ".read": "auth.uid !== null",
         ".write": "auth.uid !== null"
+      },
+      "notifications": {
+        ".read": "auth.uid !== null",
+        ".write": "auth.uid !== null"
       }
   }
 }

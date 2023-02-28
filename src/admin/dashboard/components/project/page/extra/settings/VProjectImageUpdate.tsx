@@ -49,13 +49,12 @@ const VProjectImageUpdate: FunctionComponent<IProps> = (props) => {
           window.setTimeout(() => {
             toaster.clear()
         }, 8000)
-        location.reload()
         })
     }
 }
 
   return (
-    <Modal open={isVisible} onClose={close} >
+    <Modal open={isVisible} onClose={closeModal} >
         <Modal.Header>
             <Modal.Title>
                 {type} Image

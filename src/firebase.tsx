@@ -197,3 +197,21 @@ export function createWithdrawalRequest(requestId: number, userId: any, amount: 
     state: 'new',
   })
 }
+
+export function notifyUser(
+  notification_id: number,
+  created_at: string,
+  notification_title: string,
+  content: string,
+  user_id: string,
+  ) {
+    const reference = ref(database, 'notifications/' + notification_id)
+    set(reference, {
+      id: notification_id,
+      created_at: created_at,
+      read: false,
+      title: notification_title,
+      content: content,
+      user_id: user_id,
+    })
+  }

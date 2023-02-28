@@ -58,9 +58,19 @@ export interface FirebaseRequest {
 // Notification object
 export interface FirebaseNotification {
   id: number,
-  created_at: number,
+  created_at: string,
   read: boolean,
   user_id: string,
   title: string,
   content: string,
+}
+
+// Share object
+export interface FirebaseShare {
+amount: number,
+id : string
+investment: number
+movie: string,
+owner: string,
+project: string
 }

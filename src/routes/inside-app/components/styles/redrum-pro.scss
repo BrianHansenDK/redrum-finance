@@ -1,0 +1,9 @@
+$main-color: #3598FE;
+
+.rp-loader {
+  & .rs-loader-spin {
+    &:after {
+      border-color: $main-color transparent transparent;
+    }
+  }
+}

@@ -8,7 +8,7 @@ const NotificationsWrap = ({notifications}: {notifications: Array<FirebaseNotifi
   return (
     <List bordered style={styles.list} hover>
       {notifications.map((notification) => (
-        <List.Item>
+        <List.Item key={notification.id}>
           <NotificationListItem notification={notification}/>
         </List.Item>
       ))}

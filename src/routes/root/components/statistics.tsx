@@ -20,7 +20,7 @@ const Statistics = ({en}: {en: boolean}) => {
   investments.forEach((inv: any) => {
     sum += inv.amount
   })
-  const average = sum / investments.length
+  const average = sum / investments.length > 0 ? sum / investments.length : 0
     return (
         <div id='stats'>
             <div id='stats-inner'>

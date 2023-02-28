@@ -6,6 +6,7 @@ import {
 import './index.scss'
 import './colors-ut.scss'
 import './ut.scss'
+import './responsive.scss'
 import "rsuite/dist/rsuite.min.css";
 
 import App from './App.jsx';
