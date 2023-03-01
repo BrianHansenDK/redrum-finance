@@ -14,39 +14,161 @@ $blue-shadow: #359afe7b;
   & .lp-hero {
     padding: 100px 20px;
     background-color: $dark;
-
-    // Tilte
-    .r-hero-title {
-      font-family: poppins;
-      font-size: 35px;
-      color: $white;
+    @media screen and (max-width: 992px) {
+      padding: 0 20px;
     }
-    // Desscription
-    .r-hero-des {
-      max-width: 100%;
-      color: $white;
-      opacity: .8;
+
+    // Text con
+    .r-hero-txt-con {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      @media screen and (max-width: 992px) {
+        height: 100%;
+        padding: 50px 0 50px;
+        justify-content: space-evenly;
+      }
+      // Tilte
+      .r-hero-title {
+        font-family: poppins;
+        font-size: 35px;
+        color: $white;
+      }
+      // Desscription
+      .r-hero-des {
+        max-width: 100%;
+        color: $white;
+        opacity: .8;
+      }
+      // Buttons
+      .btns-wrap {
+        width: 100%;
+        display: flex;
+        column-gap: 25px;
+        row-gap: 25px;
+        flex-wrap: wrap;
+      }
     }
     // Logo
     .r-hero-img {
       width: 250px;
       height: 250px;
     }
-    // Buttons
-    .btns-wrap {
-      width: 100%;
-      display: flex;
-      column-gap: 25px;
-      row-gap: 25px;
-      flex-wrap: wrap;
-    }
+
   }
   // ----- Upper CTA -----
   .r-cta-upper {
-    padding: 50px 20px;
+    padding: 100px 20px;
     .r-cta-upper-title {
       color: $dark;
     }
+  }
+  // ----- Features -----
+  .r-features-con {
+    padding: 100px 20px;
+    .r-feature-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 100px auto;
+      .img-con {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        & img {
+          width: 80%;
+          height: auto;
+        }
+      }
+      & h3 {
+        font-family: poppins;
+        font-size: 30px;
+        color: $dark;
+        line-height: 1.25;
+        @media screen and (max-width: 992px) {
+          font-size: 25px;
+        }
+      }
+    }
+  }
+  // ----- APP showcase -----
+  // Wrap
+  & .r-showcase-con {
+    padding: 100px 20px;
+    background: -webkit-linear-gradient(left, rgb(19, 22, 40) 0%, rgb(73, 75, 116) 100%);
+    // APP img container
+    & .r-showcase-img-con {
+      order: 1;
+      @media screen and (max-width: 992px) {
+        order: 2;
+      }
+    }
+    // Title
+    & h1 {
+      color: $white;
+      margin-bottom: 25px;
+      @media screen and (max-width: 992px) {
+        text-align: center;
+      }
+    }
+    // Get it on txt
+    & p {
+      color: $white;
+      display: none;
+      @media screen and (max-width: 992px) {
+        display: block;
+        text-align: center;
+      }
+    }
+    // Image container on phone
+    & .phone-img-con {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      // Image
+      & img {
+        width: 75%;
+      }
+    }
+    // Buttons
+    & .r-btns-con {
+      & .r-showcase-btn {
+        background-color: rgb(11, 13, 22);
+        color: $white;
+        font-family: poppins;
+        padding: 15px 25px;
+        margin-top: 15px;
+        font-size: 25px;
+        font-weight: 600;
+        border-radius: 15px;
+        box-shadow: 0 3px 6px 0 rgba(0, 0, 29, .5);
+        transition: all 300ms ease-in-out;
+        @media screen and (max-width: 992px) {
+          font-size: 22.5px;
+        }
+        &:hover {
+          transform: scale(.95, .95) translateY(3px);
+          box-shadow: 0 2px 4px 0 rgba(0, 0, 29, .5);
+        }
+        &:active {
+          transform: scale(.9, .9) translateY(5px);
+          box-shadow: 0 1px 2px 0 rgba(0, 0, 29, .5);
+        }
+      }
+    }
+  }
+  // ----- CTA Down -----
+  & .r-cta-down {
+    padding: 100px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
 
 
@@ -56,7 +178,18 @@ $blue-shadow: #359afe7b;
     font-size: 35px;
     color: $dark;
     line-height: 1.25;
-    @media screen and (max-width: 968px) {
+    @media screen and (max-width: 992px) {
+      font-size: 28px;
+    }
+  }
+
+  .r-sub-title {
+    font-family: poppins;
+    font-size: 32px;
+    font-weight: 500;
+    color: $dark;
+    line-height: 1.25;
+    @media screen and (max-width: 992px) {
       font-size: 28px;
     }
   }

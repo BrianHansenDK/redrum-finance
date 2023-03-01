@@ -2,8 +2,11 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Col, Grid, Nav, Row } from 'rsuite'
 import { navbarStrings } from '../library/string/Landinspage';
+import { useMediaQuery } from '../misc/custom-hooks';
 
 const MainFooter = ({en}: {en: boolean}) => {
+
+  const isMobile = useMediaQuery('(max-width: 992px)')
   const MAINLINKS = [
     {
         t:  en ? navbarStrings.navbarEN.aU : navbarStrings.navbarDE.aU,
@@ -34,13 +37,13 @@ const MainFooter = ({en}: {en: boolean}) => {
     return (
         <Grid>
             <Row>
-                <Col lg={12}>
-                    <h2>
+                <Col lg={12} md={24} sm={24} xs={24}>
+                    <h2 className={`${isMobile ? 'text-start mb-2' : ''}`}>
                         Redrum Pro
                     </h2>
                 </Col>
-                <Col lg={6} >
-                    <h3>Company</h3>
+                <Col lg={6}  md={24} sm={24} xs={24}>
+                    <h3 className={`${isMobile ? 'text-start' : ''}`}>Company</h3>
                     <Nav vertical >
                         {MAINLINKS.map(l => (
                             <Nav.Item eventKey={l.t} as={Link} to={l.to} key={l.t}>
@@ -49,8 +52,8 @@ const MainFooter = ({en}: {en: boolean}) => {
                         ))}
                     </Nav>
                 </Col>
-                <Col lg={6} >
-                    <h3>
+                <Col lg={6}  md={24} sm={24} xs={24}>
+                    <h3 className={`${isMobile ? 'text-start mt-2' : ''}`}>
                         App
                     </h3>
                     <Nav vertical>

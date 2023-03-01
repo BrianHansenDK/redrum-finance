@@ -8,8 +8,11 @@ import CtaDown from './components/ctaDown'
 import CtaUp from './components/ctaUp'
 import Features from './components/features'
 import Hero from './components/hero'
+import ResponsiveAppTeaser from './responsive_components/ResponsiveAppTeaser'
 import ResponsiveCtaUpper from './responsive_components/ResponsiveCtaUpper'
+import ResponsiveFeaturesSection from './responsive_components/ResponsiveFeaturesSection'
 import ResponsiveHero from './responsive_components/ResponsiveHero'
+import ResponsiveLowerCTA from './responsive_components/ResponsiveLowerCTA'
 import ResponsiveStats from './responsive_components/ResponsiveStats'
 
 interface IProps {
@@ -41,6 +44,9 @@ const Root: React.FunctionComponent<IProps> = (props) => {
                     <ResponsiveHero en={en} />
                     <ResponsiveStats en={en} />
                     <ResponsiveCtaUpper en={en} />
+                    <ResponsiveFeaturesSection en={en} />
+                    <ResponsiveAppTeaser en={en} />
+                    <ResponsiveLowerCTA en={en} />
                   </div>
                 ) : (
                   <>

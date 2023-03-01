@@ -10,7 +10,7 @@ import { numberWithCommas, toFixedIfNecessary, useMediaQuery } from '../../../mi
 import Stat from '../components/stat'
 
 const ResponsiveStats = ({en}: {en: boolean}) => {
-  const isMobile = useMediaQuery('(max-width: 968px)')
+  const isMobile = useMediaQuery('(max-width: 768px)')
   const [users, setUsers] = React.useState<any>([])
   const [investments, setInvestments] = React.useState<any>([])
   React.useEffect(() => {

@@ -5,7 +5,7 @@ import CAT from '../../../components/images/redrum_cat.png'
 import { useMediaQuery } from '../../../misc/custom-hooks'
 
 const ResponsiveHero = ({en}: {en: boolean}) => {
-  const isMobile = useMediaQuery('(max-width: 968px)')
+  const isMobile = useMediaQuery('(max-width: 768px)')
 
   const styles = {
     wrap: {
@@ -16,21 +16,23 @@ const ResponsiveHero = ({en}: {en: boolean}) => {
     }
   }
   return (
-    <FlexboxGrid className='lp-hero' style={styles.wrap}>
-      <FlexboxGrid.Item colspan={isMobile ? 24 : 12}>
-        <h1 className='r-hero-title text-center'>Redrum Pro</h1>
-        <p className='mt-1 r-hero-des text-center'>
-          {en ? homeStrings.heroEN.slogan : homeStrings.heroDE.slogan}
-        </p>
+    <FlexboxGrid className='lp-hero' style={styles.wrap} align='middle'>
+      <FlexboxGrid.Item colspan={isMobile ? 24 : 12} className='r-hero-txt-con'>
+        <div>
+          <h1 className='r-hero-title text-center'>Redrum Pro</h1>
+          <p className='mt-1 r-hero-des text-center r-main-des'>
+            {en ? homeStrings.heroEN.slogan : homeStrings.heroDE.slogan}
+          </p>
+        </div>
         {
           isMobile ? (
-            <div className='d-flex justify-content-center mt-1 mb-2'>
+            <div className='d-flex justify-content-center'>
               <img src={CAT} alt="Redrum logo"
               className={`r-hero-img ${isMobile ? 'mt-4' : ''}`} />
             </div>
           ) : null
         }
-        <div className='btns-wrap mt-2' style={{width: '100%'}}>
+        <div className='btns-wrap' style={{width: '100%'}}>
           <Button
           appearance='primary'
           className='r-btn r-main-btn'
