@@ -5,22 +5,23 @@ import CAT from '../../../components/images/redrum_cat.png'
 import { useMediaQuery } from '../../../misc/custom-hooks'
 
 const ResponsiveHero = ({en}: {en: boolean}) => {
-  const isMobile = useMediaQuery('(max-width: 768px)')
-
+  const isPhone = useMediaQuery('(max-width: 768px)')
+  const isMobile = useMediaQuery('(max-width: 1100px)')
+  const isDesktop = useMediaQuery('(min-width: 1600px)')
   const styles = {
     wrap: {
       height: isMobile ? '100vh' : 'auto',
     },
     btn: {
-      width: 'calc(50% - 12.5px)',
+      width: isMobile && !isPhone ? 'auto' : 'calc(50% - 12.5px)',
     }
   }
   return (
-    <FlexboxGrid className='lp-hero' style={styles.wrap} align='middle'>
-      <FlexboxGrid.Item colspan={isMobile ? 24 : 12} className='r-hero-txt-con'>
+    <FlexboxGrid className='lp-hero' style={styles.wrap} align='middle' justify='center'>
+      <FlexboxGrid.Item colspan={isMobile ? 24 : 10} className={`r-hero-txt-con ${isDesktop ? 'mr-3' : ''}`}>
         <div>
-          <h1 className='r-hero-title text-center'>Redrum Pro</h1>
-          <p className='mt-1 r-hero-des text-center r-main-des'>
+          <h1 className='r-main-title r-hero-title'>Redrum Pro</h1>
+          <p className='mt-1 r-hero-des r-sub-title'>
             {en ? homeStrings.heroEN.slogan : homeStrings.heroDE.slogan}
           </p>
         </div>
@@ -37,6 +38,7 @@ const ResponsiveHero = ({en}: {en: boolean}) => {
           appearance='primary'
           className='r-btn r-main-btn'
           style={styles.btn}
+          block={isMobile && !isPhone}
           >
             {en ? homeStrings.heroEN.investBtn : homeStrings.heroDE.investBtn}
           </Button>
@@ -44,6 +46,7 @@ const ResponsiveHero = ({en}: {en: boolean}) => {
           appearance='primary'
           className='r-btn r-secondary-btn'
           style={styles.btn}
+          block={isMobile && !isPhone}
           >
             {en ? homeStrings.heroEN.worksBtn : homeStrings.heroDE.worksBtn}
           </Button>
@@ -52,13 +55,12 @@ const ResponsiveHero = ({en}: {en: boolean}) => {
       </FlexboxGrid.Item>
       {
         !isMobile ? (
-        <FlexboxGrid.Item colspan={isMobile ? 24 : 12} className='d-flex justify-content-center'>
+        <FlexboxGrid.Item colspan={isMobile ? 24 : 6} className='d-flex justify-content-center'>
           <img src={CAT} alt="Redrum logo"
           className={`r-hero-img ${isMobile ? 'mt-4' : ''}`} />
         </FlexboxGrid.Item>
         ) : null
       }
-
     </FlexboxGrid>
   )
 }

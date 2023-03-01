@@ -8,6 +8,7 @@ import CtaDown from './components/ctaDown'
 import CtaUp from './components/ctaUp'
 import Features from './components/features'
 import Hero from './components/hero'
+import Waves from './components/waves'
 import ResponsiveAppTeaser from './responsive_components/ResponsiveAppTeaser'
 import ResponsiveCtaUpper from './responsive_components/ResponsiveCtaUpper'
 import ResponsiveFeaturesSection from './responsive_components/ResponsiveFeaturesSection'
@@ -41,8 +42,16 @@ const Root: React.FunctionComponent<IProps> = (props) => {
               {
                 isTablet || isDesktop ? (
                   <div className='r-page-wrap'>
+                    <div className='r-fulll-hero'>
                     <ResponsiveHero en={en} />
+                    {
+                      isDesktop ? (
+                        <Waves/>
+                      ) : null
+                    }
+
                     <ResponsiveStats en={en} />
+                    </div>
                     <ResponsiveCtaUpper en={en} />
                     <ResponsiveFeaturesSection en={en} />
                     <ResponsiveAppTeaser en={en} />

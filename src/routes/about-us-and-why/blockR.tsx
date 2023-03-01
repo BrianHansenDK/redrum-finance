@@ -11,7 +11,7 @@ const BlockR = ({ img, title, txt }: {img:string, title:any, txt:any}) => {
                         {title}
                     </h1>
                 ) : null}
-                {txt}
+                <p className='block-txt'>{txt}</p>
             </div>
             <div className="left" style={{ backgroundImage: 'url(' + img + ')' }}>
 

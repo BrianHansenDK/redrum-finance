@@ -13,6 +13,7 @@ import TrianlgeBottom from './triangleBottom'
 import TriangleTop from './triangleTop'
 import LineShape from './lineShape'
 import { whyMoviesStrings } from '../../library/string/Landinspage'
+import { useMediaQuery } from '../../misc/custom-hooks'
 
 interface IProps {
   isVisible: any, openModal: any, closeModal: Function, en: boolean, setEn: any
@@ -20,9 +21,11 @@ interface IProps {
 
 const WhyMovies: React.FunctionComponent<IProps> = (props) => {
   const { isVisible, openModal, closeModal, en, setEn } = props
+  const isMobile = useMediaQuery('(max-width: 1100px)')
+  const isDesktop = useMediaQuery('(min-width: 1600px)')
     return (
         <MainLayout en={en} setEn={setEn} isVisible={isVisible} openModal={openModal} closeModal={closeModal} dark={true}>
-            <div style={{ position: 'relative', paddingBottom: 150 }}>
+            <div style={{ position: 'relative', paddingBottom: 150 }} className='r-page-wrap'>
 
                 <div className='top-div'>
                     <div className='top-title-con'>
@@ -56,7 +59,7 @@ const WhyMovies: React.FunctionComponent<IProps> = (props) => {
                 img={IMG2}
             />
             <LineShape />
-            <div className="grey-bg">
+            <div className="grey-bg r-page-wrap">
                 <BlockL
                     title='Investing as a new trend'
                     txt={
@@ -73,7 +76,16 @@ const WhyMovies: React.FunctionComponent<IProps> = (props) => {
                     <p className='mid-des'>
                         The Redrum Film Finance App combines these two growth markets by benefiting from both the strong demand of the film market and the growing willingness of investors to invest. The app not only offers the opportunity to discover new financial products, but also bridges the gap between investment, art and culture.
                     </p>
-                    <Button onClick={openModal} size='lg' appearance='primary' className='main-btn white shadow mt-3 mb-5' style={{ width: 250, margin: 'auto' }}>
+                    <Button
+                    onClick={openModal}
+                    size='lg'
+                    appearance='primary'
+                    className={`${isMobile || isDesktop ? 'r-btn r-secondary-btn' :'main-btn white shadow'} mt-3 mb-5`}
+                    style={{
+                      width: isMobile || isDesktop ? 'auto' : 250,
+                      margin: 'auto'
+                    }}
+                    >
                         Become an investor
                     </Button>
                 </div>

@@ -11,4 +11,12 @@
     width: 100px;
     margin: 0px;
     border-radius: 0px;
+    @media (min-width: 1600px) {
+      min-height: 150px;
+      max-height: 150px;
+      height: 150px;
+      width: 150px;
+      min-width: 150px;
+      max-width: 150px;
+    }
 }

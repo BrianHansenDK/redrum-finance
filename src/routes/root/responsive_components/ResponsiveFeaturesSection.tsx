@@ -7,13 +7,13 @@ import { useMediaQuery } from '../../../misc/custom-hooks'
 import TabletFeatureItem from './TabletFeatureItem'
 
 const ResponsiveFeaturesSection = ({en}: {en:boolean}) => {
-  const isMobile = useMediaQuery('(max-width: 992px)')
+  const isMobile = useMediaQuery('(max-width: 1100px)')
   return (
     <div className='r-features-con'>
-      <h1 className='r-main-title'>
+      <h1 className={`${isMobile ? '' : 'text-center'} r-main-title`}>
         {en ? homeStrings.featuresEN.mainTitle : homeStrings.featuresDE.mainTitle}
       </h1>
-      <p className='r-sub-title mt-1'>
+      <p className={`r-sub-title mt-1 ${isMobile ? '' : 'text-center'}`}>
       {en ? homeStrings.featuresEN.subTitle : homeStrings.featuresDE.subTitle}
       </p>
       {

@@ -7,7 +7,7 @@ import APPLE from '@rsuite/icons/legacy/Apple'
 import { homeStrings } from '../../../library/string/Landinspage'
 
 const ResponsiveAppTeaser = ({en}: {en:boolean}) => {
-  const isMobile = useMediaQuery('(max-width: 992px)')
+  const isMobile = useMediaQuery('(max-width: 1100px)')
   return (
     <FlexboxGrid
     align='middle'
@@ -26,7 +26,7 @@ const ResponsiveAppTeaser = ({en}: {en:boolean}) => {
           />
         </FlexboxGrid.Item>
       )}
-      <FlexboxGrid.Item colspan={isMobile ? 24 : 16}>
+      <FlexboxGrid.Item colspan={isMobile ? 24 : 16} className='r-showcase-txt-con'>
         <h1 className='r-main-title'>
           {en ? homeStrings.appTeaserEn : homeStrings.appTeaserDe}
         </h1>

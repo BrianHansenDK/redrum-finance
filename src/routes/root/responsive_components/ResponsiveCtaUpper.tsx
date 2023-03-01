@@ -5,7 +5,7 @@ import { homeStrings } from '../../../library/string/Landinspage'
 import { useMediaQuery } from '../../../misc/custom-hooks'
 
 const ResponsiveCtaUpper = ({en}: {en: boolean}) => {
-  const isMobile = useMediaQuery('(max-width: 968px)')
+  const isMobile = useMediaQuery('(max-width: 1100px)')
   return (
     <div className='r-cta-upper'>
       <h1 className='r-main-title r-cta-upper-title mb-2'>
@@ -15,7 +15,7 @@ const ResponsiveCtaUpper = ({en}: {en: boolean}) => {
         {en ? homeStrings.ctaUpperEN.sentence : homeStrings.ctaUpperDE.sentence}
       </p>
       <Button
-      className='r-btn r-main-btn'
+      className='r-btn r-secondary-btn'
       as={Link} to='/how-it-works'
       size='lg' block={isMobile}
       appearance='primary'>

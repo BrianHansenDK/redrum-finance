@@ -4,6 +4,8 @@ import HIWHero from './components/Hero'
 import HIWIntroSection from './components/Introduction'
 import InvExample from './components/InvExample'
 import HIWRights from './components/Rights'
+import './how-it-works.scss'
+
 interface IProps {
   en: boolean,
   setEn: any,
@@ -23,7 +25,7 @@ const HowItWorksPage: FunctionComponent<IProps> = (props) => {
     isVisible={isVisible}
     dark
     >
-      <div style={styles.wrap}>
+      <div style={styles.wrap} className='how-it-works-page'>
         <HIWHero en={en} />
         <HIWIntroSection en={en} />
         <HIWRights en={en} />

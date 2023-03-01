@@ -7,7 +7,7 @@ import InvExampleP2 from './phase2/InvExampleP2'
 const InvExample = ({en} : {en : boolean}) => {
   return (
     <div>
-      <h1 style={TextTheme.mainTitle} className='text-center'>
+      <h1 style={TextTheme.secondaryTitle} className='title'>
         {en ? hIWStrings.exampleTitleEN : hIWStrings.exampleTitleDE}
       </h1>
       <InvExampleP1 en={en} />

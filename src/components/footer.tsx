@@ -6,7 +6,8 @@ import { useMediaQuery } from '../misc/custom-hooks';
 
 const MainFooter = ({en}: {en: boolean}) => {
 
-  const isMobile = useMediaQuery('(max-width: 992px)')
+  const isMobile = useMediaQuery('(max-width: 1100px)')
+  const isDesktop = useMediaQuery('(min-width: 1600px)')
   const MAINLINKS = [
     {
         t:  en ? navbarStrings.navbarEN.aU : navbarStrings.navbarDE.aU,
@@ -38,27 +39,41 @@ const MainFooter = ({en}: {en: boolean}) => {
         <Grid>
             <Row>
                 <Col lg={12} md={24} sm={24} xs={24}>
-                    <h2 className={`${isMobile ? 'text-start mb-2' : ''}`}>
+                    <h2 className={`${'text-start mb-2'}`}>
                         Redrum Pro
                     </h2>
                 </Col>
                 <Col lg={6}  md={24} sm={24} xs={24}>
-                    <h3 className={`${isMobile ? 'text-start' : ''}`}>Company</h3>
+                    <h3 className={`${'text-start'}`}
+                    style={{fontSize: isDesktop ? 32: 28}}
+                    >Company</h3>
                     <Nav vertical >
                         {MAINLINKS.map(l => (
-                            <Nav.Item eventKey={l.t} as={Link} to={l.to} key={l.t}>
+                            <Nav.Item
+                            eventKey={l.t}
+                            as={Link}
+                            to={l.to}
+                            key={l.t}
+                            style={{fontSize: isDesktop ? 28 : 20}}
+                            >
                                 {l.t}
                             </Nav.Item>
                         ))}
                     </Nav>
                 </Col>
                 <Col lg={6}  md={24} sm={24} xs={24}>
-                    <h3 className={`${isMobile ? 'text-start mt-2' : ''}`}>
+                    <h3 className={`${isMobile ? 'mt-2' : ''} text-start`}
+                    style={{fontSize: isDesktop ? 32: 28}}
+                    >
                         App
                     </h3>
                     <Nav vertical>
                         {APPLINKS.map(l => (
-                            <Nav.Item eventKey={l.t} key={l.t}>
+                            <Nav.Item
+                            eventKey={l.t}
+                            key={l.t}
+                            style={{fontSize: isDesktop ? 28 : 20}}
+                            >
                                 {l.t}
                             </Nav.Item>
                         ))}

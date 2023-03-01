@@ -7,7 +7,7 @@ import mainShadows from '../../../inside-app/themes/shadows'
 const P2CardTop = ({en} : {en: boolean}) => {
   return (
     <>
-    <p style={TextTheme.hiwPara} className='mb-4 mt-4 text-center'>
+    <p style={TextTheme.hiwPara} className='mb-4 mt-4 des'>
         {en ? hIWStrings.phase2EN.des : hIWStrings.phase2DE.des}
       </p>
       <div className='d-flex align-items-center justify-content-center mb-1'>
@@ -18,7 +18,7 @@ const P2CardTop = ({en} : {en: boolean}) => {
       <p style={TextTheme.mainPara} className='text-center mt-1 mb-1'>
         {en ? hIWStrings.phase2EN.rel : hIWStrings.phase2DE.rel}
       </p>
-      <p style={TextTheme.hiwPara} className='text-center mb-3'>
+      <p style={TextTheme.hiwPara} className='des mb-3'>
         {en ? hIWStrings.phase2EN.receive : hIWStrings.phase2DE.receive}
       </p>
     </>

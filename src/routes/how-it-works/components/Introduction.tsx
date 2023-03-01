@@ -8,12 +8,14 @@ import TextTheme from '../../../library/themes/TextTheme'
 const HIWIntroSection = ({en}: {en: boolean}) => {
   return (
     <FlexboxGrid align='middle' justify='center' className='mb-5'>
-      <FlexboxGridItem colspan={20} style={styles.gridItem}>
-      <p style={TextTheme.hiwPara} className='text-center mb-3'>
+      <FlexboxGridItem colspan={24} style={styles.gridItem}
+      className='how-it-works-section'>
+      <p style={TextTheme.hiwPara} className='des mb-3'>
         {en ? hIWStrings.introEN : hIWStrings.introDE}
       </p>
       </FlexboxGridItem>
-      <FlexboxGridItem colspan={20} style={styles.gridItem}>
+      <FlexboxGridItem colspan={24} style={styles.gridItem}
+      className='how-it-works-section'>
         <img src={BundleImg} alt="This is an image of a bundle inside of the bundle page" style={styles.image}/>
       </FlexboxGridItem>
     </FlexboxGrid>

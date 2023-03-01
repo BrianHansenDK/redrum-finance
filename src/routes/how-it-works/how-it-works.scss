@@ -1,0 +1,25 @@
+.how-it-works-page {
+  & .how-it-works-section {
+    padding-left: 20px;
+    padding-right: 20px;
+    @media screen and (min-width: 992px) {
+      max-width: 80vw;
+    }
+  }
+  & .title {
+    text-align: center;
+  }
+  & .sub-title {
+    padding: 0 20px;
+    text-align: center;
+    @media screen and (max-width: 500px) {
+      text-align: justify;
+    }
+  }
+  & .des {
+    text-align: center;
+    @media screen and (max-width: 992px) {
+      text-align: justify;
+    }
+  }
+}

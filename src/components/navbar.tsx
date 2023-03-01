@@ -18,6 +18,7 @@ interface IProps {
 const MainNavbar: React.FunctionComponent<IProps> = (props) => {
   const { openModal, closeModal, isVisible, dark, en, setEn } = props
   const isTablet = useMediaQuery('(max-width: 1100px)')
+  const isDesktop = useMediaQuery('(min-width: 1600px)')
   const MAINLINKS = [
     {
         t:  en ? navbarStrings.navbarEN.aU : navbarStrings.navbarDE.aU,
@@ -55,10 +56,24 @@ const MainNavbar: React.FunctionComponent<IProps> = (props) => {
             <Navbar
             id='navbar'
             appearance='subtle'
-            className={`${dark ? 'dark-bg shadow' : 'no-bg'} trans`}
-            style={{ paddingRight: 25, boxShadow: dark ? mainShadows.navBar : 'none' }}
+            className={`${dark ? 'dark-bg shadow' : 'no-bg'} trans ${isDesktop ? 'd-flex align-items-center' : ''}`}
+            style={{
+              paddingRight: 25,
+              paddingLeft: isDesktop ? 20 : 0,
+              boxShadow: dark ? mainShadows.navBar : 'none',
+              height: isDesktop ? 120 : 'auto',
+            }}
             >
-                <Navbar.Brand id='brand' className='bold d-flex align-center' as={Link} to='/' style={{ height: 75, fontSize: 20 }}>
+                <Navbar.Brand
+                id='brand'
+                className='bold d-flex align-center'
+                as={Link} to='/'
+                style={{
+                  height: '100%',
+                  fontSize: isDesktop ? 50 : 20,
+                  marginRight: isDesktop ? 25 : 0,
+                }}
+                >
                     Redrum Pro
                 </Navbar.Brand>
                 <>
@@ -92,7 +107,17 @@ const MainNavbar: React.FunctionComponent<IProps> = (props) => {
                     </>
                   ) : (
                     <>
-                    <Nav className='d-flex align-center ' style={{ height: 75, flex: 0, columnGap: 15, fontSize: 12.75, fontWeight: 400 }}>
+                    <Nav
+                    className='d-flex align-center '
+                    style={{
+                    display: 'block',
+                    height: isDesktop ? '100%' : 75,
+                    flex: 0,
+                    columnGap: 15,
+                    fontSize: isDesktop ? 25 : 12.75,
+                    fontWeight: 400
+                    }}
+                    >
                     {
                       MAINLINKS.map(l => (
                         <Link to={l.to} className='nav-ul' key={l.t} preventScrollReset={false}>
@@ -101,7 +126,14 @@ const MainNavbar: React.FunctionComponent<IProps> = (props) => {
                         ))
                     }
                 </Nav>
-                <Nav pullRight className='d-flex align-center' style={{ height: 75, columnGap: 15, fontSize: 12.75, fontWeight: 400 }}>
+                <Nav pullRight className={`d-flex align-center ${isDesktop ? 'position-absolute' : ''}`} style={{
+                height: 75,
+                columnGap: 15,
+                fontSize: isDesktop ? 25 : 12.75,
+                fontWeight: 400,
+                top: isDesktop ? 'calc(60px - 37.5px)' : 'auto',
+                right: 20,
+                }}>
                     {
                         APPLINKS.map(l => (
                             <Link to={`${l.to ? l.to : '/'}`} className='nav-ul' key={l.t} preventScrollReset={false}>
@@ -109,7 +141,12 @@ const MainNavbar: React.FunctionComponent<IProps> = (props) => {
                             </Link>
                         ))
                     }
-                    <Button appearance='primary' className='main-btn white pl-3 pr-3 bold' size='lg' onClick={openModal} >
+                    <Button
+                    appearance='primary'
+                    className={`${isDesktop ? 'r-btn r-secondary-btn' : 'main-btn white pl-3 pr-3 bold'}`}
+                    size='lg'
+                    onClick={openModal}
+                    >
                         {en ? navbarStrings.navbarEN.btn : navbarStrings.navbarDE.btn}
                     </Button>
                     <ChangeLanBtn en={en} setEn={setEn} />

@@ -3,6 +3,9 @@
     height: 75px;
     position: relative;
     top: 5px;
+    @media screen and (min-width: 1600px) {
+      transform: translateY(-80%);
+    }
 }
 
 .editorial {

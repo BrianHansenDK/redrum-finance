@@ -14,7 +14,7 @@ const BlockL = ({ img, title, txt }: {img:string, title:any, txt:any}) => {
                         {title}
                     </h1>
                 ) : null}
-                {txt}
+                <p className='block-txt'>{txt}</p>
             </div>
         </div>
     )
