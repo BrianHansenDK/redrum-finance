@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Button, Nav, Navbar, Notification, useToaster } from 'rsuite'
+import { Button, IconButton, Nav, Navbar, Notification, useToaster } from 'rsuite'
 import { Link, useNavigate } from 'react-router-dom';
 import NavMenu from 'rsuite/esm/Nav/NavMenu';
 import NavItem from 'rsuite/esm/Nav/NavItem';
@@ -7,7 +7,9 @@ import AuthModal from './AuthModal';
 import { navbarStrings } from '../library/string/Landinspage';
 import ChangeLanBtn from './ChangeLanBtn';
 import mainShadows from '../routes/inside-app/themes/shadows';
+import MenuIcon from '@rsuite/icons/Menu'
 import { useMediaQuery } from '../misc/custom-hooks';
+import PhoneNavMenu from './PhoneNavMenu';
 
 interface IProps {
   openModal: any, closeModal: Function, isVisible: any, dark: boolean, en: boolean, setEn: any
@@ -44,6 +46,10 @@ const MainNavbar: React.FunctionComponent<IProps> = (props) => {
     }
 ]
 
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false)
+  const openMenu = () => setIsMenuOpen(true)
+  const closeMenu = () => setIsMenuOpen(false)
+
     return (
         <>
             <Navbar
@@ -58,9 +64,32 @@ const MainNavbar: React.FunctionComponent<IProps> = (props) => {
                 <>
                 {
                   isTablet ? (
-                    <div>
-                      Menu
+                    <>
+                    <div
+                    className='navbar-menu-btn-con'
+                    >
+                      <IconButton
+                      appearance='primary'
+                      className='navbar-menu-btn'
+                      icon={
+                        <MenuIcon style={{
+                          fontWeight: '700',
+                          fontSize: 20,
+                        }}
+                        onClick={openMenu}
+                        />
+                      }/>
                     </div>
+                    <PhoneNavMenu
+                    mainLinks={MAINLINKS}
+                    navLinks={APPLINKS}
+                    en={en}
+                    setEn={setEn}
+                    isMenuOpen={isMenuOpen}
+                    closeMenu={closeMenu}
+                    openModal={openModal}
+                     />
+                    </>
                   ) : (
                     <>
                     <Nav className='d-flex align-center ' style={{ height: 75, flex: 0, columnGap: 15, fontSize: 12.75, fontWeight: 400 }}>

@@ -5,6 +5,68 @@ $main: #3598FE;
 $white: #fefefe;
 $blue-shadow: #359afe7b;
 
+// ---------- Navbar ----------
+// ----- Menu Btn -----
+.navbar-menu-btn-con {
+  height: 75px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 25px;
+  & .navbar-menu-btn {
+    background-color: $white;
+    color: $dark;
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 29, .5);
+    transition: all 300ms ease-in-out;
+    &:hover {
+      background-color: $white;
+      color: $dark;
+    }
+    &:active {
+      background-color: $white;
+      color: $dark;
+      transform: scale(.9,.9) translateY(3px);
+      box-shadow: 0 1px 2px 0 rgba(0, 0, 29, .5);
+    }
+  }
+}
+// ----- Menu -----
+// Body
+.r-phone-menu-body {
+  // Nav
+  .r-phone-nav {
+    display: flex;
+    flex-direction: column;
+    // Btns
+    & .r-btn {
+      border-radius: 7.5px;
+      padding: 10px 25px;
+      font-size: smaller;
+      box-shadow: 0 3px 6px 0 $blue-shadow;
+      transition: all 300ms ease-in-out;
+      &:hover {
+        transform: scale(.95, .95) translateY(3px);
+        box-shadow: 0 2px 4px 0 $blue-shadow;
+      }
+      &:active {
+        transform: scale(.9, .9) translateY(3px);
+        box-shadow: 0 1px 2px 0 $blue-shadow;
+      }
+    }
+    .r-main-btn {
+      background-color: $main;
+      color: $white;
+    }
+  }
+  // Toggle
+  & .toggle-con {
+    width: 100%;
+  }
+}
 
 .r-page-wrap {
   box-sizing: border-box;
