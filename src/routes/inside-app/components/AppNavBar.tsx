@@ -22,14 +22,36 @@ import DepositMoneyModal from './money/WithdrawMoneyModal';
 import TransferMoneyModal from '../pages/bundle/components/TransferMoneyModal';
 import ChangeLanBtn from '../../../components/ChangeLanBtn';
 import AdminBtn from './AdminBtn';
+import { useMediaQuery } from '../../../misc/custom-hooks';
+import AppNavMenu from './AppNavMenu';
+import AppNavigationMenu from './AppNavigationMenu';
+
+interface IProps {
+  fixed: boolean,
+  en: boolean,
+  setEn: any,
+  openMenu: any,
+  navOpen: boolean,
+  openNav: any,
+  closeNav: any,
+}
 
 
-
-const AppNavBar = ({ fixed = true, en, setEn }: { fixed: boolean, en: boolean, setEn: any }) => {
+const AppNavBar: React.FunctionComponent<IProps> = (props) => {
+  const {
+    fixed = true,
+    en,
+    setEn,
+    openMenu,
+    navOpen,
+    openNav,
+    closeNav,
+  } = props
     const auth = getAuth()
     const navigate = useNavigate()
     const toaster = useToaster()
     const [visible, setVisible] = useState(false)
+
 
     const openModal = () => {
       setVisible(true)
@@ -77,15 +99,21 @@ const AppNavBar = ({ fixed = true, en, setEn }: { fixed: boolean, en: boolean, s
             <TooltipForAccount ACCOUNTNAV={ACCOUNTNAV} auth={auth} logout={logout} en={en} />
         </Tooltip>
     )
+
+    const isMobile = useMediaQuery('(max-width: 1100px)')
     return (
       <>
         <Navbar style={styles.navBar} className={`navbar ${fixed ? '' : 'navbarhidden'}`}>
             <div style={styles.navBarInner}>
 
-                <NavbarBrand style={styles.brand}>
-                    <REDRUMCAT /> Redrum Pro
+                <NavbarBrand style={isMobile ? styles.brandMobile : styles.brand} >
+                    <REDRUMCAT className={isMobile ? 'mr-1' : ''} /> Redrum Pro
                 </NavbarBrand>
-                <Nav pullRight className='d-flex align-center' style={{ height: 60 }}
+                {
+                  isMobile ? (
+                    <AppNavMenu en={en} setEn={setEn} openMenu={openMenu} openNav={openNav}/>
+                  ) : (
+                    <Nav pullRight className='d-flex align-center' style={{ height: 60 }}
                 activeKey={`${
                   location.pathname == '/app' ? '1' :
                   location.pathname == '/app/notifications' ? '2' : '3' }`}>
@@ -111,12 +139,23 @@ const AppNavBar = ({ fixed = true, en, setEn }: { fixed: boolean, en: boolean, s
                     </Button>
                     <ChangeLanBtn setEn={setEn} en={en} />
                 </Nav>
+                  )
+                }
+
             </div>
         </Navbar>
         <TransferMoneyModal navPressed={true} visible={visible} close={closeModal} />
         {auth.currentUser?.email == 'brianhansen.work@gmail.com' || auth.currentUser?.email == 'merhi@gmx.net' ? (
           <AdminBtn />) : null
         }
+        <AppNavigationMenu
+        en={en}
+        isOpen={navOpen}
+        setEn={setEn}
+        closeNav={closeNav}
+        openModal={openModal}
+        logout={logout}
+        />
       </>
     )
 }
@@ -141,6 +180,15 @@ const styles = {
         fontSize: 21.5,
         fontWeight: '700',
         color: mainColors.white,
+    },
+    brandMobile: {
+      fontSize: 21.5,
+      fontWeight: '700',
+      color: mainColors.white,
+      top: 0, bottom: 0,
+      left: 20,
+      display: 'flex',
+      alignItems: 'center',
     },
     navLink: {
         flex: 1,

@@ -1,38 +1,24 @@
-import React, { useEffect, useState } from 'react'
-import { Nav, Sidenav, Toggle } from 'rsuite'
+import React, { FunctionComponent } from 'react'
+import { Link } from 'react-router-dom'
+import { Drawer, Nav } from 'rsuite'
+import dashboardStrings from '../../../library/string/Dashboard'
 import DashboardIcon from '@rsuite/icons/legacy/Dashboard';
 import InvestmentsIcon from '@rsuite/icons/legacy/ChartsLine'
 import SecondaryMarketIcon from '@rsuite/icons/legacy/Money';
 import DbIcon from '@rsuite/icons/legacy/Database'
-import GroupIcon from '@rsuite/icons/legacy/Group';
-import MagicIcon from '@rsuite/icons/legacy/Magic';
 import UsersIcon from '@rsuite/icons/legacy/PeopleGroup'
 import MessageIcon from '@rsuite/icons/legacy/Wechat'
-import { Link } from 'react-router-dom';
 import UpcomingModal from './UpcomingModal';
-import mainShadows from '../themes/shadows';
-import dashboardStrings from '../../../library/string/Dashboard';
-import LanguageToggle from './LanguageToggle';
-import { useMediaQuery } from '../../../misc/custom-hooks';
-
-const styles = {
-  sideNav: {
-    width: 240,
-    height: 100 + 'vh',
-    top: 0,
-    left: 0,
-    paddingTop: 100,
-    boxShadow: mainShadows.card,
-  }
-
-
+interface IProps {
+  en: boolean,
+  isOpen: any,
+  closeMenu: any,
 }
-
-const SideBar = ({en} : {en: boolean}) => {
-  const [isVisible, setVisible] = useState(false)
-  const [currentKey, setCurrentKey] = useState('1')
-  const isMobile = useMediaQuery('(max-width: 1100px)')
-  useEffect(() => {
+const DashboardDrawer: FunctionComponent<IProps> = (props) => {
+  const {en, isOpen, closeMenu} = props
+  const [isVisible, setVisible] = React.useState(false)
+  const [currentKey, setCurrentKey] = React.useState('1')
+  React.useEffect(() => {
     if (location.pathname == '/app') {
       setCurrentKey('1')
     }
@@ -42,7 +28,7 @@ const SideBar = ({en} : {en: boolean}) => {
     else if (location.pathname == '/app/databank') {
       setCurrentKey('4')
     }
-  })
+  }, [])
   const closeModal = () => {
     setVisible(false)
   }
@@ -51,9 +37,14 @@ const SideBar = ({en} : {en: boolean}) => {
   }
   return (
     <>
-      <Sidenav defaultOpenKeys={['3', '4']} style={styles.sideNav} className='sidebar' >
-        <Sidenav.Body>
-          <Nav activeKey={currentKey}>
+    <Drawer open={isOpen} onClose={closeMenu} size='full' placement='left'>
+      <Drawer.Header>
+        <Drawer.Title>
+          Dashboard
+        </Drawer.Title>
+      </Drawer.Header>
+      <Drawer.Body>
+      <Nav vertical activeKey={currentKey}>
             <h3 className='d-flex justify-center'>
               {en ? dashboardStrings.sidebarEN.t1 : dashboardStrings.sidebarDE.t1}
               </h3>
@@ -77,16 +68,16 @@ const SideBar = ({en} : {en: boolean}) => {
             {en ? dashboardStrings.sidebarEN.news : dashboardStrings.sidebarDE.news}
             </Nav.Item>
           </Nav>
-        </Sidenav.Body>
-      </Sidenav>
-      <UpcomingModal
-        title={'Coming soon'}
-        body={en ? dashboardStrings.comingSoonEN.body.join('') : dashboardStrings.comingSoonDE.body.join('')}
-        visible={isVisible}
-        close={closeModal}
-        en={en} />
+      </Drawer.Body>
+    </Drawer>
+    <UpcomingModal
+      title={'Coming soon'}
+      body={en ? dashboardStrings.comingSoonEN.body.join('') : dashboardStrings.comingSoonDE.body.join('')}
+      visible={isVisible}
+      close={closeModal}
+      en={en} />
     </>
   )
 }
 
-export default SideBar
+export default DashboardDrawer

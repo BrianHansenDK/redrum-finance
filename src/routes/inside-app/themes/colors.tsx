@@ -10,4 +10,6 @@ export const mainColors = {
     success: '#4caf50',
     red: '#c30010',
     rSuiteBlue: '#3598FE',
+    blueShadow: '#359afe7b',
+    redShadow: '#c300107b'
 }
