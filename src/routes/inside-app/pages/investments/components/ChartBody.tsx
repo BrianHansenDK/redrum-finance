@@ -7,11 +7,12 @@ import { mainColors } from '../../../themes/colors';
 import InvestmentsTable from './InvestmentsTable';
 import SharesTable from './table/SharesTable';
 interface IProps {
-    userInvestments: any[]
+    userInvestments: any[],
+    isMobile: boolean,
 }
 
 const ChartBody: React.FunctionComponent<IProps> = (props) => {
-  const {userInvestments} = props
+  const {userInvestments, isMobile} = props
   useEffect(() => {
   let data: any[] = []
   let movieData: any[] = []
@@ -23,6 +24,29 @@ const ChartBody: React.FunctionComponent<IProps> = (props) => {
       })
     })
   }, [])
+
+  const styles = {
+    wrap: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        width: '100%',
+    },
+    txtWrap: {
+        marginRight: isMobile ? 0 : 250,
+    },
+    emptyTitle: {
+        fontSize: 22.5,
+        color: mainColors.dark,
+        lineHeight: 1,
+        marginBottom: 10,
+    },
+    image: {
+        width: isMobile ? 75 : 150,
+        height: isMobile ? 75 : 150,
+        margin: 'auto',
+    }
+}
   return (
     <>
       {
@@ -35,11 +59,18 @@ const ChartBody: React.FunctionComponent<IProps> = (props) => {
           */}
           </>
         ) : (
-            <div style={styles.wrap}>
+            <div style={styles.wrap} className={isMobile ? 'flex-column text-center' : ''}>
                 <div style={styles.txtWrap}>
                     <h1 style={styles.emptyTitle}>
                         No investments yet
                     </h1>
+                    {isMobile ? (
+                      <img
+                      className='mb-1'
+                      style={styles.image}
+                      src={EMPTY}
+                      alt="Empty box showcasing you have no investments" />
+                    ) : null}
                     <p>
                         You have not invested in a project yet. <br />
                         {
@@ -49,7 +80,12 @@ const ChartBody: React.FunctionComponent<IProps> = (props) => {
                         }
                      </p>
                 </div>
-                <img style={styles.image} src={EMPTY} alt="Empty box showcasing you have no investments" />
+                {
+                  isMobile ? null : (
+                    <img style={styles.image} src={EMPTY} alt="Empty box showcasing you have no investments" />
+                  )
+                }
+
             </div>
         )
       }
@@ -57,26 +93,6 @@ const ChartBody: React.FunctionComponent<IProps> = (props) => {
   );
 }
 
-const styles = {
-    wrap: {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-        width: '100%',
-    },
-    txtWrap: {
-        marginRight: 250,
-    },
-    emptyTitle: {
-        fontSize: 22.5,
-        color: mainColors.dark,
-        lineHeight: 1,
-        marginBottom: 10,
-    },
-    image: {
-        width: 150,
-        height: 150,
-    }
-}
+
 
 export default ChartBody;

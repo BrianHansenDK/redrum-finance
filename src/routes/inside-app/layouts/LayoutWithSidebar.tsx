@@ -20,8 +20,8 @@ const LayoutWithSidebar: React.FunctionComponent<ILayoutWithSidebarProps> = (pro
         innerPage: {
             flex: 1,
             paddingTop: 125,
-            paddingLeft: isMobile ? 0 : 300,
-            paddingRight: isMobile ? 0 : 300,
+            paddingLeft: isMobile ? 20 : 300,
+            paddingRight: isMobile ? 20 : 300,
         },
     }
 

@@ -1,5 +1,6 @@
 import React, { Children, Key, MouseEventHandler } from 'react'
 import { Button } from 'rsuite'
+import { useMediaQuery } from '../../../misc/custom-hooks'
 
 export interface IMainBtnProps {
     content: string,

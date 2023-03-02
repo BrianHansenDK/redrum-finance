@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from 'react'
-import { ButtonToolbar, Col, Modal } from 'rsuite'
+import React, { FunctionComponent, useEffect, useState } from 'react'
+import { Button, ButtonToolbar, Col, Modal } from 'rsuite'
+import FlexboxGridItem from 'rsuite/esm/FlexboxGrid/FlexboxGridItem'
+import { FirebaseBundle } from '../../../../../../database/Objects'
 import { auth, userRef } from '../../../../../../firebase'
 import LanguageToggle from '../../../../components/LanguageToggle'
 import MainBtn from '../../../../components/MainBtn'
@@ -11,7 +13,15 @@ import InfoLines from './InfoLines'
 import InfoTag from './InfoTag'
 import ProgressItem from './ProgressItem'
 
-const RightSide = ({ project, en, setEn }: { project: any, en: boolean, setEn: any }) => {
+interface IProps {
+  project: FirebaseBundle,
+  en: boolean,
+  setEn: any,
+  isMobile: boolean,
+}
+
+const RightSide: FunctionComponent<IProps> = (props) => {
+  const { project, en, setEn, isMobile } = props
     const [isVisible, setVisible] = useState(false)
     const [isInvestVisible, setInvestVisible] = useState(false)
     const [isTransferVisible, setTransferVisible] = useState(false)
@@ -53,22 +63,59 @@ const RightSide = ({ project, en, setEn }: { project: any, en: boolean, setEn: a
     const hideReciept = () => {
       setReciept(false)
     }
+
+    const styles = {
+      wrapper: {
+          height: 100 + '%',
+          display: 'flex',
+          alignItems: 'center',
+          paddingTop: isMobile ? 25 : 7 + 'rem',
+      },
+      card: {
+          height: 400,
+          width: 100 + '%',
+          backgroundColor: '#fbfbfb',
+          marginTop: isMobile ? 10 : 1.5 + 'rem',
+          marginBottom: 1.5 + 'rem',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-evenly',
+          paddingRight: 1 + 'rem',
+          paddingLeft: 1 + 'rem',
+          boxFit: 'border-box',
+          borderRadius: 15,
+          boxShadow: ' 0 5px 10px 0 rgba(0,0,29, .15)',
+      }
+  }
     return (
         <>
-            <Col xs={24} sm={24} md={7}
+            <Col as={FlexboxGridItem} colspan={isMobile ? 24 : 7}
                 style={styles.wrapper} className='flex-column'
             >
                 <ProgressItem project={project} en={en} />
                 <div style={styles.card} className='flex-column'>
-                    <InfoTag />
+                    {/*<InfoTag />*/}
                     <InfoLines project={project} en={en} />
-                    <MainBtn
-                    content={'Invest now'}
-                    pressed={ age >= 18 && age !== null ? openModal : openInvestModal}
-                    btnColor='blue'
-                    btnAppearance='primary'
-                    btnSize='lg'
-                    isBlock={false} />
+                    {
+                      isMobile ? (
+                        <Button
+                        appearance='primary'
+                        className='r-btn r-main-btn'
+                        onClick={age >= 18 && age !== null ? openModal : openInvestModal}
+                        >
+                          Invest now
+                        </Button>
+                      ) : (
+                        <MainBtn
+                        content={'Invest now'}
+                        pressed={ age >= 18 && age !== null ? openModal : openInvestModal}
+                        btnColor='blue'
+                        btnAppearance='primary'
+                        btnSize='lg'
+                        isBlock={false} />
+                      )
+                    }
+
                 </div>
             </Col>
             <ConfirmAgeModal visible={isVisible} close={closeModal} openInvestModal={openInvestModal} en={en}/>
@@ -77,30 +124,6 @@ const RightSide = ({ project, en, setEn }: { project: any, en: boolean, setEn: a
             <RecieptModal close={hideReciept} isVisible={reciept} />
         </>
     )
-}
-
-const styles = {
-    wrapper: {
-        height: 100 + '%',
-        display: 'flex',
-        alignItems: 'center',
-        paddingTop: 7 + 'rem',
-    },
-    card: {
-        height: 400,
-        width: 100 + '%',
-        backgroundColor: '#fbfbfb',
-        marginTop: 1.5 + 'rem',
-        marginBottom: 1.5 + 'rem',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-evenly',
-        paddingRight: 1 + 'rem',
-        paddingLeft: 1 + 'rem',
-        boxFit: 'border-box',
-        borderRadius: 15,
-        boxShadow: ' 0 5px 10px 0 rgba(0,0,29, .15)',
-    }
 }
 
 export default RightSide

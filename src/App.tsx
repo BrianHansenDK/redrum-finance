@@ -38,6 +38,7 @@ import VanumoRequestsPage from './admin/dashboard/components/requests/page/index
 import AppRootIndexPage from './routes/inside-app/pages/dashboard/AppRootIndexPage.js';
 import NotificationsPage from './routes/inside-app/pages/notifications/index.js';
 import './routes/inside-app/components/styles/redrum-pro.scss'
+import { useMediaQuery } from './misc/custom-hooks.js';
 
 
 const App = () => {
@@ -50,6 +51,8 @@ const App = () => {
   const changeLan = () => {
     setEnglish(!isEnglish)
   }
+
+  const isMobile = useMediaQuery('(max-width: 1100px)')
 
   return (
     <>

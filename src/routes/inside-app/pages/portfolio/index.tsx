@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+import { useMediaQuery } from '../../../../misc/custom-hooks';
 import LayoutWithSidebar from '../../layouts/LayoutWithSidebar';
 import RadialChart from '../investments/components/RadialChart';
 
 interface IProps {
   en: boolean,
   setEn: any,
+  isMobile: boolean,
 }
 
 interface IState {
@@ -20,9 +22,15 @@ class PortfolioPage extends Component<IProps, IState> {
     }
     render() {
         return (
-            <LayoutWithSidebar en={this.props.en} setEn={this.props.setEn}>
-                <RadialChart />
-            </LayoutWithSidebar>
+          <div>
+            Portfolio page
+          {/*
+
+<LayoutWithSidebar en={this.props.en} setEn={this.props.setEn}>
+<RadialChart isMobile={this.props.isMobile} />
+</LayoutWithSidebar>
+*/}
+          </div>
         );
     }
 }

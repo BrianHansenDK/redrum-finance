@@ -39,7 +39,13 @@ class ProfilePage extends Component<IProps, IState> {
         const { userId } = this.props.params
         return (
             <div style={styles.pageWrap}>
-                <AppNavBar fixed en={this.props.en} setEn={this.props.setEn} />
+                <AppNavBar
+                fixed
+                en={this.props.en} setEn={this.props.setEn}
+                openMenu={undefined}
+                navOpen={false}
+                openNav={undefined}
+                closeNav={undefined} />
                 <h1 style={styles.pageTitle} className='text-center'>
                     Profile page
                 </h1>

@@ -2,7 +2,7 @@
   & .how-it-works-section {
     padding-left: 20px;
     padding-right: 20px;
-    @media screen and (min-width: 992px) {
+    @media screen and (min-width: 1100px) {
       max-width: 80vw;
     }
   }
@@ -16,10 +16,18 @@
       text-align: justify;
     }
   }
+  & ul .des {
+    @media screen and (min-width: 1600px) {
+      text-align: start;
+      max-width: 1000px;
+      padding-left: 25px;
+    }
+  }
   & .des {
     text-align: center;
-    @media screen and (max-width: 992px) {
+    @media screen and (max-width: 1100px) {
       text-align: justify;
     }
+
   }
 }

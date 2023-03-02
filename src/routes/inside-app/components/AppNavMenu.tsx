@@ -13,12 +13,17 @@ const AppNavMenu: FunctionComponent<IProps> = (props) => {
   const {en, setEn, openMenu, openNav} = props
   return (
     <Nav pullRight style={{ height: 60 }}>
-      <Nav.Item>
+      {
+        !location.pathname.includes('bundle') ? (
+          <Nav.Item>
         <IconButton
         onClick={openMenu}
         icon={<DashboardIcon />}
         appearance='primary'/>
       </Nav.Item>
+        ) : null
+      }
+
       <Nav.Item>
         <IconButton
         onClick={openNav}

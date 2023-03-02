@@ -2,25 +2,55 @@ import React from 'react'
 import { Button } from 'rsuite'
 import BANNER from '../../../../../components/images/banner_placeholder.svg'
 
-const BannerComponent = () => {
+const BannerComponent = ({isMobile} : {isMobile: boolean}) => {
+
+  const styles = {
+    wrap: {
+      background: 'linear-gradient(0deg, rgba(0, 0, 0, 0.7), rgba(255, 0, 150, 0.3)), url(' + BANNER + ')',
+      marginBottom: 50,
+      paddingTop: isMobile ? 10 : '1rem',
+      paddingBottom: isMobile ? 10 : '1rem',
+      padding: isMobile ? 10 : 'auto',
+    },
+    title: {
+      fontSize: isMobile ? 18 : 22.5,
+      fontWeight: '600',
+      margin: 0,
+      padding: 0
+    },
+    promo: {
+      lineHeight: isMobile ? 1 : '2rem',
+      letterSpacing: isMobile ? 2 : 5,
+      fontSize: isMobile ? 18 : '2rem',
+    },
+    bottomTxt: {
+      fontSize: isMobile ? 15 : 20,
+      fontWeight: '600',
+      marginTop: 10,
+      padding: 0,
+      lineHeight: 1,
+      marginBottom: isMobile ? 15 : 0
+    }
+  }
+
   return (
-    <div className='d-flex txt-white trans align-center pb-1 pt-1 txt-center banner'
-      style={{
-        background: 'linear-gradient(0deg, rgba(0, 0, 0, 0.7), rgba(255, 0, 150, 0.3)), url(' + BANNER + ')',
-        marginBottom: 50,
-      }}
+    <div className={`${isMobile ? '' : 'd-flex'} txt-white trans align-center txt-center banner`}
+      style={styles.wrap}
     >
       <div>
-        <p style={{ fontSize: 22.5, fontWeight: '600', margin: 0, padding: 0 }}>
+        <p style={styles.title}>
           The banner
         </p>
-        <h1 className='txt-2' style={{ lineHeight: 2 + 'rem', letterSpacing: 5, textTransform: 'uppercase' }}>Here is the banner</h1>
-        <p style={{ fontSize: 20, fontWeight: '600', marginTop: 10, padding: 0 }}>
+        <h1 className='text-uppercase' style={styles.promo}>Here is the banner</h1>
+        <p style={styles.bottomTxt}>
           Making ideas into projects
         </p>
       </div>
       <div>
-        <Button className='main-btn white shadow'>
+        <Button
+        appearance='primary'
+        className={isMobile ? 'r-btn r-secondary-btn mb-1' : 'main-btn white shadow'}
+        >
           Watch on youtube
         </Button>
       </div>

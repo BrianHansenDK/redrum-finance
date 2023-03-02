@@ -4,13 +4,15 @@ import FlexboxGridItem from 'rsuite/esm/FlexboxGrid/FlexboxGridItem'
 import BundleImg from '../../../assets/bundle-overview-no-shadow.svg'
 import { hIWStrings } from '../../../library/string/Landinspage'
 import TextTheme from '../../../library/themes/TextTheme'
+import { useMediaQuery } from '../../../misc/custom-hooks'
 
 const HIWIntroSection = ({en}: {en: boolean}) => {
+  const isDesktop = useMediaQuery('(min-width: 1600px)')
   return (
     <FlexboxGrid align='middle' justify='center' className='mb-5'>
       <FlexboxGridItem colspan={24} style={styles.gridItem}
       className='how-it-works-section'>
-      <p style={TextTheme.hiwPara} className='des mb-3'>
+      <p style={isDesktop ? TextTheme.bigHiwPara : TextTheme.hiwPara} className='des mb-3'>
         {en ? hIWStrings.introEN : hIWStrings.introDE}
       </p>
       </FlexboxGridItem>

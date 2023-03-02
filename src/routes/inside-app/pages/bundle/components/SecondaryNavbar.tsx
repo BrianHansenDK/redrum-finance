@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { FunctionComponent, useEffect, useState } from 'react'
 import { Nav, Navbar } from 'rsuite'
 import NavItem from 'rsuite/esm/Nav/NavItem'
 import OverviewIcon from '@rsuite/icons/Treemap'
@@ -15,7 +15,14 @@ import TransferMoneyModal from './TransferMoneyModal'
 import '../styles/bundlepage.scss'
 import bundleStrings from '../../../../../library/string/Bundle'
 
-const SecondaryNavbar = ({ project, isFixed, en }: { project: any, isFixed: boolean, en: boolean }) => {
+interface IProps {
+  project: any,
+  isFixed: boolean,
+  en: boolean,
+  isMobile: boolean,
+}
+const SecondaryNavbar: FunctionComponent<IProps> = (props) => {
+  const { project, isFixed, en, isMobile } = props
     const NAVS = [
         {
             index: 0,

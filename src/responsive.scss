@@ -76,7 +76,6 @@ $dark-shadow: rgba(0, 0, 29, .25);
   // ----- Hero -----
   & .r-fulll-hero {
     @media screen and (min-width: 1600px) {
-      min-height: 100vh;
       width: 100%;
     }
   }
@@ -88,7 +87,7 @@ $dark-shadow: rgba(0, 0, 29, .25);
       padding: 0 20px;
     }
     @media screen and (min-width: 1600px) {
-      padding: 150px 20px 100px;
+      padding: 250px 20px;
       background-image: url('./components/images/hero_bg.svg');
     }
 
@@ -463,6 +462,60 @@ $dark-shadow: rgba(0, 0, 29, .25);
       color: $dark;
       opacity: .8;
       box-shadow: 0 1px 2px 0 $dark-shadow;
+    }
+  }
+}
+
+// ---------- RS elements ----------
+// ----- Btns -----
+.rs-btn {
+  &.r-btn {
+    border-radius: 7.5px;
+    padding: 10px 25px;
+    font-size: medium;
+    box-shadow: 0 3px 6px 0 $blue-shadow;
+    transition: all 300ms ease-in-out;
+    &:hover {
+      transform: scale(.95, .95) translateY(3px);
+      box-shadow: 0 2px 4px 0 $blue-shadow;
+    }
+    &:active {
+      transform: scale(.9, .9) translateY(3px);
+      box-shadow: 0 1px 2px 0 $blue-shadow;
+    }
+    @media screen and (min-width: 1600px) {
+      font-size: 30px;
+      padding: 20px 45px;
+      box-shadow: 0 6px 12px 0 $blue-shadow;
+    }
+  }
+  &.r-main-btn {
+    background-color: $main;
+    color: $white;
+  }
+  &.r-secondary-btn {
+    background-color: $white;
+    color: $dark;
+    box-shadow: 0 10px 20px 0 $dark-shadow;
+    &:hover {
+      background-color: $white;
+      color: $dark;
+      box-shadow: 0 5px 10px 0 $dark-shadow;
+    }
+    &:active {
+      background-color: $white;
+      color: $dark;
+      opacity: .8;
+      box-shadow: 0 1px 2px 0 $dark-shadow;
+    }
+  }
+}
+// ----- Progress Circle -----
+.project-process {
+
+  & .rs-progress-circle-info {
+    & span {
+      color: $dark;
     }
   }
 }

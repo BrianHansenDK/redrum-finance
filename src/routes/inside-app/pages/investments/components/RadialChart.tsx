@@ -7,29 +7,31 @@ import ChartTitle from './ChartTitle';
 
 
 
-const RadialChart = () => {
+const RadialChart = ({isMobile} : {isMobile: boolean}) => {
     const [userInvestments, setUserInvestments] = useState<any[]>([])
     useEffect(() => {
       getUserInvestments(auth.currentUser?.uid, setUserInvestments)
     }, [auth.currentUser?.uid])
+
+    const styles = {
+      wrap: {
+          width: '100%',
+          marginTop: isMobile ? 0 : 50,
+          marginBottom: 50,
+          borderRadius: 10,
+          padding: isMobile ? 20 : '25px 20px',
+          backgroundColor: '#fefefe',
+          boxShadow: mainShadows.card,
+      }
+  }
         return (
             <div style={styles.wrap} >
-                <ChartTitle />
-                <ChartBody userInvestments={userInvestments} />
+                <ChartTitle isMobile={isMobile} />
+                <ChartBody
+                userInvestments={userInvestments}
+                isMobile={isMobile}/>
             </div>
         );
-}
-
-const styles = {
-    wrap: {
-        width: '100%',
-        marginTop: 50,
-        marginBottom: 50,
-        borderRadius: 10,
-        padding: '25px 20px',
-        backgroundColor: '#fefefe',
-        boxShadow: mainShadows.card,
-    }
 }
 
 export default RadialChart;

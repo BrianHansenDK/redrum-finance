@@ -15,6 +15,13 @@ interface IProps {
     params: any,
     en: boolean,
     setEn: any,
+    isMobile: boolean,
+    navOpen: boolean,
+    menuOpen: boolean,
+    openMenu: any,
+    openNav: any,
+    closeMenu: any,
+    closeNav: any,
 }
 
 interface IState {
@@ -47,11 +54,17 @@ class ProjectDetailsPage extends React.Component<IProps, IState> {
         })
 
         window.addEventListener('scroll', () => {
-            if (window.scrollY <= 600) {
+            if (window.scrollY <= 600 && !this.props.isMobile) {
                 this.setState((_previousState) => ({
                     topFixed: true
                 }))
-            } else {
+            }
+            else if (window.scrollY <= 1000 && this.props.isMobile) {
+              this.setState((_previousState) => ({
+                topFixed: true
+            }))
+            }
+            else {
                 this.setState((_previousState) => ({
                     topFixed: false
                 }))
@@ -59,11 +72,17 @@ class ProjectDetailsPage extends React.Component<IProps, IState> {
         })
 
         window.addEventListener('scroll', () => {
-            if (window.scrollY >= 675) {
+            if (window.scrollY >= 675 && !this.props.isMobile) {
                 this.setState((_previousState) => ({
                     bottomFixed: true
                 }))
-            } else {
+            }
+            else if (window.scrollY >= 1000 && this.props.isMobile) {
+              this.setState((_previousState) => ({
+                bottomFixed: true
+            }))
+            }
+            else {
                 this.setState((_previousState) => ({
                     bottomFixed: false
                 }))
@@ -74,20 +93,57 @@ class ProjectDetailsPage extends React.Component<IProps, IState> {
 
     render() {
         const { bundleId } = this.props.params
+        const isMobile = this.props.isMobile
 
+        const styles = {
+          page: {
+              backgroundColor: '#efefef',
+          },
+          wrapper: {
+              width: 100 + '%',
+              paddingLeft: isMobile ? 20 : 5 + 'rem',
+              paddingRight: isMobile ? 20 : 5 + 'rem',
+              paddingBottom: 5 + 'rem',
+          },
+          wrapperInner: {
+              display: 'flex',
+              justifyContent: 'space-between',
+          },
+          extrasWrap: {
+              paddingTop: 5 + 'rem',
+              paddingBottom: 5 + 'rem',
+              paddingLeft: isMobile ? 20 : 1.5 + 'rem',
+              paddingRight: isMobile ? 20 : 1.5 + 'rem',
+          }
 
+      }
         return (
             <>
                 {this.state.projectData.map((project) => project.id == bundleId ? (
                     <Container style={styles.page} key={project.id}>
-                        <AppNavBar fixed={this.state.topFixed} en={this.props.en} setEn={this.props.setEn} />
+                        <AppNavBar fixed={this.state.topFixed}
+                        en={this.props.en}
+                        setEn={this.props.setEn}
+                        openMenu={this.props.openMenu}
+                        navOpen={this.props.navOpen}
+                        openNav={this.props.openNav}
+                        closeNav={this.props.closeNav} />
                         <Grid style={styles.wrapper} fluid>
-                            <Row style={styles.wrapperInner}>
-                                <LeftSide project={project} />
-                                <RightSide project={project} en={this.props.en} setEn={this.props.setEn} />
+                            <Row style={styles.wrapperInner} as={FlexboxGrid}>
+                                <LeftSide project={project} isMobile={isMobile} />
+                                <RightSide
+                                project={project}
+                                en={this.props.en}
+                                setEn={this.props.setEn}
+                                isMobile={isMobile} />
                             </Row>
                         </Grid>
-                        <SecondaryNavbar project={project} isFixed={this.state.bottomFixed} en={this.props.en} />
+                        <SecondaryNavbar
+                        project={project}
+                        isFixed={this.state.bottomFixed}
+                        en={this.props.en}
+                        isMobile={isMobile}
+                        />
                         <div style={styles.extrasWrap}>
                             <Outlet />
                         </div>
@@ -101,27 +157,6 @@ class ProjectDetailsPage extends React.Component<IProps, IState> {
     }
 }
 
-const styles = {
-    page: {
-        backgroundColor: '#efefef',
-    },
-    wrapper: {
-        width: 100 + '%',
-        paddingLeft: 5 + 'rem',
-        paddingRight: 5 + 'rem',
-        paddingBottom: 5 + 'rem',
-    },
-    wrapperInner: {
-        display: 'flex',
-        justifyContent: 'space-between',
-    },
-    extrasWrap: {
-        paddingTop: 5 + 'rem',
-        paddingBottom: 5 + 'rem',
-        paddingLeft: 1.5 + 'rem',
-        paddingRight: 1.5 + 'rem',
-    }
 
-}
 
 export default ProjectDetailsPage

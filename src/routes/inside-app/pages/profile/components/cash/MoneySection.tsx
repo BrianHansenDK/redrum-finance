@@ -1,5 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useMediaQuery } from '../../../../../../misc/custom-hooks'
 import MainBtn from '../../../../components/MainBtn'
 import { mainCard } from '../../../../themes/cardStyles'
 import { mainColors } from '../../../../themes/colors'
@@ -13,11 +14,12 @@ interface IProps { userId: any }
 const MoneySection: React.FunctionComponent<IProps> = (props) => {
     const { userId } = props
     const navigate = useNavigate()
+    const isMobile = useMediaQuery('(max-width: 1100px)')
     return (
         <div style={styles.card} className='mt-5'>
             <h1 style={styles.title} className='text-center'>Portfolio</h1>
           <h1 style={profileCardUnderTitle} className='mt-2 mb-3 text-center'>All of your investments</h1>
-            <RadialChart />
+            <RadialChart isMobile={isMobile}/>
             <div style={{maxWidth: 300, margin: 'auto'}} className='mb-4'>
               <MainBtn
               content={'View reciepts'}
