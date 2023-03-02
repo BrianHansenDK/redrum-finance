@@ -17,6 +17,7 @@ import FormControl from 'rsuite/esm/FormControl'
 import { database, writeUserData } from '../firebase'
 import { ref, set } from 'firebase/database'
 import signUpModalStrings from '../library/string/SignUpModal'
+import { useMediaQuery } from '../misc/custom-hooks'
 
 const tooltip = (
     <Tooltip>
@@ -42,6 +43,8 @@ const AuthModal = ({ isVisible, close, en }: { isVisible: boolean, close: any, e
     const showPassword2 = () => setPassword2Visible(!password2Visible)
 
     const onlyOneSpace = userName.split(' ').length -1 < 2
+
+    const isMobile = useMediaQuery('(max-width: 1100px)')
 
 
     const signInWithGoogle = async () => {
@@ -129,7 +132,7 @@ const AuthModal = ({ isVisible, close, en }: { isVisible: boolean, close: any, e
                     </Whisper>
                 </div>
                 <Divider />
-                <Form className="d-flex pl-2 pr-2" fluid>
+                <Form className={`d-flex ${isMobile ? '' : 'pl-2 pr-2'}`} fluid>
                   <div className='col'>
                 <FormGroup controlId="username">
                         <InputGroup inside className="mb-2">
@@ -183,7 +186,7 @@ const AuthModal = ({ isVisible, close, en }: { isVisible: boolean, close: any, e
                             </InputGroup.Button>
                         </InputGroup>
                     </FormGroup>
-                        <div className='d-flex'>
+                        <div className={`${isMobile ? 'align-items-center' : ''} d-flex`}>
                             <Toggle onChange={() => setChecked(!isChecked)} checkedChildren={<CheckIcon />} unCheckedChildren={<CloseIcon />} />
                             <p className='ml-1'>
                                 {en ? signUpModalStrings.EN.tAndC[0] : signUpModalStrings.DE.tAndC[0]}
@@ -195,7 +198,10 @@ const AuthModal = ({ isVisible, close, en }: { isVisible: boolean, close: any, e
                         </div>
                         <Whisper placement="top" controlId="control-id-hover" trigger={`${isChecked ? 'none' : 'hover'}`} speaker={tooltip}>
                             <Button appearance='primary' disabled={!isChecked} size='lg' block className='main-btn mt-1' onClick={createAccount}>
-                                {en ? signUpModalStrings.EN.btn : signUpModalStrings.DE.btn}
+                                {isMobile ?
+                                en ? signUpModalStrings.EN.btn.split(' ').slice(3).join(' ') : signUpModalStrings.DE.btn.split(' ').slice(-2).join(' ') :
+                                en ? signUpModalStrings.EN.btn : signUpModalStrings.DE.btn
+                              }
                             </Button>
                         </Whisper>
                         </div>

@@ -20,19 +20,20 @@ const ResponsiveHero = ({en}: {en: boolean}) => {
     <FlexboxGrid className='lp-hero' style={styles.wrap} align='middle' justify='center'>
       <FlexboxGrid.Item colspan={isMobile ? 24 : 10} className={`r-hero-txt-con ${isDesktop ? 'mr-3' : ''}`}>
         <div>
-          <h1 className='r-main-title r-hero-title'>Redrum Pro</h1>
-          <p className='mt-1 r-hero-des r-sub-title'>
-            {en ? homeStrings.heroEN.slogan : homeStrings.heroDE.slogan}
-          </p>
-        </div>
-        {
+      {
           isMobile ? (
             <div className='d-flex justify-content-center'>
               <img src={CAT} alt="Redrum logo"
-              className={`r-hero-img ${isMobile ? 'mt-4' : ''}`} />
+              className={`r-hero-img ${isMobile ? '' : ''}`} />
             </div>
           ) : null
         }
+          <h1 className='r-main-title r-hero-title'>Redrum Pro</h1>
+          </div>
+          <p className='mt-1 r-hero-des r-sub-title'>
+            {en ? homeStrings.heroEN.slogan : homeStrings.heroDE.slogan}
+          </p>
+
         <div className='btns-wrap' style={{width: '100%'}}>
           <Button
           appearance='primary'

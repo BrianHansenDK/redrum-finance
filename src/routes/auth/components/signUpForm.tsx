@@ -18,6 +18,7 @@ import { database, getAllUserObjectsInfo, writeUserData } from "../../../firebas
 import EmailIMG from '../../../assets/mail-svgrepo-com.svg'
 import signInPageStrings from "../../../library/string/SignInPage"
 import signUpModalStrings from "../../../library/string/SignUpModal"
+import { useMediaQuery } from "../../../misc/custom-hooks"
 
 const tooltip = (
     <Tooltip>
@@ -26,6 +27,8 @@ const tooltip = (
 )
 
 function SignUpForm({en} : {en: boolean}) {
+
+  const isMobile = useMediaQuery('(max-width: 1100px)')
 
     const auth = getAuth()
     const navigate = useNavigate()
@@ -120,7 +123,7 @@ function SignUpForm({en} : {en: boolean}) {
                 </p>
               </div>
             ) : (
-              <Form fluid className="d-flex mb-1" style={{ width: 50 + '%' }}>
+              <Form fluid className="d-flex mb-1" style={{ width: isMobile ? '90%' : 50 + '%' }}>
                 <div className="col">
                     <Whisper speaker={tooltip} placement="top" controlId="control-id-hover" trigger={`${isChecked ? 'none' : 'hover'}`}>
                         <Button
@@ -189,7 +192,7 @@ function SignUpForm({en} : {en: boolean}) {
                         </InputGroup>
                     </FormGroup>
 
-                    <div className='d-flex'>
+                    <div className={`${isMobile ? 'align-items-center' : ''} d-flex`}>
                         <Toggle onChange={() => setChecked(!isChecked)} checkedChildren={<CheckIcon />} unCheckedChildren={<CloseIcon />} />
                         <p className='ml-1' style={{color: mainColors.white}}>
                                 {en ? signUpModalStrings.EN.tAndC : signUpModalStrings.DE.tAndC} &nbsp;
@@ -203,7 +206,10 @@ function SignUpForm({en} : {en: boolean}) {
 
                         <Whisper placement="top" controlId="control-id-hover" trigger={`${isChecked ? 'none' : 'hover'}`} speaker={tooltip}>
                             <Button appearance='primary' disabled={!isChecked} size='lg' block className='main-btn mt-1 shadow' onClick={createAccount}>
-                              {en ? signUpModalStrings.EN.btn : signUpModalStrings.DE.btn}
+                            {isMobile ?
+                                en ? signUpModalStrings.EN.btn.split(' ').slice(3).join(' ') : signUpModalStrings.DE.btn.split(' ').slice(-2).join(' ') :
+                                en ? signUpModalStrings.EN.btn : signUpModalStrings.DE.btn
+                              }
                             </Button>
                         </Whisper>
                     </FormGroup>

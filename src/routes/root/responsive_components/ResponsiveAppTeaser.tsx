@@ -26,7 +26,7 @@ const ResponsiveAppTeaser = ({en}: {en:boolean}) => {
           />
         </FlexboxGrid.Item>
       )}
-      <FlexboxGrid.Item colspan={isMobile ? 24 : 16} className='r-showcase-txt-con'>
+      <FlexboxGrid.Item colspan={isMobile ? 24 : 10} className='r-showcase-txt-con'>
         <h1 className='r-main-title'>
           {en ? homeStrings.appTeaserEn : homeStrings.appTeaserDe}
         </h1>

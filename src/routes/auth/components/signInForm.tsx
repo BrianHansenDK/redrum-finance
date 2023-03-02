@@ -13,6 +13,7 @@ import EnvelopeIcon from '@rsuite/icons/legacy/Envelope'
 import FormControl from "rsuite/esm/FormControl"
 import { mainColors } from "../../inside-app/themes/colors"
 import signInPageStrings from "../../../library/string/SignInPage"
+import { useMediaQuery } from "../../../misc/custom-hooks"
 
 const SignInForm = ({en}: {en: boolean}) => {
     const auth = getAuth()
@@ -22,6 +23,8 @@ const SignInForm = ({en}: {en: boolean}) => {
     const [userEmail, setEmail] = useState('')
     const [userPassword, setUserPassword] = useState('')
     const [passwordVisible, setPasswordVisible] = useState(false)
+
+    const isMobile = useMediaQuery('(max-width: 1100px)')
 
     const toaster = useToaster()
 
@@ -72,7 +75,7 @@ const SignInForm = ({en}: {en: boolean}) => {
     return (
 
         <>
-            <Form fluid className="d-flex mb-1" style={{ width: 50 + '%' }}>
+            <Form fluid className="d-flex mb-1" style={{ width: isMobile ? '90%' : 50 + '%' }}>
                 <div className="col">
                     <Button
                         appearance='primary' color='blue' className='main-btn mb-3 shadow'

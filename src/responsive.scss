@@ -119,6 +119,9 @@ $dark-shadow: rgba(0, 0, 29, .25);
         color: $white;
         opacity: .8;
         text-align: center;
+        @media screen and (max-width: 1100px) {
+          font-size: 20px;
+        }
         @media screen and (min-width: 1600px) {
           text-align: start;
           margin-bottom: 50px;
@@ -142,6 +145,10 @@ $dark-shadow: rgba(0, 0, 29, .25);
     .r-hero-img {
       width: 250px;
       height: 250px;
+      @media screen and (max-width: 1100px) {
+        width: 150px;
+        height: 150px;
+      }
      @media screen and (min-width: 1600px) {
       width: 450px;
       height: 300px;
@@ -374,6 +381,45 @@ $dark-shadow: rgba(0, 0, 29, .25);
       color: $dark;
       opacity: .8;
       box-shadow: 0 1px 2px 0 $dark-shadow;
+    }
+  }
+}
+
+// ---------- Auth Pages ----------
+// ----- Navbar -----
+.r-back-nav {
+  padding: 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: $main;
+  z-index: 9;
+  box-shadow: 0 10px 20px 0 $dark-shadow;
+  & .inner {
+    position: relative;
+    width: 100%;
+    & .r-btn {
+      background-color: $white;
+      color: $dark;
+      & .r-icon {
+        position: relative;
+        width: 50px;
+        z-index: 2;
+      }
+    }
+    & .r-title {
+      display: flex;
+      position: absolute;
+      top: 0; bottom: 0;
+      left: 0; right: 0;
+      text-align: center;
+      z-index: 1;
+      justify-content: center;
+      align-items: center;
+      color: $white;
+      font-size: 25px;
+      font-weight: 700;
     }
   }
 }
