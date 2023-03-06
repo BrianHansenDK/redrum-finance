@@ -6,9 +6,11 @@ import { onValue, ref } from 'firebase/database'
 import { database } from '../../../../../../../firebase'
 import { mainColors } from '../../../../../themes/colors'
 import MovieInfo from './MovieInfo'
+import { Button } from 'rsuite'
 
 interface IProps {
-    movieId: any
+    movieId: any,
+    isMobile: boolean,
 }
 
 interface IState {
@@ -38,19 +40,65 @@ class MovieCard extends React.Component<IProps, IState> {
     }
 
     render() {
+      const isMobile = this.props.isMobile
         return (
-            <div style={styles.fullWrap}>
+            <div className='movie-item'>
+              <div className='hidden-wrap'>
                 <div className='cover-wrap' style={styles.coverWrap}>
-                    <img src={this.state.movie?.image ? this.state.movie?.image : PLACEHOLDER} alt={`Cover for ${this.state.title}`} style={styles.cover} />
+                    <img
+                    src={
+                      this.state.movie?.image ?
+                      this.state.movie?.image
+                      : PLACEHOLDER
+                    }
+                    alt={`Cover for ${this.state.title}`}
+                    className='cover-image' />
                     <div className='overlay' style={styles.overlay}>
-                        <MainBtn
+                      {
+                        isMobile ? (
+                          <Button
+                          appearance='primary'
+                          className='r-btn r-main-btn'>
+                            Read more
+                          </Button>
+                        ) : (
+                          <MainBtn
                             content={'Read more'}
                             pressed={() => null}
                             btnColor='violet'
                             btnAppearance='primary'
                             btnSize='lg'
                             isBlock={false} />
+                        )
+                      }
+
                     </div>
+                  </div>
+                  {isMobile ? (
+                    <div className='phone-information'>
+                      <h1 className='title'>
+                        {this.state.movie?.title}
+                      </h1>
+                      <p className='intro'>
+                        {this.state.movie?.intro}
+                      </p>
+                      <p className='description'>
+                          {this.state.movie?.description}
+                      </p>
+                      <p className='extras'>
+                          Genres: {this.state.movie?.genres}
+                      </p>
+                      <p  className='mb-1 extras'>
+                          Release date: {this.state.movie?.releaseDate.split(' ').slice(1).join(' ')}
+                      </p>
+                      <Button
+                      appearance='primary'
+                      className='r-btn r-main-btn'
+                      >
+                        Read more
+                      </Button>
+                    </div>
+                  ) : null}
                 </div>
                 <MovieInfo movie={this.state.movie} />
             </div>
@@ -58,22 +106,8 @@ class MovieCard extends React.Component<IProps, IState> {
     }
 }
 const styles = {
-    fullWrap: {
-        display: 'flex',
-        alignItems: 'flex-start',
-        justifyContent: 'center',
-        marginBottom: 50,
-    },
     coverWrap: {
-        marginBottom: 15,
-        borderRadius: 10,
-        overflow: 'hidden',
         boxShadow: mainShadows.card,
-        width: 300,
-    },
-    cover: {
-        width: 300,
-        height: 450,
     },
     overlay: {
         left: 0, top: 0,

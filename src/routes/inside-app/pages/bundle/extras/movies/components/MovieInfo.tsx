@@ -14,20 +14,20 @@ class MovieInfo extends Component<IProps, {}> {
     }
     render() {
         return (
-            <div style={styles.wrap}>
-                <h1 style={styles.title} >
+            <div className='movie-information'>
+                <h1 className='title'>
                     {this.props.movie?.title}
                 </h1>
-                <p style={styles.intro}>
+                <p className='intro'>
                     {this.props.movie?.intro}
                 </p>
-                <p style={styles.description}>
+                <p className='description'>
                     {this.props.movie?.description}
                 </p>
-                <p style={styles.extras}>
+                <p className='extras'>
                     Genres: {this.props.movie?.genres}
                 </p>
-                <p style={styles.extras} className='mb-2'>
+                <p  className='mb-2 extras'>
                     Release date: {this.props.movie?.releaseDate.split(' ').slice(1).join(' ')}
                 </p>
                 <MainBtn
@@ -43,25 +43,6 @@ class MovieInfo extends Component<IProps, {}> {
 }
 
 const styles = {
-    wrap: {
-        maxWidth: 'calc(100% - 500px)',
-        marginLeft: 50,
-    },
-    title: {
-        fontSize: 40.5,
-        color: mainColors.dark,
-    },
-    intro: {
-        fontSize: 27.5,
-        color: mainColors.dark,
-        opacity: .9,
-    },
-    description: {
-        fontSize: 22.5,
-        color: mainColors.dark,
-        opacity: .8,
-        maxWidth: '100%',
-    },
     extras: {
         fontSize: 20.5,
         color: mainColors.dark,

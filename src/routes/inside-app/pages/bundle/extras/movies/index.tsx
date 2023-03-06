@@ -8,7 +8,8 @@ import NoMovieCard from './components/NoMovieCard'
 import { mainColors } from '../../../../themes/colors'
 
 interface IProps {
-    params: any
+    params: any,
+    isMobile: boolean,
 }
 
 interface IState {
@@ -43,20 +44,23 @@ class BundleMoviesDetals extends React.Component<IProps, IState>{
 
 
         return (
-            <div style={styles.pageWrap} className='flex-column'>
+            <div style={styles.pageWrap} className='flex-column r-bundle-movies-section'>
                 {
                     this.state.projectData ? (
 
                         this.state.projectData.map((project) => (
                             project.id == bundleId ? (
                                 <>
-                                    <h1 key={project.id} style={styles.pageTitle} className='txt-center'> Movies in {project.name}</h1>
-                                    <div style={styles.wrapper}>
+                                    <h1 key={project.id} style={styles.pageTitle} className='txt-center r-section-title'> Movies in {project.name}</h1>
+                                    <div style={styles.wrapper} className='movie-cards-wrap'>
                                         {
                                             project?.movies ? (
 
                                                 project?.movies?.map((movie: any) => (
-                                                    <MovieCard movieId={movie} key={movie.id} />
+                                                    <MovieCard
+                                                    movieId={movie}
+                                                    key={movie.id}
+                                                    isMobile={this.props.isMobile} />
                                                 ))
                                             )
                                                 : <NoMovieCard />}
