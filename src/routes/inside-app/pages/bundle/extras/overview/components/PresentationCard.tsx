@@ -10,7 +10,7 @@ const PresentationCard = ({ project }: { project: any }) => {
   const styles = {
     presentationCard: {
         display: 'flex',
-        width: isMobile ? '90%' : 80 + '%',
+        width: isMobile ? '100%' : 80 + '%',
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: mainColors.white,

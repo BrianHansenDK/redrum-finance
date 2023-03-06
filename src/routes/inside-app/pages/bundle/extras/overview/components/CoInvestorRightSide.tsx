@@ -2,13 +2,21 @@ import React, { useState } from 'react'
 import bundleStrings from '../../../../../../../library/string/Bundle'
 import { mainColors } from '../../../../../themes/colors'
 
-interface IProps { amount: number, userName: any, investments: any[], en: boolean }
+interface IProps {
+  amount: number,
+  userName: any,
+  investments: any[],
+  en: boolean,
+  isMobile: boolean,
+ }
 
 const CoInvestorRightSide: React.FunctionComponent<IProps> = (props) => {
-  const { amount, userName, investments, en } = props
+  const { amount, userName, investments, en, isMobile } = props
+
     return (
         <div>
-            <h3 style={styles.name}>
+            <h3 style={styles.name}
+            className={isMobile ? 'text-start' : ''}>
                 {userName}
             </h3>
             <p style={styles.others}>

@@ -4,10 +4,16 @@ import { mainColors } from '../../../../../themes/colors'
 import mainShadows from '../../../../../themes/shadows'
 import CoInvestorRightSide from './CoInvestorRightSide'
 
-interface IProps { userId: any, investments: any[], amount: number, en: boolean }
+interface IProps {
+  userId: any,
+  investments: any[],
+  amount: number,
+  en: boolean,
+  isMobile: boolean,
+ }
 
 const CoInvestorCard: React.FunctionComponent<IProps> = (props) => {
-  const { userId, investments, amount, en } = props
+  const { userId, investments, amount, en, isMobile } = props
   const [userImage, setUserImage] = useState('')
   const [userName, setUserName] = useState('')
   const [userEmail, setUserEmail] = useState('')
@@ -16,6 +22,34 @@ const CoInvestorCard: React.FunctionComponent<IProps> = (props) => {
     userRef(userId, '/username', setUserName)
     userRef(userId, '/email', setUserEmail)
   }, [userId])
+
+  const styles = {
+    wrap: {
+        display: 'flex',
+    },
+    image: {
+        width: isMobile ? 75 : 125,
+        height: isMobile ? 75 : 125,
+        borderRadius: '50%',
+        boxShadow: mainShadows.image,
+        marginRight: 50,
+        outline: '5px solid rgba(150,150,29, .5)',
+    },
+    avatar: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: isMobile ? 75 : 125,
+        height: isMobile ? 75 : 125,
+        borderRadius: '50%',
+        boxShadow: mainShadows.image,
+        color: mainColors.white,
+        backgroundColor: mainColors.dark,
+        fontSize: isMobile ? 25 : 50,
+        marginRight: isMobile ? 25 : 50,
+        outline: '5px solid rgba(150,150,29, .5)',
+    },
+}
     return (
         <div style={styles.wrap}>
             {userImage !== '' ? (
@@ -26,6 +60,7 @@ const CoInvestorCard: React.FunctionComponent<IProps> = (props) => {
                 </div>
             )}
             <CoInvestorRightSide
+            isMobile={isMobile}
             amount={amount}
             userName={userEmail == auth.currentUser?.email ? 'You' : userName}
             investments={investments}
@@ -33,33 +68,6 @@ const CoInvestorCard: React.FunctionComponent<IProps> = (props) => {
             />
         </div>
     )
-}
-const styles = {
-    wrap: {
-        display: 'flex',
-    },
-    image: {
-        width: 125,
-        height: 125,
-        borderRadius: '50%',
-        boxShadow: mainShadows.image,
-        marginRight: 50,
-        outline: '5px solid rgba(150,150,29, .5)',
-    },
-    avatar: {
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: 125,
-        height: 125,
-        borderRadius: '50%',
-        boxShadow: mainShadows.image,
-        color: mainColors.white,
-        backgroundColor: mainColors.dark,
-        fontSize: 50,
-        marginRight: 50,
-        outline: '5px solid rgba(150,150,29, .5)',
-    },
 }
 
 export default CoInvestorCard

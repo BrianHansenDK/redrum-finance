@@ -8,9 +8,10 @@ interface IProps {en: boolean}
 const ProjectDetailsOverviewWrapper = (WrappedComponent: any) => (props: IProps) => {
     const params = useParams()
     const {en} = props
+    const isMobile = useMediaQuery('(max-width: 1100px)')
     return (
         <>
-            <WrappedComponent params={params} en={en} />
+            <WrappedComponent isMobile={isMobile} params={params} en={en} />
         </>
     )
 }

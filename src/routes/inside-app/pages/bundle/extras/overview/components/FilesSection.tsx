@@ -26,8 +26,12 @@ const FilesSection = ({ date, en }: { date: Date, en: boolean }) => {
 }
     return (
         <div style={styles.filesWrap}>
+          {
+            /* While theyy have no files we will keep this hidden
+
             <h2 style={styles.title}>{en ? bundleStrings.overviewDocsEN : bundleStrings.overviewDocsDE}</h2>
             <FilesCard date={date} />
+          */}
         </div>
     )
 }

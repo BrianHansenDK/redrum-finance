@@ -16,7 +16,8 @@ import NewInvestorsSection from './components/NewInvestorsSection'
 
 interface IProps {
     params: any,
-    en: boolean
+    en: boolean,
+    isMobile: boolean,
 }
 
 interface IState {
@@ -56,7 +57,7 @@ class BundleOverview extends React.Component<IProps, IState> {
                         <PresentationCard project={project} />
                         <FilesSection date={today} en={this.props.en} />
                         <CoInvestorsSection projectId={project.id.toString()} en={this.props.en} />
-                        <NewInvestorsSection project={project} en={this.props.en} />
+                        <NewInvestorsSection isMobile={this.props.isMobile} project={project} en={this.props.en} />
                         <Warning key={3} />
                     </div>
                 ) : null

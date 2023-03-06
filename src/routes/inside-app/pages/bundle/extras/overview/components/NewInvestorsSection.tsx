@@ -10,6 +10,7 @@ import NewInverstorsCard from './NewInverstorsCard';
 interface IProps {
     project: any,
     en: boolean,
+    isMobile: boolean,
 }
 
 interface IState {
@@ -36,6 +37,35 @@ class NewInvestorsSection extends Component<IProps, IState> {
         })
     }
     render() {
+      const isMobile = this.props.isMobile
+      const styles = {
+        wrap: {
+            width: isMobile ? '100%' : '80%',
+            marginBottom: 100,
+        },
+        title: {
+            marginBottom: 15,
+            color: mainColors.dark,
+            fontSize: isMobile ? 22.5 : 28
+        },
+        divider: {
+            backgroundColor: mainColors.dark,
+            marginBottom: isMobile ? 15 : 50,
+            opacity: isMobile ? 0 : 1,
+        },
+        userWrap: {
+            display: 'flex',
+            justifyContent: 'space-between',
+        },
+        linkWrap: {
+            marginTop: isMobile ? 0 : 20,
+        },
+        link: {
+            color: mainColors.dark,
+            opacity: .9,
+            fontSize: isMobile ? 25 : 35,
+        }
+    }
         return (
             <div style={styles.wrap}>
 
@@ -43,11 +73,17 @@ class NewInvestorsSection extends Component<IProps, IState> {
                     {this.props.en ? bundleStrings.newInvEN.title : bundleStrings.newInvDE.title}
                 </h3>
                 <Divider style={styles.divider} />
-                <div style={styles.userWrap} className='flex-wrap'>
+                <div
+                style={styles.userWrap}
+                className={`${isMobile ? '' : 'flex-wrap'} r-bundle-users-wrap`}>
 
                     {
                         this.state.userData.slice(-6).map((user) => (
-                            <NewInverstorsCard user={user} key={user?.email} />
+                            <NewInverstorsCard
+                            user={user}
+                            key={user?.email}
+                            isMobile={this.props.isMobile}
+                            />
                         ))
                     }
                 </div>
@@ -58,32 +94,6 @@ class NewInvestorsSection extends Component<IProps, IState> {
                 </h3>
             </div>
         );
-    }
-}
-
-const styles = {
-    wrap: {
-        width: '80%',
-        marginBottom: 100,
-    },
-    title: {
-        marginBottom: 15,
-        color: mainColors.dark,
-    },
-    divider: {
-        backgroundColor: mainColors.dark,
-        marginBottom: 50,
-    },
-    userWrap: {
-        display: 'flex',
-        justifyContent: 'space-between',
-    },
-    linkWrap: {
-        marginTop: 20,
-    },
-    link: {
-        color: mainColors.dark,
-        opacity: .9,
     }
 }
 

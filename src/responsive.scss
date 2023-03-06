@@ -384,6 +384,26 @@ $dark-shadow: rgba(0, 0, 29, .25);
   }
 }
 
+// ---------- Bundle Page ----------
+// ----- Overview -----
+// Recent investors Wrap
+.r-bundle-users-wrap {
+  @media (max-width: 1100px) {
+    max-width: 100%;
+    overflow-y: scroll;
+    -ms-overflow-style: none;  /* IE and Edge */
+      scrollbar-width: none;  /* Firefox */
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}
+.r-bundle-notice-content {
+  @media (max-width: 1100px) {
+    text-align: justify;
+  }
+}
+
 // ---------- Auth Pages ----------
 // ----- Navbar -----
 .r-back-nav {

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { Divider } from 'rsuite';
 import { database, getAllUserObjectsInfo, userRef } from '../../../../../../../firebase';
 import bundleStrings from '../../../../../../../library/string/Bundle';
+import { useMediaQuery } from '../../../../../../../misc/custom-hooks';
 import { mainColors } from '../../../../../themes/colors';
 import CoInvestorCard from './CoInvestorCard';
 interface IProps {
@@ -10,14 +11,10 @@ interface IProps {
   en: boolean,
  }
 
-interface IState {
-    userData: any,
-    projectInvestments: any[],
-}
-
 const CoInvestorsSection: React.FunctionComponent<IProps> = (props) => {
   const {projectId, en} = props
   const [projectInvestments, setProjectInvestments] = useState<any>([])
+  const isMobile = useMediaQuery('(max-width: 1100px)')
     useEffect(() =>  {
       const investRef = ref(database, 'investments/')
       onValue(investRef, (snap) => {
@@ -30,6 +27,29 @@ const CoInvestorsSection: React.FunctionComponent<IProps> = (props) => {
         setProjectInvestments(data)
       })
     }, [])
+
+    const styles = {
+      wrap: {
+          marginTop: 50,
+          width: isMobile ? '100%' : '80%',
+          marginBottom: 75,
+      },
+      title: {
+          marginBottom: 15,
+          color: mainColors.dark,
+          fontSize: isMobile ? 25 : 35,
+      },
+      divider: {
+          marginBottom: isMobile ? 15 : 50,
+          backgroundColor: mainColors.dark,
+          opacity: isMobile ? 0 : 1,
+      },
+      nonTitle: {
+        color: mainColors.dark,
+        opacity: .75,
+        fontSize: isMobile ? 20 : 30,
+      }
+  }
         return (
             <div style={styles.wrap}>
                 <h2 style={styles.title}>{en ? bundleStrings.coInvEN.title : bundleStrings.coInvDE.title}</h2>
@@ -41,9 +61,10 @@ const CoInvestorsSection: React.FunctionComponent<IProps> = (props) => {
                   userId={projectInvestments[projectInvestments.length - 1]?.creator}
                   investments={projectInvestments}
                   en={en}
+                  isMobile={isMobile}
                   />
                   ) : (
-                    <h1>
+                    <h1 style={styles.nonTitle}>
                       No investments yet.
                     </h1>
                   )
@@ -51,22 +72,6 @@ const CoInvestorsSection: React.FunctionComponent<IProps> = (props) => {
 
             </div>
         );
-}
-
-const styles = {
-    wrap: {
-        marginTop: 50,
-        width: '80%',
-        marginBottom: 75,
-    },
-    title: {
-        marginBottom: 15,
-        color: mainColors.dark,
-    },
-    divider: {
-        marginBottom: 50,
-        backgroundColor: mainColors.dark
-    },
 }
 
 export default CoInvestorsSection;
