@@ -127,7 +127,8 @@ class ProjectDetailsPage extends React.Component<IProps, IState> {
                         openMenu={this.props.openMenu}
                         navOpen={this.props.navOpen}
                         openNav={this.props.openNav}
-                        closeNav={this.props.closeNav} />
+                        closeNav={this.props.closeNav}
+                         />
                         <Grid style={styles.wrapper} fluid>
                             <Row style={styles.wrapperInner} as={FlexboxGrid}>
                                 <LeftSide project={project} isMobile={isMobile} />
@@ -135,14 +136,14 @@ class ProjectDetailsPage extends React.Component<IProps, IState> {
                                 project={project}
                                 en={this.props.en}
                                 setEn={this.props.setEn}
-                                isMobile={isMobile} />
+                                isMobile={this.props.isMobile} />
                             </Row>
                         </Grid>
                         <SecondaryNavbar
                         project={project}
                         isFixed={this.state.bottomFixed}
                         en={this.props.en}
-                        isMobile={isMobile}
+                        isMobile={this.props.isMobile}
                         />
                         <div style={styles.extrasWrap}>
                             <Outlet />

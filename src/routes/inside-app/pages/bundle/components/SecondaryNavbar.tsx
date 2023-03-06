@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useEffect, useState } from 'react'
-import { Nav, Navbar } from 'rsuite'
+import { Button, Nav, Navbar } from 'rsuite'
 import NavItem from 'rsuite/esm/Nav/NavItem'
 import OverviewIcon from '@rsuite/icons/Treemap'
 import MovieIcon from '@rsuite/icons/legacy/VideoCamera'
@@ -98,6 +98,7 @@ const SecondaryNavbar: FunctionComponent<IProps> = (props) => {
     const date = Date.now()
     const today = new Date(date)
     const age = today.getFullYear() - birthYear
+
     return (
         <>
             <Navbar style={styles.navbar} className={`${isFixed ? 'navbar shadow' : 'navbarhidden'}`}>
@@ -112,14 +113,35 @@ const SecondaryNavbar: FunctionComponent<IProps> = (props) => {
                         />
                     ))}
                 </Nav>
-                <Nav pullRight style={{ minWidth: 250, }}>
-                    <MainBtn
+                <Nav pullRight style={{ minWidth: isMobile ? 'auto' : 250, }}>
+                  {
+                    isMobile ? (
+                      <Button
+                      appearance='primary'
+                      className='r-btn r-main-btn'
+                      onClick={
+                        today.getFullYear() - birthYear >= 18 ?
+                        openInvestModal :
+                        openModal
+                      }
+                      >
+                        Invest now
+                      </Button>
+                    ) : (
+                      <MainBtn
                         content={'Invest now'}
-                        pressed={age >= 18 && age !== null ? openInvestModal : openModal}
+                        pressed={
+                          today.getFullYear() - birthYear >= 18 ?
+                          openInvestModal :
+                          openModal
+                        }
                         btnColor='blue'
                         btnAppearance='primary'
                         btnSize='lg'
                         isBlock={true} />
+                    )
+                  }
+
                 </Nav>
             </Navbar>
 
@@ -137,15 +159,36 @@ const SecondaryNavbar: FunctionComponent<IProps> = (props) => {
 
                 </Nav>
                 <Nav pullRight>
-                    <div style={{ opacity: 0, }} >
-                        <MainBtn
+                  <div style={{ opacity: 0, }} >
+                  {
+                    isMobile ? (
+                      <Button
+                      appearance='primary'
+                      className='r-btn r-main-btn'
+                      onClick={
+                        today.getFullYear() - birthYear >= 18 ?
+                        openInvestModal :
+                        openModal
+                      }
+                      >
+                        Invest now
+                      </Button>
+                    ) : (
+                      <MainBtn
                             content={'Invest now'}
-                            pressed={() => null}
+                            pressed={
+                              today.getFullYear() - birthYear >= 18 ?
+                              openInvestModal :
+                              openModal
+                            }
                             btnColor='blue'
                             btnAppearance='primary'
                             btnSize='lg'
                             isBlock={true} />
-                    </div>
+                    )
+                  }
+                  </div>
+
                 </Nav>
             </Navbar>
             <ConfirmAgeModal visible={isVisible} close={closeModal} openInvestModal={openInvestModal} en={en} />
