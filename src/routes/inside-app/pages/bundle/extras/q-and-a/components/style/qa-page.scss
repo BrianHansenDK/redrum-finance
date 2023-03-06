@@ -1,0 +1,16 @@
+$mobile: 1100px;
+$desktop: 1600px;
+$dark: #141628;
+
+// Question item
+.question-item {
+  padding: 50px;
+  margin-bottom: 50px;
+  background-color: #fefefe;
+  border-radius: 10px;
+
+  // Question wrap
+  & .question-content-wrap {
+    margin-top: 25px;
+  }
+}

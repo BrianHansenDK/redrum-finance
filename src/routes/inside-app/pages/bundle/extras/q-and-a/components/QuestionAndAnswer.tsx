@@ -4,9 +4,11 @@ import { database } from '../../../../../../../firebase';
 import { mainColors } from '../../../../../themes/colors';
 import mainShadows from '../../../../../themes/shadows';
 import QuestionCreator from './QuestionCreator';
+import './style/qa-page.scss'
 
 interface IProps {
-    question: any
+    question: any,
+    isMobile: boolean,
 }
 
 interface IState {
@@ -32,9 +34,9 @@ class QuestionAndAnswer extends Component<IProps, IState> {
 
     render() {
         return (
-            <div style={styles.card}>
+            <div style={styles.card} className='question-item'>
                 <QuestionCreator user={this.state.creator} />
-                <div style={styles.questionWrap}>
+                <div className='question-content-wrap'>
                     <p style={styles.questionSelf}>
                         {this.props.question?.content}
                     </p>
@@ -46,14 +48,7 @@ class QuestionAndAnswer extends Component<IProps, IState> {
 
 const styles = {
     card: {
-        backgroundColor: '#fefefe',
-        borderRadius: 10,
         boxShadow: mainShadows.card,
-        padding: 50,
-        marginBottom: 50,
-    },
-    questionWrap: {
-        marginTop: 25,
     },
     questionSelf: {
         fontSize: 22,

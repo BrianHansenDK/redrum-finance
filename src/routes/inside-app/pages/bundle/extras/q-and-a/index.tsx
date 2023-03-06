@@ -11,6 +11,7 @@ import bundleStrings from '../../../../../../library/string/Bundle'
 interface IProps {
     params: any,
     en: boolean,
+    isMobile: boolean,
 }
 
 interface IState {
@@ -51,14 +52,15 @@ class BundleQAndADetails extends React.Component<IProps, IState> {
 
     render() {
         const { bundleId } = this.props.params
+        const isMobile = this.props.isMobile
         return (
             <div>
 
                 {
                     this.state.questionsData?.length > 0 ? (
-                        <div style={{ marginBottom: 50 }}>
+                        <div style={{ marginBottom: isMobile ? 25 : 50 }}>
                             {this.state.questionsData?.map((q) => (
-                                <QuestionAndAnswer question={q} key={q.createdAt} />
+                                <QuestionAndAnswer isMobile={isMobile} question={q} key={q.createdAt} />
                             ))}
                         </div>
                     ) : (
