@@ -4,12 +4,19 @@ import { Button, Input, Message, useToaster } from 'rsuite';
 import PushNotification from '../../../../../../../components/Notification';
 import { auth, database } from '../../../../../../../firebase';
 import bundleStrings from '../../../../../../../library/string/Bundle';
+import { useMediaQuery } from '../../../../../../../misc/custom-hooks';
 import MainBtn from '../../../../../components/MainBtn';
 import { mainColors } from '../../../../../themes/colors';
 
-const AskQuestionForm = ({ bundleId, questionsData, en }: { bundleId: string, questionsData: any[], en: boolean }) => {
-
+interface IProps {
+  bundleId: string,
+  questionsData: any[],
+  en: boolean
+}
+const AskQuestionForm = (props: IProps) => {
+    const { bundleId, questionsData, en } = props
     const [question, setQuestion] = useState('')
+    const isMobile = useMediaQuery('(max-width: 1100px)')
 
     const errorMessage = (
         <Message showIcon type='error'>
@@ -58,13 +65,27 @@ const AskQuestionForm = ({ bundleId, questionsData, en }: { bundleId: string, qu
             rows={5}
             placeholder={en ? bundleStrings.qaEN.placeholder : bundleStrings.qaDE.placeholder}
             />
-            <MainBtn
+            {
+              isMobile ? (
+                <Button
+                onClick={addQuestionToProject}
+                block
+                appearance='primary'
+                className='r-btn r-main-btn'
+                >
+                  {en ? bundleStrings.qaEN.btn : bundleStrings.qaDE.btn}
+                </Button>
+              ) : (
+                <MainBtn
                 content={en ? bundleStrings.qaEN.btn : bundleStrings.qaDE.btn}
                 pressed={addQuestionToProject}
                 btnColor='blue'
                 btnAppearance='primary'
                 btnSize='lg'
                 isBlock={false} />
+              )
+            }
+
         </>
     );
 }

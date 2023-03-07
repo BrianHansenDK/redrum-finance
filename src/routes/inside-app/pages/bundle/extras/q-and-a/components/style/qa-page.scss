@@ -1,6 +1,8 @@
+$phone: 768px;
 $mobile: 1100px;
 $desktop: 1600px;
 $dark: #141628;
+$white: #FEFEFE;
 
 // Question item
 .question-item {
@@ -8,9 +10,85 @@ $dark: #141628;
   margin-bottom: 50px;
   background-color: #fefefe;
   border-radius: 10px;
+  @media (max-width: $phone) {
+    padding: 20px;
+  }
+
+  // Creator
+  & .creator {
+    display: flex;
+    @media (max-width: $mobile) {
+      align-items: center;
+    }
+    // Image
+    & .profile-image {
+      width: 75px;
+      height: 75px;
+      border-radius: 50%;
+      outline: 3px solid rgba(0,0,29, .15);
+      @media (max-width: $mobile) {
+        width: 65px; height: 65px;
+      }
+    }
+    & .profile-avatar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: $white;
+      background-color: $dark;
+      font-size: 30px;
+      width: 75px;
+      height: 75px;
+      border-radius: 50%;
+      outline: 3px solid rgba(0,0,29, .15);
+      @media (max-width: $mobile) {
+        width: 65px; height: 65px;
+      }
+    }
+    // Information
+    & .creator-information {
+      margin-left: 30px;
+      @media (max-width: $mobile) {
+        margin-left: 15px;
+      }
+      @media (max-width: $phone) {
+        flex-grow: 1;
+        justify-content: space-between;
+      }
+      & .username {
+        font-size: 22.5px;
+        color: $dark;
+        line-height: 1;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        @media (max-width: $mobile) {
+          font-size: 15px;
+        }
+      }
+      & .location {
+        display: flex;
+        margin-left: 7.5px;
+        font-size: 12.5px;
+        color: $dark;
+        opacity: .8;
+        font-weight: 500;
+      }
+    }
+  }
 
   // Question wrap
   & .question-content-wrap {
     margin-top: 25px;
+    & .content {
+      font-size: 22px;
+      color: $dark;
+      @media (max-width: $mobile) {
+        font-size: 20px;
+      }
+      @media (max-width: $phone) {
+        font-size: 18px;
+      }
+    }
   }
 }

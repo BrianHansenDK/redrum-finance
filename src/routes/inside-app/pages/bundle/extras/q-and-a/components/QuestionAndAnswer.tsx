@@ -37,7 +37,7 @@ class QuestionAndAnswer extends Component<IProps, IState> {
             <div style={styles.card} className='question-item'>
                 <QuestionCreator user={this.state.creator} />
                 <div className='question-content-wrap'>
-                    <p style={styles.questionSelf}>
+                    <p className='content'>
                         {this.props.question?.content}
                     </p>
                 </div>
@@ -50,10 +50,6 @@ const styles = {
     card: {
         boxShadow: mainShadows.card,
     },
-    questionSelf: {
-        fontSize: 22,
-        color: mainColors.dark,
-    }
 }
 
 export default QuestionAndAnswer;
