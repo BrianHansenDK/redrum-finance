@@ -509,6 +509,29 @@ $dark-shadow: rgba(0, 0, 29, .25);
       box-shadow: 0 6px 12px 0 $blue-shadow;
     }
   }
+  &.r-nav-btn {
+    padding: 5px 10px;
+    font-size: small;
+    background-color: $white;
+    color: $dark;
+    box-shadow: 0 10px 20px 0 $dark-shadow;
+    @media (min-width: 1600px) {
+      font-size: 25px;
+      padding: 10px 20px;
+      font-weight: 700;
+    }
+    &:hover {
+      background-color: $white;
+      color: $dark;
+      box-shadow: 0 5px 10px 0 $dark-shadow;
+    }
+    &:active {
+      background-color: $white;
+      color: $dark;
+      opacity: .8;
+      box-shadow: 0 1px 2px 0 $dark-shadow;
+    }
+  }
   &.r-main-btn {
     background-color: $main;
     color: $white;
@@ -537,5 +560,12 @@ $dark-shadow: rgba(0, 0, 29, .25);
     & span {
       color: $dark;
     }
+  }
+}
+
+// ----- Secondary navbar in Bundle Page -----
+.rs-navbar-nav.rs-nav.rs-nav-default {
+  & .bundle-nav.active-nav-item {
+    background-color: #e5e5ea;
   }
 }

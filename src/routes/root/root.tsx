@@ -63,7 +63,9 @@ const Root: React.FunctionComponent<IProps> = (props) => {
                     <CtaUp en={en} />
                     <Features en={en} />
                     <AppTeaser en={en} />
-                    <CtaDown openModal={openModal} en={en} />
+                    {/*
+                      <CtaDown openModal={openModal} en={en} />
+                */}
                   </>
                 )
               }

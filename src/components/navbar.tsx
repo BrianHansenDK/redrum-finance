@@ -69,9 +69,9 @@ const MainNavbar: React.FunctionComponent<IProps> = (props) => {
                 className='bold d-flex align-center'
                 as={Link} to='/'
                 style={{
-                  height: '100%',
+                  height: isTablet || isDesktop ? '100%' : 75,
                   fontSize: isDesktop ? 50 : 20,
-                  marginRight: isDesktop ? 25 : 0,
+                  marginRight: isDesktop ? 25 : 15,
                 }}
                 >
                     Redrum Pro
@@ -113,7 +113,7 @@ const MainNavbar: React.FunctionComponent<IProps> = (props) => {
                     display: 'block',
                     height: isDesktop ? '100%' : 75,
                     flex: 0,
-                    columnGap: 15,
+                    columnGap: 30,
                     fontSize: isDesktop ? 25 : 12.75,
                     fontWeight: 400
                     }}
@@ -128,7 +128,7 @@ const MainNavbar: React.FunctionComponent<IProps> = (props) => {
                 </Nav>
                 <Nav pullRight className={`d-flex align-center ${isDesktop ? 'position-absolute' : ''}`} style={{
                 height: 75,
-                columnGap: 15,
+                columnGap: 30,
                 fontSize: isDesktop ? 25 : 12.75,
                 fontWeight: 400,
                 top: isDesktop ? 'calc(60px - 37.5px)' : 'auto',
@@ -143,7 +143,7 @@ const MainNavbar: React.FunctionComponent<IProps> = (props) => {
                     }
                     <Button
                     appearance='primary'
-                    className={`${isDesktop ? 'r-btn r-secondary-btn' : 'main-btn white pl-3 pr-3 bold'}`}
+                    className={`${'r-btn r-nav-btn'}`}
                     size='lg'
                     onClick={openModal}
                     >

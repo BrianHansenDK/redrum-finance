@@ -23,7 +23,7 @@ const dashboardStrings = {
     t2: 'Community',
     db: 'Producer database',
     nw: 'Your network',
-    news: 'News & Events',
+    news: 'Messages',
   },
   sidebarDE: {
     t1: 'Investieren',

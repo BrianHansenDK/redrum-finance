@@ -1,4 +1,5 @@
 import React from 'react'
+import bundleStrings from '../../../../../../../library/string/Bundle'
 import { useMediaQuery } from '../../../../../../../misc/custom-hooks'
 import { mainColors } from '../../../../../themes/colors'
 

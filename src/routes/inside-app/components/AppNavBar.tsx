@@ -127,13 +127,13 @@ const AppNavBar: React.FunctionComponent<IProps> = (props) => {
                         <NavItem eventKey='3' className='d-flex flex-column align-center justify-around' style={styles.navLink}>
                             <USER /> <span>{en ? dashboardStrings.navbarEN.acc : dashboardStrings.navbarDE.acc} <OPENMENU /> </span>
                         </NavItem>
-                    </Whisper>
+                    </Whisper>{/*
                     <NavItem className='d-flex flex-column align-center justify-around' style={styles.navLink}>
                         <UsersIcon /> {en ? dashboardStrings.navbarEN.nw : dashboardStrings.navbarDE.nw}
                     </NavItem>
                     <NavItem className='d-flex flex-column align-center justify-around' style={styles.navLink}>
                         <MessageIcon /> {en ? dashboardStrings.navbarEN.event : dashboardStrings.navbarDE.event}
-                    </NavItem>
+                </NavItem>*/}
                     <Button style={styles.btn} appearance='primary' size='lg' onClick={openModal} >
                     {en ? dashboardStrings.navbarEN.btn : dashboardStrings.navbarDE.btn}
                     </Button>

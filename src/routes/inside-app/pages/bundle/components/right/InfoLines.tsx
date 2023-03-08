@@ -3,6 +3,7 @@ import bundleStrings from '../../../../../../library/string/Bundle'
 import SingleLineInfo from './SingleLineInfo'
 
 const InfoLines = ({ project, en }: { project: any, en: boolean }) => {
+  const end = new Date(project.endDate)
     return (
         <div style={styles.wrap}>
             <SingleLineInfo
@@ -11,7 +12,13 @@ const InfoLines = ({ project, en }: { project: any, en: boolean }) => {
             />
             <SingleLineInfo
             title={en ? bundleStrings.infoCardEN.iD : bundleStrings.infoCardDE.iD}
-            info={project.endDate.split(' ').slice(1,3).join(' ')}
+            info={
+              [
+                end.toLocaleDateString().split('/').map((x) => parseInt(x) < 10 ? x = `0${x}` : x)[1],
+                end.toLocaleDateString().split('/').map((x) => parseInt(x) < 10 ? x = `0${x}` : x)[0],
+                end.toLocaleDateString().split('/').map((x) => parseInt(x) < 10 ? x = `0${x}` : x)[2],
+              ].join('.')
+            }
             />
             <SingleLineInfo
             title={en ? bundleStrings.infoCardEN.iT : bundleStrings.infoCardDE.iT}
@@ -20,7 +27,7 @@ const InfoLines = ({ project, en }: { project: any, en: boolean }) => {
             />
             <SingleLineInfo
             title={en ? bundleStrings.infoCardEN.mI : bundleStrings.infoCardDE.mI}
-            info={3} type='€' />
+            info={project.movies.length} type='€' />
             <SingleLineInfo
             title={en ? bundleStrings.infoCardEN.publication : bundleStrings.infoCardDE.publication}
             info={`${project.publication} ${en ? 'Months' : 'Monate'}`} hasSmallTxt

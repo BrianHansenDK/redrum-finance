@@ -15,10 +15,9 @@ const SecondaryNavbarItem: React.FunctionComponent<IProps> = (props) => {
   const isMobile = useMediaQuery('(max-width: 1100px)')
     return (
         <NavItem
-            active={isActive}
             as={Link}
             to={to}
-            className='text-uppercase'
+            className={`${isActive ? 'active-nav-item' : ''} text-uppercase bundle-nav`}
             style={styles.txt}
             preventScrollReset={true}
         >

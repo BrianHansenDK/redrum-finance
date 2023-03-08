@@ -30,13 +30,16 @@ class MovieInfo extends Component<IProps, {}> {
                 <p  className='mb-2 extras'>
                     Release date: {this.props.movie?.releaseDate.split(' ').slice(1).join(' ')}
                 </p>
-                <MainBtn
-                    content={'Read more'}
-                    pressed={() => null}
-                    btnColor={'violet'}
-                    btnAppearance={'primary'}
-                    btnSize={'lg'}
-                    isBlock={false} />
+                {/*
+
+                  <MainBtn
+                  content={'Read more'}
+                  pressed={() => null}
+                  btnColor={'violet'}
+                  btnAppearance={'primary'}
+                  btnSize={'lg'}
+                  isBlock={false} />
+                */}
             </div>
         );
     }

@@ -56,19 +56,28 @@ class MovieCard extends React.Component<IProps, IState> {
                     <div className='overlay' style={styles.overlay}>
                       {
                         isMobile ? (
-                          <Button
-                          appearance='primary'
-                          className='r-btn r-main-btn'>
+                          <>
+                          {/*
+
+                            <Button
+                            appearance='primary'
+                            className='r-btn r-main-btn'>
                             Read more
-                          </Button>
+                            </Button>
+                        */}
+                          </>
                         ) : (
+                          <>
+                          {/*
                           <MainBtn
-                            content={'Read more'}
-                            pressed={() => null}
-                            btnColor='violet'
-                            btnAppearance='primary'
-                            btnSize='lg'
-                            isBlock={false} />
+                          content={'Read more'}
+                          pressed={() => null}
+                          btnColor='violet'
+                          btnAppearance='primary'
+                          btnSize='lg'
+                          isBlock={false} />
+                        */}
+                          </>
                         )
                       }
 
@@ -91,12 +100,15 @@ class MovieCard extends React.Component<IProps, IState> {
                       <p  className='mb-1 extras'>
                           Release date: {this.state.movie?.releaseDate.split(' ').slice(1).join(' ')}
                       </p>
-                      <Button
-                      appearance='primary'
-                      className='r-btn r-main-btn'
-                      >
+                      {/*
+
+                        <Button
+                        appearance='primary'
+                        className='r-btn r-main-btn'
+                        >
                         Read more
                       </Button>
+                      */}
                     </div>
                   ) : null}
                 </div>

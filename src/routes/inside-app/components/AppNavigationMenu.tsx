@@ -46,13 +46,15 @@ const AppNavigationMenu: FunctionComponent<IProps> = (props) => {
                     </Nav.Item>
                       <Nav.Item as={Link} to={`/app/profile/${auth.currentUser?.uid}`} eventKey='3' className='d-flex  align-center justify-start' style={styles.navLink}>
                           <USER className='mr-1' /> {en ? dashboardStrings.navbarEN.acc : dashboardStrings.navbarDE.acc}
-                      </Nav.Item>
-                    <Nav.Item className='d-flex  align-center justify-start' style={styles.navLink}>
+                      </Nav.Item>{
+                        /*
+                        <Nav.Item className='d-flex  align-center justify-start' style={styles.navLink}>
                         <UsersIcon className='mr-1' /> {en ? dashboardStrings.navbarEN.nw : dashboardStrings.navbarDE.nw}
-                    </Nav.Item>
-                    <Nav.Item className='mb-3 d-flex  align-center justify-start' style={styles.navLink}>
+                        </Nav.Item>
+                        <Nav.Item className='mb-3 d-flex  align-center justify-start' style={styles.navLink}>
                         <MessageIcon className='mr-1' /> {en ? dashboardStrings.navbarEN.event : dashboardStrings.navbarDE.event}
-                    </Nav.Item>
+                        </Nav.Item>
+                      */}
 
                     <Button
                     className='mt-2'

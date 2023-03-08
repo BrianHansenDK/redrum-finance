@@ -20,7 +20,8 @@ const AboutUsPage: React.FunctionComponent<IProps> = (props) => {
         <MainLayout en={en} setEn = {setEn} isVisible={isVisible} openModal={openModal} closeModal={closeModal} dark={true}>
             <BlockL
                 img={IMG1}
-                title={'About Redrum'}
+                title={en ? '...write a piece of film history for eternity.' :
+                 '...ein Stück Filmgeschichte für die Ewigkeit.'}
                 txt={<p>
                   {en ? aboutUsStrings.section1EN.p1 : aboutUsStrings.section1DE.p1}
                   <br/> <br/>
@@ -29,19 +30,16 @@ const AboutUsPage: React.FunctionComponent<IProps> = (props) => {
             />
             <BlockR
                 img={IMG2}
-                title={null}
+                title={en ? aboutUsStrings.section2EN.fat : aboutUsStrings.section2DE.fat}
                 txt={
                     <p>
-                      <span className='bold'>
-                        {en ? aboutUsStrings.section2EN.fat : aboutUsStrings.section2DE.fat} &nbsp;
-                      </span>
                       {en ? aboutUsStrings.section2EN.p1 : aboutUsStrings.section2DE.p1}
                     </p>
                 }
             />
             <BlockL
                 img={IMG3}
-                title={null}
+                title={en ? aboutUsStrings.section3EN.title : aboutUsStrings.section3DE.title}
                 txt={<p >
                   {en ? aboutUsStrings.section3EN.p1 : aboutUsStrings.section3DE.p1}
                     <br /> <br />

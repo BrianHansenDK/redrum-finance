@@ -21,7 +21,7 @@ export const navbarStrings = {
 
 export const homeStrings = {
   heroEN: {
-    slogan: 'Experience your favorite Redrum books on the big screen - invest now.',
+    slogan: 'Experience your favorite Redrum books on the big screen!',
     investBtn: 'Invest now',
     worksBtn: 'how it works',
     userStat: 'Users',
@@ -29,7 +29,7 @@ export const homeStrings = {
     averageInvStat: 'Average investment'
   },
   heroDE: {
-    slogan: 'Erlebe Deine Lieblings-Redrum-Bücher auf der großen Leinwand - investiere jetzt.',
+    slogan: 'Erlebe Deine Lieblings-Redrumbücher auf der großen Leinwand!',
     investBtn: 'Jetzt investieren',
     worksBtn: 'So funktioniert\'s',
     userStat: 'Nutzer',
@@ -63,7 +63,7 @@ export const homeStrings = {
     t4: 'Schreibe mit uns Filmgeschichte',
   },
   appTeaserEn: 'Easily download the Redrum Pro app',
-  appTeaserDe: 'Problemlos die Redrum Pro-App herunterladen',
+  appTeaserDe: 'Jetzt die Redrum Pro-App herunterladen',
   ctaDownEN: {
     title: 'Start today',
     btn: 'Become a producer',
@@ -77,59 +77,60 @@ export const homeStrings = {
 export const aboutUsStrings = {
   section1EN: {
     p1: [
-      'The Redrum Pro app was founded with the aim that every small and large investor can',
-      'participate in a unique film production with just a few clicks. In addition to investing in a',
+      'The Redrum Pro app was founded with the aim that every small and large investor can ',
+      'participate in a unique film production with just a few clicks. In addition to investing in a ',
       'profitable capital investment, every single investor writes a piece of film history for eternity.',
   ],
     p2: [
-      'A film production is not easy to realise. It takes much more than just a good idea. It needs a',
-      'concept, script, director, cameraman, actors and much more. What is needed above all is the',
-      'necessary capital, expertise and time. The costs of a film production are so high that',
-      'investing in such projects is reserved only for the big film studios, TV stations, streaming',
+      'A film production is not easy to realise. It takes much more than just a good idea. It needs a ',
+      'concept, script, director, cameraman, actors and much more. What is needed above all is the ',
+      'necessary capital, expertise and time. The costs of a film production are so high that ',
+      'investing in such projects is reserved only for the big film studios, TV stations, streaming ',
       'services and wealthy private investors.',
     ]
   },
   section1DE: {
     p1: [
-      'Die Redrum Pro-App wurde mit dem Ziel gegründet, dass jeder Klein- und Großanleger sich',
-      'mit nur wenigen Klicks an einer einzigartigen Filmproduktion beteiligen kann. Neben dem',
-      'Investment in eine gewinnbringende Kapitalanlage, schreibt jeder einzelne Investor ein',
+      'Die Redrum Pro-App wurde mit dem Ziel gegründet, dass jeder Klein- und Großanleger sich ',
+      'mit nur wenigen Klicks an einer einzigartigen Filmproduktion beteiligen kann. Neben dem ',
+      'Investment in eine gewinnbringende Kapitalanlage, schreibt jeder einzelne Investor ein ',
       'Stückchen Filmgeschichte für die Ewigkeit.',
     ],
     p2: [
-      'Eine Filmproduktion ist nicht leicht zu realisieren. Es braucht viel mehr als nur eine gute Idee.',
-      'Es braucht ein Konzept, Drehbuch, Regisseur, Kameramann, Schauspieler und vieles mehr.',
-      'Was man vor allem braucht, ist das nötige Kapital, Expertise und Zeit. Der Aufwand einer',
-      'Filmproduktion ist dabei so hoch, dass die Investition in solche Projekte lediglich den großen',
-      'Filmstudios, Fernsehsendern, Streamingdiensten und wohlhabenden Privatinvestoren',
+      'Eine Filmproduktion ist nicht leicht zu realisieren. Es braucht viel mehr als nur eine gute Idee. ',
+      'Es braucht ein Konzept, Drehbuch, Regisseur, Kameramann, Schauspieler und vieles mehr. ',
+      'Was man vor allem braucht, ist das nötige Kapital, Expertise und Zeit. Der Aufwand einer ',
+      'Filmproduktion ist dabei so hoch, dass die Investition in solche Projekte lediglich den großen ',
+      'Filmstudios, Fernsehsendern, Streamingdiensten und wohlhabenden Privatinvestoren ',
       'vorbehalten ist.',
     ]
   },
   section2EN: {
     fat: 'Never before',
     p1: [
-      'have small investors had the opportunity to participate directly in a promising',
-      'film production from the very beginning. Anyone who, as a budding film producer, could',
-      'independently raise the money for a film production was confronted with many problems',
-      'during the production. Due to the lack of contacts or partners, the financial risk lay solely with',
-      'him. Building a professional team takes a lot of time and experience, and once the team had',
-      'finished the production, the film had to be successfully marketed and distributed both',
+      'have small investors had the opportunity to participate directly in a promising ',
+      'film production from the very beginning. Anyone who, as a budding film producer, could ',
+      'independently raise the money for a film production was confronted with many problems ',
+      'during the production. Due to the lack of contacts or partners, the financial risk lay solely with ',
+      'him. Building a professional team takes a lot of time and experience, and once the team had ',
+      'finished the production, the film had to be successfully marketed and distributed both ',
       'nationally and internationally.',
     ],
   },
   section2DE: {
     fat: 'Noch nie zuvor',
     p1: [
-      'hatten Kleinanleger die Möglichkeit, sich von Anfang an direkt an einer',
-      'vielversprechenden Filmproduktion zu beteiligen. Wer als angehender Filmproduzent',
-      'eigenständig das Geld für eine Filmproduktion aufbringen konnte, war bei der Produktion mit',
-      'vielen Problemen konfrontiert. Durch das Fehlen von Kontakten oder Partnern, lag das',
-      'finanzielle Risiko allein bei ihm. Der Aufbau eines professionellen Teams benötigt viel Zeit',
-      'und Erfahrung, und hat das Team die Produktion erst einmal beendet, galt es den Film',
-      'erfolgreich sowohl national als auch international zu vermarkten und zu vertreiben.',
+      'hatten Kleinanleger die Möglichkeit, sich von Anfang an direkt an einer ',
+      'vielversprechenden Filmproduktion zu beteiligen. Wer als angehender Filmproduzent ',
+      'eigenständig das Geld für eine Filmproduktion aufbringen konnte, war bei der Produktion mit ',
+      'vielen Problemen konfrontiert. Durch das Fehlen von Kontakten oder Partnern, lag das ',
+      'finanzielle Risiko allein bei ihm. Der Aufbau eines professionellen Teams benötigt viel Zeit ',
+      'und Erfahrung, und hat das Team die Produktion erst einmal beendet, galt es den Film ',
+      'erfolgreich sowohl national als auch international zu vermarkten und zu vertreiben. ',
     ],
   },
   section3EN: {
+    title: 'Simple, Digital & Secure',
     p1: [
       'With the Redrum Pro app, we solve all these problems in one fell swoop. ',
       'We produce and distribute exclusive and unique film projects. ',
@@ -137,12 +138,13 @@ export const aboutUsStrings = {
       'Simple, digital and secure.',
     ],
     p2: [
-      'After that, it\'s a case of sitting back and letting time work for you. As soon as the film',
-      'production is exploited, our investors receive a fixed return on their invested capital in the',
+      'After that, it\'s a case of sitting back and letting time work for you. As soon as the film ',
+      'production is exploited, our investors receive a fixed return on their invested capital in the ',
       'first year and can profit from the respective profit distributions in the following years.',
     ],
   },
   section3DE: {
+    title: 'Einfach, Digital & Sicher',
     p1: [
       'Mit der Redrum Pro-App lösen wir all diese Probleme auf einen Schlag. ',
       'Wir produzieren und vertreiben exklusive und einzigartige Filmprojekte. ',
@@ -150,9 +152,9 @@ export const aboutUsStrings = {
       'Einfach, digital und sicher.',
     ],
     p2: [
-      'Danach heißt es: zurücklehnen und die Zeit für sich arbeiten lassen. Sobald die',
-      'Filmproduktion verwertet wird, erhalten unsere Investoren im ersten Jahr eine feste Rendite',
-      'auf ihr angelegtes Kapital und können in den darauffolgenden Jahren von den jeweiligen',
+      'Danach heißt es: zurücklehnen und die Zeit für sich arbeiten lassen. Sobald die ',
+      'Filmproduktion verwertet wird, erhalten unsere Investoren im ersten Jahr eine feste Rendite ',
+      'auf ihr angelegtes Kapital und können in den darauffolgenden Jahren von den jeweiligen ',
       'Gewinnausschüttungen profitieren.',
     ],
   },
@@ -168,16 +170,16 @@ export const whyMoviesStrings = {
     sentence: 'Warum sollte ich in einen Film investieren, anstatt eine Coca Cola- oder Tesla-Aktie zu kaufen?'
   },
   opinionEn: [
-    'In our opinion, one does not exclude the other. A good and risk-minimised investment',
-    'portfolio should always be broadly diversified, be it shares, ETFs, real estate, precious',
-    'metals or cryptocurrencies. With its film projects, the Redrum Pro app offers not only an',
-    'exciting but also a potentially high-yield addition to any portfolio.',
+    'In our opinion, one does not exclude the other. A good and risk-minimised investment ',
+    'portfolio should always be broadly diversified, be it shares, ETFs, real estate, precious ',
+    'metals or cryptocurrencies. With its film projects, the Redrum Pro app offers not only an ',
+    'exciting but also a potentially high-yield addition to any portfolio. ',
   ],
   opinionDE: [
-    'Unserer Meinung nach schließt das eine das andere nicht aus. Ein gutes und',
-    'risikominimiertes Investmentportfolio sollte stets breit diversifiziert sein, seien es Aktien,',
-    'ETFs, Immobilien, Edelmetalle oder Kryptowährungen. Die Redrum Pro-App bietet mit ihren',
-    'Filmprojekten nicht nur eine spannende, sondern auch eine potenziell renditestarke',
+    'Unserer Meinung nach schließt das eine das andere nicht aus. Ein gutes und ',
+    'risikominimiertes Investmentportfolio sollte stets breit diversifiziert sein, seien es Aktien, ',
+    'ETFs, Immobilien, Edelmetalle oder Kryptowährungen. Die Redrum Pro-App bietet mit ihren ',
+    'Filmprojekten nicht nur eine spannende, sondern auch eine potenziell renditestarke ',
     'Ergänzung für jedes Portfolio.',
   ],
   industryEN: [

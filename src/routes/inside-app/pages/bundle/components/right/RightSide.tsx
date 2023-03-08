@@ -105,11 +105,11 @@ const RightSide: FunctionComponent<IProps> = (props) => {
                           openInvestModal :
                           openModal}
                         >
-                          Invest now
+                          {en ? 'Invest' : 'Investieren'}
                         </Button>
                       ) : (
                         <MainBtn
-                        content={'Invest now'}
+                        content={en ? 'Invest' : 'Investieren'}
                         pressed={today.getFullYear() - birthYear >= 18 ?
                           openInvestModal :
                           openModal}
