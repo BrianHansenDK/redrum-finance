@@ -4,6 +4,7 @@ import INVESTIMG from '../../../../../assets/investment_growth_icon.svg'
 import { Button, ButtonGroup, Form, InputNumber, Message, Modal, useToaster } from 'rsuite'
 import { auth, database, userRef } from '../../../../../firebase'
 import { mainColors } from '../../../themes/colors'
+import ContractModal from './ContractModal'
 
 interface IProps {
     project: any,
@@ -21,7 +22,9 @@ const InvestModal: React.FunctionComponent<IProps> = (props) => {
     useEffect(() => { userRef(auth.currentUser?.uid, '/money_available', setAvailable) }, [])
 
     const toaster = useToaster()
-
+    const [contractOpen, setContractOpen] = useState<boolean>(false)
+    const openContractModal = () => setContractOpen(true)
+    const closeContractModal = () => setContractOpen(false)
     const onInvest = () => {
         // If no amount is entered
         if (parseInt(investAmount) == 0 || investAmount == null || investAmount == '') {
@@ -103,7 +106,10 @@ const InvestModal: React.FunctionComponent<IProps> = (props) => {
             showReciept()
         }
     }
+
+
     return (
+      <>
         <Modal open={visible} onClose={close}>
             <Modal.Header>
                 <Modal.Title>
@@ -126,7 +132,7 @@ const InvestModal: React.FunctionComponent<IProps> = (props) => {
             </Modal.Body>
             <Modal.Footer>
                 <ButtonGroup style={styles.btnWrap}>
-                    <Button onClick={onInvest} style={styles.btn} appearance='primary' color='blue'>
+                    <Button onClick={openContractModal} style={styles.btn} appearance='primary' color='blue'>
                     Order with obligation to pay
                     </Button>
                     <Button onClick={close} style={styles.btn} appearance='ghost' color='blue'>
@@ -135,6 +141,8 @@ const InvestModal: React.FunctionComponent<IProps> = (props) => {
                 </ButtonGroup>
             </Modal.Footer>
         </Modal>
+        <ContractModal project={project} isOpen={contractOpen} closeModal={closeContractModal} />
+      </>
     )
 }
 

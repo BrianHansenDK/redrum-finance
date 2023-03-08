@@ -64,9 +64,20 @@ class AccountMoneySection extends Component<IProps, IState> {
                     Projects you have invested in
                 </h1>
                 <div>
-                    {_projects.map((project) => (
-                        <ProjectDetail projectId={project} userId={userId} key={project}/>
-                    ))}
+                  {
+                    _projects ? (
+                      <>
+                        {_projects.map((project) => (
+                          <ProjectDetail projectId={project} userId={userId} key={project}/>
+                        ))}
+                      </>
+                    ) : (
+                      <div>
+                        No projects
+                      </div>
+                    )
+                  }
+
                 </div>
             </div>
         )

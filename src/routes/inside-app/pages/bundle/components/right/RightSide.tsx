@@ -101,14 +101,18 @@ const RightSide: FunctionComponent<IProps> = (props) => {
                         <Button
                         appearance='primary'
                         className='r-btn r-main-btn'
-                        onClick={age >= 18 && age !== null ? openModal : openInvestModal}
+                        onClick={today.getFullYear() - birthYear >= 18 ?
+                          openInvestModal :
+                          openModal}
                         >
                           Invest now
                         </Button>
                       ) : (
                         <MainBtn
                         content={'Invest now'}
-                        pressed={ age >= 18 && age !== null ? openModal : openInvestModal}
+                        pressed={today.getFullYear() - birthYear >= 18 ?
+                          openInvestModal :
+                          openModal}
                         btnColor='blue'
                         btnAppearance='primary'
                         btnSize='lg'
