@@ -1,7 +1,7 @@
 import React from 'react'
 import { FlexboxGrid, Button } from 'rsuite'
 import FlexboxGridItem from 'rsuite/esm/FlexboxGrid/FlexboxGridItem'
-import APP from '../../../components/images/redrum_app.png'
+import APP from '../../../assets/redrum-pro-app.svg'
 import GPLAY from '@rsuite/icons/legacy/Google'
 import APPLE from '@rsuite/icons/legacy/Apple'
 import '../styles/app-teaser.scss'

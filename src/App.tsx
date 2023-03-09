@@ -39,6 +39,8 @@ import AppRootIndexPage from './routes/inside-app/pages/dashboard/AppRootIndexPa
 import NotificationsPage from './routes/inside-app/pages/notifications/index.js';
 import './routes/inside-app/components/styles/redrum-pro.scss'
 import { useMediaQuery } from './misc/custom-hooks.js';
+import ImprintPage from './routes/imprint/Index.js';
+import EnglishPrivacyPolicy from './routes/privacy-policy/EnglishDocument.js';
 
 
 const App = () => {
@@ -104,9 +106,11 @@ const App = () => {
       <Route path='/how-it-works' element={<HowItWorksPage en={isEnglish} setEn={changeLan} isVisible={isVisible} openModal={openModal} closeModal={closeModal} />} />
       <Route path='/sign-in' element={<SignInPage en={isEnglish} setEn={changeLan} />} />
       <Route path='/sign-up' element={<SignUpPage en={isEnglish} setEn={changeLan} />} />
+      <Route path='/imprint' element={<ImprintPage en={isEnglish} setEn={changeLan} isOpen={isVisible} openModal={openModal} closeModal={closeModal}/>}/>
       <Route path='/terms-and-conditions' element={<TermsAndConditionsPage en={isEnglish} setEn={changeLan} isVisible={isVisible} openModal={openModal} closeModal={closeModal}/>} >
         <Route index element={<MovieTAC />} />
       </Route>
+      <Route path='/privacy-policy' element={isEnglish ? (<EnglishPrivacyPolicy en={isEnglish} setEn={changeLan} isVisible={isVisible} openModal={openModal} closeModal={closeModal}/>) : null} />
 
       <Route path='/account' element={<AuthRoute link='/sign-in'> <AccountPage /> </AuthRoute>} />
       <Route path='/test' element={<TestPage />} />

@@ -7,8 +7,12 @@ import '../styles/hero.scss'
 import Statistics from './statistics'
 import Waves from './waves'
 import { homeStrings } from '../../../library/string/Landinspage'
+import { useNavigate } from 'react-router-dom'
 
-const Hero = ({en} : {en: boolean}) => {
+interface IProps {en: boolean, openModal: any}
+const Hero: React.FunctionComponent<IProps> = (props) => {
+  const {en, openModal} = props
+  const navigate = useNavigate()
     return (
         <>
             <div id='hero-wrap' className=' hero-img'>
@@ -24,10 +28,18 @@ const Hero = ({en} : {en: boolean}) => {
                             {en ? homeStrings.heroEN.slogan : homeStrings.heroDE.slogan}
                         </div>
                         <div id='btn-group'>
-                            <Button appearance='primary' className=' shadow btn-1'>
+                            <Button
+                            onClick={openModal}
+                            appearance='primary'
+                            className='r-btn r-main-btn'
+
+                            >
                                 <MOUSE /> {en ? homeStrings.heroEN.investBtn : homeStrings.heroDE.investBtn}
                             </Button>
-                            <Button appearance='subtle' className=' ml-1 btn-2'>
+                            <Button
+                            onClick={() => navigate('/how-it-works')}
+                            appearance='subtle'
+                            className='ml-1 r-btn r-secondary-btn'>
                                 {en ? homeStrings.heroEN.worksBtn : homeStrings.heroDE.worksBtn}
                             </Button>
                         </div>

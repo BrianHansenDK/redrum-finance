@@ -10,6 +10,7 @@ import mainShadows from '../routes/inside-app/themes/shadows';
 import MenuIcon from '@rsuite/icons/Menu'
 import { useMediaQuery } from '../misc/custom-hooks';
 import PhoneNavMenu from './PhoneNavMenu';
+import NewAuthModal from '../routes/auth/authmodal/NewAuthModal';
 
 interface IProps {
   openModal: any, closeModal: Function, isVisible: any, dark: boolean, en: boolean, setEn: any
@@ -157,7 +158,8 @@ const MainNavbar: React.FunctionComponent<IProps> = (props) => {
                   </>
 
             </Navbar>
-            <AuthModal isVisible={isVisible} close={closeModal} en={en} />
+            {/*<AuthModal isVisible={isVisible} close={closeModal} en={en} />*/}
+            <NewAuthModal isOpen={isVisible} closeModal={closeModal} en={en}/>
         </>
     )
 }

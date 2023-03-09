@@ -1,14 +1,11 @@
-import { getDownloadURL, uploadBytes } from 'firebase/storage';
-import React, { useState } from 'react'
-import { Avatar, Button, Input, Loader, Message, Uploader, useToaster } from 'rsuite';
+import React from 'react'
 import PDFContractComponent from '../../components/ContractComponent';
 import { auth } from '../../firebase';
-import { storage, storageRef } from '../../firebaseStorage';
 import SignInForm from '../auth/components/signInForm';
-import { mainColors } from '../inside-app/themes/colors';
-import mainShadows from '../inside-app/themes/shadows';
 
-const TestPage = () => {
+interface IProps {}
+
+const TestPage: React.FunctionComponent<IProps> = (props) => {
   const date = new Date(Date.now())
     return (
       <div className='w-100 h-100'>

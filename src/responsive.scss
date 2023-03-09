@@ -217,7 +217,6 @@ $dark-shadow: rgba(0, 0, 29, .25);
   // Wrap
   & .r-showcase-con {
     padding: 100px 20px;
-    background: -webkit-linear-gradient(left, rgb(19, 22, 40) 0%, rgb(73, 75, 116) 100%);
     // APP img container
     & .r-showcase-img-con {
       order: 1;
@@ -230,7 +229,7 @@ $dark-shadow: rgba(0, 0, 29, .25);
     }
     // Title
     & h1 {
-      color: $white;
+      color: $dark;
       margin-bottom: 25px;
       @media screen and (max-width: 1100px) {
         text-align: center;
@@ -259,39 +258,6 @@ $dark-shadow: rgba(0, 0, 29, .25);
         width: 75%;
       }
     }
-    // Buttons
-    & .r-btns-con {
-      @media (min-width: 1600px) {
-        width: 600px;
-      }
-      & .r-showcase-btn {
-        background-color: rgb(11, 13, 22);
-        color: $white;
-        font-family: poppins;
-        padding: 15px 25px;
-        margin-top: 15px;
-        font-size: 25px;
-        font-weight: 600;
-        border-radius: 15px;
-        box-shadow: 0 3px 6px 0 rgba(0, 0, 29, .5);
-        transition: all 300ms ease-in-out;
-        @media screen and (max-width: 1100px) {
-          font-size: 22.5px;
-        }
-        @media screen and (min-width: 1600px) {
-          font-size: 35.5px;
-          padding: 25px 45px;
-        }
-        &:hover {
-          transform: scale(.95, .95) translateY(3px);
-          box-shadow: 0 2px 4px 0 rgba(0, 0, 29, .5);
-        }
-        &:active {
-          transform: scale(.9, .9) translateY(5px);
-          box-shadow: 0 1px 2px 0 rgba(0, 0, 29, .5);
-        }
-      }
-    }
   }
   // ----- CTA Down -----
   & .r-cta-down {
@@ -301,7 +267,6 @@ $dark-shadow: rgba(0, 0, 29, .25);
     align-items: center;
     justify-content: center;
   }
-
 
   // Components
   .r-main-title {
@@ -514,6 +479,7 @@ $dark-shadow: rgba(0, 0, 29, .25);
     font-size: small;
     background-color: $white;
     color: $dark;
+    font-weight: 700;
     box-shadow: 0 10px 20px 0 $dark-shadow;
     @media (min-width: 1600px) {
       font-size: 25px;
@@ -567,5 +533,35 @@ $dark-shadow: rgba(0, 0, 29, .25);
 .rs-navbar-nav.rs-nav.rs-nav-default {
   & .bundle-nav.active-nav-item {
     background-color: #e5e5ea;
+  }
+}
+
+
+// App Teaser
+// Buttons
+.r-btns-con {
+  display: flex;
+  flex-direction: column;
+  margin-top: 15px;
+  row-gap: 15px;
+  @media (max-width: 1100px) {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    column-gap: 25px;
+    & .phone-img-con {
+      width: 100%;
+      flex-shrink: 0;
+      & img {
+        width: 250px!important;
+        height: auto;
+      }
+    }
+  }
+  @media (min-width: 1600px) {
+    width: 600px;
+  }
+  & .app-btn {
+    width: 175px;
   }
 }

@@ -1,10 +1,10 @@
 import React from 'react'
 import { Button, FlexboxGrid } from 'rsuite'
 import { useMediaQuery } from '../../../misc/custom-hooks'
-import APP from '../../../components/images/redrum_app.png'
-import GPLAY from '@rsuite/icons/legacy/Google'
-import APPLE from '@rsuite/icons/legacy/Apple'
+import APP from '../../../assets/redrum-pro-app.svg'
 import { homeStrings } from '../../../library/string/Landinspage'
+import GoogleBtn from '../../../components/GoogleBtn'
+import AppleBtn from '../../../components/AppleBtn'
 
 const ResponsiveAppTeaser = ({en}: {en:boolean}) => {
   const isMobile = useMediaQuery('(max-width: 1100px)')
@@ -39,23 +39,8 @@ const ResponsiveAppTeaser = ({en}: {en:boolean}) => {
               />
             </div>
           ) : null}
-        <p className="r-sub-title mb-2">
-          Get it on
-        </p>
-        <Button
-        block
-        appearance='primary'
-        className='r-showcase-btn'
-        >
-          <GPLAY/> Google PLay
-        </Button> <br/>
-        <Button
-        block
-        appearance='primary'
-        className='r-showcase-btn'
-        >
-          <APPLE/> App Store
-        </Button>
+          <AppleBtn en={en}/>
+          <GoogleBtn en={en}/>
         </div>
       </FlexboxGrid.Item>
     </FlexboxGrid>

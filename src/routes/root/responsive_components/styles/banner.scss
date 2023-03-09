@@ -1,0 +1,30 @@
+$dark: #141628;
+$white: #FEFEFE;
+$dark-shadow: #1416287B;
+
+.app-teaser-banner {
+  background: -webkit-linear-gradient(left, rgb(19, 22, 40) 0%, rgb(73, 75, 116) 100%);
+  max-width: 1200px;
+  margin: auto;
+  padding: 50px 0;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 $dark-shadow;
+  @media (max-width: 1200px) {
+    width: 95%;
+  }
+  & .sentence {
+    color: $white;
+    text-align: center;
+    word-break: break-word;
+    font-family: Poppins;
+    font-size: 36px;
+    color: #fefefe;
+    line-height: 1;
+    @media (max-width: 1100px) {
+      font-size: 25px;
+    }
+    @media (max-width: 768px) {
+      font-size: 18px;
+    }
+  }
+}

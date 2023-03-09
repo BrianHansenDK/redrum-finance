@@ -3,11 +3,18 @@ import { Button, ButtonGroup, FlexboxGrid } from 'rsuite'
 import { homeStrings } from '../../../library/string/Landinspage'
 import CAT from '../../../components/images/redrum_cat.png'
 import { useMediaQuery } from '../../../misc/custom-hooks'
+import { useNavigate } from 'react-router-dom'
 
-const ResponsiveHero = ({en}: {en: boolean}) => {
+interface IProps {
+  en: boolean,
+  openModal: any,
+}
+const ResponsiveHero = (props: IProps) => {
+  const {en, openModal} = props
   const isPhone = useMediaQuery('(max-width: 768px)')
   const isMobile = useMediaQuery('(max-width: 1100px)')
   const isDesktop = useMediaQuery('(min-width: 1600px)')
+  const navigate = useNavigate()
   const styles = {
     wrap: {
       height: isMobile ? '100vh' : 'auto',
@@ -40,6 +47,7 @@ const ResponsiveHero = ({en}: {en: boolean}) => {
           className='r-btn r-main-btn'
           style={styles.btn}
           block={isMobile && !isPhone}
+          onClick={openModal}
           >
             {en ? homeStrings.heroEN.investBtn : homeStrings.heroDE.investBtn}
           </Button>
@@ -48,6 +56,7 @@ const ResponsiveHero = ({en}: {en: boolean}) => {
           className='r-btn r-secondary-btn'
           style={styles.btn}
           block={isMobile && !isPhone}
+          onClick={() => navigate('/how-it-works')}
           >
             {en ? homeStrings.heroEN.worksBtn : homeStrings.heroDE.worksBtn}
           </Button>

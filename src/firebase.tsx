@@ -33,6 +33,7 @@ export function writeUserData(
     profileCompletion: number) {
     const reference = ref(database, 'users/' + userId)
     set(reference, {
+        id: userId,
         username: name,
         email: email,
         completion: profileCompletion,

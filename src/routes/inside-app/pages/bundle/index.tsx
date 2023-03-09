@@ -4,6 +4,7 @@ import { Outlet, useParams } from 'react-router-dom'
 import { Col, Container, FlexboxGrid, Footer, Grid, Header, Row } from 'rsuite'
 import FlexboxGridItem from 'rsuite/esm/FlexboxGrid/FlexboxGridItem'
 import MainFooter from '../../../../components/footer'
+import Footer02 from '../../../../components/footer/Footer02'
 import { database } from '../../../../firebase'
 import AppNavBar from '../../components/AppNavBar'
 import { PROJECTS } from '../dashboard/components/util'
@@ -148,9 +149,7 @@ class ProjectDetailsPage extends React.Component<IProps, IState> {
                         <div style={styles.extrasWrap}>
                             <Outlet />
                         </div>
-                        <Footer className='dark-bg txt-white pd-page'>
-                            <MainFooter en={this.props.en} />
-                        </Footer>
+                        <Footer02 en={this.props.en}/>
                     </Container>
                 ) : null)}
             </>

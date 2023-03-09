@@ -1,6 +1,7 @@
 import React from 'react'
 import { Container, Content, Footer, Header } from 'rsuite'
 import MainFooter from '../../components/footer'
+import Footer02 from '../../components/footer/Footer02'
 import MainNavbar from '../../components/navbar'
 
 interface IProps {
@@ -17,9 +18,13 @@ const MainLayout: React.FunctionComponent<IProps> = (props) => {
             <Content>
                 {children}
             </Content>
+            <Footer02 en={en}/>
+            {/*
+
             <Footer style={styles.footer} className='dark-bg txt-white pd-page'>
                 <MainFooter en={en} />
             </Footer>
+            */}
         </Container>
     )
 }
