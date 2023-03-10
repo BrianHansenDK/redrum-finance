@@ -1,6 +1,7 @@
 import React from 'react'
 import { Button, ButtonGroup, FlexboxGrid } from 'rsuite'
 import { homeStrings } from '../../../library/string/Landinspage'
+import MOUSE from '@rsuite/icons/legacy/MousePointer'
 import CAT from '../../../components/images/redrum_cat.png'
 import { useMediaQuery } from '../../../misc/custom-hooks'
 import { useNavigate } from 'react-router-dom'
@@ -20,7 +21,7 @@ const ResponsiveHero = (props: IProps) => {
       height: isMobile ? '100vh' : 'auto',
     },
     btn: {
-      width: isMobile && !isPhone ? 'auto' : 'calc(50% - 12.5px)',
+      width: 'auto',
     }
   }
   return (
@@ -49,7 +50,7 @@ const ResponsiveHero = (props: IProps) => {
           block={isMobile && !isPhone}
           onClick={openModal}
           >
-            {en ? homeStrings.heroEN.investBtn : homeStrings.heroDE.investBtn}
+            {!isMobile ? (<MOUSE/>) : null} {en ? homeStrings.heroEN.investBtn : homeStrings.heroDE.investBtn}
           </Button>
           <Button
           appearance='primary'

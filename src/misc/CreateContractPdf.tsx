@@ -98,7 +98,8 @@ export function createContractPdf(en: boolean, date: Date, name: string, address
     doc.line(startPoint, 773, endPoint, 773)
 
     // Save Pdf
-    doc.save('redrum_test.pdf')
+    doc.save(en ? `withdrawal_formular_${name.split(' ').join('_').toLowerCase()}.pdf` :
+    `muster_widerrufsformular_${name.split(' ').join('_').toLowerCase()}.pdf`)
 }
 
 export default createContractPdf

@@ -35,14 +35,14 @@ const SharesTable = () => {
         if (share.movie === lst[0].movie && i > 0) {
           lst[0].amount += share.amount
         }
-        if (share.movie === lst[1].movie && i > 1) {
+        /*if (share.movie === lst[1].movie && i > 1) {
           lst[1].amount += share.amount
         }
         if (share.movie === lst[2].movie && i > 2) {
           lst[2].amount += share.amount
-        }
+        }*/
       })
-      setShares(lst.slice(0,3))
+      setShares(lst /*.slice(0,3)*/)
     })
     // Set shares
     // Get investments

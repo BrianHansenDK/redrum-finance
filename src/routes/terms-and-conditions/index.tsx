@@ -42,9 +42,6 @@ const TermsAndConditionsPage: FunctionComponent<IProps> = (props) => {
           </Nav>
         </Sidenav.Body>
       </Sidenav>
-      <h1 style={styles.pageTitle} className='text-center'>
-        Allgemeine Geschäftsbedingungen der Redrum Pro GmbH (im Folgenden Redrum Pro genannt)
-      </h1>
       <div style={styles.contentWrap}>
         <Outlet />
       </div>

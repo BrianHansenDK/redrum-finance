@@ -1,18 +1,18 @@
 import React from 'react'
 import { Button, Input, Message, Modal, useToaster } from 'rsuite'
-import { FirebaseBundle } from '../../../../../database/Objects'
-import createContractPdf from '../../../../../misc/CreateContractPdf'
-import { mainColors } from '../../../themes/colors'
-import PushThemes from '../../../themes/PushThemes'
+import { FirebaseBundle } from '../../database/Objects'
+import createContractPdf from '../../misc/CreateContractPdf'
+import { mainColors } from '../inside-app/themes/colors'
+import PushThemes from '../inside-app/themes/PushThemes'
 
 interface IProps {
-  project: FirebaseBundle,
   isOpen: boolean,
   closeModal: any,
+  en: boolean,
 }
 
-const ContractModal: React.FunctionComponent<IProps> = (props) => {
-  const {project, isOpen, closeModal} = props
+const DocumentModal: React.FunctionComponent<IProps> = (props) => {
+  const {isOpen, closeModal, en} = props
   const [fullName, setFullName] = React.useState<any>('')
   const [address, setAddress] = React.useState<any>('')
   const today = new Date(Date.now())
@@ -36,42 +36,44 @@ const ContractModal: React.FunctionComponent<IProps> = (props) => {
           <p style={PushThemes.txt}>Error: {errorMessage}</p>
         </Message>, {placement: 'bottomCenter'}
       )
-      window.setTimeout(() => {
+     /* window.setTimeout(() => {
         toaster.clear()
-      },8000)
+      },8000)*/
     }
     else {
-      createContractPdf(true, today, fullName, address)
+      createContractPdf(en, today, fullName, address)
     }
   }
   return (
     <Modal open={isOpen} onClose={closeModal}>
       <Modal.Header>
         <Modal.Title>
-          Contract
+          {en ? 'Document' : 'Dokument'}
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <p>
-          Before buying stocks for {project.name}, you will need to sign the related contract. <br/>
-          Before signing we will need the current information from you:
+          {en ?
+          'Before downloading the Document insert your full name and your address below:' :
+          'Bevor Sie das Dokument herunterladen, geben Sie unten Ihren vollständigen Namen und Ihre Adresse ein:'
+          }
         </p>
         <div>
-          <label style={styles.label}>Full name:</label>
+          <label style={styles.label}>{en ? 'Full name' : 'Voller Name'}:</label>
           <Input placeholder='Your full name' onChange={setFullName}/>
         </div>
         <div>
-          <label style={styles.label}>Address:</label>
+          <label style={styles.label}>{en ? 'Address' : 'Adresse'}:</label>
           <Input placeholder='Hauptstr. 26, 10827 Berlin' onChange={setAddress}/>
         </div>
       </Modal.Body>
       <Modal.Footer>
         <div>
           <Button appearance='primary' className='r-btn r-main-btn' onClick={downloadContract}>
-            Download Contract
+            {en ? 'Download Document' : 'Dokument herunterladen'}
           </Button>
-          <Button appearance='primary' className='r-btn r-secondary-btn'>
-            Cancel
+          <Button appearance='primary' className='r-btn r-secondary-btn' onClick={closeModal}>
+            {en ? 'Back' : 'Zurück'}
           </Button>
         </div>
       </Modal.Footer>
@@ -87,4 +89,4 @@ const styles = {
   }
 }
 
-export default ContractModal
+export default DocumentModal

@@ -14,11 +14,19 @@ export function toFixedIfNecessary(value: any, dp: any) {
     return +parseFloat(value).toFixed(dp);
 }
 
-export function numberWithCommas(x: number) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+export function numberWithCommas(x: number | string) {
+  if (x) {
+    return typeof x == 'number' ?
+      x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") :
+      x.replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+  } else return 0
 }
-export function numberWithCommasAsString(x: string) {
-  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+export function numberWithCommasAsString(x: string | number) {
+  if (x) {
+    return typeof x == 'number' ?
+    x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") :
+    x.replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+  } else return 0
 }
 
 export const useMediaQuery = (query: any) => {

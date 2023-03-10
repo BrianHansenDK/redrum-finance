@@ -18,8 +18,10 @@ const EnglishPrivacyPolicy = (props: IProps) => {
     dark={true} en={en} setEn={setEn}>
     <div className="WordSection1">
 
-<p className="MsoNormal"><b><span >Privacy
-&amp; Data Protection</span></b></p>
+<h1 className="r-main-title"><b><span>Privacy
+&amp; Data Protection</span></b></h1>
+
+<div className="inner">
 
 <p className="MsoNormal"><span >&nbsp;</span></p>
 
@@ -1092,7 +1094,7 @@ the German Association for Data Protection, in cooperation with the </span><span
 Rechtsanwälte from Cologne.</span></p>
 
 <p className="MsoNormal">&nbsp;</p>
-
+</div>
 </div>
 </MainLayout>
   )

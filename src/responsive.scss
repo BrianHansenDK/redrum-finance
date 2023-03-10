@@ -102,8 +102,11 @@ $dark-shadow: rgba(0, 0, 29, .25);
         padding: 50px 0 50px;
         justify-content: space-evenly;
       }
+      @media screen and (min-width: 1600px) {
+        align-items: flex-start;
+      }
       // Tilte
-      .r-hero-title {
+      & .r-hero-title.r-main-title {
         font-family: poppins;
         color: $white;
         text-align: center;
@@ -559,7 +562,6 @@ $dark-shadow: rgba(0, 0, 29, .25);
     }
   }
   @media (min-width: 1600px) {
-    width: 600px;
   }
   & .app-btn {
     width: 175px;

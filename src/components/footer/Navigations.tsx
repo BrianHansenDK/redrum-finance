@@ -40,11 +40,17 @@ const Navigations: React.FunctionComponent<IProps> = (props) => {
         <Nav.Item as={Link} to='/terms-and-conditions'>
           AGBs
         </Nav.Item>
-        <Nav.Item>
+        <Nav.Item as={Link} to={'/privacy-policy'}>
           {en ? 'Dataprotection' : 'Datenschutz'}
         </Nav.Item>
         <Nav.Item as={Link} to='/imprint'>
           {en ? 'Imprint' : 'Impressum'}
+        </Nav.Item>
+        <Nav.Item as={Link} to='/public-relations'>
+          Public Relations
+        </Nav.Item>
+        <Nav.Item as={Link} to='/withdrawal-rights'>
+          {en ? 'Withdrawal Rights' : 'Widerrufsrecht'}
         </Nav.Item>
       </Nav>
     </FlexboxGridItem>

@@ -7,7 +7,7 @@ const Stat = ({ icon, title, stats }: {icon:string, title:string, stats:string})
   const isDesktop = useMediaQuery('(min-width: 1600px)')
   const styles = {
     wrap: {
-      width: isMobile ? 250 : 320,
+      width: isMobile ? 250 : isDesktop ? 450 : 320,
       margin: '15px auto',
       top: isDesktop ? -110 : 0,
     }

@@ -41,6 +41,11 @@ import './routes/inside-app/components/styles/redrum-pro.scss'
 import { useMediaQuery } from './misc/custom-hooks.js';
 import ImprintPage from './routes/imprint/Index.js';
 import EnglishPrivacyPolicy from './routes/privacy-policy/EnglishDocument.js';
+import GermanPrivacyPolicy from './routes/privacy-policy/GermanDocument.js';
+import EnglishRelations from './routes/public-relations/EnglishDocument.js';
+import GermanRelations from './routes/public-relations/GermanDocument.js';
+import EnglishWithdrawalRights from './routes/withdrawal-rights/EnglishDocument.js';
+import GermanWithdrawalRights from './routes/withdrawal-rights/GermanDocument.js';
 
 
 const App = () => {
@@ -106,11 +111,26 @@ const App = () => {
       <Route path='/how-it-works' element={<HowItWorksPage en={isEnglish} setEn={changeLan} isVisible={isVisible} openModal={openModal} closeModal={closeModal} />} />
       <Route path='/sign-in' element={<SignInPage en={isEnglish} setEn={changeLan} />} />
       <Route path='/sign-up' element={<SignUpPage en={isEnglish} setEn={changeLan} />} />
+
+      {/*Rights and other juristictional documents */}
       <Route path='/imprint' element={<ImprintPage en={isEnglish} setEn={changeLan} isOpen={isVisible} openModal={openModal} closeModal={closeModal}/>}/>
       <Route path='/terms-and-conditions' element={<TermsAndConditionsPage en={isEnglish} setEn={changeLan} isVisible={isVisible} openModal={openModal} closeModal={closeModal}/>} >
         <Route index element={<MovieTAC />} />
       </Route>
-      <Route path='/privacy-policy' element={isEnglish ? (<EnglishPrivacyPolicy en={isEnglish} setEn={changeLan} isVisible={isVisible} openModal={openModal} closeModal={closeModal}/>) : null} />
+      <Route path='/privacy-policy' element={isEnglish ? (
+      <EnglishPrivacyPolicy en={isEnglish} setEn={changeLan} isVisible={isVisible} openModal={openModal} closeModal={closeModal}/>) : (
+      <GermanPrivacyPolicy en={isEnglish} setEn={changeLan} isVisible={isVisible} openModal={openModal} closeModal={closeModal}/>) }
+      />
+      <Route path="/public-relations" element={isEnglish ? (
+        <EnglishRelations en={isEnglish} setEn={changeLan} isVisible={isVisible} openModal={openModal} closeModal={closeModal}/>) : (
+        <GermanRelations en={isEnglish} setEn={changeLan} isVisible={isVisible} openModal={openModal} closeModal={closeModal}/> )}
+      />
+      <Route path="/withdrawal-rights" element={isEnglish ? (
+        <EnglishWithdrawalRights en={isEnglish} setEn={changeLan} isVisible={isVisible} openModal={openModal} closeModal={closeModal}/>
+      ) : (
+        <GermanWithdrawalRights en={isEnglish} setEn={changeLan} isVisible={isVisible} openModal={openModal} closeModal={closeModal}/>
+      )}
+      />
 
       <Route path='/account' element={<AuthRoute link='/sign-in'> <AccountPage /> </AuthRoute>} />
       <Route path='/test' element={<TestPage />} />
