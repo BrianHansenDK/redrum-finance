@@ -27,8 +27,10 @@ const TermsAndConditionsPage: FunctionComponent<IProps> = (props) => {
     en={en}
     setEn={setEn}
     >
+        {/*
       <Sidenav style={styles.dashboard} className='position-fixed'>
-        <Sidenav.Body>
+
+          <Sidenav.Body>
           <Nav>
             <Nav.Item icon={<DashboardIcon />}>
               Film
@@ -42,7 +44,8 @@ const TermsAndConditionsPage: FunctionComponent<IProps> = (props) => {
           </Nav>
         </Sidenav.Body>
       </Sidenav>
-      <div style={styles.contentWrap}>
+        */}
+      <div className='tac-page'>
         <Outlet />
       </div>
     </MainLayout>
@@ -66,10 +69,6 @@ const styles = {
     paddingTop: 100,
     zIndex: 2,
   },
-  contentWrap: {
-    paddingLeft: 200,
-    paddingRight: 200,
-  }
 }
 
 export default TermsAndConditionsPage

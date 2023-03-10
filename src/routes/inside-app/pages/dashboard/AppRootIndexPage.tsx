@@ -9,6 +9,7 @@ import BannerComponent from './components/banner'
 
 const AppRootIndexPage = ({en}: {en: boolean}) => {
   const isMobile = useMediaQuery('(max-width: 1100px)')
+  const labtop = useMediaQuery('(max-width: 1400px)')
   const navigate = useNavigate()
   return (
     <>

@@ -1,14 +1,16 @@
 import React from 'react'
 import MovieDocViewerDE from '../../components/documentviewer/MovieDocViewerDE'
+import { useMediaQuery } from '../../misc/custom-hooks'
 import { mainP } from '../inside-app/themes/textStyles'
 import './styles/tac.scss'
 
 const MovieTAC = () => {
+  const isMobile = useMediaQuery('(max-width: 1100px)')
   return (
     <div className="WordSection1">
 
-<h1 className="r-main-title"><b><span lang="DE" >Allgemeine
-Geschäftsbedingungen der Redrum Pro GmbH (im Folgenden Redrum Pro genannt)</span></b></h1>
+<h1 className="r-main-title"><b><span lang="DE" >
+{isMobile ? 'AGBs' : 'Allgemeine Geschäftsbedingungen'} der Redrum Pro GmbH (im Folgenden Redrum Pro genannt)</span></b></h1>
 <div className="inner">
 
 <p className="MsoNormal"><span lang="DE">&nbsp;</span></p>

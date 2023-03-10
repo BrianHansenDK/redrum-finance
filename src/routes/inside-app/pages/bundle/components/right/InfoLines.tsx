@@ -14,9 +14,9 @@ const InfoLines = ({ project, en }: { project: any, en: boolean }) => {
             title={en ? bundleStrings.infoCardEN.iD : bundleStrings.infoCardDE.iD}
             info={
               [
-                end.toLocaleDateString().split('/').map((x) => parseInt(x) < 10 ? x = `0${x}` : x)[1],
-                end.toLocaleDateString().split('/').map((x) => parseInt(x) < 10 ? x = `0${x}` : x)[0],
-                end.toLocaleDateString().split('/').map((x) => parseInt(x) < 10 ? x = `0${x}` : x)[2],
+                end.toLocaleDateString().split('/').map((x) => parseInt(x) < 10 ? x = `0${x[1]}` : x)[1],
+                end.toLocaleDateString().split('/').map((x) => parseInt(x) < 10 ? x = `0${x[0]}` : x)[0],
+                end.toLocaleDateString().split('/').map((x) => parseInt(x) < 10 ? x = `0${x[2]}` : x)[2],
               ].join('.')
             }
             />

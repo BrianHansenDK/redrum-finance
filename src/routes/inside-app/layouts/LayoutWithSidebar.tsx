@@ -9,6 +9,7 @@ export interface ILayoutWithSidebarProps { children: any, en: boolean, setEn: an
 const LayoutWithSidebar: React.FunctionComponent<ILayoutWithSidebarProps> = (props) => {
     const { children, en, setEn } = props
     const isMobile = useMediaQuery('(max-width: 1100px)')
+    const labtop = useMediaQuery('(max-width: 1400px)')
     const [menuOpen, setMenuOpen] = React.useState<boolean>(false)
     const [navOpen, setNavOpen] = React.useState(false)
     const openMenu = () => setMenuOpen(true)
@@ -21,7 +22,7 @@ const LayoutWithSidebar: React.FunctionComponent<ILayoutWithSidebarProps> = (pro
             flex: 1,
             paddingTop: 125,
             paddingLeft: isMobile ? 20 : 300,
-            paddingRight: isMobile ? 20 : 300,
+            paddingRight: isMobile ? 20 : labtop ? 0 : 300,
         },
     }
 

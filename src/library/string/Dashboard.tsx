@@ -1,7 +1,7 @@
 const dashboardStrings = {
   navbarEN: {
     home: 'Dashboard',
-    acc: 'My account',
+    acc: 'My Account',
     not: 'Notifications',
     nw: 'Network',
     event: 'Messages',
@@ -9,7 +9,7 @@ const dashboardStrings = {
   },
   navbarDE: {
     home: 'Dashboard',
-    acc: 'Mein account',
+    acc: 'Mein Account',
     not: 'Benachrichtigungen',
     nw: 'Netzwerk',
     event: 'Nachrichten',

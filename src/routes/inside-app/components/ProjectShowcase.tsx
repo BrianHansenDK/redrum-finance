@@ -51,6 +51,7 @@ class ProjectShowcase extends React.Component<IProps, IState> {
             boxShadow: mainShadows.card,
             textDecoration: 'none',
             marginBottom: isMobile ? 35 : 50,
+            maxWidth: 800,
         },
         intro: {
             flex: 1,
@@ -93,8 +94,8 @@ class ProjectShowcase extends React.Component<IProps, IState> {
                         key={project.id}>
                         <div style={{
                             borderRadius: '10px 10px 0 0',
-                            width: '100 %',
-                            height: isMobile ? 250 : 355,
+                            width: '100%',
+                            height: isMobile ? 'calc(100vw * .45)' : 500,
                             backgroundImage: 'url(' + project.banner + ')',
                             backgroundSize: 'cover',
                         }}>
