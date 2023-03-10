@@ -4,13 +4,14 @@ $dark-shadow: #1416287B;
 
 .app-teaser-banner {
   background: -webkit-linear-gradient(left, rgb(19, 22, 40) 0%, rgb(73, 75, 116) 100%);
-  max-width: 1200px;
+  width: 100%;
   margin: auto;
   padding: 50px 0;
+  /* max-width: 1200px;
   border-radius: 10px;
-  box-shadow: 0 4px 8px 0 $dark-shadow;
+  box-shadow: 0 4px 8px 0 $dark-shadow; */
   @media (max-width: 1200px) {
-    width: 95%;
+    // width: 95%;
     padding: 50px 10px;
   }
   & .sentence {

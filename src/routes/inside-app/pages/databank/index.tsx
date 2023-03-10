@@ -21,7 +21,7 @@ const DatabankPage = ({en} : {en: boolean}) => {
   }, [auth])
   return (
     <>
-      <RecieptsList investments={investments}/>
+      <RecieptsList en={en} investments={investments}/>
     </>
   )
 }

@@ -17,6 +17,7 @@ interface IProps {
 
 const AuthModalInputs: React.FunctionComponent<IProps> = (props) => {
   const {en, visible, signupPage, handleChange} = props
+  const [userName, setUserName] = React.useState<any>('')
   const [userEmail, setUserEmail] = React.useState<any>('')
   const [userPassword, setUserPassword] = React.useState<any>('')
 
@@ -51,6 +52,12 @@ const AuthModalInputs: React.FunctionComponent<IProps> = (props) => {
 }
   return (
     <div className={`inputs-con`}>
+      { signupPage ? (
+        <div className="input-element">
+        <label>{en ? signUpModalStrings.EN.un : signUpModalStrings.DE.un}</label>
+        <Input placeholder={en ? 'Your Usernamer' : 'Dein Benutzername'} onChange={setUserEmail}/>
+      </div>
+          ) : null }
       <div className="input-element">
         <label>{en ? signUpModalStrings.EN.mail : signUpModalStrings.DE.mail}</label>
         <Input placeholder={en ? 'Your email' : 'Dein Email'} onChange={setUserEmail}/>

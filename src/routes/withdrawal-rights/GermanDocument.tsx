@@ -80,18 +80,18 @@ zur Prüfung der Beschaffenheit, Eigenschaften und Funktionsweise der Waren
 nicht notwendigen Umgang mit ihnen zurückzuführen ist.<br/>
 &nbsp; </span></p>
 
-<p className="MsoNormal"><span>Muster-Widerrufsformular</span></p>
+<h4 className="MsoNormal"><span>Muster-Widerrufsformular</span></h4>
 
-<p className="MsoNormal"><span >Unser Muster-Widerrufsformular im PDF-Format: DOWNLOAD
+<p className="MsoNormal"><span >Unser Muster-Widerrufsformular im PDF-Format:
   <Button appearance='link' onClick={openDocumentModal}>
-    <span>(Formular ist im AnhanG)</span>
-  </Button><br/>
+    DOWNLOAD
+  </Button>
 <br/>
 <br/>
 Um die zum Download angebotenen PDF-Dateien zu öffnen, benötigen Sie ein
 Zusatzprogramm, wie zum Beispiel den Adobe Reader, welchen Sie im Internet
 kostenfrei herunterladen können. Die aktuelle Version des Adobe Readers finden
-Sie <i>hier</i>.</span></p>
+Sie <a href="https://get.adobe.com/de/reader" target='_blank' rel='noreferrer'>hier</a>.</span></p>
 </div>
 </div>
 <DocumentModal en={en} isOpen={DocumentOpen} closeModal={closeDocumentModal}/>

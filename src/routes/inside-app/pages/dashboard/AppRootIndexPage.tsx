@@ -15,29 +15,14 @@ const AppRootIndexPage = ({en}: {en: boolean}) => {
       <BannerComponent isMobile={isMobile} />
       <ProjectShowcase en={en} isMobile={isMobile} />
       <div className={isMobile ? 'mb-4' : 'pl-2 pt-3 pr-2 pb-3'}>
-        {
-          isMobile ? (
-            <Button
-            appearance='primary'
-            className='r-btn r-main-btn'
-            block
-            onClick={() => navigate('/how-it-works')}
-            >
-              {en ? navbarStrings.navbarEN.how: navbarStrings.navbarDE.how}
-            </Button>
-          ) : (
-            <MainBtn
-          pressed={() => navigate('/how-it-works')}
-          btnColor='blue'
-          btnAppearance='primary'
-          btnSize='lg'
-          isBlock={true}
-          content={en ? navbarStrings.navbarEN.how: navbarStrings.navbarDE.how}
-        />
-          )
-        }
-
-
+        <Button
+        appearance='primary'
+        className='r-btn r-main-btn'
+        block
+        onClick={() => navigate('/how-it-works')}
+        >
+          {en ? navbarStrings.navbarEN.how: navbarStrings.navbarDE.how}
+        </Button>
       </div>
     </>
   )

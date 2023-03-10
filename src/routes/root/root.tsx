@@ -61,11 +61,13 @@ const Root: React.FunctionComponent<IProps> = (props) => {
                   </div>
                 ) : (
                   <>
+                  <div className="r-page-wrap">
                     <Hero en={en} openModal={openModal} />
                     <CtaUp en={en} />
                     <Features en={en} />
                     <Banner en={en}/>
                     <ResponsiveAppTeaser en={en} />
+                  </div>
                     {/*
                       <CtaDown openModal={openModal} en={en} />
                 */}

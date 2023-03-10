@@ -13,7 +13,7 @@ const Navigations: React.FunctionComponent<IProps> = (props) => {
     <FlexboxGridItem as={FlexboxGrid} colspan={colspan} className='left-side'>
       <Nav vertical as={FlexboxGridItem} colspan={isMobile ? 24 : 8} className='nav-element'>
         <p className='title'>
-          {en ? 'Knowledge Base' : 'Wissenswertes'}
+          {en ? 'Information' : 'Wissenswertes'}
         </p>
         <Nav.Item as={Link} to='/how-it-works'>
           {en ? 'How It Works' : 'So Funktioniert Es'}
@@ -29,7 +29,7 @@ const Navigations: React.FunctionComponent<IProps> = (props) => {
         <Nav.Item as={Link} to='/about-us'>
           {en ? 'About Us' : 'Über Uns'}
         </Nav.Item>
-        <Nav.Item as={Link} to='/wh-movies'>
+        <Nav.Item as={Link} to='/why-movies'>
           {en ? 'Why Movies' : 'Warum Filme'}
         </Nav.Item>
       </Nav>

@@ -3,6 +3,7 @@ import { Button, IconButton, Input, InputGroup, Modal } from 'rsuite'
 import '../styles/auth-modal.scss'
 import AuthModalHeader from './AuthModalHeader';
 import AuthModalBody from './AuthModalBody';
+import { useMediaQuery } from '../../../misc/custom-hooks';
 
 interface IProps {isOpen: boolean, closeModal: any, en: boolean}
 
@@ -17,8 +18,10 @@ const NewAuthModal: React.FunctionComponent<IProps> = (props) => {
   const goBack = () => setWithMail(false)
   const handleChange = () => setVisible(!visible)
 
+  const isLimit = useMediaQuery('(max-width: 650px)')
+
   return (
-    <Modal open={isOpen} onClose={closeModal} className='auth-modal' size='md'>
+    <Modal open={isOpen} onClose={closeModal} className='auth-modal' size={'md'}>
       <AuthModalHeader withMail={withMail} goBack={goBack} closeModal={closeModal} />
       <AuthModalBody en={en} visible={visible} closeModal={closeModal}
       signupPage={signupPage} withMail={withMail}

@@ -232,25 +232,17 @@ $dark-shadow: rgba(0, 0, 29, .25);
     }
     .r-showcase-txt-con {
       order: 2;
-    }
-    // Title
-    & h1 {
-      color: $dark;
-      margin-bottom: 25px;
-      @media screen and (max-width: 1100px) {
-        text-align: center;
-      }
-      @media (min-width: 1600px) {
-        margin-bottom: 150px;
-      }
-    }
-    // Get it on txt
-    & p {
-      color: $white;
-      display: none;
-      @media screen and (max-width: 1100px) {
-        display: block;
-        text-align: center;
+
+      // Title
+      & .r-main-title {
+        color: $dark;
+        margin-bottom: 75px;
+        @media screen and (max-width: 1100px) {
+          text-align: center;
+        }
+        @media (min-width: 1600px) {
+          margin-bottom: 150px;
+        }
       }
     }
     // Image container on phone

@@ -7,6 +7,9 @@ $border-color: #D9DEED;
 $blue-shadow: #359AFE7B;
 $dark-shadow: rgba(0, 0, 29, .25);
 $dark-blue-shadow: #3549FE7B;
+
+$limit: 650px;
+$small: 450px;
 .rs-modal-content {
   background-color: $white!important;
 }
@@ -45,6 +48,10 @@ $dark-blue-shadow: #3549FE7B;
       font-size: 48px;
       line-height: 56px;
       color: $dark;
+      @media (max-width: $limit) {
+        text-align: center;
+        font-size: 30px;
+      }
     }
     & .modal-privacy-policy {
       position: relative;
@@ -52,6 +59,14 @@ $dark-blue-shadow: #3549FE7B;
       text-align: center;
       z-index: 4;
       transition: all 1000ms ease-out;
+      @media (max-width: $limit) {
+        font-size: .6rem;
+      }
+      & button {
+        @media (max-width: $limit) {
+          font-size: .6rem;
+        }
+      }
       &.hidden {
         transition: all 100ms ease-in-out;
         opacity: 0;
@@ -73,6 +88,10 @@ $dark-blue-shadow: #3549FE7B;
         -webkit-box-align: center;
         align-items: center;
         margin: 1.5rem 0 2rem;
+        @media (max-width: $limit) {
+          width: max-content;
+          margin: 1.5rem auto 2rem;
+        }
         // Inner
         & .tab {
           margin: 0;
@@ -85,6 +104,9 @@ $dark-blue-shadow: #3549FE7B;
           font-size: 1rem;
           text-align: center;
           cursor: pointer;
+          @media (max-width: $limit) {
+            min-width: 100px;
+          }
         }
       }
 
@@ -95,6 +117,13 @@ $dark-blue-shadow: #3549FE7B;
         min-height: 350px;
         position: relative;
         z-index: 3;
+        @media (max-width: $limit) {
+          max-width: 300px;
+          margin: auto;
+        }
+        @media (max-width: $small) {
+          max-width: 200px;
+        }
         & .btn-and-inputs-con {
           display: flex;
           flex-wrap: nowrap;
@@ -102,6 +131,12 @@ $dark-blue-shadow: #3549FE7B;
           transition: transform 300ms ease-out;
           &.action {
             transform: translateX(-365px);
+            @media (max-width: $limit) {
+              transform: translateX(-305px);
+            }
+            @media (max-width: $small) {
+              transform: translateX(-205px);
+            }
           }
           // Buttons
           & .btns-con {
@@ -110,6 +145,13 @@ $dark-blue-shadow: #3549FE7B;
             flex-direction: column;
             row-gap: 10px;
             flex-shrink: 0;
+            @media (max-width: $limit) {
+              width: 300px;
+            }
+            @media (max-width: $small) {
+              width: 200px;
+            }
+
             & .choose-auth-btn {
               background: rgb(255, 255, 255);
               box-shadow: rgb(238, 238, 238) 0px 1px 2px, rgb(238, 238, 238) 0px 2px 4px;
@@ -127,6 +169,12 @@ $dark-blue-shadow: #3549FE7B;
               align-items: center;
               color: $dark;
               text-align: center;
+              @media (max-width: $limit) {
+                font-size: .7rem;
+              }
+              @media (max-width: $small) {
+                width: 200px;
+              }
               & .icon {
                 width: 25px;
                 height: 25px;
@@ -143,6 +191,12 @@ $dark-blue-shadow: #3549FE7B;
             display: flex;
             flex-direction: column;
             row-gap: 24px;
+            @media (max-width: $limit) {
+              width: 300px;
+            }
+            @media (max-width: $small) {
+              width: 200px;
+            }
             & .input-element {
               & label {
                 color: $dark-light;
@@ -157,6 +211,12 @@ $dark-blue-shadow: #3549FE7B;
                 border-width: 2px;
                 border-radius: 2.5px;
                 font-size: 18px;
+                @media (max-width: $limit) {
+                  font-size: 15px;
+                }
+                @media (max-width: $small) {
+                  font-size: 12px;
+                }
                 & button {
                   height: 100%;
                 }
@@ -177,6 +237,12 @@ $dark-blue-shadow: #3549FE7B;
                 border-width: 2px;
                 border-radius: 2.5px;
                 font-size: 18px;
+                @media (max-width: $limit) {
+                  font-size: 15px;
+                }
+                @media (max-width: $small) {
+                  font-size: 12px;
+                }
                 &:focus, :focus-within, :focus-visible {
                   outline: none;
                   &::after, &::before {

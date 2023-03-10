@@ -18,7 +18,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import mainShadows from '../themes/shadows';
 import { mainColors } from '../themes/colors';
 import dashboardStrings from '../../../library/string/Dashboard';
-import DepositMoneyModal from './money/WithdrawMoneyModal';
 import TransferMoneyModal from '../pages/bundle/components/TransferMoneyModal';
 import ChangeLanBtn from '../../../components/ChangeLanBtn';
 import AdminBtn from './AdminBtn';
@@ -136,7 +135,7 @@ const AppNavBar: React.FunctionComponent<IProps> = (props) => {
                         <MessageIcon /> {en ? dashboardStrings.navbarEN.event : dashboardStrings.navbarDE.event}
                 </NavItem>*/}
                     <Button style={styles.btn} appearance='primary' size='lg' onClick={openModal} >
-                    {en ? dashboardStrings.navbarEN.btn : dashboardStrings.navbarDE.btn}
+                    {en ? dashboardStrings.navbarEN.btn : 'Einzahlen'}
                     </Button>
                     <ChangeLanBtn setEn={setEn} en={en} />
                 </Nav>

@@ -29,13 +29,10 @@ Withdrawal</span></b></h1>
 <p className="MsoNormal"><span >You have the right to withdraw from this contract within
 fourteen days without giving any reason.</span></p>
 
-<p className="MsoNormal">&nbsp;</p>
-
 <p className="MsoNormal"><span >The withdrawal period will expire after fourteen days from the
 day on which you acquire, or a third party other than the carrier and indicated
 by you acquires, physical possession of the goods.</span></p>
 
-<p className="MsoNormal">&nbsp;</p>
 
 <p className="MsoNormal"><span >To exercise the right of withdrawal, you must inform us (Redrum
 Films &amp; Entertainment GmbH, Hauptstr.26, 10827 Berlin, email:
@@ -52,7 +49,7 @@ the withdrawal period has expired.</span></p>
 
 <p className="MsoNormal">&nbsp;</p>
 
-<p className="MsoNormal"><span >Effects of withdrawal</span></p>
+<h4 className="MsoNormal"><span >Effects of withdrawal</span></h4>
 
 <p className="MsoNormal"><span >If you withdraw from this contract, we shall reimburse to you
 all payments received from you, including the costs of delivery (with the
@@ -67,8 +64,6 @@ reimbursement. We may withhold reimbursement until we have received the goods
 back or you have supplied evidence of having sent back the goods, whichever is
 the earliest.</span></p>
 
-<p className="MsoNormal">&nbsp;</p>
-
 <p className="MsoNormal"><span >You shall send back the goods or hand them over to us, without
 undue delay and in any event not later than fourteen days from the day on which
 you communicate your withdrawal from this contract to us. The deadline is met
@@ -81,19 +76,18 @@ and functioning of the goods.</span></p>
 
 <p className="MsoNormal">&nbsp;</p>
 
-<p className="MsoNormal"><span >Model withdrawal form</span></p>
+<h4 className="MsoNormal"><span >Model withdrawal form</span></h4>
 
 <p className="MsoNormal"><span >Our Model withdrawal as a PDF document:
   <Button appearance='link' onClick={openDocumentModal}>
-  Download
-  </Button> (Model
-is in attachment)</span></p>
+  DOWNLOAD
+  </Button></span></p>
 
-<p className="MsoNormal">&nbsp;</p>
-
-<p className="MsoNormal"><span >To open the offered PDF files for download, you need an
+<p className="MsoNormal"><i >To open the offered PDF files for download, you need an
 additional program such as Adobe Reader, which you can download for free on the
-internet. You can find the current version of Adobe Reader here.</span></p>
+internet. You can find the current version of Adobe Reader
+<a href="https://get.adobe.com/reader" target='_blank' rel='noreferrer'> here. </a>
+</i></p>
 </div>
 </div>
 <DocumentModal isOpen={DocumentOpen} closeModal={closeDocumentModal} en={en}/>

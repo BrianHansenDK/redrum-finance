@@ -2,10 +2,10 @@ import React from 'react'
 import { mainColors } from '../../../themes/colors'
 import RecieptCard from './RecieptCard'
 
-const RecieptsList = ({investments}: {investments: any}) => {
+const RecieptsList = ({investments, en}: {investments: any, en: boolean}) => {
   return (
     <>
-    <h3 style={styles.title} className='text-center'>Reciepts</h3>
+    <h3 style={styles.title} className='text-center'>{en ? 'Reciepts' : 'Rechnungen'}</h3>
     {
       investments.map((inv: any) => (
         <RecieptCard investment={inv} key={inv.id}/>
