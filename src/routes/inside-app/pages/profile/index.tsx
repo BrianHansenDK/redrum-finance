@@ -9,9 +9,17 @@ import ProfileIntroduction from './components/identification/ProfileIntroduction
 import './components/styles/index.scss'
 
 interface IProps {
-    params: any,
-    en: boolean,
-    setEn: any,
+  params: any,
+  en: boolean,
+  setEn: any,
+  isMobile: boolean,
+  isDesktop: boolean,
+  navOpen: boolean,
+  menuOpen: boolean,
+  openMenu: any,
+  openNav: any,
+  closeMenu: any,
+  closeNav: any,
 }
 
 interface IState {
@@ -42,14 +50,18 @@ class ProfilePage extends Component<IProps, IState> {
                 <AppNavBar
                 fixed
                 en={this.props.en} setEn={this.props.setEn}
-                openMenu={undefined}
-                navOpen={false}
-                openNav={undefined}
-                closeNav={undefined} />
+                openMenu={this.props.openMenu}
+                navOpen={this.props.navOpen}
+                openNav={this.props.openNav}
+                closeNav={this.props.closeNav} />
                 <h1 style={styles.pageTitle} className='text-center'>
                     Profile page
                 </h1>
-                <ProfileIntroduction userId={userId} />
+                <ProfileIntroduction
+                userId={userId}
+                isMobile={this.props.isMobile}
+                isDesktop={this.props.isDesktop}
+                 />
                 {userId == auth.currentUser?.uid ? (
                   <>
                     <MoneySection userId={userId} />

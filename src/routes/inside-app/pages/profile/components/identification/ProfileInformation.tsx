@@ -3,45 +3,59 @@ import { auth, userRef } from '../../../../../../firebase'
 import MainBtn from '../../../../components/MainBtn'
 import { mainColors } from '../../../../themes/colors'
 import ProfileProgress from './ProfileProgress'
+import PinIcon from '@rsuite/icons/Location'
+import CalendarIcon from '@rsuite/icons/legacy/Calendar'
 
 interface IProps {
-    userId: any
+    userId: any,
+    isMobile: boolean,
 }
 
 const ProfileInformation: React.FunctionComponent<IProps> = (props) => {
-    const { userId } = props
+    const { userId, isMobile } = props
     const [username, setUsername] = useState('')
     const [userMail, setUserMail] = useState('')
     const [completion, setCompletion] = useState(0)
-    const [userAge, setUserAge] = useState(null)
+    // If mobile
+    const [age, setAge] = useState(0)
+    const [city, setCity] = useState('')
+    const [country, setCountry] = useState('')
+    // Over
     const getUserInfo = async () => {
         useEffect(() => {
             userRef(userId, '/username', setUsername)
             userRef(userId, '/email', setUserMail)
             userRef(userId, '/completion', setCompletion)
-            userRef(userId, '/age', setUserAge)
-        }, [])
-
-
+            // If mobile
+            userRef(userId, '/birthYear', setAge)
+            userRef(userId, '/city', setCity)
+            userRef(userId, '/country', setCountry)
+        }, [userId])
     }
 
     getUserInfo()
     return (
-        <div style={styles.wrap} className='flex-column'>
-            <div>
-                <h1 style={styles.username}>
+        <div className='profile-info'>
+            <div className='text-inner'>
+                <h1 className='username'>
                     {username}
                 </h1>
-                <p style={styles.email}>
-                    Email address: {userMail}
+                <p className='email'>
+                  {userMail}
                 </p>
-                <p style={styles.badge}>
-                    Badge: Rookie
+                <p className='badge'>
+                  Rookie
                 </p>
             </div>
             {
               userId == auth.currentUser?.uid ? (
-                <ProfileProgress completion={completion} userId={userId} />
+                <>
+                <ProfileProgress
+                completion={completion}
+                userId={userId}
+                isMobile={isMobile}
+                />
+                </>
               ) : <MainBtn
               content={'Add friend'}
               pressed={() => null}
@@ -53,28 +67,6 @@ const ProfileInformation: React.FunctionComponent<IProps> = (props) => {
 
         </div>
     )
-}
-
-const styles = {
-    wrap: {
-        display: 'flex',
-        justifyContent: 'space-between',
-    },
-    username: {
-        fontSize: 32.5,
-        color: mainColors.dark,
-        lineHeight: 1,
-    },
-    email: {
-        fontSize: 20.5,
-        fontWeight: '700',
-        color: mainColors.dark,
-        marginTop: 10,
-    },
-    badge: {
-        fontSize: 17.5,
-        color: mainColors.dark,
-    }
 }
 
 export default ProfileInformation

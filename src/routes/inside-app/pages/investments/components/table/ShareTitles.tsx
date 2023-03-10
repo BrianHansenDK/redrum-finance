@@ -1,6 +1,8 @@
 import React from 'react'
+import { useMediaQuery } from '../../../../../../misc/custom-hooks'
 
 const ShareTitles = () => {
+  const isLimit = useMediaQuery('(max-width: 650px)')
   return (
     <thead>
       <tr>
@@ -11,11 +13,12 @@ const ShareTitles = () => {
         Value
       </th>
       <th>
-        Minimum return
+        {isLimit ? 'Return' : 'Minimum return'}
       </th>
+      {isLimit ? null : (
       <th>
-        Bought at
-      </th>
+        Bought
+      </th> )}
       </tr>
     </thead>
   )

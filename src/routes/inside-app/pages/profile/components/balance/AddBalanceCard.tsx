@@ -37,17 +37,19 @@ const AddBalanceCard = ({userId}: {userId: any}) => {
     setRVisible(false)
   }
   return (
-    <div style={mainCard} className='mt-4 d-flex flex-column align-items-center'>
-      <h1 style={profileCardTitle}>Account balance: {numberWithCommas(currentAvailable)}€</h1>
-      <div style={{width: 300, marginTop: 35,}}>
-      <ButtonGroup style={styles.btnWrap}>
-        <Button appearance='primary' onClick={openModal} size='lg' style={styles.btn}>
+    <div className='mt-4 profile-card'>
+      <h1 className='title'>Account balance: {numberWithCommas(currentAvailable)}€</h1>
+      <div className='btn-wrap'>
+        <Button appearance='primary'
+        onClick={openModal}
+        className='r-btn r-main-btn'>
           Deposit
         </Button>
-        <Button appearance='ghost' onClick={openWModal} size='lg' style={styles.btn}>
+        <Button appearance='primary'
+        onClick={openWModal}
+        className='r-btn r-secondary-btn'>
           Withdraw
         </Button>
-      </ButtonGroup>
       </div>
       <TransferMoneyModal navPressed={false} close={closeModal} visible={isVisible} />
       <WithdrawMoneyModal
@@ -59,15 +61,6 @@ const AddBalanceCard = ({userId}: {userId: any}) => {
       <RequestWithdrawModal isOpen={rVisible} closeModal={closeRModal} />
     </div>
   )
-}
-
-const styles = {
-  btnWrap: {
-    width: '100%',
-    borderRadius: 7.5,
-    boxShadow: '0 3px 6px 0 rgba(0,0,29, .15)',
-  },
-  btn: {width: '50%'},
 }
 
 export default AddBalanceCard

@@ -3,14 +3,17 @@ import { Badge, Popover, Progress, Whisper } from 'rsuite'
 import { mainColors } from '../../../../themes/colors'
 import InfoIcon from '@rsuite/icons/InfoRound'
 import { Link } from 'react-router-dom'
+import { useMediaQuery } from '../../../../../../misc/custom-hooks'
 
 interface IProps {
     userId: any,
-    completion: number
+    completion: number,
+    isMobile: boolean,
 }
 
 const ProfileProgress: React.FunctionComponent<IProps> = (props) => {
-    const { completion, userId } = props
+    const { completion, userId, isMobile } = props
+    const isPhone = useMediaQuery('(max-width: 768px)')
     const speaker = (
         <Popover title="Account not complete">
             <p>Your account is {completion}% complete however it is optimal to have 100% completion. </p>
@@ -29,40 +32,54 @@ const ProfileProgress: React.FunctionComponent<IProps> = (props) => {
         wrap: {
             display: 'flex',
             alignItems: 'center',
-            marginTop: 40,
-            minWidth: 300,
+            margin: isMobile ? '20px auto 40px' : '40px auto 0',
+            minWidth: 200,
+            width: '100%',
+            maxWidth: isPhone ? '100%' : isMobile ? 768 : '100%'
         },
         title: {
-            fontSize: 22.5,
+            fontSize: isMobile ? 14 : 22.5,
             color: mainColors.dark,
             fontWeight: '700',
         },
         badge: {
-            fontSize: 15,
+            fontSize: isMobile ? 8 : 15,
             top: -5,
             right: 0,
             color: completion < 40 ? mainColors.warning : completion < 100 ? mainColors.main : mainColors.success,
         },
         pc: {
-            fontSize: 22.5,
+            fontSize: isMobile ? 14 : 22.5,
             fontWeight: '700',
             color: completion < 40 ? mainColors.warning : completion < 100 ? mainColors.main : mainColors.success
         }
     }
     return (
-        <Whisper placement='top' speaker={completion == 100 ? successSpeaker : speaker} trigger='hover' enterable>
+        <Whisper
+        placement='top'
+        speaker={completion == 100 ? successSpeaker : speaker}
+        trigger={isMobile ? 'click' : 'hover'}
+        enterable
+        >
 
-            <div style={styles.wrap}>
-                <p style={styles.title} className='position-relative'>
-                    {completion < 100 ? <InfoIcon className='position-absolute' style={styles.badge} /> : ''}  Completion:
+            <div style={styles.wrap} className={isMobile ? 'flex-column' : ''}>
+              {
+                isPhone ? null : (
+                  <p style={styles.title} className='position-relative'>
+                    {completion < 100 ? <InfoIcon className='position-absolute' style={styles.badge} /> : ''}
+                    Completion:
                 </p>
+                )
+              }
+
 
                 <Progress
-                    showInfo={completion == 100}
+                    showInfo={false}
                     percent={completion}
                     strokeColor={`${completion < 40 ? mainColors.warning
                         : completion < 100 && completion >= 40 ? mainColors.main : mainColors.success}`}
                     status={completion == 100 ? 'success' : 'success'}
+                    strokeWidth={isPhone ? 5 : isMobile ? 7.5 : 10}
                 />
                 <p style={styles.pc}>
                     {completion}%

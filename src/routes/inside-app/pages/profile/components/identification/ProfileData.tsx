@@ -5,6 +5,7 @@ import { auth, userRef } from '../../../../../../firebase'
 import { mainColors } from '../../../../themes/colors'
 import MainBtn from '../../../../components/MainBtn'
 import EditProfileModal from './EditProfileModal'
+import { Button } from 'rsuite'
 interface IProps {
     userId: any
 }
@@ -33,24 +34,24 @@ const ProfileData: React.FunctionComponent<IProps> = (props) => {
     const years = today.getFullYear() - age
     return (
         <>
-            <div style={styles.wrap} className='flex-column'>
+            <div className='profile-data'>
                 <div>
-                    <p style={styles.info}>
-                        <CalendarIcon style={styles.icon} /> Birth year: {age !== 0 && age !== null ? age : 'Unknown'}
+                    <p className='birth-year'>
+                        <CalendarIcon className='info-icon' /> Birth year: {age !== 0 && age !== null ? age : 'Unknown'}
                     </p>
-                    <p style={styles.info}>
-                        <PinIcon style={styles.icon} /> Location: {city !== '' && city !== null ? city : 'Unknown'}, {country !== '' && country !== null ? country : 'Unknown'}
+                    <p className='birth-year'>
+                        <PinIcon className='info-icon' /> Location: {city !== '' && city !== null ? city : 'Unknown'}, {country !== '' && country !== null ? country : 'Unknown'}
                     </p>
                 </div>
                 {
                   userId == auth.currentUser?.uid ? (
-                    <MainBtn
-                    content={'Edit profile'}
-                    pressed={openModal}
-                    btnColor={'blue'}
-                    btnAppearance={'primary'}
-                    btnSize={'lg'}
-                    isBlock={true} />
+                    <Button
+                    appearance='primary'
+                    className='r-btn r-main-btn'
+                    onClick={openModal}
+                    >
+                      Edit profile
+                    </Button>
                   ) : null
                 }
 
@@ -60,20 +61,5 @@ const ProfileData: React.FunctionComponent<IProps> = (props) => {
     );
 }
 
-const styles = {
-    wrap: {
-        display: 'flex',
-        justifyContent: 'space-between',
-    },
-    info: {
-        fontSize: 18.5,
-        color: mainColors.dark,
-        display: 'flex',
-        alignItems: 'flex-start'
-    },
-    icon: {
-        marginRight: 7.5,
-    }
-}
 
 export default ProfileData;

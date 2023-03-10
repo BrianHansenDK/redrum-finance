@@ -1,7 +1,8 @@
 import { onValue, ref } from 'firebase/database'
 import React, { Component, useEffect, useState } from 'react'
-import { Avatar } from 'rsuite'
+import { Avatar, Button } from 'rsuite'
 import { auth, database, userRef } from '../../../../../../firebase'
+import { useMediaQuery } from '../../../../../../misc/custom-hooks'
 import MainBtn from '../../../../components/MainBtn'
 import { mainColors } from '../../../../themes/colors'
 import { avatarPlaceholder, profileImage } from '../../../../themes/imageStyles'
@@ -10,10 +11,11 @@ import EditImageModal from './EditImageModal'
 
 interface IProps {
     userId: any,
+    isMobile: boolean,
 }
 
 const ProfileImage: React.FunctionComponent<IProps> = (props) => {
-    const { userId } = props
+    const { userId, isMobile } = props
     const [visible, setVisible] = useState(false)
     const [userImage, setUserImage] = useState('')
     const [username, setUsername] = useState('')
@@ -29,14 +31,15 @@ const ProfileImage: React.FunctionComponent<IProps> = (props) => {
     const closeModal = () => {
         setVisible(false)
     }
+    console.log(isMobile)
 
     return (
-        <div style={styles.profileImgWrap} className='flex-column'>
+        <div className='profile-image-wrap'>
             {
                 userImage !== '' && userImage ? (
-                    <img style={styles.image} src={userImage} alt={username} />
+                    <img className='profile-image' src={userImage} alt={username} />
                 ) : (
-                    <div style={styles.avatar} className='mb-1'>
+                    <div className='profile-avatar'>
                         {
                           username.split(' ').length > 1 ?
                           username.split(' ').map((w: any) => w[0]).join('.') :
@@ -48,13 +51,9 @@ const ProfileImage: React.FunctionComponent<IProps> = (props) => {
             {
               userId == auth.currentUser?.uid ? (
                 <>
-                <MainBtn
-                content={`${userImage !== '' && userImage ? 'Edit profile image' : 'Add profile image'}`}
-                pressed={openModal}
-                btnColor={'blue'}
-                btnAppearance={'primary'}
-                btnSize={'lg'}
-                isBlock={false} />
+                <Button appearance='primary' onClick={openModal} className='r-btn r-main-btn'>
+                  {`${userImage !== '' && userImage ? 'Edit profile image' : 'Add profile image'}`}
+                </Button>
                 <EditImageModal isVisible={visible} close={closeModal} userId={userId} />
                 </>
               ) : null
@@ -62,16 +61,6 @@ const ProfileImage: React.FunctionComponent<IProps> = (props) => {
 
         </div>
     )
-}
-
-const styles = {
-    profileImgWrap: {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-    },
-    image: profileImage,
-    avatar: avatarPlaceholder,
 }
 
 export default ProfileImage

@@ -2,7 +2,7 @@ import { onValue, ref } from 'firebase/database'
 import React, { useEffect, useState } from 'react'
 import { Loader, Table } from 'rsuite'
 import { database } from '../../../../../../firebase'
-import { numberWithCommas } from '../../../../../../misc/custom-hooks'
+import { numberWithCommas, useMediaQuery } from '../../../../../../misc/custom-hooks'
 import { mainColors } from '../../../../themes/colors'
 
 const ShareRow = ({share}: {share: any}) => {
@@ -10,6 +10,8 @@ const ShareRow = ({share}: {share: any}) => {
   const [gReturn, setGReturn] = useState(0)
   const [loading, setLoading] = useState<boolean>(false)
   const date = new Date(parseInt(share.id.toString().split('-')[0]))
+
+  const isLimit = useMediaQuery('(max-width: 650px)')
   useEffect(() => {
     setLoading(true)
     const movieRef = ref(database, 'movies/' + share.movie)
@@ -44,9 +46,11 @@ const ShareRow = ({share}: {share: any}) => {
           {numberWithCommas((share.amount + (share.amount * ((gReturn) / 100))).toFixed(2)
           .toString().replace('.', ','))}€
         </td>
+        { isLimit ? null : (
         <td>
-          {date.toLocaleDateString()} -  {date.toLocaleTimeString()}
+        {date.toLocaleDateString()} -  {date.toLocaleTimeString()}
         </td>
+        )}
       </tr>
     )}
 

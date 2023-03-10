@@ -11,7 +11,9 @@ import ProfileImage from './ProfileImage';
 import ProfileInformation from './ProfileInformation';
 
 interface IProps {
-    userId: any
+    userId: any,
+    isMobile: boolean,
+    isDesktop: boolean,
 }
 
 interface IState {
@@ -36,26 +38,21 @@ class ProfileIntroduction extends Component<IProps, IState> {
     render() {
 
         return (
-            <div style={styles.wrap}>
-                <div style={styles.profileInfoWrap}>
-                    <ProfileImage userId={this.props.userId} />
-                    <ProfileInformation userId={this.props.userId} />
+            <div className='profile-card'>
+                <div className='profile-content'>
+                    <ProfileImage
+                    userId={this.props.userId}
+                    isMobile={this.props.isMobile}
+                    />
+                    <ProfileInformation
+                    userId={this.props.userId}
+                    isMobile={this.props.isMobile}
+                     />
                     <ProfileData userId={this.props.userId} />
                 </div>
-
             </div>
         );
     }
-}
-
-const styles = {
-    wrap: mainCard,
-    profileInfoWrap: {
-        display: 'flex',
-        alignItems: 'stretch',
-        justifyContent: 'space-between',
-    },
-
 }
 
 export default ProfileIntroduction;

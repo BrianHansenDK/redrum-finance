@@ -101,12 +101,13 @@ const AppNavBar: React.FunctionComponent<IProps> = (props) => {
     )
 
     const isMobile = useMediaQuery('(max-width: 1100px)')
+    const isSmall = useMediaQuery('(max-width: 375px)')
     return (
       <>
         <Navbar style={styles.navBar} className={`navbar ${fixed ? '' : 'navbarhidden'}`}>
             <div style={styles.navBarInner}>
 
-                <NavbarBrand style={isMobile ? styles.brandMobile : styles.brand} >
+                <NavbarBrand style={isSmall ? styles.brandSmall : isMobile ? styles.brandMobile : styles.brand} >
                     <REDRUMCAT className={isMobile ? 'mr-1' : ''} /> Redrum Pro
                 </NavbarBrand>
                 {
@@ -183,6 +184,15 @@ const styles = {
     },
     brandMobile: {
       fontSize: 21.5,
+      fontWeight: '700',
+      color: mainColors.white,
+      top: 0, bottom: 0,
+      left: 20,
+      display: 'flex',
+      alignItems: 'center',
+    },
+    brandSmall: {
+      fontSize: 15,
       fontWeight: '700',
       color: mainColors.white,
       top: 0, bottom: 0,

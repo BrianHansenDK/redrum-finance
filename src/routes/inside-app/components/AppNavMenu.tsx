@@ -14,7 +14,8 @@ const AppNavMenu: FunctionComponent<IProps> = (props) => {
   return (
     <Nav pullRight style={{ height: 60 }}>
       {
-        !location.pathname.includes('bundle') ? (
+        !location.pathname.includes('bundle')
+        && !location.pathname.includes('profile') ? (
           <Nav.Item>
         <IconButton
         onClick={openMenu}
