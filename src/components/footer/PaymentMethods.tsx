@@ -8,7 +8,7 @@ const PaymentMethods = (props: IProps) => {
   return (
     <FlexboxGrid.Item colspan={colspan} className='right-side'>
       <h2 className="title">
-        {en ? 'Our Payment Methoods' : 'Unsere Zahlungsmethoden'}
+        {en ? 'Our Payment Methods' : 'Unsere Zahlungsmethoden'}
       </h2>
       <PaymentBrands/>
       <p className="description">

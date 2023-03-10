@@ -24,8 +24,11 @@ const Navigations: React.FunctionComponent<IProps> = (props) => {
       </Nav>
       <Nav vertical as={FlexboxGridItem} colspan={isMobile ? 24 : 5} className='nav-element'>
         <p className='title'>
-          {en ? 'Contact' : 'Kontakt'}
+          {en ? 'About Us' : 'Über Uns'}
         </p>
+        <Nav.Item as={Link} to='/contact'>
+          {en ? 'Contact' : 'Kontakt'}
+        </Nav.Item>
         <Nav.Item as={Link} to='/about-us'>
           {en ? 'About Us' : 'Über Uns'}
         </Nav.Item>
@@ -35,13 +38,13 @@ const Navigations: React.FunctionComponent<IProps> = (props) => {
       </Nav>
       <Nav vertical as={FlexboxGridItem} colspan={isMobile ? 24 : 8} className='nav-element'>
         <p className='title'>
-          {en ? 'Rights' : 'Rechtliches'}
+          {en ? 'Legal' : 'Rechtliches'}
         </p>
         <Nav.Item as={Link} to='/terms-and-conditions'>
           AGBs
         </Nav.Item>
         <Nav.Item as={Link} to={'/privacy-policy'}>
-          {en ? 'Dataprotection' : 'Datenschutz'}
+          {en ? 'Privacy & Data Protection' : 'Privatsphäre & Datenschutz'}
         </Nav.Item>
         <Nav.Item as={Link} to='/imprint'>
           {en ? 'Imprint' : 'Impressum'}

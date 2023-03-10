@@ -56,7 +56,7 @@ export const homeStrings = {
   },
   featuresDE: {
     mainTitle: 'Mit nur wenigen Klicks Filmproduzent werden.',
-    subTitle: 'Sei Teil des nächsten Blockbusters',
+    subTitle: 'Sei Teil des nächsten Blockbusters.',
     t1: 'Account erstellen',
     t2: 'Geld einzahlen',
     t3: 'Investiere in einzigartige Filme',

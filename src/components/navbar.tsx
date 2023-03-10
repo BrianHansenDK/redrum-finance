@@ -36,15 +36,14 @@ const MainNavbar: React.FunctionComponent<IProps> = (props) => {
 ];
 
  const APPLINKS = [
-    {
+    /*{
         t: 'Blog',
     },
     {
         t: 'FAQ',
-    },
+    },*/
     {
         t: en ? navbarStrings.navbarEN.sI : navbarStrings.navbarDE.sI,
-        to: '/sign-in'
     }
 ]
 
@@ -137,7 +136,12 @@ const MainNavbar: React.FunctionComponent<IProps> = (props) => {
                 }}>
                     {
                         APPLINKS.map(l => (
-                            <Link to={`${l.to ? l.to : '/'}`} className='nav-ul' key={l.t} preventScrollReset={false}>
+                            <Link
+                            onClick={openModal}
+                            to={''}
+                            className='nav-ul'
+                            key={l.t}
+                            preventScrollReset={false}>
                                 {l.t}
                             </Link>
                         ))

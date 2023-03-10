@@ -1,0 +1,55 @@
+$mobile: 768px;
+$tablet: 1100px;
+$desktop: 1600px;
+
+$dark: #141628;
+$dark-light: rgb(75, 75, 75);
+$main: #3598FE;
+$white: #FEFEFE;
+$dark-blue: #3549FE;
+$border-color: #D9DEED;
+$blue-shadow: #359AFE7B;
+$dark-shadow: rgba(0, 0, 29, .25);
+$dark-blue-shadow: #3549FE7B;
+
+.content {
+  padding: 150px 0;
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+  box-sizing: border-box;
+  @media (max-width: 1200px) {
+    max-width: 100%;
+    padding: 150px 20px;
+  }
+  & .page-title {
+    text-align: start;
+    width: 100%;
+    padding: 0 20px;
+    font-family: poppins;
+    font-size: 35px;
+    color: $dark;
+    line-height: 1.25;
+  }
+  & .inner {
+    max-width: 600px;
+    margin: 75px auto;
+    & p {
+      font-size: 16px;
+      color: $dark;
+      opacity: 0.9;
+      margin-bottom: 15px;
+      line-height: 1.5;
+      &.street {
+        margin-bottom: 0;
+      }
+    }
+    & a {
+      display: block;
+      font-size: 16px;
+      opacity: 0.9;
+      margin-bottom: 15px;
+      line-height: 1.5;
+    }
+  }
+}

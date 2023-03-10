@@ -3,10 +3,12 @@ import { Input, InputGroup, Button, useToaster, Message } from 'rsuite'
 import signUpModalStrings from '../../../library/string/SignUpModal'
 import EyeIcon from '@rsuite/icons/legacy/Eye';
 import EyeSlashIcon from '@rsuite/icons/legacy/EyeSlash';
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../../../firebase';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import { auth, database } from '../../../firebase';
 import { useNavigate } from 'react-router-dom';
 import PushThemes from '../../inside-app/themes/PushThemes';
+import { onValue, ref, set } from 'firebase/database';
+import { FirebaseUser } from '../../../database/Objects';
 
 interface IProps {
   en: boolean,
@@ -20,9 +22,67 @@ const AuthModalInputs: React.FunctionComponent<IProps> = (props) => {
   const [userName, setUserName] = React.useState<any>('')
   const [userEmail, setUserEmail] = React.useState<any>('')
   const [userPassword, setUserPassword] = React.useState<any>('')
+  const [userMails, setUserMails] = React.useState<string[]>([])
 
   const navigate = useNavigate()
   const toaster = useToaster()
+
+  React.useEffect(() => {
+    const reference = ref(database, 'users')
+    let data: string[] = []
+    onValue(reference, (snap) => {
+      snap.forEach((user) => {
+        data.push(user.val().email)
+      })
+      setUserMails(data)
+    })
+  }, [])
+
+  const onlyOneSpace = userName.split(' ').length -1 < 2
+
+  const signUp = () => {
+    if (userMails.includes(userEmail)) {
+      toaster.push(
+        <Message type='error' style={PushThemes.pushRed}>
+          <p style={PushThemes.txt}>
+            Error: user already exist
+          </p>
+        </Message>
+      )
+    } else {
+        if (!onlyOneSpace) {
+          toaster.push(<Message type='error' style={PushThemes.pushRed}>
+            <p style={PushThemes.txt}>Username cannot include multiple spaces.</p>
+          </Message>, {placement: 'topCenter'})
+        }
+        if (userPassword != '') {
+          toaster.push(<Message type='error' style={PushThemes.pushRed}>
+            <p style={PushThemes.txt}>Password differs from password confirmation.</p>
+          </Message>, {placement: 'topCenter'})
+        }
+        if ((onlyOneSpace) && (userPassword != '') ) {
+          createUserWithEmailAndPassword(auth, userEmail, userPassword)
+          .then(async (userCredentials) => {
+            const user = userCredentials.user
+            const reference = ref(database, 'users/' + user.uid)
+              set(reference, {
+                id: user.uid,
+                username: userName,
+                email: userEmail,
+                completion: 10,
+              })
+              navigate('/app')
+            })
+            .catch((err) => {
+              console.log(err.message)
+            }).finally(() => {
+              toaster.push(<Message style={PushThemes.pushBlue}>
+                <p style={PushThemes.txt}>Account created succesfully</p>
+              </Message>)
+            })
+          }
+    }
+  }
 
   const signIn = () => {
     signInWithEmailAndPassword(auth, userEmail, userPassword)
@@ -55,7 +115,7 @@ const AuthModalInputs: React.FunctionComponent<IProps> = (props) => {
       { signupPage ? (
         <div className="input-element">
         <label>{en ? signUpModalStrings.EN.un : signUpModalStrings.DE.un}</label>
-        <Input placeholder={en ? 'Your Usernamer' : 'Dein Benutzername'} onChange={setUserEmail}/>
+        <Input placeholder={en ? 'Your Username' : 'Dein Benutzername'} onChange={setUserName}/>
       </div>
           ) : null }
       <div className="input-element">
@@ -82,7 +142,7 @@ const AuthModalInputs: React.FunctionComponent<IProps> = (props) => {
         </div>)
       }
       </>
-      <Button appearance='primary' className='r-btn r-main-btn mb-2 dark-blue' onClick={signIn}>
+      <Button appearance='primary' className='r-btn r-main-btn mb-2 dark-blue' onClick={signupPage ? signUp : signIn}>
         {
           signupPage ? en ? 'Create account' : 'Account erstellen'
           : en ? 'Login' : 'Anmelden'

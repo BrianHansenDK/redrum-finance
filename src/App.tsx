@@ -46,6 +46,7 @@ import EnglishRelations from './routes/public-relations/EnglishDocument.js';
 import GermanRelations from './routes/public-relations/GermanDocument.js';
 import EnglishWithdrawalRights from './routes/withdrawal-rights/EnglishDocument.js';
 import GermanWithdrawalRights from './routes/withdrawal-rights/GermanDocument.js';
+import ContactPage from './routes/contact/index.js';
 
 
 const App = () => {
@@ -111,6 +112,7 @@ const App = () => {
       <Route path='/how-it-works' element={<HowItWorksPage en={isEnglish} setEn={changeLan} isVisible={isVisible} openModal={openModal} closeModal={closeModal} />} />
       <Route path='/sign-in' element={<SignInPage en={isEnglish} setEn={changeLan} />} />
       <Route path='/sign-up' element={<SignUpPage en={isEnglish} setEn={changeLan} />} />
+      <Route path='/contact' element={<ContactPage en={isEnglish} setEn={changeLan} isVisible={isVisible} openModal={openModal} closeModal={closeModal}/>} />
 
       {/*Rights and other juristictional documents */}
       <Route path='/imprint' element={<ImprintPage en={isEnglish} setEn={changeLan} isOpen={isVisible} openModal={openModal} closeModal={closeModal}/>}/>
