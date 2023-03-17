@@ -1,0 +1,207 @@
+$small: 450px;
+$mobile: 768px;
+$tablet: 1100px;
+$desktop: 1600px;
+
+$dark: #141628;
+$dark-light: rgb(75, 75, 75);
+$main: #3598FE;
+$white: #FEFEFE;
+$dark-blue: #3549FE;
+$border-color: #D9DEED;
+$red: rgb(195, 0, 16);
+$blue-shadow: #359AFE7B;
+$dark-shadow: rgba(0, 0, 29, .25);
+$dark-blue-shadow: #3549FE7B;
+
+#invest-modal {
+  & .title {
+    text-align: center;
+    color: $dark;
+    font-size: x-large;
+  }
+  & .modal-body {
+    display: flex;
+    flex-direction: column;
+    overflow: -moz-scrollbars-none;
+    -ms-overflow-style: none;
+  &::-webkit-scrollbar { width: 0 !important }
+    & .inner-title {
+      text-align: center;
+      color: $dark;
+      font-size: large;
+    }
+    // Buttons with amount
+    // Wrap
+    & .options {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-self: center;
+      margin-top: 35px;
+      row-gap: 25px;
+      max-width: 800px;
+      @media (max-width: $tablet) {
+        max-width: 100%;
+        justify-content: space-evenly;
+        column-gap: 15px;
+      }
+      // Button
+      & .option-btn {
+        width: 250px;
+        background: none;
+        color: $dark;
+        border: 2px solid $dark;
+        font-weight: 700;
+        font-size: medium;
+        transition: all 100ms ease-out;
+        @media (max-width: $tablet) {
+          width: 250px;
+        }
+        &.chosen {
+          background: $dark;
+          color: $white;
+          box-shadow: 0 2px 4px 0 $dark-shadow;
+        }
+        &:hover {
+          background-color: $dark;
+          color: $white;
+          box-shadow: 0 2px 4px 0 $dark-shadow;
+        }
+        &:active {
+          transform: scale(.95, .95);
+        }
+        & .rs-input-number-btn-group-vertical {
+          display: none;
+        }
+        // Input
+        & .rs-input {
+          border-radius: 10px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: none;
+          color: $dark;
+          &::placeholder {
+            text-align: center;
+            color: $dark;
+          }
+          &:hover {
+            cursor: pointer;
+            &::placeholder {
+              color: $white;
+            }
+          }
+          &:focus {color: $dark;}
+          &:focus-within {color: $white; }
+        }
+      }
+      // Input when active
+      & .option-btn.active {
+        color: $dark;
+        border: 2px solid $dark;
+        font-weight: 700;
+        transition: all 100ms ease-out;
+        &:hover {
+          background-color: rgba(0,0,0,0);
+          color: $dark;
+          box-shadow: 0 2px 4px 0 $dark-shadow;
+        }
+        &:active {
+          transform: scale(.95, .95);
+        }
+        & .rs-input-number-btn-group-vertical {
+          display: none;
+        }
+        & .rs-input {
+          border-radius: 10px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: none;
+          color: $dark;
+          &::placeholder {
+            text-align: center;
+            color: $dark;
+          }
+          &:hover {
+            cursor: pointer;
+            &::placeholder {
+              color: $dark;
+            }
+          }
+          &:focus {color: $dark;}
+          &:focus-within {color: $dark; }
+        }
+      }
+    }
+    // Terms and conditions
+    & .accept {
+      width: 100%;
+      max-width: 800px;
+      margin-top: 35px;
+      display: flex;
+      column-gap: 10px;
+      align-items: center;
+      align-self: center;
+      justify-content: center;
+      margin: 50px 0;
+      @media (max-width: $tablet) {
+        max-width: 100%;
+        margin-top: 15px;
+      }
+      & .rs-toggle {
+        & .rs-toggle-presentation {
+          background-color: $red;
+        }
+      }
+      & .rs-toggle.rs-toggle-checked {
+        & .rs-toggle-presentation {
+          background-color: $main;
+        }
+      }
+      & .txt {
+        @media (max-width: $mobile) {
+          font-size: smaller;
+        }
+      }
+    }
+  }
+  & .modal-footer {
+    // Buttons
+    & .btn-wrap {
+      display: flex;
+      width: 100%;
+      column-gap: 20px;
+      row-gap: 20px;
+      @media (max-width: $mobile) {
+        width: 100%;
+        flex-wrap: wrap;
+      }
+      & .r-btn.rs-btn.rs-btn-primary {
+        width: 50%;
+        @media (max-width: $mobile) {
+          width: 100%;
+          font-size: small;
+        }
+        @media (max-width: $small) {
+          font-size: x-small;
+        }
+      }
+      & .btn-con {
+        width: 50%;
+        @media (max-width: $mobile) {
+          width: 100%;
+        }
+        & .r-btn.rs-btn.rs-btn-primary {
+          width: 100%
+        }
+      }
+    }
+  }
+}
+
+
+.hidden-from-server {
+  display: none;
+}

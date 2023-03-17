@@ -6,7 +6,7 @@ import { auth, userRef } from '../../../../../../firebase'
 import LanguageToggle from '../../../../components/LanguageToggle'
 import MainBtn from '../../../../components/MainBtn'
 import ConfirmAgeModal from '../ConfirmAgeModal'
-import InvestModal from '../InvestModal'
+import InvestModal from '../invest-modal/InvestModal'
 import RecieptModal from '../RecieptModal'
 import TransferMoneyModal from '../TransferMoneyModal'
 import InfoLines from './InfoLines'
@@ -96,7 +96,16 @@ const RightSide: FunctionComponent<IProps> = (props) => {
                 <div style={styles.card} className='flex-column'>
                     {/*<InfoTag />*/}
                     <InfoLines project={project} en={en} />
-                    {
+                    <Button
+                    appearance='primary'
+                    className='r-btn r-main-btn'
+                    onClick={today.getFullYear() - birthYear >= 18 ?
+                      openInvestModal :
+                      openModal}
+                    >
+                      {en ? 'Secure shares now' : 'Jetzt Anteile sichern'}
+                    </Button>
+                    {/*
                       isMobile ? (
                         <Button
                         appearance='primary'
@@ -118,12 +127,12 @@ const RightSide: FunctionComponent<IProps> = (props) => {
                         btnSize='lg'
                         isBlock={false} />
                       )
-                    }
+                        */}
 
                 </div>
             </Col>
             <ConfirmAgeModal visible={isVisible} close={closeModal} openInvestModal={openInvestModal} en={en}/>
-            <InvestModal project={project} close={closeInvestModal} visible={isInvestVisible} showReciept={showReciept} />
+            <InvestModal en={en} project={project} close={closeInvestModal} visible={isInvestVisible} showReciept={showReciept} />
             <TransferMoneyModal navPressed={false} close={closeInvestModal} visible={isTransferVisible} />
             <RecieptModal close={hideReciept} isVisible={reciept} />
         </>
