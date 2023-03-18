@@ -1,4 +1,5 @@
 $small: 450px;
+$limit: 650px;
 $mobile: 768px;
 $tablet: 1100px;
 $desktop: 1600px;
@@ -10,15 +11,31 @@ $white: #FEFEFE;
 $dark-blue: #3549FE;
 $border-color: #D9DEED;
 $red: rgb(195, 0, 16);
+$green: #4caf50;
 $blue-shadow: #359AFE7B;
 $dark-shadow: rgba(0, 0, 29, .25);
 $dark-blue-shadow: #3549FE7B;
 
+// Modal
 #invest-modal {
-  & .title {
-    text-align: center;
-    color: $dark;
-    font-size: x-large;
+  & .modal-head {
+    & .title {
+      text-align: center;
+      color: $dark;
+      font-size: x-large;
+    }
+    & .information {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 10px;
+      row-gap: 5px;
+      & .info-row {
+        text-align: center;
+        font-size: small;
+        margin: 0;
+      }
+    }
   }
   & .modal-body {
     display: flex;
@@ -30,6 +47,10 @@ $dark-blue-shadow: #3549FE7B;
       text-align: center;
       color: $dark;
       font-size: large;
+    }
+    & .bonus {
+      text-align: center;
+      color: $green;
     }
     // Buttons with amount
     // Wrap
@@ -201,7 +222,235 @@ $dark-blue-shadow: #3549FE7B;
   }
 }
 
-
+// Old Modal
 .hidden-from-server {
   display: none;
+}
+
+// Checkout page
+#checkout-page {
+  overflow-y: auto;
+  background-color: $white;
+  position: fixed;
+  top: 0; bottom: 0;
+  left: 0; right: 0;
+  z-index: 25;
+  display: none;
+  &.active {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  & .inner {
+    padding: 100px 20px;
+    width: 100%;
+    max-width: 1200px;
+    & .title {
+      width: 100%;
+      text-align: start;
+      font-size: xx-large;
+      color: $dark;
+      line-height: 1;
+    }
+    // Cards
+    & .content {
+      display: flex;
+      padding: 0;
+      margin-top: 50px;
+      column-gap: 20px;
+      & .left-side {
+        display: flex;
+        flex-direction: column;
+        row-gap: 25px;
+        width: calc(70% - 20px);
+        & .checkout-card {
+          padding: 25px 20px;
+          background: rgb(255, 255, 255);
+          border: 1px solid rgb(217, 222, 237);
+          box-shadow: rgb(238, 238, 238) 0px 1px 2px, rgb(238, 238, 238) 0px 2px 4px;
+          border-radius: 8px;
+          &.project {
+            & .inner-card {
+              display: flex;
+              column-gap: 15px;
+              // Image
+              & .project-banner-img {
+                width: 50px;
+                height: auto;
+                border-radius: 5px;
+              }
+              // Project name
+              & .project-name {
+                font-size: x-large;
+                color: $dark;
+                font-weight: 500;
+              }
+              & .fake-select {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-radius: 2.5px;
+                background-color: rgb(242, 242, 242);
+                border: 2px solid rgb(217, 222, 237);
+                color: #8d8d8d;
+                font-size: medium;
+                padding: 5px;
+                height: 48px;
+                cursor: default;
+              }
+            }
+          }
+          &.personal-data {
+            display: flex;
+            flex-direction: column;
+            row-gap: 15px;
+            column-gap: 10px;
+            & .inner-title {
+              font-size: x-large;
+              color: $dark;
+            }
+            & .inputs {
+              display: flex;
+              flex-direction: column;
+              row-gap: 15px;
+              & .input-element {
+                display: flex;
+                justify-content: space-between;
+                & .bigger {
+                  width: calc(70% - 10px);
+                }
+                & .smaller {
+                  width: calc(30% - 10px);
+                }
+                & .fair {
+                  width: calc(50% - 10px);
+                  flex-grow: 0; flex-shrink: 0;
+                }
+                & label {
+                  color: $dark-light;
+                  letter-spacing: 2px;
+                  font-weight: 500;
+                  font-size: 0.75rem;
+                  text-transform: uppercase;
+                  padding-bottom: 0.25rem;
+                }
+                & .full-width {
+                  width: 100%
+                }
+                & input {
+                  box-sizing: border-box;
+                  width: 100%;
+                  height: 48px;
+                  //border-color: $border-color;
+                  border-width: 2px;
+                  border-radius: 2.5px;
+                  font-size: 18px;
+                  @media (max-width: $limit) {
+                    font-size: 15px;
+                  }
+                  @media (max-width: $small) {
+                    font-size: 12px;
+                  }
+                  &:focus, :focus-within, :focus-visible {
+                    outline: none;
+                    &::after, &::before {
+                    display: none;
+                  }
+                }
+              }
+            }
+          }
+        }
+        &.payment {
+          & .title {
+            font-size: x-large;
+            color: $dark;
+            margin-bottom: 5px;
+          }
+          & .under-title {
+            margin-bottom: 25px;
+          }
+        }
+      }
+    }
+    & .right-side {
+      width: calc(30% - 20px);
+      & .checkout-card {
+        padding: 25px 20px;
+        background: rgb(255, 255, 255);
+        border: 1px solid rgb(217, 222, 237);
+        box-shadow: rgb(238, 238, 238) 0px 1px 2px, rgb(238, 238, 238) 0px 2px 4px;
+        border-radius: 8px;
+        &.summary {
+          display: flex;
+          flex-direction: column;
+          row-gap: 0px;
+          & .title {
+            font-size: x-large;
+            color: $dark;
+            margin-bottom: 20px;
+          }
+          & .all-summary-info {
+            display: flex;
+            flex-direction: column;
+            row-gap: 15px;
+            & .summary-info {
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              font-size: large;
+              color: $dark;
+              & p {
+                margin: 0;
+              }
+            }
+          }
+          & .all-summary-sums {
+            display: flex;
+            flex-direction: column;
+            row-gap: 20px;
+            & .summary-info {
+              display: flex;
+              align-items: flex-start;
+              justify-content: space-between;
+              font-size: large;
+              color: $dark;
+              & p {
+                margin: 0;
+                font-weight: 700;
+                & .small {
+                  font-weight: 400;
+                }
+              }
+              & .overall-shares, & .overall-sum {
+                color: $main;
+              }
+            }
+          }
+          & .juristics {
+            display: flex;
+            align-items: flex-start;
+            column-gap: 10px;
+            margin-top: 25px;
+            & .rs-toggle {
+              & .rs-toggle-presentation {
+                background-color: $red;
+              }
+            }
+            & .rs-toggle.rs-toggle-checked {
+              & .rs-toggle-presentation {
+                background-color: $main;
+              }
+            }
+            & .txt {
+              @media (max-width: $mobile) {
+                font-size: smaller;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
 }

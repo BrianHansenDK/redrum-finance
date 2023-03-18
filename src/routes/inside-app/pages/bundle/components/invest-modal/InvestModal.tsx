@@ -8,6 +8,7 @@ import CloseIcon from '@rsuite/icons/Close';
 import '../right/styles/invest-modal.scss'
 import PushThemes from '../../../../themes/PushThemes'
 import { useMediaQuery } from '../../../../../../misc/custom-hooks'
+import CheckoutPage from './checkout/CheckoutPage'
 //import { mainColors } from '../../../../themes/colors'
 
 interface IProps {
@@ -16,73 +17,64 @@ interface IProps {
     visible: boolean,
     showReciept: any,
     en: boolean,
+    navOpen: boolean,
+    setEn: any,
+    openMenu: any,
+    openNav: any,
+    closeNav: any,
 }
 
 const InvestModal: React.FunctionComponent<IProps> = (props) => {
-    const { project, close, visible, showReciept, en } = props
+    const {
+      project, close, visible, showReciept,
+      en, navOpen, setEn, openMenu, openNav, closeNav,
+    } = props
     const [investAmount, setInvestAmount] = useState<any>(0)
     const [available, setAvailable] = useState(0)
     const [focused, setFocused] = useState<boolean>(false)
-    const [checked, setChecked] = useState(false);
-    const emptyValue: Number|null = null
-    const investmentId = Date.now()
+    const [checked, setChecked] = useState(false)
+    const [checkout, setCheckout] = useState<boolean>(false)
 
+    const emptyValue: Number|null = null
+
+    const investmentId = Date.now()
+    const bonus =
+        investAmount >= 50 && investAmount < 100 ? 4 :
+        investAmount >= 100 && investAmount < 250 ? 10 :
+        investAmount >= 250 && investAmount < 500 ? 30 :
+        investAmount >= 500 && investAmount < 1000 ? 70 :
+        investAmount >= 1000 ? 150 : 0
     const isMobile = useMediaQuery('(max-width: 1100px)')
 
     useEffect(() => { userRef(auth.currentUser?.uid, '/money_available', setAvailable) }, [])
 
     const toaster = useToaster()
     const onInvest = () => {
-        // If no amount is entered
-        if (parseInt(investAmount) == 0 || investAmount == null || investAmount == '') {
-            toaster.push(
-                <Message style={PushThemes.pushRed} type='error'>
-                  <p style={PushThemes.txt}> Please choose a valid amount. Cannot invest 0€ </p>
-                </Message> , { placement: 'topCenter' }
-            )
-            window.setTimeout(() => { toaster.clear() }, 10000)
-        }
-        // Divisable by movies length
-        if (parseInt(investAmount) % project.movies.length !== 0 && (parseInt(investAmount) !== null && parseInt(investAmount) !== 0 && investAmount !== '')) {
-            toaster.push(
-                <Message style={PushThemes.pushRed} type='error'>
-                    <p style={PushThemes.txt}>Investment must have 0 remainders when divided by {project.movies.length}.
-                    Possible solution {
-                      [...Array(project.movies.length).keys()].map((x) => (
-                        (parseInt(investAmount) - x) % project.movies.length == 0 && (parseInt(investAmount) - x) !== 0 ? `${parseInt(investAmount) - x}€ or ${(parseInt(investAmount) - x) + project.movies.length}` : (parseInt(investAmount) - x) % project.movies.length == 0 && (parseInt(investAmount) - x) == 0 && `${(parseInt(investAmount) - x) + project.movies.length}`
-                      ))
-                    }€</p>
-                </Message> , { placement: 'topCenter' }
-            )
-            window.setTimeout(() => { toaster.clear() }, 10000)
-        }
-
-        // Must have anough money on account
-        if (parseInt(investAmount) > available) {
-            toaster.push(
-                <Message style={PushThemes.pushRed} type='error'>
-                    <p style={PushThemes.txt}>Not enough money in your account. Available: {available == null ? 0 : available}</p>
-                </Message> , { placement: 'topCenter' }
-            )
-            window.setTimeout(() => { toaster.clear() }, 10000)
-        }
-
-        // Invest if user has enough money and amount is divisible by free
+      const bonusNumber =
+        investAmount >= 50 && investAmount < 100 ? 4 :
+        investAmount >= 100 && investAmount < 250 ? 10 :
+        investAmount >= 250 && investAmount < 500 ? 30 :
+        investAmount >= 500 && investAmount < 1000 ? 70 :
+        investAmount >= 1000 ? 150 : 0
+        /*
+        // Invest if user has enough money and amount is divisible by amount of elements
         if (parseInt(investAmount) % project.movies.length == 0 && parseInt(investAmount) <= available && parseInt(investAmount) !== 0) {
             const investRef = ref(database, 'investments/' + investmentId)
             // Make investment
             set(investRef, {
                 id: investmentId,
                 creator: auth.currentUser?.uid,
-                amount: parseInt(investAmount),
-                gain: parseInt(investAmount) * ((project.guaranteedReturn / 100) + 1),
+                paid: parseInt(investAmount),
+                bonus: bonusNumber,
+                amount: parseInt(investAmount) + bonusNumber,
+                gain: (parseInt(investAmount) + bonusNumber) * ((project.guaranteedReturn / 100) + 1),
                 created_at: Date.now(),
                 project: project.id,
                 movies: project.movies,
             })
             // Update project
             let projectUpdates: any = {}
-            projectUpdates['currentlyInvested'] = parseInt(investAmount) + project.currentlyInvested
+            projectUpdates['currentlyInvested'] = parseInt(investAmount) + project.currentlyInvested + bonusNumber
             update(ref(database, 'projects/' + project.id), projectUpdates).then(() => {
                 console.log(`${investAmount}€ was invested in ${project.name}!`)
             })
@@ -97,7 +89,7 @@ const InvestModal: React.FunctionComponent<IProps> = (props) => {
                 set(ref(database, 'shares/' + [Date.now(), movie].join('-')), {
                     id: [Date.now(), movie].join('-'),
                     owner: auth.currentUser?.uid,
-                    amount: parseInt(investAmount) / project.movies.length,
+                    amount: (parseInt(investAmount) + bonusNumber) / project.movies.length,
                     movie: movie,
                     investment: investmentId,
                     project: project.id
@@ -112,16 +104,112 @@ const InvestModal: React.FunctionComponent<IProps> = (props) => {
             window.setTimeout(() => { toaster.clear() }, 5000)
             close()
             showReciept()
-        }
+        }*/
+          setCheckout(true)
+          close()
+    }
+
+    const investInBundle = () => {
+      if (parseInt(investAmount) == 0 || investAmount == null || investAmount == '') {
+        toaster.push(
+            <Message style={PushThemes.pushRed} type='error'>
+              <p style={PushThemes.txt}> Please choose a valid amount. Cannot invest 0€ </p>
+            </Message> , { placement: 'topCenter' }
+        )
+        window.setTimeout(() => { toaster.clear() }, 10000)
+    }
+    // Divisable by movies length
+    if (parseInt(investAmount) % project.movies.length !== 0 && (parseInt(investAmount) !== null && parseInt(investAmount) !== 0 && investAmount !== '')) {
+        toaster.push(
+            <Message style={PushThemes.pushRed} type='error'>
+                <p style={PushThemes.txt}>Investment must have 0 remainders when divided by {project.movies.length}.
+                Possible solution {
+                  [...Array(project.movies.length).keys()].map((x) => (
+                    (parseInt(investAmount) - x) % project.movies.length == 0 && (parseInt(investAmount) - x) !== 0 ? `${parseInt(investAmount) - x}€ or ${(parseInt(investAmount) - x) + project.movies.length}` : (parseInt(investAmount) - x) % project.movies.length == 0 && (parseInt(investAmount) - x) == 0 && `${(parseInt(investAmount) - x) + project.movies.length}`
+                  ))
+                }€</p>
+            </Message> , { placement: 'topCenter' }
+        )
+        window.setTimeout(() => { toaster.clear() }, 10000)
+    }
+
+    // Must have anough money on account
+    if (parseInt(investAmount) > available) {
+        toaster.push(
+            <Message style={PushThemes.pushRed} type='error'>
+                <p style={PushThemes.txt}>Not enough money in your account. Available: {available == null ? 0 : available}</p>
+            </Message> , { placement: 'topCenter' }
+        )
+        window.setTimeout(() => { toaster.clear() }, 10000)
+    }
+
+    if (parseInt(investAmount) % project.movies.length == 0 && parseInt(investAmount) <= available && parseInt(investAmount) !== 0) {
+      const investRef = ref(database, 'investments/' + investmentId)
+            // Make investment
+            set(investRef, {
+                id: investmentId,
+                creator: auth.currentUser?.uid,
+                paid: parseInt(investAmount),
+                bonus: bonus,
+                amount: parseInt(investAmount) + bonus,
+                gain: (parseInt(investAmount) + bonus) * ((project.guaranteedReturn / 100) + 1),
+                created_at: Date.now(),
+                project: project.id,
+                movies: project.movies,
+            })
+            // Update project
+            let projectUpdates: any = {}
+            projectUpdates['currentlyInvested'] = parseInt(investAmount) + project.currentlyInvested + bonus
+            update(ref(database, 'projects/' + project.id), projectUpdates).then(() => {
+                console.log(`${investAmount}€ was invested in ${project.name}!`)
+            })
+            // Update user
+            let userUpdates: any = {}
+            userUpdates['money_available'] = available - parseInt(investAmount)
+            update(ref(database, 'users/' + auth.currentUser?.uid), userUpdates).then(() => {
+                console.log(`${investAmount} invested in ${project.name}`)
+            })
+            // Create shares
+            project.movies.forEach((movie: any) => {
+                set(ref(database, 'shares/' + [Date.now(), movie].join('-')), {
+                    id: [Date.now(), movie].join('-'),
+                    owner: auth.currentUser?.uid,
+                    amount: (parseInt(investAmount) + bonus) / project.movies.length,
+                    movie: movie,
+                    investment: investmentId,
+                    project: project.id
+                })
+            })
+
+            toaster.push(
+                <Message style={PushThemes.pushGreen} type='success'>
+                    <p style={PushThemes.txt}>You have invested {investAmount + bonus}€ in the project: {project.name}</p>
+                </Message> , { placement: 'topCenter' }
+            )
+            window.setTimeout(() => { toaster.clear() }, 5000)
+            close()
+            showReciept()
+      }
     }
 
     return (
       <>
         <Modal open={visible} onClose={close} size='full' id='invest-modal'>
-            <Modal.Header>
+            <Modal.Header className='modal-head'>
                 <Modal.Title className='title'>
                     {/*en ? 'You are investing in' : 'Ihr Investment in die'*/} <strong>{project.name}</strong>
                 </Modal.Title>
+                <div className="information">
+                <p className="info-row">
+                  {en ? '1 Share = 1€' : '1 Anteil = 1€'}
+                </p>
+                <p className="info-row">
+                  {en ?
+                  'With an order from 50 shares you will receive bonus shares worth up to €150' :
+                  'Ab einer Bestellung von 50 Anteilen erhältst du Bonusanteile im Wert von bis zu 150€'
+                  }
+                </p>
+              </div>
             </Modal.Header>
             <Modal.Body className='modal-body'>
               <h4 className="inner-title">
@@ -129,6 +217,9 @@ const InvestModal: React.FunctionComponent<IProps> = (props) => {
                 'Please select your investment amount:' :
                 'Bitte wählen Sie Ihren Investmentbetrag:'}
               </h4>
+              <h5 className="bonus">
+                  {bonus} {en ? 'Bonus shares' : 'Bonusanteile'}
+                </h5>
               <div className="options">
                 <Button
                 className={`option-btn ${investAmount == 250 ? 'chosen' : ''}`}
@@ -246,6 +337,20 @@ const InvestModal: React.FunctionComponent<IProps> = (props) => {
                 </div>
             </Modal.Footer>
         </Modal>
+        <CheckoutPage
+        en={en}
+        navOpen={navOpen}
+        visible={checkout}
+        investAmount={investAmount}
+        available={available}
+        setEn={setEn}
+        openMenu={openMenu}
+        openNav={openNav}
+        closeNav={closeNav}
+        project={project}
+        bonus={bonus}
+        investInBundle={investInBundle}
+        />
         <div className="hidden-from-server This is the previous modal">
           <p>This element only exists to colabse a huge comment in vs-code</p>
         {/* Previous design
@@ -281,7 +386,7 @@ const InvestModal: React.FunctionComponent<IProps> = (props) => {
       </Modal.Footer>
   </Modal>
     */}
-    </div>
+        </div>
       </>
     )
 }

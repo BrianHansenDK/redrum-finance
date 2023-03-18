@@ -39,7 +39,7 @@ const styles = {
         width: 100 + '%',
         marginTop: 7.5,
         paddingTop: 7.5,
-        paddingBottom: 7.5,
+        paddingBottom: 6,
         marginBottom: '1rem',
         paddingLeft: 20,
         paddingRight: 20,

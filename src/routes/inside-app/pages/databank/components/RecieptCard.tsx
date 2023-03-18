@@ -31,6 +31,9 @@ const RecieptCard = ({investment}: {investment: any}) => {
         <h1 style={styles.projectTitle}>You invested in: {project?.name}</h1>
       )}
     <p>
+      You have paid: {numberWithCommas(investment.paid)}€
+    </p>
+    <p>
       You have invested: {numberWithCommas(investment.amount)}€
     </p>
     <p>

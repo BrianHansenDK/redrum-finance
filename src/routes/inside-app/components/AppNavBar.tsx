@@ -165,7 +165,7 @@ const styles = {
         top: 0,
         left: 0,
         right: 0,
-        zIndex: 10,
+        zIndex: 20,
         display: 'flex',
         boxShadow: mainShadows.navBar,
         backgroundColor: mainColors.dark,

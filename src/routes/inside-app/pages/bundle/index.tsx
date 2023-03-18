@@ -134,10 +134,14 @@ class ProjectDetailsPage extends React.Component<IProps, IState> {
                             <Row style={styles.wrapperInner} as={FlexboxGrid}>
                                 <LeftSide project={project} isMobile={isMobile} />
                                 <RightSide
-                                project={project}
-                                en={this.props.en}
-                                setEn={this.props.setEn}
-                                isMobile={this.props.isMobile} />
+                          project={project}
+                          en={this.props.en}
+                          setEn={this.props.setEn}
+                          isMobile={this.props.isMobile}
+                          navOpen={this.props.navOpen}
+                          openMenu={this.props.openMenu}
+                          openNav={this.props.openNav}
+                          closeNav={this.props.closeNav} />
                             </Row>
                         </Grid>
                         <SecondaryNavbar

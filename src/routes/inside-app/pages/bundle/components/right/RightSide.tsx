@@ -18,10 +18,17 @@ interface IProps {
   en: boolean,
   setEn: any,
   isMobile: boolean,
+  navOpen: boolean,
+  openMenu: any,
+  openNav: any,
+  closeNav: any,
 }
 
 const RightSide: FunctionComponent<IProps> = (props) => {
-  const { project, en, setEn, isMobile } = props
+  const {
+    project, en, setEn, isMobile,
+    navOpen, openMenu, openNav, closeNav,
+   } = props
     const [isVisible, setVisible] = useState(false)
     const [isInvestVisible, setInvestVisible] = useState(false)
     const [isTransferVisible, setTransferVisible] = useState(false)
@@ -46,11 +53,11 @@ const RightSide: FunctionComponent<IProps> = (props) => {
     }
     const openInvestModal = () => {
         setVisible(false)
-        if (available == null || available == 0) {
-          setTransferVisible(true)
-        } else {
+        //if (available == null || available == 0) {
+        //  setTransferVisible(true)
+        //} else {
           setInvestVisible(true)
-        }
+        //}
     }
 
     const closeInvestModal = () => {
@@ -75,7 +82,7 @@ const RightSide: FunctionComponent<IProps> = (props) => {
           height: 400,
           width: 100 + '%',
           backgroundColor: '#fbfbfb',
-          marginTop: isMobile ? 10 : 1.5 + 'rem',
+          marginTop: isMobile ? 10 : 0,
           marginBottom: 1.5 + 'rem',
           display: 'flex',
           alignItems: 'center',
@@ -132,7 +139,8 @@ const RightSide: FunctionComponent<IProps> = (props) => {
                 </div>
             </Col>
             <ConfirmAgeModal visible={isVisible} close={closeModal} openInvestModal={openInvestModal} en={en}/>
-            <InvestModal en={en} project={project} close={closeInvestModal} visible={isInvestVisible} showReciept={showReciept} />
+            <InvestModal en={en} project={project} close={closeInvestModal} visible={isInvestVisible} showReciept={showReciept}
+            navOpen={navOpen} setEn={setEn} openMenu={openMenu} openNav={openNav} closeNav={closeNav} />
             <TransferMoneyModal navPressed={false} close={closeInvestModal} visible={isTransferVisible} />
             <RecieptModal close={hideReciept} isVisible={reciept} />
         </>

@@ -16,7 +16,7 @@ const RecieptSharesInfo = ({share}: {share:any}) => {
       <div style={styles.infoWrap}>
         <h2 style={styles.title}>{movie !== null && movie.title}</h2>
         <h3 style={styles.des}>
-          You bought: {share.amount}€ in shares
+          You gained: {share.amount} shares
         </h3>
       </div>
     </div>

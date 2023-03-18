@@ -42,7 +42,7 @@ const SharesTable = () => {
           lst[2].amount += share.amount
         }*/
       })
-      setShares(lst /*.slice(0,3)*/)
+      setShares([lst[0]] /*.slice(0,3)*/)
     })
     // Set shares
     // Get investments
