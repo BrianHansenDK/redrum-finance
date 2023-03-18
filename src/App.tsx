@@ -47,6 +47,7 @@ import GermanRelations from './routes/public-relations/GermanDocument.js';
 import EnglishWithdrawalRights from './routes/withdrawal-rights/EnglishDocument.js';
 import GermanWithdrawalRights from './routes/withdrawal-rights/GermanDocument.js';
 import ContactPage from './routes/contact/index.js';
+import ThankYouPage from './routes/inside-app/pages/purchase/ThankYouPage.js';
 
 
 const App = () => {
@@ -101,9 +102,8 @@ const App = () => {
         <Route path='extras/updates' element={<ProjectDetailsUpdatesWrapper />} />
         <Route path='extras/investors' element={<ProjectDetailsInvestorWrapper />} />
       </Route>
-      <Route path='/app/profile/:userId' element={<ProfilePageWrapper en={isEnglish} setEn={changeLan} />}>
-
-      </Route>
+      <Route path='/app/profile/:userId' element={<ProfilePageWrapper en={isEnglish} setEn={changeLan} />}/>
+      <Route path='/app/congratulations' element={<ThankYouPage en={isEnglish} setEn={changeLan}/>}/>
       {/* Outside of App */}
       <Route path='*' element={<PageNotFound en={isEnglish} setEn={changeLan} isVisible={isVisible} openModal={openModal} closeModal={closeModal}/>} />
       <Route path='/' element={<Root en={isEnglish} setEn={changeLan} isVisible={isVisible} openModal={openModal} closeModal={closeModal} />} />

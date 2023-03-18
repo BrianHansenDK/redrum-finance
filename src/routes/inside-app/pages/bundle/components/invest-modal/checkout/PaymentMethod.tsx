@@ -12,17 +12,17 @@ const PaymentMethod = (props: IProps) => {
   const {en, investAmount} = props
   const [available, setAvailable] = React.useState<any>(0)
     const [completion, setCompletion] = React.useState<any>(0)
-    const [payAmount, setPayAmount] = React.useState<any>(0)
     React.useEffect(() => {
         userRef(auth.currentUser?.uid, '/money_available', setAvailable)
         userRef(auth.currentUser?.uid, '/completion', setCompletion)
     })
+    const userId = auth.currentUser?.uid
 
      // Update user balance when payment is approved
-     const updateUserBalance = () => {
-      const reference = ref(database, 'users/' + auth.currentUser?.uid)
+    const updateUserBalance = () => {
+      const reference = ref(database, 'users/' + userId)
       const updates:any = {}
-      updates['/money_available'] = available !== null ? parseInt(available) + parseInt(payAmount) : parseInt(payAmount)
+      updates['/money_available'] = available !== null ? parseInt(available) + investAmount : investAmount
       updates['/completion'] = available !== null ? completion : completion + 50
       return update(reference, updates)
     }
@@ -35,7 +35,8 @@ const PaymentMethod = (props: IProps) => {
         {en ? 'How would you like to pay?' : 'Wie möchtest du bezahlen?'}
       </p>
       <PaypalComponent
-      amountToPay={investAmount}
+      inModal={false}
+      amountToPay={investAmount.toString()}
       updateUserBalance={updateUserBalance}
       closeModal={undefined}
       />

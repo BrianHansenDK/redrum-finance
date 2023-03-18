@@ -7,9 +7,10 @@ interface IProps {
   amountToPay: any,
   updateUserBalance: any,
   closeModal: any,
+  inModal: boolean,
 }
 const PaypalComponent: React.FunctionComponent<IProps> = (props) => {
-  const {amountToPay, updateUserBalance, closeModal} = props
+  const {amountToPay, updateUserBalance, closeModal, inModal,} = props
 
   const toaster = useToaster()
 
@@ -38,7 +39,7 @@ const PaypalComponent: React.FunctionComponent<IProps> = (props) => {
         toaster.push(<Message showIcon type='success'>
           Your payment has been recieved and {amountToPay}€ was successfully added to your account
         </Message>, {placement: 'topCenter'})
-        closeModal()
+        if (inModal) {closeModal()}
       })
     });
 }

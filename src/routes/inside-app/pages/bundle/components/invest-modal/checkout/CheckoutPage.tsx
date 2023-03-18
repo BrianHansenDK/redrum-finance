@@ -35,6 +35,7 @@ const CheckoutPage = (props: IProps) => {
   const [knownState, setKnownState] = React.useState<any>('')
   const [knownCountry, setKnownCountry] = React.useState<any>('')
 
+
   React.useEffect(() => {
     const reference = ref(database, 'users/' + auth.currentUser?.uid)
     onValue(reference, (snap) => {

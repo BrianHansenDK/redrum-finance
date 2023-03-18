@@ -9,6 +9,7 @@ import '../right/styles/invest-modal.scss'
 import PushThemes from '../../../../themes/PushThemes'
 import { useMediaQuery } from '../../../../../../misc/custom-hooks'
 import CheckoutPage from './checkout/CheckoutPage'
+import { useNavigate } from 'react-router-dom'
 //import { mainColors } from '../../../../themes/colors'
 
 interface IProps {
@@ -34,6 +35,7 @@ const InvestModal: React.FunctionComponent<IProps> = (props) => {
     const [focused, setFocused] = useState<boolean>(false)
     const [checked, setChecked] = useState(false)
     const [checkout, setCheckout] = useState<boolean>(false)
+    const navigate = useNavigate()
 
     const emptyValue: Number|null = null
 
@@ -188,6 +190,7 @@ const InvestModal: React.FunctionComponent<IProps> = (props) => {
             )
             window.setTimeout(() => { toaster.clear() }, 5000)
             close()
+            navigate('/app/congratulations')
             showReciept()
       }
     }

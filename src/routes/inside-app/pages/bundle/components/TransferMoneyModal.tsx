@@ -60,6 +60,7 @@ const TransferMoneyModal: React.FunctionComponent<IProps> = (props) => {
 
                 <InputNumber style={styles.input} placeholder='Select wished amount' onChange={setPayAmount} />
                 <PaypalComponent
+                inModal
                 amountToPay={payAmount.toString()}
                 updateUserBalance={updateUserBalance}
                 closeModal={close}
