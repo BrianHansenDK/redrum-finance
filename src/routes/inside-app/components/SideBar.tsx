@@ -66,7 +66,7 @@ const SideBar = ({en} : {en: boolean}) => {
             <Nav.Item onClick={openModal} eventKey='3' icon={<SecondaryMarketIcon />}>
             {en ? dashboardStrings.sidebarEN.sec : dashboardStrings.sidebarDE.sec}
             </Nav.Item>
-            <h3 className='d-flex justify-center'>{en ? dashboardStrings.sidebarEN.t2 : dashboardStrings.sidebarDE.t2}</h3>
+            {/*<h3 className='d-flex justify-center'>{en ? dashboardStrings.sidebarEN.t2 : dashboardStrings.sidebarDE.t2}</h3>*/}
             <Nav.Item eventKey="4" icon={<DbIcon />} as={Link} to='/app/databank'>
             {en ? dashboardStrings.sidebarEN.db : dashboardStrings.sidebarDE.db}
             </Nav.Item>{/*

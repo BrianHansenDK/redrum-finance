@@ -28,7 +28,7 @@ class UpcomingModal extends Component<IProps, {}> {
                 </Modal.Body>
                 <Modal.Footer>
                     <Button appearance='primary' color='red' onClick={this.props.close}>
-                        {this.props.en ? dashboardStrings.comingSoonEN.btn : dashboardStrings.comingSoonDE.btn}
+                        {this.props.en ? 'Close' : 'Schließen'}
                     </Button>
                 </Modal.Footer>
             </Modal>

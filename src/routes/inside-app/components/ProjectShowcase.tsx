@@ -52,6 +52,7 @@ class ProjectShowcase extends React.Component<IProps, IState> {
             textDecoration: 'none',
             marginBottom: isMobile ? 35 : 50,
             maxWidth: 800,
+            width: '100%',
         },
         intro: {
             flex: 1,

@@ -12,7 +12,7 @@ const TooltipLinks: React.FunctionComponent<ITooltipLinksProps> = (props) => {
             <Nav vertical>
                 {ACCOUNTNAV.map((i: any) => {
                     return (
-                        i.index <= 2 ? (
+                        i.index === 1 ? (
                             <NavItem as={Link} to={i.to} key={i.index} className='txt-1 txt-dark'>
                                 {i.icon} {i.title}
                             </NavItem>
@@ -22,7 +22,7 @@ const TooltipLinks: React.FunctionComponent<ITooltipLinksProps> = (props) => {
             </Nav>
             <Nav vertical>
                 {ACCOUNTNAV.map((i: any) => (
-                    i.index > 2 ? (
+                    i.index === 2 ? (
                         <NavItem as={Link} to={i.to} key={i.index} className='txt-1 txt-dark'>
                             {i.icon} {i.title}
                         </NavItem>

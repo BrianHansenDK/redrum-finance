@@ -46,7 +46,7 @@ class ProfilePage extends Component<IProps, IState> {
     render() {
         const { userId } = this.props.params
         return (
-            <div style={styles.pageWrap}>
+            <div style={styles.pageWrap} className='flex-column'>
                 <AppNavBar
                 fixed
                 en={this.props.en} setEn={this.props.setEn}
@@ -79,11 +79,13 @@ const styles = {
         paddingTop: 100,
         paddingBottom: 100,
         minHeight: '100vh',
-        backgroundColor: mainColors.blueGrey,
+        backgroundColor: '#efefef',
+        display: 'flex',
+        alignItems: 'center',
     },
     pageTitle: {
         fontSize: 40.5,
-        color: mainColors.white,
+        color: mainColors.dark,
         marginBottom: 50,
     }
 }

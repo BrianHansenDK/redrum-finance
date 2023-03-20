@@ -81,27 +81,15 @@ const AppNavBar: React.FunctionComponent<IProps> = (props) => {
             to: `/app/profile/${auth.currentUser?.uid}`
         },
         {
-            title: en ? dashboardStrings.tooltipEN.l2 : dashboardStrings.tooltipDE.l2,
-            icon: <GEAR />,
-            index: 2,
-            to: `/app/profile/${auth.currentUser?.uid}`
-        },
-        {
-            title: en ? dashboardStrings.tooltipEN.l3 : dashboardStrings.tooltipDE.l3,
+            title: en ? 'My Documents' : 'Meine Dokumenten',
             icon: <DOCS />,
-            index: 3,
-            to: `/app/profile/${auth.currentUser?.uid}`
-        },
-        {
-            title: en ? dashboardStrings.tooltipEN.l4 : dashboardStrings.tooltipDE.l4,
-            icon: <INV />,
-            index: 4,
-            to: `/app/profile/${auth.currentUser?.uid}`
+            index: 2,
+            to: `/app/databank`
         },
     ]
 
     const AccountTooltip = (
-        <Tooltip className='grey-bg pl-2 pr-1 pt-1 pb-1 shadow' style={{ borderRadius: 10, minWidth: 40 + '%' }}>
+        <Tooltip className='grey-bg pl-2 pr-1 pt-1 pb-1 shadow' style={{ borderRadius: 10, minWidth: 550 }}>
             <TooltipForAccount ACCOUNTNAV={ACCOUNTNAV} auth={auth} logout={logout} en={en} />
         </Tooltip>
     )
@@ -113,7 +101,11 @@ const AppNavBar: React.FunctionComponent<IProps> = (props) => {
         <Navbar style={styles.navBar} className={`navbar ${fixed ? '' : 'navbarhidden'}`}>
             <div style={styles.navBarInner}>
 
-                <NavbarBrand style={isSmall ? styles.brandSmall : isMobile ? styles.brandMobile : styles.brand} >
+                <NavbarBrand
+                style={isSmall ? styles.brandSmall : isMobile ? styles.brandMobile : styles.brand}
+                onClick={() => navigate('/app')}
+                className='app-navbar-brand'
+                 >
                     <img
                     src={REDRUMCAT}
                     alt="Redrum Logo"

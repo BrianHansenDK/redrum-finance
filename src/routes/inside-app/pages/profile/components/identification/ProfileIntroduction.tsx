@@ -14,6 +14,7 @@ interface IProps {
     userId: any,
     isMobile: boolean,
     isDesktop: boolean,
+    en: boolean,
 }
 
 interface IState {
@@ -48,7 +49,7 @@ class ProfileIntroduction extends Component<IProps, IState> {
                     userId={this.props.userId}
                     isMobile={this.props.isMobile}
                      />
-                    <ProfileData userId={this.props.userId} />
+                    <ProfileData en={this.props.en} userId={this.props.userId} />
                 </div>
             </div>
         );

@@ -18,14 +18,15 @@ const MoneySection: React.FunctionComponent<IProps> = (props) => {
     const isPhone = useMediaQuery('(max-width: 768px)')
     const isMobile = useMediaQuery('(max-width: 1100px)')
     return (
-        <div className=' profile-card mt-5'>
+        <div className=' profile-card mt-5 d-flex flex-column align-items-center'>
             <h1 className='title'>Portfolio</h1>
           <h1 className='under-title'>All of your investments</h1>
             <RadialChart isMobile={isMobile}/>
-            <div style={{maxWidth: '100%', margin: 'auto'}} className='mb-4'>
+            <div style={{maxWidth: isMobile? '100%': 800, margin: 'auto', width: '100%',}} className='mb-4'>
               <Button
               appearance='primary'
               className='r-btn r-main-btn'
+              style={{fontSize: 'x-large'}}
               onClick={() => navigate('/app/databank')}
               block
               >

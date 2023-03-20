@@ -5,6 +5,7 @@ import { numberWithCommas } from '../../../../../misc/custom-hooks'
 import { mainCard } from '../../../themes/cardStyles'
 import { mainColors } from '../../../themes/colors'
 import RecieptSharesInfo from './RecieptSharesInfo'
+import '../styles/reciept.scss'
 
 const RecieptCard = ({investment}: {investment: any}) => {
   const [project, setProject] = useState<any>(null)
@@ -26,7 +27,7 @@ const RecieptCard = ({investment}: {investment: any}) => {
   const createdDate = new Date(investment.created_at).toLocaleDateString()
   const createdTime = new Date(investment.created_at).toLocaleTimeString()
   return (
-    <div style={mainCard} className='mt-3 mb-3'>
+    <div className='reciept-card'>
       {project?.name && (
         <h1 style={styles.projectTitle}>You invested in: {project?.name}</h1>
       )}

@@ -17,8 +17,8 @@ const AppRootIndexPage = ({en}: {en: boolean}) => {
       <BannerComponent isMobile={isMobile} />
       <ProjectShowcase en={en} isMobile={isMobile} />
       <div
-      className={isMobile ? 'mb-4' : 'pt-3 pb-3'}
-      style={{maxWidth: small ? '100%' : 800}}
+      className={isMobile ? 'mb-4' : 'pt-3 pb-3 mb-4'}
+      style={{width: '100%', maxWidth: small ? '100%' : 800}}
       >
         <Button
         appearance='primary'

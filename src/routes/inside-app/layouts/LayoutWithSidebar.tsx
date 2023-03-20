@@ -22,8 +22,14 @@ const LayoutWithSidebar: React.FunctionComponent<ILayoutWithSidebarProps> = (pro
         innerPage: {
             flex: 1,
             paddingTop: 125,
+            display: 'flex',
+            alignItems: 'center',
+
+            paddingLeft: isMobile ? 20 : 240,
+            paddingRight: isMobile? 20 : 0,
+            /*
             paddingLeft: isMobile ? 20 : 300,
-            paddingRight: isMobile ? 20 : labtop ? 0 : 300,
+            paddingRight: isMobile ? 20 : labtop ? 0 : 300,*/
         },
     }
 
@@ -46,7 +52,7 @@ const LayoutWithSidebar: React.FunctionComponent<ILayoutWithSidebarProps> = (pro
                   <SideBar en={en} />
                 )
               }
-                <div className='' style={styles.innerPage}>
+                <div className='flex-column' style={styles.innerPage}>
                     {children}
                 </div>
             </div>

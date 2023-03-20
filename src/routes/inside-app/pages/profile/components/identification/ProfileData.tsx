@@ -7,11 +7,12 @@ import MainBtn from '../../../../components/MainBtn'
 import EditProfileModal from './EditProfileModal'
 import { Button } from 'rsuite'
 interface IProps {
-    userId: any
+    userId: any,
+    en: boolean,
 }
 
 const ProfileData: React.FunctionComponent<IProps> = (props) => {
-    const { userId } = props
+    const { userId, en } = props
     const [age, setAge] = useState(0)
     const [city, setCity] = useState('')
     const [country, setCountry] = useState('')
@@ -22,7 +23,7 @@ const ProfileData: React.FunctionComponent<IProps> = (props) => {
     const today = new Date(data)
     useEffect(() => {
         userRef(userId, '/birthYear', setAge)
-        userRef(userId, '/city', setCity)
+        userRef(userId, '/address', setCity)
         userRef(userId, '/country', setCountry)
     })
     const openModal = () => {
@@ -40,7 +41,7 @@ const ProfileData: React.FunctionComponent<IProps> = (props) => {
                         <CalendarIcon className='info-icon' /> Birth year: {age !== 0 && age !== null ? age : 'Unknown'}
                     </p>
                     <p className='birth-year'>
-                        <PinIcon className='info-icon' /> Location: {city !== '' && city !== null ? city : 'Unknown'}, {country !== '' && country !== null ? country : 'Unknown'}
+                        <PinIcon className='info-icon' /> Location: {city !== '' && city !== null ? city.split(' ')[city.split(' ').length - 1] : 'Unknown'}, {country !== '' && country !== null ? country : 'Unknown'}
                     </p>
                 </div>
                 {
@@ -56,7 +57,7 @@ const ProfileData: React.FunctionComponent<IProps> = (props) => {
                 }
 
             </div>
-            <EditProfileModal userId={userId} close={closeModal} visible={visible} />
+            <EditProfileModal userId={userId} close={closeModal} visible={visible} en={en} />
         </>
     );
 }
