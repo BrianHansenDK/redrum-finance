@@ -10,12 +10,16 @@ import BannerComponent from './components/banner'
 const AppRootIndexPage = ({en}: {en: boolean}) => {
   const isMobile = useMediaQuery('(max-width: 1100px)')
   const labtop = useMediaQuery('(max-width: 1400px)')
+  const small = useMediaQuery('(max-width: 800px)')
   const navigate = useNavigate()
   return (
     <>
       <BannerComponent isMobile={isMobile} />
       <ProjectShowcase en={en} isMobile={isMobile} />
-      <div className={isMobile ? 'mb-4' : 'pl-2 pt-3 pr-2 pb-3'}>
+      <div
+      className={isMobile ? 'mb-4' : 'pt-3 pb-3'}
+      style={{maxWidth: small ? '100%' : 800}}
+      >
         <Button
         appearance='primary'
         className='r-btn r-main-btn'

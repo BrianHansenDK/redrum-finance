@@ -1,4 +1,5 @@
 import React from 'react';
+import Footer02 from '../../../components/footer/Footer02';
 import { useMediaQuery } from '../../../misc/custom-hooks';
 import AppNavBar from '../components/AppNavBar';
 import DashboardDrawer from '../components/DashboardDrawer';
@@ -45,11 +46,11 @@ const LayoutWithSidebar: React.FunctionComponent<ILayoutWithSidebarProps> = (pro
                   <SideBar en={en} />
                 )
               }
-
                 <div className='' style={styles.innerPage}>
                     {children}
                 </div>
             </div>
+            <Footer02 en={en}/>
         </>
     )
 }

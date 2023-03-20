@@ -192,7 +192,14 @@ const SecondaryNavbar: FunctionComponent<IProps> = (props) => {
                 </Nav>
             </Navbar>
             <ConfirmAgeModal visible={isVisible} close={closeModal} openInvestModal={openInvestModal} en={en} />
-            <InvestModal project={project} close={closeInvestModal} visible={isInvestVisible} showReciept={() => null} />
+            <InvestModal 
+            project={project} 
+            close={closeInvestModal} 
+            visible={isInvestVisible} 
+            showReciept={() => null} 
+            en={false} 
+            navOpen={false} 
+            setEn={undefined} openMenu={undefined} openNav={undefined} closeNav={undefined} />
             <TransferMoneyModal navPressed={false} close={closeInvestModal} visible={isTransferVisible} />
         </>
     )

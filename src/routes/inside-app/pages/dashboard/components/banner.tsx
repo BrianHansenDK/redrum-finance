@@ -1,9 +1,11 @@
 import React from 'react'
 import { Button } from 'rsuite'
 import BANNER from '../../../../../components/images/banner_placeholder.svg'
+import { useMediaQuery } from '../../../../../misc/custom-hooks'
 
 const BannerComponent = ({isMobile} : {isMobile: boolean}) => {
 
+  const small = useMediaQuery('(max-width: 800px)')
   const styles = {
     wrap: {
       background: 'linear-gradient(0deg, rgba(0, 0, 0, 0.7), rgba(255, 0, 150, 0.3)), url(' + BANNER + ')',
@@ -11,6 +13,7 @@ const BannerComponent = ({isMobile} : {isMobile: boolean}) => {
       paddingTop: isMobile ? 10 : '1rem',
       paddingBottom: isMobile ? 10 : '1rem',
       padding: isMobile ? 10 : 'auto',
+      maxWidth: small ? '100%' : 800,
     },
     title: {
       fontSize: isMobile ? 18 : 22.5,

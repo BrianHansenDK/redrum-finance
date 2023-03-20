@@ -32,7 +32,7 @@ $dark-blue-shadow: #3549FE7B;
       row-gap: 5px;
       & .info-row {
         text-align: center;
-        font-size: small;
+        font-size: medium;
         margin: 0;
       }
     }
@@ -48,9 +48,25 @@ $dark-blue-shadow: #3549FE7B;
       color: $dark;
       font-size: large;
     }
-    & .bonus {
-      text-align: center;
-      color: $green;
+    & .bonus-con {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      row-gap: 5px;
+      & .bonus {
+        text-align: center;
+        color: $green;
+      }
+      & .bonus-number {
+        color: $green;
+        border: 2px solid $border-color;
+        padding: 10px;
+        font-size: large;
+        line-height: 1;
+        font-weight: 700;
+        border-radius: 5px;
+        box-shadow: 0 3px 6px 0 $dark-shadow;
+      }
     }
     // Buttons with amount
     // Wrap
@@ -59,9 +75,10 @@ $dark-blue-shadow: #3549FE7B;
       flex-wrap: wrap;
       justify-content: space-between;
       align-self: center;
-      margin-top: 35px;
+      margin: 35px 0;
       row-gap: 25px;
-      max-width: 800px;
+      max-width: 750px;
+      column-gap: 5px;
       @media (max-width: $tablet) {
         max-width: 100%;
         justify-content: space-evenly;
@@ -69,7 +86,7 @@ $dark-blue-shadow: #3549FE7B;
       }
       // Button
       & .option-btn {
-        width: 250px;
+        width: 200px;
         background: none;
         color: $dark;
         border: 2px solid $dark;
@@ -193,6 +210,7 @@ $dark-blue-shadow: #3549FE7B;
     & .btn-wrap {
       display: flex;
       width: 100%;
+      justify-content: center;
       column-gap: 20px;
       row-gap: 20px;
       @media (max-width: $mobile) {
@@ -210,12 +228,15 @@ $dark-blue-shadow: #3549FE7B;
         }
       }
       & .btn-con {
-        width: 50%;
+        width: 300px;
         @media (max-width: $mobile) {
           width: 100%;
         }
         & .r-btn.rs-btn.rs-btn-primary {
-          width: 100%
+          width: 100%;
+          font-size: large;
+          padding: 15px;
+          font-weight: 700;
         }
       }
     }
@@ -447,6 +468,10 @@ $dark-blue-shadow: #3549FE7B;
                 font-size: smaller;
               }
             }
+          }
+          & .r-main-btn {
+            font-size: medium;
+            padding: 15px;
           }
         }
       }

@@ -7,8 +7,8 @@ const Banner = (props: IProps) => {
   return (
     <div className='app-teaser-banner'>
       <h1 className='sentence r-main-title'>
-        {en ? 'Make your portfolio a part of cinematic history'.split(' ').map((w) => w[0].toUpperCase() + w.slice(1)).join(' ') :
-        'Schenke deinem portfolio einen platz in der filmgeschichte'.split(' ').map((w) => w[0].toUpperCase() + w.slice(1)).join(' ')
+        {en ? 'Make your portfolio a part of cinematic history' /*.split(' ').map((w) => w[0].toUpperCase() + w.slice(1)).join(' ')*/ :
+        'Schenke deinem Portfolio einen Platz in der Filmgeschichte' /*.split(' ').map((w) => w[0].toUpperCase() + w.slice(1)).join(' ')*/
         }
       </h1>
     </div>

@@ -1,5 +1,6 @@
 import React, { Component, useEffect, useState } from 'react'
 import { auth, getUserInvestments, userRef } from '../../../../../firebase';
+import { useMediaQuery } from '../../../../../misc/custom-hooks';
 import { mainColors } from '../../../themes/colors';
 import mainShadows from '../../../themes/shadows';
 import ChartBody from './ChartBody';
@@ -13,9 +14,12 @@ const RadialChart = ({isMobile} : {isMobile: boolean}) => {
       getUserInvestments(auth.currentUser?.uid, setUserInvestments)
     }, [auth.currentUser?.uid])
 
+    const small = useMediaQuery('(max-width: 800px)')
+
     const styles = {
       wrap: {
           width: '100%',
+          maxWidth: small ? '100%' : 800,
           marginTop: isMobile ? 0 : 50,
           marginBottom: 50,
           borderRadius: 10,

@@ -30,7 +30,7 @@ const InvestModal: React.FunctionComponent<IProps> = (props) => {
       project, close, visible, showReciept,
       en, navOpen, setEn, openMenu, openNav, closeNav,
     } = props
-    const [investAmount, setInvestAmount] = useState<any>(0)
+    const [investAmount, setInvestAmount] = useState<any>(100)
     const [available, setAvailable] = useState(0)
     const [focused, setFocused] = useState<boolean>(false)
     const [checked, setChecked] = useState(false)
@@ -197,7 +197,7 @@ const InvestModal: React.FunctionComponent<IProps> = (props) => {
 
     return (
       <>
-        <Modal open={visible} onClose={close} size='full' id='invest-modal'>
+        <Modal open={visible} onClose={close} size='lg' id='invest-modal'>
             <Modal.Header className='modal-head'>
                 <Modal.Title className='title'>
                     {/*en ? 'You are investing in' : 'Ihr Investment in die'*/} <strong>{project.name}</strong>
@@ -220,10 +220,35 @@ const InvestModal: React.FunctionComponent<IProps> = (props) => {
                 'Please select your investment amount:' :
                 'Bitte wählen Sie Ihren Investmentbetrag:'}
               </h4>
-              <h5 className="bonus">
-                  {bonus} {en ? 'Bonus shares' : 'Bonusanteile'}
+              <div className="bonus-con">
+                <h5 className="bonus">
+                  {en ? 'Bonus shares' : 'Bonusanteile'}
                 </h5>
+                <p className="bonus-number">
+                  {bonus}
+                </p>
+              </div>
               <div className="options">
+              <Button
+                className={`option-btn ${investAmount == 50 ? 'chosen' : ''}`}
+                appearance='primary'
+                onClick={()=> {
+                  setFocused(false)
+                  setInvestAmount(50)
+                }}
+                >
+                  50 €
+                </Button>
+                <Button
+                className={`option-btn ${investAmount == 100 ? 'chosen' : ''}`}
+                appearance='primary'
+                onClick={()=> {
+                  setFocused(false)
+                  setInvestAmount(100)
+                }}
+                >
+                  100 €
+                </Button>
                 <Button
                 className={`option-btn ${investAmount == 250 ? 'chosen' : ''}`}
                 appearance='primary'
@@ -233,6 +258,16 @@ const InvestModal: React.FunctionComponent<IProps> = (props) => {
                 }}
                 >
                   250 €
+                </Button>
+                <Button
+                className={`option-btn ${investAmount == 500 ? 'chosen' : ''}`}
+                appearance='primary'
+                onClick={()=> {
+                  setFocused(false)
+                  setInvestAmount(500)
+                }}
+                >
+                  500 €
                 </Button>
                 <Button
                 className={`option-btn ${investAmount == 1000 ? 'chosen' : ''}`}
@@ -282,7 +317,7 @@ const InvestModal: React.FunctionComponent<IProps> = (props) => {
                 value={!focused ? emptyValue : investAmount}
                 />
               </div>
-              <div className="accept">
+              {/*<div className="accept">
                 <Toggle
                 checkedChildren={<CheckIcon />}
                 unCheckedChildren={<CloseIcon />}
@@ -295,38 +330,21 @@ const InvestModal: React.FunctionComponent<IProps> = (props) => {
                     'Ich bin mit den Investment-Konditionen einverstanden und bestätige die Reservierungsbedingungen.'
                   }
                 </p>
-              </div>
+                </div>*/}
             </Modal.Body>
             <Modal.Footer className='modal-footer'>
                 <div className='btn-wrap'>
-                  <Whisper
-                  speaker={
-                    <Tooltip>
-                    {en ?
-                      'You must agree to our terms and conditions before buying stocks.' :
-                      'Sie müssen unseren Allgemeinen Geschäftsbedingungen zustimmen, bevor Sie Aktien kaufen.'
-                    }
-                    </Tooltip>
-                  }
-                  trigger={
-                    isMobile && !checked ? 'active' :
-                    checked ? 'none' :
-                    'hover'}
-                  placement={'top'}
-                  >
                     <span className='btn-con'>
                     <Button
                     onClick={onInvest}
                     appearance='primary'
-                    disabled={!checked}
-                    style={{ pointerEvents: !checked ? 'none' : 'auto' }}
+                    // style={{ pointerEvents: !checked ? 'none' : 'auto' }}
                     className='r-btn r-main-btn'>
-                    {en ?
-                    'Order with obligation to pay' :
-                    'Jetzt Zahlungspflichtig bestellen'}
+                    {en ? 'Continue' : 'Weiter'}
                     </Button>
                     </span>
-                  </Whisper>
+                  {
+                    /*
                     <Button
                     onClick={() => {
                       close()
@@ -335,8 +353,9 @@ const InvestModal: React.FunctionComponent<IProps> = (props) => {
                     }}
                     appearance='primary'
                     className='r-btn r-secondary-btn'>
-                        Cancel
+                    Cancel
                     </Button>
+                  */}
                 </div>
             </Modal.Footer>
         </Modal>

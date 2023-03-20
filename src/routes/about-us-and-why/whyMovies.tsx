@@ -77,7 +77,7 @@ const WhyMovies: React.FunctionComponent<IProps> = (props) => {
                       margin: 'auto'
                     }}
                     >
-                        Become an investor
+                        {en ? 'Become an producer' : 'Produzent werden'}
                     </Button>
                 </div>
             </div>

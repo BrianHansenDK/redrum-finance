@@ -1,3 +1,9 @@
+$dark: #141628;
+$main: #3598FE;
+$white: #fefefe;
+$blue-shadow: #359afe7b;
+$dark-shadow: rgba(0, 0, 29, .25);
+
 .top-div {
     align-self: center;
     min-width: 0px;
@@ -186,6 +192,11 @@
           max-width: 1200px;
         }
     }
+    & .r-btn.r-secondary-btn.mt-3.mb-5.rs-btn.rs-btn-primary.rs-btn-lg {
+      background-color: $dark;
+      color: $white;
+    }
+
 }
 
 .block-txt {

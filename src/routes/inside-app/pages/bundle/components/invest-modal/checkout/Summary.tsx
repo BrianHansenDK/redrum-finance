@@ -1,6 +1,6 @@
 import React from 'react'
-import { Button, Divider, Toggle } from 'rsuite'
-import { numberWithCommasAsString } from '../../../../../../../misc/custom-hooks'
+import { Button, Divider, Toggle, Tooltip, Whisper } from 'rsuite'
+import { numberWithCommasAsString, useMediaQuery } from '../../../../../../../misc/custom-hooks'
 import CheckIcon from '@rsuite/icons/Check';
 import CloseIcon from '@rsuite/icons/Close';
 import { Link } from 'react-router-dom';
@@ -16,6 +16,9 @@ interface IProps {
 const CheckoutSummary = (props: IProps) => {
   const {en, investAmount, bonus, address, investInBundle} = props
   const [checked, setChecked] = React.useState<boolean>(false)
+  const [checked2, setChecked2] = React.useState<boolean>(false)
+
+  const isMobile = useMediaQuery('(max-width: 1200px)')
 
   return (
     <div className='checkout-card summary'>
@@ -102,14 +105,49 @@ const CheckoutSummary = (props: IProps) => {
             }
        </p>
       </div>
-      <Button
-      appearance='primary'
-      className='r-btn r-main-btn mt-2'
-      disabled={address == null || !checked}
-      onClick={investInBundle}
-      >
-        {en ? 'Continue' : 'Weiter'}
-      </Button>
+      <div className="juristics">
+      <Toggle
+        defaultChecked={checked2}
+        onChange={() => setChecked2(!checked2)}
+        checkedChildren={<CheckIcon />}
+        unCheckedChildren={<CloseIcon />}
+        />
+        <p className="txt">
+          {en ?
+          `I hereby agree to the Redrum` :
+          'Hiermit stimme ich dem Redrum'
+          } <a href='/terms-and-conditions' target='_blank'>{en ? 'Framework Agreement.' : 'Rahmenvertrag'}</a> {en ?
+            `` :
+            'zu.'
+            }
+       </p>
+      </div>
+      <Whisper
+      placement='top'
+      trigger={!checked || !checked2 ? isMobile ? 'active' : 'hover' : 'none'}
+      speaker={
+        <Tooltip>
+          {en ?
+          'You must agree to our terms and conditions & Framework agreement to continue.' :
+          'Sie müssen unseren Allgemeinen Geschäftsbedingungen & Framework agreement zustimmen, um fortzufahren.'
+          }
+        </Tooltip>
+      }>
+        <span style={{width: '100%'}} className='mt-2'>
+          <Button
+          appearance='primary'
+          className='r-btn r-main-btn'
+          disabled={address == null || !checked || !checked2}
+          block
+          style={{ pointerEvents: !checked || !checked2 ? 'none' : 'auto' }}
+          onClick={investInBundle}
+          >
+            {en ?
+            'Order with obligation to pay' :
+            'Jetzt Zahlungspflichtig bestellen'}
+          </Button>
+        </span>
+      </Whisper>
     </div>
   )
 }

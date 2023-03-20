@@ -96,7 +96,7 @@ const PersonalData = (props: IProps) => {
               {fullName}
             </p>
             <p className="saved-info">
-            {address}
+            {address.split(',')[0]} <br/> {address.split(',')[1]}
             </p>
             <p className="saved-info">
               {`${knownState}, ${knownCountry}`}

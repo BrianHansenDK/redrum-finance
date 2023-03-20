@@ -12,7 +12,7 @@ import USER from '@rsuite/icons/legacy/User'
 import GEAR from '@rsuite/icons/legacy/Gear'
 import DOCS from '@rsuite/icons/legacy/Database'
 import INV from '@rsuite/icons/legacy/Share'
-import REDRUMCAT from '@rsuite/icons/legacy/Anchor'
+import REDRUMCAT from '../../../components/images/redrum_cat.png'
 import TooltipForAccount from './TooltipForAccount';
 import { Link, useNavigate } from 'react-router-dom';
 import mainShadows from '../themes/shadows';
@@ -21,9 +21,10 @@ import dashboardStrings from '../../../library/string/Dashboard';
 import TransferMoneyModal from '../pages/bundle/components/TransferMoneyModal';
 import ChangeLanBtn from '../../../components/ChangeLanBtn';
 import AdminBtn from './AdminBtn';
-import { useMediaQuery } from '../../../misc/custom-hooks';
+import { numberWithCommas, useMediaQuery } from '../../../misc/custom-hooks';
 import AppNavMenu from './AppNavMenu';
 import AppNavigationMenu from './AppNavigationMenu';
+import { userRef } from '../../../firebase';
 
 interface IProps {
   fixed: boolean,
@@ -50,6 +51,12 @@ const AppNavBar: React.FunctionComponent<IProps> = (props) => {
     const navigate = useNavigate()
     const toaster = useToaster()
     const [visible, setVisible] = useState(false)
+
+    const [available, setAvailable] = useState<number | undefined>(0)
+
+    React.useEffect(() => {
+      userRef(auth.currentUser?.uid, '/money_available', setAvailable)
+    }, [])
 
 
     const openModal = () => {
@@ -107,7 +114,13 @@ const AppNavBar: React.FunctionComponent<IProps> = (props) => {
             <div style={styles.navBarInner}>
 
                 <NavbarBrand style={isSmall ? styles.brandSmall : isMobile ? styles.brandMobile : styles.brand} >
-                    <REDRUMCAT className={isMobile ? 'mr-1' : ''} /> Redrum Pro
+                    <img
+                    src={REDRUMCAT}
+                    alt="Redrum Logo"
+                    width={60}
+                    height={60}
+                    className='mr-1'
+                    /> Redrum Pro
                 </NavbarBrand>
                 {
                   isMobile ? (
@@ -137,6 +150,9 @@ const AppNavBar: React.FunctionComponent<IProps> = (props) => {
                     <Button style={styles.btn} appearance='primary' size='lg' onClick={openModal} >
                     {en ? dashboardStrings.navbarEN.btn : 'Einzahlen'}
                     </Button>
+                    <NavItem className='d-flex flex-column align-center justify-around' style={styles.navLink}>
+                      {available != undefined && available < 10000 ? 'Balance:' : null} {available != undefined ? numberWithCommas(available) : 0} €
+                    </NavItem>
                     <ChangeLanBtn setEn={setEn} en={en} />
                 </Nav>
                   )
@@ -180,6 +196,8 @@ const styles = {
         fontSize: 21.5,
         fontWeight: '700',
         color: mainColors.white,
+        display: 'flex',
+        alignItems: 'center',
     },
     brandMobile: {
       fontSize: 21.5,
