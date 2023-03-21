@@ -1,6 +1,6 @@
 import { Button } from 'rsuite'
 import {Icon} from '@rsuite/icons'
-import AppleSvg from './footer/svgs/AppleSvg'
+import AppleSvg from '../assets/svgs/AppleSvg'
 
 interface IProps {en: boolean}
 

@@ -52,7 +52,7 @@ const CoInvestorCard: React.FunctionComponent<IProps> = (props) => {
 }
     return (
         <div style={styles.wrap}>
-            {userImage !== '' ? (
+            {userImage ? (
                 <img style={styles.image} src={userImage} alt={`Profile image for ${userName}`} />
             ) : (
                 <div style={styles.avatar}>

@@ -1,15 +1,17 @@
-// Sizes
+$small: 450px;
+$limit: 650px;
 $mobile: 768px;
 $tablet: 1100px;
 $desktop: 1600px;
-// Colors
+
 $dark: #141628;
 $dark-light: rgb(75, 75, 75);
-$dark-grey: #141414;
 $main: #3598FE;
 $white: #FEFEFE;
 $dark-blue: #3549FE;
 $border-color: #D9DEED;
+$red: rgb(195, 0, 16);
+$green: #4caf50;
 $blue-shadow: #359AFE7B;
 $dark-shadow: rgba(0, 0, 29, .25);
 $dark-blue-shadow: #3549FE7B;
@@ -250,20 +252,144 @@ $dark-blue-shadow: #3549FE7B;
         font-size: 18px;
       }
     }
-    & .btn-wrap {
-      display: flex;
-      margin-top: 40px;
-      column-gap: 20px;
-      row-gap: 20px;
+    & .payment-method {
+      margin: 25px 0 0;
       width: 100%;
-      justify-content: center;
+      max-width: 800px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      row-gap: 10px;
       @media (max-width: $tablet) {
-        flex-direction: column;
+        max-width: 100%;
       }
-      & .r-btn {
+      & .payment-method-title {
+        font-size: large;
+        color: $dark;
+        line-height: 1;
+      }
+      & .payment-method-box {
         width: 300px;
+        border-top: 1px solid $dark;
+        padding: 10px;
+        display: flex;
+        column-gap: 15px;
+        align-items: center;
+        position: relative;
+        & .icon {
+          width: 4rem;
+          height: 2.5rem;
+          border-radius: 5px;
+          box-shadow: 0 1px 2px 0 $dark-shadow;
+        }
+        & .payment-method-name {
+          font-size: medium;
+          color: $dark;
+        }
+        & .payment-method-btn {
+          height: 25px;
+          padding: 0;
+          position: absolute;
+          right: 10px; top: calc(50% - 12.5px);
+
+        }
+      }
+    }
+    & .balance-con {
+      margin-top: 35px;
+      & .balance-title {
+        text-align: center;
+        font-size: x-large;
+        color: $dark;
+      }
+
+      & .btn-wrap {
+        display: flex;
+        margin-top: 40px;
+        column-gap: 20px;
+        row-gap: 20px;
+        width: 100%;
+        justify-content: center;
         @media (max-width: $tablet) {
-          width: 100%;
+          flex-direction: column;
+        }
+        & .r-btn {
+          width: 300px;
+          @media (max-width: $tablet) {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}
+.payment-method-modal {
+  & .modal-header {
+    & .modal-title {
+      font-size: large;
+      color: $dark;
+      text-align: center;
+      font-weight: 700;
+    }
+  }
+  & .modal-body {
+    & .content-title {
+      font-size: medium;
+      color: $dark;
+      text-align: center;
+    }
+    & .radio-btns-con {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: auto;
+      row-gap: 10px;
+      width: 100%;
+      max-width: 400px;
+      & .rs-form-group {
+        width: 100%;
+      }
+      & .radio-btn-con {
+        padding: 5px 0;
+        // border-top: 1px solid $dark;
+        & .rs-radio {
+          display: flex;
+          align-items: center;
+          & .rs-radio-checker {
+            width: 100%;
+            & label {
+              display: block;
+              & .rs-radio-wrapper {
+                top: calc(50% - 8px);
+              }
+              & .radio-inner {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                column-gap: 15px;
+                & .icon {
+                  width: 3rem;
+                  height: 1.5rem;
+                  border-radius: 5px;
+                  box-shadow: 0 2px 4px 0 $dark-shadow;
+                &.dark {
+                  background-color: $dark;
+                  color: $red;
+                  }
+                }
+                & .option-brand {
+                  flex: 1 1 0%;
+                  font-size: 1rem;
+                  line-height: 1.5rem;
+                  letter-spacing: 0.5px;
+                  font-weight: 400;
+                  color: rgb(20, 20, 20);
+                  cursor: pointer;
+                }
+              }
+            }
+
+          }
         }
       }
     }

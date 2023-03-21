@@ -58,6 +58,7 @@ class ProfilePage extends Component<IProps, IState> {
                     Profile page
                 </h1>
                 <ProfileIntroduction
+                en={this.props.en}
                 userId={userId}
                 isMobile={this.props.isMobile}
                 isDesktop={this.props.isDesktop}

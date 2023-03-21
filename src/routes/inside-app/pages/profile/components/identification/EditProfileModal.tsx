@@ -10,6 +10,11 @@ import ModalHeader from 'rsuite/esm/Modal/ModalHeader'
 import ModalTitle from 'rsuite/esm/Modal/ModalTitle'
 import { database, userRef } from '../../../../../../firebase'
 import { mainColors } from '../../../../themes/colors'
+import CheckIcon from '@rsuite/icons/Check';
+import CloseIcon from '@rsuite/icons/Close';
+import '../styles/edit-profile-modal.scss'
+import PushThemes from '../../../../themes/PushThemes'
+
 interface IProps {
     userId: any,
     close: any,
@@ -33,6 +38,7 @@ const EditProfileModal: React.FunctionComponent<IProps> = (props) => {
     const [countryStart, setCountryStart] = useState('')
     const [phoneStart, setPhoneStart] = useState('')
 
+    const [companyAccount, setCompanyAccount] = useState(false)
     const toaster = useToaster()
 
     useEffect(() => {
@@ -48,10 +54,12 @@ const EditProfileModal: React.FunctionComponent<IProps> = (props) => {
         userRef(userId, '/address', setCityStart)
         userRef(userId, '/country', setCountryStart)
         userRef(userId, '/phone_number', setPhoneStart)
+        if (companyAccountStart) {
+          setCompanyAccount(true)
+        }
     })
 
-    const [companyAccount, setCompanyAccount] = useState(false)
-    const [salution, setSalution] = useState('')
+    const [title, setTitle] = useState('')
     const [fullName, setFullName] = useState('')
     const [companyName, setCompanyName] = useState('')
     const [contactPartner, setContactPartner] = useState('')
@@ -61,20 +69,40 @@ const EditProfileModal: React.FunctionComponent<IProps> = (props) => {
     const [city, setCity] = useState('')
     const [country, setCountry] = useState('')
     const [phone, setPhone] = useState('')
+    const [checked, setChecked] = useState(false)
 
     const onSave = () => {
         const reference = ref(database)
         const updates: any = {}
         let completionData = completion
-        updates['/users/' + userId + '/username'] = userName == '' ? userNameStart : userName
+        if (title !== '') {
+          updates['/users/' + userId + '/title'] = title
+        }
+        updates['/users/' + userId + '/company_account'] = companyAccount
+        if ((companyAccount && companyName !== '' && contactPartner !== '' && checked) || (companyNameStart !== '' || companyNameStart !== undefined)) {
+          updates['/users/' + userId + '/company_name'] = companyName !== '' ? companyName : companyNameStart
+          if (contactPartner !== '' && contactPartner.split(' ').length > 1) {
+            updates['/users/' + userId + '/contact_partner'] = contactPartner !== '' ? contactPartner : contactPartnerStart
+          }
+        }
+        if (fullName !== '' && fullName.split(' ').length > 1 && !companyAccount) {
+          updates['/users/' + userId + '/full_name'] = fullName
+        }
+        updates['/users/' + userId + '/username'] =
+          !companyAccount ? userName == '' ? userNameStart : userName :
+          companyName
         if (birthDate !== null) {
             updates['/users/' + userId + '/birthdate'] = birthDate
         }
         if (birthYear !== 0 && birthYear > 2023 - 100 && birthYear < 2023) {
           updates['/users/' + userId + '/birthYear'] = birthYear
       }
-        updates['/users/' + userId + '/city'] = city == '' ? cityStart : city
+        updates['/users/' + userId + '/city'] =
+        city == '' ? cityStart.split(' ')[cityStart.split(' ').length - 1] :
+        city.split(' ')[city.split(' ').length - 1]
+        updates['/users/' + userId + '/address'] = city == '' ? cityStart : city
         updates['/users/' + userId + '/country'] = country == '' ? countryStart : country
+        updates['/users/' + userId + '/phone_number'] = phone == '' ? phoneStart : phone
         if ((birthDate !== null && birthDate !== '') && (birthDateStart == null || birthDateStart == '')) {
             completionData += 5
         }
@@ -88,16 +116,55 @@ const EditProfileModal: React.FunctionComponent<IProps> = (props) => {
             completionData += 10
         }
         updates['/users/' + userId + '/completion'] = completionData
-        update(reference, updates)
-        close()
-        toaster.push(
-            <Message showIcon type='success'>
-                Profile information was changed
-            </Message>, { placement: 'topCenter' }
-        )
-        window.setTimeout(() => {
-            toaster.clear()
-        }, 3000)
+        if (companyAccount && (companyName === '' || (contactPartner === '' && contactPartner.split(' ').length < 2)) && (companyNameStart === '' || companyNameStart == undefined)) {
+          toaster.push(
+            <Message style={PushThemes.pushRed} type='error'>
+              <p style={PushThemes.txt}>
+                Error: Company details invalid
+              </p>
+            </Message>, {placement: 'bottomCenter'}
+          )
+          window.setTimeout(() => toaster.clear(), 10000)
+        } else if (companyAccount && !checked) {
+          toaster.push(
+            <Message style={PushThemes.pushRed} type='error'>
+              <p style={PushThemes.txt}>
+                Error: Must certify legal entitlement
+              </p>
+            </Message>, {placement: 'bottomCenter'}
+          )
+          window.setTimeout(() => toaster.clear(), 10000)
+        }
+
+        const correctStatements = [
+          (companyAccount && (companyName !== '' || (contactPartner !== '' && contactPartner.split(' ').length > 1)) && checked) ||
+          (companyNameStart !== '' || companyNameStart !== undefined),
+          !companyAccount && fullName !== '' && fullName.split(' ').length > 1
+        ]
+        if (correctStatements[0] || correctStatements[1]) {
+          update(reference, updates).then(() => {
+            close()
+            toaster.push(
+              <Message style={PushThemes.pushGreen} type='success'>
+                <p style={PushThemes.txt}>Profile information was changed succesfully</p>
+              </Message>, { placement: 'bottomCenter' }
+            )
+            window.setTimeout(() => {
+                toaster.clear()
+            }, 10000)
+          }).catch((err) => {
+            toaster.push(
+              <Message style={PushThemes.pushRed} type='error'>
+                <p style={PushThemes.txt}>
+                  {err.Message}
+                </p>
+              </Message>, {placement: 'bottomCenter'}
+            )
+            window.setTimeout(() => toaster.clear(), 10000)
+          })
+
+        }
+
     }
     return (
         <Modal open={visible} onClose={close} >
@@ -114,52 +181,60 @@ const EditProfileModal: React.FunctionComponent<IProps> = (props) => {
                           {en ? 'Private account' : 'Einzelperson'}
                         </span>
                         <Toggle className='ml-1 mr-1'
-                        defaultChecked={companyAccountStart != undefined ? companyAccountStart : false}
-                        onChange={setCompanyAccount}
+                        defaultChecked={companyAccount}
+                        onClick={() => setCompanyAccount(!companyAccount)}
                         />
                         <span style={{color: companyAccount ? mainColors.main : mainColors.dark}}>
                           {en ? 'Company account' : 'Firma'}
                         </span>
                     </FormGroup>
                     <FormGroup>
-                      <FormControlLabel style={styles.label}>Salution</FormControlLabel>
+                      <FormControlLabel style={styles.label}>Title</FormControlLabel>
                       <SelectPicker
-                      defaultValue={companyNameStart}
-                      onChange={(e:any) => setSalution(e?.target.value())}
+                      placeholder='Sir/Miss'
+                      onChange={(e:any) => setTitle(e?.target.value())}
                       data={[{label: 'Sir.', value: 'Sir'}, {label: 'Miss.', value: 'Miss'}]} />
                       </FormGroup>
                     {companyAccount ? (
                       <>
                       <FormGroup>
                       <FormControlLabel style={styles.label}>Company name</FormControlLabel>
-                      <Input defaultValue={companyNameStart} onChange={setCompanyName} />
+                      <Input defaultValue={companyNameStart} onChange={setCompanyName} placeholder='Name of company' />
                       </FormGroup>
                       <FormGroup>
                       <FormControlLabel style={styles.label}>Contact partner</FormControlLabel>
-                      <Input defaultValue={contactPartnerStart} onChange={setContactPartner} />
+                      <Input defaultValue={contactPartnerStart} onChange={setContactPartner} placeholder='Full name of contact person' />
                       </FormGroup>
                       <FormGroup>
-                      <Radio>
+                      <div className='accept-toggle-con'>
+                        <Toggle
+                        defaultChecked={checked}
+                        onClick={() => setChecked(!checked)}
+                        checkedChildren={<CheckIcon/>}
+                        unCheckedChildren={<CloseIcon/>}
+                        />
                         <p style={{color: mainColors.dark}}>
                           {en ?
                           'I hereby certify that I am legally entitled to act and enter into contracts on behalf of the company.' :
                           'Hiermit bestätige ich, dass ich berechtigt bin gesetzlich im Namen der Firma zu handeln und Verträge abzuschließen.'
                           }
                         </p>
-                      </Radio>
+                      </div>
                       </FormGroup>
                       </>
                     ) : (
+                      <>
                       <FormGroup>
                         <FormControlLabel style={styles.label}>Full name</FormControlLabel>
                         <Input defaultValue={fullNameStart} onChange={setFullName} />
-                    </FormGroup>
-                    )
-                    }
-                    <FormGroup>
+                      </FormGroup>
+                      <FormGroup>
                         <FormControlLabel style={styles.label}>Username</FormControlLabel>
                         <Input defaultValue={userNameStart} onChange={setUserName} />
                     </FormGroup>
+                      </>
+                    )
+                    }
                     <FormGroup>
                         <FormControlLabel style={styles.label}>Birth date:</FormControlLabel>
                         <Input placeholder={`${birthDateStart !== '' || birthDateStart !== null ? birthDateStart : 'dd/MM'}`}
@@ -184,7 +259,7 @@ const EditProfileModal: React.FunctionComponent<IProps> = (props) => {
                     </FormGroup>
                     <FormGroup>
                         <FormControlLabel style={styles.label}>Phone</FormControlLabel>
-                        <Input defaultValue={phoneStart} onChange={setPhone} placeholder='Country_code+ number (00+ 00000000)' />
+                        <Input defaultValue={phoneStart} onChange={setPhone} placeholder='+Country_code number (+00 00000000)' />
                     </FormGroup>
                 </Form>
             </ModalBody>

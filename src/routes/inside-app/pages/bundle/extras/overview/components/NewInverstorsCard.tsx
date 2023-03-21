@@ -29,7 +29,8 @@ const NewInverstorsCard: FunctionComponent<IProps> = (props) => {
             height: isMobile ? 65 : 100,
             borderRadius: '50%',
             boxShadow: mainShadows.image,
-            outline: '5px solid rgba(29,29,69, .10)'
+            outline: '5px solid rgba(29,29,69, .10)',
+            flexShrink: 0,
         },
         avatar: {
             display: 'flex',
@@ -43,6 +44,7 @@ const NewInverstorsCard: FunctionComponent<IProps> = (props) => {
             color: mainColors.white,
             fontSize: isMobile ? 20 : 30,
             outline: '5px solid rgba(29,29,69, .10)',
+            flexShrink: 0,
         },
         txtWrap: {
             marginLeft: 30,
@@ -77,7 +79,7 @@ const NewInverstorsCard: FunctionComponent<IProps> = (props) => {
                     </h1>
                     <p>
                         <span style={styles.role}>
-                            {user?.money_available !== undefined ? 'Redrum Pro investor' : 'Redrum Pro member'}
+                            {user?.company_account ? 'Company' : user?.money_available !== undefined ? 'Redrum Pro investor' : 'Redrum Pro member'}
                         </span>
                         {user?.city ? (
                             `${user?.city}, ${user?.country}`

@@ -66,7 +66,7 @@ const AppNavBar: React.FunctionComponent<IProps> = (props) => {
       setVisible(false)
     }
     const logout = () => {
-        auth.signOut().then(() => location.pathname == '/app' ? navigate('/') : navigate('/app'))
+        auth.signOut().then(() => location.pathname.includes('/app') ? navigate('/') : location.reload())
         toaster.push(<Message showIcon type='info'>
           {en ? 'Logged out' : 'Abmeldet'}
         </Message>, {placement: 'topCenter'})

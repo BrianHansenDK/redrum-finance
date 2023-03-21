@@ -1,9 +1,9 @@
 import React from 'react'
 import {Icon} from '@rsuite/icons'
 import FlexboxGridItem from 'rsuite/esm/FlexboxGrid/FlexboxGridItem'
-import InstagramSvg from './svgs/InstagramSvg'
-import FacebookSvg from './svgs/FacebookSvg'
-import LinkedinSvg from './svgs/LinkedinSvg'
+import InstagramSvg from '../../assets/svgs/InstagramSvg'
+import FacebookSvg from '../../assets/svgs/FacebookSvg'
+import LinkedinSvg from '../../assets/svgs/LinkedinSvg'
 
 const Socials = (props : {colspan: any}) => {
   const {colspan} = props

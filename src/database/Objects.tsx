@@ -12,6 +12,17 @@ export interface FirebaseUser {
   image?: string,
   role?: string,
   badge?: string,
+  address?: string,
+  company_account?: boolean,
+  company_name?: string,
+  contact_partner?: string,
+  full_name?: string,
+  phone_number?: string,
+  state?: string,
+  payment_method?: string,
+  paypal_account?: string,
+  withdrawal_method?: string,
+  bank_information?: string,
 }
 
 // Movie object
