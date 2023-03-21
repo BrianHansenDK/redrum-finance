@@ -337,6 +337,8 @@ $dark-blue-shadow: #3549FE7B;
       font-size: medium;
       color: $dark;
       text-align: center;
+      line-height: 1;
+      margin: 15px 0;
     }
     & .radio-btns-con {
       display: flex;
@@ -348,6 +350,30 @@ $dark-blue-shadow: #3549FE7B;
       max-width: 400px;
       & .rs-form-group {
         width: 100%;
+        margin: 15px 0 45px;
+        // Withdrawal Methods!
+        &.withdrawal-methods {
+          margin: 15px 0 0;
+        }
+      }
+      & .withdrawal-input-element {
+        width: 100%;
+        & .input-label {
+          color: $dark;
+          font-weight: 500;
+          font-size: small;
+          padding-bottom: 0.25rem;
+        }
+        &.bank-details {
+          display: flex;
+          column-gap: 15px;
+          & .item.bic {
+            min-width: 75px;
+          }
+          & .item.iban {
+            flex-grow: 1;
+          }
+        }
       }
       & .radio-btn-con {
         padding: 5px 0;
@@ -372,6 +398,7 @@ $dark-blue-shadow: #3549FE7B;
                   height: 1.5rem;
                   border-radius: 5px;
                   box-shadow: 0 2px 4px 0 $dark-shadow;
+                  color: $green;
                 &.dark {
                   background-color: $dark;
                   color: $red;
@@ -390,6 +417,26 @@ $dark-blue-shadow: #3549FE7B;
             }
 
           }
+        }
+      }
+    }
+  }
+  & .modal-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 15px;
+    & .r-btn {
+      width: 150px;
+      &.secondary {
+        background-color: $white;
+        color: $dark;
+        box-shadow: 0 3px 6px 0 $dark-shadow;
+        &:hover {
+          box-shadow: 0 2px 4px 0 $dark-shadow;
+        }
+        &:active {
+          box-shadow: 0 1px 2px 0 $dark-shadow;
         }
       }
     }

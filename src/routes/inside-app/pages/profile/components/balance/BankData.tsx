@@ -25,6 +25,12 @@ const BankData = (props: IProps) => {
     currentUser?.payment_method == undefined ||
     currentUser?.payment_method == 'PayPal' ||
     currentUser?.payment_method == null
+  // Check if withdrawal method is PayPal. If not defined yet, be Paypal by default
+  const withdrawalIsPaypal =
+    currentUser?.withdrawal_method == undefined ||
+    currentUser?.withdrawal_method == 'PayPal' ||
+    currentUser?.withdrawal_method == null
+
   React.useEffect(() => {
     const reference = ref(database, 'users/' + userId)
     onValue(reference, (snap) => setCurrentUser(snap.val()))
@@ -54,6 +60,7 @@ const BankData = (props: IProps) => {
       </div>
       <PaymentMethodModal
       isPayPal={isPaypal}
+      withdrawalIsPaypal={withdrawalIsPaypal}
       currentUser={currentUser!}
       isOpen={modalOpen}
       closeModal={closeModal}
