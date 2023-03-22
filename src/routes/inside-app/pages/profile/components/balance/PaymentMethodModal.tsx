@@ -6,8 +6,8 @@ import PaypalIcon from '../../../../../../assets/svgs/PaypalCard'
 import RedrumDeposits from '@rsuite/icons/legacy/GithubAlt'
 import Exchange from '@rsuite/icons/legacy/Exchange'
 import {Icon} from '@rsuite/icons'
-import { ref } from 'firebase/database'
-import { database } from '../../../../../../firebase'
+import { ref, update } from 'firebase/database'
+import { auth, database, userRef } from '../../../../../../firebase'
 import PushThemes from '../../../../themes/PushThemes'
 
 interface IProps {
@@ -21,18 +21,42 @@ interface IProps {
 
 const PaymentMethodModal = (props: IProps) => {
   const {currentUser, isOpen, isPayPal, withdrawalIsPaypal, closeModal, en} = props
+  const [paypal_account, setPayPalAccount] = React.useState('')
+  const [bank_information, setBankInfo] = React.useState<any>('')
+  const [paypalEmail, setPayPalEmail] = React.useState('')
+  const [bic, setBic] = React.useState('')
+  const [iban, setIban] = React.useState('')
+
+  // Get user data
+  React.useEffect(() => {
+    userRef(auth.currentUser?.uid, '/paypal_account', setPayPalAccount)
+    userRef(auth.currentUser?.uid, '/bank_information', setBankInfo)
+    if (!(paypal_account == undefined) || !(paypal_account == null)) {
+      setPayPalEmail(paypal_account)
+    } else {
+      setPayPalEmail('')
+    }
+    if (!(bank_information == undefined) || !(bank_information == null)) {
+      setBic(bank_information.replace(',', '').split(' ')[1])
+      setIban(bank_information.split(' ')[3])
+    } else {
+      setBic('')
+      setIban('')
+    }
+    console.log(paypal_account, bank_information)
+  }, [currentUser])
+
+
   const [currentMethod, setCurrentMethod] = React.useState(isPayPal ? 'PayPal' : 'Redrum_Pro_deposit')
   const [currentWithdrawal, setCurrentWithdrawal] = React.useState(withdrawalIsPaypal ? 'PayPal' : 'Bank transfer')
-  const [paypalEmail, setPayPalEmail] = React.useState(currentUser.paypal_account ? currentUser.paypal_account : '')
-  const [bic, setBic] = React.useState(currentUser.bank_information ? currentUser.bank_information.split(' ')[1] : '')
-  const [iban, setIban] = React.useState(currentUser.bank_information ? currentUser.bank_information.split(' ')[3] : '')
+
 
   const toaster = useToaster()
 
   function resetValues() {
-    setPayPalEmail(currentUser.paypal_account ? currentUser.paypal_account : '')
-    setBic(currentUser.bank_information ? currentUser.bank_information.split(' ')[1] : '')
-    setIban(currentUser.bank_information ? currentUser.bank_information.split(' ')[3] : '')
+    setPayPalEmail(paypal_account)
+    setBic(bank_information !== '' && bank_information !== null && bank_information !== undefined ? bank_information.replace(',', '').split(' ')[1] : '')
+    setIban(bank_information !== '' && bank_information !== null && bank_information !== undefined ? bank_information.split(' ')[3] : '')
   }
 
   function updateBankData() {
@@ -45,7 +69,7 @@ const PaymentMethodModal = (props: IProps) => {
     if (currentWithdrawal === 'PayPal') {}
     const errorStatements = {
       noPayPalInput: currentWithdrawal === 'PayPal' && paypalEmail === '',
-      paypalInvalid: currentWithdrawal === 'PayPal' && !(paypalEmail.split('@').length === 2 && paypalEmail.split('.').length === 2),
+      paypalInvalid: currentWithdrawal === 'PayPal' && !(paypalEmail.split('@').length === 2) && !(paypalEmail.split('.').length === 2),
       noBicOrIBAN: currentWithdrawal === 'Bank transfer' && (bic === '' || iban === ''),
       falseBicOrIBAN: currentWithdrawal === 'Bank transfer' && (!(bic.split('').length === 5) || !(iban.split('').length === 7)),
     }
@@ -68,8 +92,6 @@ const PaymentMethodModal = (props: IProps) => {
           ' Bitte füllen Sie die erforderlichen Felder aus, um fortzufahren: BIC, IBAN' :
       en ? 'Please fill out BIC and IBAN correctly.' : 'Bitte BIC und IBAN korrekt ausfüllen.'
 
-      console.log(noError)
-
       if (
         errorStatements.noPayPalInput || errorStatements.paypalInvalid ||
         errorStatements.noBicOrIBAN || errorStatements.falseBicOrIBAN) {
@@ -81,12 +103,31 @@ const PaymentMethodModal = (props: IProps) => {
           window.setTimeout(() => toaster.clear(), 10000)
         }
       if (noError) {
-        toaster.push(
-          <Message style={PushThemes.pushGreen} type='success'>
-            <p style={PushThemes.txt}> Success </p>
+        if (successStatements.ppEdited) {
+          updates['/paypal_account'] = paypalEmail
+        }
+        if (successStatements.bankEdited) {
+          updates['/bank_information'] = `BIC: ${bic}, IBAN: ${iban}`
+        }
+        updates['/payment_method'] = currentMethod
+        updates['/withdrawal_method'] = currentWithdrawal
+        update(reference, updates).then(() => {
+          toaster.push(
+            <Message style={PushThemes.pushBlue} type='success'>
+            <p style={PushThemes.txt}>
+              Bank data updated
+            </p>
           </Message>, {placement: 'bottomCenter'}
         )
         window.setTimeout(() => toaster.clear(), 10000)
+      }).catch((err) => {
+        toaster.push(
+          <Message style={PushThemes.pushRed} type='error'>
+          <p style={PushThemes.txt}> {err.message} </p>
+        </Message>, {placement: 'bottomCenter'}
+      )
+      window.setTimeout(() => toaster.clear(), 10000)
+      }).finally(() => closeModal())
       }
   }
 
@@ -156,8 +197,10 @@ const PaymentMethodModal = (props: IProps) => {
               <div className="withdrawal-input-element">
                 <label className="input-label">PayPal Email</label>
                 <Input
-                placeholder={currentUser.paypal_account ? currentUser.paypal_account :
-                   en ? 'Your PayPal email address' : 'Dein PayPal Email Adresse'}
+                defaultValue={paypalEmail}
+                value={paypalEmail}
+                placeholder={paypalEmail == '' || paypalEmail == undefined || paypalEmail == null ?
+                   en ? 'Your PayPal email address' : 'Dein PayPal Email Adresse' : currentUser.paypal_account}
                 onChange={setPayPalEmail}
                 />
               </div>
@@ -168,7 +211,9 @@ const PaymentMethodModal = (props: IProps) => {
                   <Input
                   minLength={5}
                   maxLength={5}
-                  placeholder={currentUser.payment_method ? currentUser.bank_information?.split(' ')[1] : '2841H'}
+                  defaultValue={bic}
+                  value={bic}
+                  placeholder={bank_information == '' || bank_information == null || bank_information !== undefined ? '2841H' : bic}
                   onChange={setBic}
                   />
                 </div>
@@ -177,18 +222,15 @@ const PaymentMethodModal = (props: IProps) => {
                   <Input
                   minLength={7}
                   maxLength={7}
-                  placeholder={currentUser.payment_method ? currentUser.bank_information?.split(' ')[3] : 'YU5654h'}
+                  defaultValue={iban}
+                  value={iban}
+                  placeholder={bank_information == '' || bank_information == null || bank_information !== undefined ? 'YU5654h' : iban}
                   onChange={setIban}
                   />
                 </div>
               </div>
             )
           }
-          <p>
-            {`PayPal: ${paypalEmail}`} <br/>
-            {`BIC: ${bic}`} <br/>
-            {`IBAN: ${iban}`}
-          </p>
         </div>
       </Modal.Body>
       <Modal.Footer className='modal-footer'>
