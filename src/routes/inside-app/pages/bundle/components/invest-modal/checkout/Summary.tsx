@@ -5,6 +5,7 @@ import CheckIcon from '@rsuite/icons/Check';
 import CloseIcon from '@rsuite/icons/Close';
 import { Link } from 'react-router-dom';
 import { auth, userRef } from '../../../../../../../firebase';
+import PaypalComponent from '../../../../../../../paypal/PaypalComponent';
 
 interface IProps {
   en: boolean,
@@ -12,9 +13,12 @@ interface IProps {
   bonus: number,
   address: string | null,
   investInBundle: any,
+  isPaypal: boolean,
+  makeOrder: any,
+  approve: any,
 }
 const CheckoutSummary = (props: IProps) => {
-  const {en, investAmount, bonus, address, investInBundle} = props
+  const {en, investAmount, bonus, address, investInBundle, isPaypal, makeOrder, approve} = props
   const [checked, setChecked] = React.useState<boolean>(false)
   const [checked2, setChecked2] = React.useState<boolean>(false)
 
@@ -140,12 +144,28 @@ const CheckoutSummary = (props: IProps) => {
           disabled={address == null || !checked || !checked2}
           block
           style={{ pointerEvents: !checked || !checked2 ? 'none' : 'auto' }}
-          onClick={investInBundle}
+          onClick={isPaypal ? () => null : investInBundle}
           >
             {en ?
             'Order with obligation to pay' :
             'Jetzt Zahlungspflichtig bestellen'}
           </Button>
+          {
+            isPaypal ? (
+            <div className='pp-con'>
+              <PaypalComponent
+              amountToPay={investAmount}
+              updateUserBalance={investInBundle}
+              fromOutside
+              makeOrderFromOutside={makeOrder}
+              approveFromOutside={approve}
+              closeModal={undefined}
+              inModal={false}
+              />
+          </div>
+            ) : null
+          }
+
         </span>
       </Whisper>
     </div>

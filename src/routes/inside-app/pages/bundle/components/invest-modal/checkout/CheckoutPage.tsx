@@ -22,12 +22,18 @@ interface IProps {
   closeNav: any,
   project: FirebaseBundle,
   investInBundle: any,
+  isPaypal: boolean,
+  makeItPaypal: Function,
+  makeItDeposit: Function,
+  makeOrder: any,
+  approveOrder: any,
 }
 const CheckoutPage = (props: IProps) => {
   const {
     en, navOpen, visible, investAmount, available,
     setEn, openMenu, openNav, closeNav, project,
-    bonus, investInBundle,
+    bonus, investInBundle, isPaypal, makeItPaypal, makeItDeposit,
+    makeOrder, approveOrder
   } = props
 
   const [address, setAddress] = React.useState<any>('')
@@ -71,17 +77,30 @@ const CheckoutPage = (props: IProps) => {
               ))
             }
           </div>
-          <PersonalData
-              en={en} address={address} fullName={fullName} knownState={knownState} knownCountry={knownCountry}/>
-              {
-                available && available >= investAmount ? null : (
-                  <PaymentMethod investAmount={investAmount} en={en}/>
-                )
-              }
-
+            <PersonalData
+            en={en}
+            address={address}
+            fullName={fullName}
+            knownState={knownState}
+            knownCountry={knownCountry}
+            />
+           <PaymentMethod
+           investAmount={investAmount}
+           en={en}
+           makeItPaypal={makeItPaypal}
+           makeItDeposit={makeItDeposit}
+           />
           </div>
           <div className="right-side">
-            <CheckoutSummary en={en} investAmount={investAmount} bonus={bonus} address={address} investInBundle={investInBundle}/>
+            <CheckoutSummary
+            en={en}
+            investAmount={investAmount}
+            bonus={bonus}
+            address={address}
+            investInBundle={investInBundle}
+            isPaypal={isPaypal}
+            makeOrder={makeOrder}
+            approve={approveOrder}/>
           </div>
         </div>
       </div>
@@ -90,3 +109,6 @@ const CheckoutPage = (props: IProps) => {
 }
 
 export default CheckoutPage
+function makeItDeposit() {
+  throw new Error('Function not implemented.')
+}

@@ -10,6 +10,7 @@ import PushThemes from '../../../../themes/PushThemes'
 import { useMediaQuery } from '../../../../../../misc/custom-hooks'
 import CheckoutPage from './checkout/CheckoutPage'
 import { useNavigate } from 'react-router-dom'
+import PaypalComponent from '../../../../../../paypal/PaypalComponent'
 //import { mainColors } from '../../../../themes/colors'
 
 interface IProps {
@@ -35,6 +36,39 @@ const InvestModal: React.FunctionComponent<IProps> = (props) => {
     const [focused, setFocused] = useState<boolean>(false)
     const [checked, setChecked] = useState(false)
     const [checkout, setCheckout] = useState<boolean>(false)
+    const [isPaypal, setIsPaypal] = React.useState<boolean>(false)
+
+  function makeItPaypal() {
+    setIsPaypal(true)
+  }
+
+  function makeItDeposit() {
+    setIsPaypal(false)
+  }
+
+  const makeOrder = (data:any, actions:any) => {
+    return actions.order
+        .create({
+            purchase_units: [
+                {
+                    amount: {
+                        value: investAmount,
+                    },
+                },
+            ],
+        })
+        .then((orderId:any) => {
+            // Your code here after create the order
+            return orderId;
+        }); }
+    function approvePayment (data:any, actions:any) {
+          return actions.order.capture().then(function () {
+            // Update users balance
+            investInBundle()
+          });
+      }
+
+
     const navigate = useNavigate()
 
     const emptyValue: Number|null = null
@@ -107,8 +141,10 @@ const InvestModal: React.FunctionComponent<IProps> = (props) => {
             close()
             showReciept()
         }*/
+        if (investAmount > 0) {
           setCheckout(true)
           close()
+        }
     }
 
     const investInBundle = () => {
@@ -135,17 +171,22 @@ const InvestModal: React.FunctionComponent<IProps> = (props) => {
         window.setTimeout(() => { toaster.clear() }, 10000)
     }
 
-    // Must have anough money on account
-    if (parseInt(investAmount) > available) {
+    if (!isPaypal) {
+      // Must have anough money on account
+      if (parseInt(investAmount) > available) {
         toaster.push(
-            <Message style={PushThemes.pushRed} type='error'>
+          <Message style={PushThemes.pushRed} type='error'>
                 <p style={PushThemes.txt}>Not enough money in your account. Available: {available == null ? 0 : available}</p>
             </Message> , { placement: 'topCenter' }
         )
         window.setTimeout(() => { toaster.clear() }, 10000)
+      }
     }
 
-    if (parseInt(investAmount) % project.movies.length == 0 && parseInt(investAmount) <= available && parseInt(investAmount) !== 0) {
+    if (((!isPaypal && parseInt(investAmount) <= available) || isPaypal) && (
+      parseInt(investAmount) % project.movies.length == 0 && parseInt(investAmount) !== 0
+    )
+      ) {
       const investRef = ref(database, 'investments/' + investmentId)
             // Make investment
             set(investRef, {
@@ -167,7 +208,7 @@ const InvestModal: React.FunctionComponent<IProps> = (props) => {
             })
             // Update user
             let userUpdates: any = {}
-            userUpdates['money_available'] = available - parseInt(investAmount)
+            userUpdates['money_available'] = isPaypal ? available == undefined || available == null ? 0 : available : available - parseInt(investAmount)
             update(ref(database, 'users/' + auth.currentUser?.uid), userUpdates).then(() => {
                 console.log(`${investAmount} invested in ${project.name}`)
             })
@@ -359,20 +400,26 @@ const InvestModal: React.FunctionComponent<IProps> = (props) => {
                 </div>
             </Modal.Footer>
         </Modal>
-        <CheckoutPage
-        en={en}
-        navOpen={navOpen}
-        visible={checkout}
-        investAmount={investAmount}
-        available={available}
-        setEn={setEn}
-        openMenu={openMenu}
-        openNav={openNav}
-        closeNav={closeNav}
-        project={project}
-        bonus={bonus}
-        investInBundle={investInBundle}
-        />
+        {
+          checkout ? (
+            <CheckoutPage
+              en={en}
+              navOpen={navOpen}
+              visible={checkout}
+              investAmount={investAmount}
+              available={available}
+              setEn={setEn}
+              openMenu={openMenu}
+              openNav={openNav}
+              closeNav={closeNav}
+              project={project}
+              bonus={bonus}
+              investInBundle={investInBundle}
+              isPaypal={isPaypal}
+              makeItPaypal={makeItPaypal}
+              makeItDeposit={makeItDeposit} makeOrder={makeOrder} approveOrder={approvePayment}            />
+          ) : null
+        }
         <div className="hidden-from-server This is the previous modal">
           <p>This element only exists to colabse a huge comment in vs-code</p>
         {/* Previous design

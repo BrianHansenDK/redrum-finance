@@ -8,9 +8,13 @@ interface IProps {
   updateUserBalance: any,
   closeModal: any,
   inModal: boolean,
+  makeOrderFromOutside?: any,
+  fromOutside?: boolean,
+  approveFromOutside?: any,
 }
 const PaypalComponent: React.FunctionComponent<IProps> = (props) => {
-  const {amountToPay, updateUserBalance, closeModal, inModal,} = props
+  const {amountToPay, updateUserBalance, closeModal, inModal,
+  makeOrderFromOutside, fromOutside, approveFromOutside} = props
 
   const toaster = useToaster()
 
@@ -34,13 +38,12 @@ const PaypalComponent: React.FunctionComponent<IProps> = (props) => {
   function approvePayment (data:any, actions:any) {
     return actions.order.capture().then(function () {
       // Update users balance
-      updateUserBalance().then(() => {
+      updateUserBalance()
         // Notify user of succesfull payment
         toaster.push(<Message showIcon type='success'>
           Your payment has been recieved and {amountToPay}€ was successfully added to your account
         </Message>, {placement: 'topCenter'})
         if (inModal) {closeModal()}
-      })
     });
 }
 
@@ -54,8 +57,8 @@ const PaypalComponent: React.FunctionComponent<IProps> = (props) => {
       <PayPalButtons
       style={{ layout: 'vertical', color:  'blue', shape:  'rect', label:  'paypal'  }}
       forceReRender={[amountToPay]}
-      createOrder={makeOrder}
-      onApprove={approvePayment}
+      createOrder={fromOutside ? makeOrderFromOutside : makeOrder}
+      onApprove={fromOutside ? approveFromOutside : approvePayment}
       />
     </PayPalScriptProvider>
   )
