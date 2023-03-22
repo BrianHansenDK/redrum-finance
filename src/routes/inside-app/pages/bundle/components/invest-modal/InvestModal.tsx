@@ -36,14 +36,15 @@ const InvestModal: React.FunctionComponent<IProps> = (props) => {
     const [focused, setFocused] = useState<boolean>(false)
     const [checked, setChecked] = useState(false)
     const [checkout, setCheckout] = useState<boolean>(false)
-    const [isPaypal, setIsPaypal] = React.useState<boolean>(false)
+    const [payment_method, setPaymentMethod] = React.useState('')
+
 
   function makeItPaypal() {
-    setIsPaypal(true)
+    setPaymentMethod('PayPal')
   }
 
   function makeItDeposit() {
-    setIsPaypal(false)
+    setPaymentMethod('Redrum_Pro_deposit')
   }
 
   const makeOrder = (data:any, actions:any) => {
@@ -82,7 +83,10 @@ const InvestModal: React.FunctionComponent<IProps> = (props) => {
         investAmount >= 1000 ? 150 : 0
     const isMobile = useMediaQuery('(max-width: 1100px)')
 
-    useEffect(() => { userRef(auth.currentUser?.uid, '/money_available', setAvailable) }, [])
+    useEffect(() => {
+      userRef(auth.currentUser?.uid, '/money_available', setAvailable)
+      userRef(auth.currentUser?.uid, '/payment_method', setPaymentMethod)
+  }, [])
 
     const toaster = useToaster()
     const onInvest = () => {
@@ -146,6 +150,9 @@ const InvestModal: React.FunctionComponent<IProps> = (props) => {
           close()
         }
     }
+
+    const isPaypal = payment_method === null || payment_method === undefined ||
+      payment_method === '' || payment_method === 'PayPal' ? true : false
 
     const investInBundle = () => {
       if (parseInt(investAmount) == 0 || investAmount == null || investAmount == '') {

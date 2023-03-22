@@ -152,7 +152,7 @@ const CheckoutSummary = (props: IProps) => {
           </Button>
           {
             isPaypal ? (
-            <div className='pp-con'>
+            <div className={`pp-con ${isPaypal ? checked && checked2 ? 'active' : '' : ''}`}>
               <PaypalComponent
               amountToPay={investAmount}
               updateUserBalance={investInBundle}

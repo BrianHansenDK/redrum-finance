@@ -537,10 +537,14 @@ $dark-blue-shadow: #3549FE7B;
           & .pp-con {
             position: absolute;
             bottom: 27.5px;
+            display: none;
             opacity: 0;
             overflow-y: hidden;
             height: 35px;
             width: calc(100% - 40px);
+            &.active {
+              display: block;
+            }
           }
         }
       }

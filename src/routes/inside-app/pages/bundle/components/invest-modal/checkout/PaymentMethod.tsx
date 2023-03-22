@@ -33,11 +33,6 @@ const PaymentMethod = (props: IProps) => {
           setCompletion(snap.val().completion)
           setCurrentMethod(snap.val().payment_method)
         })
-        if (currentMethod === 'Redrum_Pro_deposit') {
-          makeItDeposit()
-        } else {
-          makeItPaypal()
-        }
         setLoading(false)
     }, [])
     const userId = auth.currentUser?.uid
