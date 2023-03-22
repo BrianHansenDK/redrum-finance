@@ -66,7 +66,7 @@ class ProfilePage extends Component<IProps, IState> {
                 {userId == auth.currentUser?.uid ? (
                   <>
                     <MoneySection userId={userId} />
-                    <AddBalanceCard userId={userId} />
+                    <AddBalanceCard userId={userId} en={this.props.en} />
                   </>
                 ): null}
 
