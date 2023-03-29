@@ -21,7 +21,7 @@ export const navbarStrings = {
 
 export const homeStrings = {
   heroEN: {
-    slogan: 'Experience your favorite Redrum books on the big screen!',
+    slogan: 'Experience your favorite Redrum Books on the big screen!',
     investBtn: 'Invest now',
     worksBtn: 'how it works',
     userStat: 'Users',

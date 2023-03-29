@@ -71,13 +71,13 @@ const WhyMovies: React.FunctionComponent<IProps> = (props) => {
                     onClick={openModal}
                     size='lg'
                     appearance='primary'
-                    className={`${isMobile || isDesktop ? 'r-btn r-secondary-btn' :'main-btn white shadow'} mt-3 mb-5`}
+                    className={`r-btn r-secondary-btn mt-3 mb-5`}
                     style={{
                       width: isMobile || isDesktop ? 'auto' : 250,
                       margin: 'auto'
                     }}
                     >
-                        {en ? 'Become an producer' : 'Produzent werden'}
+                        {en ? 'Become an producer' : 'Werde Produzent'}
                     </Button>
                 </div>
             </div>

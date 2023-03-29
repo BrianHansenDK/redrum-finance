@@ -59,7 +59,7 @@ const ResponsiveHero = (props: IProps) => {
           block={isMobile && !isPhone}
           onClick={() => navigate('/how-it-works')}
           >
-            {en ? 'How It Works' : homeStrings.heroDE.worksBtn}
+            {en ? 'How it works' : homeStrings.heroDE.worksBtn}
           </Button>
         </div>
 

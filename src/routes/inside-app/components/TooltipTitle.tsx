@@ -15,8 +15,7 @@ const TooltipTitle: React.FunctionComponent<IProps> = (props) => {
 
   return (
     <div style={styles.titleWrap} >
-      <h3 className='' style={styles.title} >{en ? dashboardStrings.tooltipEN.t : dashboardStrings.tooltipDE.t}</h3>
-      <p style={styles.desc}>Account balance: {available !== null ? `${available}` : '0'} €</p>
+      <h3 className='' style={styles.title} >Account balance: {available !== null ? `${available}` : '0'} €</h3>
     </div>
   )
 }

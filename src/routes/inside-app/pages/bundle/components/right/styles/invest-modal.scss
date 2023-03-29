@@ -97,13 +97,15 @@ $dark-blue-shadow: #3549FE7B;
           width: 250px;
         }
         &.chosen {
-          background: $dark;
-          color: $white;
+          background: $green;
+          color: $border-color;
+          border-color: $border-color;
           box-shadow: 0 2px 4px 0 $dark-shadow;
         }
         &:hover {
-          background-color: $dark;
-          color: $white;
+          background: $green;
+          color: $border-color;
+          border-color: $border-color;
           box-shadow: 0 2px 4px 0 $dark-shadow;
         }
         &:active {

@@ -29,7 +29,7 @@ const ResponsiveStats = ({en}: {en: boolean}) => {
         <Stat
         icon={IMG1}
         title={en ? homeStrings.heroEN.userStat : homeStrings.heroDE.userStat}
-        stats={`${users.length} ${en ? 'users' : 'nutzeren'}`}
+        stats={`${users.length}`}
         />
       </div>
       </FlexboxGridItem>

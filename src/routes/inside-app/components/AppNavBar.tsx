@@ -81,7 +81,7 @@ const AppNavBar: React.FunctionComponent<IProps> = (props) => {
             to: `/app/profile/${auth.currentUser?.uid}`
         },
         {
-            title: en ? 'My Documents' : 'Meine Dokumenten',
+            title: en ? 'My Documents' : 'Meine Dokumente',
             icon: <DOCS />,
             index: 2,
             to: `/app/databank`
@@ -142,7 +142,7 @@ const AppNavBar: React.FunctionComponent<IProps> = (props) => {
                     <Button style={styles.btn} appearance='primary' size='lg' onClick={openModal} >
                     {en ? dashboardStrings.navbarEN.btn : 'Einzahlen'}
                     </Button>
-                    <NavItem className='d-flex flex-column align-center justify-around' style={styles.navLink}>
+                    <NavItem className='d-flex flex-column align-center justify-around like-a-btn'>
                       {available != undefined && available < 10000 ? 'Balance:' : null} {available != undefined ? numberWithCommas(available) : 0} €
                     </NavItem>
                     <ChangeLanBtn setEn={setEn} en={en} />

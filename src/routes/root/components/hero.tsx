@@ -40,7 +40,7 @@ const Hero: React.FunctionComponent<IProps> = (props) => {
                             onClick={() => navigate('/how-it-works')}
                             appearance='subtle'
                             className='ml-1 r-btn r-secondary-btn'>
-                                {en ? 'How It Works' : homeStrings.heroDE.worksBtn}
+                                {en ? 'How it works' : homeStrings.heroDE.worksBtn}
                             </Button>
                         </div>
                     </div>
