@@ -34,7 +34,7 @@ const MainLayout: React.FunctionComponent<IProps> = (props) => {
                 )
               }
             </Header>
-            <Content>
+            <Content style={{minHeight: '100vh'}}>
                 {children}
             </Content>
             <Footer02 en={en}/>

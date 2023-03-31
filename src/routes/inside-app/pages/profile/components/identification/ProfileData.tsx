@@ -1,51 +1,34 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import PinIcon from '@rsuite/icons/Location'
 import CalendarIcon from '@rsuite/icons/legacy/Calendar'
-import { auth, userRef } from '../../../../../../firebase'
-import { mainColors } from '../../../../themes/colors'
-import MainBtn from '../../../../components/MainBtn'
-import EditProfileModal from './EditProfileModal'
+import { auth } from '../../../../../../firebase'
 import { Button } from 'rsuite'
+import NewEditProfileModal from './editprofile/NewEditProfileModal'
+import { FirebaseUser } from '../../../../../../database/Objects'
 interface IProps {
-    userId: any,
-    en: boolean,
+  user: FirebaseUser,
+  en: boolean,
 }
 
-const ProfileData: React.FunctionComponent<IProps> = (props) => {
-    const { userId, en } = props
-    const [age, setAge] = useState(0)
-    const [city, setCity] = useState('')
-    const [country, setCountry] = useState('')
+const ProfileData = (props: IProps) => {
+    const { user, en } = props
+    const [visible, setVisible] = React.useState(false)
+    const openModal = () => setVisible(true); const closeModal = () => setVisible(false)
 
-    const [visible, setVisible] = useState(false)
-
-    const data = Date.now()
-    const today = new Date(data)
-    useEffect(() => {
-        userRef(userId, '/birthYear', setAge)
-        userRef(userId, '/address', setCity)
-        userRef(userId, '/country', setCountry)
-    })
-    const openModal = () => {
-        setVisible(true)
-    }
-    const closeModal = () => {
-        setVisible(false)
-    }
-    const years = today.getFullYear() - age
     return (
         <>
             <div className='profile-data'>
                 <div>
                     <p className='birth-year'>
-                        <CalendarIcon className='info-icon' /> Birth year: {age !== 0 && age !== null ? age : 'Unknown'}
+                        <CalendarIcon className='info-icon' /> Birthdate: {user.birth_date !== '' ? user.birth_date : 'Unknown'}
                     </p>
                     <p className='birth-year'>
-                        <PinIcon className='info-icon' /> Location: {city !== '' && city !== null ? city.split(' ')[city.split(' ').length - 1] : 'Unknown'}, {country !== '' && country !== null ? country : 'Unknown'}
+                        <PinIcon className='info-icon' /> Location: {user.address !== '' ? user.address.split(' ')[user.address.length - 2] :
+                        'Unknown'}, {user.country !== '' ? user.country : 'Unknown'}
                     </p>
                 </div>
                 {
-                  userId == auth.currentUser?.uid ? (
+                  user.id == auth.currentUser?.uid ? (
                     <Button
                     appearance='primary'
                     className='r-btn r-main-btn'
@@ -57,7 +40,7 @@ const ProfileData: React.FunctionComponent<IProps> = (props) => {
                 }
 
             </div>
-            <EditProfileModal userId={userId} close={closeModal} visible={visible} en={en} />
+            <NewEditProfileModal userId={user.id} close={closeModal} visible={visible} en={en} />
         </>
     );
 }

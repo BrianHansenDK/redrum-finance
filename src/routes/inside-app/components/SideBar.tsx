@@ -17,7 +17,7 @@ import { useMediaQuery } from '../../../misc/custom-hooks';
 
 const styles = {
   sideNav: {
-    width: 240,
+    width: '20%',
     height: 100 + 'vh',
     top: 0,
     left: 0,
@@ -53,21 +53,21 @@ const SideBar = ({en} : {en: boolean}) => {
     <>
       <Sidenav defaultOpenKeys={['3', '4']} style={styles.sideNav} className='sidebar' >
         <Sidenav.Body>
-          <Nav activeKey={currentKey}>
-            <h3 className='d-flex justify-center'>
+          <Nav activeKey={currentKey} className='pl-2 pt-2 pr-2'>
+            <h3 className='pl-1 mb-2'>
               {en ? dashboardStrings.sidebarEN.t1 : dashboardStrings.sidebarDE.t1}
               </h3>
-            <Nav.Item eventKey="1" as={Link} to='/app' icon={<DashboardIcon />}>
+            <Nav.Item className='pl-5' eventKey="1" as={Link} to='/app' icon={<DashboardIcon />}>
             {en ? dashboardStrings.sidebarEN.home : dashboardStrings.sidebarDE.home}
             </Nav.Item>
-            <Nav.Item eventKey="2" as={Link} to='/app/investments' icon={<InvestmentsIcon />}>
+            <Nav.Item className='pl-5' eventKey="2" as={Link} to='/app/investments' icon={<InvestmentsIcon />}>
             {en ? dashboardStrings.sidebarEN.inv : dashboardStrings.sidebarDE.inv}
             </Nav.Item>
-            <Nav.Item onClick={openModal} eventKey='3' icon={<SecondaryMarketIcon />}>
+            <Nav.Item className='pl-5' onClick={openModal} eventKey='3' icon={<SecondaryMarketIcon />}>
             {en ? dashboardStrings.sidebarEN.sec : dashboardStrings.sidebarDE.sec}
             </Nav.Item>
             {/*<h3 className='d-flex justify-center'>{en ? dashboardStrings.sidebarEN.t2 : dashboardStrings.sidebarDE.t2}</h3>*/}
-            <Nav.Item eventKey="4" icon={<DbIcon />} as={Link} to='/app/databank'>
+            <Nav.Item className='pl-5' eventKey="4" icon={<DbIcon />} as={Link} to='/app/databank'>
             {en ? dashboardStrings.sidebarEN.db : dashboardStrings.sidebarDE.db}
             </Nav.Item>{/*
             <Nav.Item eventKey="6" icon={<UsersIcon />}>

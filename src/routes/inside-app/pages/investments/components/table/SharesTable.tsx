@@ -1,4 +1,4 @@
-import { onValue, ref } from 'firebase/database'
+import { get, onValue, ref } from 'firebase/database'
 import React, { useEffect, useState } from 'react'
 import { Loader } from 'rsuite'
 import { FirebaseShare } from '../../../../../../database/Objects'
@@ -16,25 +16,24 @@ const SharesTable = () => {
   const [projectIds, setProjectIds] = useState<any>([])
   const [loading, setLoading] = useState<boolean>(false)
   useEffect(() => {
+    setLoading(true)
     // Get all shares
     let lst: FirebaseShare[] = []
-    setLoading(true)
     let data: Array<FirebaseShare> = []
 
     const reference = ref(database, 'shares')
-    onValue(reference, (snap) => {
+    get(reference).then((snap) => {
       snap.forEach((share) => {
         if (share.val().owner == auth.currentUser?.uid) {
           data.push(share.val())
         }
-      })
-      data.map((share) => {
-        lst.push(share)
-      })
-      lst.map((share, i) => {
-        if (share.movie === lst[0].movie && i > 0) {
-          lst[0].amount += share.amount
-        }
+        data.map((share) => {
+          lst.push(share)
+        })
+        lst.map((share, i) => {
+          if (share.movie === lst[0].movie && i > 0) {
+            lst[0].amount += share.amount
+          }
         /*if (share.movie === lst[1].movie && i > 1) {
           lst[1].amount += share.amount
         }
@@ -42,14 +41,16 @@ const SharesTable = () => {
           lst[2].amount += share.amount
         }*/
       })
-      setShares([lst[0]] /*.slice(0,3)*/)
-    })
+
+
+      })
+    }).finally(() => setShares([lst[0]] /*.slice(0,3)*/))
     // Set shares
     // Get investments
     let invData: any[] = []
     let projectData: any[] = []
     const shareRef = ref(database, 'investments')
-    onValue(shareRef, (snap) => {
+    get(shareRef).then((snap) => {
       snap.forEach((inv) => {
         if (inv.val().creator == auth.currentUser?.uid) {
           invData.push(inv.val())
@@ -60,8 +61,8 @@ const SharesTable = () => {
       })
       setInvestments(invData)
       setProjectIds(projectData)
-
-      window.setTimeout(() => {setLoading(false)}, 1200)
+      }).finally(() => {
+        setLoading(false)
       })
 
 

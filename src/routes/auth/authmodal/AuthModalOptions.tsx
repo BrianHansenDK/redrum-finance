@@ -3,7 +3,7 @@ import { onValue, ref } from 'firebase/database'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { FirebaseUser } from '../../../database/Objects'
-import { auth, getCurrentUserFunction, writeUserData, database } from '../../../firebase'
+import { auth, getCurrentUserFunction, writeUserData, database, createAccount } from '../../../firebase'
 import AuthModalBtns from './AuthModalBtns'
 import AuthModalInputs from './AuthModalInputs'
 
@@ -55,7 +55,7 @@ const AuthModalOptions: React.FunctionComponent<IProps> = (props) => {
         .then((response) => {
             if (response.user.email) {
                 if (!users.includes(response.user.uid)) {
-                  writeUserData(
+                  createAccount(
                     response.user.uid,
                     response.user.displayName ? response.user.displayName : 'Unknown',
                     response.user.email ? response.user.email : 'Nonexistent',

@@ -2,7 +2,7 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getAuth } from "firebase/auth";
-import { DataSnapshot, getDatabase, onValue, ref, set } from 'firebase/database';
+import { DataSnapshot, get, getDatabase, onValue, ref, set } from 'firebase/database';
 import { useEffect, useState } from "react";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -38,6 +38,30 @@ export function writeUserData(
         email: email,
         completion: profileCompletion,
     })
+}
+
+export function createAccount (userId: string, userName: string, email: string, profileCompletion: number) {
+  const reference = ref(database, 'users/' + userId)
+  set(reference, {
+    id: userId,
+    username: userName,
+    image: "",
+    full_name: "",
+    email: email,
+    completion: profileCompletion,
+    address: "",
+    bank_information: "",
+    birth_date: "",
+    company_account: false,
+    country: "",
+    money_available: 0,
+    payment_method: "PayPal",
+    paypal_account: "",
+    phone_number: "",
+    state: "",
+    withdrawal_method: "PayPal",
+    role: 'Redrum Pro Member'
+  })
 }
 
 export function writeMovieData(
@@ -126,15 +150,22 @@ export const getCurrentUser = (userId: any, obj: any, state: any ) => {
   })
 }
 
-export const getCurrentUserFunction = (userId: any, state: any) => {
+export const getCurrentUserFunction = (userId: any, state: any, setLoading: any | null) => {
+  if (setLoading !== null || setLoading !== undefined) {
+    setLoading(true)
+  }
   const reference = ref(database, 'users/' + userId)
-  onValue(reference, (snap) => {
+  get(reference).then((snap) => {
     state(snap.val())
+  }).finally(() => {
+    if (setLoading !== null || setLoading !== undefined) {
+      setLoading(false)
+    }
   })
 }
 
 export const userRef = (userId: any, query: string, state: any) => {
-    onValue(ref(database, 'users/' + userId + query), (snap) => {
+    get(ref(database, 'users/' + userId + query)).then((snap) => {
         const data = snap.val()
         state(data)
     })

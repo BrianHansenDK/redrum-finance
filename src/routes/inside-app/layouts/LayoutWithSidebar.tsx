@@ -25,7 +25,7 @@ const LayoutWithSidebar: React.FunctionComponent<ILayoutWithSidebarProps> = (pro
             display: 'flex',
             alignItems: 'center',
 
-            paddingLeft: isMobile ? 20 : 240,
+            paddingLeft: isMobile ? 20 : '20%',
             paddingRight: isMobile? 20 : 0,
             /*
             paddingLeft: isMobile ? 20 : 300,
@@ -40,7 +40,7 @@ const LayoutWithSidebar: React.FunctionComponent<ILayoutWithSidebarProps> = (pro
             en={en} setEn={setEn}
             openMenu={openMenu}
             navOpen={navOpen} openNav={openNav} closeNav={closeNav} />
-            <div className='d-flex'>
+            <div className='d-flex inner-dashboard'>
               {
                 isMobile ? (
                   <DashboardDrawer

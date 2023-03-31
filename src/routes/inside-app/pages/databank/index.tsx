@@ -1,15 +1,19 @@
-import { onValue, ref } from 'firebase/database'
+import { get, onValue, ref } from 'firebase/database'
 import React, { useEffect, useState } from 'react'
+import { Loader } from 'rsuite'
 import { auth, database } from '../../../../firebase'
+import RedrumProLoader from '../../components/RedrumProLoader'
 import LayoutWithSidebar from '../../layouts/LayoutWithSidebar'
 import { mainColors } from '../../themes/colors'
 import RecieptsList from './components/RecieptsList'
 
 const DatabankPage = ({en} : {en: boolean}) => {
   const [investments, setInvestments] = useState<any>([])
+  const [loading, setLoading] = useState<boolean>(false)
   useEffect(() => {
+    setLoading(true)
     const reference = ref(database, 'investments/')
-    onValue(reference, (snap) => {
+    get(reference).then((snap) => {
       let data: any[] = []
       snap.forEach((investment) => {
         if (investment.val().creator == auth.currentUser?.uid) {
@@ -17,11 +21,13 @@ const DatabankPage = ({en} : {en: boolean}) => {
         }
       })
       setInvestments(data)
+    }).finally(() => {
+      setLoading(false)
     })
   }, [auth])
   return (
     <>
-      <RecieptsList en={en} investments={investments}/>
+    {loading ? (<RedrumProLoader/>) : (<RecieptsList en={en} investments={investments}/>)}
     </>
   )
 }

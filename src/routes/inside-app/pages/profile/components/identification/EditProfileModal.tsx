@@ -39,6 +39,7 @@ const EditProfileModal: React.FunctionComponent<IProps> = (props) => {
     const [phoneStart, setPhoneStart] = useState('')
 
     const [companyAccount, setCompanyAccount] = useState(false)
+    const [checked, setChecked] = useState(false)
     const toaster = useToaster()
 
     useEffect(() => {
@@ -56,6 +57,7 @@ const EditProfileModal: React.FunctionComponent<IProps> = (props) => {
         userRef(userId, '/phone_number', setPhoneStart)
         if (companyAccountStart) {
           setCompanyAccount(true)
+          setChecked(true)
         }
     })
 
@@ -69,7 +71,7 @@ const EditProfileModal: React.FunctionComponent<IProps> = (props) => {
     const [city, setCity] = useState('')
     const [country, setCountry] = useState('')
     const [phone, setPhone] = useState('')
-    const [checked, setChecked] = useState(false)
+
 
     const onSave = () => {
         const reference = ref(database)
@@ -167,7 +169,7 @@ const EditProfileModal: React.FunctionComponent<IProps> = (props) => {
 
     }
     return (
-        <Modal open={visible} onClose={close} >
+        <Modal open={visible} onClose={close} size='full' >
             <ModalHeader>
                 <ModalTitle>
                     Edit profile
@@ -182,7 +184,10 @@ const EditProfileModal: React.FunctionComponent<IProps> = (props) => {
                         </span>
                         <Toggle className='ml-1 mr-1'
                         defaultChecked={companyAccount}
-                        onClick={() => setCompanyAccount(!companyAccount)}
+                        onClick={() => {
+                          setCompanyAccount(!companyAccount)
+                          setChecked(!checked)
+                        }}
                         />
                         <span style={{color: companyAccount ? mainColors.main : mainColors.dark}}>
                           {en ? 'Company account' : 'Firma'}
@@ -195,7 +200,7 @@ const EditProfileModal: React.FunctionComponent<IProps> = (props) => {
                       onChange={(e:any) => setTitle(e?.target.value())}
                       data={[{label: 'Sir.', value: 'Sir'}, {label: 'Miss.', value: 'Miss'}]} />
                       </FormGroup>
-                    {companyAccount ? (
+                    {checked ? (
                       <>
                       <FormGroup>
                       <FormControlLabel style={styles.label}>Company name</FormControlLabel>

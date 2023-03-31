@@ -4,7 +4,7 @@ import signUpModalStrings from '../../../library/string/SignUpModal'
 import EyeIcon from '@rsuite/icons/legacy/Eye';
 import EyeSlashIcon from '@rsuite/icons/legacy/EyeSlash';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
-import { auth, database } from '../../../firebase';
+import { auth, createAccount, database } from '../../../firebase';
 import { useNavigate } from 'react-router-dom';
 import PushThemes from '../../inside-app/themes/PushThemes';
 import { onValue, ref, set } from 'firebase/database';
@@ -55,23 +55,17 @@ const AuthModalInputs: React.FunctionComponent<IProps> = (props) => {
             <p style={PushThemes.txt}>Username cannot include multiple spaces.</p>
           </Message>, {placement: 'topCenter'})
         }
-        if (userPassword != '') {
+        if (userPassword === '') {
           toaster.push(<Message type='error' style={PushThemes.pushRed}>
-            <p style={PushThemes.txt}>Password differs from password confirmation.</p>
+            <p style={PushThemes.txt}>Password cannot be empty.</p>
           </Message>, {placement: 'topCenter'})
         }
         if ((onlyOneSpace) && (userPassword != '') ) {
           createUserWithEmailAndPassword(auth, userEmail, userPassword)
           .then(async (userCredentials) => {
             const user = userCredentials.user
-            const reference = ref(database, 'users/' + user.uid)
-              set(reference, {
-                id: user.uid,
-                username: userName,
-                email: userEmail,
-                completion: 10,
-              })
-              navigate('/app')
+            createAccount(user.uid, userName, userEmail, 10)
+            navigate('/app')
             })
             .catch((err) => {
               console.log(err.message)

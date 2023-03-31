@@ -9,51 +9,32 @@ import mainShadows from '../../../../themes/shadows';
 import ProfileData from './ProfileData';
 import ProfileImage from './ProfileImage';
 import ProfileInformation from './ProfileInformation';
+import { FirebaseUser } from '../../../../../../database/Objects';
 
 interface IProps {
-    userId: any,
+    user: FirebaseUser,
     isMobile: boolean,
     isDesktop: boolean,
     en: boolean,
 }
 
-interface IState {
-    user: any
-}
-
-class ProfileIntroduction extends Component<IProps, IState> {
-    constructor(props: IProps) {
-        super(props)
-        this.state = {
-            user: undefined
-        }
-    }
-    componentDidMount(): void {
-        const reference = ref(database, 'users/' + this.props.userId)
-        onValue(reference, (snap) => {
-            this.setState((_prev) => ({
-                user: snap.val()
-            }))
-        })
-    }
-    render() {
-
-        return (
-            <div className='profile-card'>
-                <div className='profile-content'>
-                    <ProfileImage
-                    userId={this.props.userId}
-                    isMobile={this.props.isMobile}
-                    />
-                    <ProfileInformation
-                    userId={this.props.userId}
-                    isMobile={this.props.isMobile}
-                     />
-                    <ProfileData en={this.props.en} userId={this.props.userId} />
-                </div>
+const ProfileIntroduction = (props: IProps) => {
+    const {user, isMobile, en} = props
+    return (
+        <div className='profile-card'>
+            <div className='profile-content'>
+                <ProfileImage
+                user={user}
+                isMobile={isMobile}
+                />
+                <ProfileInformation
+                user={user}
+                isMobile={isMobile}
+                 />
+                <ProfileData en={en} user={user} />
             </div>
-        );
-    }
+        </div>
+    );
 }
 
 export default ProfileIntroduction;

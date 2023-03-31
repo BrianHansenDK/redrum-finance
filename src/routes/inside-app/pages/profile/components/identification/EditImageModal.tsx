@@ -1,27 +1,20 @@
-import { ref, set, update } from 'firebase/database'
+import { ref, update } from 'firebase/database'
 import { getDownloadURL, uploadBytes } from 'firebase/storage'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Button, ButtonGroup, Message, Modal, useToaster } from 'rsuite'
 import PLACEHOLDER from '../../../../../../assets/profileimage_placeholder.svg'
-import { auth, database, userRef } from '../../../../../../firebase'
+import { database, userRef } from '../../../../../../firebase'
 import { storage, storageRef } from '../../../../../../firebaseStorage'
+import { FirebaseUser } from '../../../../../../database/Objects'
 
 interface IProps {
-    userId: any, close: any, isVisible: boolean
+    user: FirebaseUser, close: any, isVisible: boolean
 }
 
-const EditImageModal: React.FunctionComponent<IProps> = (props) => {
-    const { userId, close, isVisible } = props
-    const [userImage, setUserImage] = useState(null)
-    const [imageUrl, setImageUrl] = useState(PLACEHOLDER)
-    const [imageStartUrl, setImageStartUrl] = useState('')
-    const [userCompletion, setUserCompletion] = useState(0)
-    const [userName, setUsername] = useState('')
-
-    useEffect(() => {
-        userRef(userId, '/image', setImageStartUrl)
-        userRef(userId, '/completion', setUserCompletion)
-    })
+const EditImageModal = (props: IProps) => {
+    const { user, close, isVisible } = props
+    const [userImage, setUserImage] = React.useState(null)
+    const [imageUrl, setImageUrl] = React.useState(PLACEHOLDER)
 
     const toaster = useToaster()
 
@@ -34,7 +27,7 @@ const EditImageModal: React.FunctionComponent<IProps> = (props) => {
 
     const handleSubmit = () => {
         if (userImage !== null) {
-            const imageRef = storageRef(storage, `images/users/${userId}_profile_image`)
+            const imageRef = storageRef(storage, `images/users/${user.id}_profile_image`)
             uploadBytes(imageRef, userImage).then((snap) => {
                 getDownloadURL(imageRef).then((url) => {
                     setImageUrl(url)
@@ -52,21 +45,22 @@ const EditImageModal: React.FunctionComponent<IProps> = (props) => {
     }
 
     const onSave = () => {
-        const reference = ref(database)
+        const reference = ref(database, 'users/' + user.id)
         const updates: any = {}
-        updates['/users/' + userId + '/image'] = imageUrl
-        if (imageStartUrl == '' || imageStartUrl == null) {
-            updates['/users/' + userId + '/completion'] = userCompletion + 10
+        updates['image'] = imageUrl
+        if (user.image === '') {
+            updates['completion'] = user.completion + 10
         }
-        update(reference, updates)
-        close()
-        toaster.push(<Message showIcon type='info'>
-            {imageStartUrl !== '' || imageStartUrl !== null ? 'Profile image was changed' : 'Profile image set'}
-        </Message>, { placement: 'topCenter' })
-        window.setTimeout(() => {
-            toaster.clear()
-        }, 3000)
-        setUserImage(null)
+        update(reference, updates).then(() => {
+          close()
+          toaster.push(<Message showIcon type='info'>
+            {user.image !== '' ? 'Profile image was changed' : 'Profile image set'}
+        </Message>, { placement: 'topCenter' }); window.setTimeout(() => toaster.clear(), 10000)
+        }).catch((err) => {
+          toaster.push(<Message showIcon type='error'>
+            {err.Message}
+          </Message>, { placement: 'topCenter' }); window.setTimeout(() => toaster.clear(), 10000)
+        }).finally(() => setUserImage(null))
     }
 
     return (
@@ -79,9 +73,9 @@ const EditImageModal: React.FunctionComponent<IProps> = (props) => {
             <Modal.Body style={styles.body}>
                 <input type="file" onChange={handleImage} className='custom-file-input' />
                 <div className='d-flex flex-column'>
-                    <img style={styles.image} src={imageStartUrl !== null && imageUrl == PLACEHOLDER ? imageStartUrl : imageUrl} alt={`Profile image for ${userName}`} />
+                    <img style={styles.image} src={user.image !== '' && imageUrl == PLACEHOLDER ? user.image : imageUrl} alt={`Profile image for ${user.username}`} />
                     <Button disabled={userImage == null} style={styles.chooseBtn} color='green' appearance='primary' onClick={handleSubmit}>
-                        {imageStartUrl !== '' && imageStartUrl !== null ? 'Change Image' : 'Choose Image'}
+                        {user.image !== '' ? 'Change Image' : 'Choose Image'}
                     </Button>
                 </div>
             </Modal.Body>

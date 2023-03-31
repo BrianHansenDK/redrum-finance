@@ -1,12 +1,14 @@
-import { onValue, ref } from 'firebase/database';
+import { get, onValue, ref } from 'firebase/database';
 import React, { Component } from 'react';
-import { auth, database } from '../../../../firebase';
+import { auth, database, getCurrentUserFunction } from '../../../../firebase';
 import AppNavBar from '../../components/AppNavBar';
 import { mainColors } from '../../themes/colors';
 import AddBalanceCard from './components/balance/AddBalanceCard';
 import MoneySection from './components/cash/MoneySection';
 import ProfileIntroduction from './components/identification/ProfileIntroduction';
 import './components/styles/index.scss'
+import { FirebaseUser } from '../../../../database/Objects';
+import RedrumProLoader from '../../components/RedrumProLoader';
 
 interface IProps {
   params: any,
@@ -22,58 +24,51 @@ interface IProps {
   closeNav: any,
 }
 
-interface IState {
-    user: any
-}
-
-class ProfilePage extends Component<IProps, IState> {
-    constructor(props: IProps) {
-        super(props);
-        this.state = {
-            user: undefined
-        };
-    }
-
-    componentDidMount(): void {
-        const reference = ref(database, 'users/' + auth.currentUser?.uid)
-        onValue(reference, (snap) => {
-            this.setState((_prev) => ({
-                user: snap.val()
-            }))
-        })
-    }
-
-    render() {
-        const { userId } = this.props.params
-        return (
-            <div style={styles.pageWrap} className='flex-column'>
-                <AppNavBar
-                fixed
-                en={this.props.en} setEn={this.props.setEn}
-                openMenu={this.props.openMenu}
-                navOpen={this.props.navOpen}
-                openNav={this.props.openNav}
-                closeNav={this.props.closeNav} />
-                <h1 style={styles.pageTitle} className='text-center'>
-                    Profile page
-                </h1>
+const ProfilePage = (props: IProps) => {
+  const {params, en, setEn, isMobile, isDesktop, navOpen,
+    menuOpen, openMenu, openNav, closeMenu, closeNav} = props
+  const {userId} = params
+  const [user, setUser] = React.useState<FirebaseUser | null>(null)
+  const [loading, setLoading] = React.useState(false)
+  React.useEffect(() => {
+    getCurrentUserFunction(userId, setUser, setLoading)
+  }, [userId])
+  return (
+      <div style={styles.pageWrap} className='flex-column'>
+          <AppNavBar
+          fixed
+          en={en} setEn={setEn}
+          openMenu={openMenu}
+          navOpen={navOpen}
+          openNav={openNav}
+          closeNav={closeNav} />
+          <h1 style={styles.pageTitle} className='text-center'>
+              Profile page
+          </h1>
+          {
+            loading ? (
+              <RedrumProLoader/>
+            ) : user === null ? null : (
+              <>
                 <ProfileIntroduction
-                en={this.props.en}
-                userId={userId}
-                isMobile={this.props.isMobile}
-                isDesktop={this.props.isDesktop}
+                en={en}
+                user={user}
+                isMobile={isMobile}
+                isDesktop={isDesktop}
                  />
                 {userId == auth.currentUser?.uid ? (
                   <>
                     <MoneySection userId={userId} />
-                    <AddBalanceCard userId={userId} en={this.props.en} />
+                    <AddBalanceCard userId={userId} en={en} />
                   </>
                 ): null}
-
-            </div>
-        );
-    }
+              </>
+            )
+          }
+      </div>
+  );
 }
+
 
 const styles = {
     pageWrap: {
