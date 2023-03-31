@@ -64,3 +64,16 @@ export function groupBy<T>(arr: T[], fn: (item: T) => any) {
         return { ...prev, [groupKey]: group };
     }, {});
 }
+
+
+export const fetchContries = (setCountries: any, setCLoading: any) => {
+  setCLoading(true)
+  const url = `https://restcountries.com/v3.1/all`
+  fetch(url, {
+    method: 'GET',
+    })
+  .then(r => r.json())
+  .then(data => setCountries(data.map((x: any) => x.name.common)))
+  .catch((err) => console.log('Error loading countries: ', err))
+  .finally(() => setCLoading(false))
+}

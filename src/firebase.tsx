@@ -2,8 +2,8 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getAuth } from "firebase/auth";
-import { DataSnapshot, get, getDatabase, onValue, ref, set } from 'firebase/database';
-import { useEffect, useState } from "react";
+import { DataSnapshot, get, getDatabase, onValue, ref, set, update } from 'firebase/database';
+import { EventHandler, useEffect, useState } from "react";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -246,4 +246,17 @@ export function notifyUser(
       content: content,
       user_id: user_id,
     })
+  }
+
+export function newUpdateAccount (userId: string, title: string, full_name: string,
+  birth_date: Date, email: string, address: string, phone_number: string,
+  then: ((value: void) => void | PromiseLike<void>) | null | undefined,
+  error: ErrorCallback, end: () => void) {
+    const reference = ref(database, 'users/' + userId)
+    let updates: any = {}
+    updates['title'] = title; updates['full_name'] = full_name;
+    updates['birth_date'] = birth_date; updates['email'] = email;
+    updates['address'] = address; updates['phone_number'] = phone_number;
+    update(reference, updates).then(then).catch(error)
+    .finally(end)
   }

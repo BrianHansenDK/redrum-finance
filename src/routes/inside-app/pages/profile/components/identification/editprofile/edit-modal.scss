@@ -39,6 +39,8 @@ $dark-shadow: rgba(0, 0, 29, .25);
           font-size: medium;
           letter-spacing: 1.5px;
           text-transform: uppercase;
+          text-overflow: ellipsis;
+          line-height: 1.5;
         }
         & .input {
           width: calc(100% - 12.5px);
@@ -76,7 +78,25 @@ $dark-shadow: rgba(0, 0, 29, .25);
               width: 100%;
             }
           }
+          & .box1 {
+            width: 50%;
+            display: flex;
+            column-gap: 15px;
+            & .postal-code {
+              width: 150px;
+              flex-shrink: 0;
+            }
+            & .city {
+              width: 100%;
+            }
+          }
         }
+      }
+      & .r-btn.r-main-btn {
+        font-size: large;
+        padding: 15px 0;
+        margin: 20px 0;
+        width: calc(50% - 12.5px);
       }
     }
   }
