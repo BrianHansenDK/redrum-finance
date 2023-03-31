@@ -150,7 +150,7 @@ export const getCurrentUser = (userId: any, obj: any, state: any ) => {
   })
 }
 
-export const getCurrentUserFunction = (userId: any, state: any, setLoading: any | null) => {
+export const getCurrentUserFunction = (userId: any, state: any, setLoading: any | undefined) => {
   if (setLoading !== null || setLoading !== undefined) {
     setLoading(true)
   }
@@ -249,14 +249,15 @@ export function notifyUser(
   }
 
 export function newUpdateAccount (userId: string, title: string, full_name: string,
-  birth_date: Date, email: string, address: string, phone_number: string,
+  birth_date: Date, email: string, country: string, address: string, phone_number: string,
   then: ((value: void) => void | PromiseLike<void>) | null | undefined,
   error: ErrorCallback, end: () => void) {
     const reference = ref(database, 'users/' + userId)
     let updates: any = {}
     updates['title'] = title; updates['full_name'] = full_name;
     updates['birth_date'] = birth_date; updates['email'] = email;
-    updates['address'] = address; updates['phone_number'] = phone_number;
+    updates['country'] = country; updates['address'] = address;
+    updates['phone_number'] = phone_number;
     update(reference, updates).then(then).catch(error)
     .finally(end)
   }

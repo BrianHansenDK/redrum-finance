@@ -12,9 +12,7 @@ const RequestItem = ({request}: {request: FirebaseRequest}) => {
   const [creator, setCreator] = useState<FirebaseUser>()
   const [loading, setLoading] = useState<boolean>(false)
   useEffect(() => {
-    setLoading(true)
-    getCurrentUserFunction(request.creator, setCreator)
-    setLoading(false)
+    getCurrentUserFunction(request.creator, setCreator, setLoading)
   }, [])
   return (
     <>

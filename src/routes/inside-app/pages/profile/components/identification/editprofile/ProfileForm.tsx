@@ -1,15 +1,17 @@
 import React from 'react'
-import { Button, DatePicker, Input, InputPicker, Tooltip, Whisper } from 'rsuite'
+import { Button, DatePicker, Input, InputPicker, Message, Tooltip, Whisper, useToaster } from 'rsuite'
 import { FirebaseUser } from '../../../../../../../database/Objects'
 import SpinnerIcon from '@rsuite/icons/legacy/Spinner';
 import { mainColors } from '../../../../../themes/colors';
 import { fetchContries } from '../../../../../../../misc/custom-hooks';
+import { newUpdateAccount } from '../../../../../../../firebase';
 
-interface IProps {user: FirebaseUser, en: boolean}
+interface IProps {user: FirebaseUser, en: boolean, close: any}
 
 const ProfileForm = (props: IProps) => {
-  const {user, en} = props
+  const {user, en, close} = props
   const today = new Date()
+  const toaster = useToaster()
 
   const [title, setTitle] = React.useState('')
   const [firstName, setFirstName] = React.useState('')
@@ -30,23 +32,47 @@ const ProfileForm = (props: IProps) => {
   const [cLoading, setCLoading] = React.useState<boolean>(false)
   const [countries, setCountries] = React.useState<string[] | null>(null)
 
-  React.useEffect(() => {
-    //fetchContries(setCountries, setCLoading)
-
-  }, [])
-
   const getCountriesIfNeeded = () => {
     if (countries === null) {
       fetchContries(setCountries, setCLoading)
     }
   }
+
+  const saveChanges = () => {
+    if (firstName.split(' ').length > 1) {
+      toaster.push(<Message showIcon type='error'>
+        First name is invalid.
+      </Message>); window.setTimeout(() => toaster.clear(), 10000)
+    }
+    newUpdateAccount(
+      user.id,
+      title === '' ? user.title !== undefined ? user.title : '' : title,
+      firstName === '' || lastName === '' ? user.full_name : `${firstName} ${lastName}`,
+      birthdate.toLocaleDateString(),
+      email === '' ? user.email : email,
+      country !== '' ? country : user.country,
+      code !== '' && city !== '' && street !== '' ? `${street}, ${code} ${city}` : user.address,
+      phone !== '' ? phone : user.phone_number,
+      () => {
+        toaster.push(<Message showIcon type='success'>
+          Profile updated successfully!
+        </Message>); window.setTimeout(() => toaster.clear(), 10000)
+      },
+      (err) => {
+        toaster.push(<Message showIcon type='error'>
+          {err.message}
+        </Message>); window.setTimeout(() => toaster.clear(), 10000)
+      },() => {close()}
+    )
+  }
+  const regex = new RegExp('\\S+', 'gm')
   return (
     <div className='edit-profile-form'>
       <div className="form-element pronounce-element">
         <label className="label">Title</label>
         <InputPicker className='input picker' placeholder={user.title !== undefined ? user.title :
           en ? 'Select Title' : 'Titel.'}
-          value={user.title !== undefined ? user.title : title} data={titleData}
+          value={title === '' ? user.title !== undefined || user.title !== null ? user.title : title : title} data={titleData}
           onChange={setTitle}
           />
       </div>
@@ -59,6 +85,7 @@ const ProfileForm = (props: IProps) => {
         <Input className='input' placeholder={en ? 'Enter first name...' : 'Vorname schreiben...'}
           value={firstName === '' ? user.full_name !== '' ? user.full_name.split(' ')[0] : firstName : firstName}
           onChange={setFirstName}
+          type='text'
           />
         </div>
         <div className="inner">
@@ -76,7 +103,7 @@ const ProfileForm = (props: IProps) => {
       <div className="form-element birthdate">
         <label className="label">{en ? 'Birtdate' : 'Geburtsdatum'}*</label>
         <DatePicker className='input'
-        value={birthdate === today ? user.birth_date !== '' ? user.birth_date : null: birthdate}
+        value={birthdate === today ? user.birth_date !== '' ? new Date(user.birth_date) : null: birthdate}
         oneTap onChange={setBirthdate}/>
       </div>
       </Whisper>
@@ -97,6 +124,8 @@ const ProfileForm = (props: IProps) => {
          data={countries === null ? [] : countries.sort().map((c: string) => ({label: c, value: c}))}
          onChange={setCountry}
          onOpen={getCountriesIfNeeded}
+         value={country === '' ? user.country !== '' ? user.country : country: country}
+         placeholder={user.country !== '' ? user.country : 'Select'}
          renderMenu={menu => {
           if (cLoading) {
             return (
@@ -115,9 +144,9 @@ const ProfileForm = (props: IProps) => {
             <div>
               <label htmlFor="" className="label">{en ? 'Postal code' : 'Posteinzahl'}</label>
               <Input className='input'
-              placeholder={user.address !== '' ? user.address.split(',')[1].split(' ')[0] :
+              placeholder={user.address !== '' ? user.address.split(', ')[1].split(' ')[0] :
               en ? 'Postal code...' : 'Posteinzahl...'}
-              value={code === '' ? user.address !== '' ? user.address.split(',')[1].split(' ')[0]
+              value={code === '' ? user.address !== '' ? user.address.split(', ')[1].split(' ')[0]
                : code: code}
                onChange={setCode}
               />
@@ -127,9 +156,9 @@ const ProfileForm = (props: IProps) => {
             <div>
               <label htmlFor="" className="label">{en ? 'City' : 'Stadt'}</label>
               <Input className='input'
-              placeholder={user.address !== '' ? user.address.split(',')[1].split(' ')[1] :
+              placeholder={user.address !== '' ? user.address.split(', ')[1].split(' ').slice(1).join(' ') :
               en ? 'Enter city...' : 'Stadt schreiben...'}
-              value={city === '' ? user.address !== '' ? user.address.split(',')[1].split(' ')[1]
+              value={city === '' ? user.address !== '' ? user.address.split(', ')[1].split(' ').slice(1).join(' ')
                : city: city}
                onChange={setCity}
               />
@@ -155,9 +184,10 @@ const ProfileForm = (props: IProps) => {
         placeholder={user.phone_number !== '' ? user.phone_number : en ? 'Enter phone number...' :
       'Telefon Nummer schreiben'}
         value={phone === '' ? user.phone_number !== '' ? user.phone_number : phone : phone}
+        onChange={setPhone}
         />
       </div>
-      <Button appearance='primary' className='r-btn r-main-btn' block>
+      <Button appearance='primary' className='r-btn r-main-btn' block onClick={saveChanges}>
         {en ? 'Save changes' : 'Speichern von Änderungen'}
       </Button>
     </div>

@@ -29,7 +29,7 @@ const NewEditProfileModal = (props: IProps) => {
       </Modal.Header>
       <Modal.Body className='modal-body'>
         {loading ? (<RedrumProLoader/>) : currentUser === null ? null : (
-          <ProfileForm user={currentUser} en={en}/>
+          <ProfileForm user={currentUser} en={en} close={close}/>
         )}
       </Modal.Body>
     </Modal>

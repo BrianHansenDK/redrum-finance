@@ -8,7 +8,7 @@ const RequestCreatorInfo = ({user} : {user: FirebaseUser}) => {
       <p className='email'>email: {user.email}</p>
       <p className='id'>
         Id: {user.id ? user.id : 'Google account'} &nbsp; &nbsp;
-        Birthyear: {user.birthYear ? user.birthYear : 'unknown'}
+        Birthyear: {user.birth_date !== '' ? new Date(user.birth_date).getFullYear() : 'unknown'}
       </p>
     </div>
   )
