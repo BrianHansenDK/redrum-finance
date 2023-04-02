@@ -15,19 +15,6 @@ import dashboardStrings from '../../../library/string/Dashboard';
 import LanguageToggle from './LanguageToggle';
 import { useMediaQuery } from '../../../misc/custom-hooks';
 
-const styles = {
-  sideNav: {
-    width: '20%',
-    height: 100 + 'vh',
-    top: 0,
-    left: 0,
-    paddingTop: 100,
-    boxShadow: mainShadows.card,
-  }
-
-
-}
-
 const SideBar = ({en} : {en: boolean}) => {
   const [isVisible, setVisible] = useState(false)
   const [currentKey, setCurrentKey] = useState('1')
@@ -49,7 +36,25 @@ const SideBar = ({en} : {en: boolean}) => {
   const openModal = () => {
     setVisible(true)
   }
+
+  const isLabtop = useMediaQuery('(max-width: 1400px)')
+
+
+  const styles = {
+    sideNav: {
+      width: isLabtop ? 250 : 300,
+      height: 100 + 'vh',
+      top: 0,
+      left: 0,
+      paddingTop: 100,
+      boxShadow: mainShadows.card,
+    }
+
+
+  }
+
   return (
+
     <>
       <Sidenav defaultOpenKeys={['3', '4']} style={styles.sideNav} className='sidebar' >
         <Sidenav.Body>

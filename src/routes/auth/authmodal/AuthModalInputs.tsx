@@ -22,7 +22,9 @@ const AuthModalInputs: React.FunctionComponent<IProps> = (props) => {
   const [userName, setUserName] = React.useState<any>('')
   const [userEmail, setUserEmail] = React.useState<any>('')
   const [userPassword, setUserPassword] = React.useState<any>('')
+  const [confirm, setConfirm] = React.useState<any>('')
   const [userMails, setUserMails] = React.useState<string[]>([])
+  const [confirmVisible, setConfirmVisible] = React.useState<boolean>(false)
 
   const navigate = useNavigate()
   const toaster = useToaster()
@@ -60,7 +62,12 @@ const AuthModalInputs: React.FunctionComponent<IProps> = (props) => {
             <p style={PushThemes.txt}>Password cannot be empty.</p>
           </Message>, {placement: 'topCenter'})
         }
-        if ((onlyOneSpace) && (userPassword != '') ) {
+        if (userPassword !== confirm) {
+          toaster.push(<Message type='error' style={PushThemes.pushRed}>
+            <p style={PushThemes.txt}>Password & password confirmation does not match.</p>
+          </Message>, {placement: 'topCenter'})
+        }
+        if ((onlyOneSpace) && (userPassword != '') && (userPassword === confirm)) {
           createUserWithEmailAndPassword(auth, userEmail, userPassword)
           .then(async (userCredentials) => {
             const user = userCredentials.user
@@ -126,6 +133,19 @@ const AuthModalInputs: React.FunctionComponent<IProps> = (props) => {
           </InputGroup.Button>
         </InputGroup>
       </div>
+        { signupPage ? (
+        <div className="input-element">
+        <label>{en ? 'Confirm password' : 'Passwort bästetigen'}</label>
+        <InputGroup inside>
+          <Input type={confirmVisible ? 'text' : 'password'}
+          placeholder={en ? 'Your password' : 'Dein Passwort'} onChange={setConfirm} />
+          <InputGroup.Button onClick={() => setConfirmVisible(!confirmVisible)}>
+            {confirmVisible ? <EyeIcon /> : <EyeSlashIcon />}
+          </InputGroup.Button>
+        </InputGroup>
+      </div>
+          ) : null }
+
       <>
       {
         signupPage ? null : (

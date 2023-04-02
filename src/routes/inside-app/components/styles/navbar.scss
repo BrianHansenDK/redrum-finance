@@ -18,3 +18,22 @@
   background-color: whitesmoke;
   color: #101219;
 }
+.inner-dashboard {
+  position: relative;
+  max-width: 100%;
+  & .sidebar.rs-sidenav {
+    position: sticky;
+  }
+  @media (min-width: 1600px) {
+    max-width: 1600px;
+    margin: auto;
+  }
+}
+
+.inner-bar {
+  max-width: 100%;
+  @media (min-width: 1600px) {
+    max-width: 1600px;
+    margin: auto;
+  }
+}

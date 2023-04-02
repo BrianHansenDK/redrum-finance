@@ -14,6 +14,7 @@ export interface FirebaseUser {
   company_account: boolean,
   company_name?: string,
   contact_partner?: string,
+  company_address?: string,
   full_name: string,
   phone_number: string,
   state: string,

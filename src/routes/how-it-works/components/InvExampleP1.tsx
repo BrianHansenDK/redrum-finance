@@ -22,6 +22,10 @@ const InvExampleP1 = ({en, isDesktop} : {en: boolean, isDesktop: boolean}) => {
       borderRadius: 5,
       boxShadow: mainShadows.image,
       marginBottom: '2rem',
+    },
+    xmpl : {
+      fontSize: 'medium',
+      marginBottom: 35
     }
   }
   return (
@@ -29,11 +33,14 @@ const InvExampleP1 = ({en, isDesktop} : {en: boolean, isDesktop: boolean}) => {
       <h3 style={isDesktop ? TextTheme.bigSecondaryTitle : TextTheme.secondaryTitle} className='mb-2'>
         {en ? hIWStrings.phase1EN.t : hIWStrings.phase1DE.t}
       </h3>
+      <p style={styles.xmpl}>
+        {en ? hIWStrings.exampleXtraEN : hIWStrings.exampleExtraDE}
+      </p>
       <img src={InvImg} alt="A graph showing the users investment getting split into 3 segments" style={styles.image} />
       <div>
-      <InvExampleP1Item isDesktop={isDesktop} title={en ? hIWStrings.phase1EN.l1 : hIWStrings.phase1DE.l1} number={'300€'} />
-      <InvExampleP1Item isDesktop={isDesktop} title={en ? hIWStrings.phase1EN.l2 : hIWStrings.phase1DE.l2} number={'3'} />
-      <InvExampleP1Item isDesktop={isDesktop} title={en ? hIWStrings.phase1EN.l3 : hIWStrings.phase1DE.l3} number={'100€'} />
+      <InvExampleP1Item isDesktop={isDesktop} title={en ? hIWStrings.phase1EN.l1 : hIWStrings.phase1DE.l1} number={'200€'} />
+      <InvExampleP1Item isDesktop={isDesktop} title={en ? hIWStrings.phase1EN.l2 : hIWStrings.phase1DE.l2} number={'1'} />
+      <InvExampleP1Item isDesktop={isDesktop} title={en ? hIWStrings.phase1EN.l3 : hIWStrings.phase1DE.l3} number={'200€'} />
       </div>
     </div>
   )

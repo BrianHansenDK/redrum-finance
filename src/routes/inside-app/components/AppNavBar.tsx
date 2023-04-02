@@ -99,7 +99,7 @@ const AppNavBar: React.FunctionComponent<IProps> = (props) => {
     return (
       <>
         <Navbar style={styles.navBar} className={`navbar ${fixed ? '' : 'navbarhidden'}`}>
-            <div style={styles.navBarInner}>
+            <div style={styles.navBarInner} className='inner-bar'>
 
                 <NavbarBrand
                 style={isSmall ? styles.brandSmall : isMobile ? styles.brandMobile : styles.brand}

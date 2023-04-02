@@ -1,10 +1,11 @@
 import React from 'react'
-import { Button, DatePicker, Input, InputPicker, Message, Tooltip, Whisper, useToaster } from 'rsuite'
+import { Button, DatePicker, Input, InputPicker, Message, Radio, RadioGroup, Tooltip, Whisper, useToaster } from 'rsuite'
 import { FirebaseUser } from '../../../../../../../database/Objects'
 import SpinnerIcon from '@rsuite/icons/legacy/Spinner';
 import { mainColors } from '../../../../../themes/colors';
 import { fetchContries } from '../../../../../../../misc/custom-hooks';
 import { newUpdateAccount } from '../../../../../../../firebase';
+import { ValueType } from 'rsuite/esm/Radio/Radio';
 
 interface IProps {user: FirebaseUser, en: boolean, close: any}
 
@@ -18,11 +19,18 @@ const ProfileForm = (props: IProps) => {
   const [lastName, setLastName] = React.useState('')
   const [birthdate, setBirthdate] = React.useState<any>(today)
   const [email, setEmail] = React.useState('')
+  const [role, setRole] = React.useState('')
+  const [companyName, setCompanyName] = React.useState('')
+  const [companyCode, setCompanyCode] = React.useState('')
+  const [companyCity, setCompanyCity] = React.useState('')
+  const [companyCountry, setCompanyCountry] = React.useState('')
   const [country, setCountry] = React.useState('')
   const [code, setCode] = React.useState('')
   const [city, setCity] = React.useState('')
   const [street, setStreet] = React.useState('')
   const [phone, setPhone] = React.useState('')
+  const [companyAccount, setCompanyAccount] =
+    React.useState<ValueType | undefined>(user.company_account ? 'true' : '')
 
   const titleData = [
     {label: 'Mr.', value: 'Mr.'}, {label: 'Miss.', value: 'Miss.'},
@@ -44,6 +52,16 @@ const ProfileForm = (props: IProps) => {
         First name is invalid.
       </Message>); window.setTimeout(() => toaster.clear(), 10000)
     }
+    const companyStatement =
+      (Boolean(companyAccount)) && (role === '' || companyName === ''
+      || companyCode === '' || companyCity === '' || companyCountry === '')
+    if (companyStatement) {
+      toaster.push(<Message showIcon type='error'>
+        Please fill out all the necessary information from your company.
+      </Message>); window.setTimeout(() => toaster.clear(), 10000)
+    }
+    if (firstName.split(' ').length === 1 && !companyStatement)
+    {
     newUpdateAccount(
       user.id,
       title === '' ? user.title !== undefined ? user.title : '' : title,
@@ -62,19 +80,44 @@ const ProfileForm = (props: IProps) => {
         toaster.push(<Message showIcon type='error'>
           {err.message}
         </Message>); window.setTimeout(() => toaster.clear(), 10000)
-      },() => {close()}
+      },() => {close()},
+      Boolean(companyAccount),
+      Boolean(companyAccount) ? role : undefined,
+      Boolean(companyAccount) ? companyName : undefined,
+      Boolean(companyAccount) ? `${companyCode} ${companyCity}, ${companyCountry}` : undefined
     )
+    }
   }
   const regex = new RegExp('\\S+', 'gm')
   return (
     <div className='edit-profile-form'>
-      <div className="form-element pronounce-element">
+      <div className="form-element double-input pronounce-element" style={{display: 'flex', alignItems: 'center'}}>
+        <div className="inner">
         <label className="label">Title</label>
         <InputPicker className='input picker' placeholder={user.title !== undefined ? user.title :
           en ? 'Select Title' : 'Titel.'}
-          value={title === '' ? user.title !== undefined || user.title !== null ? user.title : title : title} data={titleData}
+          value={title === '' ? user.title !== undefined || user.title !== null ? user.title : title : title}
+          data={titleData}
           onChange={setTitle}
           />
+      </div>
+      <div className="inner">
+        <RadioGroup
+        value={companyAccount}
+        onChange={setCompanyAccount}
+        inline style={{display: 'flex', alignItems: 'center'}}>
+          <Radio
+          value={''}
+          style={{display: 'flex', alignItems: 'center'}}>
+            <label className="label">{en ? 'Private' : 'Privat'}
+          </label></Radio>
+          <Radio
+          value={'true'}
+          style={{display: 'flex', alignItems: 'center'}}>
+            <label className="label">{en ? 'Company' : 'Firm'}
+          </label></Radio>
+        </RadioGroup>
+      </div>
       </div>
       <Whisper trigger={'hover'} placement='top' speaker={(<Tooltip>
         Needed to invest
@@ -97,36 +140,86 @@ const ProfileForm = (props: IProps) => {
         </div>
       </div>
       </Whisper>
+      <div className="form-element double-input">
       <Whisper trigger={'hover'} placement='top' speaker={(<Tooltip>
         Needed to invest
       </Tooltip>)}>
-      <div className="form-element birthdate">
+      <div className="inner birthdate">
         <label className="label">{en ? 'Birtdate' : 'Geburtsdatum'}*</label>
         <DatePicker className='input'
         value={birthdate === today ? user.birth_date !== '' ? new Date(user.birth_date) : null: birthdate}
         oneTap onChange={setBirthdate}/>
       </div>
       </Whisper>
-      <div className="form-element email">
+      <div className="inner">
         <label className="label">{en ? 'Email address' : 'Email Adresse'}</label>
         <Input className='input' value={email === '' ? user.email : email} onChange={setEmail}/>
       </div>
-      <Button className='change-password-btn' appearance='link'>
-        {en ? 'Change password' : 'Passwort beendern'}
-      </Button>
-      <h4 className="new-section-title">
-        {en ? 'Your address' : 'Deine Adresse'}
-      </h4>
-      <div className="form-element country">
-        <label className="label">{en ? 'Country' : 'Land'}</label>
-        <InputPicker
+      </div>
+      {Boolean(companyAccount) ? (
+        <>
+        <div className="form-element double-input">
+          <div className="inner">
+            <label className="label">
+              {en ? 'Company position' :
+              'Position in Ihrem Unternehmen'}*
+            </label>
+            <Input className='input'
+            placeholder={user.role === '' ? en ? 'Enter role...' : 'Position schreiben...' : user.role}
+            value={role === '' ? user.role === '' ? role : user.role : role}
+            onChange={setRole}
+            />
+          </div>
+          <div className="inner">
+          <label className="label">
+              {en ? 'Company name' :
+              'Firma Name'}
+            </label>
+            <Input className='input'
+            placeholder={user.company_name === undefined ? en ? 'Enter company name...' : 'Firma name schreiben...' : user.company_name}
+            value={companyName === '' ? user.company_name === undefined ? companyName : user.role : companyName}
+            onChange={setCompanyName}
+            />
+          </div>
+        </div>
+        <div className="form-element">
+          <p className='label' style={{width: '100%', flexGrow: 1, flexShrink: 0}}>Where is your company located?*</p>
+        </div>
+        <div className="form-element double-input">
+        <div className="box1">
+          <div className="inner postal-code">
+            <div>
+              <Input className='input'
+              placeholder={user.company_address !== undefined ? user.company_address.split(' ')[0] :
+              en ? 'Postal code...' : 'Posteinzahl...'}
+              value={companyCode === '' ? user.company_address !== undefined ? user.company_address.split(' ')[0]
+               : companyCode: companyCode}
+               onChange={setCompanyCode}
+              />
+            </div>
+          </div>
+          <div className="inner city">
+            <div>
+              <Input className='input'
+              placeholder={user.company_address !== undefined ? user.company_address.split(' ')[1].replace(',','') :
+              en ? 'Enter city...' : 'Stadt schreiben...'}
+              value={companyCity === '' ? user.company_address !== undefined ? user.company_address.split(' ')[1].replace(',','')
+               : companyCity: companyCity}
+               onChange={setCompanyCity}
+              />
+            </div>
+          </div>
+        </div>
+        <div className="inner street">
+          <div>
+          <InputPicker
         className='input'
-         data={countries === null ? [] : countries.sort().map((c: string) => ({label: c, value: c}))}
-         onChange={setCountry}
-         onOpen={getCountriesIfNeeded}
-         value={country === '' ? user.country !== '' ? user.country : country: country}
-         placeholder={user.country !== '' ? user.country : 'Select'}
-         renderMenu={menu => {
+        data={countries === null ? [] : countries.sort().map((c: string) => ({label: c, value: c}))}
+        onChange={setCompanyCountry}
+        onOpen={getCountriesIfNeeded}
+        value={companyCountry === '' ? user.company_address !== undefined ? user.company_address.split(', ')[1] : companyCountry: companyCountry}
+        placeholder={user.company_address !== undefined ? user.company_address.split(', ')[1] : 'Select'}
+        renderMenu={menu => {
           if (cLoading) {
             return (
               <p style={{ padding: 10, color: mainColors.main, textAlign: 'center' }}>
@@ -137,7 +230,17 @@ const ProfileForm = (props: IProps) => {
           return menu;
         }}
         />
+          </div>
+        </div>
       </div>
+        </>
+      ) : null}
+      <Button className='change-password-btn' appearance='link'>
+        {en ? 'Change password' : 'Passwort beendern'}
+      </Button>
+      <h4 className="new-section-title">
+        {en ? 'Your address' : 'Deine Adresse'}
+      </h4>
       <div className="form-element double-input">
         <div className="box1">
           <div className="inner postal-code">
@@ -178,7 +281,30 @@ const ProfileForm = (props: IProps) => {
           </div>
         </div>
       </div>
-      <div className="form-element phone-number">
+      <div className="form-element double-input">
+        <div className="inner country">
+
+        <label className="label">{en ? 'Country' : 'Land'}</label>
+        <InputPicker
+        className='input'
+        data={countries === null ? [] : countries.sort().map((c: string) => ({label: c, value: c}))}
+        onChange={setCountry}
+        onOpen={getCountriesIfNeeded}
+        value={country === '' ? user.country !== '' ? user.country : country: country}
+        placeholder={user.country !== '' ? user.country : 'Select'}
+        renderMenu={menu => {
+          if (cLoading) {
+            return (
+              <p style={{ padding: 10, color: mainColors.main, textAlign: 'center' }}>
+                <SpinnerIcon spin /> Loading...
+              </p>
+            );
+          }
+          return menu;
+        }}
+        />
+        </div>
+        <div className="inner phone-number">
         <label className="label">{en ? 'Phone number' : 'Telefon Nummber'}</label>
         <Input className='input'
         placeholder={user.phone_number !== '' ? user.phone_number : en ? 'Enter phone number...' :
@@ -186,6 +312,7 @@ const ProfileForm = (props: IProps) => {
         value={phone === '' ? user.phone_number !== '' ? user.phone_number : phone : phone}
         onChange={setPhone}
         />
+      </div>
       </div>
       <Button appearance='primary' className='r-btn r-main-btn' block onClick={saveChanges}>
         {en ? 'Save changes' : 'Speichern von Änderungen'}

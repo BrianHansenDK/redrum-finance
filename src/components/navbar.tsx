@@ -58,19 +58,27 @@ const MainNavbar: React.FunctionComponent<IProps> = (props) => {
             appearance='subtle'
             className={`${dark ? 'dark-bg shadow' : 'no-bg'} trans ${isDesktop ? 'd-flex align-items-center' : ''}`}
             style={{
-              paddingRight: 25,
-              paddingLeft: isDesktop ? 20 : 0,
               boxShadow: dark ? mainShadows.navBar : 'none',
               height: isDesktop ? 120 : 'auto',
+              display: 'flex', alignItems: 'center',
+              justifyContent: 'stretch'
             }}
             >
+              <div style={{
+                width: '100%',
+                maxWidth: isDesktop ? 1600 : '100%', margin: 'auto',
+                minWidth: isDesktop ? 1600 : '100%',
+                paddingRight: 25,
+                paddingLeft: isDesktop ? 20 : 0,
+                display: 'flex', alignItems: 'center'
+            }} className='position-relative'>
                 <Navbar.Brand
                 id='brand'
                 className='bold d-flex align-center'
                 as={Link} to='/'
                 style={{
                   height: isTablet || isDesktop ? '100%' : 75,
-                  fontSize: isDesktop ? 50 : 20,
+                  fontSize: isDesktop ? 30 : 20,
                   marginRight: isDesktop ? 25 : 15,
                 }}
                 >
@@ -106,7 +114,9 @@ const MainNavbar: React.FunctionComponent<IProps> = (props) => {
                      />
                     </>
                   ) : (
-                    <>
+                    <div style={{
+                      display: 'flex', alignItems: 'center', flexGrow: 1,
+                      justifyContent: 'space-between', position: 'relative',}}>
                     <Nav
                     className='d-flex align-center '
                     style={{
@@ -114,7 +124,7 @@ const MainNavbar: React.FunctionComponent<IProps> = (props) => {
                     height: isDesktop ? '100%' : 75,
                     flex: 0,
                     columnGap: 30,
-                    fontSize: isDesktop ? 25 : 12.75,
+                    fontSize: isDesktop ? 20 : 12.75,
                     fontWeight: 400
                     }}
                     >
@@ -129,9 +139,9 @@ const MainNavbar: React.FunctionComponent<IProps> = (props) => {
                 <Nav pullRight className={`d-flex align-center ${isDesktop ? 'position-absolute' : ''}`} style={{
                 height: 75,
                 columnGap: 30,
-                fontSize: isDesktop ? 25 : 12.75,
+                fontSize: isDesktop ? 20 : 12.75,
                 fontWeight: 400,
-                top: isDesktop ? 'calc(60px - 37.5px)' : 'auto',
+                top: isDesktop ? 'calc(40px - 37.5px)' : 'auto',
                 right: 20,
                 }}>
                     {
@@ -156,11 +166,11 @@ const MainNavbar: React.FunctionComponent<IProps> = (props) => {
                     </Button>
                     <ChangeLanBtn en={en} setEn={setEn} />
                 </Nav>
-                    </>
+                    </div>
                   )
                 }
                   </>
-
+              </div>
             </Navbar>
             {/*<AuthModal isVisible={isVisible} close={closeModal} en={en} />*/}
             <NewAuthModal isOpen={isVisible} closeModal={closeModal} en={en}/>

@@ -251,13 +251,25 @@ export function notifyUser(
 export function newUpdateAccount (userId: string, title: string, full_name: string,
   birth_date: Date, email: string, country: string, address: string, phone_number: string,
   then: ((value: void) => void | PromiseLike<void>) | null | undefined,
-  error: ErrorCallback, end: () => void) {
+  error: ErrorCallback, end: () => void,
+  company: boolean, companyRole?: string | undefined,
+  companyName?: string | undefined, companyAddress?: string | undefined
+  ) {
     const reference = ref(database, 'users/' + userId)
     let updates: any = {}
     updates['title'] = title; updates['full_name'] = full_name;
     updates['birth_date'] = birth_date; updates['email'] = email;
     updates['country'] = country; updates['address'] = address;
-    updates['phone_number'] = phone_number;
+    updates['phone_number'] = phone_number; updates['company_account'] = company;
+    if (companyRole !== undefined) {
+      updates['role'] = companyRole
+    }
+    if (companyName !== undefined) {
+      updates['company_name'] = companyName
+    }
+    if (companyAddress !== undefined) {
+      updates['company_address'] = companyAddress
+    }
     update(reference, updates).then(then).catch(error)
     .finally(end)
   }

@@ -20,7 +20,8 @@ const Statistics = ({en}: {en: boolean}) => {
   investments.forEach((inv: any) => {
     sum += inv.amount
   })
-  const average = sum / investments.length > 0 ? sum / investments.length : 0
+  // const average = sum / investments.length > 0 ? sum / investments.length : 0 // Real average
+  const average = sum / users.length // Fake average
     return (
         <div id='stats'>
             <div id='stats-inner'>

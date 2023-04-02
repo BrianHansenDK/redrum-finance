@@ -11,6 +11,7 @@ const LayoutWithSidebar: React.FunctionComponent<ILayoutWithSidebarProps> = (pro
     const { children, en, setEn } = props
     const isMobile = useMediaQuery('(max-width: 1100px)')
     const labtop = useMediaQuery('(max-width: 1400px)')
+    const isDesktop = useMediaQuery('(min-width: 1600px)')
     const [menuOpen, setMenuOpen] = React.useState<boolean>(false)
     const [navOpen, setNavOpen] = React.useState(false)
     const openMenu = () => setMenuOpen(true)
@@ -23,13 +24,9 @@ const LayoutWithSidebar: React.FunctionComponent<ILayoutWithSidebarProps> = (pro
             flex: 1,
             paddingTop: 125,
             display: 'flex',
-            alignItems: 'center',
-
-            paddingLeft: isMobile ? 20 : '20%',
-            paddingRight: isMobile? 20 : 0,
-            /*
-            paddingLeft: isMobile ? 20 : 300,
-            paddingRight: isMobile ? 20 : labtop ? 0 : 300,*/
+            alignItems: isMobile ? 'center' : 'center',
+            paddingLeft: labtop ? '5%' : 100,
+            paddingRight: labtop ? '5%' : 100,
         },
     }
 

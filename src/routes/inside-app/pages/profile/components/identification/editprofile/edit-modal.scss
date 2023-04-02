@@ -19,7 +19,7 @@ $dark-shadow: rgba(0, 0, 29, .25);
   & .modal-body {
     display: flex; flex-direction: column;
     align-items: center;
-    padding-top: 50px;
+    padding-top: 20px;
     & .edit-profile-form {
       display: flex; flex-direction: column;
       align-items: flex-start;
@@ -27,10 +27,10 @@ $dark-shadow: rgba(0, 0, 29, .25);
       min-width: 300px;
       width: 100%;
       max-width: 900px;
-      row-gap: 25px;
+      row-gap: 15px;
       & .form-element {
         display: flex; flex-direction: column;
-        row-gap: 5px;
+        row-gap: 2.5px;
         width: 50%;
         flex-grow: 1; flex-shrink: 0;
         & .label {
@@ -49,6 +49,9 @@ $dark-shadow: rgba(0, 0, 29, .25);
           background-color: $input-bg;
           font-size: medium;
           box-sizing: border-box;
+          height: 45px;
+          display: flex;
+          align-items: center;
           &::placeholder {
             font-size: medium;
           }
@@ -62,6 +65,8 @@ $dark-shadow: rgba(0, 0, 29, .25);
             background-color: $input-bg!important;
             border-radius: 2.5px;
             border-width: 2.5px;
+            display: flex;
+            align-items: center;
             & .rs-picker-toggle-value {
               color: rgb(90,90,90);
             }
@@ -94,9 +99,9 @@ $dark-shadow: rgba(0, 0, 29, .25);
       }
       & .r-btn.r-main-btn {
         font-size: large;
-        padding: 15px 0;
-        margin: 20px 0;
-        width: calc(50% - 12.5px);
+        padding: 10px 0;
+        margin: 20px auto;
+        width: 300px;
       }
     }
   }
