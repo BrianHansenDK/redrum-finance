@@ -9,6 +9,7 @@ const ProjectDetailsPageWrapper = (WrappedComponent: any) => (props: IProps) => 
     const params = useParams()
     const {en, setEn} = props
     const isMobile = useMediaQuery('(max-width: 1100px)')
+    const isDesktop = useMediaQuery('(min-width: 1600px)')
     const [menuOpen, setMenuOpen] = React.useState<boolean>(false)
     const [navOpen, setNavOpen] = React.useState<boolean>(false)
     const openMenu = () => setMenuOpen(true)
@@ -22,6 +23,7 @@ const ProjectDetailsPageWrapper = (WrappedComponent: any) => (props: IProps) => 
             en={en}
             setEn={setEn}
             isMobile={isMobile}
+            isDesktop={isDesktop}
             navOpen={navOpen}
             menuOpen={menuOpen}
             openNav={openNav}

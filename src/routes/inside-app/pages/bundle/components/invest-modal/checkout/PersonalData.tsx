@@ -3,6 +3,7 @@ import React from 'react'
 import { Button, Input, Message, useToaster } from 'rsuite'
 import { auth, database, userRef } from '../../../../../../../firebase'
 import PushThemes from '../../../../../themes/PushThemes'
+import { FirebaseUser } from '../../../../../../../database/Objects'
 
 interface IProps {
   en: boolean,
@@ -10,11 +11,12 @@ interface IProps {
   fullName: string,
   knownState: string,
   knownCountry: string,
+  user: FirebaseUser,
 }
 
 const PersonalData = (props: IProps) => {
   const {
-    en, address, fullName, knownState, knownCountry} = props
+    en, address, fullName, knownState, knownCountry, user} = props
   const [name, setName] = React.useState<any>('')
   const [street, setStreet] = React.useState<any>('')
   const [hNumber, setHNumber] = React.useState<any>('')
@@ -93,13 +95,13 @@ const PersonalData = (props: IProps) => {
         (
           <div className="all-info">
             <p className="saved-info">
-              {fullName}
+              {user.company_account ? user.company_name : fullName}
             </p>
             <p className="saved-info">
-            {address.split(',')[0]} <br/> {address.split(',')[1]}
+              {user.email}
             </p>
             <p className="saved-info">
-              {`${knownState}, ${knownCountry}`}
+            {address}
             </p>
           </div>
         )

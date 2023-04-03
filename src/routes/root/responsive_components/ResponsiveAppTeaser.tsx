@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, FlexboxGrid } from 'rsuite'
 import { useMediaQuery } from '../../../misc/custom-hooks'
-import APP from '../../../assets/redrum-pro-app.svg'
+import APP from './redrum-pro-app.svg'
 import { homeStrings } from '../../../library/string/Landinspage'
 import GoogleBtn from '../../../components/GoogleBtn'
 import AppleBtn from '../../../components/AppleBtn'

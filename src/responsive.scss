@@ -230,6 +230,9 @@ $dark-shadow: rgba(0, 0, 29, .25);
       @media screen and (max-width: 1100px) {
         order: 2;
       }
+      & img {
+        image-orientation: none;
+      }
     }
     .r-showcase-txt-con {
       order: 2;
@@ -312,6 +315,13 @@ $dark-shadow: rgba(0, 0, 29, .25);
     font-size: medium;
     box-shadow: 0 3px 6px 0 $blue-shadow;
     transition: all 300ms ease-in-out;
+    &.r-main-btn {
+      &.noti-btn {
+        font-size: small;
+        padding: 5px!important;
+
+      }
+    }
     &:hover {
       transform: scale(.95, .95) translateY(3px);
       box-shadow: 0 2px 4px 0 $blue-shadow;
@@ -346,6 +356,7 @@ $dark-shadow: rgba(0, 0, 29, .25);
       box-shadow: 0 1px 2px 0 $dark-shadow;
     }
   }
+
 }
 
 // ---------- Bundle Page ----------
@@ -468,8 +479,8 @@ $dark-shadow: rgba(0, 0, 29, .25);
       box-shadow: 0 1px 2px 0 $blue-shadow;
     }
     @media screen and (min-width: 1600px) {
-      font-size: 30px;
-      padding: 20px 45px;
+      font-size: large;
+      padding: 15px 30px;
       box-shadow: 0 6px 12px 0 $blue-shadow;
     }
   }

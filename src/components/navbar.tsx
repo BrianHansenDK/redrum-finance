@@ -141,7 +141,7 @@ const MainNavbar: React.FunctionComponent<IProps> = (props) => {
                 columnGap: 30,
                 fontSize: isDesktop ? 20 : 12.75,
                 fontWeight: 400,
-                top: isDesktop ? 'calc(40px - 37.5px)' : 'auto',
+                top: isDesktop ? 'calc(50% - 37.5px)' : 'auto',
                 right: 20,
                 }}>
                     {

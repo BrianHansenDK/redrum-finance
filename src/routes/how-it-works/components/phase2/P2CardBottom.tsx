@@ -10,7 +10,7 @@ const P2CardBottom = ({en, isDesktop} : {en: boolean, isDesktop: boolean}) => {
     <>
     <div className='d-flex align-items-center justify-content-center mb-1'>
       <Message closable type="info" header="Minimum return">
-        The 7% works as a minimum return. More information will be given below.
+        The 7% works as a minimum return. You will see what you can do with this below.
       </Message>
     </div>
     <p style={isDesktop ? TextTheme.bigHiwPara : TextTheme.hiwPara} className='des mt-3 mb-3'>

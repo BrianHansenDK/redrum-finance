@@ -11,12 +11,14 @@ import { PROJECTS } from '../dashboard/components/util'
 import LeftSide from './components/left/LeftSide'
 import RightSide from './components/right/RightSide'
 import SecondaryNavbar from './components/SecondaryNavbar'
+import { useMediaQuery } from '../../../../misc/custom-hooks'
 
 interface IProps {
     params: any,
     en: boolean,
     setEn: any,
     isMobile: boolean,
+    isDesktop: boolean,
     navOpen: boolean,
     menuOpen: boolean,
     openMenu: any,
@@ -95,6 +97,7 @@ class ProjectDetailsPage extends React.Component<IProps, IState> {
     render() {
         const { bundleId } = this.props.params
         const isMobile = this.props.isMobile
+        const isDesktop = this.props.isDesktop
 
         const styles = {
           page: {
@@ -105,10 +108,12 @@ class ProjectDetailsPage extends React.Component<IProps, IState> {
               paddingLeft: isMobile ? 20 : 5 + 'rem',
               paddingRight: isMobile ? 20 : 5 + 'rem',
               paddingBottom: 5 + 'rem',
+              minHeight: isDesktop ? '82.5vh' : 'auto',
           },
           wrapperInner: {
               display: 'flex',
               justifyContent: 'space-between',
+              minHeight: isDesktop ? '82.5vh' : 'auto',
           },
           extrasWrap: {
               paddingTop: 5 + 'rem',

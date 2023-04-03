@@ -1,8 +1,8 @@
 import { ref, set, update } from 'firebase/database'
 import React, { useEffect, useState } from 'react'
 import INVESTIMG from '../../../../../assets/investment_growth_icon.svg'
-import { Button, ButtonGroup, Form, InputNumber, Message, Modal, useToaster, Toggle, Tooltip, Whisper } from 'rsuite'
-import { auth, database, userRef } from '../../../../../../firebase'
+import { Button, ButtonGroup, Form, InputNumber, Message, Modal, useToaster, Toggle, Tooltip, Whisper, Notification } from 'rsuite'
+import { auth, database, getCurrentUserFunction, userRef } from '../../../../../../firebase'
 import CheckIcon from '@rsuite/icons/Check';
 import CloseIcon from '@rsuite/icons/Close';
 import '../right/styles/invest-modal.scss'
@@ -11,6 +11,7 @@ import { useMediaQuery } from '../../../../../../misc/custom-hooks'
 import CheckoutPage from './checkout/CheckoutPage'
 import { useNavigate } from 'react-router-dom'
 import PaypalComponent from '../../../../../../paypal/PaypalComponent'
+import { FirebaseUser } from '../../../../../../database/Objects'
 //import { mainColors } from '../../../../themes/colors'
 
 interface IProps {
@@ -37,6 +38,9 @@ const InvestModal: React.FunctionComponent<IProps> = (props) => {
     const [checked, setChecked] = useState(false)
     const [checkout, setCheckout] = useState<boolean>(false)
     const [payment_method, setPaymentMethod] = React.useState('')
+
+    const [user, setUser] = React.useState<FirebaseUser | null>(null)
+    const [dLoading, setDLoading] = React.useState(false)
 
 
   function makeItPaypal() {
@@ -84,6 +88,7 @@ const InvestModal: React.FunctionComponent<IProps> = (props) => {
     const isMobile = useMediaQuery('(max-width: 1100px)')
 
     useEffect(() => {
+      getCurrentUserFunction(auth.currentUser?.uid, setUser, setDLoading)
       userRef(auth.currentUser?.uid, '/money_available', setAvailable)
       userRef(auth.currentUser?.uid, '/payment_method', setPaymentMethod)
   }, [])
@@ -155,11 +160,20 @@ const InvestModal: React.FunctionComponent<IProps> = (props) => {
       payment_method === '' || payment_method === 'PayPal' ? true : false
 
     const investInBundle = () => {
+      const haveAllInfo =
+      (!user?.company_account && (user?.full_name !== "" && user?.address !== ""
+      && user?.birth_date !== "" && user?.title !== undefined
+      && user.phone_number && user.country !== "")) || (
+        (user?.company_account) && (user?.full_name !== "" && user?.address !== ""
+        && user?.birth_date !== "" && user?.title !== undefined
+        && user.phone_number && user.country !== ""
+        && user.company_name !== undefined && user.role !== "" && user.company_address !== undefined )
+      )
       if (parseInt(investAmount) == 0 || investAmount == null || investAmount == '') {
         toaster.push(
             <Message style={PushThemes.pushRed} type='error'>
               <p style={PushThemes.txt}> Please choose a valid amount. Cannot invest 0€ </p>
-            </Message> , { placement: 'topCenter' }
+            </Message> , { placement: 'bottomCenter' }
         )
         window.setTimeout(() => { toaster.clear() }, 10000)
     }
@@ -173,7 +187,7 @@ const InvestModal: React.FunctionComponent<IProps> = (props) => {
                     (parseInt(investAmount) - x) % project.movies.length == 0 && (parseInt(investAmount) - x) !== 0 ? `${parseInt(investAmount) - x}€ or ${(parseInt(investAmount) - x) + project.movies.length}` : (parseInt(investAmount) - x) % project.movies.length == 0 && (parseInt(investAmount) - x) == 0 && `${(parseInt(investAmount) - x) + project.movies.length}`
                   ))
                 }€</p>
-            </Message> , { placement: 'topCenter' }
+            </Message> , { placement: 'bottomCenter' }
         )
         window.setTimeout(() => { toaster.clear() }, 10000)
     }
@@ -184,15 +198,30 @@ const InvestModal: React.FunctionComponent<IProps> = (props) => {
         toaster.push(
           <Message style={PushThemes.pushRed} type='error'>
                 <p style={PushThemes.txt}>Not enough money in your account. Available: {available == null ? 0 : available}</p>
-            </Message> , { placement: 'topCenter' }
+            </Message> , { placement: 'bottomCenter' }
         )
         window.setTimeout(() => { toaster.clear() }, 10000)
       }
     }
+    if (!haveAllInfo) {
+      toaster.push(<Notification type='error' header='Error' closable>
+        <p>
+          Some of your personal data is missing! <br/>
+          All of your personal data is needed to invest.
+        </p>
+        <p>You can add the needed information on your profile page</p>
+        <Button appearance='primary' block size='sm' className='r-btn r-main-btn mt-2 p-2' onClick={() => {
+          navigate(`/app/profile/${auth!.currentUser!.uid}`)
+          toaster.clear()
+          }}>
+          Go to your profile
+        </Button>
+      </Notification>, {placement: 'topCenter'})
+    }
 
-    if (((!isPaypal && parseInt(investAmount) <= available) || isPaypal) && (
+    if (((!isPaypal && parseInt(investAmount) <= available && haveAllInfo) || isPaypal) && (
       parseInt(investAmount) % project.movies.length == 0 && parseInt(investAmount) !== 0
-    )
+    ) && haveAllInfo
       ) {
       const investRef = ref(database, 'investments/' + investmentId)
             // Make investment
@@ -251,7 +280,7 @@ const InvestModal: React.FunctionComponent<IProps> = (props) => {
                     {/*en ? 'You are investing in' : 'Ihr Investment in die'*/} <strong>{project.name}</strong>
                 </Modal.Title>
                 <div className="information">
-                <p className="info-row">
+                <p className="info-row bigger">
                   {en ? '1 Share = 1€' : '1 Anteil = 1€'}
                 </p>
                 <p className="info-row">

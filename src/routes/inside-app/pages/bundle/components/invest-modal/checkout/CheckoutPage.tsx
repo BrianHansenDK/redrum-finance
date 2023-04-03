@@ -1,6 +1,6 @@
 import { onValue, ref } from 'firebase/database'
 import React from 'react'
-import { FirebaseBundle, FirebaseMovie } from '../../../../../../../database/Objects'
+import { FirebaseBundle, FirebaseMovie, FirebaseUser } from '../../../../../../../database/Objects'
 import { auth, database, userRef } from '../../../../../../../firebase'
 import AppNavBar from '../../../../../components/AppNavBar'
 import RedrumProLoader from '../../../../../components/RedrumProLoader'
@@ -36,6 +36,7 @@ const CheckoutPage = (props: IProps) => {
     makeOrder, approveOrder
   } = props
 
+  const [user, setUser] = React.useState<FirebaseUser | null>(null)
   const [address, setAddress] = React.useState<any>('')
   const [fullName, setFullName] = React.useState<any>('')
   const [knownState, setKnownState] = React.useState<any>('')
@@ -49,6 +50,7 @@ const CheckoutPage = (props: IProps) => {
       setFullName(snap.val().full_name)
       setKnownState(snap.val().state)
       setKnownCountry(snap.val().country)
+      setUser(snap.val())
     })
   }, [])
 
@@ -83,6 +85,7 @@ const CheckoutPage = (props: IProps) => {
             fullName={fullName}
             knownState={knownState}
             knownCountry={knownCountry}
+            user={user!}
             />
            <PaymentMethod
            investAmount={investAmount}

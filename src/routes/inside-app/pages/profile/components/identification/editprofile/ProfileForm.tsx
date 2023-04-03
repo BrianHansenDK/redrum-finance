@@ -53,8 +53,11 @@ const ProfileForm = (props: IProps) => {
       </Message>); window.setTimeout(() => toaster.clear(), 10000)
     }
     const companyStatement =
-      (Boolean(companyAccount)) && (role === '' || companyName === ''
-      || companyCode === '' || companyCity === '' || companyCountry === '')
+      (Boolean(companyAccount)) && ((role === '' && user.role === undefined) ||
+      (companyName === '' && user.company_name === undefined)
+      || (companyCode === '' && user.company_address === undefined) ||
+      (companyCity === '' && user.company_address === undefined) ||
+      (companyCountry === '' && user.company_address === undefined))
     if (companyStatement) {
       toaster.push(<Message showIcon type='error'>
         Please fill out all the necessary information from your company.
@@ -82,9 +85,9 @@ const ProfileForm = (props: IProps) => {
         </Message>); window.setTimeout(() => toaster.clear(), 10000)
       },() => {close()},
       Boolean(companyAccount),
-      Boolean(companyAccount) ? role : undefined,
-      Boolean(companyAccount) ? companyName : undefined,
-      Boolean(companyAccount) ? `${companyCode} ${companyCity}, ${companyCountry}` : undefined
+      Boolean(companyAccount) ? role : user.role,
+      Boolean(companyAccount) ? companyName : user.company_name !== undefined ? user.company_name : undefined,
+      Boolean(companyAccount) ? `${companyCode} ${companyCity}, ${companyCountry}` : user.company_address !== undefined ? user.company_address : undefined
     )
     }
   }
@@ -93,7 +96,7 @@ const ProfileForm = (props: IProps) => {
     <div className='edit-profile-form'>
       <div className="form-element double-input pronounce-element" style={{display: 'flex', alignItems: 'center'}}>
         <div className="inner">
-        <label className="label">Title</label>
+        <label className="label">Title*</label>
         <InputPicker className='input picker' placeholder={user.title !== undefined ? user.title :
           en ? 'Select Title' : 'Titel.'}
           value={title === '' ? user.title !== undefined || user.title !== null ? user.title : title : title}
@@ -152,7 +155,7 @@ const ProfileForm = (props: IProps) => {
       </div>
       </Whisper>
       <div className="inner">
-        <label className="label">{en ? 'Email address' : 'Email Adresse'}</label>
+        <label className="label">{en ? 'Email address' : 'Email Adresse'}*</label>
         <Input className='input' value={email === '' ? user.email : email} onChange={setEmail}/>
       </div>
       </div>
@@ -173,7 +176,7 @@ const ProfileForm = (props: IProps) => {
           <div className="inner">
           <label className="label">
               {en ? 'Company name' :
-              'Firma Name'}
+              'Firma Name'}*
             </label>
             <Input className='input'
             placeholder={user.company_name === undefined ? en ? 'Enter company name...' : 'Firma name schreiben...' : user.company_name}
@@ -245,7 +248,7 @@ const ProfileForm = (props: IProps) => {
         <div className="box1">
           <div className="inner postal-code">
             <div>
-              <label htmlFor="" className="label">{en ? 'Postal code' : 'Posteinzahl'}</label>
+              <label htmlFor="" className="label">{en ? 'Postal code' : 'Posteinzahl'}*</label>
               <Input className='input'
               placeholder={user.address !== '' ? user.address.split(', ')[1].split(' ')[0] :
               en ? 'Postal code...' : 'Posteinzahl...'}
@@ -257,7 +260,7 @@ const ProfileForm = (props: IProps) => {
           </div>
           <div className="inner city">
             <div>
-              <label htmlFor="" className="label">{en ? 'City' : 'Stadt'}</label>
+              <label htmlFor="" className="label">{en ? 'City' : 'Stadt'}*</label>
               <Input className='input'
               placeholder={user.address !== '' ? user.address.split(', ')[1].split(' ').slice(1).join(' ') :
               en ? 'Enter city...' : 'Stadt schreiben...'}
@@ -270,7 +273,7 @@ const ProfileForm = (props: IProps) => {
         </div>
         <div className="inner street">
           <div>
-            <label htmlFor="" className="label">{en ? 'Street & house number' : 'Straße & Hausnummer'}</label>
+            <label htmlFor="" className="label">{en ? 'Street & house number' : 'Straße & Hausnummer'}*</label>
             <Input className='input'
             placeholder={user.address !== '' ? user.address.split(',')[0] :
             en ? 'Enter street and house number...' : 'Straße und Hausnummer schreiben...'}
@@ -284,7 +287,7 @@ const ProfileForm = (props: IProps) => {
       <div className="form-element double-input">
         <div className="inner country">
 
-        <label className="label">{en ? 'Country' : 'Land'}</label>
+        <label className="label">{en ? 'Country' : 'Land'}*</label>
         <InputPicker
         className='input'
         data={countries === null ? [] : countries.sort().map((c: string) => ({label: c, value: c}))}
@@ -305,7 +308,7 @@ const ProfileForm = (props: IProps) => {
         />
         </div>
         <div className="inner phone-number">
-        <label className="label">{en ? 'Phone number' : 'Telefon Nummber'}</label>
+        <label className="label">{en ? 'Phone number' : 'Telefon Nummber'}*</label>
         <Input className='input'
         placeholder={user.phone_number !== '' ? user.phone_number : en ? 'Enter phone number...' :
       'Telefon Nummer schreiben'}

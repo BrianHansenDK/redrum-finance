@@ -1,5 +1,5 @@
 import React from 'react'
-import SharesImg from '../../../../assets/user-shares.svg'
+import Congrats from '../../../../assets/congrats-image.svg'
 import { hIWStrings } from '../../../../library/string/Landinspage'
 import BoxThemes from '../../../../library/themes/BoxThemes'
 import TextTheme from '../../../../library/themes/TextTheme'
@@ -26,7 +26,9 @@ const Phase2Card = ({en, isDesktop} : {en: boolean, isDesktop: boolean}) => {
   return (
     <div style={styles.card}>
       <div className='d-flex align-items-center justify-content-center mb-1'>
-        <img src={SharesImg} alt="Overview of users shares grouped by project." style={styles.image} />
+        <img src={Congrats}
+        alt="Congartulation message page, after investment with a button which redirects you to the dashboard."
+        style={styles.image} />
       </div>
       <P2CardTop en={en} isDesktop={isDesktop} />
       <P2CardBottom en={en} isDesktop={isDesktop} />

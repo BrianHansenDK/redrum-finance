@@ -1,7 +1,7 @@
 import React from 'react'
 import { hIWStrings } from '../../../../library/string/Landinspage'
 import TextTheme from '../../../../library/themes/TextTheme'
-import MovieImg from '../../../../assets/movie-info.svg'
+import MovieImg from '../../../../assets/user-shares.svg'
 import mainShadows from '../../../inside-app/themes/shadows'
 
 const P2CardTop = ({en, isDesktop} : {en: boolean, isDesktop: boolean}) => {
@@ -31,7 +31,6 @@ const styles = {
     height: 'auto',
     borderRadius: 5,
     boxShadow: mainShadows.image,
-    border: '1px solid white',
   }
 }
 

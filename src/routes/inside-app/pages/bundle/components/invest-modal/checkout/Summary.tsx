@@ -6,6 +6,7 @@ import CloseIcon from '@rsuite/icons/Close';
 import { Link } from 'react-router-dom';
 import { auth, userRef } from '../../../../../../../firebase';
 import PaypalComponent from '../../../../../../../paypal/PaypalComponent';
+import AGBFile from '../../../../../../../misc/donwloadable-pdfs/AGB_AllgemeineGeschäftsbedingungenderRedrumPro27.1.2_FILM.pdf'
 
 interface IProps {
   en: boolean,
@@ -27,7 +28,7 @@ const CheckoutSummary = (props: IProps) => {
   return (
     <div className='checkout-card summary'>
       <h2 className="title">
-        Summary
+        {en ? 'Summary' : 'Zusammenfassung'}
       </h2>
       <div className="all-summary-info">
         <div className="summary-info">
@@ -84,8 +85,8 @@ const CheckoutSummary = (props: IProps) => {
         <div className="summary-info">
           <p>
             {en ? 'Overall sum' : 'Gesamtsumme'}:
-            <br/>
-            <span className='small'>{en ? 'incl.' : 'inkl.'} MwSt.</span>
+            {/*<br/>
+            <span className='small'>{en ? 'incl.' : 'inkl.'} MwSt.</span>*/}
           </p>
           <p className="overall-sum">
             {numberWithCommasAsString(investAmount * 1)} €
@@ -103,7 +104,7 @@ const CheckoutSummary = (props: IProps) => {
           {en ?
           `I hereby confirm that I agree with the` :
           'Hiermit bestätige ich, dass ich mit den'
-          } <a href='/terms-and-conditions' target='_blank'>{en ? 'terms and conditions' : 'AGB'}</a> {en ?
+          } <a href={AGBFile} download='redrumm_pro_allgemeine_gescheftsbedingungen'>{en ? 'terms and conditions' : 'AGB'}</a> {en ?
             `and that I am older than 18 years old.` :
             'einverstanden bin und dass ich älter als 18 Jahre alt bin.'
             }

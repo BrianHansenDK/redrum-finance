@@ -34,6 +34,9 @@ $dark-blue-shadow: #3549FE7B;
         text-align: center;
         font-size: medium;
         margin: 0;
+        &.bigger {
+          font-size: x-large;
+        }
       }
     }
   }
@@ -139,12 +142,12 @@ $dark-blue-shadow: #3549FE7B;
       // Input when active
       & .option-btn.active {
         color: $dark;
-        border: 2px solid $dark;
+        border: 2px solid $border-color;
         font-weight: 700;
         transition: all 100ms ease-out;
         &:hover {
-          background-color: rgba(0,0,0,0);
-          color: $dark;
+          background-color: $green;
+          color: $white;
           box-shadow: 0 2px 4px 0 $dark-shadow;
         }
         &:active {
@@ -155,6 +158,7 @@ $dark-blue-shadow: #3549FE7B;
         }
         & .rs-input {
           border-radius: 10px;
+          border-color: $white;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -170,8 +174,16 @@ $dark-blue-shadow: #3549FE7B;
               color: $dark;
             }
           }
-          &:focus {color: $dark;}
-          &:focus-within {color: $dark; }
+          &:focus {
+            color: $white;
+            background-color: $green;
+            outline-color: $border-color;
+          }
+          &:focus-within {
+            color: $white;
+            background-color: $green;
+            outline-color: $border-color;
+          }
         }
       }
     }
