@@ -3,16 +3,16 @@ import { mainColors } from "./colors"
 
 const PushThemes = {
   pushBlue: {
-    backgroundColor: mainColors.rSuiteBlue,
+    // backgroundColor: mainColors.rSuiteBlue,
   },
   pushRed: {
-    backgroundColor: mainColors.red,
+    // backgroundColor: mainColors.red,
   },
   pushGreen: {
-    backgroundColor: mainColors.success,
+    // backgroundColor: mainColors.success,
   },
   txt: {
-    color: mainColors.white,
+    // color: mainColors.white,
   }
 }
 

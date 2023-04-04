@@ -4,8 +4,10 @@ import { FirebaseUser } from '../../../../../../../database/Objects'
 import SpinnerIcon from '@rsuite/icons/legacy/Spinner';
 import { mainColors } from '../../../../../themes/colors';
 import { fetchContries } from '../../../../../../../misc/custom-hooks';
-import { newUpdateAccount } from '../../../../../../../firebase';
+import { auth, newUpdateAccount } from '../../../../../../../firebase';
 import { ValueType } from 'rsuite/esm/Radio/Radio';
+import { updateEmail } from 'firebase/auth';
+import ChangePasswordModal from './ChangePasswordModal';
 
 interface IProps {user: FirebaseUser, en: boolean, close: any}
 
@@ -89,8 +91,16 @@ const ProfileForm = (props: IProps) => {
       Boolean(companyAccount) ? companyName : user.company_name !== undefined ? user.company_name : undefined,
       Boolean(companyAccount) ? `${companyCode} ${companyCity}, ${companyCountry}` : user.company_address !== undefined ? user.company_address : undefined
     )
+    if (email !== '') {
+      updateEmail(auth.currentUser!, email)
+    }
     }
   }
+
+  // Change password
+  const [modalOpen, setModalOpen] = React.useState(false)
+  const openModal = () => setModalOpen(true)
+  const closeModal = () => setModalOpen(false)
   const regex = new RegExp('\\S+', 'gm')
   return (
     <div className='edit-profile-form'>
@@ -238,7 +248,7 @@ const ProfileForm = (props: IProps) => {
       </div>
         </>
       ) : null}
-      <Button className='change-password-btn' appearance='link'>
+      <Button className='change-password-btn' appearance='link' onClick={openModal}>
         {en ? 'Change password' : 'Passwort beendern'}
       </Button>
       <h4 className="new-section-title">
@@ -320,6 +330,7 @@ const ProfileForm = (props: IProps) => {
       <Button appearance='primary' className='r-btn r-main-btn' block onClick={saveChanges}>
         {en ? 'Save changes' : 'Speichern von Änderungen'}
       </Button>
+      <ChangePasswordModal en={en} open={modalOpen} close={closeModal} user={user}/>
     </div>
   )
 }
