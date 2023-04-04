@@ -81,8 +81,8 @@ const NewInverstorsCard: FunctionComponent<IProps> = (props) => {
                         <span style={styles.role}>
                             {user?.company_account ? 'Company' : user?.money_available !== undefined ? 'Redrum Pro investor' : 'Redrum Pro member'}
                         </span>
-                        {user?.city ? (
-                            `${user?.city}, ${user?.country}`
+                        {user?.address ? (
+                            `${user?.address.split(' ')[user.address.split(' ').length - 1]}, ${user?.country}`
                         ) : 'Location unknown'}
                     </p>
                 </div>

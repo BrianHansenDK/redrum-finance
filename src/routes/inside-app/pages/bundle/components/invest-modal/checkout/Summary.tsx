@@ -35,15 +35,15 @@ const CheckoutSummary = (props: IProps) => {
           <p>
             {en ? 'Price pr. share' : 'Preis je Anteil'}:
           </p>
-          <p className="price">
-            1€
+          <p className="price value">
+            1<span className="type-sign">€</span>
           </p>
         </div>
         <div className="summary-info">
           <p>
             {en ? 'Amount of shares' : 'Anzahl Anteile'}:
           </p>
-          <p className="shares">
+          <p className="shares value">
             {numberWithCommasAsString(investAmount)}
           </p>
         </div>
@@ -51,15 +51,15 @@ const CheckoutSummary = (props: IProps) => {
           <p>
             {en ? 'Sum' : 'Summe'}:
           </p>
-          <p className="sum">
-            {numberWithCommasAsString(investAmount * 1)} €
+          <p className="sum value">
+            {numberWithCommasAsString(investAmount * 1)} <span className="type-sign">€</span>
           </p>
         </div>
         <div className="summary-info">
           <p>
             {en ? 'Bonus shares' : 'Bonusanteile'}:
           </p>
-          <p className="bonus">
+          <p className="bonus value">
             {bonus}
           </p>
         </div>
@@ -67,8 +67,8 @@ const CheckoutSummary = (props: IProps) => {
           <p>
             {en ? 'Management fee' : 'Management -Gebühr'}:
           </p>
-          <p className="bonus">
-            0%
+          <p className="bonus value">
+            0 <span className="type-sign">%</span>
           </p>
         </div>
       </div>
@@ -78,7 +78,7 @@ const CheckoutSummary = (props: IProps) => {
           <p>
             {en ? 'Overall shares' : 'Gesamtanteile'}:
           </p>
-          <p className="overall-shares">
+          <p className="overall-shares value">
             {numberWithCommasAsString(investAmount + bonus)}
           </p>
         </div>
@@ -88,8 +88,8 @@ const CheckoutSummary = (props: IProps) => {
             {/*<br/>
             <span className='small'>{en ? 'incl.' : 'inkl.'} MwSt.</span>*/}
           </p>
-          <p className="overall-sum">
-            {numberWithCommasAsString(investAmount * 1)} €
+          <p className="overall-sum value">
+            {numberWithCommasAsString(investAmount * 1)} <span className="type-sign">€</span>
           </p>
         </div>
       </div>

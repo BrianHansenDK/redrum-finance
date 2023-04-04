@@ -8,8 +8,10 @@ import PaymentMethod from './PaymentMethod'
 import PersonalData from './PersonalData'
 import CheckoutProjectInfo from './ProjectInfo'
 import CheckoutSummary from './Summary'
+import CloseCheckoutBtn from './CloseCheckoutBtn'
 
 interface IProps {
+  closeSelf: any,
   en: boolean,
   navOpen: boolean,
   visible: boolean,
@@ -33,7 +35,7 @@ const CheckoutPage = (props: IProps) => {
     en, navOpen, visible, investAmount, available,
     setEn, openMenu, openNav, closeNav, project,
     bonus, investInBundle, isPaypal, makeItPaypal, makeItDeposit,
-    makeOrder, approveOrder
+    makeOrder, approveOrder, closeSelf
   } = props
 
   const [user, setUser] = React.useState<FirebaseUser | null>(null)
@@ -107,6 +109,7 @@ const CheckoutPage = (props: IProps) => {
           </div>
         </div>
       </div>
+      <CloseCheckoutBtn en={en} closeCheckout={closeSelf}/>
     </div>
   )
 }

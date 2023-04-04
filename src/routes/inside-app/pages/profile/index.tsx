@@ -9,6 +9,7 @@ import ProfileIntroduction from './components/identification/ProfileIntroduction
 import './components/styles/index.scss'
 import { FirebaseUser } from '../../../../database/Objects';
 import RedrumProLoader from '../../components/RedrumProLoader';
+import { useMediaQuery } from '../../../../misc/custom-hooks';
 
 interface IProps {
   params: any,
@@ -30,6 +31,7 @@ const ProfilePage = (props: IProps) => {
   const {userId} = params
   const [user, setUser] = React.useState<FirebaseUser | null>(null)
   const [loading, setLoading] = React.useState(false)
+
   React.useEffect(() => {
     getCurrentUserFunction(userId, setUser, setLoading)
   }, [userId])
@@ -49,7 +51,8 @@ const ProfilePage = (props: IProps) => {
             loading ? (
               <RedrumProLoader/>
             ) : user === null ? null : (
-              <>
+              <div className='profile-page-content'
+              style={{width: '100%', maxWidth: isDesktop ? 1600 : isMobile ? '100%' : 1200}}>
                 <ProfileIntroduction
                 en={en}
                 user={user}
@@ -62,7 +65,7 @@ const ProfilePage = (props: IProps) => {
                     <AddBalanceCard userId={userId} en={en} />
                   </>
                 ): null}
-              </>
+              </div>
             )
           }
       </div>

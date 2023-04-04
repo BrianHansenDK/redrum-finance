@@ -490,6 +490,8 @@ $dark-blue-shadow: #3549FE7B;
             display: flex;
             flex-direction: column;
             row-gap: 15px;
+            position: relative;
+            padding-right: 20px;
             & .summary-info {
               display: flex;
               align-items: center;
@@ -498,6 +500,20 @@ $dark-blue-shadow: #3549FE7B;
               color: $dark;
               & p {
                 margin: 0;
+                &.value {
+                  & .type-sign {
+                    position: absolute;
+                    right: 0;
+                  }
+                }
+              }
+              & .bonus-value {
+                position: relative;
+                padding-right: 15px;
+                & .type-sign {
+                  position: absolute;
+                  right: 0;
+                }
               }
             }
           }
@@ -505,6 +521,8 @@ $dark-blue-shadow: #3549FE7B;
             display: flex;
             flex-direction: column;
             row-gap: 20px;
+            position: relative;
+            padding-right: 20px;
             & .summary-info {
               display: flex;
               align-items: flex-start;
@@ -516,6 +534,10 @@ $dark-blue-shadow: #3549FE7B;
                 font-weight: 700;
                 & .small {
                   font-weight: 400;
+                }
+                & .type-sign {
+                  position: absolute;
+                  right: 0;
                 }
               }
               & .overall-shares, & .overall-sum {
@@ -563,6 +585,21 @@ $dark-blue-shadow: #3549FE7B;
         }
       }
     }
+  }
+}
+& .go-back-from-checkoout-btn {
+  position: absolute;
+  top: 100px;
+  left: 10%;
+  background-color: $white;
+  color: $main;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 29, .25);
+  transition: all 150ms ease-in-out;
+  &:hover {
+    transform: scale(1.1,1.1);
+  }
+  &:active {
+    transform: scale(1,1);
   }
 }
 }

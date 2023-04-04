@@ -272,6 +272,8 @@ const InvestModal: React.FunctionComponent<IProps> = (props) => {
       }
     }
 
+    const closeCheckout = () => setCheckout(false)
+
     return (
       <>
         <Modal open={visible} onClose={close} size='lg' id='invest-modal'>
@@ -439,6 +441,7 @@ const InvestModal: React.FunctionComponent<IProps> = (props) => {
         {
           checkout ? (
             <CheckoutPage
+              closeSelf={closeCheckout}
               en={en}
               navOpen={navOpen}
               visible={checkout}

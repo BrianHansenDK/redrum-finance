@@ -38,6 +38,7 @@ const SideBar = ({en} : {en: boolean}) => {
   }
 
   const isLabtop = useMediaQuery('(max-width: 1400px)')
+  const isDesktop = useMediaQuery('(min-width: 1600px)')
 
 
   const styles = {
@@ -47,7 +48,7 @@ const SideBar = ({en} : {en: boolean}) => {
       top: 0,
       left: 0,
       paddingTop: 100,
-      boxShadow: mainShadows.card,
+      boxShadow: isDesktop ? '10px 0 5px -2px rgba(70,70,70,.10)' : mainShadows.card,
     }
 
 

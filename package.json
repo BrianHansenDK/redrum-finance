@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "proxy":["http://localhost:8080/cors", "https://countrycode.dev/", "https://countrycode.dev/api/countries"],
   "type": "module",
+  "homepage": ".",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
