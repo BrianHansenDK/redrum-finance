@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import { auth, userRef } from '../../../../../../../firebase';
 import PaypalComponent from '../../../../../../../paypal/PaypalComponent';
 import AGBFile from '../../../../../../../misc/donwloadable-pdfs/AGB_AllgemeineGeschäftsbedingungenderRedrumPro27.1.2_FILM.pdf'
+import EditSharesBtn from './EditSharesBtn';
 
 interface IProps {
   en: boolean,
@@ -169,6 +170,7 @@ const CheckoutSummary = (props: IProps) => {
 
         </span>
       </Whisper>
+      <EditSharesBtn/>
     </div>
   )
 }

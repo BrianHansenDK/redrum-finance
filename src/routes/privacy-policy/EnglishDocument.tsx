@@ -53,7 +53,7 @@ so that absolute protection cannot be guaranteed. For this reason, every data
 subject is free to transmit personal data to us by alternative means, for
 example by telephone. </span></p>
 
-<h4 ><span >1. Definitions</span></h4>
+<br/><br/><h4 ><span >1. Definitions</span></h4>
 
 <p ><span >The
 data protection declaration of Redrum Films &amp; Entertainment GmbH is based
@@ -66,7 +66,7 @@ terms used in advance. </span></p>
 <p ><span >We
 use the following terms, among others, in this Privacy Policy: </span></p>
 
-<h4 ><span lang="DE" >·<span >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br/><br/><h4 ><span lang="DE" >·<span >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </span></span><span lang="DE" >a) Personal
 data</span></h4>
 
@@ -79,7 +79,7 @@ data, an online identifier or to one or more factors specific to the physical,
 physiological, genetic, mental, economic, cultural or social identity of that
 natural person. </span></p>
 
-<h4 ><span lang="DE" >·<span >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br/><br/><h4 ><span lang="DE" >·<span >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </span></span><span lang="DE" >b) Person
 concerned</span></h4>
 
@@ -87,7 +87,7 @@ concerned</span></h4>
 subject means any identified or identifiable natural person whose personal data
 are processed by the controller. </span></p>
 
-<h4 ><span lang="DE" >·<span >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br/><br/><h4 ><span lang="DE" >·<span >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </span></span><span lang="DE" >c)
 Processing</span></h4>
 
@@ -98,7 +98,7 @@ filing, storage, adaptation or alteration, retrieval, consultation, use,
 disclosure by transmission, dissemination or otherwise making available,
 alignment or combination, restriction, erasure or destruction. </span></p>
 
-<h4 ><span lang="DE" >·<span >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br/><br/><h4 ><span lang="DE" >·<span >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </span></span><span lang="DE" >d)
 Restriction of processing</span></h4>
 
@@ -106,7 +106,7 @@ Restriction of processing</span></h4>
 of processing is the marking of stored personal data with the aim of limiting
 their future processing. </span></p>
 
-<h4 ><span lang="DE" >·<span >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br/><br/><h4 ><span lang="DE" >·<span >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </span></span><span lang="DE" >e) Profiling</span></h4>
 
 <p ><span >Profiling
@@ -116,7 +116,7 @@ person, in particular to analyze or predict aspects relating to that natural
 person's job performance, economic situation, health, personal preferences,
 interests, reliability, behavior, location or change of location. </span></p>
 
-<h4 ><span lang="DE" >·<span >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br/><br/><h4 ><span lang="DE" >·<span >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </span></span><span lang="DE" >f)
 Pseudonymization</span></h4>
 
@@ -127,7 +127,7 @@ information, provided that such additional information is kept separate and is
 subject to technical and organizational measures to ensure that the personal
 data is not attributed to an identified or identifiable natural person. </span></p>
 
-<h4 ><span >·<span >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br/><br/><h4 ><span >·<span >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </span></span><span >g) Controller or
 person responsible for the processing</span></h4>
 
@@ -139,14 +139,14 @@ such processing are determined by Union or Member State law, the controller or
 the specific criteria for its designation may be provided for under Union or
 Member State law. </span></p>
 
-<h4 ><span lang="DE" >·<span >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br/><br/><h4 ><span lang="DE" >·<span >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </span></span><span lang="DE" >h) Processor</span></h4>
 
 <p ><span >Processor
 means a natural or legal person, public authority, agency or other body that
 processes personal data on behalf of the Controller. </span></p>
 
-<h4 ><span lang="DE" >·<span >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br/><br/><h4 ><span lang="DE" >·<span >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </span></span><span lang="DE" >i) Recipient</span></h4>
 
 <p ><span >A
@@ -156,7 +156,7 @@ public authorities that may receive personal data in the context of a specific
 investigation mandate under Union or Member State law shall not be considered
 as recipients. </span></p>
 
-<h4 ><span lang="DE" >·<span >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br/><br/><h4 ><span lang="DE" >·<span >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </span></span><span lang="DE" >j)&nbsp;&nbsp; Third</span></h4>
 
 <p ><span >Third
@@ -165,7 +165,7 @@ than the data subject, the controller, the processor and the persons authorized
 to process the personal data under the direct responsibility of the controller
 or the processor. </span></p>
 
-<h4 ><span lang="DE" >·<span >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br/><br/><h4 ><span lang="DE" >·<span >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </span></span><span lang="DE" >k) Consent</span></h4>
 
 <p ><span >Consent
@@ -175,7 +175,7 @@ or any other unambiguous affirmative act by which the data subject indicates
 that he or she consents to the processing of personal data relating to him or
 her. </span></p>
 
-<h4><span >2. name and address of the
+<br/><br/><h4><span >2. name and address of the
 controller</span></h4>
 
 <p><span >The responsible party within
@@ -192,7 +192,7 @@ Tel.: 0176 80008510 <br/>
 E-Mail: info@redrumpro.de <br/>
 Website: www.redrumpro.de </span></p>
 
-<h4><span >3. Cookies</span></h4>
+<br/><br/><h4><span >3. Cookies</span></h4>
 
 <p ><span >The
 internet pages of Redrum Films &amp; Entertainment GmbH use cookies. Cookies
@@ -233,7 +233,7 @@ software programs. This is possible in all common Internet browsers. If the
 data subject deactivates the setting of cookies in the Internet browser used,
 not all functions of our website may be fully usable. </span></p>
 
-<h4 ><span >4.
+<br/><br/><h4 ><span >4.
 collection of general data and information</span></h4>
 
 <p ><span >The
@@ -264,7 +264,7 @@ ensure an optimal level of protection for the personal data we process. The
 anonymous data of the server log files are stored separately from any personal
 data submitted by a data subject. </span></p>
 
-<h4 ><span >5. Registration
+<br/><br/><h4 ><span >5. Registration
 on our website</span></h4>
 
 <p ><span >The
@@ -304,7 +304,7 @@ request or indication of the data subject, provided that this does not conflict
 with any statutory retention obligations. The entire staff of the controller
 shall be available to the data subject as contact persons in this context. </span></p>
 
-<h4 ><span >6. Contact
+<br/><br/><h4 ><span >6. Contact
 possibility via the website</span></h4>
 
 <p ><span >Based
@@ -318,7 +318,7 @@ transmitted on a voluntary basis by a data subject to the controller will be
 stored for the purpose of processing or contacting the data subject. No
 disclosure of this personal data to third parties will take place. </span></p>
 
-<h4 ><span >7. Comment
+<br/><br/><h4 ><span >7. Comment
 function in the blog on the website</span></h4>
 
 <p ><span >The
@@ -343,7 +343,7 @@ event of an infringement. There is no disclosure of this collected personal
 data to third parties, unless such disclosure is required by law or serves the
 legal defense of the controller. </span></p>
 
-<h4 ><span >8. Subscription
+<br/><br/><h4 ><span >8. Subscription
 to comments on the blog on the website.</span></h4>
 
 <p ><span >The
@@ -358,7 +358,7 @@ an automatic confirmation e-mail to verify in the double opt-in procedure
 whether the owner of the specified e-mail address has really chosen this
 option. The option to subscribe to comments can be terminated at any time. </span></p>
 
-<h4 ><span >9. Routine
+<br/><br/><h4 ><span >9. Routine
 deletion and blocking of personal data</span></h4>
 
 <p ><span >The
@@ -373,9 +373,9 @@ the European Directive and Regulation or another competent legislator expires,
 the personal data will be routinely blocked or deleted in accordance with the
 statutory provisions. </span></p>
 
-<h4><span >10. Rights of the data subject</span></h4>
+<br/><br/><h4><span >10. Rights of the data subject</span></h4>
 
-<h4 ><span lang="DE" >·<span >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br/><br/><h4 ><span lang="DE" >·<span >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </span></span><span lang="DE" >a) Right to
 confirmation</span></h4>
 
@@ -386,7 +386,7 @@ data concerning him or her are being processed. If a data subject wishes to
 exercise this right, he or she may, at any time, contact any employee of the
 controller. </span></p>
 
-<h4><span lang="DE">·<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br/><br/><h4><span lang="DE">·<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </span></span><span lang="DE" >b) Right to
 information</span></h4>
 
@@ -437,7 +437,7 @@ transfer. </span></p>
 data subject wishes to exercise this right of access, he or she may, at any
 time, contact any employee of the controller. </span></p>
 
-<h4><span lang="DE">·<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br/><br/><h4><span lang="DE">·<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </span></span><span lang="DE">c) Right to
 rectification</span></h4>
 
@@ -453,7 +453,7 @@ processing. </span></p>
 a data subject wishes to exercise this right to rectify, he or she may, at any
 time, contact any employee of the controller. </span></p>
 
-<h4><span>·<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br/><br/><h4><span>·<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </span></span><span>d) Right to erasure
 (right to be forgotten)</span></h4>
 
@@ -509,7 +509,7 @@ of the personal data, unless the processing is necessary. The employee of the
 Redrum Films &amp; Entertainment GmbH will arrange the necessary in individual
 cases. </span></p>
 
-<h4><span>·<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br/><br/><h4><span>·<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </span></span><span>e) Right to
 restriction of processing</span></h4>
 
@@ -546,7 +546,7 @@ GmbH, he or she may, at any time, contact any employee of the controller. The
 employee of the Redrum Films &amp; Entertainment GmbH will arrange the
 restriction of the processing. </span></p>
 
-<h4><span lang="DE">·<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br/><br/><h4><span lang="DE">·<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </span></span><span lang="DE">f) Right to
 data portability</span></h4>
 
@@ -574,7 +574,7 @@ adversely affect the rights and freedoms of other individuals. </span></p>
 order to assert the right to data portability, the data subject may at any time
 contact any employee of the Redrum Films &amp; Entertainment GmbH. </span></p>
 
-<h4><span lang="DE">·<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br/><br/><h4><span lang="DE">·<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </span></span><span lang="DE">g) Right of
 objection</span></h4>
 
@@ -616,7 +616,7 @@ The data subject is also free to exercise his/her right to object in connection
 with the use of information society services, notwithstanding Directive
 2002/58/EC, by means of automated procedures using technical specifications. </span></p>
 
-<h4><span>·<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br/><br/><h4><span>·<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </span></span><span>h) Automated
 decisions in individual cases including profiling</span></h4>
 
@@ -645,7 +645,7 @@ his or her point of view and contest the decision. </span></p>
 the data subject wishes to exercise the rights concerning automated decisions,
 he or she may, at any time, contact any employee of the controller. </span></p>
 
-<h4><span>·<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br/><br/><h4><span>·<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </span></span><span>i) Right to revoke
 consent under data protection law</span></h4>
 
@@ -658,7 +658,7 @@ personal data at any time. </span></p>
 the data subject wishes to exercise the right to withdraw the consent, he or
 she may, at any time, contact any employee of the controller. </span></p>
 
-<h4><span>11. data protection during
+<br/><br/><h4><span>11. data protection during
 applications and the application process</span></h4>
 
 <p><span>The
@@ -677,7 +677,7 @@ conflict with such deletion. Other legitimate interest in this sense is, for
 example, a duty to provide evidence in proceedings under the General Equal
 Treatment Act (AGG). </span></p>
 
-<h4><span>12. privacy policy on the use
+<br/><br/><h4><span>12. privacy policy on the use
 and application of Facebook</span></h4>
 
 <p><span>The
@@ -739,7 +739,7 @@ subject. In addition, various applications are available that make it possible
 to suppress data transmission to Facebook. Such applications can be used by the
 data subject to suppress data transmission to Facebook. </span></p>
 
-<h4><span>13. Privacy policy on the use
+<br/><br/><h4><span>13. Privacy policy on the use
 and application of Google Analytics (with anonymization function)</span></h4>
 
 <p><span >The
@@ -825,7 +825,7 @@ found at https://www.google.de/intl/de/policies/privacy/ and at
 http://www.google.com/analytics/terms/de.html. Google Analytics is explained in
 more detail under this link https://www.google.com/intl/de_de/analytics/. </span></p>
 
-<h4><span>14.
+<br/><br/><h4><span>14.
 Privacy policy on the use and application of Google+</span></h4>
 
 <p><span>The
@@ -894,7 +894,7 @@ https://www.google.de/intl/de/policies/privacy/. Further guidance from Google
 on the Google+1 button can be found at
 https://developers.google.com/+/web/buttons-policy. </span></p>
 
-<h4><span>15.
+<br/><br/><h4><span>15.
 Privacy policy on the use and application of Twitter</span></h4>
 
 <p><span>The
@@ -948,7 +948,7 @@ website. </span></p>
 <p><span>Twitter's
 applicable privacy policy is available at https://twitter.com/privacy?lang=de. </span></p>
 
-<h4><span>16.
+<br/><br/><h4><span>16.
 Privacy policy on the use and application of YouTube</span></h4>
 
 <p><span>The
@@ -1011,7 +1011,7 @@ unless you have expressly consented to further use of your data or we reserve
 the right to use data beyond this, which is permitted by law and about which we
 inform you in this statement." </span></p>
 
-<h4><span>18.
+<br/><br/><h4><span>18.
 Legal basis of the processing</span></h4>
 
 <p><span>Article
@@ -1042,7 +1042,7 @@ because they were specifically mentioned by the European legislator. In this
 respect, it took the view that a legitimate interest could be assumed if the
 data subject is a customer of the controller (recital 47 sentence 2 DS-GVO). </span></p>
 
-<h4><span>19.
+<br/><br/><h4><span>19.
 legitimate interests in the processing pursued by the controller or a third
 party</span></h4>
 
@@ -1051,7 +1051,7 @@ the processing of personal data is based on Article 6 I lit. f DS-GVO, our
 legitimate interest is the performance of our business activities for the
 benefit of the well-being of all our employees and our shareholders. </span></p>
 
-<h4><span>20.
+<br/><br/><h4><span>20.
 duration for which the personal data are stored</span></h4>
 
 <p><span>The
@@ -1060,7 +1060,7 @@ statutory retention period. After expiry of the period, the corresponding data
 is routinely deleted, provided that it is no longer required for the
 fulfillment or initiation of the contract. </span></p>
 
-<h4><span>21.
+<br/><br/><h4><span>21.
 legal or contractual requirements to provide the personal data; necessity for
 the conclusion of the contract; obligation of the data subject to provide the
 personal data; possible consequences of non-provision</span></h4>
@@ -1081,7 +1081,7 @@ or is necessary for the conclusion of the contract, whether there is an
 obligation to provide the personal data, and what the consequences of not providing
 the personal data would be. </span></p>
 
-<h4><span>22.
+<br/><br/><h4><span>22.
 existence of automated decision making</span></h4>
 
 <p><span>As a

@@ -17,14 +17,14 @@ const ImprintIntro: React.FunctionComponent<IProps> = (props) => {
         {en ? (
           <span>
             Entry in the commercial register.<br/>
-            Register Court: Amtsgericht <br/>
-            CharlottenburgRegistration number: HRB 209180 B
+            Register Court: Amtsgericht Charlottenburg<br/>
+            Registration number: HRB 209180 B
           </span>
         ) : (
           <span>
             Eintragung im Handelsregister.<br/>
-            Registergericht: Amtsgericht <br/>
-            CharlottenburgRegisternummer: HRB 209180 B
+            Registergericht: Amtsgericht Charlottenburg <br/>
+            Registernummer: HRB 209180 B
           </span>
         )}
       </p>
@@ -43,7 +43,7 @@ const ImprintIntro: React.FunctionComponent<IProps> = (props) => {
           </span>
         )}
       </p>
-      <p className="disclaimer">
+      <p style={{fontSize: 'x-large', fontWeight: '700'}}>
         Disclaimer
       </p>
     </div>
