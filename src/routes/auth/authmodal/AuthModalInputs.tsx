@@ -1,5 +1,5 @@
 import React from 'react'
-import { Input, InputGroup, Button, useToaster, Message } from 'rsuite'
+import { Input, InputGroup, Button, useToaster, Message, Form } from 'rsuite'
 import signUpModalStrings from '../../../library/string/SignUpModal'
 import EyeIcon from '@rsuite/icons/legacy/Eye';
 import EyeSlashIcon from '@rsuite/icons/legacy/EyeSlash';
@@ -58,16 +58,21 @@ const AuthModalInputs: React.FunctionComponent<IProps> = (props) => {
           </Message>, {placement: 'topCenter'})
         }
         if (userPassword === '') {
-          toaster.push(<Message type='error' style={PushThemes.pushRed}>
+          toaster.push(<Message showIcon type='error' style={PushThemes.pushRed}>
             <p style={PushThemes.txt}>Password cannot be empty.</p>
           </Message>, {placement: 'topCenter'})
         }
         if (userPassword !== confirm) {
-          toaster.push(<Message type='error' style={PushThemes.pushRed}>
+          toaster.push(<Message showIcon type='error' style={PushThemes.pushRed}>
             <p style={PushThemes.txt}>Password & password confirmation does not match.</p>
           </Message>, {placement: 'topCenter'})
         }
-        if ((onlyOneSpace) && (userPassword != '') && (userPassword === confirm)) {
+        if ((userPassword == confirm) && userPassword.length < 6) {
+          toaster.push(<Message showIcon type='error' style={PushThemes.pushRed}>
+            <p style={PushThemes.txt}>Password should be at least 6 characters. (auth/weak-password)</p>
+          </Message>, {placement: 'topCenter'})
+        }
+        if ((onlyOneSpace) && (userPassword != '') && (userPassword === confirm) && userPassword.length >= 6) {
           createUserWithEmailAndPassword(auth, userEmail, userPassword)
           .then(async (userCredentials) => {
             const user = userCredentials.user
@@ -132,6 +137,7 @@ const AuthModalInputs: React.FunctionComponent<IProps> = (props) => {
             {visible ? <EyeIcon /> : <EyeSlashIcon />}
           </InputGroup.Button>
         </InputGroup>
+        <Form.HelpText>{en ? 'Minimum 6 characters' : 'Mindestens 6 Zeichen'}</Form.HelpText>
       </div>
         { signupPage ? (
         <div className="input-element">
