@@ -1,6 +1,6 @@
 import { onValue, ref, update } from 'firebase/database'
 import React from 'react'
-import { Radio, RadioGroup } from 'rsuite'
+import { Badge, Radio, RadioGroup, Tooltip, Whisper } from 'rsuite'
 import FormGroup from 'rsuite/esm/FormGroup'
 import { auth, database, userRef } from '../../../../../../../firebase'
 import PaypalIcon from '../../../../../../../assets/svgs/PaypalCard'
@@ -10,6 +10,7 @@ import {Icon} from '@rsuite/icons'
 import PaypalComponent from '../../../../../../../paypal/PaypalComponent'
 import { FirebaseUser } from '../../../../../../../database/Objects'
 import RedrumProLoader from '../../../../../components/RedrumProLoader'
+import InfoIcon from '@rsuite/icons/InfoOutline'
 
 interface IProps {
   investAmount: number,
@@ -82,6 +83,18 @@ const PaymentMethod = (props: IProps) => {
                   <p className='option-brand'>Redrum Pro deposit</p> <Icon as={RedrumDeposits} className='icon dark'/>
                 </div>
               </Radio>
+              <div className="currently-available">
+                <p>{en ? 'Current balance' : 'Aktuelle Balance'}: {currentUser?.money_available} € </p>
+                <Whisper
+                placement='bottom'
+                speaker={(<Tooltip>
+                  {en ? 'If you have already deposited money into your Redrum Pro account, you can offset the shares against the Redrum Pro balance':
+                  'Wenn Sie bereits Geld auf Ihr Redrum Pro-Konto eingezahlt haben, können Sie die Anteile mit dem Redrum Pro-Guthaben verrechnen'}.
+                </Tooltip>)}
+                trigger={'hover'}>
+                  <InfoIcon/>
+                </Whisper>
+                </div>
             </div>
           </RadioGroup>
         </FormGroup>

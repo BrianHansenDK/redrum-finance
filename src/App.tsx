@@ -1,4 +1,5 @@
 import React, { Children, useEffect, useLayoutEffect, useState } from 'react'
+import {loadEnv} from 'vite';
 import AboutUsPage from './routes/about-us-and-why/aboutUs.jsx';
 import WhyMovies from './routes/about-us-and-why/whyMovies.jsx';
 import SignInPage from './routes/auth/signIn.jsx';
@@ -48,6 +49,8 @@ import EnglishWithdrawalRights from './routes/withdrawal-rights/EnglishDocument.
 import GermanWithdrawalRights from './routes/withdrawal-rights/GermanDocument.js';
 import ContactPage from './routes/contact/index.js';
 import ThankYouPage from './routes/inside-app/pages/purchase/ThankYouPage.js';
+import { PayPalScriptProvider } from '@paypal/react-paypal-js';
+import TACEnglish from './routes/terms-and-conditions/TACEnglish.js';
 
 
 const App = () => {
@@ -64,10 +67,13 @@ const App = () => {
   const isMobile = useMediaQuery('(max-width: 1100px)')
 
   return (
-    <>
+    <PayPalScriptProvider options={{
+      "client-id" : 'Ac-WLnlqTQB5NRhVK_KwJxjwqBVZ4K1M1UO2vlHD9oLtKz32JP7jDZ2ICqGxJWnQiOY0NqXcSo-86km0',
+      currency : 'EUR',
+      components: "buttons,marks,funding-eligibility",
+    }}>
       <ScrollToTop>
-
-    <Routes>
+      <Routes>
 
       {/* Vanumo / Admin */}
       <Route path='/vanumo' element={<VanumoDashboard />}>
@@ -117,7 +123,7 @@ const App = () => {
       {/*Rights and other juristictional documents */}
       <Route path='/imprint' element={<ImprintPage en={isEnglish} setEn={changeLan} isOpen={isVisible} openModal={openModal} closeModal={closeModal}/>}/>
       <Route path='/terms-and-conditions' element={<TermsAndConditionsPage en={isEnglish} setEn={changeLan} isVisible={isVisible} openModal={openModal} closeModal={closeModal}/>} >
-        <Route index element={<MovieTAC />} />
+        <Route index element={isEnglish ? (<TACEnglish/>) : (<MovieTAC />)} />
       </Route>
       <Route path='/privacy-policy' element={isEnglish ? (
       <EnglishPrivacyPolicy en={isEnglish} setEn={changeLan} isVisible={isVisible} openModal={openModal} closeModal={closeModal}/>) : (
@@ -138,7 +144,7 @@ const App = () => {
       <Route path='/test' element={<TestPage />} />
     </Routes>
       </ScrollToTop>
-    </>
+    </PayPalScriptProvider>
   )
 }
 

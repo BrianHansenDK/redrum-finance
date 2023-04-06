@@ -60,6 +60,8 @@ const AuthModalOptions: React.FunctionComponent<IProps> = (props) => {
                     response.user.displayName ? response.user.displayName : 'Unknown',
                     response.user.email ? response.user.email : 'Nonexistent',
                     10,
+                    response.user.photoURL !== null && response.user.photoURL !== undefined ? response.user.photoURL : "",
+                    response.user.phoneNumber !== null ? response.user.phoneNumber : ""
                     )
                     navigate('/app')
                   } else {

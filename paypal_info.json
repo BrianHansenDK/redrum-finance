@@ -1,0 +1,8 @@
+{
+  "scope":"https://uri.paypal.com/services/invoicing https://uri.paypal.com/services/vault/payment-tokens/read https://uri.paypal.com/services/disputes/read-buyer https://uri.paypal.com/services/payments/realtimepayment https://uri.paypal.com/services/disputes/update-seller https://uri.paypal.com/services/payments/payment/authcapture openid https://uri.paypal.com/services/disputes/read-seller Braintree:Vault https://uri.paypal.com/services/payments/refund https://api.paypal.com/v1/vault/credit-card https://api.paypal.com/v1/payments/.* https://uri.paypal.com/payments/payouts https://uri.paypal.com/services/vault/payment-tokens/readwrite https://api.paypal.com/v1/vault/credit-card/.* https://uri.paypal.com/services/subscriptions https://uri.paypal.com/services/applications/webhooks",
+  "access_token":"A21AAJHYCKxkXVQt37qGCjxyw9ef6wv2hdAPNz-zQiuY-XqxAEDi6D8uO0Tu0Dn_UgF50bURDIFYN9BZKM2h1dEbHMDhnQWzw",
+  "token_type":"Bearer",
+  "app_id":"APP-80W284485P519543T",
+  "expires_in":32400,
+  "nonce":"2023-04-05T16:19:42ZvhHkosY4yO1oShxGdNQioythDixaruyAlnoLOurnwAM"
+}

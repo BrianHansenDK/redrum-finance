@@ -446,6 +446,7 @@ const InvestModal: React.FunctionComponent<IProps> = (props) => {
               navOpen={navOpen}
               visible={checkout}
               investAmount={investAmount}
+              setInvestAmount={setInvestAmount}
               available={available}
               setEn={setEn}
               openMenu={openMenu}

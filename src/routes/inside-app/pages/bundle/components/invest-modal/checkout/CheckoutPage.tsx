@@ -16,6 +16,7 @@ interface IProps {
   navOpen: boolean,
   visible: boolean,
   investAmount: number,
+  setInvestAmount: any,
   available?: number,
   bonus: number,
   setEn: any,
@@ -35,7 +36,7 @@ const CheckoutPage = (props: IProps) => {
     en, navOpen, visible, investAmount, available,
     setEn, openMenu, openNav, closeNav, project,
     bonus, investInBundle, isPaypal, makeItPaypal, makeItDeposit,
-    makeOrder, approveOrder, closeSelf
+    makeOrder, approveOrder, closeSelf, setInvestAmount
   } = props
 
   const [user, setUser] = React.useState<FirebaseUser | null>(null)
@@ -43,7 +44,10 @@ const CheckoutPage = (props: IProps) => {
   const [fullName, setFullName] = React.useState<any>('')
   const [knownState, setKnownState] = React.useState<any>('')
   const [knownCountry, setKnownCountry] = React.useState<any>('')
+  const [sharesEditable, setSharesEditable] = React.useState<boolean>(false);
 
+  const editTheShares = () => setSharesEditable(true);
+  const finishEditing = () => setSharesEditable(false);
 
   React.useEffect(() => {
     const reference = ref(database, 'users/' + auth.currentUser?.uid)
@@ -77,7 +81,13 @@ const CheckoutPage = (props: IProps) => {
           <div className='checkout-card project'>
             {
               project.movies?.map((movie: FirebaseMovie) => (
-                <CheckoutProjectInfo project={project} movie={movie} investAmount={investAmount} en={en} bonus={bonus}/>
+                <CheckoutProjectInfo
+                  project={project}
+                  movie={movie}
+                  investAmount={investAmount}
+                  en={en}
+                  bonus={bonus} editing={sharesEditable} setInvestAmount={setInvestAmount}
+                />
               ))
             }
           </div>
@@ -105,7 +115,10 @@ const CheckoutPage = (props: IProps) => {
             investInBundle={investInBundle}
             isPaypal={isPaypal}
             makeOrder={makeOrder}
-            approve={approveOrder}/>
+            approve={approveOrder}
+            editing={sharesEditable}
+            editShares={editTheShares}
+            finishEdit={finishEditing}/>
           </div>
         </div>
       </div>

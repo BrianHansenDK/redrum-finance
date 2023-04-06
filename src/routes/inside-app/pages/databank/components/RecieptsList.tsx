@@ -6,7 +6,6 @@ import RecieptCard from './RecieptCard'
 const RecieptsList = ({investments, en}: {investments: any, en: boolean}) => {
   return (
     <>
-    <h3 style={styles.title} className='text-center'>{en ? 'Reciepts' : 'Rechnungen'}</h3>
     {
       investments.length > 0 ? (
         <>
@@ -17,7 +16,7 @@ const RecieptsList = ({investments, en}: {investments: any, en: boolean}) => {
         }
         </>
       ) : (
-        <NoInvestmentsCard/>
+        <NoInvestmentsCard title={en ? 'No receipts yet.' : 'Noch keine Rechnungen.'}/>
       )
     }
 

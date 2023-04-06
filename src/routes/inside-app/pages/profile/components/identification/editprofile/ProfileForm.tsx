@@ -6,7 +6,7 @@ import { mainColors } from '../../../../../themes/colors';
 import { fetchContries } from '../../../../../../../misc/custom-hooks';
 import { auth, newUpdateAccount } from '../../../../../../../firebase';
 import { ValueType } from 'rsuite/esm/Radio/Radio';
-import { updateEmail } from 'firebase/auth';
+import { sendPasswordResetEmail, updateEmail } from 'firebase/auth';
 import ChangePasswordModal from './ChangePasswordModal';
 
 interface IProps {user: FirebaseUser, en: boolean, close: any}
@@ -50,9 +50,9 @@ const ProfileForm = (props: IProps) => {
 
   const saveChanges = () => {
     if (firstName.split(' ').length > 1) {
-      toaster.push(<Message showIcon type='error'>
+      toaster.push(<Message showIcon type='error' duration={5000}>
         First name is invalid.
-      </Message>); window.setTimeout(() => toaster.clear(), 10000)
+      </Message>);
     }
     const companyStatement =
       (Boolean(companyAccount)) && ((role === '' && user.role === undefined) ||
@@ -61,9 +61,9 @@ const ProfileForm = (props: IProps) => {
       (companyCity === '' && user.company_address === undefined) ||
       (companyCountry === '' && user.company_address === undefined))
     if (companyStatement) {
-      toaster.push(<Message showIcon type='error'>
+      toaster.push(<Message showIcon type='error' duration={5000}>
         Please fill out all the necessary information from your company.
-      </Message>); window.setTimeout(() => toaster.clear(), 10000)
+      </Message>)
     }
     if (firstName.split(' ').length === 1 && !companyStatement)
     {
@@ -77,14 +77,14 @@ const ProfileForm = (props: IProps) => {
       code !== '' && city !== '' && street !== '' ? `${street}, ${code} ${city}` : user.address,
       phone !== '' ? phone : user.phone_number,
       () => {
-        toaster.push(<Message showIcon type='success'>
+        toaster.push(<Message showIcon type='success' duration={5000}>
           Profile updated successfully!
-        </Message>); window.setTimeout(() => toaster.clear(), 10000)
+        </Message>);
       },
       (err) => {
-        toaster.push(<Message showIcon type='error'>
+        toaster.push(<Message showIcon type='error' duration={5000}>
           {err.message}
-        </Message>); window.setTimeout(() => toaster.clear(), 10000)
+        </Message>);
       },() => {close()},
       Boolean(companyAccount),
       Boolean(companyAccount) ? role : user.role,
@@ -95,6 +95,15 @@ const ProfileForm = (props: IProps) => {
       updateEmail(auth.currentUser!, email)
     }
     }
+  }
+
+  const sendPWResetMail = () => {
+    sendPasswordResetEmail(auth, user.email).then(() => {
+      toaster.push(<Message closable type='info' showIcon duration={5000}>
+        {en ? `We have send an email to ${user.email}. Please go there to change your password.` :
+        `Wir haben eine E-Mail an ${user.email} gesendet. Bitte gehen Sie dorthin, um Ihr Passwort zu ändern.`}
+      </Message>, {placement: 'topCenter'});
+    })
   }
 
   // Change password
@@ -248,7 +257,7 @@ const ProfileForm = (props: IProps) => {
       </div>
         </>
       ) : null}
-      <Button className='change-password-btn' appearance='link' onClick={openModal}>
+      <Button className='change-password-btn' appearance='link' onClick={sendPWResetMail}>
         {en ? 'Change password' : 'Passwort beendern'}
       </Button>
       <h4 className="new-section-title">

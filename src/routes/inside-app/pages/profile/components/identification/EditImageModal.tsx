@@ -33,13 +33,9 @@ const EditImageModal = (props: IProps) => {
                     setImageUrl(url)
                 })
             }).catch((err) => {
-                toaster.push(<Message type='error'>
+                toaster.push(<Message type='error' duration={5000} closable>
                     something went wrong: {err.message}
                 </Message>, { placement: 'topCenter' })
-                window.setTimeout(() => {
-                    toaster.clear()
-                        , 3000
-                })
             })
         }
     }
@@ -53,13 +49,13 @@ const EditImageModal = (props: IProps) => {
         }
         update(reference, updates).then(() => {
           close()
-          toaster.push(<Message showIcon type='info'>
+          toaster.push(<Message showIcon type='info' closable duration={5000}>
             {user.image !== '' ? 'Profile image was changed' : 'Profile image set'}
-        </Message>, { placement: 'topCenter' }); window.setTimeout(() => toaster.clear(), 10000)
+        </Message>, { placement: 'topCenter' });
         }).catch((err) => {
-          toaster.push(<Message showIcon type='error'>
+          toaster.push(<Message showIcon type='error' closable duration={5000}>
             {err.Message}
-          </Message>, { placement: 'topCenter' }); window.setTimeout(() => toaster.clear(), 10000)
+          </Message>, { placement: 'topCenter' });
         }).finally(() => setUserImage(null))
     }
 

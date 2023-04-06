@@ -6,7 +6,8 @@ import CloseIcon from '@rsuite/icons/Close';
 import { Link } from 'react-router-dom';
 import { auth, userRef } from '../../../../../../../firebase';
 import PaypalComponent from '../../../../../../../paypal/PaypalComponent';
-import AGBFile from '../../../../../../../misc/donwloadable-pdfs/AGB_AllgemeineGeschäftsbedingungenderRedrumPro27.1.2_FILM.pdf'
+import AGBFile from '../../../../../../../misc/donwloadable-pdfs/AGB_AllgemeineGeschäftsbedingungenderRedrumPro27.1.2_FILM.pdf';
+import AGBEnglish from '../../../../../../../misc/donwloadable-pdfs/terms_and_conditions.pdf';
 import EditSharesBtn from './EditSharesBtn';
 
 interface IProps {
@@ -18,9 +19,13 @@ interface IProps {
   isPaypal: boolean,
   makeOrder: any,
   approve: any,
+  editing: boolean,
+  editShares: any,
+  finishEdit: any,
 }
 const CheckoutSummary = (props: IProps) => {
-  const {en, investAmount, bonus, address, investInBundle, isPaypal, makeOrder, approve} = props
+  const {en, investAmount, bonus, address, investInBundle, isPaypal, makeOrder, approve,
+  editing, editShares, finishEdit} = props
   const [checked, setChecked] = React.useState<boolean>(false)
   const [checked2, setChecked2] = React.useState<boolean>(false)
 
@@ -29,31 +34,15 @@ const CheckoutSummary = (props: IProps) => {
   return (
     <div className='checkout-card summary'>
       <h2 className="title">
-        {en ? 'Summary' : 'Zusammenfassung'}
+        {en ? 'Summary' : 'Übersicht'}
       </h2>
       <div className="all-summary-info">
-        <div className="summary-info">
-          <p>
-            {en ? 'Price pr. share' : 'Preis je Anteil'}:
-          </p>
-          <p className="price value">
-            1<span className="type-sign">€</span>
-          </p>
-        </div>
         <div className="summary-info">
           <p>
             {en ? 'Amount of shares' : 'Anzahl Anteile'}:
           </p>
           <p className="shares value">
             {numberWithCommasAsString(investAmount)}
-          </p>
-        </div>
-        <div className="summary-info">
-          <p>
-            {en ? 'Sum' : 'Summe'}:
-          </p>
-          <p className="sum value">
-            {numberWithCommasAsString(investAmount * 1)} <span className="type-sign">€</span>
           </p>
         </div>
         <div className="summary-info">
@@ -66,10 +55,26 @@ const CheckoutSummary = (props: IProps) => {
         </div>
         <div className="summary-info">
           <p>
+            {en ? 'Price pr. share' : 'Preis je Anteil'}:
+          </p>
+          <p className="price value">
+            1<span className="type-sign">€</span>
+          </p>
+        </div>
+        <div className="summary-info">
+          <p>
             {en ? 'Management fee' : 'Management -Gebühr'}:
           </p>
           <p className="bonus value">
             0 <span className="type-sign">%</span>
+          </p>
+        </div>
+        <div className="summary-info">
+          <p>
+            {en ? 'Sum' : 'Summe'}:
+          </p>
+          <p className="sum value">
+            {numberWithCommasAsString(investAmount * 1)} <span className="type-sign">€</span>
           </p>
         </div>
       </div>
@@ -105,7 +110,9 @@ const CheckoutSummary = (props: IProps) => {
           {en ?
           `I hereby confirm that I agree with the` :
           'Hiermit bestätige ich, dass ich mit den'
-          } <a href={AGBFile} download='redrumm_pro_allgemeine_gescheftsbedingungen'>{en ? 'terms and conditions' : 'AGB'}</a> {en ?
+          } <a href={en ? AGBEnglish : AGBFile}
+          download={en ? 'redrum_pro_terms_and_conditions' : 'redrum_pro_allgemeine_gescheftsbedingungen'}
+          >{en ? 'terms and conditions' : 'AGB'}</a> {en ?
             `and that I am older than 18 years old.` :
             'einverstanden bin und dass ich älter als 18 Jahre alt bin.'
             }
@@ -170,7 +177,7 @@ const CheckoutSummary = (props: IProps) => {
 
         </span>
       </Whisper>
-      <EditSharesBtn/>
+      <EditSharesBtn editing={editing} startEditing={editShares} finishEditing={finishEdit}/>
     </div>
   )
 }

@@ -77,3 +77,7 @@ export const fetchContries = (setCountries: any, setCLoading: any) => {
   .catch((err) => console.log('Error loading countries: ', err))
   .finally(() => setCLoading(false))
 }
+
+export function makeRange(start: number = 0, step: number = 1, end: number) {
+  return [...Array(end/step).keys()].map((i: number) => (i + start) * (step))
+}

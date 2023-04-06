@@ -40,12 +40,14 @@ export function writeUserData(
     })
 }
 
-export function createAccount (userId: string, userName: string, email: string, profileCompletion: number) {
+export function createAccount (
+  userId: string, userName: string, email: string, profileCompletion: number, image?: string, phone_number?: string,
+  ) {
   const reference = ref(database, 'users/' + userId)
   set(reference, {
     id: userId,
     username: userName,
-    image: "",
+    image: image !== undefined ? image : "",
     full_name: "",
     email: email,
     completion: profileCompletion,
@@ -57,7 +59,7 @@ export function createAccount (userId: string, userName: string, email: string, 
     money_available: 0,
     payment_method: "PayPal",
     paypal_account: "",
-    phone_number: "",
+    phone_number: phone_number !== undefined ? phone_number : "",
     state: "",
     withdrawal_method: "PayPal",
     role: 'Redrum Pro Member'
@@ -162,6 +164,11 @@ export const getCurrentUserFunction = (userId: any, state: any, setLoading: any 
       setLoading(false)
     }
   })
+}
+
+export const getCurrentUserOnValue = async (userId: string, state: any) => {
+  const reference = ref(database, 'users/' + userId);
+  await onValue(reference, (snap) => state(snap.val()));
 }
 
 export const userRef = (userId: any, query: string, state: any) => {
@@ -272,4 +279,24 @@ export function newUpdateAccount (userId: string, title: string, full_name: stri
     }
     update(reference, updates).then(then).catch(error)
     .finally(end)
+  }
+
+  export function getUserInvestmentsNew(userId: string, setState: any, setLoading?: any) {
+    if (setLoading !== undefined) {
+      setLoading(true);
+    }
+    const reference = ref(database, 'investments')
+    let data: any[] = []
+    get(reference).then((snap) => {
+      snap.forEach((inv) => {
+        if (inv.val().creator === userId) {
+          data.push(inv.val())
+        }
+      })
+      setState(data);
+    }).catch((err) => console.log(err)).finally(() => {
+      if (setLoading !== undefined) {
+        setLoading(false);
+      }
+    })
   }
