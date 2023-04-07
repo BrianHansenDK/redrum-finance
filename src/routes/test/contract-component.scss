@@ -1,0 +1,33 @@
+#english-document {
+  width: 587px;
+  padding: 20px;
+  margin: auto;
+  & .WordSection1 {
+    width: 100%;
+    text-align: justify;
+    margin-top: 0;
+    padding-top: 0;
+  }
+  & .WordSection2 {
+    width: 100%;
+    text-align: justify;
+    margin-top: 0;
+    padding-top: 0;
+  }
+  & h1 {
+    font-size: 22px;
+    line-height: 1;
+  }
+  & h2 {
+    font-size: 18px;
+    line-height: 1;
+  }
+  & p {
+    font-size: 16px;
+    line-height: 1.25;
+  }
+}
+
+.hide-this {
+  display: none;
+}

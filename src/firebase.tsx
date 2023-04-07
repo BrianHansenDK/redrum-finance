@@ -300,3 +300,12 @@ export function newUpdateAccount (userId: string, title: string, full_name: stri
       }
     })
   }
+
+export function getSpecificProject(projectId: string, setState: any, setLoading?: any) {
+  if (setLoading !== undefined) { setLoading(true); }
+  const reference = ref(database, 'projects/' + projectId);
+  get(reference).then((snap) => setState(snap.val())).catch((err) => console.log(err))
+  .finally(() => {
+    if (setLoading !== undefined) {setLoading(false);}
+  })
+}

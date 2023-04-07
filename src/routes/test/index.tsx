@@ -3,40 +3,49 @@ import Empty from '../../assets/empty_img.png'
 import PaypalCheckoutBtn from '../../components/PaypalCheckoutBtn'
 import { Button, IconButton, Radio, RadioGroup } from 'rsuite'
 import GoogleIcon from '../../assets/svgs/GoogleSvg';
-import {Icon} from '@rsuite/icons'
-import { ValueType } from 'rsuite/esm/Radio'
-import { PayPalMarks } from '@paypal/react-paypal-js'
-import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
-import { auth } from '../../firebase';
+import { auth, getCurrentUserFunction, getSpecificProject } from '../../firebase';
+import ContractComponent from './ContractComponent';
+import { FirebaseBundle, FirebaseUser } from '../../database/Objects';
+import RedrumProLoader from '../inside-app/components/RedrumProLoader';
+import jsPDF from 'jspdf'
 
 interface IProps {}
 
 const TestPage: React.FunctionComponent<IProps> = (props) => {
-  const product = {
-    name: 'Product1',
-    price: 25.99,
-    image: Empty
-  }
+  const [user, setUser] = React.useState<FirebaseUser | null>(null);
+  const [project, setProject] = React.useState<FirebaseBundle | null>(null);
+  const [loading, setLoading] = React.useState<boolean>(false);
 
-  const loginWithGoogle = () => {
-    signInWithPopup(auth, new GoogleAuthProvider()).then((r) => console.log(r['user']))
+  const generatePDF = () => {
+    var doc = new jsPDF("p", "pt", "a4");
+    // @ts-ignore
+    doc.html(document.querySelector("#english-document"), {
+      // @ts-check
+      callback: function(pdf){
+        pdf.save("contract.pdf");
+      }
+    })
   }
-
+  React.useEffect(() => {
+    getSpecificProject('1676120027435', setProject)
+    getCurrentUserFunction(auth.currentUser?.uid, setUser, setLoading)
+  }, [auth])
 
     return (
-      <div className='w-100 h-100 text-center'>
-        <div style={{margin: '100px auto', width: 300}}>
-          <img src={product.image} alt={product.name} width={300} height={300} />
-          <p className='mt-3'>{product.name}</p>
-          <p className="small">{product.price}€</p>
-          <IconButton
-          onClick={loginWithGoogle}
-          icon={<Icon as={GoogleIcon}/>}
-          appearance='primary'
-          color='green'>
-            Sign in with Google
-          </IconButton>
-        </div>
+      <div className='w-100 text-center'>
+
+        <Button
+        onClick={generatePDF}
+        appearance='primary'
+        className='r-btn r-main-btn'
+        >
+          Download contract
+        </Button>
+        {loading ? (<RedrumProLoader/>) : user !== null ? (
+          <div className='hide-this'>
+            <ContractComponent user={user!} project={project!} investAmount={250}/>
+          </div>
+          ) : null}
       </div>
     )
 }
