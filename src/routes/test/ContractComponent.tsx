@@ -2,9 +2,14 @@ import React from 'react'
 import { FirebaseBundle, FirebaseUser } from '../../database/Objects'
 import './contract-component.scss'
 
-interface IProps {user: FirebaseUser, project: FirebaseBundle, investAmount: number}
+interface IProps {
+  user: FirebaseUser,
+  project: FirebaseBundle,
+  investAmount: number,
+  bonus: number,
+}
 const ContractComponent = (props: IProps) => {
-  const {user, project, investAmount} = props;
+  const {user, project, investAmount, bonus} = props;
   const today = new Date();
   return (
     <div id="english-document">
@@ -267,13 +272,13 @@ Project is thereby specified as:</p>
   {project.name}
   </span></span></p>
 
-<p className="MsoNormal" ><span >Contract term: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style={{color: 'red'}}>Indefinite</span></span></p>
+<p className="MsoNormal" ><span >Contract term: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span >Indefinite</span></span></p>
 
-<p className="MsoNormal" ><span >Investment start date: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style={{color: 'red'}}>15.04.2023</span></span></p>
+<p className="MsoNormal" ><span >Investment start date: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span >15.04.2023</span></span></p>
 
-<p className="MsoNormal" ><span >Investment deadline:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style={{color: 'red'}}>15.07.2023</span></span></p>
+<p className="MsoNormal" ><span >Investment deadline:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span >15.07.2023</span></span></p>
 
-<p className="MsoNormal" ><span >Redrum film value: <span >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style={{color: 'red'}}>
+<p className="MsoNormal" ><span >Redrum film value: <span >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span >
   250.000,00 EUR
 </span></span></p>
 
@@ -281,7 +286,11 @@ Project is thereby specified as:</p>
   {investAmount}
 </span></span></p>
 
-<p className="MsoNormal" ><span >Price per share: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style={{color: 'red'}}>
+<p className="MsoNormal" ><span >Bonus shares: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span>
+  {bonus}
+</span></span></p>
+
+<p className="MsoNormal" ><span >Price per share: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span >
   1,00 EUR
 </span></span></p>
 
@@ -296,18 +305,18 @@ Project is thereby specified as:</p>
 </span></span></p>
 
 <p className="MsoNormal" ><span >Acquired shares: &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span>
-  {investAmount}
+  {investAmount + bonus}
 </span></span></p>
 
 <p className="MsoNormal" ><span >Price for shares: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span>
   {investAmount} EUR
 </span></span></p>
 
-<p className="MsoNormal" ><span >Service flat rate: &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style={{color: 'red'}}>
+<p className="MsoNormal" ><span >Service flat rate: &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span >
   0,00 EUR
 </span></span></p>
 
-<p className="MsoNormal" ><span >Management fee:  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style={{color: 'red'}}>
+<p className="MsoNormal" ><span >Management fee:  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span >
   0,00 EUR
 </span></span></p>
 

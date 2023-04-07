@@ -43,7 +43,7 @@ const TestPage: React.FunctionComponent<IProps> = (props) => {
         </Button>
         {loading ? (<RedrumProLoader/>) : user !== null ? (
           <div className='hide-this'>
-            <ContractComponent user={user!} project={project!} investAmount={250}/>
+            <ContractComponent bonus={25} user={user!} project={project!} investAmount={250}/>
           </div>
           ) : null}
       </div>

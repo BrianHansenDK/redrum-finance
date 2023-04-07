@@ -9,12 +9,17 @@ import PaypalComponent from '../../../../../../../paypal/PaypalComponent';
 import AGBFile from '../../../../../../../misc/donwloadable-pdfs/AGB_AllgemeineGeschäftsbedingungenderRedrumPro27.1.2_FILM.pdf';
 import AGBEnglish from '../../../../../../../misc/donwloadable-pdfs/terms_and_conditions.pdf';
 import EditSharesBtn from './EditSharesBtn';
+import ContractComponent from '../../../../../../test/ContractComponent';
+import { FirebaseBundle, FirebaseUser } from '../../../../../../../database/Objects';
+import jsPDF from 'jspdf';
+import ContractGerman from '../../../../../../test/ContractGerman';
 
 interface IProps {
   en: boolean,
   investAmount: number,
   bonus: number,
   address: string | null,
+  project: FirebaseBundle,
   investInBundle: any,
   isPaypal: boolean,
   makeOrder: any,
@@ -22,14 +27,26 @@ interface IProps {
   editing: boolean,
   editShares: any,
   finishEdit: any,
+  user: FirebaseUser,
 }
 const CheckoutSummary = (props: IProps) => {
   const {en, investAmount, bonus, address, investInBundle, isPaypal, makeOrder, approve,
-  editing, editShares, finishEdit} = props
+  editing, editShares, finishEdit, user, project} = props
   const [checked, setChecked] = React.useState<boolean>(false)
   const [checked2, setChecked2] = React.useState<boolean>(false)
 
   const isMobile = useMediaQuery('(max-width: 1200px)')
+
+  const generatePDF = () => {
+    var doc = new jsPDF("p", "pt", "a4");
+    // @ts-ignore
+    doc.html(document.querySelector(en ? "#english-document" : "#german-document"), {
+      // @ts-check
+      callback: function(pdf){
+        pdf.save(`redrum_pro_${project.name!.split(' ').join('_')}_${en ? 'framework_agreement' : 'rahmenvertrag'}.pdf`);
+      }
+    })
+  }
 
   return (
     <div className='checkout-card summary'>
@@ -129,7 +146,9 @@ const CheckoutSummary = (props: IProps) => {
           {en ?
           `I hereby agree to the Redrum` :
           'Hiermit stimme ich dem Redrum'
-          } <a href='/terms-and-conditions' target='_blank'>{en ? 'Framework Agreement.' : 'Rahmenvertrag'}</a> {en ?
+          } <Button appearance='link' onClick={generatePDF}>
+            {en ? 'Framework Agreement.' : 'Rahmenvertrag'}
+          </Button> {en ?
             `` :
             'zu.'
             }
@@ -178,6 +197,16 @@ const CheckoutSummary = (props: IProps) => {
         </span>
       </Whisper>
       <EditSharesBtn editing={editing} startEditing={editShares} finishEditing={finishEdit}/>
+      <div className="hide-this">
+        {
+          user !== null ? en ? (
+            <ContractComponent user={user} project={project} investAmount={investAmount} bonus={bonus}/>
+          ) : (
+            <ContractGerman user={user} project={project} investAmount={investAmount} bonus={bonus}/>
+          ) : null
+        }
+
+      </div>
     </div>
   )
 }

@@ -108,17 +108,19 @@ const CheckoutPage = (props: IProps) => {
           </div>
           <div className="right-side">
             <CheckoutSummary
-            en={en}
-            investAmount={investAmount}
-            bonus={bonus}
-            address={address}
-            investInBundle={investInBundle}
-            isPaypal={isPaypal}
-            makeOrder={makeOrder}
-            approve={approveOrder}
-            editing={sharesEditable}
-            editShares={editTheShares}
-            finishEdit={finishEditing}/>
+              en={en}
+              investAmount={investAmount}
+              project={project}
+              bonus={bonus}
+              address={address}
+              investInBundle={investInBundle}
+              isPaypal={isPaypal}
+              makeOrder={makeOrder}
+              approve={approveOrder}
+              editing={sharesEditable}
+              editShares={editTheShares}
+              finishEdit={finishEditing}
+              user={user!}/>
           </div>
         </div>
       </div>
