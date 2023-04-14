@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import PushThemes from '../../inside-app/themes/PushThemes';
 import { onValue, ref, set } from 'firebase/database';
 import { FirebaseUser } from '../../../database/Objects';
+import ReCAPTCHA from "react-google-recaptcha";
 
 interface IProps {
   en: boolean,
@@ -18,16 +19,17 @@ interface IProps {
 }
 
 const AuthModalInputs: React.FunctionComponent<IProps> = (props) => {
-  const {en, visible, signupPage, handleChange} = props
-  const [userName, setUserName] = React.useState<any>('')
-  const [userEmail, setUserEmail] = React.useState<any>('')
-  const [userPassword, setUserPassword] = React.useState<any>('')
-  const [confirm, setConfirm] = React.useState<any>('')
-  const [userMails, setUserMails] = React.useState<string[]>([])
-  const [confirmVisible, setConfirmVisible] = React.useState<boolean>(false)
+  const {en, visible, signupPage, handleChange} = props;
+  const [userName, setUserName] = React.useState<any>('');
+  const [userEmail, setUserEmail] = React.useState<any>('');
+  const [userPassword, setUserPassword] = React.useState<any>('');
+  const [confirm, setConfirm] = React.useState<any>('');
+  const [userMails, setUserMails] = React.useState<string[]>([]);
+  const [confirmVisible, setConfirmVisible] = React.useState<boolean>(false);
+  const [captured, setCaptured] = React.useState<boolean>(false);
 
-  const navigate = useNavigate()
-  const toaster = useToaster()
+  const navigate = useNavigate();
+  const toaster = useToaster();
 
   React.useEffect(() => {
     const reference = ref(database, 'users')
@@ -40,7 +42,7 @@ const AuthModalInputs: React.FunctionComponent<IProps> = (props) => {
     })
   }, [])
 
-  const onlyOneSpace = userName.split(' ').length -1 < 2
+  const onlyOneSpace = userName.split(' ').length -1 < 2;
 
   const signUp = () => {
     if (userMails.includes(userEmail)) {
@@ -137,9 +139,11 @@ const AuthModalInputs: React.FunctionComponent<IProps> = (props) => {
             {visible ? <EyeIcon /> : <EyeSlashIcon />}
           </InputGroup.Button>
         </InputGroup>
-        <Form.HelpText>{en ? 'Minimum 6 characters' : 'Mindestens 6 Zeichen'}</Form.HelpText>
+        {signupPage ? (<Form.HelpText>{en ? 'Minimum 6 characters' : 'Mindestens 6 Zeichen'}</Form.HelpText>) : null}
+
       </div>
         { signupPage ? (
+        <>
         <div className="input-element">
         <label>{en ? 'Confirm password' : 'Passwort bästetigen'}</label>
         <InputGroup inside>
@@ -150,6 +154,11 @@ const AuthModalInputs: React.FunctionComponent<IProps> = (props) => {
           </InputGroup.Button>
         </InputGroup>
       </div>
+      <ReCAPTCHA
+      sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
+      onChange={() => setCaptured(true)}
+      />
+      </>
           ) : null }
 
       <>
@@ -162,7 +171,9 @@ const AuthModalInputs: React.FunctionComponent<IProps> = (props) => {
         </div>)
       }
       </>
-      <Button appearance='primary' className='r-btn r-main-btn mb-2 dark-blue' onClick={signupPage ? signUp : signIn}>
+      <Button appearance='primary' className='r-btn r-main-btn mb-2 dark-blue'
+      disabled={signupPage && !captured}
+      onClick={signupPage ? signUp : signIn}>
         {
           signupPage ? en ? 'Create account' : 'Account erstellen'
           : en ? 'Login' : 'Anmelden'

@@ -41,7 +41,7 @@ const Navigations: React.FunctionComponent<IProps> = (props) => {
           {en ? 'Legal' : 'Rechtliches'}
         </p>
         <Nav.Item as={Link} to='/terms-and-conditions'>
-          AGBs
+          {en ? 'GTC' : 'AGB'}s
         </Nav.Item>
         <Nav.Item as={Link} to={'/privacy-policy'}>
           {en ? 'Privacy & Data Protection' : 'Privatsphäre & Datenschutz'}

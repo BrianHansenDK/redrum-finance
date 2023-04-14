@@ -196,7 +196,7 @@ $small: 450px;
             flex-shrink: 0;
             display: flex;
             flex-direction: column;
-            row-gap: 24px;
+            row-gap: 15px;
             @media (max-width: $limit) {
               width: 300px;
             }

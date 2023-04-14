@@ -113,6 +113,7 @@ class ProjectDetailsPage extends React.Component<IProps, IState> {
           wrapperInner: {
               display: 'flex',
               justifyContent: 'space-between',
+              alignItems: 'flex-start',
               minHeight: isDesktop ? '82.5vh' : 'auto',
           },
           extrasWrap: {

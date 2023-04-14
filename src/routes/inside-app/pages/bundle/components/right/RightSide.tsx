@@ -12,6 +12,7 @@ import TransferMoneyModal from '../TransferMoneyModal'
 import InfoLines from './InfoLines'
 import InfoTag from './InfoTag'
 import ProgressItem from './ProgressItem'
+import { useMediaQuery } from '../../../../../../misc/custom-hooks'
 
 interface IProps {
   project: FirebaseBundle,
@@ -29,12 +30,14 @@ const RightSide: FunctionComponent<IProps> = (props) => {
     project, en, setEn, isMobile,
     navOpen, openMenu, openNav, closeNav,
    } = props
-    const [isVisible, setVisible] = useState(false)
-    const [isInvestVisible, setInvestVisible] = useState(false)
-    const [isTransferVisible, setTransferVisible] = useState(false)
-    const [available, setAvailable] = useState<any>(0)
-    const [reciept, setReciept] = useState(false)
-    const [birthYear, setBirthYear] = useState(0)
+    const [isVisible, setVisible] = useState(false);
+    const [isInvestVisible, setInvestVisible] = useState(false);
+    const [isTransferVisible, setTransferVisible] = useState(false);
+    const [available, setAvailable] = useState<any>(0);
+    const [reciept, setReciept] = useState(false);
+    const [birthYear, setBirthYear] = useState(0);
+
+    const isDesktop = useMediaQuery('(min-width: 1600px)');
 
     const userId = auth.currentUser?.uid
     useEffect(() => {
@@ -42,15 +45,11 @@ const RightSide: FunctionComponent<IProps> = (props) => {
         userRef(userId, '/birthYear', setBirthYear)
     })
 
-    const date = Date.now()
-    const today = new Date(date)
-    const age = today.getFullYear() - birthYear
-    const openModal = () => {
-        setVisible(true)
-    }
-    const closeModal = () => {
-        setVisible(false)
-    }
+    const date = Date.now();
+    const today = new Date(date);
+    const age = today.getFullYear() - birthYear;
+    const openModal = () => setVisible(true);
+    const closeModal = () => setVisible(false);
     const openInvestModal = () => {
         setVisible(false)
         //if (available == null || available == 0) {
@@ -64,12 +63,8 @@ const RightSide: FunctionComponent<IProps> = (props) => {
         setInvestVisible(false)
         setTransferVisible(false)
     }
-    const showReciept = () => {
-      setReciept(true)
-    }
-    const hideReciept = () => {
-      setReciept(false)
-    }
+    const showReciept = () => setReciept(true);
+    const hideReciept = () => setReciept(false);
 
     const styles = {
       wrapper: {
@@ -79,7 +74,7 @@ const RightSide: FunctionComponent<IProps> = (props) => {
           paddingTop: isMobile ? 25 : 7 + 'rem',
       },
       card: {
-          height: 400,
+          height: isDesktop ? 800 : 400,
           width: 100 + '%',
           backgroundColor: '#fbfbfb',
           marginTop: isMobile ? 10 : 0,

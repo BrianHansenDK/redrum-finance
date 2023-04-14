@@ -13,7 +13,6 @@ const HIWRights = ({en} : {en: boolean}) => {
     },
     listItem: {
       display: 'flex',
-      justifyContent: 'center',
       fontFamily: TextTheme.hiwPara.fontFamily,
       fontSize: isDesktop ? TextTheme.bigHiwPara.fontSize : TextTheme.hiwPara.fontSize,
       fontWeight: TextTheme.hiwPara.fontWeight,
@@ -23,22 +22,22 @@ const HIWRights = ({en} : {en: boolean}) => {
     }
   }
   return (
-    <div className='d-flex flex-column align-items-center mb-5'>
+    <div className='d-flex flex-column align-items-center mb-5 user-rights'>
       <h2 style={isDesktop ? TextTheme.bigSecondaryTitle : TextTheme.mainPara} className='mb-2 sub-title'>
         {en ? hIWStrings.rightsEN.t : hIWStrings.rightsDE.t}
       </h2>
       <ul style={styles.list}>
-        <li className='des mb-1'>
+        <li className='des mb-1 make-justified'>
           <p style={styles.listItem}>
             {en ? hIWStrings.rightsEN.l1 : hIWStrings.rightsDE.l1}
           </p>
         </li>
-        <li className='des mb-1'>
+        <li className='des mb-1 make-justified'>
           <p style={styles.listItem}>
             {en ? hIWStrings.rightsEN.l2 : hIWStrings.rightsDE.l2}
           </p>
         </li>
-        <li className='des mb-1'>
+        <li className='des mb-1 make-justified'>
           <p style={styles.listItem}>
             {en ? hIWStrings.rightsEN.l3 : hIWStrings.rightsDE.l3}
           </p>

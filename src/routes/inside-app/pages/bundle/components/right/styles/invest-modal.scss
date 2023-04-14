@@ -309,6 +309,7 @@ $dark-blue-shadow: #3549FE7B;
             & .inner-card {
               display: flex;
               column-gap: 15px;
+              align-items: center;
               // Image
               & .project-banner-img {
                 width: 50px;
@@ -452,10 +453,10 @@ $dark-blue-shadow: #3549FE7B;
                       display: flex;
                       justify-content: space-between;
                       align-items: center;
-                      column-gap: 15px;
+                      column-gap: 25px;
                       & .icon {
-                        width: 5rem;
-                        height: 2.5rem;
+                        width: 10rem;
+                        height: 5rem;
                         border-radius: 5px;
                         box-shadow: 0 2px 4px 0 $dark-shadow;
                         color: $green;
@@ -626,7 +627,7 @@ $dark-blue-shadow: #3549FE7B;
 & .go-back-from-checkoout-btn {
   position: absolute;
   top: 100px;
-  left: 10%;
+  left: 15px;
   background-color: $white;
   color: $main;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 29, .25);
