@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { FirebaseUser } from "../database/Objects";
 
 export const modalContext = () => {
     const [isVisible, setVisible] = useState(false)
@@ -80,4 +81,20 @@ export const fetchContries = (setCountries: any, setCLoading: any) => {
 
 export function makeRange(start: number = 0, step: number = 1, end: number) {
   return [...Array(end/step).keys()].map((i: number) => (i + start) * (step))
+}
+
+export function getUserStreet(user: FirebaseUser) {
+  return user.address.split(',')[0].split(' ').slice(0,user.address.split(',')[0].split(' ').length-1).join(' ');
+}
+
+export function getUserHousenumber(user: FirebaseUser) {
+  return user.address.split(',')[0].split(' ')[user.address.split(',')[0].split(' ').length - 1];
+}
+
+export function getZipCode(user: FirebaseUser) {
+  return user.address.split(', ')[user.address.split(', ').length - 1].split(' ')[0];
+}
+
+export function getCity(user: FirebaseUser) {
+  return user.address.split(', ')[user.address.split(', ').length - 1].split(' ').slice(1).join(' ');
 }

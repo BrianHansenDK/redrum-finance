@@ -25,7 +25,7 @@ const ProfileIntroduction = (props: IProps) => {
     const [loading, setLoading] = React.useState<boolean>(false);
     React.useEffect(() => {
       getCurrentUserOnValue(user.id, setCurrentUser);
-    })
+    }, [user])
     return (
         <div className='profile-card'>
             <div className='profile-content'>

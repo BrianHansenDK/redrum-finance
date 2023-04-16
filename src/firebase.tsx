@@ -260,7 +260,7 @@ export function newUpdateAccount (userId: string, title: string, full_name: stri
   then: ((value: void) => void | PromiseLike<void>) | null | undefined,
   error: ErrorCallback, end: () => void,
   company: boolean, companyRole?: string | undefined,
-  companyName?: string | undefined, companyAddress?: string | undefined
+  companyName?: string | undefined, companyAddress?: string | undefined, companyWebsite?: string | undefined
   ) {
     const reference = ref(database, 'users/' + userId)
     let updates: any = {}
@@ -276,6 +276,9 @@ export function newUpdateAccount (userId: string, title: string, full_name: stri
     }
     if (companyAddress !== undefined) {
       updates['company_address'] = companyAddress
+    }
+    if (companyWebsite !== undefined) {
+      updates['website'] = companyWebsite
     }
     update(reference, updates).then(then).catch(error)
     .finally(end)

@@ -23,6 +23,7 @@ export interface FirebaseUser {
   withdrawal_method: string,
   bank_information: string,
   title?: string,
+  website?: string,
 }
 
 // Movie object

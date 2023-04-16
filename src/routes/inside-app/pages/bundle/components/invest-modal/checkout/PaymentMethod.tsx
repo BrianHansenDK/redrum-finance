@@ -80,7 +80,7 @@ const PaymentMethod = (props: IProps) => {
             <div className="radio-btn-con">
               <Radio value={'Redrum_Pro_deposit'} >
                 <div className="radio-inner">
-                  <p className='option-brand'>Redrum Pro deposit</p> <Icon as={RedrumDeposits} className='icon dark'/>
+                  <p className='option-brand'>Redrum Pro {en ? 'deposit' : 'Guthaben'}</p> <Icon as={RedrumDeposits} className='icon dark'/>
                 </div>
               </Radio>
               <div className="currently-available">

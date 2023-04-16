@@ -1,13 +1,15 @@
 import React from 'react'
-import { Button, DatePicker, Input, InputPicker, Message, Radio, RadioGroup, Tooltip, Whisper, useToaster } from 'rsuite'
+import { Button, DatePicker, Input, InputPicker, Message, Radio, RadioGroup, Toggle, Tooltip, Whisper, useToaster } from 'rsuite'
 import { FirebaseUser } from '../../../../../../../database/Objects'
 import SpinnerIcon from '@rsuite/icons/legacy/Spinner';
 import { mainColors } from '../../../../../themes/colors';
-import { fetchContries } from '../../../../../../../misc/custom-hooks';
+import { fetchContries, getCity, getUserHousenumber, getUserStreet, getZipCode } from '../../../../../../../misc/custom-hooks';
 import { auth, newUpdateAccount } from '../../../../../../../firebase';
 import { ValueType } from 'rsuite/esm/Radio/Radio';
 import { sendPasswordResetEmail, updateEmail } from 'firebase/auth';
 import ChangePasswordModal from './ChangePasswordModal';
+import CheckIcon from '@rsuite/icons/Check';
+import CloseIcon from '@rsuite/icons/Close';
 
 interface IProps {user: FirebaseUser, en: boolean, close: any}
 
@@ -26,11 +28,16 @@ const ProfileForm = (props: IProps) => {
   const [companyCode, setCompanyCode] = React.useState('')
   const [companyCity, setCompanyCity] = React.useState('')
   const [companyCountry, setCompanyCountry] = React.useState('')
+  const [website, setWebsite] = React.useState('')
   const [country, setCountry] = React.useState('')
   const [code, setCode] = React.useState('')
   const [city, setCity] = React.useState('')
   const [street, setStreet] = React.useState('')
+  const [houseNumber, setHouseNumber] = React.useState('')
+  const [addAddress, setAddAddress] = React.useState('')
+  const [addAddress2, setAddAddress2] = React.useState('')
   const [phone, setPhone] = React.useState('')
+  const [checked, setChecked] = React.useState<boolean>(false)
   const [companyAccount, setCompanyAccount] =
     React.useState<ValueType | undefined>(user.company_account ? 'true' : '')
 
@@ -49,7 +56,7 @@ const ProfileForm = (props: IProps) => {
   }
 
   const saveChanges = () => {
-    if (firstName.split(' ').length > 1) {
+    if (firstName !== '' && firstName.split(' ').length > 1) {
       toaster.push(<Message showIcon type='error' duration={5000}>
         First name is invalid.
       </Message>);
@@ -65,7 +72,7 @@ const ProfileForm = (props: IProps) => {
         Please fill out all the necessary information from your company.
       </Message>)
     }
-    if (firstName.split(' ').length === 1 && !companyStatement)
+    if (((firstName !== '' && firstName.split(' ').length === 1) || firstName == '') && !companyStatement)
     {
     newUpdateAccount(
       user.id,
@@ -74,7 +81,7 @@ const ProfileForm = (props: IProps) => {
       birthdate.toLocaleDateString(),
       email === '' ? user.email : email,
       country !== '' ? country : user.country,
-      code !== '' && city !== '' && street !== '' ? `${street}, ${code} ${city}` : user.address,
+      code !== '' && city !== '' && street !== '' ? `${street} ${houseNumber}${addAddress !== '' ? `, ${addAddress}` : ''}${addAddress2 !== '' ? `, ${addAddress2}` : ''}, ${code} ${city}` : user.address,
       phone !== '' ? phone : user.phone_number,
       () => {
         toaster.push(<Message showIcon type='success' duration={5000}>
@@ -89,11 +96,18 @@ const ProfileForm = (props: IProps) => {
       Boolean(companyAccount),
       Boolean(companyAccount) ? role : user.role,
       Boolean(companyAccount) ? companyName : user.company_name !== undefined ? user.company_name : undefined,
-      Boolean(companyAccount) ? `${companyCode} ${companyCity}, ${companyCountry}` : user.company_address !== undefined ? user.company_address : undefined
+      Boolean(companyAccount) ? `${companyCode} ${companyCity}, ${companyCountry}` : user.company_address !== undefined ? user.company_address : undefined,
+      Boolean(companyAccount) ? website : undefined
     )
     if (email !== '') {
       updateEmail(auth.currentUser!, email)
     }
+    }
+    const givenDate = new Date(birthdate.toLocaleDateString())
+    if (new Date().getFullYear() - givenDate.getFullYear() < 18) {
+      toaster.push(<Message showIcon type='warning' duration={5000}>
+        {en ? 'Under 18: You cannot invest.' : 'Unser 18 jahre: Du kanns nicht investieren.'}
+      </Message>, {placement: 'topCenter'})
     }
   }
 
@@ -254,7 +268,31 @@ const ProfileForm = (props: IProps) => {
         />
           </div>
         </div>
-      </div>
+        </div>
+        <div className="form-element" style={{width: '100%',}}>
+            <label htmlFor="" className="label">{en ? 'Company domain' : 'Firma Website'}*</label>
+            <Input className='input' style={{width: '100%'}}
+            placeholder={user.website !== undefined ? user.website :
+            'Paste URL...'}
+            value={website === '' ? user.website !== '' ?user.website
+             : website: website}
+             onChange={setCode}
+            />
+        </div>
+        <div className='d-flex align-items-center'>
+          <Toggle
+          defaultChecked={checked}
+          onClick={() => setChecked(!checked)}
+          checkedChildren={<CheckIcon/>}
+          unCheckedChildren={<CloseIcon/>}
+          />
+          <p className='ml-1' style={{color: mainColors.dark}}>
+            {en ?
+            'I hereby certify that I am legally entitled to act and enter into contracts on behalf of the company.' :
+            'Hiermit bestätige ich, dass ich berechtigt bin gesetzlich im Namen der Firma zu handeln und Verträge abzuschließen.'
+            }
+          </p>
+        </div>
         </>
       ) : null}
       <Button className='change-password-btn' appearance='link' onClick={sendPWResetMail}>
@@ -269,9 +307,9 @@ const ProfileForm = (props: IProps) => {
             <div>
               <label htmlFor="" className="label">{en ? 'Postal code' : 'Posteinzahl'}*</label>
               <Input className='input'
-              placeholder={user.address !== '' ? user.address.split(', ')[1].split(' ')[0] :
+              placeholder={user.address !== '' ? getZipCode(user) :
               en ? 'Postal code...' : 'Posteinzahl...'}
-              value={code === '' ? user.address !== '' ? user.address.split(', ')[1].split(' ')[0]
+              value={code === '' ? user.address !== '' ? getZipCode(user)
                : code: code}
                onChange={setCode}
               />
@@ -281,24 +319,65 @@ const ProfileForm = (props: IProps) => {
             <div>
               <label htmlFor="" className="label">{en ? 'City' : 'Stadt'}*</label>
               <Input className='input'
-              placeholder={user.address !== '' ? user.address.split(', ')[1].split(' ').slice(1).join(' ') :
+              placeholder={user.address !== '' ? getCity(user) :
               en ? 'Enter city...' : 'Stadt schreiben...'}
-              value={city === '' ? user.address !== '' ? user.address.split(', ')[1].split(' ').slice(1).join(' ')
+              value={city === '' ? user.address !== '' ? getCity(user)
                : city: city}
                onChange={setCity}
               />
             </div>
           </div>
         </div>
-        <div className="inner street">
+        <div className="box2">
+          <div className="inner street">
+            <div>
+              <label htmlFor="" className="label">{en ? 'Street' : 'Straße'}*</label>
+              <Input className='input'
+              placeholder={user.address !== '' ? getUserStreet(user) :
+              en ? 'Enter street...' : 'Straße schreiben...'}
+              value={street === '' ? user.address !== '' ? getUserStreet(user)
+              : street: street}
+              onChange={setStreet}
+              />
+            </div>
+          </div>
+          <div className="inner nr">
+            <div>
+              <label htmlFor="" className="label">{en ? 'House nr' : 'Hausnummer'}*</label>
+              <Input className='input'
+              placeholder={user.address !== '' ?
+              getUserHousenumber(user) :
+              en ? 'Enter house number...' : 'Hausnummer schreiben...'}
+              value={houseNumber === '' ? user.address !== '' ? getUserHousenumber(user)
+              : houseNumber: houseNumber}
+              onChange={setHouseNumber}
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="form-element double-input">
+        <div className="inner add-address1">
           <div>
-            <label htmlFor="" className="label">{en ? 'Street & house number' : 'Straße & Hausnummer'}*</label>
+            <label htmlFor="" className="label">{en ? 'Additional address information' : 'Zuzetsliche Adresse Information'} {addAddress}</label>
             <Input className='input'
-            placeholder={user.address !== '' ? user.address.split(',')[0] :
-            en ? 'Enter street and house number...' : 'Straße und Hausnummer schreiben...'}
-            value={street === '' ? user.address !== '' ? user.address.split(',')[0]
-             : street: street}
-             onChange={setStreet}
+            placeholder={user.address.split(', ').length > 2 ? user.address.split(', ')[1] :
+            en ? 'Write here...' : 'Hier schreiben...'}
+            value={addAddress === '' ? user.address.split(', ').length > 2 ? user.address.split(', ')[1]
+             : addAddress: addAddress}
+             onChange={setAddAddress}
+            />
+          </div>
+        </div>
+        <div className="inner add-address2">
+          <div>
+            <label htmlFor="" className="label">{en ? 'Additional address information 2' : 'Zuzetsliche Adresse Information 2'} {addAddress2}</label>
+            <Input className='input'
+            placeholder={user.address.split(', ').length > 3 ? user.address.split(', ')[2] :
+            en ? 'Write here...' : 'Hier schreiben...'}
+            value={addAddress2 === '' ? user.address.split(', ').length > 3 ? user.address.split(', ')[2]
+             : addAddress2: addAddress2}
+             onChange={setAddAddress2}
             />
           </div>
         </div>
@@ -327,7 +406,7 @@ const ProfileForm = (props: IProps) => {
         />
         </div>
         <div className="inner phone-number">
-        <label className="label">{en ? 'Phone number' : 'Telefon Nummber'}*</label>
+        <label className="label">{en ? 'Phone number' : 'Mobiltelefonnsummer'}*</label>
         <Input className='input'
         placeholder={user.phone_number !== '' ? user.phone_number : en ? 'Enter phone number...' :
       'Telefon Nummer schreiben'}
@@ -336,7 +415,8 @@ const ProfileForm = (props: IProps) => {
         />
       </div>
       </div>
-      <Button appearance='primary' className='r-btn r-main-btn' block onClick={saveChanges}>
+      <Button appearance='primary' className='r-btn r-main-btn' block onClick={saveChanges}
+      disabled={Boolean(companyAccount) && !checked}>
         {en ? 'Save changes' : 'Speichern von Änderungen'}
       </Button>
       <ChangePasswordModal en={en} open={modalOpen} close={closeModal} user={user}/>

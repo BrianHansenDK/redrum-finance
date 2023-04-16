@@ -5,6 +5,7 @@ import { auth } from '../../../../../../firebase'
 import { Button } from 'rsuite'
 import NewEditProfileModal from './editprofile/NewEditProfileModal'
 import { FirebaseUser } from '../../../../../../database/Objects'
+import { getCity } from '../../../../../../misc/custom-hooks'
 interface IProps {
   user: FirebaseUser,
   en: boolean,
@@ -23,7 +24,7 @@ const ProfileData = (props: IProps) => {
                         <CalendarIcon className='info-icon' /> Birthdate: {user.birth_date !== '' ? user.birth_date : 'Unknown'}
                     </p>
                     <p className='birth-year'>
-                        <PinIcon className='info-icon' /> Location: {user.address !== '' ? user.address.split(', ')[1].split(' ').slice(1) :
+                        <PinIcon className='info-icon' /> Location: {user.address !== '' ? getCity(user) :
                         'Unknown'}, {user.country !== '' ? user.country : 'Unknown'}
                     </p>
                 </div>
