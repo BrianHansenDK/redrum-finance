@@ -48,30 +48,28 @@ const AuthModalInputs: React.FunctionComponent<IProps> = (props) => {
     if (userMails.includes(userEmail)) {
       toaster.push(
         <Message type='error' style={PushThemes.pushRed}>
-          <p style={PushThemes.txt}>
-            Error: user already exist
-          </p>
+          Error: user already exist
         </Message>
       )
     } else {
         if (!onlyOneSpace) {
-          toaster.push(<Message type='error' style={PushThemes.pushRed}>
-            <p style={PushThemes.txt}>Username cannot include multiple spaces.</p>
+          toaster.push(<Message type='error' showIcon duration={8000} closable>
+            Username cannot include multiple spaces.
           </Message>, {placement: 'topCenter'})
         }
         if (userPassword === '') {
-          toaster.push(<Message showIcon type='error' style={PushThemes.pushRed}>
-            <p style={PushThemes.txt}>Password cannot be empty.</p>
+          toaster.push(<Message type='error' showIcon duration={8000} closable>
+            Password cannot be empty.
           </Message>, {placement: 'topCenter'})
         }
         if (userPassword !== confirm) {
-          toaster.push(<Message showIcon type='error' style={PushThemes.pushRed}>
-            <p style={PushThemes.txt}>Password & password confirmation does not match.</p>
+          toaster.push(<Message showIcon type='error' duration={8000} closable>
+            Password & password confirmation does not match.
           </Message>, {placement: 'topCenter'})
         }
         if ((userPassword == confirm) && userPassword.length < 6) {
-          toaster.push(<Message showIcon type='error' style={PushThemes.pushRed}>
-            <p style={PushThemes.txt}>Password should be at least 6 characters. (auth/weak-password)</p>
+          toaster.push(<Message showIcon type='error' duration={8000} closable>
+            Password should be at least 6 characters. (auth/weak-password)
           </Message>, {placement: 'topCenter'})
         }
         if ((onlyOneSpace) && (userPassword != '') && (userPassword === confirm) && userPassword.length >= 6) {
@@ -84,8 +82,8 @@ const AuthModalInputs: React.FunctionComponent<IProps> = (props) => {
             .catch((err) => {
               console.log(err.message)
             }).finally(() => {
-              toaster.push(<Message style={PushThemes.pushBlue}>
-                <p style={PushThemes.txt}>Account created succesfully</p>
+              toaster.push(<Message showIcon duration={8000} closable>
+                Account created succesfully
               </Message>)
             })
           }
@@ -99,8 +97,8 @@ const AuthModalInputs: React.FunctionComponent<IProps> = (props) => {
             const user = userCredential.user;
             navigate('/app')
             toaster.push(
-                <Message showIcon type="info" style={PushThemes.pushBlue}>
-                  <p style={PushThemes.txt}> Logged in succesfully </p>
+                <Message showIcon type="info" duration={8000} closable>
+                  Logged in succesfully
                 </Message>, { placement: 'topCenter' }
             )
             window.setTimeout(() => {
@@ -108,8 +106,8 @@ const AuthModalInputs: React.FunctionComponent<IProps> = (props) => {
             }, 5000)
         }).catch((error) => {
             toaster.push(
-                <Message showIcon type="error" style={PushThemes.pushRed}>
-                  <p style={PushThemes.txt}> Something went wrong: Error {error.code} </p>
+                <Message showIcon type="error" duration={8000} closable>
+                  Something went wrong: Error {error.code}
                 </Message>, { placement: 'topCenter' }
             )
             console.log(error.message)

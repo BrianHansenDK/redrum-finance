@@ -38,8 +38,8 @@ const WithdrawMoneyBtn: React.FunctionComponent<IProps> = (props) => {
   const handleSubmit = () => {
     if (wished > available) {
       toaster.push(
-        <Message type='error' style={PushThemes.pushRed}>
-          <span style={PushThemes.txt}>You cannot wish for more than you have available in your account.... <br/></span>
+        <Message type='error' showIcon duration={8000} closable>
+          <span>You cannot wish for more than you have available in your account.... <br/></span>
           {typeof parseInt(wished)} : {parseInt(wished)}
         </Message>
       )
@@ -48,9 +48,9 @@ const WithdrawMoneyBtn: React.FunctionComponent<IProps> = (props) => {
       createWithdrawalRequest(requests.length, auth.currentUser!.uid, wished, Date.now())
       updateUser().then(() => {
         toaster.push(
-          <Message type='info' style={PushThemes.pushBlue}>
-            <span style={PushThemes.txt}>
-              {wished}€ has been removed from your account balance and will be transfered to your within 5 week days.
+          <Message type='info' showIcon duration={8000} closable>
+            <span>
+              {wished}€ has been removed from your account balance and will be transfered to your account within 5 week days.
             </span>
           </Message>
         )

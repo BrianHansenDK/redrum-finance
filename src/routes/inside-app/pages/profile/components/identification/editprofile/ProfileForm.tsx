@@ -42,8 +42,8 @@ const ProfileForm = (props: IProps) => {
     React.useState<ValueType | undefined>(user.company_account ? 'true' : '')
 
   const titleData = [
-    {label: 'Mr.', value: 'Mr.'}, {label: 'Miss.', value: 'Miss.'},
-    {label: 'Other.', value: 'Other'}
+    {label: en ? 'Mr.' : 'Mann', value: 'Mr.'}, {label: en ? 'Miss.' : 'Frau', value: 'Miss.'},
+    {label: en ? 'Other.' : 'Ander', value: 'Other'}
   ]
 
   const [cLoading, setCLoading] = React.useState<boolean>(false)

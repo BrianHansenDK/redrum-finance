@@ -171,40 +171,37 @@ const InvestModal: React.FunctionComponent<IProps> = (props) => {
       )
       if (parseInt(investAmount) == 0 || investAmount == null || investAmount == '') {
         toaster.push(
-            <Message style={PushThemes.pushRed} type='error'>
-              <p style={PushThemes.txt}> Please choose a valid amount. Cannot invest 0€ </p>
-            </Message> , { placement: 'bottomCenter' }
+            <Message showIcon type='error' title={`${en ? 'Invalid amount' : 'Falsche anzahl'}`} duration={8000} closable>
+              Please choose a valid amount. Cannot invest 0€
+            </Message> , { placement: 'topCenter' }
         )
-        window.setTimeout(() => { toaster.clear() }, 10000)
     }
     // Divisable by movies length
     if (parseInt(investAmount) % project.movies.length !== 0 && (parseInt(investAmount) !== null && parseInt(investAmount) !== 0 && investAmount !== '')) {
         toaster.push(
-            <Message style={PushThemes.pushRed} type='error'>
-                <p style={PushThemes.txt}>Investment must have 0 remainders when divided by {project.movies.length}.
+            <Message showIcon type='error' duration={8000} closable>
+                Investment must have 0 remainders when divided by {project.movies.length}.
                 Possible solution {
                   [...Array(project.movies.length).keys()].map((x) => (
                     (parseInt(investAmount) - x) % project.movies.length == 0 && (parseInt(investAmount) - x) !== 0 ? `${parseInt(investAmount) - x}€ or ${(parseInt(investAmount) - x) + project.movies.length}` : (parseInt(investAmount) - x) % project.movies.length == 0 && (parseInt(investAmount) - x) == 0 && `${(parseInt(investAmount) - x) + project.movies.length}`
                   ))
-                }€</p>
-            </Message> , { placement: 'bottomCenter' }
+                }€
+            </Message> , { placement: 'topCenter' }
         )
-        window.setTimeout(() => { toaster.clear() }, 10000)
     }
 
     if (!isPaypal) {
       // Must have anough money on account
       if (parseInt(investAmount) > available) {
         toaster.push(
-          <Message style={PushThemes.pushRed} type='error'>
+          <Message showIcon type='error' title='Not enough money available' closable duration={8000}>
                 <p style={PushThemes.txt}>Not enough money in your account. Available: {available == null ? 0 : available}</p>
-            </Message> , { placement: 'bottomCenter' }
+            </Message> , { placement: 'topCenter' }
         )
-        window.setTimeout(() => { toaster.clear() }, 10000)
       }
     }
     if (!haveAllInfo) {
-      toaster.push(<Notification type='error' header='Error' closable>
+      toaster.push(<Notification type='error' header='Error' closable duration={10000}>
         <p>
           Some of your personal data is missing! <br/>
           All of your personal data is needed to invest.
@@ -392,7 +389,8 @@ const InvestModal: React.FunctionComponent<IProps> = (props) => {
                 onClick={() => setFocused(true)}
                 className={`option-btn ${focused ? 'active' : ''}`}
                 placeholder={en ? 'Different amount' : 'Anderer Betrag'}
-                onChange={setInvestAmount}
+                onChange={(val: any) => setInvestAmount(parseInt(val))}
+                min={0} step={1} scrollable
                 value={!focused ? emptyValue : investAmount}
                 />
               </div>

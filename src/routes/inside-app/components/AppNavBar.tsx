@@ -66,11 +66,10 @@ const AppNavBar: React.FunctionComponent<IProps> = (props) => {
       setVisible(false)
     }
     const logout = () => {
-        auth.signOut().then(() => location.pathname.includes('/app') ? navigate('/') : location.reload())
-        toaster.push(<Message showIcon type='info'>
+        auth.signOut().then(() => navigate('/'))
+        toaster.push(<Message showIcon type='info' duration={8000} closable>
           {en ? 'Logged out' : 'Abmeldet'}
         </Message>, {placement: 'topCenter'})
-        window.setTimeout(() => {toaster.clear()}, 5000)
     }
 
     const ACCOUNTNAV = [

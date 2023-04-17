@@ -93,14 +93,13 @@ const PaymentMethodModal = (props: IProps) => {
       en ? 'Please fill out BIC and IBAN correctly.' : 'Bitte BIC und IBAN korrekt ausfüllen.'
 
       if (
-        errorStatements.noPayPalInput || errorStatements.paypalInvalid ||
-        errorStatements.noBicOrIBAN || errorStatements.falseBicOrIBAN) {
+        ((errorStatements.noPayPalInput || errorStatements.paypalInvalid) && successStatements.ppEdited) ||
+        ((errorStatements.noBicOrIBAN || errorStatements.falseBicOrIBAN) && successStatements.bankEdited)) {
           toaster.push(
-            <Message style={PushThemes.pushRed} type='error'>
+            <Message showIcon type='error' duration={8000} closable>
               <p style={PushThemes.txt}> {errorMessage} </p>
             </Message>, {placement: 'bottomCenter'}
           )
-          window.setTimeout(() => toaster.clear(), 10000)
         }
       if (noError) {
         if (successStatements.ppEdited) {
@@ -113,20 +112,18 @@ const PaymentMethodModal = (props: IProps) => {
         updates['/withdrawal_method'] = currentWithdrawal
         update(reference, updates).then(() => {
           toaster.push(
-            <Message style={PushThemes.pushBlue} type='success'>
+            <Message showIcon type='success' duration={8000} closable>
             <p style={PushThemes.txt}>
               Bank data updated
             </p>
           </Message>, {placement: 'bottomCenter'}
         )
-        window.setTimeout(() => toaster.clear(), 10000)
       }).catch((err) => {
         toaster.push(
-          <Message style={PushThemes.pushRed} type='error'>
+          <Message showIcon type='error' duration={8000} closable>
           <p style={PushThemes.txt}> {err.message} </p>
         </Message>, {placement: 'bottomCenter'}
       )
-      window.setTimeout(() => toaster.clear(), 10000)
       }).finally(() => closeModal())
       }
   }
