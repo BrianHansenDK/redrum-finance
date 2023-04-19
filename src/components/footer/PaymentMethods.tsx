@@ -11,12 +11,6 @@ const PaymentMethods = (props: IProps) => {
         {en ? 'Our Payment Methods' : 'Unsere Zahlungsmethoden'}
       </h2>
       <PaymentBrands/>
-      <p className="description">
-        {
-        en ? 'Including VAT, plus service fee and management fee' :
-        'Inklusive Mehrwertsteuer, zuzüglich Servicegebühr und Verwaltungsgebühr'
-        }
-      </p>
     </FlexboxGrid.Item>
   )
 }

@@ -13,6 +13,7 @@ import ContractComponent from '../../../../../../test/ContractComponent';
 import { FirebaseBundle, FirebaseUser } from '../../../../../../../database/Objects';
 import jsPDF from 'jspdf';
 import ContractGerman from '../../../../../../test/ContractGerman';
+import PaypalModal from './PaypalModal';
 
 interface IProps {
   en: boolean,
@@ -32,8 +33,12 @@ interface IProps {
 const CheckoutSummary = (props: IProps) => {
   const {en, investAmount, bonus, address, investInBundle, isPaypal, makeOrder, approve,
   editing, editShares, finishEdit, user, project} = props
-  const [checked, setChecked] = React.useState<boolean>(false)
-  const [checked2, setChecked2] = React.useState<boolean>(false)
+  const [checked, setChecked] = React.useState<boolean>(false);
+  const [checked2, setChecked2] = React.useState<boolean>(false);
+  const [ppmodalOpen, setPpmodalOpen] = React.useState<boolean>(false);
+
+  const openPP = () => setPpmodalOpen(true);
+  const closePP = () => setPpmodalOpen(false);
 
   const isMobile = useMediaQuery('(max-width: 1200px)')
 
@@ -49,6 +54,7 @@ const CheckoutSummary = (props: IProps) => {
   }
 
   return (
+    <>
     <div className='checkout-card summary'>
       <h2 className="title">
         {en ? 'Summary' : 'Übersicht'}
@@ -173,28 +179,12 @@ const CheckoutSummary = (props: IProps) => {
           disabled={address == null || !checked || !checked2}
           block
           style={{ pointerEvents: !checked || !checked2 ? 'none' : 'auto' }}
-          onClick={isPaypal ? () => null : investInBundle}
+          onClick={isPaypal ? () => openPP() : investInBundle}
           >
             {en ?
             'Order with obligation to pay' :
             'Jetzt Zahlungspflichtig bestellen'}
           </Button>
-          {
-            isPaypal ? (
-            <div className={`pp-con ${isPaypal ? checked && checked2 ? 'active' : '' : ''}`}>
-              <PaypalComponent
-              amountToPay={investAmount}
-              updateUserBalance={investInBundle}
-              fromOutside
-              makeOrderFromOutside={makeOrder}
-              approveFromOutside={approve}
-              closeModal={undefined}
-              inModal={false}
-              />
-          </div>
-            ) : null
-          }
-
         </span>
       </Whisper>
       <EditSharesBtn editing={editing} startEditing={editShares} finishEditing={finishEdit}/>
@@ -209,6 +199,14 @@ const CheckoutSummary = (props: IProps) => {
 
       </div>
     </div>
+    <PaypalModal
+    investAmount={investAmount}
+    investInBundle={investInBundle}
+    makeOrder={makeOrder}
+    approve={approve}
+    close={closePP}
+    isOpen={ppmodalOpen} en={en}/>
+    </>
   )
 }
 

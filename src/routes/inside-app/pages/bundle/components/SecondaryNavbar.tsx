@@ -9,11 +9,14 @@ import InverstorsIcon from '@rsuite/icons/Peoples'
 import SecondaryNavbarItem from './SecondaryNavbarItem'
 import MainBtn from '../../../components/MainBtn'
 import ConfirmAgeModal from './ConfirmAgeModal'
-import { auth, database, userRef } from '../../../../../firebase'
+import { auth, database, getCurrentUserFunction, userRef } from '../../../../../firebase'
 import InvestModal from './invest-modal/InvestModal'
 import TransferMoneyModal from './TransferMoneyModal'
 import '../styles/bundlepage.scss'
 import bundleStrings from '../../../../../library/string/Bundle'
+import { FirebaseUser } from '../../../../../database/Objects'
+import { getRealAge } from '../../../../../misc/custom-hooks'
+import RedrumProLoader from '../../../components/RedrumProLoader'
 
 interface IProps {
   project: any,
@@ -73,14 +76,14 @@ const SecondaryNavbar: FunctionComponent<IProps> = (props) => {
     const [isVisible, setVisible] = useState(false)
     const [isInvestVisible, setInvestVisible] = useState(false)
     const [isTransferVisible, setTransferVisible] = useState(false)
-    const [available, setAvailable] = useState<any>(0)
-    const [birthYear, setBirthYear] = useState(0)
     const userId = auth.currentUser?.uid
+    const [user, setUser] = React.useState<FirebaseUser | null>(null);
+    const [loading, setLoading] = React.useState<boolean>(false)
     let data: any[] = []
     useEffect(() => {
-        userRef(userId, '/money_available', setAvailable)
-        userRef(userId, '/birthYear', setBirthYear)
-    })
+        getCurrentUserFunction(userId, setUser, setLoading);
+    }, [userId])
+
     const openModal = () => {
         setVisible(true)
     }
@@ -89,7 +92,7 @@ const SecondaryNavbar: FunctionComponent<IProps> = (props) => {
     }
     const openInvestModal = () => {
         setVisible(false)
-        available !== null && available !== 0 ? setInvestVisible(true) : setTransferVisible(true)
+        setInvestVisible(true);
     }
     const closeInvestModal = () => {
         setInvestVisible(false)
@@ -97,9 +100,11 @@ const SecondaryNavbar: FunctionComponent<IProps> = (props) => {
     }
     const date = Date.now()
     const today = new Date(date)
-    const age = today.getFullYear() - birthYear
+    const age = getRealAge( user == null ? today : user?.birth_date !== "" ? new Date(user!.birth_date) : today)
 
     return (
+      <>
+      {loading ? (<RedrumProLoader/>) : user === null ? null : (
         <>
             <Navbar style={styles.navbar} className={`${isFixed ? 'navbar shadow' : 'navbarhidden'}`}>
                 <Nav activeKey={0} >
@@ -114,34 +119,17 @@ const SecondaryNavbar: FunctionComponent<IProps> = (props) => {
                     ))}
                 </Nav>
                 <Nav pullRight style={{ minWidth: isMobile ? 'auto' : 250, }}>
-                  {
-                    isMobile ? (
                       <Button
                       appearance='primary'
                       className='r-btn r-main-btn'
                       onClick={
-                        today.getFullYear() - birthYear >= 18 ?
+                        age >= 18 ?
                         openInvestModal :
                         openModal
                       }
                       >
-                        Invest now
+                        {en ? 'Invest now' : 'Jetz investieren'}
                       </Button>
-                    ) : (
-                      <MainBtn
-                        content={'Invest now'}
-                        pressed={
-                          today.getFullYear() - birthYear >= 18 ?
-                          openInvestModal :
-                          openModal
-                        }
-                        btnColor='blue'
-                        btnAppearance='primary'
-                        btnSize='lg'
-                        isBlock={true} />
-                    )
-                  }
-
                 </Nav>
             </Navbar>
 
@@ -166,7 +154,7 @@ const SecondaryNavbar: FunctionComponent<IProps> = (props) => {
                       appearance='primary'
                       className='r-btn r-main-btn'
                       onClick={
-                        today.getFullYear() - birthYear >= 18 ?
+                        age >= 18 ?
                         openInvestModal :
                         openModal
                       }
@@ -177,7 +165,7 @@ const SecondaryNavbar: FunctionComponent<IProps> = (props) => {
                       <MainBtn
                             content={'Invest now'}
                             pressed={
-                              today.getFullYear() - birthYear >= 18 ?
+                              age >= 18 ?
                               openInvestModal :
                               openModal
                             }
@@ -191,17 +179,20 @@ const SecondaryNavbar: FunctionComponent<IProps> = (props) => {
 
                 </Nav>
             </Navbar>
-            <ConfirmAgeModal visible={isVisible} close={closeModal} openInvestModal={openInvestModal} en={en} />
-            <InvestModal 
-            project={project} 
-            close={closeInvestModal} 
-            visible={isInvestVisible} 
-            showReciept={() => null} 
-            en={false} 
-            navOpen={false} 
+            <ConfirmAgeModal visible={isVisible} close={closeModal} openInvestModal={openInvestModal} en={en} age={0} user={user!} />
+            <InvestModal
+            project={project}
+            close={closeInvestModal}
+            visible={isInvestVisible}
+            showReciept={() => null}
+            en={false}
+            navOpen={false}
             setEn={undefined} openMenu={undefined} openNav={undefined} closeNav={undefined} />
             <TransferMoneyModal navPressed={false} close={closeInvestModal} visible={isTransferVisible} />
         </>
+      )}
+
+      </>
     )
 }
 

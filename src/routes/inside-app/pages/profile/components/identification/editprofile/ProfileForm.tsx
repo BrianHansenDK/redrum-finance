@@ -49,6 +49,8 @@ const ProfileForm = (props: IProps) => {
   const [cLoading, setCLoading] = React.useState<boolean>(false)
   const [countries, setCountries] = React.useState<string[] | null>(null)
 
+  console.log(user.company_address)
+
   const getCountriesIfNeeded = () => {
     if (countries === null) {
       fetchContries(setCountries, setCLoading)
@@ -228,8 +230,6 @@ const ProfileForm = (props: IProps) => {
               <Input className='input'
               placeholder={user.company_address !== undefined ? user.company_address.split(' ')[0] :
               en ? 'Postal code...' : 'Posteinzahl...'}
-              value={companyCode === '' ? user.company_address !== undefined ? user.company_address.split(' ')[0]
-               : companyCode: companyCode}
                onChange={setCompanyCode}
               />
             </div>
@@ -254,7 +254,7 @@ const ProfileForm = (props: IProps) => {
         onChange={setCompanyCountry}
         onOpen={getCountriesIfNeeded}
         value={companyCountry === '' ? user.company_address !== undefined ? user.company_address.split(', ')[1] : companyCountry: companyCountry}
-        placeholder={user.company_address !== undefined ? user.company_address.split(', ')[1] : 'Select'}
+        placeholder={user.company_address !== undefined ? user.company_address.split(', ')[1] : en ? 'Country' : 'Land'}
         renderMenu={menu => {
           if (cLoading) {
             return (
@@ -392,7 +392,7 @@ const ProfileForm = (props: IProps) => {
         onChange={setCountry}
         onOpen={getCountriesIfNeeded}
         value={country === '' ? user.country !== '' ? user.country : country: country}
-        placeholder={user.country !== '' ? user.country : 'Select'}
+        placeholder={user.country !== '' ? user.country : en ? 'Country' : 'Land'}
         renderMenu={menu => {
           if (cLoading) {
             return (

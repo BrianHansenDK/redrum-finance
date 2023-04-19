@@ -1,8 +1,8 @@
 import React, { FunctionComponent, useEffect, useState } from 'react'
 import { Button, ButtonToolbar, Col, Modal } from 'rsuite'
 import FlexboxGridItem from 'rsuite/esm/FlexboxGrid/FlexboxGridItem'
-import { FirebaseBundle } from '../../../../../../database/Objects'
-import { auth, userRef } from '../../../../../../firebase'
+import { FirebaseBundle, FirebaseUser } from '../../../../../../database/Objects'
+import { auth, getCurrentUserFunction, userRef } from '../../../../../../firebase'
 import LanguageToggle from '../../../../components/LanguageToggle'
 import MainBtn from '../../../../components/MainBtn'
 import ConfirmAgeModal from '../ConfirmAgeModal'
@@ -12,7 +12,8 @@ import TransferMoneyModal from '../TransferMoneyModal'
 import InfoLines from './InfoLines'
 import InfoTag from './InfoTag'
 import ProgressItem from './ProgressItem'
-import { useMediaQuery } from '../../../../../../misc/custom-hooks'
+import { getRealAge, useMediaQuery } from '../../../../../../misc/custom-hooks'
+import RedrumProLoader from '../../../../components/RedrumProLoader'
 
 interface IProps {
   project: FirebaseBundle,
@@ -35,19 +36,20 @@ const RightSide: FunctionComponent<IProps> = (props) => {
     const [isTransferVisible, setTransferVisible] = useState(false);
     const [available, setAvailable] = useState<any>(0);
     const [reciept, setReciept] = useState(false);
-    const [birthYear, setBirthYear] = useState(0);
+    const [user, setUser] = React.useState<FirebaseUser | null>(null);
+    const [loading, setLoading] = React.useState<boolean>(false);
 
     const isDesktop = useMediaQuery('(min-width: 1600px)');
 
     const userId = auth.currentUser?.uid
     useEffect(() => {
-        userRef(userId, '/money_available', setAvailable)
-        userRef(userId, '/birthYear', setBirthYear)
-    })
+      getCurrentUserFunction(userId, setUser, setLoading);
+    }, [userId])
 
     const date = Date.now();
     const today = new Date(date);
-    const age = today.getFullYear() - birthYear;
+    const age = user == null ? 0 : getRealAge(user?.birth_date !== "" ? new Date(user!.birth_date) : today);
+
     const openModal = () => setVisible(true);
     const closeModal = () => setVisible(false);
     const openInvestModal = () => {
@@ -90,55 +92,36 @@ const RightSide: FunctionComponent<IProps> = (props) => {
       }
   }
     return (
-        <>
+      <>
+      {
+        loading ? (<RedrumProLoader/>) : user === null ? null : (
+          <>
             <Col as={FlexboxGridItem} colspan={isMobile ? 24 : 7}
                 style={styles.wrapper} className='flex-column'
             >
                 <ProgressItem project={project} en={en} />
                 <div style={styles.card} className='flex-column'>
-                    {/*<InfoTag />*/}
                     <InfoLines project={project} en={en} />
                     <Button
                     appearance='primary'
                     className='r-btn r-main-btn'
-                    onClick={today.getFullYear() - birthYear >= 18 ?
+                    onClick={age >= 18 ?
                       openInvestModal :
                       openModal}
                     >
                       {en ? 'Secure shares now' : 'Jetzt Anteile sichern'}
                     </Button>
-                    {/*
-                      isMobile ? (
-                        <Button
-                        appearance='primary'
-                        className='r-btn r-main-btn'
-                        onClick={today.getFullYear() - birthYear >= 18 ?
-                          openInvestModal :
-                          openModal}
-                        >
-                          {en ? 'Invest' : 'Investieren'}
-                        </Button>
-                      ) : (
-                        <MainBtn
-                        content={en ? 'Invest' : 'Investieren'}
-                        pressed={today.getFullYear() - birthYear >= 18 ?
-                          openInvestModal :
-                          openModal}
-                        btnColor='blue'
-                        btnAppearance='primary'
-                        btnSize='lg'
-                        isBlock={false} />
-                      )
-                        */}
-
                 </div>
             </Col>
-            <ConfirmAgeModal visible={isVisible} close={closeModal} openInvestModal={openInvestModal} en={en}/>
+            <ConfirmAgeModal visible={isVisible} close={closeModal} openInvestModal={openInvestModal} en={en} age={age} user={user}/>
             <InvestModal en={en} project={project} close={closeInvestModal} visible={isInvestVisible} showReciept={showReciept}
             navOpen={navOpen} setEn={setEn} openMenu={openMenu} openNav={openNav} closeNav={closeNav} />
             <TransferMoneyModal navPressed={false} close={closeInvestModal} visible={isTransferVisible} />
             <RecieptModal close={hideReciept} isVisible={reciept} />
         </>
+        )
+      }
+      </>
     )
 }
 

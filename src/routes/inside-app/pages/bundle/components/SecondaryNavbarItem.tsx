@@ -12,7 +12,15 @@ interface IProps {
 
 const SecondaryNavbarItem: React.FunctionComponent<IProps> = (props) => {
   const { isActive, icon, txt, to } = props
-  const isMobile = useMediaQuery('(max-width: 1100px)')
+  const isMobile = useMediaQuery('(max-width: 1100px)');
+  const isSmall = useMediaQuery('(max-width: 360px)');
+
+  const styles = {
+    txt: {
+        fontSize: isSmall ? 15 : 22.5,
+        fontWeight: '700',
+    }
+}
     return (
         <NavItem
             as={Link}
@@ -24,13 +32,6 @@ const SecondaryNavbarItem: React.FunctionComponent<IProps> = (props) => {
             {icon} {isMobile ? null : txt}
         </NavItem>
     )
-}
-
-const styles = {
-    txt: {
-        fontSize: 22.5,
-        fontWeight: '700',
-    }
 }
 
 export default SecondaryNavbarItem

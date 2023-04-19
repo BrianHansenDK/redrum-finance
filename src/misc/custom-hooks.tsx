@@ -98,3 +98,11 @@ export function getZipCode(user: FirebaseUser) {
 export function getCity(user: FirebaseUser) {
   return user.address.split(', ')[user.address.split(', ').length - 1].split(' ').slice(1).join(' ');
 }
+
+
+export function getRealAge(birthdate: Date) {
+  const month_diff = Date.now() - birthdate.getTime();
+  const age_dt = new Date(month_diff);
+  const year = age_dt.getUTCFullYear();
+  return Math.abs(year - 1970);
+}

@@ -14,7 +14,7 @@ const GoogleBtn = (props: IProps) => {
         </div>
         <div className="txt-con">
           <p className='small'>
-            {en ? 'NOW ON' : 'JETZT BEI'}
+            {en ? 'Soon available on' : ' Bald verfügbar bei'}
           </p>
           <p className="brand">
             Google Play
