@@ -9,13 +9,12 @@ import { getCity } from '../../../../../../misc/custom-hooks'
 interface IProps {
   user: FirebaseUser,
   en: boolean,
+  visible: boolean,
+  openModal: any, closeModal: any,
 }
 
 const ProfileData = (props: IProps) => {
-    const { user, en } = props
-    const [visible, setVisible] = React.useState(false)
-    const openModal = () => setVisible(true); const closeModal = () => setVisible(false)
-
+    const { user, en, visible, openModal, closeModal } = props;
     return (
         <>
             <div className='profile-data'>

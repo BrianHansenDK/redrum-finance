@@ -4,6 +4,7 @@ import { getAnalytics } from "firebase/analytics";
 import { getAuth } from "firebase/auth";
 import { DataSnapshot, get, getDatabase, onValue, ref, set, update } from 'firebase/database';
 import { EventHandler, useEffect, useState } from "react";
+import { getRealAge } from "./misc/custom-hooks";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -279,6 +280,12 @@ export function newUpdateAccount (userId: string, title: string, full_name: stri
     }
     if (companyWebsite !== undefined) {
       updates['website'] = companyWebsite
+    }
+    if  (title !== "" && full_name !== "" && birth_date !== new  Date() &&
+    country !== "" && address.split(",").length > 1 && phone_number !== "") {
+      const age = getRealAge(new Date(birth_date))
+      if (age < 18) updates["completion"] = 90
+      else updates["completion"] = 100
     }
     update(reference, updates).then(then).catch(error)
     .finally(end)

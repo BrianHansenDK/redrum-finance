@@ -1,5 +1,5 @@
 import React from 'react'
-import { Badge, Popover, Progress, Whisper } from 'rsuite'
+import { Badge, Button, Popover, Progress, Whisper } from 'rsuite'
 import { mainColors } from '../../../../themes/colors'
 import InfoIcon from '@rsuite/icons/InfoRound'
 import { Link } from 'react-router-dom'
@@ -9,17 +9,19 @@ interface IProps {
     userId: any,
     completion: number,
     isMobile: boolean,
+    openModal: any,
+    visible: boolean,
 }
 
 const ProfileProgress: React.FunctionComponent<IProps> = (props) => {
-    const { completion, userId, isMobile } = props
+    const { completion, userId, isMobile, openModal, visible } = props
     const isPhone = useMediaQuery('(max-width: 768px)')
     const speaker = (
         <Popover title="Account not complete">
             <p>Your account is {completion}% complete however it is optimal to have 100% completion. </p>
-            <p>This may affect your ability to invest in projects.</p>
+            <p>Your account has to be 100% complete to invest in projects.</p>
             <p>
-                <Link to={`/app/profile/${userId}`}>Complete account</Link>
+                <Button appearance='link' onClick={openModal}>Complete account</Button>
             </p>
         </Popover>
     );
@@ -55,13 +57,36 @@ const ProfileProgress: React.FunctionComponent<IProps> = (props) => {
         }
     }
     return (
+      <>
+      {visible ? (
+        <div style={styles.wrap} className={isMobile ? 'flex-column' : ''}>
+        {
+          isPhone ? null : (
+            <p style={styles.title} className='position-relative'>
+              {completion < 100 ? <InfoIcon className='position-absolute' style={styles.badge} /> : ''}
+              Completion:
+          </p>
+          )
+        }
+          <Progress
+              showInfo={false}
+              percent={completion}
+              strokeColor={`${completion < 40 ? mainColors.warning
+                  : completion < 100 && completion >= 40 ? mainColors.main : mainColors.success}`}
+              status={completion == 100 ? 'success' : 'success'}
+              strokeWidth={isPhone ? 5 : isMobile ? 7.5 : 10}
+          />
+          <p style={styles.pc}>
+              {completion}%
+          </p>
+      </div>
+      ) : (
         <Whisper
         placement='top'
         speaker={completion == 100 ? successSpeaker : speaker}
         trigger={isMobile ? 'click' : 'hover'}
         enterable
         >
-
             <div style={styles.wrap} className={isMobile ? 'flex-column' : ''}>
               {
                 isPhone ? null : (
@@ -71,8 +96,6 @@ const ProfileProgress: React.FunctionComponent<IProps> = (props) => {
                 </p>
                 )
               }
-
-
                 <Progress
                     showInfo={false}
                     percent={completion}
@@ -86,6 +109,9 @@ const ProfileProgress: React.FunctionComponent<IProps> = (props) => {
                 </p>
             </div>
         </Whisper>
+      )}
+
+    </>
     )
 }
 

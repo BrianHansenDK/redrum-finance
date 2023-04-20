@@ -7,10 +7,12 @@ import { FirebaseUser } from '../../../../../../database/Objects'
 interface IProps {
     user: FirebaseUser,
     isMobile: boolean,
+    openModal: any,
+    visible: boolean,
 }
 
 const ProfileInformation: React.FunctionComponent<IProps> = (props) => {
-    const { user, isMobile } = props
+    const { user, isMobile, openModal, visible } = props
     return (
         <div className='profile-info'>
             <div className='text-inner'>
@@ -31,6 +33,8 @@ const ProfileInformation: React.FunctionComponent<IProps> = (props) => {
                 completion={user.completion}
                 userId={user.id}
                 isMobile={isMobile}
+                openModal={openModal}
+                visible={visible}
                 />
                 </>
               ) : <MainBtn

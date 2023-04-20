@@ -23,6 +23,8 @@ const ProfileIntroduction = (props: IProps) => {
     const {user, isMobile, en} = props;
     const [currentUser, setCurrentUser] = React.useState<FirebaseUser | null>(null);
     const [loading, setLoading] = React.useState<boolean>(false);
+    const [visible, setVisible] = React.useState(false)
+    const openModal = () => setVisible(true); const closeModal = () => setVisible(false)
     React.useEffect(() => {
       getCurrentUserOnValue(user.id, setCurrentUser);
     }, [user])
@@ -39,8 +41,11 @@ const ProfileIntroduction = (props: IProps) => {
                   <ProfileInformation
                   user={currentUser}
                   isMobile={isMobile}
-                   />
-                  <ProfileData en={en} user={currentUser} />
+                  openModal={openModal} visible={visible}/>
+                  <ProfileData
+                  en={en} user={currentUser}
+                  visible={visible}
+                  openModal={openModal} closeModal={closeModal} />
                 </>
               )
 
