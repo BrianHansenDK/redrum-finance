@@ -106,3 +106,7 @@ export function getRealAge(birthdate: Date) {
   const year = age_dt.getUTCFullYear();
   return Math.abs(year - 1970);
 }
+
+export function checkIfFirefox() {
+  return navigator.userAgent.indexOf("Firefox") != -1
+}

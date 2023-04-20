@@ -3,7 +3,7 @@ import { Button, DatePicker, Input, InputPicker, Message, Radio, RadioGroup, Tog
 import { FirebaseUser } from '../../../../../../../database/Objects'
 import SpinnerIcon from '@rsuite/icons/legacy/Spinner';
 import { mainColors } from '../../../../../themes/colors';
-import { fetchContries, getCity, getUserHousenumber, getUserStreet, getZipCode } from '../../../../../../../misc/custom-hooks';
+import { fetchContries, getCity, getUserHousenumber, getUserStreet, getZipCode, useMediaQuery } from '../../../../../../../misc/custom-hooks';
 import { auth, newUpdateAccount } from '../../../../../../../firebase';
 import { ValueType } from 'rsuite/esm/Radio/Radio';
 import { sendPasswordResetEmail, updateEmail } from 'firebase/auth';
@@ -49,7 +49,7 @@ const ProfileForm = (props: IProps) => {
   const [cLoading, setCLoading] = React.useState<boolean>(false)
   const [countries, setCountries] = React.useState<string[] | null>(null)
 
-  console.log(user.company_address)
+  const isMobile = useMediaQuery('(max-width: 900px)');
 
   const getCountriesIfNeeded = () => {
     if (countries === null) {
@@ -143,7 +143,7 @@ const ProfileForm = (props: IProps) => {
         <RadioGroup
         value={companyAccount}
         onChange={setCompanyAccount}
-        inline style={{display: 'flex', alignItems: 'center'}}>
+        inline style={{display: 'flex', alignItems: 'center'}} className={isMobile ? 'flex-column': ''}>
           <Radio
           value={''}
           style={{display: 'flex', alignItems: 'center'}}>
@@ -270,16 +270,18 @@ const ProfileForm = (props: IProps) => {
         </div>
         </div>
         <div className="form-element" style={{width: '100%',}}>
+          <div className="inner">
             <label htmlFor="" className="label">{en ? 'Company domain' : 'Firma Website'}*</label>
             <Input className='input' style={{width: '100%'}}
             placeholder={user.website !== undefined ? user.website :
-            'Paste URL...'}
-            value={website === '' ? user.website !== '' ?user.website
-             : website: website}
-             onChange={setCode}
-            />
+              'Paste URL...'}
+              value={website === '' ? user.website !== '' ?user.website
+              : website: website}
+              onChange={setCode}
+              />
+          </div>
         </div>
-        <div className='d-flex align-items-center'>
+        <div className='form-element d-flex align-items-center'>
           <Toggle
           defaultChecked={checked}
           onClick={() => setChecked(!checked)}

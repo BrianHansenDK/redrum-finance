@@ -7,6 +7,8 @@ $input-bg: rgb(224, 230, 235);
 $blue-shadow: #359afe7b;
 $dark-shadow: rgba(0, 0, 29, .25);
 
+$mobile: 900px;
+
 .edit-account-modal {
   & .modal-header {
     & .modal-title {
@@ -28,11 +30,17 @@ $dark-shadow: rgba(0, 0, 29, .25);
       width: 100%;
       max-width: 900px;
       row-gap: 15px;
+      @media (max-width: $mobile) {
+        align-items: center;
+      }
       & .form-element {
         display: flex; flex-direction: column;
         row-gap: 2.5px;
         width: 50%;
         flex-grow: 1; flex-shrink: 0;
+        @media (max-width: $mobile) {
+          align-items: center;
+        }
         & .label {
           color: rgb(90,90,90);
           font-weight: 300;
@@ -41,6 +49,10 @@ $dark-shadow: rgba(0, 0, 29, .25);
           text-transform: uppercase;
           text-overflow: ellipsis;
           line-height: 1.5;
+          @media (max-width: $mobile) {
+            text-align: center;
+            font-size: small;
+          }
         }
         & .input {
           width: calc(100% - 12.5px);
@@ -76,9 +88,17 @@ $dark-shadow: rgba(0, 0, 29, .25);
           flex-direction: row;
           column-gap: 25px;
           width: 100%;
+          @media (max-width: $mobile) {
+            flex-direction: column;
+            align-items: center;
+            column-gap: 15px;
+          }
           & .inner {
             display: flex; flex-direction: column;
             width: 50%;
+            @media (max-width: $mobile) {
+              column-gap: 5px;
+            }
             & .input {
               width: 100%;
             }
@@ -87,6 +107,10 @@ $dark-shadow: rgba(0, 0, 29, .25);
             width: 50%;
             display: flex;
             column-gap: 15px;
+            @media (max-width: $mobile) {
+              margin-bottom: 10px;
+              flex-wrap: wrap;
+            }
             & .postal-code {
               width: 150px;
               flex-shrink: 0;
@@ -99,6 +123,9 @@ $dark-shadow: rgba(0, 0, 29, .25);
             width: 50%;
             display: flex;
             column-gap: 15px;
+            @media (max-width: $mobile) {
+              flex-wrap: wrap;
+            }
             & .street {
               flex-shrink: 0;
               flex-grow: 1;

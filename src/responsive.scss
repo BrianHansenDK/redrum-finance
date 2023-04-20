@@ -574,3 +574,7 @@ $dark-shadow: rgba(0, 0, 29, .25);
     width: 175px;
   }
 }
+
+.contain {
+  object-fit: contain;
+}

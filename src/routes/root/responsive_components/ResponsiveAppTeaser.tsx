@@ -1,13 +1,15 @@
 import React from 'react'
 import { Button, FlexboxGrid } from 'rsuite'
-import { useMediaQuery } from '../../../misc/custom-hooks'
+import { checkIfFirefox, useMediaQuery } from '../../../misc/custom-hooks'
 import APP from './redrum-pro-app.svg'
+import APPF from '../../../assets/redrum-pro-app.jpg'
 import { homeStrings } from '../../../library/string/Landinspage'
 import GoogleBtn from '../../../components/GoogleBtn'
 import AppleBtn from '../../../components/AppleBtn'
 
 const ResponsiveAppTeaser = ({en}: {en:boolean}) => {
-  const isMobile = useMediaQuery('(max-width: 1100px)')
+  const isMobile = useMediaQuery('(max-width: 1100px)');
+  const isFirefox = checkIfFirefox();
   return (
     <FlexboxGrid
     align='middle'
@@ -20,9 +22,10 @@ const ResponsiveAppTeaser = ({en}: {en:boolean}) => {
         colspan={isMobile ? 24 : 8}
         >
           <img
-          src={APP}
+          src={isFirefox ? APPF : APP}
           alt="Redrum finance as an App opened on an iPhone"
-          width='100%'
+          className={isFirefox ? 'contain' : ''}
+          width={'100%'}
           />
         </FlexboxGrid.Item>
       )}
@@ -35,7 +38,7 @@ const ResponsiveAppTeaser = ({en}: {en:boolean}) => {
           {isMobile ? (
             <div className='phone-img-con'>
               <img
-              src={APP}
+              src={isFirefox ? APPF : APP}
               alt="Redrum finance as an App opened on an iPhone"
               />
             </div>

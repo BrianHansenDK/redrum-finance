@@ -1,10 +1,7 @@
 import { getAuth } from 'firebase/auth'
 import React, { useEffect, useState } from 'react'
-import MovieDocViewerDE from '../../components/documentviewer/MovieDocViewerDE'
 import { useMediaQuery } from '../../misc/custom-hooks'
 import MainLayout from '../layouts/mainLayout'
-import AppTeaser from './components/appTeaser'
-import CtaDown from './components/ctaDown'
 import CtaUp from './components/ctaUp'
 import Features from './components/features'
 import Hero from './components/hero'
@@ -14,7 +11,6 @@ import ResponsiveAppTeaser from './responsive_components/ResponsiveAppTeaser'
 import ResponsiveCtaUpper from './responsive_components/ResponsiveCtaUpper'
 import ResponsiveFeaturesSection from './responsive_components/ResponsiveFeaturesSection'
 import ResponsiveHero from './responsive_components/ResponsiveHero'
-import ResponsiveLowerCTA from './responsive_components/ResponsiveLowerCTA'
 import ResponsiveStats from './responsive_components/ResponsiveStats'
 
 interface IProps {
@@ -25,7 +21,6 @@ const Root: React.FunctionComponent<IProps> = (props) => {
   const { isVisible, openModal, closeModal, en, setEn } = props
   const isTablet = useMediaQuery('(max-width: 1100px)')
   const isDesktop = useMediaQuery('(min-width: 1600px)')
-
   const auth = getAuth()
     const [active, setActive] = useState(false)
 

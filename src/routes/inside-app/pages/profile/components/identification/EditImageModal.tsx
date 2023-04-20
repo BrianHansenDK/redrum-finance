@@ -67,7 +67,7 @@ const EditImageModal = (props: IProps) => {
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body style={styles.body}>
-                <input type="file" onChange={handleImage} className='custom-file-input' />
+                <input type="file" onChange={handleImage} accept="image/*" className='custom-file-input' />
                 <div className='d-flex flex-column'>
                     <img style={styles.image} src={user.image !== '' && imageUrl == PLACEHOLDER ? user.image : imageUrl} alt={`Profile image for ${user.username}`} />
                     <Button disabled={userImage == null} style={styles.chooseBtn} color='green' appearance='primary' onClick={handleSubmit}>
