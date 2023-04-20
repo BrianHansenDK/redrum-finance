@@ -153,7 +153,7 @@ const AuthModalInputs: React.FunctionComponent<IProps> = (props) => {
         </InputGroup>
       </div>
       <ReCAPTCHA
-      sitekey="6LdzboklAAAAABSIbMmh5sxIK-43VvMZ-aQsCbEd"
+      sitekey="6Lec2aIlAAAAAAA-5JTMB_z-U7CDjtrfs3R1IiJ9"
       onChange={() => setCaptured(true)}
       />
       </>
