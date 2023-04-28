@@ -29,16 +29,24 @@ interface IProps {
   editShares: any,
   finishEdit: any,
   user: FirebaseUser,
+  ppmodalOpen: boolean,
+  openPP: any, closePP: any
 }
 const CheckoutSummary = (props: IProps) => {
   const {en, investAmount, bonus, address, investInBundle, isPaypal, makeOrder, approve,
-  editing, editShares, finishEdit, user, project} = props
+  editing, editShares, finishEdit, user, project, ppmodalOpen, openPP, closePP} = props
   const [checked, setChecked] = React.useState<boolean>(false);
   const [checked2, setChecked2] = React.useState<boolean>(false);
-  const [ppmodalOpen, setPpmodalOpen] = React.useState<boolean>(false);
 
-  const openPP = () => setPpmodalOpen(true);
-  const closePP = () => setPpmodalOpen(false);
+  const haveAllInfo =
+      (!user?.company_account && (user?.full_name !== "" && user?.address !== ""
+      && user?.birth_date !== "" && user?.title !== undefined
+      && user.phone_number && user.country !== "")) || (
+        (user?.company_account) && (user?.full_name !== "" && user?.address !== ""
+        && user?.birth_date !== "" && user?.title !== undefined
+        && user.phone_number && user.country !== ""
+        && user.company_name !== undefined && user.role !== "" && user.company_address !== undefined )
+      )
 
   const isMobile = useMediaQuery('(max-width: 1200px)')
 
@@ -179,7 +187,7 @@ const CheckoutSummary = (props: IProps) => {
           disabled={address == null || !checked || !checked2}
           block
           style={{ pointerEvents: !checked || !checked2 ? 'none' : 'auto' }}
-          onClick={isPaypal ? () => openPP() : investInBundle}
+          onClick={isPaypal ? haveAllInfo ? () => openPP() : investInBundle : investInBundle}
           >
             {en ?
             'Order with obligation to pay' :

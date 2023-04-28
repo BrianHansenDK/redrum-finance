@@ -1,0 +1,26 @@
+.emodal {
+  & .emodal-header {
+    & .title {
+      text-align: center;
+      font-size: xx-large;
+      font-weight: 700;
+    }
+  }
+  & .emodal-body {
+    & .des {
+      font-size: large;
+    }
+  }
+  & .emodal-footer {
+    & .btn-con {
+      display: flex;
+      align-items: center;
+      column-gap: 15px;
+      & .r-btn {
+        width: 50%;
+        flex-grow: 0;
+        flex-shrink: 1;
+      }
+    }
+  }
+}

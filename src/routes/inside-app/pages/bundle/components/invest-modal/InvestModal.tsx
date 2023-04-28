@@ -42,6 +42,11 @@ const InvestModal: React.FunctionComponent<IProps> = (props) => {
     const [user, setUser] = React.useState<FirebaseUser | null>(null)
     const [dLoading, setDLoading] = React.useState(false)
 
+    const [ppmodalOpen, setPpmodalOpen] = React.useState<boolean>(false);
+
+  const openPP = () => setPpmodalOpen(true);
+  const closePP = () => setPpmodalOpen(false);
+
 
   function makeItPaypal() {
     setPaymentMethod('PayPal')
@@ -216,7 +221,7 @@ const InvestModal: React.FunctionComponent<IProps> = (props) => {
       </Notification>, {placement: 'topCenter'})
     }
 
-    if (((!isPaypal && parseInt(investAmount) <= available && haveAllInfo) || isPaypal) && (
+    if (((!isPaypal && parseInt(investAmount) <= available && haveAllInfo) || (isPaypal && haveAllInfo) ) && (
       parseInt(investAmount) % project.movies.length == 0 && parseInt(investAmount) !== 0
     ) && haveAllInfo
       ) {
@@ -455,7 +460,8 @@ const InvestModal: React.FunctionComponent<IProps> = (props) => {
               investInBundle={investInBundle}
               isPaypal={isPaypal}
               makeItPaypal={makeItPaypal}
-              makeItDeposit={makeItDeposit} makeOrder={makeOrder} approveOrder={approvePayment}            />
+              makeItDeposit={makeItDeposit} makeOrder={makeOrder} approveOrder={approvePayment}
+              ppmodalOpen={ppmodalOpen} openPP={openPP} closePP={closePP}/>
           ) : null
         }
         <div className="hidden-from-server This is the previous modal">

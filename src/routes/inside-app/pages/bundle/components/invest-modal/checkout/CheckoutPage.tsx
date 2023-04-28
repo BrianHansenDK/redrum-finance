@@ -30,13 +30,16 @@ interface IProps {
   makeItDeposit: Function,
   makeOrder: any,
   approveOrder: any,
+  ppmodalOpen: boolean,
+  openPP: any, closePP: any
 }
 const CheckoutPage = (props: IProps) => {
   const {
     en, navOpen, visible, investAmount, available,
     setEn, openMenu, openNav, closeNav, project,
     bonus, investInBundle, isPaypal, makeItPaypal, makeItDeposit,
-    makeOrder, approveOrder, closeSelf, setInvestAmount
+    makeOrder, approveOrder, closeSelf, setInvestAmount,
+    ppmodalOpen, openPP, closePP
   } = props
 
   const [user, setUser] = React.useState<FirebaseUser | null>(null)
@@ -120,7 +123,7 @@ const CheckoutPage = (props: IProps) => {
               editing={sharesEditable}
               editShares={editTheShares}
               finishEdit={finishEditing}
-              user={user!}/>
+              user={user!} ppmodalOpen={ppmodalOpen} openPP={openPP} closePP={closePP}/>
           </div>
         </div>
       </div>

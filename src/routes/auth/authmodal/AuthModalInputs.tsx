@@ -47,7 +47,7 @@ const AuthModalInputs: React.FunctionComponent<IProps> = (props) => {
   const signUp = () => {
     if (userMails.includes(userEmail)) {
       toaster.push(
-        <Message type='error' style={PushThemes.pushRed}>
+        <Message type='error' showIcon duration={8000}>
           Error: user already exist
         </Message>
       )
@@ -78,12 +78,13 @@ const AuthModalInputs: React.FunctionComponent<IProps> = (props) => {
             const user = userCredentials.user
             createAccount(user.uid, userName, userEmail, 10)
             navigate('/app')
+            toaster.push(<Message showIcon duration={8000} closable>
+              Account created succesfully
+            </Message>)
             })
             .catch((err) => {
-              console.log(err.message)
-            }).finally(() => {
-              toaster.push(<Message showIcon duration={8000} closable>
-                Account created succesfully
+              toaster.push(<Message showIcon duration={8000} type='error' closable>
+                {err.message}
               </Message>)
             })
           }
@@ -101,19 +102,12 @@ const AuthModalInputs: React.FunctionComponent<IProps> = (props) => {
                   Logged in succesfully
                 </Message>, { placement: 'topCenter' }
             )
-            window.setTimeout(() => {
-                toaster.clear()
-            }, 5000)
         }).catch((error) => {
             toaster.push(
                 <Message showIcon type="error" duration={8000} closable>
                   Something went wrong: Error {error.code}
                 </Message>, { placement: 'topCenter' }
             )
-            console.log(error.message)
-            window.setTimeout(() => {
-                toaster.clear()
-            }, 5000)
         });
 }
   return (

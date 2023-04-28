@@ -10,14 +10,24 @@ import { sendPasswordResetEmail, updateEmail } from 'firebase/auth';
 import ChangePasswordModal from './ChangePasswordModal';
 import CheckIcon from '@rsuite/icons/Check';
 import CloseIcon from '@rsuite/icons/Close';
+import EModal from './EModal';
 
-interface IProps {user: FirebaseUser, en: boolean, close: any}
+interface IProps {
+  user: FirebaseUser,
+  en: boolean,
+  close: any,
+  setChanged: any,
+  eModalOpen: boolean, closeEModal: any,
+}
 
 const ProfileForm = (props: IProps) => {
-  const {user, en, close} = props
-  const today = new Date()
-  const toaster = useToaster()
+  const {user, en, close, setChanged, eModalOpen, closeEModal} = props;
 
+  // Mark: - PROPERTIES
+  let today = new Date();
+  const toaster = useToaster();
+
+  // USER DATA
   const [title, setTitle] = React.useState('')
   const [firstName, setFirstName] = React.useState('')
   const [lastName, setLastName] = React.useState('')
@@ -41,6 +51,20 @@ const ProfileForm = (props: IProps) => {
   const [companyAccount, setCompanyAccount] =
     React.useState<ValueType | undefined>(user.company_account ? 'true' : '')
 
+
+
+    const changed =
+    title !== '' || firstName !== '' || lastName !== '' || birthdate !== today || role !== '' || companyName !== '' ||
+    companyCode !== '' || companyCity !== '' || companyCountry !== '' || website !== '' || country !== '' || code !== '' ||
+    city !== '' || street !== '' || houseNumber !== '' || addAddress !== '' || addAddress2 !== '' || phone !== ''
+
+  React.useEffect(() => {
+    today = new Date(); setBirthdate(user.birth_date !== "" ? new Date(user.birth_date) : today);
+    setChanged(changed);
+  }, [title, firstName, lastName, email, role, companyName, companyCode,
+  companyCity, companyCountry, website, country, city, street, houseNumber, addAddress,
+addAddress2, phone, checked, companyAccount])
+
   const titleData = [
     {label: en ? 'Mr.' : 'Mann', value: 'Mr.'}, {label: en ? 'Miss.' : 'Frau', value: 'Miss.'},
     {label: en ? 'Other.' : 'Ander', value: 'Other'}
@@ -50,6 +74,8 @@ const ProfileForm = (props: IProps) => {
   const [countries, setCountries] = React.useState<string[] | null>(null)
 
   const isMobile = useMediaQuery('(max-width: 900px)');
+
+  // Mark: . FUNCTIONS
 
   const getCountriesIfNeeded = () => {
     if (countries === null) {
@@ -74,13 +100,22 @@ const ProfileForm = (props: IProps) => {
         Please fill out all the necessary information from your company.
       </Message>)
     }
-    if (((firstName !== '' && firstName.split(' ').length === 1) || firstName == '') && !companyStatement)
+    const companyWithoutAccept =
+    (Boolean(companyAccount)) && !checked
+    if (companyWithoutAccept) {
+      toaster.push(<Message showIcon type='error' duration={5000}>
+        Please certify your legal entitlement to take action for th company
+      </Message>)
+    }
+    if (((firstName !== '' && firstName.split(' ').length === 1) || firstName == '') && (!companyStatement) && !companyWithoutAccept)
     {
     newUpdateAccount(
       user.id,
       title === '' ? user.title !== undefined ? user.title : '' : title,
-      firstName === '' || lastName === '' ? user.full_name : `${firstName} ${lastName}`,
-      birthdate.toLocaleDateString(),
+      firstName === '' && lastName === '' ? user.full_name :
+      (firstName !== "" && lastName === "") ? `${firstName} ${user.full_name !== "" ? user.full_name.split(" ").slice(1).join(" ") : ''}` :
+      (firstName === '' && lastName !== '') ? `${user.full_name !== "" ? user.full_name.split(" ")[0] : ''} ${lastName}` : '',
+      birthdate.toDateString(),
       email === '' ? user.email : email,
       country !== '' ? country : user.country,
       code !== '' && city !== '' && street !== '' ? `${street} ${houseNumber}${addAddress !== '' ? `, ${addAddress}` : ''}${addAddress2 !== '' ? `, ${addAddress2}` : ''}, ${code} ${city}` : user.address,
@@ -94,7 +129,7 @@ const ProfileForm = (props: IProps) => {
         toaster.push(<Message showIcon type='error' duration={5000}>
           {err.message}
         </Message>);
-      },() => {close()},
+      },() => {close(); closeEModal();},
       Boolean(companyAccount),
       Boolean(companyAccount) ? role : user.role,
       Boolean(companyAccount) ? companyName : user.company_name !== undefined ? user.company_name : undefined,
@@ -127,6 +162,8 @@ const ProfileForm = (props: IProps) => {
   const openModal = () => setModalOpen(true)
   const closeModal = () => setModalOpen(false)
   const regex = new RegExp('\\S+', 'gm')
+
+  // Mark: - PREVIEW
   return (
     <div className='edit-profile-form'>
       <div className="form-element double-input pronounce-element" style={{display: 'flex', alignItems: 'center'}}>
@@ -185,7 +222,7 @@ const ProfileForm = (props: IProps) => {
       <div className="inner birthdate">
         <label className="label">{en ? 'Birtdate' : 'Geburtsdatum'}*</label>
         <DatePicker className='input'
-        value={birthdate === today ? user.birth_date !== '' ? new Date(user.birth_date) : null: birthdate}
+        value={new Date(birthdate) === today ? user.birth_date !== '' ? new Date(user.birth_date) : null: birthdate}
         oneTap onChange={setBirthdate}/>
       </div>
       </Whisper>
@@ -281,7 +318,7 @@ const ProfileForm = (props: IProps) => {
               />
           </div>
         </div>
-        <div className='form-element d-flex align-items-center'>
+        <div className='form-element d-flex align-items-center flex-row'>
           <Toggle
           defaultChecked={checked}
           onClick={() => setChecked(!checked)}
@@ -422,6 +459,9 @@ const ProfileForm = (props: IProps) => {
         {en ? 'Save changes' : 'Speichern von Änderungen'}
       </Button>
       <ChangePasswordModal en={en} open={modalOpen} close={closeModal} user={user}/>
+      <EModal en={en} open={eModalOpen} close={() => {
+        closeEModal(); close();
+        }} save={saveChanges}/>
     </div>
   )
 }
