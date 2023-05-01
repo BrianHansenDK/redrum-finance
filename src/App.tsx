@@ -51,6 +51,7 @@ import ContactPage from './routes/contact/index.js';
 import ThankYouPage from './routes/inside-app/pages/purchase/ThankYouPage.js';
 import { PayPalScriptProvider } from '@paypal/react-paypal-js';
 import TACEnglish from './routes/terms-and-conditions/TACEnglish.js';
+import FAQPage from './routes/faq/FAQPage.js';
 
 
 const App = () => {
@@ -129,6 +130,7 @@ const App = () => {
       <EnglishPrivacyPolicy en={isEnglish} setEn={changeLan} isVisible={isVisible} openModal={openModal} closeModal={closeModal}/>) : (
       <GermanPrivacyPolicy en={isEnglish} setEn={changeLan} isVisible={isVisible} openModal={openModal} closeModal={closeModal}/>) }
       />
+      <Route path='/faq' element={<FAQPage en={isEnglish} setEn={changeLan} isVisible={isVisible} openModal={openModal} closeModal={closeModal}/>}/>
       <Route path="/public-relations" element={isEnglish ? (
         <EnglishRelations en={isEnglish} setEn={changeLan} isVisible={isVisible} openModal={openModal} closeModal={closeModal}/>) : (
         <GermanRelations en={isEnglish} setEn={changeLan} isVisible={isVisible} openModal={openModal} closeModal={closeModal}/> )}

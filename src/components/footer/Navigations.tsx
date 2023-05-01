@@ -22,7 +22,7 @@ const Navigations: React.FunctionComponent<IProps> = (props) => {
             <Nav.Item as={'a'} href='/how-it-works'>
               {en ? 'How It Works' : 'So Funktioniert Es'}
             </Nav.Item>
-            <Nav.Item as={'a'} href='/'>
+            <Nav.Item as={'a'} href='/faq'>
               FAQ
             </Nav.Item>
           </Nav>

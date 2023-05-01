@@ -8,11 +8,13 @@ import Statistics from './statistics'
 import Waves from './waves'
 import { homeStrings } from '../../../library/string/Landinspage'
 import { useNavigate } from 'react-router-dom'
+import { auth } from '../../../firebase'
 
 interface IProps {en: boolean, openModal: any}
 const Hero: React.FunctionComponent<IProps> = (props) => {
   const {en, openModal} = props
   const navigate = useNavigate()
+  const loggedIn = auth !== null
     return (
         <>
             <div id='hero-wrap' className=' hero-img'>
@@ -29,7 +31,13 @@ const Hero: React.FunctionComponent<IProps> = (props) => {
                         </div>
                         <div id='btn-group'>
                             <Button
-                            onClick={openModal}
+                            onClick={() => {
+                              if (!loggedIn) {
+                                openModal()
+                              } else {
+                                navigate("/app")
+                              }
+                            }}
                             appearance='primary'
                             className='r-btn r-main-btn'
 

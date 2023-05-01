@@ -5,6 +5,7 @@ import MOUSE from '@rsuite/icons/legacy/MousePointer'
 import CAT from '../../../components/images/redrum_cat.png'
 import { useMediaQuery } from '../../../misc/custom-hooks'
 import { useNavigate } from 'react-router-dom'
+import { auth } from '../../../firebase'
 
 interface IProps {
   en: boolean,
@@ -24,6 +25,7 @@ const ResponsiveHero = (props: IProps) => {
       width: 'auto',
     }
   }
+  const loggedIn = auth !== null
   return (
     <FlexboxGrid className='lp-hero' style={styles.wrap} align='middle' justify='center'>
       <FlexboxGrid.Item colspan={isMobile ? 24 : 10} className={`r-hero-txt-con ${isDesktop ? 'mr-3' : ''}`}>
@@ -48,7 +50,14 @@ const ResponsiveHero = (props: IProps) => {
           className='r-btn r-main-btn'
           style={styles.btn}
           block={isMobile && !isPhone}
-          onClick={openModal}
+          onClick={() => {
+            console.log(loggedIn)
+            if (!loggedIn) {
+              openModal()
+            } else {
+              navigate("/app")
+            }
+          }}
           >
             {!isMobile ? (<MOUSE/>) : null} {en ? homeStrings.heroEN.investBtn : homeStrings.heroDE.investBtn}
           </Button>

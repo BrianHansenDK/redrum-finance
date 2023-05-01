@@ -48,7 +48,7 @@ const ProfileProgress: React.FunctionComponent<IProps> = (props) => {
             fontSize: isMobile ? 8 : 15,
             top: -5,
             right: 0,
-            color: completion < 40 ? mainColors.warning : completion < 100 ? mainColors.main : mainColors.success,
+            color: completion < 40 ? mainColors.warning : completion < 100 ? mainColors.red : mainColors.success,
         },
         pc: {
             fontSize: isMobile ? 14 : 22.5,
@@ -97,16 +97,13 @@ const ProfileProgress: React.FunctionComponent<IProps> = (props) => {
                 )
               }
                 <Progress
-                    showInfo={false}
+                    showInfo
                     percent={completion}
                     strokeColor={`${completion < 40 ? mainColors.warning
-                        : completion < 100 && completion >= 40 ? mainColors.main : mainColors.success}`}
-                    status={completion == 100 ? 'success' : 'success'}
+                        : completion < 100 && completion >= 40 ? mainColors.red : mainColors.success}`}
+                    status={completion == 100 ? 'success' : 'fail'}
                     strokeWidth={isPhone ? 5 : isMobile ? 7.5 : 10}
                 />
-                <p style={styles.pc}>
-                    {completion}%
-                </p>
             </div>
         </Whisper>
       )}

@@ -166,7 +166,7 @@ const InvestModal: React.FunctionComponent<IProps> = (props) => {
 
     const investInBundle = () => {
       const haveAllInfo =
-      (!user?.company_account && (user?.full_name !== "" && user?.address !== ""
+      (!user?.company_account && ((user?.full_name !== "" && user!.full_name.split(" ").length > 1) && user?.address !== ""
       && user?.birth_date !== "" && user?.title !== undefined
       && user.phone_number && user.country !== "")) || (
         (user?.company_account) && (user?.full_name !== "" && user?.address !== ""
@@ -263,11 +263,10 @@ const InvestModal: React.FunctionComponent<IProps> = (props) => {
             })
 
             toaster.push(
-                <Message style={PushThemes.pushGreen} type='success'>
-                    <p style={PushThemes.txt}>You have invested {investAmount + bonus}€ in the project: {project.name}</p>
+                <Message type='success' duration={8000} closable showIcon>
+                    You have invested {investAmount + bonus}€ in the project: {project.name}
                 </Message> , { placement: 'topCenter' }
             )
-            window.setTimeout(() => { toaster.clear() }, 5000)
             close()
             navigate('/app/congratulations')
             showReciept()

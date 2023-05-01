@@ -37,6 +37,8 @@ const ProfileForm = (props: IProps) => {
   const [companyName, setCompanyName] = React.useState('')
   const [companyCode, setCompanyCode] = React.useState('')
   const [companyCity, setCompanyCity] = React.useState('')
+  const [companyStreet, setCompanyStreet] = React.useState('')
+  const [companyHN, setCompanyHN] = React.useState('')
   const [companyCountry, setCompanyCountry] = React.useState('')
   const [website, setWebsite] = React.useState('')
   const [country, setCountry] = React.useState('')
@@ -94,7 +96,9 @@ addAddress2, phone, checked, companyAccount])
       (companyName === '' && user.company_name === undefined)
       || (companyCode === '' && user.company_address === undefined) ||
       (companyCity === '' && user.company_address === undefined) ||
-      (companyCountry === '' && user.company_address === undefined))
+      (companyCountry === '' && user.company_address === undefined) ||
+      (companyStreet === '' && user.company_address === undefined) ||
+      (companyHN === '' && user.company_address === undefined))
     if (companyStatement) {
       toaster.push(<Message showIcon type='error' duration={5000}>
         Please fill out all the necessary information from your company.
@@ -133,7 +137,7 @@ addAddress2, phone, checked, companyAccount])
       Boolean(companyAccount),
       Boolean(companyAccount) ? role : user.role,
       Boolean(companyAccount) ? companyName : user.company_name !== undefined ? user.company_name : undefined,
-      Boolean(companyAccount) ? `${companyCode} ${companyCity}, ${companyCountry}` : user.company_address !== undefined ? user.company_address : undefined,
+      Boolean(companyAccount) ? `${companyStreet} ${companyHN}, ${companyCode} ${companyCity}, ${companyCountry}` : user.company_address !== undefined ? user.company_address : undefined,
       Boolean(companyAccount) ? website : undefined
     )
     if (email !== '') {
@@ -240,8 +244,8 @@ addAddress2, phone, checked, companyAccount])
               'Position in Ihrem Unternehmen'}*
             </label>
             <Input className='input'
-            placeholder={user.role === '' ? en ? 'Enter role...' : 'Position schreiben...' : user.role}
-            value={role === '' ? user.role === '' ? role : user.role : role}
+            placeholder={user.role === '' || user.role === 'Redrum Pro Member' ? en ? 'Enter role...' : 'Position schreiben...' : user.role}
+            value={role === '' ? user.role === '' || user.role === 'Redrum Pro Member' ? role : user.role : role}
             onChange={setRole}
             />
           </div>
@@ -264,8 +268,9 @@ addAddress2, phone, checked, companyAccount])
         <div className="box1">
           <div className="inner postal-code">
             <div>
+              <label htmlFor="" className="label">{en ? 'Postal code' : 'Posteinzahl'}*</label>
               <Input className='input'
-              placeholder={user.company_address !== undefined ? user.company_address.split(' ')[0] :
+              placeholder={user.company_address !== undefined ? user.company_address.split(', ')[1].split(' ')[0] :
               en ? 'Postal code...' : 'Posteinzahl...'}
                onChange={setCompanyCode}
               />
@@ -273,8 +278,9 @@ addAddress2, phone, checked, companyAccount])
           </div>
           <div className="inner city">
             <div>
+              <label htmlFor="" className="label">{en ? 'City' : 'Stadt'}*</label>
               <Input className='input'
-              placeholder={user.company_address !== undefined ? user.company_address.split(' ')[1].replace(',','') :
+              placeholder={user.company_address !== undefined ? user.company_address.split(', ')[1].slice(1) :
               en ? 'Enter city...' : 'Stadt schreiben...'}
               value={companyCity === '' ? user.company_address !== undefined ? user.company_address.split(' ')[1].replace(',','')
                : companyCity: companyCity}
@@ -283,7 +289,36 @@ addAddress2, phone, checked, companyAccount])
             </div>
           </div>
         </div>
-        <div className="inner street">
+        <div className="box2">
+          <div className="inner street">
+            <div>
+              <label htmlFor="" className="label">{en ? 'Street' : 'Straße'}*</label>
+              <Input className='input'
+              placeholder={user.company_address !== undefined ? user.company_address.split(', ')[0].split(" ").slice(0, user.company_address.split(', ')[0].split(" ").length - 1).join(" ") :
+              en ? 'Enter street...' : 'Straße schreiben...'}
+              value={companyStreet === '' ? user.company_address !== undefined ? user.company_address.split(', ')[0].split(" ").slice(0, user.company_address.split(', ')[0].split(" ").length - 1).join(" ")
+              : companyStreet: companyStreet}
+              onChange={setCompanyStreet}
+              />
+            </div>
+          </div>
+          <div className="inner nr">
+            <div>
+              <label htmlFor="" className="label">{en ? 'House nr' : 'Hausnummer'}*</label>
+              <Input className='input'
+              placeholder={user.company_address !== undefined ? user.company_address.split(', ')[0].split(" ")[user.company_address.split(', ')[0].split(" ").length - 1] :
+              en ? 'Enter street...' : 'Straße schreiben...'}
+              value={companyHN === '' ? user.company_address !== undefined ? user.company_address.split(', ')[0].split(" ")[user.company_address.split(', ')[0].split(" ").length - 1]
+              : companyHN: companyHN}
+              onChange={setCompanyHN}
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="form-element double-input">
+        <div className="inner country">
+          <label className="label">{en ? 'Country' : 'Land'}</label>
           <div>
           <InputPicker
         className='input'
@@ -305,10 +340,8 @@ addAddress2, phone, checked, companyAccount])
         />
           </div>
         </div>
-        </div>
-        <div className="form-element" style={{width: '100%',}}>
-          <div className="inner">
-            <label htmlFor="" className="label">{en ? 'Company domain' : 'Firma Website'}*</label>
+        <div className="inner url">
+        <label htmlFor="" className="label">{en ? 'Company domain' : 'Firma Website'}*</label>
             <Input className='input' style={{width: '100%'}}
             placeholder={user.website !== undefined ? user.website :
               'Paste URL...'}
@@ -316,8 +349,8 @@ addAddress2, phone, checked, companyAccount])
               : website: website}
               onChange={setCode}
               />
-          </div>
         </div>
+      </div>
         <div className='form-element d-flex align-items-center flex-row'>
           <Toggle
           defaultChecked={checked}
