@@ -319,3 +319,14 @@ export function getSpecificProject(projectId: string, setState: any, setLoading?
     if (setLoading !== undefined) {setLoading(false);}
   })
 }
+
+export function getAllInvestedInProjects(setState: any) {
+  const reference = ref(database, "projects");
+  let data = 0
+  onValue(reference, (snap) => {
+    snap.forEach((project) => {
+      data += project.val().currentlyInvested
+    })
+    setState(data)
+  })
+}

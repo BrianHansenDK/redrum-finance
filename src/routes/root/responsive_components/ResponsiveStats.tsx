@@ -4,7 +4,7 @@ import FlexboxGridItem from 'rsuite/esm/FlexboxGrid/FlexboxGridItem'
 import IMG1 from '../../../components/images/stats_1.svg'
 import IMG2 from '../../../components/images/stats_2.svg'
 import IMG3 from '../../../components/images/stats_3.svg'
-import { getAllUserObjectsInfo, getInvestments } from '../../../firebase'
+import { getAllInvestedInProjects, getAllUserObjectsInfo, getInvestments } from '../../../firebase'
 import { homeStrings } from '../../../library/string/Landinspage'
 import { numberWithCommas, toFixedIfNecessary, useMediaQuery } from '../../../misc/custom-hooks'
 import Stat from '../components/stat'
@@ -12,17 +12,13 @@ import Stat from '../components/stat'
 const ResponsiveStats = ({en}: {en: boolean}) => {
   const isMobile = useMediaQuery('(max-width: 1100px)')
   const [users, setUsers] = React.useState<any>([])
-  const [investments, setInvestments] = React.useState<any>([])
+  const [sum, setSum] = React.useState(0)
   React.useEffect(() => {
     getAllUserObjectsInfo(setUsers)
-    getInvestments(setInvestments)
+    getAllInvestedInProjects(setSum)
   }, [])
-  let sum = 0;
-  investments.forEach((inv: any) => {
-    sum += inv.amount
-  })
   //const average = sum / investments.length > 0 ? sum / investments.length : 0 // Real average
-  const average = sum / investments.length > 0 ? sum / users.length : 0 // Fake average
+  const average = sum > 0 ? sum / users.length : 0 // Fake average
   return (
     <FlexboxGrid className='mt-3 mb-3'>
       <FlexboxGridItem colspan={isMobile ? 24 : 8}>

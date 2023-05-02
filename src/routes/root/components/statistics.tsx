@@ -3,7 +3,7 @@ import { FlexboxGrid } from 'rsuite'
 import IMG1 from '../../../components/images/stats_1.svg'
 import IMG2 from '../../../components/images/stats_2.svg'
 import IMG3 from '../../../components/images/stats_3.svg'
-import { getAllUserObjectsInfo, getInvestments } from '../../../firebase'
+import { getAllInvestedInProjects, getAllUserObjectsInfo, getInvestments } from '../../../firebase'
 import { homeStrings } from '../../../library/string/Landinspage'
 import { numberWithCommas, toFixedIfNecessary } from '../../../misc/custom-hooks'
 import Stat from './stat'
@@ -11,17 +11,13 @@ import Stat from './stat'
 
 const Statistics = ({en}: {en: boolean}) => {
   const [users, setUsers] = React.useState<any>([])
-  const [investments, setInvestments] = React.useState<any>([])
+  const [sum, setSum] = React.useState(0)
   useEffect(() => {
     getAllUserObjectsInfo(setUsers)
-    getInvestments(setInvestments)
+    getAllInvestedInProjects(setSum)
   }, [])
-  let sum = 0;
-  investments.forEach((inv: any) => {
-    sum += inv.amount
-  })
   // const average = sum / investments.length > 0 ? sum / investments.length : 0 // Real average
-  const average = sum / users.length // Fake average
+  const average = sum > 0 ? sum / users.length : 0 // Fake average
     return (
         <div id='stats'>
             <div id='stats-inner'>
