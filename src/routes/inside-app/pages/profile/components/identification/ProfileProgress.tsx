@@ -4,8 +4,10 @@ import { mainColors } from '../../../../themes/colors'
 import InfoIcon from '@rsuite/icons/InfoRound'
 import { Link } from 'react-router-dom'
 import { useMediaQuery } from '../../../../../../misc/custom-hooks'
+import { FirebaseUser } from '../../../../../../database/Objects'
 
 interface IProps {
+    user: FirebaseUser,
     userId: any,
     completion: number,
     isMobile: boolean,
@@ -14,7 +16,18 @@ interface IProps {
 }
 
 const ProfileProgress: React.FunctionComponent<IProps> = (props) => {
-    const { completion, userId, isMobile, openModal, visible } = props
+    const { user, completion, userId, isMobile, openModal, visible } = props;
+
+    const haveAllInfo =
+      (!user?.company_account && ((user?.full_name !== "" && user!.full_name.split(" ").length > 1) && user?.address !== ""
+      && user?.birth_date !== "" && user?.title !== undefined
+      && user.phone_number && user.country !== "")) || (
+        (user?.company_account) && (user?.full_name !== "" && user?.address !== ""
+        && user?.birth_date !== "" && user?.title !== undefined
+        && user.phone_number && user.country !== ""
+        && user.company_name !== undefined && user.role !== "" && user.company_address !== undefined ))
+
+
     const isPhone = useMediaQuery('(max-width: 768px)')
     const speaker = (
         <Popover title="Account not complete">
@@ -30,6 +43,7 @@ const ProfileProgress: React.FunctionComponent<IProps> = (props) => {
             <p>Your account is {completion}% complete thus you are able to invest. </p>
         </Popover>
     )
+
     const styles = {
         wrap: {
             display: 'flex',
@@ -48,12 +62,12 @@ const ProfileProgress: React.FunctionComponent<IProps> = (props) => {
             fontSize: isMobile ? 8 : 15,
             top: -5,
             right: 0,
-            color: completion < 40 ? mainColors.warning : completion < 100 ? mainColors.red : mainColors.success,
+            color: !haveAllInfo ? mainColors.red : mainColors.success,
         },
         pc: {
             fontSize: isMobile ? 14 : 22.5,
             fontWeight: '700',
-            color: completion < 40 ? mainColors.warning : completion < 100 ? mainColors.main : mainColors.success
+            color: !haveAllInfo ? mainColors.red : mainColors.success
         }
     }
     return (
@@ -83,7 +97,7 @@ const ProfileProgress: React.FunctionComponent<IProps> = (props) => {
       ) : (
         <Whisper
         placement='top'
-        speaker={completion == 100 ? successSpeaker : speaker}
+        speaker={haveAllInfo ? successSpeaker : speaker}
         trigger={isMobile ? 'click' : 'hover'}
         enterable
         >
@@ -91,17 +105,16 @@ const ProfileProgress: React.FunctionComponent<IProps> = (props) => {
               {
                 isPhone ? null : (
                   <p style={styles.title} className='position-relative'>
-                    {completion < 100 ? <InfoIcon className='position-absolute' style={styles.badge} /> : ''}
+                    {!haveAllInfo ? <InfoIcon className='position-absolute' style={styles.badge} /> : ''}
                     Completion:
                 </p>
                 )
               }
                 <Progress
                     showInfo
-                    percent={completion}
-                    strokeColor={`${completion < 40 ? mainColors.warning
-                        : completion < 100 && completion >= 40 ? mainColors.red : mainColors.success}`}
-                    status={completion == 100 ? 'success' : 'fail'}
+                    percent={haveAllInfo ? 100 : 35}
+                    strokeColor={`${!haveAllInfo ? mainColors.red : mainColors.success}`}
+                    status={haveAllInfo ? 'success' : 'fail'}
                     strokeWidth={isPhone ? 5 : isMobile ? 7.5 : 10}
                 />
             </div>

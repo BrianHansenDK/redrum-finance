@@ -25,7 +25,7 @@ const ResponsiveHero = (props: IProps) => {
       width: 'auto',
     }
   }
-  const loggedIn = auth !== null
+  const loggedIn = auth.currentUser !== null
   return (
     <FlexboxGrid className='lp-hero' style={styles.wrap} align='middle' justify='center'>
       <FlexboxGrid.Item colspan={isMobile ? 24 : 10} className={`r-hero-txt-con ${isDesktop ? 'mr-3' : ''}`}>

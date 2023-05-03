@@ -30,6 +30,7 @@ const ProfileInformation: React.FunctionComponent<IProps> = (props) => {
               user.id == auth.currentUser?.uid ? (
                 <>
                 <ProfileProgress
+                user={user}
                 completion={user.completion}
                 userId={user.id}
                 isMobile={isMobile}

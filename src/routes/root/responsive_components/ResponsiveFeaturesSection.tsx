@@ -5,6 +5,10 @@ import FeatureLeft from '../components/featureLeft'
 import FeaturesRight from '../components/featuresRight'
 import { useMediaQuery } from '../../../misc/custom-hooks'
 import TabletFeatureItem from './TabletFeatureItem'
+import MAKE from '../../../assets/MakeFilmHisory.png'
+import INVEST from '../../../assets/InvestInFilms.png'
+import DEPOSIT from '../../../assets/DipositMoney.png'
+import CREATE from '../../../assets/CreateAccount.png'
 
 const ResponsiveFeaturesSection = ({en}: {en:boolean}) => {
   const isMobile = useMediaQuery('(max-width: 1100px)')
@@ -20,22 +24,22 @@ const ResponsiveFeaturesSection = ({en}: {en:boolean}) => {
         isMobile ? (
           <>
             <TabletFeatureItem
-            img={PLACEHOLDER}
+            img={CREATE}
             alt={'Placeholder'}
             title={en ? homeStrings.featuresEN.t1 : homeStrings.featuresDE.t1}
             />
             <TabletFeatureItem
-            img={PLACEHOLDER}
+            img={DEPOSIT}
             alt='Placeholder'
             title={en ? homeStrings.featuresEN.t2 : homeStrings.featuresDE.t2}
             />
             <TabletFeatureItem
-            img={PLACEHOLDER}
+            img={INVEST}
             alt='Placeholder'
             title={en ? homeStrings.featuresEN.t3 : homeStrings.featuresDE.t3}
             />
             <TabletFeatureItem
-            img={PLACEHOLDER}
+            img={MAKE}
             alt='Placeholder'
             title={en ? homeStrings.featuresEN.t4 : homeStrings.featuresDE.t4}
             />
@@ -45,26 +49,26 @@ const ResponsiveFeaturesSection = ({en}: {en:boolean}) => {
         <FeatureLeft
         mainTitle={null}
         subTitle={null}
-        img={PLACEHOLDER}
+        img={CREATE}
         alt='Placeholder'
         title={en ? homeStrings.featuresEN.t1 : homeStrings.featuresDE.t1}
         />
       <FeaturesRight
         mainTitle={null}
-        img={PLACEHOLDER}
+        img={DEPOSIT}
         alt='Placeholder'
         title={en ? homeStrings.featuresEN.t2 : homeStrings.featuresDE.t2}
         />
       <FeatureLeft
         mainTitle={null}
         subTitle={null}
-        img={PLACEHOLDER}
+        img={INVEST}
         alt='Placeholder'
         title={en ? homeStrings.featuresEN.t3 : homeStrings.featuresDE.t3}
         />
       <FeaturesRight
         mainTitle={null}
-        img={PLACEHOLDER}
+        img={MAKE}
         alt='Placeholder'
         title={en ? homeStrings.featuresEN.t4 : homeStrings.featuresDE.t4}
         />

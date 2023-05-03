@@ -14,7 +14,7 @@ interface IProps {en: boolean, openModal: any}
 const Hero: React.FunctionComponent<IProps> = (props) => {
   const {en, openModal} = props
   const navigate = useNavigate()
-  const loggedIn = auth !== null
+  const loggedIn = auth.currentUser !== null
     return (
         <>
             <div id='hero-wrap' className=' hero-img'>
@@ -32,10 +32,10 @@ const Hero: React.FunctionComponent<IProps> = (props) => {
                         <div id='btn-group'>
                             <Button
                             onClick={() => {
-                              if (!loggedIn) {
-                                openModal()
-                              } else {
+                              if (loggedIn) {
                                 navigate("/app")
+                              } else {
+                                openModal()
                               }
                             }}
                             appearance='primary'

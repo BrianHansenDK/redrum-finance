@@ -117,8 +117,9 @@ addAddress2, phone, checked, companyAccount])
       user.id,
       title === '' ? user.title !== undefined ? user.title : '' : title,
       firstName === '' && lastName === '' ? user.full_name :
-      (firstName !== "" && lastName === "") ? `${firstName} ${user.full_name !== "" ? user.full_name.split(" ").slice(1).join(" ") : ''}` :
-      (firstName === '' && lastName !== '') ? `${user.full_name !== "" ? user.full_name.split(" ")[0] : ''} ${lastName}` : '',
+      (firstName !== "" && lastName === "") ? `${firstName}${user.full_name !== "" ? ` ${user.full_name.split(" ").slice(1).join(" ")}` : ''}` :
+      (firstName === '' && lastName !== '') ? `${user.full_name !== "" ? `${user.full_name.split(" ")[0]}` : ''} ${lastName}` :
+      (firstName !== "" && lastName !== "") ? `${firstName} ${lastName}` : '' ,
       birthdate.toDateString(),
       email === '' ? user.email : email,
       country !== '' ? country : user.country,
@@ -135,10 +136,21 @@ addAddress2, phone, checked, companyAccount])
         </Message>);
       },() => {close(); closeEModal();},
       Boolean(companyAccount),
-      Boolean(companyAccount) ? role : user.role,
-      Boolean(companyAccount) ? companyName : user.company_name !== undefined ? user.company_name : undefined,
-      Boolean(companyAccount) ? `${companyStreet} ${companyHN}, ${companyCode} ${companyCity}, ${companyCountry}` : user.company_address !== undefined ? user.company_address : undefined,
-      Boolean(companyAccount) ? website : undefined
+      Boolean(companyAccount) ? role === '' ? user.role : role : user.role,
+      Boolean(companyAccount) ? companyName === '' ? user.company_name !== undefined ? user.company_name : undefined : companyName : user.company_name,
+      Boolean(companyAccount) ? `${
+        companyStreet !== '' ? companyStreet : user.company_address !== undefined ?
+        user.company_address.split(', ')[0].split(" ").slice(0, user.company_address.split(', ')[0].split(" ").length - 1).join(" ") : ''
+      } ${companyHN !== '' ? companyHN :
+      user.company_address !== undefined ? user.company_address.split(', ')[0].split(" ")[user.company_address.split(', ')[0].split(" ").length - 1] : ''
+    }, ${companyCode !== '' ? companyCode
+     : user.company_address !== undefined ? user.company_address.split(', ')[1].split(' ')[0] : ''
+    } ${companyCity !== '' ? companyCity :
+    user.company_address !== undefined ? user.company_address.split(', ')[1].split(" ").slice(1).join(" ") : ''
+  }, ${companyCountry !== '' ? companyCountry :
+  user.company_address !== undefined ? user.company_address.split(', ')[2] : ''
+}` : user.company_address !== undefined ? user.company_address : undefined,
+      Boolean(companyAccount) ? website !== '' ? website : user.website !== undefined ? user.website : undefined : undefined
     )
     if (email !== '') {
       updateEmail(auth.currentUser!, email)
@@ -256,7 +268,7 @@ addAddress2, phone, checked, companyAccount])
             </label>
             <Input className='input'
             placeholder={user.company_name === undefined ? en ? 'Enter company name...' : 'Firma name schreiben...' : user.company_name}
-            value={companyName === '' ? user.company_name === undefined ? companyName : user.role : companyName}
+            value={companyName === '' ? user.company_name === undefined ? companyName : user.company_name : companyName}
             onChange={setCompanyName}
             />
           </div>
@@ -272,6 +284,8 @@ addAddress2, phone, checked, companyAccount])
               <Input className='input'
               placeholder={user.company_address !== undefined ? user.company_address.split(', ')[1].split(' ')[0] :
               en ? 'Postal code...' : 'Posteinzahl...'}
+              value={companyCode === '' ? user.company_address !== undefined ? user.company_address.split(', ')[1].split(' ')[0]
+              : companyCode: companyCode}
                onChange={setCompanyCode}
               />
             </div>
@@ -280,9 +294,9 @@ addAddress2, phone, checked, companyAccount])
             <div>
               <label htmlFor="" className="label">{en ? 'City' : 'Stadt'}*</label>
               <Input className='input'
-              placeholder={user.company_address !== undefined ? user.company_address.split(', ')[1].slice(1) :
+              placeholder={user.company_address !== undefined ? user.company_address.split(', ')[1].split(" ").slice(1).join(" ") :
               en ? 'Enter city...' : 'Stadt schreiben...'}
-              value={companyCity === '' ? user.company_address !== undefined ? user.company_address.split(' ')[1].replace(',','')
+              value={companyCity === '' ? user.company_address !== undefined ? user.company_address.split(', ')[1].split(" ").slice(1).join(" ")
                : companyCity: companyCity}
                onChange={setCompanyCity}
               />
@@ -307,7 +321,7 @@ addAddress2, phone, checked, companyAccount])
               <label htmlFor="" className="label">{en ? 'House nr' : 'Hausnummer'}*</label>
               <Input className='input'
               placeholder={user.company_address !== undefined ? user.company_address.split(', ')[0].split(" ")[user.company_address.split(', ')[0].split(" ").length - 1] :
-              en ? 'Enter street...' : 'Straße schreiben...'}
+              en ? 'Enter nr...' : 'Nummer schreiben...'}
               value={companyHN === '' ? user.company_address !== undefined ? user.company_address.split(', ')[0].split(" ")[user.company_address.split(', ')[0].split(" ").length - 1]
               : companyHN: companyHN}
               onChange={setCompanyHN}
@@ -325,8 +339,8 @@ addAddress2, phone, checked, companyAccount])
         data={countries === null ? [] : countries.sort().map((c: string) => ({label: c, value: c}))}
         onChange={setCompanyCountry}
         onOpen={getCountriesIfNeeded}
-        value={companyCountry === '' ? user.company_address !== undefined ? user.company_address.split(', ')[1] : companyCountry: companyCountry}
-        placeholder={user.company_address !== undefined ? user.company_address.split(', ')[1] : en ? 'Country' : 'Land'}
+        value={companyCountry === '' ? user.company_address !== undefined ? user.company_address.split(', ')[2] : companyCountry: companyCountry}
+        placeholder={user.company_address !== undefined ? user.company_address.split(', ')[2] : en ? 'Country' : 'Land'}
         renderMenu={menu => {
           if (cLoading) {
             return (
@@ -345,9 +359,9 @@ addAddress2, phone, checked, companyAccount])
             <Input className='input' style={{width: '100%'}}
             placeholder={user.website !== undefined ? user.website :
               'Paste URL...'}
-              value={website === '' ? user.website !== '' ?user.website
+              value={website === '' ? user.website !== '' ? user.website
               : website: website}
-              onChange={setCode}
+              onChange={setWebsite}
               />
         </div>
       </div>
