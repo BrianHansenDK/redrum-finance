@@ -9,13 +9,22 @@ import ShareRow from './ShareRow'
 import ShareTitles from './ShareTitles'
 import './table.scss'
 
-const SharesTable = () => {
+interface IProps {
+  userInvestments: any[]
+}
+
+const SharesTable = (props: IProps) => {
+  const {userInvestments} = props;
   const [shares, setShares] = useState<FirebaseShare[]>([])
-  const [groupedShares, setGroupedShares] = useState<FirebaseShare[]>([])
+  const [sum, setSum] = useState<number>(0)
   const [investments, setInvestments] = useState<any>([])
   const [projectIds, setProjectIds] = useState<any>([])
   const [loading, setLoading] = useState<boolean>(false)
   useEffect(() => {
+    userInvestments.forEach(inv => {
+      setSum(sum + inv.amount)
+      console.log(`Sum: ${sum}`)
+    });
     setLoading(true)
     // Get all shares
     let lst: FirebaseShare[] = []
@@ -24,26 +33,25 @@ const SharesTable = () => {
     const reference = ref(database, 'shares')
     get(reference).then((snap) => {
       snap.forEach((share) => {
-        if (share.val().owner == auth.currentUser?.uid) {
+        if (share.val().owner === auth.currentUser?.uid) {
           data.push(share.val())
         }
-        data.map((share) => {
-          lst.push(share)
-        })
-        lst.map((share, i) => {
-          if (share.movie === lst[0].movie && i > 0) {
-            lst[0].amount += share.amount
-          }
-        /*if (share.movie === lst[1].movie && i > 1) {
-          lst[1].amount += share.amount
+      })
+      data.map((share) => {
+        console.log(share.owner)
+        lst.push(share)
+      })
+      lst.map((share, i) => {
+        if (share.movie === lst[0].movie && i > 0) {
+          lst[0].amount += share.amount
         }
-        if (share.movie === lst[2].movie && i > 2) {
-          lst[2].amount += share.amount
-        }*/
-      })
-
-
-      })
+      /*if (share.movie === lst[1].movie && i > 1) {
+        lst[1].amount += share.amount
+      }
+      if (share.movie === lst[2].movie && i > 2) {
+        lst[2].amount += share.amount
+      }*/
+    })
     }).finally(() => setShares([lst[0]] /*.slice(0,3)*/))
     // Set shares
     // Get investments
@@ -65,8 +73,10 @@ const SharesTable = () => {
         setLoading(false)
       })
 
+      console.log(lst)
 
   }, [])
+
   return (
     <div>
       {
@@ -86,7 +96,7 @@ const SharesTable = () => {
             shares.map((share: any) => (
               <tbody key={share.id}>
               {share.project == projectId ? (
-                <ShareRow share={share} />
+                <ShareRow share={share} sum={sum} />
                 ): null }
                 </tbody>
             ))

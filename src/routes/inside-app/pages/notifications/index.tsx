@@ -8,7 +8,10 @@ import RedrumProLoader from '../../components/RedrumProLoader'
 import NoNotificationsItem from './NoNotificationsItem'
 import NotificationsWrap from './NotificationsWrap'
 
-const NotificationsPage = () => {
+interface IProps {en: boolean}
+
+const NotificationsPage = (props: IProps) => {
+  const {en} = props;
   const [loading, setLoading] = React.useState<boolean>(false)
   const [notifications, setNotifications] = React.useState<Array<FirebaseNotification>>([])
   useEffect(() => {
@@ -35,7 +38,7 @@ const NotificationsPage = () => {
     ) : (
       <>
       {notifications.length < 1 ? ( <NoNotificationsItem /> ) :
-      ( <NotificationsWrap notifications={notifications}/> )}
+      ( <NotificationsWrap notifications={notifications} en={en}/> )}
       </>
     )}
 

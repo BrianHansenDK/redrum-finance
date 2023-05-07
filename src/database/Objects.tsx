@@ -73,8 +73,11 @@ export interface FirebaseNotification {
   created_at: string,
   read: boolean,
   user_id: string,
-  title: string,
-  content: string,
+  title_en: string,
+  title_de: string,
+  content_en: string[],
+  content_de: string[],
+  notification_type: string,
 }
 
 // Share object

@@ -6,12 +6,18 @@ import NotificationImage from './NotificationImage'
 import NotificationInfo from './NotificationInfo'
 import NotificationListItemBtns from './NotificationListItemBtns'
 
-const NotificationListItem = ({notification}: {notification: FirebaseNotification}) => {
+interface IProps {
+  en: boolean,
+  notification: FirebaseNotification
+}
+
+const NotificationListItem = (props: IProps) => {
+  const {en, notification} = props;
   return (
     <FlexboxGrid align='middle' justify='space-between' className='notification-item'>
       <NotificationImage/>
-      <NotificationInfo notification={notification}/>
-      <NotificationListItemBtns notification={notification} />
+      <NotificationInfo en={en} notification={notification}/>
+      <NotificationListItemBtns en={en} notification={notification} />
     </FlexboxGrid>
   )
 }

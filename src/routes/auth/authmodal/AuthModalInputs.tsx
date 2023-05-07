@@ -4,12 +4,13 @@ import signUpModalStrings from '../../../library/string/SignUpModal'
 import EyeIcon from '@rsuite/icons/legacy/Eye';
 import EyeSlashIcon from '@rsuite/icons/legacy/EyeSlash';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
-import { auth, createAccount, database } from '../../../firebase';
+import { auth, createAccount, createAccountSuccessNotification, database } from '../../../firebase';
 import { useNavigate } from 'react-router-dom';
 import PushThemes from '../../inside-app/themes/PushThemes';
 import { onValue, ref, set } from 'firebase/database';
 import { FirebaseUser } from '../../../database/Objects';
 import ReCAPTCHA from "react-google-recaptcha";
+import ForgotPasswordModal from './ForgotPasswordModal';
 
 interface IProps {
   en: boolean,
@@ -27,6 +28,10 @@ const AuthModalInputs: React.FunctionComponent<IProps> = (props) => {
   const [userMails, setUserMails] = React.useState<string[]>([]);
   const [confirmVisible, setConfirmVisible] = React.useState<boolean>(false);
   const [captured, setCaptured] = React.useState<boolean>(false);
+  const [pwModalOpen, setPwModalOpen] = React.useState<boolean>(false);
+
+  const openPw = () => setPwModalOpen(true);
+  const closePw = () => setPwModalOpen(false);
 
   const navigate = useNavigate();
   const toaster = useToaster();
@@ -77,10 +82,12 @@ const AuthModalInputs: React.FunctionComponent<IProps> = (props) => {
           .then(async (userCredentials) => {
             const user = userCredentials.user
             createAccount(user.uid, userName, userEmail, 10)
+            createAccountSuccessNotification(user.uid)
             navigate('/app')
             toaster.push(<Message showIcon duration={8000} closable>
               Account created succesfully
             </Message>)
+
             })
             .catch((err) => {
               toaster.push(<Message showIcon duration={8000} type='error' closable>
@@ -157,7 +164,7 @@ const AuthModalInputs: React.FunctionComponent<IProps> = (props) => {
       {
         signupPage ? null : (
           <div className='hidden-btn-con'>
-          <Button appearance='link'>
+          <Button appearance='link' onClick={openPw}>
             {en ? 'Forgot password?' : 'Passwort vergessen?'}
           </Button>
         </div>)
@@ -171,6 +178,7 @@ const AuthModalInputs: React.FunctionComponent<IProps> = (props) => {
           : en ? 'Login' : 'Anmelden'
         }
       </Button>
+      <ForgotPasswordModal en={en} open={pwModalOpen} close={closePw}/>
     </div>
   )
 }

@@ -14,11 +14,11 @@ const VanumoSignIn = ({setSignedIn}: {setSignedIn: any}) => {
     signInWithEmailAndPassword(auth, email, password)
     .then((userCreds) => {
       const user = userCreds.user
-      toaster.push(<Message showIcon type='info'>Logged in as {user.email}</Message>, {placement: 'topCenter'})
+      toaster.push(<Message showIcon type='info' duration={10000} closable>Logged in as {user.email}</Message>, {placement: 'topCenter'})
     })
     .catch((err) => {
-      toaster.push(<Message showIcon type='error'>{err.message}</Message>, {placement: 'topCenter'})
-      window.setTimeout(() => {toaster.clear()}, 10000)
+      toaster.push(<Message showIcon type='error' duration={10000} closable>{err.message}</Message>, {placement: 'topCenter'})
+
     })
     .finally(() => {
       setSignedIn(true)

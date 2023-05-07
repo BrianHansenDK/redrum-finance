@@ -3,7 +3,7 @@ import { onValue, ref } from 'firebase/database'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { FirebaseUser } from '../../../database/Objects'
-import { auth, getCurrentUserFunction, writeUserData, database, createAccount } from '../../../firebase'
+import { auth, getCurrentUserFunction, writeUserData, database, createAccount, createAccountSuccessNotification } from '../../../firebase'
 import AuthModalBtns from './AuthModalBtns'
 import AuthModalInputs from './AuthModalInputs'
 
@@ -63,6 +63,7 @@ const AuthModalOptions: React.FunctionComponent<IProps> = (props) => {
                     response.user.photoURL !== null && response.user.photoURL !== undefined ? response.user.photoURL : "",
                     response.user.phoneNumber !== null ? response.user.phoneNumber : ""
                     )
+                    createAccountSuccessNotification(response.user.uid)
                     navigate('/app')
                   } else {
                     navigate('/app')

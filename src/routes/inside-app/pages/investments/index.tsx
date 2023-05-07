@@ -28,7 +28,7 @@ const InvestmentPage = ({en} : {en: boolean}) => {
              loading ? (<RedrumProLoader/>) : currentUser === null ? null : (
               <>
                 {
-                  userInvestments.length > 0  ?(
+                  userInvestments !== null && userInvestments.length > 0  ?(
                     <>
                       <RadialChart isMobile={isMobile} />
                       <ProjectShowcase en={en} isMobile={isMobile} />

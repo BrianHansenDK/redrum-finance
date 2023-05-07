@@ -52,7 +52,7 @@ const ChartBody: React.FunctionComponent<IProps> = (props) => {
       {
         userInvestments.length > 0 ? (
           <>
-          <SharesTable />
+          <SharesTable userInvestments={userInvestments}/>
           {/*
 
             <InvestmentsTable investments={userInvestments}/>

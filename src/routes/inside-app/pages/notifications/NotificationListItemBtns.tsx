@@ -3,11 +3,19 @@ import { Button, Divider } from 'rsuite'
 import FlexboxGridItem from 'rsuite/esm/FlexboxGrid/FlexboxGridItem'
 import { FirebaseNotification } from '../../../../database/Objects'
 import NotificationModal from './NotificationModal'
+import { markNotificationAsRead } from '../../../../firebase'
 
-const NotificationListItemBtns = ({notification}: {notification: FirebaseNotification}) => {
+interface IProps {
+  en: boolean,
+  notification: FirebaseNotification
+}
+
+const NotificationListItemBtns = (props: IProps) => {
+  const {en, notification} = props;
   const [isOpen, setisOpen] = React.useState<boolean>(false)
   const openModal = () => {
     setisOpen(true)
+    markNotificationAsRead(notification)
   }
   const closeModal = () => {
     setisOpen(false)
@@ -15,11 +23,11 @@ const NotificationListItemBtns = ({notification}: {notification: FirebaseNotific
   return (
     <>
     <FlexboxGridItem>
-      <Button appearance='link' onClick={openModal}>View</Button>
+      <Button appearance='link' onClick={openModal}>{en ? 'View' : 'Anzeige'}</Button>
       <Divider vertical/>
-      <Button appearance='link'>Delete</Button>
+      <Button appearance='link'>{en ? 'Delete' : 'Löschen'}</Button>
     </FlexboxGridItem>
-    <NotificationModal notification={notification} isOpen={isOpen} closeModal={closeModal}/>
+    <NotificationModal en={en} notification={notification} isOpen={isOpen} closeModal={closeModal}/>
     </>
   )
 }

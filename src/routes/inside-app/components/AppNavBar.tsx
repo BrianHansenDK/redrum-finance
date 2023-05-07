@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, Message, Nav, Navbar, Tooltip, useToaster, Whisper } from 'rsuite'
+import { Badge, Button, Loader, Message, Nav, Navbar, Tooltip, useToaster, Whisper } from 'rsuite'
 import NavItem from 'rsuite/esm/Nav/NavItem'
 import DashboardIcon from '@rsuite/icons/legacy/Dashboard';
 import OPENMENU from '@rsuite/icons/legacy/CaretDown'
@@ -14,7 +14,7 @@ import DOCS from '@rsuite/icons/legacy/Database'
 import INV from '@rsuite/icons/legacy/Share'
 import REDRUMCAT from '../../../components/images/redrum_cat.png'
 import TooltipForAccount from './TooltipForAccount';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import mainShadows from '../themes/shadows';
 import { mainColors } from '../themes/colors';
 import dashboardStrings from '../../../library/string/Dashboard';
@@ -24,7 +24,8 @@ import AdminBtn from './AdminBtn';
 import { numberWithCommas, useMediaQuery } from '../../../misc/custom-hooks';
 import AppNavMenu from './AppNavMenu';
 import AppNavigationMenu from './AppNavigationMenu';
-import { userRef } from '../../../firebase';
+import { getCurrentUserFunction, getNotificationValues, getUserNotificationCount, userRef } from '../../../firebase';
+import { FirebaseUser } from '../../../database/Objects';
 
 interface IProps {
   fixed: boolean,
@@ -48,16 +49,36 @@ const AppNavBar: React.FunctionComponent<IProps> = (props) => {
     closeNav,
   } = props
     const auth = getAuth()
+    const location = useLocation()
     const navigate = useNavigate()
     const toaster = useToaster()
     const [visible, setVisible] = useState(false)
 
-    const [available, setAvailable] = useState<number | undefined>(0)
+    // Current user
+    const [user, setUser] = useState<FirebaseUser | null>(null)
+    const [loading, setLoading] = React.useState<boolean>(false)
 
+    // User notifications
+    const [notificationCount, setNotificationCount] = useState(0)
+    const [notificationValues, setNotificationValues] = useState([])
+    const [notiLoading, setNotiLoading] = useState(false)
+
+    // Get current user
     React.useEffect(() => {
-      userRef(auth.currentUser?.uid, '/money_available', setAvailable)
-    }, [])
+      getCurrentUserFunction(auth.currentUser?.uid, setUser, setLoading)
+    }, [location])
 
+    // Get user notifications
+    React.useEffect(() => {
+      if (user !== null) {
+        getUserNotificationCount(user.id, setNotificationCount, setNotiLoading)
+      }
+    }, [user, notificationValues])
+
+    // Update notification values
+    React.useEffect(() => {
+      getNotificationValues(setNotificationValues, auth.currentUser?.uid)
+    }, [])
 
     const openModal = () => {
       setVisible(true)
@@ -124,9 +145,22 @@ const AppNavBar: React.FunctionComponent<IProps> = (props) => {
                     <NavItem as={Link} to='/app' eventKey='1' className='d-flex flex-column align-center justify-around' style={styles.navLink}>
                         <DashboardIcon /> {en ? dashboardStrings.navbarEN.home : dashboardStrings.navbarDE.home}
                     </NavItem>
-                    <NavItem as={Link} to='/app/notifications' eventKey='2' className='d-flex flex-column align-center justify-around' style={styles.navLink}>
-                        <NotificationsIcon /> {en ? dashboardStrings.navbarEN.not : dashboardStrings.navbarDE.not}
-                    </NavItem>
+                    {
+                      notificationCount === 0 && !notiLoading ? (
+                        <NavItem as={Link} to='/app/notifications' eventKey='2' className='d-flex flex-column align-center justify-around' style={styles.navLink}>
+                          <NotificationsIcon /> {en ? dashboardStrings.navbarEN.not : dashboardStrings.navbarDE.not}
+                        </NavItem>
+                      ) : (
+                        <NavItem as={Link} to='/app/notifications' eventKey='2' className='d-flex flex-column align-center justify-around' style={styles.navLink}>
+                          <Badge content={notiLoading ? (<Loader size='xs' speed='fast'/>) :`${notificationCount}`}>
+                            <NotificationsIcon />
+                          </Badge>
+                            {en ? dashboardStrings.navbarEN.not : dashboardStrings.navbarDE.not}
+
+                        </NavItem>
+                      )
+                    }
+
                     <Whisper placement='bottom' controlId='control-id-click' trigger='click' speaker={AccountTooltip} >
                         <NavItem eventKey='3' className='d-flex flex-column align-center justify-around' style={styles.navLink}>
                             <USER /> <span>{en ? dashboardStrings.navbarEN.acc : dashboardStrings.navbarDE.acc} <OPENMENU /> </span>
@@ -142,7 +176,10 @@ const AppNavBar: React.FunctionComponent<IProps> = (props) => {
                     {en ? dashboardStrings.navbarEN.btn : 'Einzahlen'}
                     </Button>
                     <NavItem className='d-flex flex-column align-center justify-around like-a-btn'>
-                      {available != undefined && available < 10000 ? 'Balance:' : null} {available != undefined ? numberWithCommas(available) : 0} €
+                      {
+                        loading ? (<Loader content={en ? 'Loading...' : 'Laden...'} size='sm' speed='fast' vertical/>) : user === null ? 'Unknown' :
+                        (<span>{user.money_available < 10000 ? en ? 'Balance:' : 'Guthaben' : null} {numberWithCommas(user.money_available)} €</span>)
+                      }
                     </NavItem>
                     <ChangeLanBtn setEn={setEn} en={en} />
                 </Nav>

@@ -3,10 +3,16 @@ import FlexboxGridItem from 'rsuite/esm/FlexboxGrid/FlexboxGridItem'
 import { FirebaseNotification } from '../../../../database/Objects'
 import { mainColors } from '../../themes/colors'
 
-const NotificationInfo = ({notification}: {notification: FirebaseNotification}) => {
+interface IProps {
+  en: boolean,
+  notification: FirebaseNotification
+}
+
+const NotificationInfo = (props: IProps) => {
+  const {en, notification} = props;
   return (
     <FlexboxGridItem colspan={12}>
-      <h1 style={styles.title}>{notification.title}</h1>
+      <h1 style={styles.title}>{en ? notification.title_en : notification.title_de}</h1>
     </FlexboxGridItem>
   )
 }

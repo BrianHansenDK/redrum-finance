@@ -100,7 +100,7 @@ const App = () => {
         <Route index element={<AppRootIndexPage en={isEnglish}/>} />
         <Route path='investments/' element={<InvestmentPage en={isEnglish}/>} />
         <Route path='databank/' element={<DatabankPage en={isEnglish}/>} />
-        <Route path='notifications/' element={<NotificationsPage/>}/>
+        <Route path='notifications/' element={<NotificationsPage en={isEnglish}/>}/>
       </Route>
       <Route path='/app/bundle/:bundleId' element={<ProjectDetailsPageWrapper en={isEnglish} setEn={changeLan} />} >
         <Route index element={<ProjectDetailsOverviewWrapper en={isEnglish} />} />

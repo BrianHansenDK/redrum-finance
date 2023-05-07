@@ -1,11 +1,16 @@
-import { onValue, ref } from 'firebase/database'
+import { get, onValue, ref } from 'firebase/database'
 import React, { useEffect, useState } from 'react'
 import { Loader, Table } from 'rsuite'
 import { database } from '../../../../../../firebase'
 import { numberWithCommas, useMediaQuery } from '../../../../../../misc/custom-hooks'
 import { mainColors } from '../../../../themes/colors'
 
-const ShareRow = ({share}: {share: any}) => {
+interface IProps {
+  share: any, sum: number
+}
+
+const ShareRow = (props: IProps) => {
+  const {share, sum} = props;
   const [movieTitle, setMovieTitle] = useState('')
   const [gReturn, setGReturn] = useState(0)
   const [loading, setLoading] = useState<boolean>(false)
@@ -15,15 +20,15 @@ const ShareRow = ({share}: {share: any}) => {
   useEffect(() => {
     setLoading(true)
     const movieRef = ref(database, 'movies/' + share.movie)
-    onValue(movieRef, (snap) => {
+    get(movieRef).then((snap) => {
       setMovieTitle(snap.val().title)
     })
     const projectRef = ref(database, 'projects/' + share.project)
-    onValue(projectRef, (snap) => {
+    get(projectRef).then((snap) => {
       setGReturn(snap.val().guaranteedReturn)
     })
     setLoading(false)
-  })
+  }, [])
   return (
     <>
     {loading ? (
@@ -43,8 +48,7 @@ const ShareRow = ({share}: {share: any}) => {
           color: share.amount < share.amount + (share.amount * ((gReturn) / 100)) ? mainColors.success : mainColors.red
         }}
         >
-          {numberWithCommas((share.amount + (share.amount * ((gReturn) / 100))).toFixed(2)
-          .toString().replace('.', ','))}€
+          {numberWithCommas((share.amount + (share.amount * (gReturn / 100))).toFixed(2)).toString().replace('.', ',')}€
         </td>
         { isLimit ? null : (
         <td>

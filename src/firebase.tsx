@@ -5,6 +5,7 @@ import { getAuth } from "firebase/auth";
 import { DataSnapshot, get, getDatabase, onValue, ref, set, update } from 'firebase/database';
 import { EventHandler, useEffect, useState } from "react";
 import { getRealAge } from "./misc/custom-hooks";
+import { FirebaseNotification } from "./database/Objects";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -329,4 +330,185 @@ export function getAllInvestedInProjects(setState: any) {
     })
     setState(data)
   })
+}
+
+export function createAccountSuccessNotification(userId: string) {
+  const todayDT = Date.now()
+  const today = new Date(todayDT)
+  const reference = ref(database, 'notifications/' + todayDT)
+  set(reference, {
+    id: todayDT,
+    created_at: today.toJSON(),
+    read: false,
+    user_id: userId,
+    title_en: 'Welcome to Redrum Pro!',
+    title_de: 'Willkommen bei RedrumPro!',
+    content_en: [
+      'Dear Redrum Producer,',
+
+      'Welcome to RedrumPro! With your registration, you`re able now to purchase shares ' +
+      'in your dream projects starting at 1€ - quickly and conveniently like never before. ' +
+      'Participate in the value development of unique entertainment projects. ',
+
+      'Have fun!',
+
+      'Best regards',
+
+      'Lisa from your Redrum Pro Team'
+    ],
+    content_de: [
+      'Hallo Redrum Producer,',
+
+      'Willkommen bei RedrumPro! Mit deiner Anmeldung kannst du nun ab 1 Euro Anteile ' +
+      'an deinen Traumprojekten erwerben, und das so schnell und bequem wie nie. ' +
+      'Partizipiere an der Wertentwicklung von einzigartigen Unterhaltungsprojekten.',
+
+      'Viel Spaß!',
+
+      'Liebe Grüße',
+
+      'Lisa vom RedrumPro Team',
+    ],
+    notification_type: 'account',
+  })
+}
+
+export function createInvestmentNotification(userId: string, projectName: string) {
+  const todayDT = Date.now()
+  const today = new Date(todayDT)
+  const reference = ref(database, 'notifications/' + todayDT)
+  set(reference, {
+    id: todayDT,
+    created_at: today.toJSON(),
+    read: false,
+    user_id: userId,
+    title_en: `Investment received! - ${projectName}`,
+    title_de: `Investition erhalten! - ${projectName}`,
+    content_en: [
+      'Congratulations and welcome to the team!',
+
+      `You are now an official producer of ${projectName} and you can benefit ` +
+      'from the increase in the value of your shares!',
+
+      'Here you will find your production contract and the corresponding invoice. ' +
+      'Don`t worry, both documents are also available in the "Producer Database" ' +
+      'and can be downloaded easily at any time.',
+
+      'Our team is always ready to assist you with any questions or concerns. ' +
+      'Do not hesitate to contact us if you need support.',
+
+      'Thank you for being part of RedrumPro!',
+
+      'All the best',
+
+      'Michael Merhi'
+    ],
+    content_de: [
+      'Herzlichen Glückwunsch &amp; willkommen im Team!',
+
+      `Du bist nun offizieller Producer von ${projectName} ` +
+      'und kannst von den Wertsteigerungen deiner Anteile profitieren!',
+
+      'Hier findest du deinen Produktionsvertrag und die dazugehörige Rechnung. ' +
+      'Keine Sorge, beide Dokumente findest du auch in der "Producer Datenbank" ' +
+      'und kannst sie jederzeit problemlos herunterladen.',
+
+      'Unser Team ist stets bereit, dir bei Fragen zu helfen. Wenn du Unterstützung ' +
+      'benötigst oder mehr über unsere Projekte erfahren möchtest, dann zögere nicht, uns ' +
+      'zu kontaktieren.',
+
+      'Vielen Dank, dass du Teil von RedrumPro bist!',
+
+      'Beste Grüße',
+
+      'Michael Merhi'
+    ],
+    notification_type: 'investment',
+  })
+}
+
+export function createDepositNotification(userId: string) {
+  const todayDT = Date.now()
+  const today = new Date(todayDT)
+  const reference = ref(database, 'notifications/' + todayDT)
+  set(reference, {
+    id: todayDT,
+    created_at: today.toJSON(),
+    read: false,
+    user_id: userId,
+    title_en: 'You are now ready to go!',
+    title_de: 'Du bist jetzt startklar!',
+    content_en: [
+      'You have successfully topped up your balance in the RedrumPro App! ' +
+      'Now you can invest in unique entertainment projects and join us in making film history. ',
+
+      'Our team is always ready to assist you with any questions. ' +
+      'Do not hesitate to contact us if you need support or want to learn more about our projects.',
+
+      'Thank you for being part of RedrumPro! ',
+
+      'Best regards',
+
+      'Khaled'
+    ],
+    content_de: [
+      'Du hast erfolgreich dein Guthaben in der RedrumPro App aufgeladen! ' +
+      'Nun kannst du in einzigartige Unterhaltungsprojekte investieren und gemeinsam mit uns Filmgeschichte schreiben. ',
+
+      'Unser Team ist stets bereit, dir bei Fragen zu helfen. ' +
+      'Wenn du Unterstützung benötigst oder mehr über unsere Projekte erfahren möchtest, dann zögere nicht, ' +
+      'uns zu kontaktieren. ',
+
+      'Vielen Dank, dass du Teil von RedrumPro bist!',
+
+      'Beste Grüße',
+
+      'Khaled',
+    ],
+    notification_type: 'deposit',
+  })
+}
+
+export function markNotificationAsRead(notification: FirebaseNotification) {
+  if (notification.read === false) {
+    const reference = ref(database, 'notifications/' + notification.id)
+    const updates: any = {}
+    updates['read'] = true;
+    update(reference, updates)
+  }
+}
+export function getNotificationValues(setState: any, userId?: string) {
+  if (userId !== null) {
+
+    // List of values of weather each notification is read or not
+    let data: any[] = []
+
+    const reference = ref(database, 'notifications')
+    onValue(reference, (snap) => {
+      snap.forEach((notification) => {
+        if (notification.val().user_id === userId && notification.val().read === false) {
+          data.push(notification.val().read)
+        }
+      })
+      setState(data)
+    })
+  }
+}
+
+export function getUserNotificationCount(userId: string, setState: any, setLoading: any) {
+  setLoading(true)
+  // Notification count
+  let count = 0
+
+  const reference = ref(database, 'notifications')
+  get(reference).then((snap) => {
+    snap.forEach((notification) => {
+      if (notification.val().user_id === userId && notification.val().read === false) {
+        count += 1
+      }
+    })
+    setState(count)
+  }).catch((err) => {
+    console.log(err)
+  }).finally(() => setLoading(false))
 }

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, DatePicker, Input, InputPicker, Message, Radio, RadioGroup, Toggle, Tooltip, Whisper, useToaster } from 'rsuite'
+import { Button, DatePicker, Input, InputNumber, InputPicker, Message, Radio, RadioGroup, Toggle, Tooltip, Whisper, useToaster } from 'rsuite'
 import { FirebaseUser } from '../../../../../../../database/Objects'
 import SpinnerIcon from '@rsuite/icons/legacy/Spinner';
 import { mainColors } from '../../../../../themes/colors';
@@ -28,10 +28,16 @@ const ProfileForm = (props: IProps) => {
   const toaster = useToaster();
 
   // USER DATA
+
+  // Inputs
+
   const [title, setTitle] = React.useState('')
   const [firstName, setFirstName] = React.useState('')
   const [lastName, setLastName] = React.useState('')
   const [birthdate, setBirthdate] = React.useState<any>(today)
+  const [birthYear, setBirthYear] = React.useState<any>(today)
+  const [birthMonth, setBirthMonth] = React.useState<any>(today)
+  const [birthDay, setBirthDay] = React.useState<any>(today)
   const [email, setEmail] = React.useState('')
   const [role, setRole] = React.useState('')
   const [companyName, setCompanyName] = React.useState('')
@@ -53,15 +59,17 @@ const ProfileForm = (props: IProps) => {
   const [companyAccount, setCompanyAccount] =
     React.useState<ValueType | undefined>(user.company_account ? 'true' : '')
 
-
+  // Changes made
 
     const changed =
     title !== '' || firstName !== '' || lastName !== '' || birthdate !== today || role !== '' || companyName !== '' ||
     companyCode !== '' || companyCity !== '' || companyCountry !== '' || website !== '' || country !== '' || code !== '' ||
     city !== '' || street !== '' || houseNumber !== '' || addAddress !== '' || addAddress2 !== '' || phone !== ''
 
+  // Update birtdate
   React.useEffect(() => {
-    today = new Date(); setBirthdate(user.birth_date !== "" ? new Date(user.birth_date) : today);
+    today = new Date();
+    setBirthdate(birthdate !== today ? birthdate : user.birth_date !== "" ? new Date(user.birth_date) : today);
     setChanged(changed);
   }, [title, firstName, lastName, email, role, companyName, companyCode,
   companyCity, companyCountry, website, country, city, street, houseNumber, addAddress,
@@ -238,8 +246,24 @@ addAddress2, phone, checked, companyAccount])
       <div className="inner birthdate">
         <label className="label">{en ? 'Birtdate' : 'Geburtsdatum'}*</label>
         <DatePicker className='input'
-        value={new Date(birthdate) === today ? user.birth_date !== '' ? new Date(user.birth_date) : null: birthdate}
-        oneTap onChange={setBirthdate}/>
+        value={new Date(birthdate).toDateString() === today.toDateString() ? user.birth_date !== '' ? new Date(user.birth_date) : null: birthdate}
+      oneTap onChange={setBirthdate}/>
+        {/*<div className="box-inner year">
+          <label className="label">{en ? 'Birtdate' : 'Geburtsdatum'}*</label>
+          <InputNumber value={user.birth_date !== '' ? }/>
+        </div>
+        <div className="box-inner month">
+          <label className="label">{en ? 'Birtdate' : 'Geburtsdatum'}*</label>
+          <DatePicker className='input'
+          value={new Date(birthdate) === today ? user.birth_date !== '' ? new Date(user.birth_date) : null: birthdate}
+          oneTap onChange={setBirthdate}/>
+        </div>
+        <div className="box-inner day">
+          <label className="label">{en ? 'Birtdate' : 'Geburtsdatum'}*</label>
+          <DatePicker className='input'
+          value={new Date(birthdate) === today ? user.birth_date !== '' ? new Date(user.birth_date) : null: birthdate}
+          oneTap onChange={setBirthdate}/>
+      </div> */}
       </div>
       </Whisper>
       <div className="inner">
