@@ -103,6 +103,9 @@ const RightSide: FunctionComponent<IProps> = (props) => {
                 <div style={styles.card} className='flex-column'>
                     <InfoLines project={project} en={en} />
                     <Button
+                    title={project.currentlyInvested! >= project.goal! ? en ? 'Investment capacity reached for project' :
+                     'Investitionskapazität für das Projekt erreicht': ''}
+                    disabled={project.currentlyInvested! >= project.goal!}
                     appearance='primary'
                     className='r-btn r-main-btn'
                     onClick={age >= 18 ?

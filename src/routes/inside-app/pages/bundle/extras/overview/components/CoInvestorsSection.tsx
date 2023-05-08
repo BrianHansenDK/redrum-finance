@@ -6,6 +6,7 @@ import bundleStrings from '../../../../../../../library/string/Bundle';
 import { useMediaQuery } from '../../../../../../../misc/custom-hooks';
 import { mainColors } from '../../../../../themes/colors';
 import CoInvestorCard from './CoInvestorCard';
+import { FirebaseInvestment } from '../../../../../../../database/Objects';
 interface IProps {
   projectId: string,
   en: boolean,
@@ -13,7 +14,7 @@ interface IProps {
 
 const CoInvestorsSection: React.FunctionComponent<IProps> = (props) => {
   const {projectId, en} = props
-  const [projectInvestments, setProjectInvestments] = useState<any>([])
+  const [projectInvestments, setProjectInvestments] = useState<FirebaseInvestment[]>([])
   const isMobile = useMediaQuery('(max-width: 1100px)')
     useEffect(() =>  {
       const investRef = ref(database, 'investments/')
@@ -58,7 +59,7 @@ const CoInvestorsSection: React.FunctionComponent<IProps> = (props) => {
                   projectInvestments.length > 0 ? (
                     <CoInvestorCard
                   amount={projectInvestments[projectInvestments.length - 1]?.amount}
-                  userId={projectInvestments[projectInvestments.length - 1]?.creator}
+                  userId={projectInvestments[projectInvestments.length - 1]?.user_id}
                   investments={projectInvestments}
                   en={en}
                   isMobile={isMobile}

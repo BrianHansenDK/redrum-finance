@@ -25,8 +25,7 @@ class ChartTitle extends Component<IProps, {}> {
         divider: {
             backgroundColor: mainColors.main,
             width: isMobile ? '100%' : '60%',
-            margin: isMobile ? '10px 0' : 0,
-            marginTop: 10,
+            margin: isMobile ? '10px 0' : '10px 0 20px',
         }
     }
         return (

@@ -26,7 +26,7 @@ const CheckoutProjectInfo = (props: IProps) => {
         setTheMovie(snap.val())
       }, {onlyOnce: true})
   }, [movie])
-  console.log(currentRange)
+
   return (
     <div className="inner-card">
       <img src={theMovie?.image} alt={`${theMovie?.title} cover image`} className="project-banner-img" />
@@ -37,7 +37,7 @@ const CheckoutProjectInfo = (props: IProps) => {
       disabled={!editing}
       className='fake-select'
       label={en ? 'Shares' : 'Anteile'}
-      onChange={setInvestAmount}
+      onChange={(e: any) => setInvestAmount(e * project.movies!.length)}
       value={investAmount}
       data={currentRange}
       />

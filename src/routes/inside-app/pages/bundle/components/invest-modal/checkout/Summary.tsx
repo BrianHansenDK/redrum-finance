@@ -38,6 +38,9 @@ const CheckoutSummary = (props: IProps) => {
   const [checked, setChecked] = React.useState<boolean>(false);
   const [checked2, setChecked2] = React.useState<boolean>(false);
 
+  const todayDT = Date.now()
+  const today = new Date(todayDT)
+
   const haveAllInfo =
       (!user?.company_account && ((user?.full_name !== "" && user?.full_name.split(" ").length > 1) && user?.address !== ""
       && user?.birth_date !== "" && user?.title !== undefined
@@ -199,9 +202,9 @@ const CheckoutSummary = (props: IProps) => {
       <div className="hide-this">
         {
           user !== null ? en ? (
-            <ContractComponent user={user} project={project} investAmount={investAmount} bonus={bonus}/>
+            <ContractComponent day={today.toDateString()} user={user} project={project} investAmount={investAmount} bonus={bonus}/>
           ) : (
-            <ContractGerman user={user} project={project} investAmount={investAmount} bonus={bonus}/>
+            <ContractGerman day={today.toDateString()} user={user} project={project} investAmount={investAmount} bonus={bonus}/>
           ) : null
         }
 

@@ -2,19 +2,18 @@ import { onValue, ref } from 'firebase/database'
 import React, { useEffect, useState } from 'react'
 import { database } from '../../../../../../firebase'
 import { mainColors } from '../../../../themes/colors'
+import { FirebaseBundle } from '../../../../../../database/Objects'
 
-const ProjectTitle = ({projectId}: {projectId: any}) => {
-  const [projectName, setProjectName] = useState<any>('')
-  useEffect(() => {
-    const reference = ref(database, 'projects/' + projectId)
-    onValue(reference, (snap) => {
-      setProjectName(snap.val().name)
-    })
-  }, [projectId])
+interface IProps {
+  project: FirebaseBundle
+}
+
+const ProjectTitle = (props: IProps) => {
+  const {project} = props;
   return (
     <div className='table-project-name-wrap'>
       <p className='project-intro'>Project: </p>
-      <p className='project-name'>{projectName}</p>
+      <p className='project-name'>{project.name}</p>
     </div>
   )
 }

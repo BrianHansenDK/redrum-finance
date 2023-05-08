@@ -2,6 +2,7 @@ import React from 'react'
 import { mainColors } from '../../../themes/colors'
 import NoInvestmentsCard from './NoInvestmentsCard'
 import RecieptCard from './RecieptCard'
+import { sortNotifications } from '../../../../../misc/custom-hooks'
 
 const RecieptsList = ({investments, en}: {investments: any, en: boolean}) => {
   return (
@@ -10,8 +11,8 @@ const RecieptsList = ({investments, en}: {investments: any, en: boolean}) => {
       investments.length > 0 ? (
         <>
         {
-          investments.map((inv: any) => (
-            <RecieptCard investment={inv} key={inv.id}/>
+          investments.sort(sortNotifications).map((inv: any) => (
+            <RecieptCard en={en} investment={inv} key={inv.id}/>
           ))
         }
         </>

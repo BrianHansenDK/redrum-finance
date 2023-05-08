@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { auth, userRef } from '../../../../../../../firebase'
+import { auth, getCurrentUserFunction, userRef } from '../../../../../../../firebase'
 import { mainColors } from '../../../../../themes/colors'
 import mainShadows from '../../../../../themes/shadows'
 import CoInvestorRightSide from './CoInvestorRightSide'
+import { FirebaseUser } from '../../../../../../../database/Objects'
+import RedrumProLoader from '../../../../../components/RedrumProLoader'
 
 interface IProps {
   userId: any,
@@ -14,13 +16,10 @@ interface IProps {
 
 const CoInvestorCard: React.FunctionComponent<IProps> = (props) => {
   const { userId, investments, amount, en, isMobile } = props
-  const [userImage, setUserImage] = useState('')
-  const [userName, setUserName] = useState('')
-  const [userEmail, setUserEmail] = useState('')
+  const [user, setUser] = useState<FirebaseUser | null>(null)
+  const [loading, setLoading] = useState<boolean>(false)
   useEffect(() => {
-    userRef(userId, '/image', setUserImage)
-    userRef(userId, '/username', setUserName)
-    userRef(userId, '/email', setUserEmail)
+    getCurrentUserFunction(userId, setUser, setLoading)
   }, [userId])
 
   const styles = {
@@ -52,20 +51,27 @@ const CoInvestorCard: React.FunctionComponent<IProps> = (props) => {
 }
     return (
         <div style={styles.wrap}>
-            {userImage ? (
-                <img style={styles.image} src={userImage} alt={`Profile image for ${userName}`} />
-            ) : (
-                <div style={styles.avatar}>
-                    {userName.split(' ').length == 2 ? userName.split(' ').map((w: any) => w[0]).join('.') : userName.slice(0, 1)}
-                </div>
-            )}
-            <CoInvestorRightSide
-            isMobile={isMobile}
-            amount={amount}
-            userName={userEmail == auth.currentUser?.email ? 'You' : userName}
-            investments={investments}
-            en={en}
-            />
+          {
+            loading ? (<RedrumProLoader/>) : user === null ? null : (
+              <>
+                {user.image !== '' ? (
+                  <img style={styles.image} src={user.image} alt={`Profile image for ${user.username}`} />
+                ) : (
+                    <div style={styles.avatar}>
+                        {user.username.toUpperCase()[0]}
+                    </div>
+                )}
+                <CoInvestorRightSide
+                isMobile={isMobile}
+                amount={amount}
+                userName={user.email == auth.currentUser?.email ? 'You' : user.username}
+                investments={investments}
+                en={en}
+                />
+              </>
+            )
+          }
+
         </div>
     )
 }

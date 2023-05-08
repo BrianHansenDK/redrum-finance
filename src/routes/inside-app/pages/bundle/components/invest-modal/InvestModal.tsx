@@ -2,7 +2,7 @@ import { ref, set, update } from 'firebase/database'
 import React, { useEffect, useState } from 'react'
 import INVESTIMG from '../../../../../assets/investment_growth_icon.svg'
 import { Button, ButtonGroup, Form, InputNumber, Message, Modal, useToaster, Toggle, Tooltip, Whisper, Notification } from 'rsuite'
-import { auth, database, getCurrentUserFunction, userRef } from '../../../../../../firebase'
+import { auth, createInvestmentNotification, createInvoice, database, getCurrentUserFunction, getInvoiceCount, userRef } from '../../../../../../firebase'
 import CheckIcon from '@rsuite/icons/Check';
 import CloseIcon from '@rsuite/icons/Close';
 import '../right/styles/invest-modal.scss'
@@ -32,29 +32,44 @@ const InvestModal: React.FunctionComponent<IProps> = (props) => {
       project, close, visible, showReciept,
       en, navOpen, setEn, openMenu, openNav, closeNav,
     } = props
+
+    // Invest amount - What the user wants to invest
     const [investAmount, setInvestAmount] = useState<any>(100)
+
+    // Currently available in users balance
     const [available, setAvailable] = useState(0)
+
+    // Is 'different amount' input focused
     const [focused, setFocused] = useState<boolean>(false)
+
     const [checked, setChecked] = useState(false)
+    // Is someone pressing the ,buy button
+    const [buying, setBuying] = useState<boolean>(false)
+
+    // Is the user on the checkout page
     const [checkout, setCheckout] = useState<boolean>(false)
+
+    // What payment method is chosen
     const [payment_method, setPaymentMethod] = React.useState('')
 
+    // Generate unique invoice number
+    const [invoiceCount, setInvoiceCount] = React.useState(0)
+
+    useEffect(() => {
+      getInvoiceCount(setInvoiceCount)
+      console.log(invoiceCount)
+    }, [buying])
+
+    // Current user
     const [user, setUser] = React.useState<FirebaseUser | null>(null)
     const [dLoading, setDLoading] = React.useState(false)
 
+    // Paypal modal for when paypal is chosen
     const [ppmodalOpen, setPpmodalOpen] = React.useState<boolean>(false);
 
+  // Paypal modal functions
   const openPP = () => setPpmodalOpen(true);
   const closePP = () => setPpmodalOpen(false);
-
-
-  function makeItPaypal() {
-    setPaymentMethod('PayPal')
-  }
-
-  function makeItDeposit() {
-    setPaymentMethod('Redrum_Pro_deposit')
-  }
 
   const makeOrder = (data:any, actions:any) => {
     return actions.order
@@ -78,12 +93,24 @@ const InvestModal: React.FunctionComponent<IProps> = (props) => {
           });
       }
 
+  function makeItPaypal() {
+    setPaymentMethod('PayPal')
+  }
+
+  // User balance functions
+  function makeItDeposit() {
+    setPaymentMethod('Redrum_Pro_deposit')
+  }
+
+
+
 
     const navigate = useNavigate()
 
     const emptyValue: Number|null = null
 
     const investmentId = Date.now()
+    const investmentCreated = new Date(investmentId)
     const bonus =
         investAmount >= 50 && investAmount < 100 ? 4 :
         investAmount >= 100 && investAmount < 250 ? 10 :
@@ -96,7 +123,11 @@ const InvestModal: React.FunctionComponent<IProps> = (props) => {
       getCurrentUserFunction(auth.currentUser?.uid, setUser, setDLoading)
       userRef(auth.currentUser?.uid, '/money_available', setAvailable)
       userRef(auth.currentUser?.uid, '/payment_method', setPaymentMethod)
-  }, [])
+      getInvoiceCount(setInvoiceCount)
+    }, [])
+  useEffect(() => {
+    getInvoiceCount(setInvoiceCount)
+  }, [buying])
 
     const toaster = useToaster()
     const onInvest = () => {
@@ -155,7 +186,24 @@ const InvestModal: React.FunctionComponent<IProps> = (props) => {
             close()
             showReciept()
         }*/
-        if (investAmount > 0) {
+        // Divisable by movies length
+      const notDivisable = parseInt(investAmount + bonus) % project.movies.length !== 0 && (parseInt(investAmount + bonus) !== null && parseInt(investAmount + bonus) !== 0 && investAmount !== '')
+      if (notDivisable) {
+        toaster.push(
+            <Message showIcon type='error' duration={8000} closable>
+                Investment must have 0 remainders when divided by {project.movies.length}.
+                Possible solution {
+                  [...Array(project.movies.length).keys()].map((x) => (
+                    (parseInt(investAmount + bonus) - x) % project.movies.length == 0 && (parseInt(investAmount + bonus) - x) !== 0 ?
+                    `${parseInt(investAmount) - x}€ or ${
+                      (parseInt(investAmount) - x) + project.movies.length}` :
+                      (parseInt(investAmount + bonus) - x) % project.movies.length == 0 && (parseInt(investAmount) - x) == 0 && `${(parseInt(investAmount) - x) + project.movies.length}`
+                  ))
+                }€
+            </Message> , { placement: 'topCenter' }
+        )
+      }
+        if (investAmount > 0 && !notDivisable) {
           setCheckout(true)
           close()
         }
@@ -182,13 +230,17 @@ const InvestModal: React.FunctionComponent<IProps> = (props) => {
         )
     }
     // Divisable by movies length
-    if (parseInt(investAmount) % project.movies.length !== 0 && (parseInt(investAmount) !== null && parseInt(investAmount) !== 0 && investAmount !== '')) {
+    const divisable = parseInt(investAmount + bonus) % project.movies.length !== 0 && (parseInt(investAmount + bonus) !== null && parseInt(investAmount + bonus) !== 0 && investAmount !== '')
+    if (divisable) {
         toaster.push(
             <Message showIcon type='error' duration={8000} closable>
                 Investment must have 0 remainders when divided by {project.movies.length}.
                 Possible solution {
                   [...Array(project.movies.length).keys()].map((x) => (
-                    (parseInt(investAmount) - x) % project.movies.length == 0 && (parseInt(investAmount) - x) !== 0 ? `${parseInt(investAmount) - x}€ or ${(parseInt(investAmount) - x) + project.movies.length}` : (parseInt(investAmount) - x) % project.movies.length == 0 && (parseInt(investAmount) - x) == 0 && `${(parseInt(investAmount) - x) + project.movies.length}`
+                    (parseInt(investAmount + bonus) - x) % project.movies.length == 0 && (parseInt(investAmount + bonus) - x) !== 0 ?
+                    `${parseInt(investAmount) - x}€ or ${
+                      (parseInt(investAmount) - x) + project.movies.length}` :
+                      (parseInt(investAmount + bonus) - x) % project.movies.length == 0 && (parseInt(investAmount) - x) == 0 && `${(parseInt(investAmount) - x) + project.movies.length}`
                   ))
                 }€
             </Message> , { placement: 'topCenter' }
@@ -223,21 +275,42 @@ const InvestModal: React.FunctionComponent<IProps> = (props) => {
 
     if (((!isPaypal && parseInt(investAmount) <= available && haveAllInfo) || (isPaypal && haveAllInfo) ) && (
       parseInt(investAmount) % project.movies.length == 0 && parseInt(investAmount) !== 0
-    ) && haveAllInfo
+    ) && haveAllInfo && user !== null
       ) {
-      const investRef = ref(database, 'investments/' + investmentId)
+        setBuying(true)
+        if (invoiceCount < 0) {
+          toaster.push(<Message type='error' showIcon closable duration={10000}>
+            {en ? 'There was an error generating your invoice, please try again' :
+            'Es ist ein Fehler bei der Erstellung Ihrer Rechnung aufgetreten. Bitte versuchen Sie es erneut.'}
+          </Message>, {placement: 'topCenter'})
+        } else {
+            const investRef = ref(database, 'investments/' + investmentId)
             // Make investment
             set(investRef, {
                 id: investmentId,
-                creator: auth.currentUser?.uid,
+                user_id: auth.currentUser?.uid,
                 paid: parseInt(investAmount),
                 bonus: bonus,
                 amount: parseInt(investAmount) + bonus,
                 gain: (parseInt(investAmount) + bonus) * ((project.guaranteedReturn / 100) + 1),
-                created_at: Date.now(),
+                created_at: investmentCreated.toJSON(),
                 project: project.id,
                 movies: project.movies,
+                invoice_number: invoiceCount
             })
+            // Make invoice
+            createInvoice(invoiceCount, project, user, {
+              id: investmentId,
+              user_id: user.id,
+              paid: parseInt(investAmount),
+              bonus: bonus,
+              amount: parseInt(investAmount) + bonus,
+              gain: (parseInt(investAmount) + bonus) * ((project.guaranteedReturn / 100) + 1),
+              created_at: investmentCreated.toJSON(),
+              project: project.id,
+              movies: project.movies,
+              invoice_number: invoiceCount + 1
+          })
             // Update project
             let projectUpdates: any = {}
             projectUpdates['currentlyInvested'] = parseInt(investAmount) + project.currentlyInvested + bonus
@@ -261,6 +334,9 @@ const InvestModal: React.FunctionComponent<IProps> = (props) => {
                     project: project.id
                 })
             })
+            console.log(invoiceCount)
+            // Create notification
+            createInvestmentNotification(user.id, project.name)
 
             toaster.push(
                 <Message type='success' duration={8000} closable showIcon>
@@ -270,6 +346,7 @@ const InvestModal: React.FunctionComponent<IProps> = (props) => {
             close()
             navigate('/app/congratulations')
             showReciept()
+        }
       }
     }
 

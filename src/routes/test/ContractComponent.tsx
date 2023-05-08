@@ -1,16 +1,18 @@
 import React from 'react'
 import { FirebaseBundle, FirebaseUser } from '../../database/Objects'
 import './contract-component.scss'
+import { formatDate } from '../../misc/custom-hooks';
 
 interface IProps {
   user: FirebaseUser,
   project: FirebaseBundle,
   investAmount: number,
   bonus: number,
+  day: string,
 }
 const ContractComponent = (props: IProps) => {
-  const {user, project, investAmount, bonus} = props;
-  const today = new Date();
+  const {day, user, project, investAmount, bonus} = props;
+  const date = new Date(day);
   return (
     <div id="english-document">
     <div className="WordSection1">
@@ -295,9 +297,7 @@ Project is thereby specified as:</p>
 </span></span></p>
 
 <p className="MsoNormal" ><span >Transaction date: &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span>
-  {`${parseInt(today.toLocaleDateString().split('/')[1]) >= 10 ? `${today.toLocaleDateString().split('/')[1]}`: `0${today.toLocaleDateString().split('/')[1]}`}.${
-    parseInt(today.toLocaleDateString().split('/')[0]) >= 10 ? `${today.toLocaleDateString().split('/')[0]}`: `0${today.toLocaleDateString().split('/')[0]}`}.${
-      today.toLocaleDateString().split('/')[2]}`}
+  {formatDate(date)}
 </span></span></p>
 
 <p className="MsoNormal" ><span >Fixed yield: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span>

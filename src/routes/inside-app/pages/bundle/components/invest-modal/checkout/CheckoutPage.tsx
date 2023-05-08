@@ -83,11 +83,11 @@ const CheckoutPage = (props: IProps) => {
           <div className="left-side">
           <div className='checkout-card project'>
             {
-              project.movies?.map((movie: FirebaseMovie) => (
+              project.movies?.map((movie: number) => (
                 <CheckoutProjectInfo
                   project={project}
                   movie={movie}
-                  investAmount={investAmount}
+                  investAmount={investAmount / project.movies!.length}
                   en={en}
                   bonus={bonus} editing={sharesEditable} setInvestAmount={setInvestAmount}
                 />

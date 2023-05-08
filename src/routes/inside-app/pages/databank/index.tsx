@@ -16,7 +16,7 @@ const DatabankPage = ({en} : {en: boolean}) => {
     get(reference).then((snap) => {
       let data: any[] = []
       snap.forEach((investment) => {
-        if (investment.val().creator == auth.currentUser?.uid) {
+        if (investment.val().user_id == auth.currentUser?.uid) {
           data.push(investment.val())
         }
       })
@@ -24,7 +24,7 @@ const DatabankPage = ({en} : {en: boolean}) => {
     }).finally(() => {
       setLoading(false)
     })
-  }, [auth])
+  }, [])
   return (
     <>
     {loading ? (<RedrumProLoader/>) : (<RecieptsList en={en} investments={investments}/>)}

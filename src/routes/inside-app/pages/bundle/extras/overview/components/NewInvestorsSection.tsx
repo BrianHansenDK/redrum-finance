@@ -1,7 +1,7 @@
 import { onValue, ref } from 'firebase/database';
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Divider } from 'rsuite';
+import { Button, Divider, Tooltip, Whisper } from 'rsuite';
 import { database, getUsers } from '../../../../../../../firebase';
 import bundleStrings from '../../../../../../../library/string/Bundle';
 import { mainColors } from '../../../../../themes/colors';
@@ -88,9 +88,17 @@ class NewInvestorsSection extends Component<IProps, IState> {
                     }
                 </div>
                 <h3 style={styles.linkWrap}>
-                    <Link style={styles.link} to={`/app/bundle/${this.props.project?.id}/extras/investors`}>
+                  <Whisper placement={'top'} trigger={'click'} speaker={
+                    <Tooltip style={{zIndex: 55, fontSize: 'large'}}>
+                      {this.props.en ?
+                      "We're actively developing this feature." :
+                      'Wir entwickeln dieses Feature aktiv.'}
+                    </Tooltip>
+                  }>
+                    <Button appearance='link' style={styles.link} >
                         {this.props.en ? bundleStrings.newInvEN.link : bundleStrings.newInvDE.link}
-                    </Link>
+                    </Button>
+                  </Whisper>
                 </h3>
             </div>
         );

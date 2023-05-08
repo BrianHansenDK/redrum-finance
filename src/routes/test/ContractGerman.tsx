@@ -1,15 +1,17 @@
 import React from 'react'
 import { FirebaseBundle, FirebaseUser } from '../../database/Objects'
+import { formatDate } from '../../misc/custom-hooks';
 
 interface IProps {
   user: FirebaseUser,
   project: FirebaseBundle,
   investAmount: number,
   bonus: number,
+  day: string,
 }
 const ContractGerman = (props: IProps) => {
-  const {user, project, investAmount, bonus} = props;
-  const today = new Date()
+  const {day, user, project, investAmount, bonus} = props;
+  const date = new Date(day)
   return (
     <div id="german-document">
       <div className="WordSection1">
@@ -304,9 +306,7 @@ Unterhaltungsprojekt wird dabei spezifiziert als:</span></p>
   </span></span></p>
 
 <p className="MsoNormal" ><span  >Transaktionsdatum: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span >Individuelles
-{`${parseInt(today.toLocaleDateString().split('/')[1]) >= 10 ? `${today.toLocaleDateString().split('/')[1]}`: `0${today.toLocaleDateString().split('/')[1]}`}.${
-    parseInt(today.toLocaleDateString().split('/')[0]) >= 10 ? `${today.toLocaleDateString().split('/')[0]}`: `0${today.toLocaleDateString().split('/')[0]}`}.${
-      today.toLocaleDateString().split('/')[2]}`}
+{formatDate(date)}
 </span></span></p>
 
 <p className="MsoNormal" ><span  >Fixe Rendite: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span >

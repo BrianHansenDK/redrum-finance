@@ -18,7 +18,7 @@ const ProgressItem = ({ project, en }: { project: any, en: boolean }) => {
     return (
         <Whisper speaker={tooltip} trigger='hover' placement='top' >
             <div style={styles.progressWrap}>
-                <ProgressLine style={styles.bar} percent={percent} status={`${percent == 100 ? 'success' : 'active'}`} />
+                <ProgressLine style={styles.bar} percent={percent} status={`${percent >= 100 ? 'success' : 'active'}`} />
                 <div style={styles.goalWrap}>
                     <p style={styles.goalTxt}>
                       {en ? bundleStrings.infoCardEN.aI : bundleStrings.infoCardDE.aI}

@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useEffect, useState } from 'react'
-import { Button, Nav, Navbar } from 'rsuite'
+import { Button, Nav, Navbar, Tooltip, Whisper } from 'rsuite'
 import NavItem from 'rsuite/esm/Nav/NavItem'
 import OverviewIcon from '@rsuite/icons/Treemap'
 import MovieIcon from '@rsuite/icons/legacy/VideoCamera'
@@ -49,13 +49,13 @@ const SecondaryNavbar: FunctionComponent<IProps> = (props) => {
             index: 3,
             txt: en ? bundleStrings.secondaryNavbarEN.up : bundleStrings.secondaryNavbarDE.up,
             icon: <UpdatesIcon />,
-            to: `/app/bundle/${project.id}/extras/updates`
+            to: ''//`/app/bundle/${project.id}/extras/updates`
         },
         {
             index: 4,
             txt: en ? bundleStrings.secondaryNavbarEN.iv : bundleStrings.secondaryNavbarDE.iv,
             icon: <InverstorsIcon />,
-            to: `/app/bundle/${project.id}/extras/investors`
+            to: ''//`/app/bundle/${project.id}/extras/investors`
         },
     ]
 
@@ -109,17 +109,39 @@ const SecondaryNavbar: FunctionComponent<IProps> = (props) => {
             <Navbar style={styles.navbar} className={`${isFixed ? 'navbar shadow' : 'navbarhidden'}`}>
                 <Nav activeKey={0} >
                     {NAVS.map((nav: any) => (
-                        <SecondaryNavbarItem
+                      <>
+                      {
+                        nav.to !== '' ? (
+                          <SecondaryNavbarItem
+                            en={en}
                             isActive={location.pathname == nav.to}
                             key={nav.index}
                             icon={nav.icon}
                             txt={nav.txt}
                             to={nav.to}
-                        />
+                            fixed={isFixed}
+                          />
+                        ) : (
+                            <SecondaryNavbarItem
+                            en={en}
+                            isActive={location.pathname == nav.to}
+                            key={nav.index}
+                            icon={nav.icon}
+                            txt={nav.txt}
+                            to={''}
+                            fixed={isFixed}
+                          />
+                        )
+                      }
+                      </>
+
                     ))}
                 </Nav>
                 <Nav pullRight style={{ minWidth: isMobile ? 'auto' : 250, }}>
                       <Button
+                      title={project.currentlyInvested >= project.goal ? en ? 'Investment capacity reached for project' :
+                      'Investitionskapazität für das Projekt erreicht': ''}
+                     disabled={project.currentlyInvested >= project.goal}
                       appearance='primary'
                       className='r-btn r-main-btn'
                       onClick={
@@ -137,11 +159,13 @@ const SecondaryNavbar: FunctionComponent<IProps> = (props) => {
                 <Nav activeKey={0} >
                     {NAVS.map((nav: any) => (
                         <SecondaryNavbarItem
+                            en={en}
                             isActive={location.pathname == nav.to}
                             key={nav.index}
                             icon={nav.icon}
                             txt={nav.txt}
                             to={nav.to}
+                            fixed={isFixed}
                         />
                     ))}
 

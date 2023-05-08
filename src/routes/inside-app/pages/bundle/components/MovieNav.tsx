@@ -37,12 +37,13 @@ class MovieNav extends Component<IProps, IState> {
         return (
             <>
                 <SecondaryNavbarItem
-                    isActive={location.pathname.includes(this.props.movieId)}
-                    key={this.props.movieId}
-                    icon={<MovieIcon />}
-                    txt={this.state.title}
-                    to={`app/bundle/${this.props.bundleId}/extras/movies/${this.props.movieId}`}
-                />
+              isActive={location.pathname.includes(this.props.movieId)}
+              key={this.props.movieId}
+              icon={<MovieIcon />}
+              txt={this.state.title}
+              to={`app/bundle/${this.props.bundleId}/extras/movies/${this.props.movieId}`}
+              en={false}
+              fixed={false}                />
             </>
         );
     }

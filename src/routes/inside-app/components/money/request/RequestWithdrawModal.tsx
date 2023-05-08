@@ -24,7 +24,7 @@ const RequestWithdrawModal: FunctionComponent<IProps> = (props) => {
         </h3>
         <p style={mainP} className='text-center'>
           We hereby confirm that your request has been recieved.
-          You will recieve the amount in the next 5 week days.
+          You will recieve the amount in the next 2-3 business days.
         </p>
       </ModalBody>
       <ModalFooter>

@@ -11,3 +11,9 @@ $card-shadow: 0 10px 20px 0 rgba(0,0,29, .25);
   padding: 2rem;
 
 }
+
+.notification {
+  &.read {
+    background-color: #ececec;
+  }
+}

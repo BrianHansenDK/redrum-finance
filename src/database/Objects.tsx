@@ -45,9 +45,9 @@ description?: string,
 endDate?: string,
 goal?: number,
 guaranteedReturn?: number,
-id?: string,
+id?: number,
 intro?: string,
-movies?: Array<FirebaseMovie>,
+movies?: Array<number>,
 name?: string,
 overviewImage?: string,
 presentationImage?: string,
@@ -55,6 +55,31 @@ publication?: string,
 smallImage?: string,
 startDate?: string,
 value?: number,
+}
+
+// Investment object
+export interface FirebaseInvestment {
+  id: number,
+  user_id: string,
+  paid: number,
+  bonus: number,
+  amount: number,
+  gain: number,
+  created_at: string,
+  project: number,
+  movies: number[],
+  invoice_number: number,
+}
+
+// Invoice object
+export interface FirebaseInvoice {
+  id: number,
+  created_at: string,
+  investor_email: string,
+  user_id: string,
+  investment_id: number,
+  bundle_id: number,
+  project_ids: number[],
 }
 
 // Request object
@@ -85,7 +110,7 @@ export interface FirebaseShare {
 amount: number,
 id : string
 investment: number
-movie: string,
+movie: number,
 owner: string,
-project: string
+project: number
 }

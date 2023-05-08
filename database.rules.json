@@ -8,19 +8,19 @@
     	},
     	"investments": {
         ".read": true,
-        ".write": true
+        ".write": "auth.uid !== null"
     	},
     	"projects": {
       	".read": true,
-    		".write": true
+    		".write": "auth.uid !== null"
     	},
     	"shares": {
-      	".read": true,
-    		".write": true
+      	".read": "auth.uid !== null",
+    		".write": "auth.uid !== null"
     	},
     	"movies": {
       	".read": true,
-      	".write": true
+      	".write": "auth.uid !== null"
     	},
     	"questions": {
         ".read": true,
@@ -33,6 +33,10 @@
       "notifications": {
         ".read": "auth.uid !== null",
         ".write": "auth.uid !== null"
+      },
+      "invoices": {
+        ".read": "auth.uid !== null",
+          ".write": "auth.uid !== null"
       }
   }
 }

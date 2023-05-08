@@ -3,6 +3,7 @@ import { List } from 'rsuite'
 import { FirebaseNotification } from '../../../../database/Objects'
 import mainShadows from '../../themes/shadows'
 import NotificationListItem from './NotificationListItem'
+import { sortNotifications } from '../../../../misc/custom-hooks'
 
 interface IProps {
   en: boolean,
@@ -12,8 +13,8 @@ const NotificationsWrap = (props: IProps) => {
   const {en, notifications} = props;
   return (
     <List bordered style={styles.list} hover>
-      {notifications.reverse().map((notification) => (
-        <List.Item key={notification.id}>
+      {notifications.sort(sortNotifications).map((notification) => (
+        <List.Item key={notification.id} className={`notification ${notification.read ? 'read' : ''}`}>
           <NotificationListItem en={en} notification={notification}/>
         </List.Item>
       ))}

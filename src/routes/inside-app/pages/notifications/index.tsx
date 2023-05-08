@@ -30,16 +30,16 @@ const NotificationsPage = (props: IProps) => {
   }, [auth])
   return (
     <>
-    <h1 style={TextTheme.mainTitle}>Notifications</h1>
+    <h1 style={TextTheme.mainTitle}>{en ? 'Notifications' : 'Benachrichtigungen'}</h1>
     {loading ? (
       <div style={styles.loaderWrap}>
         <RedrumProLoader/>
       </div>
     ) : (
-      <>
+      <div className='pb-5'>
       {notifications.length < 1 ? ( <NoNotificationsItem /> ) :
       ( <NotificationsWrap notifications={notifications} en={en}/> )}
-      </>
+      </div>
     )}
 
     </>

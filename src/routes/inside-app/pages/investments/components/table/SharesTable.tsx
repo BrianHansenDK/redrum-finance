@@ -1,26 +1,23 @@
-import { get, onValue, ref } from 'firebase/database'
 import React, { useEffect, useState } from 'react'
-import { Loader } from 'rsuite'
-import { FirebaseShare } from '../../../../../../database/Objects'
-import { auth, database } from '../../../../../../firebase'
+import { FirebaseBundle, FirebaseInvestment } from '../../../../../../database/Objects'
+import { getProjectCountWithProjects } from '../../../../../../firebase'
 import RedrumProLoader from '../../../../components/RedrumProLoader'
-import ProjectTitle from './ProjectTitle'
-import ShareRow from './ShareRow'
-import ShareTitles from './ShareTitles'
 import './table.scss'
+import ShareTableInner from './ShareTableInner'
 
 interface IProps {
-  userInvestments: any[]
+  userInvestments: FirebaseInvestment[],
+  projects: FirebaseBundle[],
+  movieIds: number[]
 }
 
 const SharesTable = (props: IProps) => {
-  const {userInvestments} = props;
-  const [shares, setShares] = useState<FirebaseShare[]>([])
-  const [sum, setSum] = useState<number>(0)
-  const [investments, setInvestments] = useState<any>([])
-  const [projectIds, setProjectIds] = useState<any>([])
+  const {userInvestments, projects, movieIds} = props;
+  const [projectsCount, setProjectsCount] = React.useState<number>(0)
+  const [uniqueProjects, setUniqueProjects] = React.useState<FirebaseBundle[]>([])
   const [loading, setLoading] = useState<boolean>(false)
-  useEffect(() => {
+
+  /*useEffect(() => {
     userInvestments.forEach(inv => {
       setSum(sum + inv.amount)
       console.log(`Sum: ${sum}`)
@@ -50,9 +47,9 @@ const SharesTable = (props: IProps) => {
       }
       if (share.movie === lst[2].movie && i > 2) {
         lst[2].amount += share.amount
-      }*/
+      }
     })
-    }).finally(() => setShares([lst[0]] /*.slice(0,3)*/))
+    }).finally(() => setShares([lst[0]] /*.slice(0,3)))
     // Set shares
     // Get investments
     let invData: any[] = []
@@ -75,40 +72,33 @@ const SharesTable = (props: IProps) => {
 
       console.log(lst)
 
-  }, [])
+  }, []) */
 
+  React.useEffect(() => {
+    getProjectCountWithProjects(setProjectsCount, setUniqueProjects, setLoading)
+    console.log(projectsCount)
+  }, [])
   return (
     <div>
-      {
-        loading ? (
+        {loading ? (
           <div style={{width: '100%', height: 250, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
             <RedrumProLoader/>
           </div>
         ) : (
           <>
-          {
-            projectIds.map((projectId: any) => (
-              <div key={projectId}>
-          <ProjectTitle projectId={projectId} key={projectId} />
-          <table>
-            <ShareTitles />
-          {
-            shares.map((share: any) => (
-              <tbody key={share.id}>
-              {share.project == projectId ? (
-                <ShareRow share={share} sum={sum} />
-                ): null }
-                </tbody>
-            ))
-          }
-          </table>
+          {projects !== null && userInvestments !== null &&
+            userInvestments.map((investment: FirebaseInvestment, index) => (
+              <div key={investment.id}>
+                {(index >= projectsCount)  ? null :
+                (
+                  <ShareTableInner project={uniqueProjects[index]}/>
+                )}
+
           </div>
         ))
       }
       </>
-        )
-      }
-
+        )}
     </div>
   )
 }

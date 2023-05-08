@@ -5,7 +5,7 @@ import { auth } from '../../../../../../firebase'
 import { Button } from 'rsuite'
 import NewEditProfileModal from './editprofile/NewEditProfileModal'
 import { FirebaseUser } from '../../../../../../database/Objects'
-import { getCity } from '../../../../../../misc/custom-hooks'
+import { formatDate, getCity } from '../../../../../../misc/custom-hooks'
 interface IProps {
   user: FirebaseUser,
   en: boolean,
@@ -15,12 +15,14 @@ interface IProps {
 
 const ProfileData = (props: IProps) => {
     const { user, en, visible, openModal, closeModal } = props;
+    const birthdate = new Date(user.birth_date)
+    const birthdateDT = new Date(birthdate.getTime() + (1000 * 60 * 60 * 24))
     return (
         <>
             <div className='profile-data'>
                 <div>
                     <p className='birth-year'>
-                        <CalendarIcon className='info-icon' /> Birthdate: {user.birth_date !== '' ? user.birth_date : 'Unknown'}
+                        <CalendarIcon className='info-icon' /> Birthdate: {user.birth_date !== '' ? formatDate(birthdateDT) : 'Unknown'}
                     </p>
                     <p className='birth-year'>
                         <PinIcon className='info-icon' /> Location: {user.address !== '' ? getCity(user) :

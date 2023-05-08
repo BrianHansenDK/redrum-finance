@@ -61,7 +61,7 @@ const ProfilePage = (props: IProps) => {
                  />
                 {userId == auth.currentUser?.uid ? (
                   <>
-                    <MoneySection userId={userId} />
+                    <MoneySection user={user} />
                     <AddBalanceCard userId={userId} en={en} />
                   </>
                 ): null}

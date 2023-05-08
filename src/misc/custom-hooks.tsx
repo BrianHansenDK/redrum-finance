@@ -110,3 +110,15 @@ export function getRealAge(birthdate: Date) {
 export function checkIfFirefox() {
   return navigator.userAgent.indexOf("Firefox") != -1
 }
+
+
+// Format date
+export function formatDate(date: Date) {
+  return `${date.toJSON().split('-')[2].split('T')[0]}.${date.toJSON().split('-')[1].split('T')[0]}.${date.toJSON().split('-')[0]}`
+}
+
+export function sortNotifications(a: any,b: any){
+  var dateA = new Date(a.created_at).getTime();
+  var dateB = new Date(b.created_at).getTime();
+  return dateA > dateB ? -1 : 1;
+};

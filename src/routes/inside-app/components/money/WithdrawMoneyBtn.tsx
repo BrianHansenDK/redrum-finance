@@ -1,7 +1,7 @@
 import { onValue, ref, update } from '@firebase/database'
 import React, { useEffect, useState } from 'react'
 import { Button, ButtonGroup, Loader, Message, useToaster } from 'rsuite'
-import { auth, createWithdrawalRequest, database } from '../../../../firebase'
+import { auth, createWithdrawalNotification, createWithdrawalRequest, database } from '../../../../firebase'
 import PushThemes from '../../themes/PushThemes'
 
 interface IProps {
@@ -50,10 +50,11 @@ const WithdrawMoneyBtn: React.FunctionComponent<IProps> = (props) => {
         toaster.push(
           <Message type='info' showIcon duration={8000} closable>
             <span>
-              {wished}€ has been removed from your account balance and will be transfered to your account within 5 week days.
+              {wished}€ has been removed from your account balance and will be transfered to your account within 2-3 business days.
             </span>
           </Message>
         )
+        createWithdrawalNotification(user.id)
         closeModal()
         openRModal()
       })

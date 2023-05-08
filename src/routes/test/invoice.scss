@@ -1,0 +1,84 @@
+$dark: #141628;
+$main: #3598FE;
+$white: #fefefe;
+$input-bg: rgb(224, 230, 235);
+$blue-shadow: #359afe7b;
+$dark-shadow: rgba(0, 0, 29, .25);
+
+$blue-border: 1px solid $main;
+
+.redrum-invoice {
+  width: 590px;
+  position: relative;
+  padding: 80px 25px 0;
+  margin: auto;
+  font-size: x-small;
+
+  & .invoice-img {
+    position: absolute;
+    top: 25px;
+    right: 20px;
+  }
+  & .intro {
+    display: flex;
+    justify-content: space-between;
+    & p {
+      margin: 0;
+    }
+    & .box2 {
+      text-align: end;
+    }
+  }
+  & .doc-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    & .small-title {
+      font-size: medium;
+      line-height: 1;
+    }
+  }
+  & .project-information-table {
+    width: 100%;
+    & thead {
+      font-weight: 700;
+      height: 75px;
+    }
+    & tbody {
+      border-top: $blue-border;
+      border-bottom: $blue-border;
+      & tr {
+        height: 50px;
+      }
+    }
+  }
+  & .investment-info {
+    margin-top: 15px;
+    margin-left: auto;
+    max-width: 200px;
+    display: flex; flex-direction: column;
+    row-gap: 2px;
+    & .inf {
+      display: flex;
+      justify-content: space-between;
+      margin: 0;
+    }
+  }
+  & .doc-footer {
+    border-top: $blue-border;
+    margin-top: 200px;
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 0;
+    & .footer-box {
+      font-size: 7.5px;
+      max-width: max-content;
+      &.first {
+        max-width: 250px;
+      }
+      &.last {
+        max-width: 120px;
+      }
+    }
+  }
+}

@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
 import { auth } from '../../../../../../../firebase';
-import { useMediaQuery } from '../../../../../../../misc/custom-hooks';
+import { getCity, useMediaQuery } from '../../../../../../../misc/custom-hooks';
 import { mainColors } from '../../../../../themes/colors';
 import mainShadows from '../../../../../themes/shadows';
 
@@ -82,7 +82,7 @@ const NewInverstorsCard: FunctionComponent<IProps> = (props) => {
                             {user?.company_account ? 'Company' : user?.money_available !== undefined ? 'Redrum Pro investor' : 'Redrum Pro member'}
                         </span>
                         {user?.address ? (
-                            `${user?.address.split(' ')[user.address.split(' ').length - 1]}, ${user?.country}`
+                            `${getCity(user)}, ${user?.country}`
                         ) : 'Location unknown'}
                     </p>
                 </div>

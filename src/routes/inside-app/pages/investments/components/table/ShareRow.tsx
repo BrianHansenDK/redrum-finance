@@ -41,14 +41,14 @@ const ShareRow = (props: IProps) => {
           {movieTitle}
         </td>
         <td>
-          {share.amount}€
+          {sum}€
         </td>
         <td
         style={{
-          color: share.amount < share.amount + (share.amount * ((gReturn) / 100)) ? mainColors.success : mainColors.red
+          color: sum < sum + (sum * ((gReturn) / 100)) ? mainColors.success : mainColors.red
         }}
         >
-          {numberWithCommas((share.amount + (share.amount * (gReturn / 100))).toFixed(2)).toString().replace('.', ',')}€
+          {numberWithCommas((sum + (sum * (gReturn / 100))).toFixed(2)).toString().replace('.', ',')}€
         </td>
         { isLimit ? null : (
         <td>

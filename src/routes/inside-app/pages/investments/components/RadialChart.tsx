@@ -5,16 +5,17 @@ import { mainColors } from '../../../themes/colors';
 import mainShadows from '../../../themes/shadows';
 import ChartBody from './ChartBody';
 import ChartTitle from './ChartTitle';
+import { FirebaseInvestment } from '../../../../../database/Objects';
 
+interface IProps {
+  isMobile: boolean,
+  userInvestments: FirebaseInvestment[]
+}
 
+const RadialChart = (props: IProps) => {
+    const {isMobile, userInvestments} = props;
 
-const RadialChart = ({isMobile} : {isMobile: boolean}) => {
-    const [userInvestments, setUserInvestments] = useState<any[]>([])
-    useEffect(() => {
-      getUserInvestments(auth.currentUser?.uid, setUserInvestments)
-    }, [auth.currentUser?.uid])
-
-    const small = useMediaQuery('(max-width: 800px)')
+    const small = useMediaQuery('(max-width: 800px)');
 
     const styles = {
       wrap: {

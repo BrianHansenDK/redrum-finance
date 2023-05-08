@@ -1,4 +1,4 @@
-import { onValue, ref } from 'firebase/database';
+import { get, onValue, ref } from 'firebase/database';
 import React, { Component, useEffect, useState } from 'react'
 import { Divider, Table } from 'rsuite';
 import EMPTY from '../../../../../assets/empty_img.png'
@@ -6,6 +6,8 @@ import { database } from '../../../../../firebase';
 import { mainColors } from '../../../themes/colors';
 import InvestmentsTable from './InvestmentsTable';
 import SharesTable from './table/SharesTable';
+import { FirebaseBundle, FirebaseMovie } from '../../../../../database/Objects';
+import RedrumProLoader from '../../../components/RedrumProLoader';
 interface IProps {
     userInvestments: any[],
     isMobile: boolean,
@@ -13,16 +15,25 @@ interface IProps {
 
 const ChartBody: React.FunctionComponent<IProps> = (props) => {
   const {userInvestments, isMobile} = props
+  const [projects, setProjects] = React.useState<FirebaseBundle[] | null>(null)
+  const [loading, setLoading] = React.useState(false)
+
+  let movieData: number[] = []
+  let data: FirebaseBundle[] = []
   useEffect(() => {
-  let data: any[] = []
-  let movieData: any[] = []
+    setLoading(true)
     userInvestments.forEach((inv) => {
       const reference = ref(database, 'projects/' + inv.project)
-      onValue(reference, (snap) => {
+      get(reference).then((snap) => {
         data.push(snap.val())
         movieData.push(snap.val().movies)
       })
     })
+    window.setTimeout(() => {
+
+      setProjects(data)
+      setLoading(false)
+    }, 1500)
   }, [])
 
   const styles = {
@@ -49,10 +60,11 @@ const ChartBody: React.FunctionComponent<IProps> = (props) => {
 }
   return (
     <>
-      {
-        userInvestments.length > 0 ? (
+      {loading ? (<RedrumProLoader/>) : projects === null ? null :  (
+        <>
+        {userInvestments.length > 0 ? (
           <>
-          <SharesTable userInvestments={userInvestments}/>
+          <SharesTable userInvestments={userInvestments} projects={projects} movieIds={movieData}/>
           {/*
 
             <InvestmentsTable investments={userInvestments}/>
@@ -87,8 +99,8 @@ const ChartBody: React.FunctionComponent<IProps> = (props) => {
                 }
 
             </div>
-        )
-      }
+
+      )} </>)}
     </>
   );
 }
