@@ -9,8 +9,14 @@ const VanumoSignIn = ({setSignedIn}: {setSignedIn: any}) => {
   const toaster = useToaster()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const admin = email === import.meta.env.VITE_DEV_EMAIL || email === import.meta.env.VITE_ADMIN_EMAIL
 
   const loginToVanumo = () => {
+    if (!admin) {
+      toaster.push(<Message showIcon type='error' duration={10000} closable>
+        Unauthorized!
+      </Message>, {placement: 'topCenter'})
+    } else {
     signInWithEmailAndPassword(auth, email, password)
     .then((userCreds) => {
       const user = userCreds.user
@@ -23,6 +29,7 @@ const VanumoSignIn = ({setSignedIn}: {setSignedIn: any}) => {
     .finally(() => {
       setSignedIn(true)
     })
+  }
   }
 
   return (
@@ -40,11 +47,11 @@ const VanumoSignIn = ({setSignedIn}: {setSignedIn: any}) => {
         Sign in
       </Button>
       </div>
-      <Button appearance='primary'
+      {/*<Button appearance='primary'
       style={styles.btn} size='lg'
       onClick={() => setSignedIn(true)}>
         Am admin
-      </Button>
+  </Button>*/}
     </div>
   )
 }

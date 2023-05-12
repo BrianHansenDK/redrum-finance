@@ -35,6 +35,7 @@ image: string, // Url
 intro: string,
 releaseDate: string, // Can be used as a date
 title: string,
+trailer_url: string,
 }
 
 // Bundle/Project object

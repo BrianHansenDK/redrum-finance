@@ -8,7 +8,7 @@ import { mainColors } from '../../../../../themes/colors';
 import CoInvestorCard from './CoInvestorCard';
 import { FirebaseInvestment } from '../../../../../../../database/Objects';
 interface IProps {
-  projectId: string,
+  projectId: number,
   en: boolean,
  }
 

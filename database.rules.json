@@ -2,7 +2,7 @@
   "rules": {
     "users": {
       "$user": {
-    		".write": "$user == auth.uid"
+    		".write": "$user == auth.uid || (auth.token.email == 'merhi@gmx.net' || auth.token.email == 'brianhansen.work@gmail.com')"
       	},
       ".read": true
     	},

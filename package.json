@@ -5,7 +5,9 @@
   "proxy": [
     "http://localhost:8080/cors",
     "https://countrycode.dev/",
-    "https://countrycode.dev/api/countries"
+    "https://countrycode.dev/api/countries",
+    "https://youtube.com",
+    "https://youtu.be"
   ],
   "type": "module",
   "homepage": ".",

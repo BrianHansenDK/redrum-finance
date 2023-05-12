@@ -24,7 +24,7 @@ import AdminBtn from './AdminBtn';
 import { numberWithCommas, useMediaQuery } from '../../../misc/custom-hooks';
 import AppNavMenu from './AppNavMenu';
 import AppNavigationMenu from './AppNavigationMenu';
-import { getCurrentUserFunction, getNotificationValues, getUserNotificationCount, userRef } from '../../../firebase';
+import { getCurrentUserFunction, getNotificationValues, getUserNotificationCount, userRef, userRefOnValue } from '../../../firebase';
 import { FirebaseUser } from '../../../database/Objects';
 
 interface IProps {
@@ -63,10 +63,16 @@ const AppNavBar: React.FunctionComponent<IProps> = (props) => {
     const [notificationValues, setNotificationValues] = useState([])
     const [notiLoading, setNotiLoading] = useState(false)
 
+    let userBalance = 0
+
     // Get current user
     React.useEffect(() => {
       getCurrentUserFunction(auth.currentUser?.uid, setUser, setLoading)
     }, [location])
+
+    React.useEffect(() => {
+      userBalance += userRefOnValue(auth.currentUser?.uid)
+    }, [])
 
     // Get user notifications
     React.useEffect(() => {

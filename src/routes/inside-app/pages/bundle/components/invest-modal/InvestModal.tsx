@@ -334,7 +334,6 @@ const InvestModal: React.FunctionComponent<IProps> = (props) => {
                     project: project.id
                 })
             })
-            console.log(invoiceCount)
             // Create notification
             createInvestmentNotification(user.id, project.name)
 

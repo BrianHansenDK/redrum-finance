@@ -51,7 +51,7 @@ const VanumoNavbar = () => {
       <SelectPicker
       loading={loading}
       onChange={setUserId}
-      data={users.map((user, index) => ({ label: user.username, value: userIds[index] }))}
+      data={users.map((user, index) => ({ label: user.email, value: userIds[index] }))}
       style={{ width: 300 }}
       placeholder='Search user'
       />

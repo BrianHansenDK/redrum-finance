@@ -31,22 +31,16 @@ const UserCard = () => {
         updates['money_available'] = parseInt(available)
         update(reference, updates).then(() => {
             toaster.push(
-                <Message showIcon type='info' >
+                <Message showIcon type='info' duration={10000} closable>
                     Data was updated for {username}!
                 </Message>, { placement: 'topCenter' }
             )
-            window.setTimeout(() => {
-                toaster.clear()
-            }, 5000)
         }).catch((err) => {
             toaster.push(
-                <Message showIcon type='error' >
+                <Message showIcon type='error' duration={10000} closable>
                     Error occured: {err.code}
                 </Message>, { placement: 'topCenter' }
             )
-            window.setTimeout(() => {
-                toaster.clear()
-            }, 5000)
         })
     }
     return (

@@ -36,7 +36,7 @@ const NotificationsPage = (props: IProps) => {
         <RedrumProLoader/>
       </div>
     ) : (
-      <div className='pb-5'>
+      <div className='pb-5' style={styles.wrap}>
       {notifications.length < 1 ? ( <NoNotificationsItem /> ) :
       ( <NotificationsWrap notifications={notifications} en={en}/> )}
       </div>
@@ -52,6 +52,9 @@ const styles = {
     width: '100%',
     height: 400,
     alignItems: 'center',
+  },
+  wrap: {
+    width: '100%'
   }
 }
 

@@ -31,9 +31,10 @@ const SaveRequestStateBtn = ({request, state, user}: {request: FirebaseRequest, 
       })
       .finally(() => {
         toaster.push(
-          <Message type='info' style={pushSuccess}>
+          <Message type='info' style={pushSuccess} duration={8000}>
         <p style={msgInner}>Request was updated</p>
       </Message>, {placement: 'bottomCenter'})
+      location.reload()
       })
       }
   }

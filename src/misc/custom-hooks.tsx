@@ -122,3 +122,9 @@ export function sortNotifications(a: any,b: any){
   var dateB = new Date(b.created_at).getTime();
   return dateA > dateB ? -1 : 1;
 };
+
+export function YOUTUBE(link: string) {
+  return link.replace('.com', '.com/embed')
+  .replace('.be', 'be.com/embed')
+  .replace('watch?v=', '')
+}

@@ -15,6 +15,7 @@ const VMoviePageInfoForm = ({movie, setEditing} : {movie: FirebaseMovie, setEdit
   const [description, setDescription] = useState(movie.description)
   const [genres, setGenres] = useState(movie.genres)
   const [releaseDate, setReleaseDate] = useState(movie.releaseDate)
+  const [trailerUrl, setTrailerUrl] = useState(movie.trailer_url)
   const [resetting, setResetting] = useState<boolean>(false)
 
   const resetValues = () => {
@@ -24,6 +25,7 @@ const VMoviePageInfoForm = ({movie, setEditing} : {movie: FirebaseMovie, setEdit
     setDescription(movie.description)
     setGenres(movie.genres)
     setReleaseDate(movie.releaseDate)
+    setTrailerUrl(movie.trailer_url)
     setResetting(false)
   }
 
@@ -35,20 +37,19 @@ const VMoviePageInfoForm = ({movie, setEditing} : {movie: FirebaseMovie, setEdit
     updates['description'] = description
     updates['genres'] = genres
     updates['releaseDate'] = releaseDate
+    updates['trailer_url'] = trailerUrl
     await update(reference, updates).then(() => {
       toaster.push(
-        <Message style={pushSuccess} type='success'>
+        <Message style={pushSuccess} type='success' duration={10000} closable>
           <p style={msgInner}>Movie was updated successfully</p>
         </Message>, {placement: 'bottomCenter'}
       )
     }).catch((err) => {
       toaster.push(
-        <Message style={pushError} type='error'>
+        <Message style={pushError} type='error' duration={10000} closable>
           <p style={msgInner}>{err.message}</p>
         </Message>, {placement: 'bottomCenter'}
       )
-    }).finally(() => {
-      window.setTimeout(() => {toaster.clear()}, 8000)
     })
   }
   return (
@@ -61,6 +62,8 @@ const VMoviePageInfoForm = ({movie, setEditing} : {movie: FirebaseMovie, setEdit
     value={resetting ? movie.description! : description} />
     <Input defaultValue={genres} onChange={setGenres}
     className='m-dash-genres bold' value={resetting ? movie.genres! : genres} />
+    <Input defaultValue={trailerUrl} onChange={setTrailerUrl}
+    className='m-dash-genres bold' value={resetting ? movie.trailer_url! : trailerUrl} />
     <Input defaultValue={releaseDate} onChange={setReleaseDate}
     className='m-dash-release_date bold' value={resetting ? movie.releaseDate! : releaseDate} />
     <p className='pl-1'>Format: YYYYY-MM-dd</p>

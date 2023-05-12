@@ -76,7 +76,7 @@ const ProfileForm = (props: IProps) => {
 addAddress2, phone, checked, companyAccount])
 
   const titleData = [
-    {label: en ? 'Mr.' : 'Mann', value: 'Mr.'}, {label: en ? 'Miss.' : 'Frau', value: 'Miss.'},
+    {label: en ? 'Mr.' : 'Herr', value: 'Mr.'}, {label: en ? 'Miss.' : 'Frau', value: 'Miss.'},
     {label: en ? 'Other.' : 'Ander', value: 'Other'}
   ]
 
@@ -192,7 +192,7 @@ addAddress2, phone, checked, companyAccount])
     <div className='edit-profile-form'>
       <div className="form-element double-input pronounce-element" style={{display: 'flex', alignItems: 'center'}}>
         <div className="inner">
-        <label className="label">Title*</label>
+        <label className="label">{en ? 'Title' : 'titel'}*</label>
         <InputPicker className='input picker' placeholder={user.title !== undefined ? user.title :
           en ? 'Select Title' : 'Titel.'}
           value={title === '' ? user.title !== undefined || user.title !== null ? user.title : title : title}
@@ -213,7 +213,7 @@ addAddress2, phone, checked, companyAccount])
           <Radio
           value={'true'}
           style={{display: 'flex', alignItems: 'center'}}>
-            <label className="label">{en ? 'Company' : 'Firm'}
+            <label className="label">{en ? 'Company' : 'Firma'}
           </label></Radio>
         </RadioGroup>
       </div>
@@ -231,8 +231,8 @@ addAddress2, phone, checked, companyAccount])
           />
         </div>
         <div className="inner">
-        <label className="label">{en ? 'Last name' : 'Nach Name'}*</label>
-        <Input className='input' placeholder={en ? 'Enter Last name...' : 'Nach Name schreiben...'}
+        <label className="label">{en ? 'Last name' : 'Nachname'}*</label>
+        <Input className='input' placeholder={en ? 'Enter Last name...' : 'Nachname schreiben...'}
           value={lastName === '' ? user.full_name !== '' ? user.full_name.split(' ').slice(1).join(' ') : lastName : lastName}
           onChange={setLastName}
           />
@@ -268,7 +268,7 @@ addAddress2, phone, checked, companyAccount])
       </Whisper>
       <div className="inner">
         <label className="label">{en ? 'Email address' : 'Email Adresse'}*</label>
-        <Input className='input' value={email === '' ? user.email : email} onChange={setEmail}/>
+        <Input className='input' value={email === '' ? user.email : email} onChange={setEmail} disabled/>
       </div>
       </div>
       {Boolean(companyAccount) ? (
@@ -288,26 +288,27 @@ addAddress2, phone, checked, companyAccount])
           <div className="inner">
           <label className="label">
               {en ? 'Company name' :
-              'Firma Name'}*
+              'Firmenname'}*
             </label>
             <Input className='input'
-            placeholder={user.company_name === undefined ? en ? 'Enter company name...' : 'Firma name schreiben...' : user.company_name}
+            placeholder={user.company_name === undefined ? en ? 'Enter company name...' : 'Firmenname schreiben...' : user.company_name}
             value={companyName === '' ? user.company_name === undefined ? companyName : user.company_name : companyName}
             onChange={setCompanyName}
             />
           </div>
         </div>
         <div className="form-element">
-          <p className='label' style={{width: '100%', flexGrow: 1, flexShrink: 0}}>Where is your company located?*</p>
+          <p className='label' style={{width: '100%', flexGrow: 1, flexShrink: 0}}>
+            {en ? 'Where is your company located' : 'Wo befindet sich ihr Unternehmen'}?*</p>
         </div>
         <div className="form-element double-input">
         <div className="box1">
           <div className="inner postal-code">
             <div>
-              <label htmlFor="" className="label">{en ? 'Postal code' : 'Posteinzahl'}*</label>
+              <label htmlFor="" className="label">{en ? 'Postal code' : 'Postleitzahl'}*</label>
               <Input className='input'
               placeholder={user.company_address !== undefined ? user.company_address.split(', ')[1].split(' ')[0] :
-              en ? 'Postal code...' : 'Posteinzahl...'}
+              en ? 'Postal code...' : 'Postleitzahl...'}
               value={companyCode === '' ? user.company_address !== undefined ? user.company_address.split(', ')[1].split(' ')[0]
               : companyCode: companyCode}
                onChange={setCompanyCode}
@@ -379,7 +380,7 @@ addAddress2, phone, checked, companyAccount])
           </div>
         </div>
         <div className="inner url">
-        <label htmlFor="" className="label">{en ? 'Company domain' : 'Firma Website'}*</label>
+        <label htmlFor="" className="label">{en ? 'Company domain' : 'Website'}*</label>
             <Input className='input' style={{width: '100%'}}
             placeholder={user.website !== undefined ? user.website :
               'Paste URL...'}
@@ -415,10 +416,10 @@ addAddress2, phone, checked, companyAccount])
         <div className="box1">
           <div className="inner postal-code">
             <div>
-              <label htmlFor="" className="label">{en ? 'Postal code' : 'Posteinzahl'}*</label>
+              <label htmlFor="" className="label">{en ? 'Postal code' : 'Postleitzahl'}*</label>
               <Input className='input'
               placeholder={user.address !== '' ? getZipCode(user) :
-              en ? 'Postal code...' : 'Posteinzahl...'}
+              en ? 'Postal code...' : 'Postleitzahl...'}
               value={code === '' ? user.address !== '' ? getZipCode(user)
                : code: code}
                onChange={setCode}
@@ -469,7 +470,7 @@ addAddress2, phone, checked, companyAccount])
       <div className="form-element double-input">
         <div className="inner add-address1">
           <div>
-            <label htmlFor="" className="label">{en ? 'Additional address information' : 'Zuzetsliche Adresse Information'} {addAddress}</label>
+            <label htmlFor="" className="label">{en ? 'Additional address information' : 'Zusätzliche Adressinformationen'} {addAddress}</label>
             <Input className='input'
             placeholder={user.address.split(', ').length > 2 ? user.address.split(', ')[1] :
             en ? 'Write here...' : 'Hier schreiben...'}
@@ -481,7 +482,7 @@ addAddress2, phone, checked, companyAccount])
         </div>
         <div className="inner add-address2">
           <div>
-            <label htmlFor="" className="label">{en ? 'Additional address information 2' : 'Zuzetsliche Adresse Information 2'} {addAddress2}</label>
+            <label htmlFor="" className="label">{en ? 'Additional address information 2' : 'Zusätzliche Adressinformationen 2'} {addAddress2}</label>
             <Input className='input'
             placeholder={user.address.split(', ').length > 3 ? user.address.split(', ')[2] :
             en ? 'Write here...' : 'Hier schreiben...'}
@@ -516,7 +517,7 @@ addAddress2, phone, checked, companyAccount])
         />
         </div>
         <div className="inner phone-number">
-        <label className="label">{en ? 'Phone number' : 'Mobiltelefonnsummer'}*</label>
+        <label className="label">{en ? 'Phone number' : 'Mobiltelefonnummer'}*</label>
         <Input className='input'
         placeholder={user.phone_number !== '' ? user.phone_number : en ? 'Enter phone number...' :
       'Telefon Nummer schreiben'}

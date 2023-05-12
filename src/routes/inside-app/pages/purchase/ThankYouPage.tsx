@@ -46,11 +46,11 @@ const ThankYouPage = (props: IProps) => {
           en ?
           'In the' :
           'Im Meine'
-        } <Link to={'/app/databank'}>{en ? 'Databank' : 'Meine DokumenteBereich'}
+        } <Link to={'/app/databank'}>{en ? 'Databank' : 'Meine Dokumente'}
         </Link> {
           en ?
           'section you will find your invoice and the framework contract.' :
-          'findest du deine Rechnung und den Rahmenvertrag.'
+          'Bereich findest du deine Rechnung und den Rahmenvertrag.'
         }
        </p>
        <Button
@@ -59,7 +59,7 @@ const ThankYouPage = (props: IProps) => {
        onClick={() => navigate('/app')}
        >
         {
-          en ? 'Go to dashboard' : 'Nach Dashboard gehen'
+          en ? 'Go to dashboard' : 'Zum Dashboard gehen'
         }
        </Button>
     </div>

@@ -17,6 +17,7 @@ const CreateMoviePage = () => {
     const [title, setTitle] = useState('')
     const [intro, setIntro] = useState('')
     const [des, setDes] = useState('')
+    const [trailerUrl, setTrailerUrl] = useState('')
     const [genres, setGenres] = useState('')
     const [releaseDate, setReleaseDate] = useState('')
     const [image, setImage] = useState(null)
@@ -29,13 +30,16 @@ const CreateMoviePage = () => {
     const makeMovie = () => {
 
         setLoading(true)
-        writeMovieData(Date.now().toString(), title, intro, des, new Date(releaseDate), genres, imageUrl)
+        writeMovieData(
+          Date.now().toString(), title, intro, des, new Date(releaseDate), genres, imageUrl, trailerUrl
+          )
         setLoading(false)
 
         toaster.push(
             <Message
                 type='success'
                 style={pushSuccess}
+                duration={10000}
             >
               <p style={msgInner}>
                Movie succesfully added to the database 🚀
@@ -43,9 +47,6 @@ const CreateMoviePage = () => {
             </Message>,
             { placement: 'bottomCenter' }
         )
-        window.setTimeout(() => {
-            toaster.clear()
-        }, 8000)
     }
 
     const handleImage = (e: any) => {
@@ -117,6 +118,10 @@ const CreateMoviePage = () => {
                     <FormGroup>
                         <FormControlLabel style={styles.label}>Movie genres</FormControlLabel>
                         <Input onChange={setGenres} placeholder='Seperate with ,' />
+                    </FormGroup>
+                    <FormGroup>
+                        <FormControlLabel style={styles.label}>Trailer link</FormControlLabel>
+                        <Input onChange={setTrailerUrl} maxLength={20} placeholder='Paste the link to the trailer here' />
                     </FormGroup>
                     <ButtonGroup>
                         <Button

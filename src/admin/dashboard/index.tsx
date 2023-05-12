@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Outlet } from 'react-router-dom'
+import { Outlet, useLocation } from 'react-router-dom'
 import { auth } from '../../firebase'
 import VanumoNavbar from './components/navbar/Navbar'
 import NavCards from './components/NavCards'
@@ -9,10 +9,12 @@ import './components/styles/vanumoMain.scss'
 
 const VanumoDashboard = () => {
   const [signedIn, setSignedIn] = useState<any>(false)
+  const location = useLocation()
 
   return (
     <div>
-      {auth.currentUser?.email == 'brianhansen.work@gmail.com' || auth.currentUser?.email == 'merhi@gmx.net' ? (
+      {(auth.currentUser?.email === import.meta.env.VITE_DEV_EMAIL || auth.currentUser?.email === import.meta.env.VITE_DEV_EMAIL)
+       || location.pathname.includes('requests') ? (
         <div>
           <VanumoNavbar/>
           <div style={styles.contentWrap}>

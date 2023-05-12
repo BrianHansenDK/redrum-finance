@@ -13,6 +13,8 @@ import { database } from '../../../../../../firebase'
 import Warning from './components/Warning'
 import CoInvestorsSection from './components/CoInvestorsSection'
 import NewInvestorsSection from './components/NewInvestorsSection'
+import MovieTrailer from './components/trailers/MovieTrailer'
+import { FirebaseBundle } from '../../../../../../database/Objects'
 
 interface IProps {
     params: any,
@@ -21,7 +23,7 @@ interface IProps {
 }
 
 interface IState {
-    projectData: any[]
+    projectData: FirebaseBundle[]
 }
 
 class BundleOverview extends React.Component<IProps, IState> {
@@ -54,9 +56,10 @@ class BundleOverview extends React.Component<IProps, IState> {
             this.state.projectData.map((project) => (
                 project.id == bundleId ? (
                     <div style={styles.wrapper} className='flex-column' key={project.id}>
+                        <MovieTrailer movieIds={project.movies!} en={this.props.en}/>
                         <PresentationCard project={project} />
                         <FilesSection date={today} en={this.props.en} />
-                        <CoInvestorsSection projectId={project.id.toString()} en={this.props.en} />
+                        <CoInvestorsSection projectId={project.id!} en={this.props.en} />
                         <NewInvestorsSection isMobile={this.props.isMobile} project={project} en={this.props.en} />
                         <Warning key={3} />
                     </div>

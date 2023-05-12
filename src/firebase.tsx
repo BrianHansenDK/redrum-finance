@@ -136,6 +136,15 @@ export const getCurrentUserOnValue = async (userId: string, state: any) => {
   await onValue(reference, (snap) => state(snap.val()));
 }
 
+export function userRefOnValue (userId?: string) {
+  const reference = ref(database, `users/${userId}`);
+  let data = 0;
+  onValue(reference, (snap) => {
+    data += snap.val().money_available
+  })
+  return data;
+}
+
 export const userRef = (userId: any, query: string, state: any) => {
     get(ref(database, 'users/' + userId + query)).then((snap) => {
         const data = snap.val()
@@ -174,6 +183,7 @@ export function writeMovieData(
     releaseDate: Date,
     genres: string,
     imageUrl: string,
+    trailerUrl: string
 ) {
     const reference = ref(database, 'movies/' + movieId)
     set(reference, {
@@ -184,6 +194,7 @@ export function writeMovieData(
         releaseDate: releaseDate.toDateString(),
         genres: genres,
         image: imageUrl,
+        trailer_url: trailerUrl
     })
 }
 
@@ -226,24 +237,6 @@ export function writeProjectData(
     })
 }
 
-export function notifyUser(
-  notification_id: number,
-  created_at: string,
-  notification_title: string,
-  content: string,
-  user_id: string,
-  ) {
-    const reference = ref(database, 'notifications/' + notification_id)
-    set(reference, {
-      id: notification_id,
-      created_at: created_at,
-      read: false,
-      title: notification_title,
-      content: content,
-      user_id: user_id,
-    })
-}
-
 // Movies
 
 export function getMovies(movieState: any, loaderState: any) {
@@ -257,6 +250,22 @@ export function getMovies(movieState: any, loaderState: any) {
         movieState(data)
         loaderState(false)
     })
+}
+
+export function getMovieTrailers(MovieIds: number[], setTrailers: any, setLoading: any) {
+  setLoading(true);
+  let data: number[] = [];
+  MovieIds.forEach((id) => {
+    const reference = ref(database, 'movies/' + id);
+    get(reference).then((snap) => {
+      data.push(snap.val().trailer_url);
+    }).catch((err) => {
+      console.error(err);
+    })
+  });
+
+  setTrailers(data);
+  setLoading(false);
 }
 
 // Projects
@@ -359,6 +368,25 @@ export function createWithdrawalRequest(requestId: number, userId: any, amount: 
 
 
 // Notifications
+
+export function notifyUser(
+  userId: string, titleEN: string, titleDE: string, contentEN: string[], contentDE: string[]
+  ) {
+    const todayDT = Date.now()
+    const today = new Date(todayDT)
+    const reference = ref(database, 'notifications/' + todayDT)
+    set(reference, {
+      id: todayDT,
+      created_at: today.toJSON(),
+      read: false,
+      user_id: userId,
+      title_en: titleEN,
+      title_de: titleDE,
+      content_en: contentEN,
+      content_de: contentDE,
+      notification_type: 'response'
+    })
+}
 
 export function createAccountSuccessNotification(userId: string) {
   const todayDT = Date.now()
