@@ -12,7 +12,7 @@
     	},
     	"projects": {
       	".read": true,
-    		".write": "auth.uid !== null"
+    		".write": "auth.token.email == 'merhi@gmx.net' || auth.token.email == 'brianhansen.work@gmail.com'"
     	},
     	"shares": {
       	".read": "auth.uid !== null",
@@ -20,7 +20,7 @@
     	},
     	"movies": {
       	".read": true,
-      	".write": "auth.uid !== null"
+      	".write": "auth.token.email == 'merhi@gmx.net' || auth.token.email == 'brianhansen.work@gmail.com'"
     	},
     	"questions": {
         ".read": true,

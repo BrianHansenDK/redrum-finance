@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Divider, Toggle, Tooltip, Whisper } from 'rsuite'
+import { Button, Divider, Input, Toggle, Tooltip, Whisper } from 'rsuite'
 import { numberWithCommasAsString, useMediaQuery } from '../../../../../../../misc/custom-hooks'
 import CheckIcon from '@rsuite/icons/Check';
 import CloseIcon from '@rsuite/icons/Close';
@@ -12,6 +12,7 @@ import EditSharesBtn from './EditSharesBtn';
 import ContractComponent from '../../../../../../test/ContractComponent';
 import { FirebaseBundle, FirebaseUser } from '../../../../../../../database/Objects';
 import jsPDF from 'jspdf';
+import html2pdf from 'html2pdf.js';
 import ContractGerman from '../../../../../../test/ContractGerman';
 import PaypalModal from './PaypalModal';
 
@@ -28,13 +29,16 @@ interface IProps {
   editing: boolean,
   editShares: any,
   finishEdit: any,
+  allCodes: string[],
+  promoCode: string,
+  setPromoCode: any,
   user: FirebaseUser,
   ppmodalOpen: boolean,
   openPP: any, closePP: any
 }
 const CheckoutSummary = (props: IProps) => {
   const {en, investAmount, bonus, address, investInBundle, isPaypal, makeOrder, approve,
-  editing, editShares, finishEdit, user, project, ppmodalOpen, openPP, closePP} = props
+  editing, editShares, finishEdit, allCodes, promoCode, setPromoCode, user, project, ppmodalOpen, openPP, closePP} = props
   const [checked, setChecked] = React.useState<boolean>(false);
   const [checked2, setChecked2] = React.useState<boolean>(false);
 
@@ -53,16 +57,31 @@ const CheckoutSummary = (props: IProps) => {
 
   const isMobile = useMediaQuery('(max-width: 1200px)')
 
+
   const generatePDF = () => {
-    var doc = new jsPDF("p", "pt", "a4");
-    // @ts-ignore
-    doc.html(document.querySelector(en ? "#english-document" : "#german-document"), {
-      // @ts-check
-      callback: function(pdf){
-        pdf.save(`redrum_pro_${project.name!.split(' ').join('_')}_${en ? 'framework_agreement' : 'rahmenvertrag'}.pdf`);
-      }
-    })
-  }
+    if (project !== null) {
+      const options = {
+        margin: 0,
+        filename: `redrum_pro_${project.name!.split(' ').join('_')}_${en ? 'framework_agreement' : 'rahmenvertrag'}.pdf`,
+        jsPDF: {
+          unit: 'pt',
+          format: 'a4',
+          orientation: 'portrait'
+        },
+        pagebreak: { after: '.break-page' }
+      };
+
+      const element = document.querySelector(en ? '#english-document' : '#german-document');
+
+      html2pdf()
+        .set(options)
+        .from(element)
+        .save();
+    }
+  };
+
+
+
 
   return (
     <>
@@ -172,6 +191,12 @@ const CheckoutSummary = (props: IProps) => {
             }
        </p>
       </div>
+      <div className="reddem">
+        <label className="label">Promo code</label>
+        <Input className={`input ${promoCode.split('').length === 28 ? !allCodes.includes(promoCode) ?'red' : 'green' : ''}`}
+        onChange={setPromoCode} placeholder={en ? 'Write here...' : 'Hier schreiben...'}/>
+      </div>
+       {/* Checkout btn*/}
       <Whisper
       placement='top'
       trigger={!checked || !checked2 ? isMobile ? 'active' : 'hover' : 'none'}
@@ -190,7 +215,7 @@ const CheckoutSummary = (props: IProps) => {
           disabled={address == null || !checked || !checked2}
           block
           style={{ pointerEvents: !checked || !checked2 ? 'none' : 'auto' }}
-          onClick={isPaypal ? haveAllInfo ? () => openPP() : investInBundle : investInBundle}
+          onClick={isPaypal ? (haveAllInfo && (promoCode === '' || allCodes.includes(promoCode)))? () => openPP() : investInBundle : investInBundle}
           >
             {en ?
             'Order with obligation to pay' :

@@ -121,3 +121,17 @@ $card-shadow: 0 7.5px 15px 0 $main-color-shadow;
       opacity: .9;
   }
 }
+
+.gallery-edit-con {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 15px;
+  row-gap: 15px;
+  width: 100%;
+  & img {
+    width: 150px; height: auto;
+    max-width: 150px; max-height: fit-content;
+    flex-grow: 0; flex-shrink: 0;
+    object-fit: contain;
+  }
+}

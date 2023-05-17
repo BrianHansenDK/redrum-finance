@@ -20,6 +20,7 @@ const LeftSide: FunctionComponent<IProps> = (props) => {
         marginTop: 2 + 'rem',
         borderRadius: 15,
         boxShadow: '0 5px 15px 0 rgba(0,0,29, .15)',
+        maxHeight: 600
     }
 }
     return (

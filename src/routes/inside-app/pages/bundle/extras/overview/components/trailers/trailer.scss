@@ -16,9 +16,17 @@ $blue-shadow: #359AFE7B;
 $dark-shadow: rgba(0, 0, 29, .25);
 $dark-blue-shadow: #3549FE7B;
 
-
-.trailer-section {
-  margin-bottom: 150px;
+.overview-card {
+  width: 80%;
+  box-shadow: 0 10px 20px 0 $dark-shadow;
+  border-radius: 15px;
+  background-color: $white;
+  padding: 3rem 1.5rem 5rem;
+  margin-bottom: 2cm;
+  @media (max-width: $tablet) {
+    width: 100%;
+  }
+  & .trailer-section {
   width: 100%;
   & .trailer-embed {
     & .title {
@@ -33,30 +41,44 @@ $dark-blue-shadow: #3549FE7B;
       width: 80%;
       margin: auto;
       position: relative;
-      @media (max-width: 1250px) {
-        max-width: 90%;
-        width: 90%;
+      @media (max-width: $limit) {
+        width: 95%;
       }
-      @media (min-width: $desktop) {
-        width: 1500px;
-      }
+
       & .carousel-inner {
         display: flex;
         box-shadow: 0 3px 6px 1px $dark-shadow;
-        border-radius: 10px;
+        border-radius: 10px 10px 0 0;
+        &.rounded {border-radius: 10px;}
         & .trailer-element {
           flex-shrink: 0;
           width: 100%;
-          border-radius: 10px;
+          border-radius: 10px 10px 0 0;
           padding-top: 37.5%;
+          min-height: 350px;
           position: relative;
           transition: all 400ms ease-in;
           & .trailer {
-            border-radius: 10px;
+            border-radius: 10px 10px 0 0;
             width: 100%; height: 100%;
             position: absolute;
             top: 0; bottom: 0; left: 0; right: 0;
           }
+        }
+      }
+      & .indication-arrows-con {
+        background-color: $dark;
+        width: 100%;
+        position: relative;
+        z-index: inherit;
+        box-shadow: 0 5px 10px 0 $dark-shadow;
+        padding: 20px;
+        border-radius: 0 0 10px 10px;
+        @media (max-width: $limit) {
+          padding: 20px 10px;
+        }
+        & .right {
+          float: right;
         }
       }
       & .arrow-btn {
@@ -72,4 +94,5 @@ $dark-blue-shadow: #3549FE7B;
       }
     }
   }
+}
 }

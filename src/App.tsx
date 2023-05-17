@@ -52,6 +52,10 @@ import ThankYouPage from './routes/inside-app/pages/purchase/ThankYouPage.js';
 import { PayPalScriptProvider } from '@paypal/react-paypal-js';
 import TACEnglish from './routes/terms-and-conditions/TACEnglish.js';
 import FAQPage from './routes/faq/FAQPage.js';
+import ProjectSheetPage from './routes/inside-app/pages/bundle/extras/sheet/Index.js';
+import ProjectGalleryPage from './routes/inside-app/pages/bundle/extras/gallery/Index.js';
+import ProjectVideosPage from './routes/inside-app/pages/bundle/extras/videos/Index.js';
+import ProjectFilesPage from './routes/inside-app/pages/bundle/extras/documents/Index.js';
 
 
 const App = () => {
@@ -108,6 +112,10 @@ const App = () => {
         <Route path='extras/q-and-a' element={<ProjectDetailsQAndAWrapper en={isEnglish} />} />
         <Route path='extras/updates' element={<ProjectDetailsUpdatesWrapper />} />
         <Route path='extras/investors' element={<ProjectDetailsInvestorWrapper />} />
+        <Route path='extras/project-sheet' element={<ProjectSheetPage en={isEnglish} />} />
+        <Route path='extras/gallery' element={<ProjectGalleryPage en={isEnglish} />} />
+        <Route path='extras/videos' element={<ProjectVideosPage en={isEnglish} />} />
+        <Route path='extras/documents' element={<ProjectFilesPage en={isEnglish} />} />
       </Route>
       <Route path='/app/profile/:userId' element={<ProfilePageWrapper en={isEnglish} setEn={changeLan} />}/>
       <Route path='/app/congratulations' element={<ThankYouPage en={isEnglish} setEn={changeLan}/>}/>
@@ -143,7 +151,7 @@ const App = () => {
       />
 
       <Route path='/account' element={<AuthRoute link='/sign-in'> <AccountPage /> </AuthRoute>} />
-      <Route path='/test' element={<TestPage />} />
+      {/*<Route path='/test' element={<TestPage />} />*/}
     </Routes>
       </ScrollToTop>
     </PayPalScriptProvider>

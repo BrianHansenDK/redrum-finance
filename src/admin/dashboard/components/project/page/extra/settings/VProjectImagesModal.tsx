@@ -16,6 +16,8 @@ const VProjectImagesModal: FunctionComponent<IProps> = (props) => {
   const isMobile = useMediaQuery('(max-width: 992px)')
   const [currentSrc, setSrc] = useState(project.smallImage!)
   const [currentType, setType] = useState('avatar')
+  const [multiple, setMultiple] = useState<boolean>(false);
+  const [srcs, setSrcs] = useState<string[]>()
   const [innerModalOpen, setInnerModalOpen] = useState(false)
   const openInner = () => {setInnerModalOpen(true)}
   const closeInner = () => {setInnerModalOpen(false)}
@@ -48,6 +50,7 @@ const VProjectImagesModal: FunctionComponent<IProps> = (props) => {
             onClick={() => {
               setSrc(project.overviewImage!)
               setType('overview')
+              setMultiple(false)
               openInner()
             }}>
               Edit
@@ -60,6 +63,7 @@ const VProjectImagesModal: FunctionComponent<IProps> = (props) => {
             onClick={() => {
               setSrc(project.presentationImage!)
               setType('presentation')
+              setMultiple(false)
               openInner()
             }}>
               Edit
@@ -72,6 +76,30 @@ const VProjectImagesModal: FunctionComponent<IProps> = (props) => {
             onClick={() => {
               setSrc(project.banner!)
               setType('banner')
+              setMultiple(false)
+              openInner()
+            }}>
+              Edit
+            </Button>
+          </FlexboxGridItem>
+          <FlexboxGridItem colspan={24} className='edit-img-modal-item'>
+            <p>Gallery</p>
+            <div className="gallery-edit-con">
+
+            {project.image_gallery_urls !== null && project.image_gallery_urls !== undefined ? (
+              <>
+                {project.image_gallery_urls.map((img, index) => (
+                  <img style={styles.bigImg} src={img} alt={`${project.name} gallery img ${index}`} />
+                ))}
+              </>
+              ) : null
+            }
+            </div>
+            <Button style={styles.btn} appearance='primary' size='md'
+            onClick={() => {
+              setSrcs(project.image_gallery_urls)
+              setType('gallery')
+              setMultiple(true)
               openInner()
             }}>
               Edit
@@ -83,7 +111,7 @@ const VProjectImagesModal: FunctionComponent<IProps> = (props) => {
 
       </Modal.Footer>
     </Modal>
-    <VProjectImageUpdate source={currentSrc} project={project} type={currentType} closeModal={closeInner} isVisible={innerModalOpen} />
+    <VProjectImageUpdate multiple={multiple} srcs={srcs} source={currentSrc} project={project} type={currentType} closeModal={closeInner} isVisible={innerModalOpen} />
     </>
   )
 }

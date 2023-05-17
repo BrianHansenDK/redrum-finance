@@ -5,7 +5,7 @@ import { getAuth } from "firebase/auth";
 import { DataSnapshot, get, getDatabase, onValue, ref, remove, set, update } from 'firebase/database';
 import { EventHandler, useEffect, useState } from "react";
 import { getRealAge } from "./misc/custom-hooks";
-import { FirebaseBundle, FirebaseInvestment, FirebaseNotification, FirebaseShare, FirebaseUser } from "./database/Objects";
+import { FirebaseBundle, FirebaseInvestment, FirebaseMovie, FirebaseNotification, FirebaseShare, FirebaseUser } from "./database/Objects";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -41,6 +41,17 @@ export function writeUserData(
         email: email,
         completion: profileCompletion,
     })
+}
+
+export function getAllUserIds(setCodes: any) {
+  let data: string[] = []
+  const reference = ref(database, 'users/')
+  onValue(reference, (snap) => {
+    snap.forEach((user) =>  {
+      data.push(user.val().id)
+    })
+    setCodes(data)
+  })
 }
 
 export function createAccount (
@@ -136,6 +147,15 @@ export const getCurrentUserOnValue = async (userId: string, state: any) => {
   await onValue(reference, (snap) => state(snap.val()));
 }
 
+export function addUserMoney(userId: string, addition: number) {
+  const reference = ref(database, 'users/' + userId)
+  get(reference).then((snap) => {
+    let updates: any = {}
+    updates['money_available'] = snap.val().money_available + addition
+    update(reference, updates)
+  })
+}
+
 export function userRefOnValue (userId?: string) {
   const reference = ref(database, `users/${userId}`);
   let data = 0;
@@ -215,6 +235,9 @@ export function writeProjectData(
     imageUrl: string,
     overviewUrl: string,
     presentationUrl: string,
+    galleryUrls: string[],
+    pitchVideo: string,
+    files: {name: string, url: string}[]
 ) {
     const reference = ref(database, 'projects/' + projectId)
     set(reference, {
@@ -234,7 +257,24 @@ export function writeProjectData(
         banner: imageUrl,
         overviewImage: overviewUrl,
         presentationImage: presentationUrl,
+        image_gallery_urls: galleryUrls,
+        pitch_video: pitchVideo,
+        files: files
     })
+}
+
+export function updateProjectFiles(projectId: number, files: {name: string, url: string}[], then: any) {
+  const reference = ref(database, 'projects/' + projectId)
+  let updates: any = {}
+  updates['files'] = files;
+  update(reference, updates).then(then)
+}
+
+export function updateProjectGallery(projectId: number, galleryImageUrls: string[]) {
+  const reference = ref(database, 'projects/' + projectId)
+  let updates: any = {}
+  updates['image_gallery_urls'] = galleryImageUrls
+  update(reference, updates)
 }
 
 // Movies
@@ -254,18 +294,37 @@ export function getMovies(movieState: any, loaderState: any) {
 
 export function getMovieTrailers(MovieIds: number[], setTrailers: any, setLoading: any) {
   setLoading(true);
-  let data: number[] = [];
-  MovieIds.forEach((id) => {
-    const reference = ref(database, 'movies/' + id);
-    get(reference).then((snap) => {
-      data.push(snap.val().trailer_url);
-    }).catch((err) => {
-      console.error(err);
-    })
-  });
+  let data: string[] = [];
 
-  setTrailers(data);
-  setLoading(false);
+  const reference = ref(database, 'movies/');
+  get(reference).then((snap) => {
+    snap.forEach((movie) => {
+      if (MovieIds.includes(movie.val().id)){
+        data.push(movie.val().trailer_url);
+      }})
+  }).catch((err) => {
+    console.error(err);
+  }).finally(() => {
+    setTrailers(data);
+    setLoading(false);
+  })
+}
+
+export function getSpecificMovies(MovieIds: number[], setMovies: any, setLoading: any) {
+  setLoading(true);
+  let data: FirebaseMovie[] = [];
+  const reference = ref(database, 'movies/');
+  get(reference).then((snap) => {
+    snap.forEach((movie) => {
+      if (MovieIds.includes(movie.val().id)){
+        data.push(movie.val());
+      }})
+    }).catch((err) => {
+    console.error(err);
+  }).finally(() => {
+    setMovies(data);
+    setLoading(false);
+  })
 }
 
 // Projects
@@ -279,18 +338,20 @@ export function getSpecificProject(projectId: string, setState: any, setLoading?
   })
 }
 
-export function getProjectCountWithProjects(setAll: any, setProjects: any, setLoading: any) {
+export function getProjectCountWithProjects(setAll: any, ProjectsInvestedIn: FirebaseBundle[], setProjects: any, setLoading: any) {
   setLoading(true)
   let count = 0
   let projects: FirebaseBundle[] = []
   const reference = ref(database, 'projects/')
   get(reference).then((snap) => {
     snap.forEach((project) => {
-      count += 1
-      projects.push(project.val())
+      if (ProjectsInvestedIn.some((elem) => elem.id === project.val().id)) {
+        count += 1
+        projects.push(project.val())
+      }
     })
-    setAll(count); setProjects(projects)
   }).finally(() => {
+    setAll(count); setProjects(projects)
     setLoading(false)
   })
 }
@@ -573,6 +634,143 @@ export function createWithdrawalNotification(userId: string) {
   })
 }
 
+export function createPromoNotification(userId: string, investor: FirebaseUser, project: FirebaseBundle, invested: number) {
+  const todayDT = Date.now()
+  const today = new Date(todayDT)
+  const reference = ref(database, 'notifications/' + todayDT)
+  set(reference, {
+    id: todayDT,
+    created_at: today.toJSON(),
+    read: false,
+    user_id: userId,
+    title_en: `${investor.username} used your promo code!`,
+    title_de: `${investor.username} hat Ihren Promo-Code verwendet!`,
+    content_en: [
+      'Dear Redrum Producer,',
+
+      'We wanted to let you know that another user has recently used your promo code for our ' +
+      `${project.name} - bundle, which means you have earned ${invested * 0.1}€ to your balance. ` +
+      'Congratulations on this achievement!',
+
+      'Additionally, we wanted to remind you that you have already received an invoice and ' +
+      'framework agreement for your participation in our referral program. ' +
+      'If you have any questions or concerns about your earnings or the program in general, ' +
+      "please don't hesitate to reach out to us.",
+
+      'Thanks again for being a part of our community and for your contributions to our success!',
+
+      'Best regards',
+
+      'Khaled'
+    ],
+    content_de: [
+      'Lieber Redrum Producer, ',
+
+      'Wir möchten Ihnen mitteilen, dass ein anderer Benutzer kürzlich Ihren Promo-Code für unser ' +
+      `${project.name} - Bundle verwendet hat. Das bedeutet, dass Sie ${invested * 0.1} € auf Ihr Konto gutgeschrieben bekommen haben. ` +
+      'Herzlichen Glückwunsch zu diesem Erfolg!',
+
+      'Wir möchten Sie außerdem daran erinnern, dass Sie bereits eine Rechnung und einen Rahmenvertrag ' +
+      'für Ihre Teilnahme an unserem Empfehlungsprogramm erhalten haben. Wenn Sie Fragen oder Bedenken zu Ihren Einnahmen oder ' +
+      'zum Programm im Allgemeinen haben, zögern Sie bitte nicht, uns zu kontaktieren.',
+
+      'Vielen Dank, dass Sie ein Teil unserer Community sind und zu unserem Erfolg beitragen!',
+
+      'Mit freundlichen Grüßen',
+
+      'Khaled'
+    ],
+    notification_type: 'promotion',
+  })
+}
+
+export function notifyRedrumOfPromotion(investor: FirebaseUser, receiver: string, project: FirebaseBundle, invested: number, bonus: number) {
+  const todayDT = Date.now()
+  const today = new Date(todayDT)
+  const userRef = ref(database, 'users/' + receiver)
+  get(userRef).then((snap) => {
+    const reference = ref(database, 'notifications/' + todayDT)
+    set(reference, {
+      id: todayDT,
+      created_at: today.toJSON(),
+      read: false,
+      user_id: 'fjjXuazMFhNFLhVVSwrzPYaGwOd2',
+      title_en: `${investor.username} used a promo code!`,
+      title_de: `${investor.username} hat ein Promo-Code verwendet!`,
+      content_en: [
+        'Dear Redrum Team,',
+
+        `a user's promo code was recently used for the ${project.name} bundle, ` +
+        `which means the investor (${investor.email}) have bought share worth ${invested + bonus} in the movies included in the bundle. ` +
+        `Additionally the sender of the promocode: (${snap.val().email}) has gained ${invested * 0.1} extra to their account balance. `,
+
+        'Please note that the investor has already received an invoice and framework agreement for their  ' +
+        'participation in our referral program.',
+
+        'Best regards',
+
+        'The Redrum Pro App'
+      ],
+      content_de: [
+        'Lieber Redrum Team, ',
+
+        `ein Benutzer hat kürzlich den Promo-Code für das Bundle ${project.name} verwendet, was ` +
+        `bedeutet, dass der Investor (${investor.email}) Anteile im Wert von ${invested + bonus} in ` +
+        'den inbegriffenen Filmen erworben hat. Zusätzlich hat der Absender des Promo-Codes ' +
+        `(${snap.val().email}) ${invested * 0.1} in sein guthaben.`,
+
+        'Bitte beachten Sie, dass die investor bereits eine Rechnung und einen Rahmenvertrag ' +
+        'für ihre Teilnahme an unserem Empfehlungsprogramm erhalten haben.',
+
+        'Beste Grüße',
+
+        'Die Redrum Pro App',
+      ],
+      notification_type: 'promotion',
+    })
+    const newDT = today.getTime() + 1
+    const newDate = new Date(newDT)
+    set(reference, {
+      id: newDT,
+      created_at: newDate.toJSON(),
+      read: false,
+      user_id: 'M4lai7LDnBapuSUilGxqPb08jFi1',
+      title_en: `${investor.username} used a promo code!`,
+      title_de: `${investor.username} hat ein Promo-Code verwendet!`,
+      content_en: [
+        'Dear Redrum Team,',
+
+        `a user's promo code was recently used for the ${project.name} bundle, ` +
+        `which means the investor (${investor.email}) have bought share worth ${invested + bonus} in the movies included in the bundle. ` +
+        `Additionally the sender of the promocode: (${snap.val().email}) has gained ${invested * 0.1} extra to their account balance. `,
+
+        'Please note that the investor has already received an invoice and framework agreement for their  ' +
+        'participation in our referral program.',
+
+        'Best regards',
+
+        'The Redrum Pro App'
+      ],
+      content_de: [
+        'Lieber Redrum Team, ',
+
+        `ein Benutzer hat kürzlich den Promo-Code für das Bundle ${project.name} verwendet, was ` +
+        `bedeutet, dass der Investor (${investor.email}) Anteile im Wert von ${invested + bonus} in ` +
+        'den inbegriffenen Filmen erworben hat. Zusätzlich hat der Absender des Promo-Codes ' +
+        `(${snap.val().email}) ${invested * 0.1} in sein guthaben.`,
+
+        'Bitte beachten Sie, dass die investor bereits eine Rechnung und einen Rahmenvertrag ' +
+        'für ihre Teilnahme an unserem Empfehlungsprogramm erhalten haben.',
+
+        'Beste Grüße',
+
+        'Die Redrum Pro App',
+      ],
+      notification_type: 'promotion',
+    })
+  })
+}
+
 export function markNotificationAsRead(notification: FirebaseNotification) {
   if (notification.read === false) {
     const reference = ref(database, 'notifications/' + notification.id)
@@ -621,6 +819,7 @@ export function deleteNotification(notificationId: number, then: (value: void) =
   const reference = ref(database, 'notifications/' + notificationId)
   remove(reference).then(then)
 }
+
 
 // Invoices
 

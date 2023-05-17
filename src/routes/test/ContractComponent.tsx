@@ -15,15 +15,11 @@ const ContractComponent = (props: IProps) => {
   const date = new Date(day);
   return (
     <div id="english-document">
-    <div className="WordSection1">
+    <div className="WordSection1 break-page">
 
-<h1 >Basic agreement</h1>
+<h1 >Basic agreement</h1> <br/>
 
-<p className="MsoNormal" >between</p>
-
-<p className="MsoNormal" ><span >&nbsp;</span></p>
-
-<p className="MsoNormal" ><span >&nbsp;</span></p>
+<p className="MsoNormal" >between</p> <br/>
 
 <p className="MsoNormal" >Redrum
 Films &amp; Entertainment Ltd.</p>
@@ -34,8 +30,6 @@ Films &amp; Entertainment Ltd.</p>
 
 <p className="MsoNormal" ><span lang="DE">E-mail: producer@redrumpro.com</span></p>
 
-<p className="MsoNormal" ><span lang="DE" >&nbsp;</span></p>
-
 <p className="MsoNormal" >Managing
 Director: Rabih Merhi </p>
 
@@ -45,36 +39,28 @@ register of the district court Charlottenburg under HRB 209180 B</p>
 <p className="MsoNormal" >Sales tax
 ID: DE328784557</p>
 
-<p className="MsoNormal" >&nbsp;</p>
-
 <p className="MsoNormal" >Hereinafter
 referred to as "Redrum Films" -.</p>
-
-<p className="MsoNormal" ><span >&nbsp;</span></p>
-
-<p className="MsoNormal" ><span >&nbsp;</span></p>
-
-<p className="MsoNormal" ><span>and</span></p>
-
-<p className="MsoNormal" ><span >&nbsp;</span></p>
+<br/>
+<p className="MsoNormal" ><span>and</span></p><br/>
 
 <p className="MsoNormal" >{user.full_name}</p>
 <p className="MsoNormal">{user.address.split(', ')[0]}</p>
 <p className="MsoNormal">{user.address.split(', ')[1]}</p>
 <p className="MsoNormal">E-mail: {user.email}</p>
 
-<p className="MsoNormal" >&nbsp;</p>
 
-<p className="MsoNormal" ><span >&nbsp;</span></p>
 
 <p className="MsoNormal" >- (hereinafter
 referred to as "Producer/Customer") -.</p>
 
+<p className="MsoNormal" ><span >&nbsp;</span></p>
+
 </div>
 <div className="WordSection2">
-
+<br/>
 <h1 ><a ></a><a ></a><a >Preliminary note</a></h1>
-
+<br/>
 <p className="MsoNormal"  >1.</p>
 
 <p className="MsoNormal" >All
@@ -85,13 +71,13 @@ book as well as other physical and digital Entertainment Projects (hereinafter
 are based exclusively on the framework agreement of Redrum Films &amp;
 Entertainment GmbH.</p>
 
-<p className="MsoNormal" >&nbsp;</p>
+
 
 <p className="MsoNormal" ><span >There is a separate agreement for the trading function
 that </span>the Producer can view and enter into once it is published along
 with the secondary market via the RedrumPro website/app.</p>
 
-<p className="MsoNormal" >&nbsp;</p>
+
 
 <p className="MsoNormal" >Redrum
 Films is a company that produces Entertainment Projects and sells shares in
@@ -101,7 +87,7 @@ market. However, it is important to note that Redrum Films does not provide
 financial services such as investment advice or asset management. There is no
 obligation to publish a prospectus.</p>
 
-<p className="MsoNormal" >&nbsp;</p>
+
 
 <p className="MsoNormal" >Redrum
 Films' offerings are not corporate investments such as the purchase of shares
@@ -111,7 +97,7 @@ purchase of shares in the Entertainment Projects involves risks and it is
 recommended that producers consider the risks before making a purchase. The
 maximum risk is the total loss of the invested money.</p>
 
-<p className="MsoNormal" >&nbsp;</p>
+
 
 <p className="MsoNormal" >Statements
 about future actions and performance objectives of Redrum Films contained in
@@ -119,15 +105,15 @@ these terms or other statements made by Redrum Films are subject to
 uncertainties and may prove to be inaccurate in hindsight. There is no warranty
 or guarantee with respect to forward-looking statements.</p>
 
-<p className="MsoNormal" >&nbsp;</p>
-<p className="MsoNormal" >&nbsp;</p>
-<p className="MsoNormal" >&nbsp;</p>
-<p className="MsoNormal" >&nbsp;</p>
+
+
+
+
 <p className="MsoNormal" >Customers
 are advised to consult their legal and tax advisors to obtain a reasonable
 estimate of the benefits, burdens and other effects of the acquisition.</p>
 
-<p className="MsoNormal" >&nbsp;</p>
+
 
 <p className="MsoNormal" >Definition
 of fractional ownership: Redrum Films considers fractional ownership to be the smallest
@@ -137,13 +123,13 @@ depending on the number of shares purchased in relation to the total number of
 shares. The acquired shares do not confer any decision-making and/or
 co-determination rights of any kind. Redrum Films is the sole decision maker.</p>
 
-<p className="MsoNormal" >&nbsp;</p>
 
-<p className="MsoNormal" >Example: A
+
+<p className="MsoNormal break-page" >Example: A
 film project with a budget of 100,000€ results equally in 100,000 shares with a
 nominal value of 1€ per share.</p>
 
-<p className="MsoNormal" >&nbsp;</p>
+<br/>
 
 <p className="MsoNormal"  >2.</p>
 
@@ -223,19 +209,15 @@ Film Value is an important factor in the valuation of the shares in the Film pro
 and that such term is used in this agreement in accordance with such
 definition.</p>
 
-<p className="MsoNormal" >&nbsp;</p>
 
-<p className="MsoNormal" ><span >Having said this, the parties agree as follows:</span></p>
 
-<p className="MsoNormal" >&nbsp;</p>
+<p className="MsoNormal break-page" ><span >Having said this, the parties agree as follows:</span></p>
+
+
 
 <b><span ><br/>
 </span></b>
 
-<h1 ><a ></a><a >&nbsp;</a></h1>
-<h1 ><a ></a><a >&nbsp;</a></h1>
-<h1 ><a ></a><a >&nbsp;</a></h1>
-<h1 ><a ></a><a >&nbsp;</a></h1>
 <h1 ><a ></a><a >&nbsp;</a></h1>
 
 <h1 ><u><span >PURCHASE CONTRACT</span></u></h1>
@@ -255,7 +237,7 @@ Films undertakes to sell to the customer the share in the Entertainment Project
 as described in section (II.) of the conditions, subject to the following
 conditions.</p>
 
-<p className="MsoNormal" >&nbsp;</p>
+
 
 <p className="MsoNormal"  >2.</p>
 
@@ -265,12 +247,12 @@ conditions.</p>
 purchasing through the RedrumPro website/app, the customer purchases shares in
 one or more Entertainment Project(s) at the price specified therein. </p>
 
-<p className="MsoNormal" >&nbsp;</p>
+
 
 <p className="MsoNormal" >The Entertainment
 Project is thereby specified as:</p>
 
-<p className="MsoNormal" ><span >Project:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span>
+<p className="MsoNormal" ><span >Project:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span>
   {project.name}
   </span></span></p>
 
@@ -278,9 +260,9 @@ Project is thereby specified as:</p>
 
 <p className="MsoNormal" ><span >Investment start date: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span >15.04.2023</span></span></p>
 
-<p className="MsoNormal" ><span >Investment deadline:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span >15.07.2023</span></span></p>
+<p className="MsoNormal" ><span >Investment deadline:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span >15.07.2023</span></span></p>
 
-<p className="MsoNormal" ><span >Redrum film value: <span >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span >
+<p className="MsoNormal" ><span >Redrum film value: <span >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span >
   250.000,00 EUR
 </span></span></p>
 
@@ -288,7 +270,7 @@ Project is thereby specified as:</p>
   {investAmount}
 </span></span></p>
 
-<p className="MsoNormal" ><span >Bonus shares: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span>
+<p className="MsoNormal" ><span >Bonus shares: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span>
   {bonus}
 </span></span></p>
 
@@ -308,19 +290,19 @@ Project is thereby specified as:</p>
   {investAmount + bonus}
 </span></span></p>
 
-<p className="MsoNormal" ><span >Price for shares: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span>
+<p className="MsoNormal" ><span >Price for shares: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span>
   {investAmount} EUR
 </span></span></p>
 
-<p className="MsoNormal" ><span >Service flat rate: &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span >
+<p className="MsoNormal" ><span >Service flat rate:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span >
   0,00 EUR
 </span></span></p>
 
-<p className="MsoNormal" ><span >Management fee:  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span >
+<p className="MsoNormal" ><span >Management fee:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span >
   0,00 EUR
 </span></span></p>
 
-<p className="MsoNormal" ><span >Total amount:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span >
+<p className="MsoNormal" ><span >Total amount:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span >
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span>
 {investAmount} EUR</span></span></p>
 
@@ -340,7 +322,7 @@ BGB. </p>
 <p className="MsoNormal" ><span >Redrum Films and the Producer agree that RedrumPro will transmit
 ownership of the share for the client. </span></p>
 
-<p className="MsoNormal" >&nbsp;</p>
+
 
 <p className="MsoNormal"  >3.</p>
 
@@ -352,7 +334,7 @@ share and the number of shares purchased. A detailed list of the prices
 included in the total price can be found on the product page and in the order
 summary on the RedrumPro website/app.</p>
 
-<p className="MsoNormal" >&nbsp;</p>
+
 
 <p className="MsoNormal"  >4.</p>
 
@@ -363,16 +345,16 @@ of the purchased share of the Entertainment Project is transferred to the
 client. However, this agreement is contingent upon the total purchase price
 being paid in full to and received by Redrum Films.</p>
 
-<p className="MsoNormal" >&nbsp;</p>
+
 
 <p className="MsoNormal"  >5.</p>
 
 <h2 ><a ></a><a >Warranty for the object of purchase</a></h2>
 
-<p className="MsoNormal" >Redrum
+<p className="MsoNormal break-page" >Redrum
 Films' obligation is limited solely to the transfer of the interest in the Entertainment
 Project as described in (II.) Object of Purchase.</p>
-
+<br/>
 <p className="MsoNormal"  >6.</p>
 
 <h2 ><a ></a><a >No consultation, risk disclosure</a></h2>
@@ -386,8 +368,8 @@ with respect to the Entertainment Project shares. The price trends indicated on
 the RedrumPro website are general comparative values and do not relate to the
 specific shares of the Entertainment Project. They are non-binding indications.</p>
 
-<p className="MsoNormal" >&nbsp;</p>
-<p className="MsoNormal" >&nbsp;</p>
+
+
 
 <p className="MsoNormal" >Shares in Entertainment
 Projects may be subject to significant price fluctuations, which may be based
@@ -396,7 +378,7 @@ be resold at a loss and that the money invested is lost. Redrum Films does not
 guarantee any future positive market price developments of the Entertainment
 Project and is not liable for any losses of the customer.</p>
 
-<p className="MsoNormal" >&nbsp;</p>
+
 
 <p className="MsoNormal"  >7.</p>
 
@@ -405,7 +387,7 @@ Project and is not liable for any losses of the customer.</p>
 <p className="MsoNormal" >All
 subcontracts are subject to the General Conditions.</p>
 
-<p className="MsoNormal" >&nbsp;</p>
+
 
 <p className="MsoNormal"  >8.</p>
 
@@ -419,7 +401,7 @@ of the content remain the property of Redrum Films. The investor will not
 receive any further information about the development, creation or storage of
 the projects outside of the insights provided by Redrum Films.</p>
 
-<p className="MsoNormal" >&nbsp;</p>
+
 
 <p className="MsoNormal"  >9.</p>
 
@@ -443,10 +425,10 @@ certain price. Producer approval is not required, as Redrum Films has sole
 decision-making authority. After deducting the 10% commission, the sale amount
 is distributed to the producers according to the number of shares.</a></p>
 
-<p className="MsoNormal" >&nbsp;</p>
-<p className="MsoNormal" >&nbsp;</p>
-<p className="MsoNormal" >&nbsp;</p>
-<p className="MsoNormal" >&nbsp;</p>
+
+
+
+
 
 <p className="MsoNormal"  >11.</p>
 
@@ -456,19 +438,19 @@ is distributed to the producers according to the number of shares.</a></p>
 producer receives a fixed return on the monetary value of the acquired shares latest
 after 12-18 months from the project-related investment closing date.</p>
 
-<p className="MsoNormal" >&nbsp;</p>
+
 
 <p className="MsoNormal" >In
 addition, for the latest 12-18 months after the project-related investment
 closing date, the Producer has the following options:</p>
 
-<p className="MsoNormal" >&nbsp;</p>
+
 
 <p className="MsoNormal" >A: The
 Producer retains its acquired shares and can thus participate in the annual
 profit distributions and trade the shares on the integrated secondary market.</p>
 
-<p className="MsoNormal" >&nbsp;</p>
+
 
 <p className="MsoNormal" >B:
 RedrumPro offers the Producer a one-time opportunity to transfer the acquired
@@ -477,24 +459,24 @@ receives the corresponding initial capital of the shares in exchange. As a
 result, the Producer is no longer a shareholder and cannot participate in
 potential profit distributions.</p>
 
-<p className="MsoNormal" >&nbsp;</p>
+
 
 <p className="MsoNormal" >The options
 are presented to the Producer via the RedrumPro website/app when the project is
 published (for the latest of 12-18 months after the investment deadline), and
 the Producer makes a binding decision via the RedrumPro website/app. </p>
 
-<p className="MsoNormal" >&nbsp;</p>
+
 
 <p className="MsoNormal"  >12.</p>
 
 <h2 ><a ></a><a >Right of custody and ownership</a></h2>
 
-<p className="MsoNormal" >Redrum
+<p className="MsoNormal break-page" >Redrum
 Films agrees to <span >hold </span>the Entertainment
 Project in accordance with the following provisions.</p>
 
-<p className="MsoNormal" >&nbsp;</p>
+<br/>
 
 <p className="MsoNormal"  >13.</p>
 
@@ -507,7 +489,7 @@ physical and digital form. The Producer has access to the (fractional)
 ownership of the Entertainment Project and all information about it via the RedrumPro
 App.</p>
 
-<p className="MsoNormal" >&nbsp;</p>
+
 
 <p className="MsoNormal"  ><a >14.</a></p>
 
@@ -517,7 +499,7 @@ App.</p>
 Films does not currently charge storage fees, but reserves the right to do so
 in the future.</p>
 
-<p className="MsoNormal" >&nbsp;</p>
+
 
 <p className="MsoNormal"  ><a >15.</a></p>
 
@@ -532,7 +514,7 @@ Redrum Films remains responsible for the proper storage and care of the Entertai
 Project and must ensure that the third parties it engages properly perform
 their duties.</p>
 
-<p className="MsoNormal" >&nbsp;</p>
+
 
 <p className="MsoNormal"  >16.</p>
 
@@ -548,7 +530,7 @@ insure any digital forms of the Entertainment Project against data loss,
 unauthorized access, hacking, malware infection and other similar threats and
 maintain such protection during custody.<a ></a></p>
 
-<p className="MsoNormal" >&nbsp;</p>
+
 
 <p className="MsoNormal"  >17.</p>
 
@@ -562,9 +544,9 @@ become insolvent, it would be entitled and obliged to appoint a successor to
 take over the management and custody of the Entertainment Projects under the
 same conditions.</p>
 
-<p className="MsoNormal" >&nbsp;</p>
-<p className="MsoNormal" >&nbsp;</p>
-<p className="MsoNormal" >&nbsp;</p>
+
+
+
 
 <p className="MsoNormal" ><span >If Redrum Films were also to be a part owner of the Entertainment
 Project, the fractional ownership would not be part of the insolvency
@@ -589,7 +571,7 @@ settlement.</span></p>
 fractional ownership of a Entertainment Project is acquired for the purpose of
 either:</p>
 
-<p className="MsoNormal" >&nbsp;</p>
+
 
 <p className="MsoNormal" ><span >A: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; To be profitably licensed by Redrum Films.</span></p>
 
@@ -603,12 +585,10 @@ discretion on the secondary market provided by RedrumPro. </span></p>
 
 <p className="MsoNormal" ><span >&nbsp;</span></p>
 
-<p className="MsoNormal" ><span >The following terms and conditions of the sales order are
+<p className="MsoNormal break-page" ><span >The following terms and conditions of the sales order are
 agreed between the parties, provided that the Customer has accepted the
 separate General Terms and Conditions of RedrumPro.</span></p>
-
-<p className="MsoNormal" >&nbsp;</p>
-
+<br/>
 <p className="MsoNormal"  ><a >19.</a></p>
 
 <h2 ><a ></a><a >Sales processing</a></h2>
@@ -619,9 +599,9 @@ RedrumPro, Redrum Films will be given the authority to transfer the fractional
 ownership to the buyer once the purchase price has been paid in full. The buyer
 will pay the purchase price to the Producer through Redrum Films.</span></p>
 
-<p className="MsoNormal" >&nbsp;</p>
-<p className="MsoNormal" >&nbsp;</p>
-<p className="MsoNormal" >&nbsp;</p>
+
+
+
 
 <p className="MsoNormal"  ><a>20.</a></p>
 
@@ -636,7 +616,7 @@ standard market brokerage fee for RedrumPro.</p>
 generated through all means of exploitation (sale, distribution, license, etc.)
 in the amount of 10% of the revenues. <a></a></p>
 
-<p className="MsoNormal" >&nbsp;</p>
+
 
 <p className="MsoNormal">21.</p>
 
@@ -661,7 +641,7 @@ function</h2>
 that </span>the Producer can view and enter into once it is published along
 with the secondary market via the RedrumPro website/app.<a ></a></p>
 
-<p className="MsoNormal" >&nbsp;</p>
+
 
 <p className="MsoNormal"  >23.</p>
 
@@ -672,12 +652,12 @@ with the secondary market via the RedrumPro website/app.<a ></a></p>
 and Conditions </span>apply to all contracts in this Master Agreement.</span></p>
 
 <p className="MsoNormal" ><span >&nbsp;</span></p>
-<p className="MsoNormal" >&nbsp;</p>
-<p className="MsoNormal" >&nbsp;</p>
-<p className="MsoNormal" >&nbsp;</p>
-<p className="MsoNormal" >&nbsp;</p>
-<p className="MsoNormal" >&nbsp;</p>
-<p className="MsoNormal" >&nbsp;</p>
+
+
+
+
+
+
 
 <p className="MsoNormal"  >24.</p>
 
@@ -692,7 +672,7 @@ required information, it cannot enter into or continue the business
 relationship with the Producer due to the MLA. In this case, no transaction may
 be carried out and the business relationship must be terminated immediately.</span></p>
 
-<p className="MsoNormal" >&nbsp;</p>
+
 
 <p className="MsoNormal"  ><a >25.</a></p>
 
@@ -710,29 +690,20 @@ conclusion of the contract.</p>
 <p className="MsoNormal" >Invoices
 can be provided to the Producer in electronic form on his account.</p>
 
-<p className="MsoNormal" >&nbsp;</p>
+
 
 <p className="MsoNormal"  ><a >26.</a></p>
 
 <h2 ><a ></a><a >Cancellation</a></h2>
 
-<p className="MsoNormal" ><span >It is not possible to terminate the purchase agreement.
+<p className="MsoNormal break-page" ><span >It is not possible to terminate the purchase agreement.
 Ordinary termination of the framework agreement, with the exception of the
 purchase agreement or individual subcontracts, is also not possible. However,
 extraordinary termination of the framework agreement, with the exception of the
 purchase agreement, remains possible. Notice of termination must be given in
 writing.</span></p>
 
-<p className="MsoNormal" ><a >&nbsp;</a></p>
-<p className="MsoNormal" >&nbsp;</p>
-<p className="MsoNormal" >&nbsp;</p>
-<p className="MsoNormal" >&nbsp;</p>
-<p className="MsoNormal" >&nbsp;</p>
-<p className="MsoNormal" >&nbsp;</p>
-<p className="MsoNormal" >&nbsp;</p>
-<p className="MsoNormal" >&nbsp;</p>
-<p className="MsoNormal" >&nbsp;</p>
-<p className="MsoNormal" >&nbsp;</p>
+<p className="MsoNormal " ><a >&nbsp;</a></p>
 
 <p className="MsoNormal"  >27.</p>
 
@@ -765,19 +736,19 @@ representatives and vicarious agents.</p>
 to revoke the framework agreement as a whole. The following cancellation policy
 applies to this statutory right of cancellation:</span></p>
 
-<p className="MsoNormal" >&nbsp;</p>
-<p className="MsoNormal" >&nbsp;</p>
-<p className="MsoNormal" >&nbsp;</p>
-<p className="MsoNormal" >&nbsp;</p>
-<p className="MsoNormal" >&nbsp;</p>
-<p className="MsoNormal" >&nbsp;</p>
-<p className="MsoNormal" >&nbsp;</p>
-<p className="MsoNormal" >&nbsp;</p>
-<p className="MsoNormal" >&nbsp;</p>
-<p className="MsoNormal" >&nbsp;</p>
-<p className="MsoNormal" >&nbsp;</p>
-<p className="MsoNormal" >&nbsp;</p>
-<p className="MsoNormal" >&nbsp;</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <p className="MsoNormal"  >29.</p>
 
@@ -792,7 +763,7 @@ of the goods.</p>
 <p className="MsoNormal" >To exercise
 your right of withdrawal, you must send us </p>
 
-<p className="MsoNormal" >&nbsp;</p>
+
 
 <p className="MsoNormal" ><span lang="DE">Redrum Films &amp; Entertainment GmbH</span></p>
 
@@ -809,14 +780,14 @@ a clear statement (eg a letter sent by mail or e-mail) about your decision to
 revoke this contract. You can use the attached model withdrawal form, which is
 not mandatory.</p>
 
-<p className="MsoNormal" >&nbsp;</p>
+
 
 <p className="MsoNormal" >In order to
 comply with the withdrawal period, it is sufficient that you send the
 notification of the exercise of the right of withdrawal before the expiry of
 the withdrawal period.</p>
 
-<p className="MsoNormal" >&nbsp;</p>
+
 
 <p className="MsoNormal" >Consequences
 of the revocation</p>
@@ -830,16 +801,16 @@ original transaction, unless expressly agreed otherwise with you; in no case
 will you be charged for this repayment. </p>
 
 <p className="MsoNormal" ><a >&nbsp;</a></p>
-<p className="MsoNormal" >&nbsp;</p>
-<p className="MsoNormal" >&nbsp;</p>
-<p className="MsoNormal" >&nbsp;</p>
-<p className="MsoNormal" >&nbsp;</p>
+
+
+
+
 
 <p className="MsoNormal"  >30.</p>
 
 <h2 ><a ></a><a >Privacy policy</a></h2>
 
-<p className="MsoNormal" ><span >The collection, storage and use of Producer personal data
+<p className="MsoNormal break-page" ><span >The collection, storage and use of Producer personal data
 is for the fulfillment of the Producer's own business purposes to the extent
 necessary in connection with the acquisition, sale or management of Entertainment
 Projects by or for Producers. For more information about privacy, please see
@@ -868,7 +839,7 @@ the Use of RedrumPro of Redrum Films GmbH shall contain all agreements made
 between Redrum Films and the Producer. Changes or additions to the contract
 must be made in writing.<a ></a></p>
 
-<p className="MsoNormal" >&nbsp;</p>
+
 
 <p className="MsoNormal"  >32.</p>
 
@@ -882,12 +853,12 @@ attention to the </span>following<span >:</span></span></p>
 <p className="MsoNormal" >The customer
 should carefully <span >read </span>the framework
 agreement together with this risk description.</p>
-<p className="MsoNormal" >&nbsp;</p>
-<p className="MsoNormal" >&nbsp;</p>
-<p className="MsoNormal" >&nbsp;</p>
-<p className="MsoNormal" >&nbsp;</p>
-<p className="MsoNormal" >&nbsp;</p>
-<p className="MsoNormal" >&nbsp;</p>
+
+
+
+
+
+
 
 <p className="MsoNormal" >Risks that Redrum
 Films considers specific and material to an informed decision are described in
@@ -908,7 +879,7 @@ experience and/or knowledge and circumstances of an individual acquirer. It is
 recommended that, if necessary, evaluations by professionally qualified
 advisors be obtained.</p>
 
-<p className="MsoNormal" >&nbsp;</p>
+
 
 <p className="MsoNormal"  ><a >33.</a></p>
 
@@ -919,14 +890,14 @@ if key personnel cease to work for Redrum Films. The comprehensive development,
 implementation and ongoing further development of <span >Redrum Films' business operations could be delayed or no longer possible
 as a result.</span></span></p>
 
-<p className="MsoNormal" >&nbsp;</p>
+
 
 <p className="MsoNormal"  >34.</p>
 
 <h2 ><a >Risk
 of changes in regulatory <span >requirements</span></a></h2>
 
-<p className="MsoNormal" ><span >It is to be expected <span >that
+<p className="MsoNormal break-page" ><span >It is to be expected <span >that
 </span>services of any kind, especially financial services, will be much more
 heavily regulated in the future. This could require Redrum Films to adapt its
 business model accordingly. As a result, it cannot be ruled out that Redrum
@@ -940,7 +911,7 @@ to continue to <span >pursue </span>its business
 model.</span></p>
 
 <p className="MsoNormal" ><a >&nbsp;</a></p>
-<p className="MsoNormal" >&nbsp;</p>
+
 
 <p className="MsoNormal"  >35.</p>
 
@@ -954,7 +925,7 @@ other relevant business partners. This may result in Redrum Films being unable
 to acquire, hold and sell Entertainment Projects, which could result in the
 liquidation of Redrum Films.</span></p>
 
-<p className="MsoNormal" >&nbsp;</p>
+
 
 <p className="MsoNormal"  ><a >36.</a></p>
 
@@ -963,7 +934,7 @@ liquidation of Redrum Films.</span></p>
 <p className="MsoNormal" ><span >Acquiring (fractional) ownership of Entertainment Projects
 may involve, among other things, the following risks for the Producer:</span></p>
 
-<p className="MsoNormal" >&nbsp;</p>
+
 
 <p className="MsoNormal"  ><a >37.</a></p>
 
@@ -972,7 +943,7 @@ may involve, among other things, the following risks for the Producer:</span></p
 <p className="MsoNormal" ><span >The maximum risk is a complete loss of value of the Entertainment
 Project and thus of the <span >purchase price </span>paid.</span></p>
 
-<p className="MsoNormal" >&nbsp;</p>
+
 
 <p className="MsoNormal"  ><a >38.</a></p>
 
@@ -991,11 +962,11 @@ turns out to be lower than initially estimated. Every client bears this risk.
 The customer suffers a loss if he sells his Entertainment Projects below the
 acquisition price.</span></p>
 
-<p className="MsoNormal" >&nbsp;</p>
-<p className="MsoNormal" >&nbsp;</p>
-<p className="MsoNormal" >&nbsp;</p>
-<p className="MsoNormal" >&nbsp;</p>
-<p className="MsoNormal" >&nbsp;</p>
+
+
+
+
+
 
 <p className="MsoNormal"  ><a >39.</a></p>
 
@@ -1013,7 +984,7 @@ the insurance cannot be enforced or that the insurance does not fulfill its
 obligations. This could mean the partial or complete loss of value of the Entertainment
 Projects.</span></p>
 
-<p className="MsoNormal" >&nbsp;</p>
+
 
 <p className="MsoNormal"  ><span lang="DE" >***************</span></p>
 

@@ -35,6 +35,13 @@ const CreateProjectPage = () => {
     const [overviewUrl, setOverviewUrl] = useState('')
     const [presentation, setPresentation] = useState(null)
     const [presentationUrl, setPresentationUrl] = useState('')
+    const [gallery, setGallery] = useState<any[]>([])
+    const [galleryUrls, setGalleryUrls] = useState<string[]>([])
+    const [pitchVideo, setPitchVideo] = useState('')
+    const [files, setFiles] = useState<any[]>([])
+    const [fileUrls, setFileUrls] = useState<string[]>([])
+    const [fileNames, setFileNames] = useState<string[]>([])
+    const [finalFiles, setFinalFiles] = useState<any>()
 
     const toaster = useToaster()
 
@@ -53,6 +60,8 @@ const CreateProjectPage = () => {
             value: item.id
         }
     ))
+
+    // Avatar - small picture
 
     const handleAvatar = (e: any) => {
       const target: EventTarget & any = e.target
@@ -77,6 +86,7 @@ const CreateProjectPage = () => {
       }
   }
 
+  // Banner - Big Picture on Bundle page
   const handleBanner = (e: any) => {
     const target: EventTarget & any = e.target
     if (target.files[0]) {
@@ -92,13 +102,12 @@ const CreateProjectPage = () => {
                     setBannerUrl(url)
                 }).catch((err) => {
                     toaster.push(<PushNotification type='error' content={`An error occured: ${err.message}`} />, { placement: 'topCenter' })
-                    window.setTimeout(() => {
-                        toaster.clear()
-                    }, 3000)
                 })
             })
         }
     }
+
+    // Overview - Picture on Dashboard
 
     const handleOverview = (e: any) => {
       const target: EventTarget & any = e.target
@@ -114,14 +123,16 @@ const CreateProjectPage = () => {
                   getDownloadURL(imageRef).then((url) => {
                       setOverviewUrl(url)
                   }).catch((err) => {
-                      toaster.push(<PushNotification type='error' content={`An error occured: ${err.message}`} />, { placement: 'topCenter' })
-                      window.setTimeout(() => {
-                          toaster.clear()
-                      }, 3000)
+                      toaster.push(
+                      <PushNotification type='error' content={`An error occured: ${err.message}`} />,
+                      { placement: 'topCenter' })
+
                   })
               })
           }
       }
+
+    // Presentation - Picture in presentation card
       const handlePresentation = (e: any) => {
         const target: EventTarget & any = e.target
         if (target.files[0]) {
@@ -136,16 +147,85 @@ const CreateProjectPage = () => {
                     getDownloadURL(imageRef).then((url) => {
                         setPresentationUrl(url)
                     }).catch((err) => {
-                        toaster.push(<Message type='error' style={pushError}>
+                        toaster.push(<Message type='error' duration={10000} style={pushError}>
                           <span style={msgInner}>An error occured: ${err.message}</span>
                         </Message>, { placement: 'topCenter' })
-                        window.setTimeout(() => {
-                            toaster.clear()
-                        }, 8000)
                     })
                 })
             }
         }
+
+
+        // Gallery - Multiple pictures
+
+        const handleGallery = (e: any) => {
+          let data: any[] = []
+          const target: EventTarget & any = e.target
+          if (target.files.length > 0) {
+            const files = target.files;
+            setGallery(files)
+          }
+        }
+
+          const handleGallerySubmit = () => {
+            let data: string[] = []
+              if (gallery.length > 0 && projectTitle !== '') {
+                gallery.forEach((img: any, index: number) => {
+                  const imageRef = storageRef(storage, `images/projects/${projectTitle.split(' ').join('_')}/gallery/image-${index}`)
+                  uploadBytes(imageRef, img).then((snap) => {
+                      getDownloadURL(imageRef).then((url) => {
+                          data.push(url)
+                      }).catch((err) => {
+                          toaster.push(<Message type='error' style={pushError} duration={10000}>
+                            <span style={msgInner}>An error occured: ${err.message}</span>
+                          </Message>, { placement: 'topCenter' })
+                      }).finally(() => {
+                        setGalleryUrls(data)
+                      })
+                  })
+                })
+              }
+          }
+
+        // FILES - Multiple files
+
+        const handleFiles = (e: any) => {
+          let data: any[] = []
+          let names: string[] = []
+          const target: EventTarget & any = e.target
+          if (target.files.length > 0) {
+            const f = target.files;
+            setFiles(f);
+            f.forEach((file: any) => {
+              names.push(file.name)
+            });
+            setFileNames(names);
+          }
+        }
+
+          const handleFilesSubmit = () => {
+            let data: string[] = []
+            let finalData: any = []
+              if (files.length > 0 && projectTitle !== '') {
+                files.forEach((file: any, index) => {
+                  const fileRef = storageRef(storage, `documents/projects/${projectTitle.split(' ').join('_')}/${file.name}`)
+                  uploadBytes(fileRef, file).then((snap) => {
+                      getDownloadURL(fileRef).then((url) => {
+                          data.push(url)
+                          finalData.push({name: fileNames[index], url: url})
+                      }).catch((err) => {
+                          toaster.push(<Message type='error' style={pushError} duration={10000}>
+                            <span style={msgInner}>An error occured: ${err.message}</span>
+                          </Message>, { placement: 'topCenter' })
+                      }).finally(() => {
+                        setFileUrls(data); console.log(fileNames);
+                        setFinalFiles(finalData)
+                      })
+                  })
+                })
+              }
+          }
+
 
     const makeProject = () => {
         writeProjectData(Date.now().toString(), projectTitle, projectIntro, projectDescription,
@@ -160,16 +240,15 @@ const CreateProjectPage = () => {
             avatarUrl,
             bannerUrl,
             overviewUrl,
-            presentationUrl
+            presentationUrl,
+            galleryUrls,
+            pitchVideo,
+            finalFiles
         )
 
-        toaster.push(<Message type='success' style={pushSuccess}>
+        toaster.push(<Message type='success' style={pushSuccess} duration={10000}>
           <span style={msgInner}>Succesfully added Project/Bundle to the Application 🚀</span>
         </Message>, { placement: 'bottomCenter' })
-
-        window.setTimeout(() => {
-            toaster.clear()
-        }, 8000)
     }
 
 
@@ -179,24 +258,30 @@ const CreateProjectPage = () => {
                 <h1 style={styles.pageTitle} className='txt-center'>Create Project</h1>
 
                 <Form fluid style={styles.form}>
+
+                    {/* TITLE */}
                     <FormGroup>
                         <FormControlLabel style={styles.label}>Project title</FormControlLabel>
                         <Input onChange={setProjectTitle} maxLength={20} placeholder='Title of the project/bundle' />
                     </FormGroup>
 
+                    {/* INTRO */}
                     <FormGroup>
                         <FormControlLabel style={styles.label}>Project intro</FormControlLabel>
                         <Input onChange={setProjectIntro} maxLength={28} placeholder='The short description introducing the project/bundle' />
                     </FormGroup>
+
+                    {/* DESCRIPTION */}
                     <FormGroup>
                         <FormControlLabel style={styles.label}>Project description</FormControlLabel>
                         <Input onChange={setProjectDescription} as='textarea' rows={5} maxLength={350} placeholder='The long description of the project/bundle' />
                     </FormGroup>
 
+                    {/* AVATAR */}
                     <FormGroup style={styles.imageUploader} >
                         <div className='d-flex flex-column'>
                             <FormControlLabel style={styles.label}>Project Avatar</FormControlLabel>
-                            <input type='file' onChange={handleAvatar} className='custom-file-input-prpl'/>
+                            <input accept='image/*' type='file' onChange={handleAvatar} className='custom-file-input-prpl'/>
                             <Button style={styles.uploadBtn} onClick={handleAvatarSubmit} disabled={avatar == null}>
                                 Set avatar
                             </Button>
@@ -205,10 +290,11 @@ const CreateProjectPage = () => {
                     </FormGroup>
                     <Divider />
 
+                    {/* BANNER */}
                     <FormGroup style={styles.imageUploader} >
                         <div className='d-flex flex-column'>
                             <FormControlLabel style={styles.label}>Project banner</FormControlLabel>
-                            <input type='file' onChange={handleBanner} className='custom-file-input-prpl'/>
+                            <input accept='image/*' type='file' onChange={handleBanner} className='custom-file-input-prpl'/>
                             <Button style={styles.uploadBtn} onClick={handleBannerSubmit} disabled={banner == null}>
                                 Set banner
                             </Button>
@@ -217,10 +303,11 @@ const CreateProjectPage = () => {
                     </FormGroup>
                     <Divider />
 
+                    {/* OVERVIEW IMAGE */}
                     <FormGroup style={styles.imageUploader} >
                         <div className='d-flex flex-column'>
                             <FormControlLabel style={styles.label}>Project overview</FormControlLabel>
-                            <input type='file' onChange={handleOverview} className='custom-file-input-prpl'/>
+                            <input accept='image/*' type='file' onChange={handleOverview} className='custom-file-input-prpl'/>
                             <Button style={styles.uploadBtn} onClick={handleOverviewSubmit} disabled={overview == null}>
                                 Set overview
                             </Button>
@@ -229,15 +316,62 @@ const CreateProjectPage = () => {
                     </FormGroup>
                     <Divider />
 
+                    {/* PRESENTATION */}
                     <FormGroup style={styles.imageUploader} >
                         <div className='d-flex flex-column'>
                             <FormControlLabel style={styles.label}>Project presentation</FormControlLabel>
-                            <input type='file' onChange={handlePresentation} className='custom-file-input-prpl'/>
+                            <input accept='image/*' type='file' onChange={handlePresentation} className='custom-file-input-prpl'/>
                             <Button style={styles.uploadBtn} onClick={handlePresentationSubmit} disabled={presentation == null}>
                                 Set presentation
                             </Button>
                         </div>
                         <img style={styles.avatar} src={presentationUrl !== '' ? presentationUrl : PLACEHOLDER} />
+                    </FormGroup>
+                    <Divider />
+
+                    {/* GALLERY */}
+                    <FormGroup style={styles.imageUploader} className='gallery-creation-con'>
+                        <div className='d-flex flex-column'>
+                            <FormControlLabel style={styles.label}>Project Gallery</FormControlLabel>
+                            <input accept='image/*' type='file' multiple onChange={handleGallery} className='custom-file-input-prpl'/>
+                            <Button style={styles.uploadBtn} onClick={handleGallerySubmit} disabled={gallery.length === 0}>
+                                Set gallery
+                            </Button>
+                        </div>
+                        {galleryUrls.length === 0 ? null :
+                        (
+                          <div className='gallery-creation-showcase'>
+                            {galleryUrls.map((url) => (
+                              <img key={url} src={url !== '' ? url : PLACEHOLDER} />
+                            ))}
+                          </div>
+                        )
+
+                        }
+
+                    </FormGroup>
+                    <Divider />
+
+                    {/* FILES */}
+                    <FormGroup style={styles.imageUploader} className='gallery-creation-con'>
+                        <div className='d-flex flex-column'>
+                            <FormControlLabel style={styles.label}>Project Files</FormControlLabel>
+                            <input accept='application/pdf' type='file' multiple onChange={handleFiles} className='custom-file-input-prpl'/>
+                            <Button style={styles.uploadBtn} onClick={handleFilesSubmit} disabled={files.length === 0}>
+                                Add Files
+                            </Button>
+                        </div>
+                        {fileUrls.length === 0 ? null :
+                        (
+                          <div>
+                            {fileNames.map((fileName) => (
+                              <p>File: {fileName}</p>
+                            ))}
+                          </div>
+                        )
+
+                        }
+
                     </FormGroup>
                     <Divider />
 
@@ -248,6 +382,16 @@ const CreateProjectPage = () => {
                             label='movies' data={movieData}
                         />
                     </FormGroup>
+
+                    <FormGroup>
+                        <FormControlLabel style={styles.label}>Pitch video</FormControlLabel>
+                        <Input
+                            placeholder='Paste Youtube url here...'
+                            onChange={setPitchVideo}
+                        />
+                    </FormGroup>
+
+
                     <FormGroup>
                         <FormControlLabel style={styles.label}>Start date</FormControlLabel>
                         <Input

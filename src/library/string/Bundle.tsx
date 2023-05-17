@@ -1,7 +1,7 @@
 const bundleStrings = {
   infoCardEN: {
     aR: 'Assured return',
-    iT: 'Investment target',
+    iT: 'Redrum Film Value',
     mI: 'Minimum investment',
     iD: 'Investment deadline',
     publication: 'Publication',
@@ -10,7 +10,7 @@ const bundleStrings = {
   },
   infoCardDE: {
     aR: 'Zugesicherte Rendite',
-    iT: 'Investitionsziel',
+    iT: 'Redrum Film Wert',
     mI: 'Mindestinvestition',
     iD: 'Investitionsschluss',
     publication: 'Veröffentlichung',

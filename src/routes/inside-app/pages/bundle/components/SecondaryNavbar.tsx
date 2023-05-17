@@ -2,9 +2,11 @@ import React, { FunctionComponent, useEffect, useState } from 'react'
 import { Button, Nav, Navbar, Tooltip, Whisper } from 'rsuite'
 import NavItem from 'rsuite/esm/Nav/NavItem'
 import OverviewIcon from '@rsuite/icons/Treemap'
+import VideoIcon from '@rsuite/icons/legacy/LogoVideo'
 import MovieIcon from '@rsuite/icons/legacy/VideoCamera'
+import DocIcon from '@rsuite/icons/DocPass'
 import InfoIcon from '@rsuite/icons/HelpOutline'
-import UpdatesIcon from '@rsuite/icons/Notice'
+import PhotoIcon from '@rsuite/icons/legacy/Camera'
 import InverstorsIcon from '@rsuite/icons/Peoples'
 import SecondaryNavbarItem from './SecondaryNavbarItem'
 import MainBtn from '../../../components/MainBtn'
@@ -15,7 +17,7 @@ import TransferMoneyModal from './TransferMoneyModal'
 import '../styles/bundlepage.scss'
 import bundleStrings from '../../../../../library/string/Bundle'
 import { FirebaseUser } from '../../../../../database/Objects'
-import { getRealAge } from '../../../../../misc/custom-hooks'
+import { getRealAge, useMediaQuery } from '../../../../../misc/custom-hooks'
 import RedrumProLoader from '../../../components/RedrumProLoader'
 
 interface IProps {
@@ -35,28 +37,40 @@ const SecondaryNavbar: FunctionComponent<IProps> = (props) => {
         },
         {
             index: 1,
-            txt: en ? bundleStrings.secondaryNavbarEN.mv : bundleStrings.secondaryNavbarDE.mv,
+            txt: en ? 'Sheet' : 'Sheet',
+            icon: <InfoIcon />,
+            to: `/app/bundle/${project.id}/extras/project-sheet`
+        },
+        {
+            index: 2,
+            txt: en ? 'Gallery' : 'Galleri',
+            icon: <PhotoIcon />,
+            to: `/app/bundle/${project.id}/extras/gallery`
+        },
+        {
+            index: 3,
+            txt: en ? 'Videos' : 'Videos',
+            icon: <VideoIcon />,
+            to: `/app/bundle/${project.id}/extras/videos`
+        },
+        {
+            index: 4,
+            txt: en ? 'Films' : 'Filme',
             icon: <MovieIcon />,
             to: `/app/bundle/${project.id}/extras/movies`
         },
         {
-            index: 2,
-            txt: en ? bundleStrings.secondaryNavbarEN.qa : bundleStrings.secondaryNavbarDE.qa,
-            icon: <InfoIcon />,
-            to: `/app/bundle/${project.id}/extras/q-and-a`
-        },
-        {
-            index: 3,
-            txt: en ? bundleStrings.secondaryNavbarEN.up : bundleStrings.secondaryNavbarDE.up,
-            icon: <UpdatesIcon />,
-            to: ''//`/app/bundle/${project.id}/extras/updates`
-        },
-        {
-            index: 4,
-            txt: en ? bundleStrings.secondaryNavbarEN.iv : bundleStrings.secondaryNavbarDE.iv,
-            icon: <InverstorsIcon />,
-            to: ''//`/app/bundle/${project.id}/extras/investors`
-        },
+          index: 5,
+          txt: en ? 'Docs' : 'Docs',
+          icon: <DocIcon />,
+          to: `/app/bundle/${project.id}/extras/documents`
+      },
+      {
+          index: 6,
+          txt: en ? bundleStrings.secondaryNavbarEN.iv : bundleStrings.secondaryNavbarDE.iv,
+          icon: <InverstorsIcon />,
+          to: ''//`/app/bundle/${project.id}/extras/investors`
+      },
     ]
 
     const styles = {
@@ -102,6 +116,8 @@ const SecondaryNavbar: FunctionComponent<IProps> = (props) => {
     const today = new Date(date)
     const age = getRealAge( user == null ? today : user?.birth_date !== "" ? new Date(user!.birth_date) : today)
 
+    const isSmall = useMediaQuery('(max-width: 469px)');
+    const smallBig = useMediaQuery('(max-width: 1288px)') && !isMobile ;
     return (
       <>
       {loading ? (<RedrumProLoader/>) : user === null ? null : (
@@ -137,6 +153,9 @@ const SecondaryNavbar: FunctionComponent<IProps> = (props) => {
 
                     ))}
                 </Nav>
+                {
+                  isSmall || smallBig? null : (
+
                 <Nav pullRight style={{ minWidth: isMobile ? 'auto' : 250, }}>
                       <Button
                       title={project.currentlyInvested >= project.goal ? en ? 'Investment capacity reached for project' :
@@ -152,7 +171,7 @@ const SecondaryNavbar: FunctionComponent<IProps> = (props) => {
                       >
                         {en ? 'Invest now' : 'Jetz investieren'}
                       </Button>
-                </Nav>
+                </Nav>)}
             </Navbar>
 
             <Navbar style={styles.navBarHideable} className='navbar relativenavbar' >
@@ -170,6 +189,7 @@ const SecondaryNavbar: FunctionComponent<IProps> = (props) => {
                     ))}
 
                 </Nav>
+                {isSmall || smallBig? null : (
                 <Nav pullRight>
                   <div style={{ opacity: 0, }} >
                   {
@@ -202,6 +222,7 @@ const SecondaryNavbar: FunctionComponent<IProps> = (props) => {
                   </div>
 
                 </Nav>
+                )}
             </Navbar>
             <ConfirmAgeModal visible={isVisible} close={closeModal} openInvestModal={openInvestModal} en={en} age={0} user={user!} />
             <InvestModal

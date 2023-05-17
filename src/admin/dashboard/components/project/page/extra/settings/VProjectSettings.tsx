@@ -7,10 +7,11 @@ import VanumoLoader from '../../../../VanumoLoader'
 import EditImagesBtn from './EditImagesBtn'
 import EditInfoForm from './EditInfoForm'
 import './VanumoProjectSettings.scss'
+import EditFilesBtn from './EditFilesBtn'
 
 const VProjectSettings = () => {
   const {projectId} = useParams()
-  const [project, setProject] = useState<FirebaseBundle>({})
+  const [project, setProject] = useState<FirebaseBundle | null>(null)
   const [loading, setLoading] = useState<boolean>(true)
   useEffect(() => {
     const reference = ref(database, 'projects/' + projectId)
@@ -22,15 +23,16 @@ const VProjectSettings = () => {
   }, [projectId])
   return (
     <div>
-      {loading ? (<VanumoLoader />) : (
+      {loading ? (<VanumoLoader />) : project !== null ? (
         <div className='page-wrapper'>
           <h1>
             Project settings
           </h1>
           <EditInfoForm project={project} />
           <EditImagesBtn project={project} />
+          <EditFilesBtn project={project}/>
         </div>
-      )}
+      ) : null}
     </div>
   )
 }

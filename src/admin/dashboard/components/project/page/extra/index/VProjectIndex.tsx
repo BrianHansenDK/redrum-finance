@@ -13,7 +13,7 @@ import VanumoProjectPublicInformation from './components/PublicInfo'
 
 const VProjectIndex = () => {
   const {projectId} = useParams()
-  const [project, setProject] = useState<FirebaseBundle>({})
+  const [project, setProject] = useState<FirebaseBundle | null>(null)
   const [loading, setLoading] = useState<boolean>(true)
   useEffect(() => {
     const reference = ref(database, 'projects/' + projectId)

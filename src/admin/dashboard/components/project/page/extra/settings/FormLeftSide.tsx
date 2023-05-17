@@ -16,10 +16,12 @@ const VProjectEditFormLeftSide = ({project, span} : {project: FirebaseBundle, sp
   const [startDate, setStartDate] = useState<string>(project.startDate!)
   const [endDate, setEndDate] = useState<string>(project.endDate!)
   const [publication, setPublication] = useState<string>(project.publication!)
+  const [pitchVideo, setPitchVideo] = useState<string>(project.pitch_video)
   const [resetting, setResetting] = useState<boolean>(false)
   const theSame =
   name == project.name && intro == project.intro && description == project.description &&
   startDate == project.startDate && endDate == project.endDate && publication == project.publication
+  && pitchVideo == project.pitch_video
 
   const resetValues = () => {
     setResetting(true)
@@ -29,6 +31,7 @@ const VProjectEditFormLeftSide = ({project, span} : {project: FirebaseBundle, sp
     setStartDate(project.startDate!)
     setEndDate(project.endDate!)
     setPublication(project.publication!)
+    setPitchVideo(project.pitch_video)
     setResetting(false)
   }
 
@@ -41,22 +44,19 @@ const VProjectEditFormLeftSide = ({project, span} : {project: FirebaseBundle, sp
     updates['startDate'] = new Date(startDate).toDateString()
     updates['endDate'] = new Date(endDate).toDateString()
     updates['publication'] = publication
+    updates['pitch_video'] = pitchVideo
     await update(reference, updates).then(() => {
       toaster.push(
-        <Message type='success' style={styles.succes}>
+        <Message type='success' style={styles.succes} duration={10000} closable>
           <span style={styles.msgInner}>Project was updated succesfully</span>
         </Message>, {placement: 'bottomCenter'}
       )
     }).catch((err) => {
       toaster.push(
-        <Message type='error' style={styles.error}>
+        <Message type='error' style={styles.error} duration={10000} closable>
           <span style={styles.msgInner}>{err.message}</span>
         </Message>, {placement: 'bottomCenter'}
       )
-    }).finally(() => {
-      window.setTimeout(() => {
-        toaster.clear()
-      }, 8000)
     })
   }
   return (
@@ -114,6 +114,12 @@ const VProjectEditFormLeftSide = ({project, span} : {project: FirebaseBundle, sp
         <p>
           Format: Months
         </p>
+      </Stack>
+      <Stack className='edit-item' spacing={6}>
+        <p className='edit-label'>Pitch video:</p>
+        <StackItem basis={300}>
+          <Input defaultValue={pitchVideo} value={resetting ? project.pitch_video : pitchVideo} onChange={setPitchVideo} />
+        </StackItem>
       </Stack>
     </div>
     <div className='txt-btns-wrap'>

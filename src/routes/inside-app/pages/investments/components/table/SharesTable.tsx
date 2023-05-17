@@ -75,7 +75,7 @@ const SharesTable = (props: IProps) => {
   }, []) */
 
   React.useEffect(() => {
-    getProjectCountWithProjects(setProjectsCount, setUniqueProjects, setLoading)
+    getProjectCountWithProjects(setProjectsCount, projects, setUniqueProjects, setLoading)
     console.log(projectsCount)
   }, [])
   return (
@@ -86,7 +86,7 @@ const SharesTable = (props: IProps) => {
           </div>
         ) : (
           <>
-          {projects !== null && userInvestments !== null &&
+          {projects !== null && userInvestments !== null && uniqueProjects !== null &&
             userInvestments.map((investment: FirebaseInvestment, index) => (
               <div key={investment.id}>
                 {(index >= projectsCount)  ? null :

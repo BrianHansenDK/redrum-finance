@@ -105,7 +105,7 @@ const InvoiceDe = (props: IProps) => {
       <tr>
         <td>{project.id}</td>
         <td>{project.name}</td>
-        <td className='text-center'>{numberWithCommas(investment.paid)}</td>
+        <td className='text-center'>{numberWithCommas(investment.amount - investment.bonus)}</td>
         <td className='text-center'>1 EUR</td>
         <td className='text-center'>{numberWithCommas(investment.paid)} €</td>
       </tr>
@@ -115,7 +115,7 @@ const InvoiceDe = (props: IProps) => {
 <div className="investment-info">
   <p className="inf">
     <span className='lab'> Anteile: </span>
-    <span className='val'>{numberWithCommas(investment.paid)}</span>
+    <span className='val'>{numberWithCommas(investment.amount - investment.bonus)}</span>
   </p>
   <p className="inf">
     <span className='lab'> Bonus Anteile: </span>

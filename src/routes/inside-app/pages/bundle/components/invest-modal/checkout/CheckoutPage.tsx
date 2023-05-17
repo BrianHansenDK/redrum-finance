@@ -24,6 +24,9 @@ interface IProps {
   openNav: any,
   closeNav: any,
   project: FirebaseBundle,
+  allCodes: string[]
+  code: string,
+  setPromoCode: any,
   investInBundle: any,
   isPaypal: boolean,
   makeItPaypal: Function,
@@ -37,7 +40,7 @@ const CheckoutPage = (props: IProps) => {
   const {
     en, navOpen, visible, investAmount, available,
     setEn, openMenu, openNav, closeNav, project,
-    bonus, investInBundle, isPaypal, makeItPaypal, makeItDeposit,
+    bonus, allCodes, code, setPromoCode, investInBundle, isPaypal, makeItPaypal, makeItDeposit,
     makeOrder, approveOrder, closeSelf, setInvestAmount,
     ppmodalOpen, openPP, closePP
   } = props
@@ -123,6 +126,9 @@ const CheckoutPage = (props: IProps) => {
               editing={sharesEditable}
               editShares={editTheShares}
               finishEdit={finishEditing}
+              allCodes={allCodes}
+              promoCode={code}
+              setPromoCode={setPromoCode}
               user={user!} ppmodalOpen={ppmodalOpen} openPP={openPP} closePP={closePP}/>
           </div>
         </div>

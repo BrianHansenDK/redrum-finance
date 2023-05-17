@@ -44,7 +44,7 @@ const InvestmentPage = ({en} : {en: boolean}) => {
                   userInvestments !== null && userInvestments.length > 0  ?(
                     <>
                       <RadialChart isMobile={isMobile} userInvestments={userInvestments} />
-                      <ProjectShowcase en={en} isMobile={isMobile} />
+                      {/*<ProjectShowcase en={en} isMobile={isMobile} />*/}
                     </>
                   ) : (
                     <NoInvestmentsCard title={en ? 'No investments yet.' : 'Noch keine Investitionen.'}/>

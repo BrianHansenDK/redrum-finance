@@ -8,3 +8,21 @@ label {
         color: #333;
     }
 }
+
+.gallery-creation-con {
+  max-width: 100%;
+  flex-direction: column;
+  row-gap: 25px;
+  & .gallery-creation-showcase {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 100%;
+    row-gap: 15px;
+    column-gap: 15px;
+    & img {
+      height: 150px; width: auto;
+      border-radius: 10px;
+      box-shadow: 0 3px 6px 0 rgba(0,0,29, .2);
+    }
+  }
+}

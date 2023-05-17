@@ -2,7 +2,7 @@ import { ref, set, update } from 'firebase/database'
 import React, { useEffect, useState } from 'react'
 import INVESTIMG from '../../../../../assets/investment_growth_icon.svg'
 import { Button, ButtonGroup, Form, InputNumber, Message, Modal, useToaster, Toggle, Tooltip, Whisper, Notification } from 'rsuite'
-import { auth, createInvestmentNotification, createInvoice, database, getCurrentUserFunction, getInvoiceCount, userRef } from '../../../../../../firebase'
+import { addUserMoney, auth, createInvestmentNotification, createInvoice, createPromoNotification, database, getAllUserIds, getCurrentUserFunction, getInvoiceCount, notifyRedrumOfPromotion, userRef } from '../../../../../../firebase'
 import CheckIcon from '@rsuite/icons/Check';
 import CloseIcon from '@rsuite/icons/Close';
 import '../right/styles/invest-modal.scss'
@@ -55,10 +55,18 @@ const InvestModal: React.FunctionComponent<IProps> = (props) => {
     // Generate unique invoice number
     const [invoiceCount, setInvoiceCount] = React.useState(0)
 
+    // Promo codes
+    const [allCodes, setAllCodes] = React.useState<string[]>([]) // All codes
+    const [code, setCode] = React.useState<string>('') // Given promo code
+
     useEffect(() => {
       getInvoiceCount(setInvoiceCount)
-      console.log(invoiceCount)
     }, [buying])
+
+    useEffect(() => {
+      getAllUserIds(setAllCodes)
+    }, [])
+
 
     // Current user
     const [user, setUser] = React.useState<FirebaseUser | null>(null)
@@ -137,6 +145,8 @@ const InvestModal: React.FunctionComponent<IProps> = (props) => {
         investAmount >= 250 && investAmount < 500 ? 30 :
         investAmount >= 500 && investAmount < 1000 ? 70 :
         investAmount >= 1000 ? 150 : 0
+
+        // Old function
         /*
         // Invest if user has enough money and amount is divisible by amount of elements
         if (parseInt(investAmount) % project.movies.length == 0 && parseInt(investAmount) <= available && parseInt(investAmount) !== 0) {
@@ -186,6 +196,7 @@ const InvestModal: React.FunctionComponent<IProps> = (props) => {
             close()
             showReciept()
         }*/
+
         // Divisable by movies length
       const notDivisable = parseInt(investAmount + bonus) % project.movies.length !== 0 && (parseInt(investAmount + bonus) !== null && parseInt(investAmount + bonus) !== 0 && investAmount !== '')
       if (notDivisable) {
@@ -222,6 +233,10 @@ const InvestModal: React.FunctionComponent<IProps> = (props) => {
         && user.phone_number && user.country !== ""
         && user.company_name !== undefined && user.role !== "" && user.company_address !== undefined )
       )
+
+      const wrongCode = code !== '' && !allCodes.includes(code)
+      const notEnoughForPromotion = code !== '' && investAmount < 50
+
       if (parseInt(investAmount) == 0 || investAmount == null || investAmount == '') {
         toaster.push(
             <Message showIcon type='error' title={`${en ? 'Invalid amount' : 'Falsche anzahl'}`} duration={8000} closable>
@@ -249,7 +264,7 @@ const InvestModal: React.FunctionComponent<IProps> = (props) => {
 
     if (!isPaypal) {
       // Must have anough money on account
-      if (parseInt(investAmount) > available) {
+      if (parseInt(investAmount) > available && !isPaypal) {
         toaster.push(
           <Message showIcon type='error' title='Not enough money available' closable duration={8000}>
                 <p style={PushThemes.txt}>Not enough money in your account. Available: {available == null ? 0 : available}</p>
@@ -272,10 +287,27 @@ const InvestModal: React.FunctionComponent<IProps> = (props) => {
         </Button>
       </Notification>, {placement: 'topCenter'})
     }
+    if (wrongCode) {
+      toaster.push(
+        <Message showIcon type='error' closable duration={8000}>
+              {en ? 'The promo code given is not recognized in our system. Try to dubble-check for any spelling mistakes.':
+              'Der angegebene Promo-Code wird in unserem System nicht erkannt. Bitte überprüfen Sie ihn noch einmal auf mögliche Tippfehler.'}
+          </Message> , { placement: 'topCenter' }
+      )
+    }
+    if (notEnoughForPromotion) {
+      toaster.push(
+        <Message showIcon type='error' closable duration={8000}>
+              {en ? 'To make use of a promo code you need to invest a minimum of 50€.':
+              'Um einen Promo-Code nutzen zu können, müssen Sie mindestens 50 € investieren.'}
+          </Message> , { placement: 'topCenter' }
+      )
+    }
 
-    if (((!isPaypal && parseInt(investAmount) <= available && haveAllInfo) || (isPaypal && haveAllInfo) ) && (
+
+    if (((!isPaypal && parseInt(investAmount) <= available && haveAllInfo) || (isPaypal && haveAllInfo && !wrongCode) ) && (
       parseInt(investAmount) % project.movies.length == 0 && parseInt(investAmount) !== 0
-    ) && haveAllInfo && user !== null
+    ) && haveAllInfo && user !== null && !wrongCode && !notEnoughForPromotion
       ) {
         setBuying(true)
         if (invoiceCount < 0) {
@@ -309,8 +341,8 @@ const InvestModal: React.FunctionComponent<IProps> = (props) => {
               created_at: investmentCreated.toJSON(),
               project: project.id,
               movies: project.movies,
-              invoice_number: invoiceCount + 1
-          })
+              invoice_number: invoiceCount
+            })
             // Update project
             let projectUpdates: any = {}
             projectUpdates['currentlyInvested'] = parseInt(investAmount) + project.currentlyInvested + bonus
@@ -336,6 +368,77 @@ const InvestModal: React.FunctionComponent<IProps> = (props) => {
             })
             // Create notification
             createInvestmentNotification(user.id, project.name)
+
+            // Give Provision to Promoter
+            if (allCodes.includes(code) && investAmount >= 50) {
+              /*
+              // Properties
+              const investmentId2 = investmentCreated.getTime() + 1
+              const investmentCreated2 = new Date(investmentId2)
+
+              const investRef2 = ref(database, 'investments/' + investmentId2)
+              // Create investment
+              set(investRef2, {
+                id: investmentId2,
+                user_id: code,
+                paid: 0,
+                bonus: 0,
+                amount: parseInt(investAmount) * 0.1,
+                gain: (parseInt(investAmount) * 0.1),
+                created_at: investmentCreated2.toJSON(),
+                project: project.id,
+                movies: project.movies,
+                invoice_number: invoiceCount + 1
+              })
+
+              // Make invoice
+                createInvoice(invoiceCount + 1, project, user, {
+                  id: investmentId2,
+                  user_id: code,
+                  paid: 0,
+                  bonus: 0,
+                  amount: parseInt(investAmount) * 0.1,
+                  gain: (parseInt(investAmount) * 0.1) * ((project.guaranteedReturn / 100) + 1),
+                  created_at: investmentCreated2.toJSON(),
+                  project: project.id,
+                  movies: project.movies,
+                  invoice_number: invoiceCount + 1
+              })
+
+              // Update project
+              let projectUpdates: any = {}
+              projectUpdates['currentlyInvested'] = parseInt(investAmount) + project.currentlyInvested + bonus + (parseInt(investAmount) * 0.1)
+              update(ref(database, 'projects/' + project.id), projectUpdates).then(() => {
+                console.log(`${investAmount * 0.1}€ worth of shares was added to the owner of the promo code!`)
+              })
+
+              // Create shares
+              project.movies.forEach((movie: any) => {
+                set(ref(database, 'shares/' + [Date.now(), movie].join('-')), {
+                    id: [Date.now(), movie].join('-'),
+                    owner: code,
+                    amount: (parseInt(investAmount) * 0.1) / project.movies.length,
+                    movie: movie,
+                    investment: investmentId2,
+                    project: project.id
+                })
+              })
+
+              // Create notification
+              createPromoNotification(code, user, project, investAmount);
+
+              // Notify Redrum
+              notifyRedrumOfPromotion(user, code, project, investAmount, bonus);
+              */
+             addUserMoney(code, investAmount * 0.1);
+
+             // Create notification
+             createPromoNotification(code, user, project, investAmount);
+
+             // Notify Redrum
+             notifyRedrumOfPromotion(user, code, project, investAmount, bonus);
+            }
+
 
             toaster.push(
                 <Message type='success' duration={8000} closable showIcon>
@@ -532,6 +635,9 @@ const InvestModal: React.FunctionComponent<IProps> = (props) => {
               closeNav={closeNav}
               project={project}
               bonus={bonus}
+              allCodes={allCodes}
+              code={code}
+              setPromoCode={setCode}
               investInBundle={investInBundle}
               isPaypal={isPaypal}
               makeItPaypal={makeItPaypal}

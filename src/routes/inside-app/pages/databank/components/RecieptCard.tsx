@@ -12,6 +12,7 @@ import ContractGerman from '../../../../test/ContractGerman'
 import RedrumProLoader from '../../../components/RedrumProLoader'
 import { Button } from 'rsuite'
 import jsPDF from 'jspdf'
+import html2pdf from 'html2pdf.js';
 import InvoiceEn from '../../../../test/InvoiceEn'
 import InvoiceDe from '../../../../test/InvoiceDe'
 
@@ -55,16 +56,25 @@ const RecieptCard = ({investment, en}: {investment: FirebaseInvestment, en: bool
 
   const generatePDF = () => {
     if (project !== null) {
-      var doc = new jsPDF("p", "pt", "a4");
-      // @ts-ignore
-      doc.html(document.querySelector(en ? "#english-document" : "#german-document"), {
-        // @ts-check
-        callback: function(pdf){
-          pdf.save(`redrum_pro_${project.name!.split(' ').join('_')}_${en ? 'investment' : 'investierung'}_${investment.id}_${en ? 'framework_agreement' : 'rahmenvertrag'}.pdf`);
-        }
-      })
+      const options = {
+        margin: 0,
+        filename: `redrum_pro_${project.name!.split(' ').join('_')}_${en ? 'investment' : 'investierung'}_${investment.id}_${en ? 'framework_agreement' : 'rahmenvertrag'}.pdf`,
+        jsPDF: {
+          unit: 'pt',
+          format: 'a4',
+          orientation: 'portrait'
+        },
+        pagebreak: { after: '.break-page' }
+      };
+
+      const element = document.querySelector(en ? '#english-document' : '#german-document');
+
+      html2pdf()
+        .set(options)
+        .from(element)
+        .save();
     }
-  }
+  };
 
   const generateInvoice = () => {
     if (invoice !== null) {
@@ -80,7 +90,7 @@ const RecieptCard = ({investment, en}: {investment: FirebaseInvestment, en: bool
   }
   return (
     <>
-    {loading ? (<RedrumProLoader/>) : user === null ? null : (
+    {loading && invoice === null ? (<RedrumProLoader/>) : user === null ? null : (
     <div className='reciept-card'>
       {project?.name && (
         <h1 style={styles.projectTitle}>You invested in: {project?.name}</h1>
