@@ -1,0 +1,78 @@
+$small: 450px;
+$limit: 650px;
+$mobile: 768px;
+$tablet: 1100px;
+$desktop: 1600px;
+
+$dark: #141628;
+$dark-light: rgb(75, 75, 75);
+$main: #3598FE;
+$white: #FEFEFE;
+$dark-blue: #3549FE;
+$border-color: #D9DEED;
+$red: rgb(195, 0, 16);
+$green: #4caf50;
+$blue-shadow: #359AFE7B;
+$dark-shadow: rgba(0, 0, 29, .25);
+$dark-blue-shadow: #3549FE7B;
+
+.faqpage-inner {
+  padding: 150px 20px;
+  & .page-title {
+    color: $dark;
+    text-align: center;
+    @media (max-width: $mobile) {
+      font-size: x-large;
+      color: $dark;
+    }
+  }
+  & .faq-section {
+    padding: 50px 0 0;
+    & .title {
+      color: $dark;
+      text-align: center;
+      line-height: 1;
+      margin: 25px 0;
+      font-size: xx-large;
+      @media (max-width: $mobile) {
+        font-size: large;
+        color: $dark;
+      }
+    }
+    & .faq-elements-con {
+      display: flex;
+      flex-direction: column;
+      row-gap: 20px;
+      align-items: center;
+      & .faq-box {
+        width: 100%;
+        max-width: 1600px;
+        @media (max-width: 1600px) {
+          max-width: 1200px;
+        }
+        @media (max-width: 1200px) {
+          max-width: 100%;
+        }
+        & .rs-panel-header .rs-panel-title {
+          font-weight: 700;
+        }
+        & p {
+          color: $dark;
+          opacity: 0.9;
+        }
+        & ul, ol {
+          margin: 25px;
+          & li {
+            color: $dark;
+            opacity: 0.9;
+            margin: 10px 0;
+          }
+        }
+        & h3 {
+          color: $dark;
+          font-size: medium;
+        }
+      }
+    }
+  }
+}
