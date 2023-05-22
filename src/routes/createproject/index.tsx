@@ -1,7 +1,7 @@
 import { onValue, ref } from 'firebase/database'
 import { getDownloadURL, uploadBytes } from 'firebase/storage'
 import React, { useEffect, useState } from 'react'
-import { Avatar, Button, ButtonGroup, CheckPicker, DatePicker, DateRangePicker, Divider, Form, Input, InputGroup, Message, Uploader, useToaster } from 'rsuite'
+import { Avatar, Button, ButtonGroup, CheckPicker, DatePicker, DateRangePicker, Divider, Form, Input, InputGroup, Message, Toggle, Uploader, useToaster } from 'rsuite'
 import FormControlLabel from 'rsuite/esm/FormControlLabel'
 import FormGroup from 'rsuite/esm/FormGroup'
 import PushNotification from '../../components/Notification'
@@ -19,8 +19,8 @@ const CreateProjectPage = () => {
     const [projectTitle, setProjectTitle] = useState('')
     const [projectIntro, setProjectIntro] = useState('')
     const [projectDescription, setProjectDescription] = useState('')
-    const [projectStartDate, setProjectStartDate] = useState('')
-    const [projectEndDate, setProjectEndDate] = useState('')
+    const [projectStartDate, setProjectStartDate] = useState<any>(new Date())
+    const [projectEndDate, setProjectEndDate] = useState<any>(new Date())
     const [projectPublication, setProjectPublication] = useState('')
     const [projectGoal, setProjectGoal] = useState('')
     const [projectInvested, setProjectInvested] = useState('')
@@ -42,6 +42,8 @@ const CreateProjectPage = () => {
     const [fileUrls, setFileUrls] = useState<string[]>([])
     const [fileNames, setFileNames] = useState<string[]>([])
     const [finalFiles, setFinalFiles] = useState<any>()
+    const [hasClosure, setHasClosure] = useState<boolean>(false)
+    const [projectClosure, setProjectClosure] = useState<any>(new Date())
 
     const toaster = useToaster()
 
@@ -229,8 +231,8 @@ const CreateProjectPage = () => {
 
     const makeProject = () => {
         writeProjectData(Date.now().toString(), projectTitle, projectIntro, projectDescription,
-            new Date(projectStartDate).toDateString(),
-            new Date(projectEndDate).toDateString(),
+            projectStartDate.toJSON(),
+            projectEndDate.toJSON(),
             projectPublication,
             Number(projectGoal),
             Number(projectInvested),
@@ -243,7 +245,9 @@ const CreateProjectPage = () => {
             presentationUrl,
             galleryUrls,
             pitchVideo,
-            finalFiles
+            finalFiles,
+            hasClosure,
+            projectClosure.toJSON()
         )
 
         toaster.push(<Message type='success' style={pushSuccess} duration={10000}>
@@ -394,17 +398,30 @@ const CreateProjectPage = () => {
 
                     <FormGroup>
                         <FormControlLabel style={styles.label}>Start date</FormControlLabel>
-                        <Input
+                        <DatePicker
                             placeholder='YYYY-MM-dd'
                             onChange={setProjectStartDate}
                         />
                     </FormGroup>
                     <FormGroup>
                         <FormControlLabel style={styles.label}>End date</FormControlLabel>
-                        <Input
+                        <DatePicker
                             placeholder='YYYY-MM-dd'
                             onChange={setProjectEndDate}
                         />
+                    </FormGroup>
+                    <FormGroup>
+                      <p className='mb-1'><Toggle onChange={setHasClosure}/> &nbsp;&nbsp; Does the project have the "Project Closure" value?</p>
+                      {hasClosure ? (
+                        <>
+                          <FormControlLabel style={styles.label}>Project closure</FormControlLabel>
+                          <DatePicker
+                              placeholder='YYYY-MM-dd'
+                              onChange={setProjectClosure}
+                          />
+                        </>
+                      ) : null}
+
                     </FormGroup>
                     <FormGroup>
                         <FormControlLabel style={styles.label}>Publication</FormControlLabel>

@@ -1,6 +1,7 @@
 import React from 'react'
 import bundleStrings from '../../../../../../library/string/Bundle'
 import SingleLineInfo from './SingleLineInfo'
+import { formatDate } from '../../../../../../misc/custom-hooks'
 
 const InfoLines = ({ project, en }: { project: any, en: boolean }) => {
   const end = new Date(project.endDate)
@@ -20,6 +21,19 @@ const InfoLines = ({ project, en }: { project: any, en: boolean }) => {
               ].join('.')
             }
             />
+            {project.closure !== "" ? (
+              <SingleLineInfo title={en ? 'Project closure' : 'Projektabschluss'}
+              info={formatDate(new Date(project.closure))} hasTag tooltipTxt={en ?
+              'This project is a licensing business. ' +
+              'This means that on the date of project closure your invested amount + return ' +
+              'will be paid out and the project will be finally closed. ' +
+              'The participation is therefore finished.' :
+              'Bei diesem Projekt handelt es sich um ein Lizenzgeschäft. ' +
+              'Das bedeutet,dass am Datum des Projektabschlusses dein ' +
+              'investierter Betrag + Rendite ausgezahlt wird und das Projekt final abgeschlossen wird. ' +
+              'Die Beteiligung ist damit beendet.'
+              }/>
+              ) : null}
             <SingleLineInfo
             title={en ? bundleStrings.infoCardEN.iT : bundleStrings.infoCardDE.iT}
             info={project.goal.toString()}

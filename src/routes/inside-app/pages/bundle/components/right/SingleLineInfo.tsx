@@ -1,6 +1,9 @@
 import React, { FunctionComponent } from 'react'
 import { numberWithCommas } from '../../../../../../misc/custom-hooks'
 import { mainColors } from '../../../../themes/colors'
+import { Badge, Tooltip, Whisper } from 'rsuite'
+import InfoIcon from '@rsuite/icons/InfoRound'
+import './styles/infoline.scss'
 
 interface IProps {
   title: string,
@@ -11,16 +14,19 @@ interface IProps {
   isTopElement?: boolean,
   hasSmallTxt?: boolean,
   smallTxt?: string,
+  hasTag?: boolean,
+  tooltipTxt?: String
  }
 const SingleLineInfo: FunctionComponent<IProps> = (props) => {
-  const { title, info, type, line = true, isBlue, isTopElement, hasSmallTxt, smallTxt } = props
+  const { title, info, type, line = true, isBlue, isTopElement,
+    hasSmallTxt, smallTxt, hasTag = false, tooltipTxt = "" } = props
   const styles = {
     wrapper: {
         width: 100 + '%',
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
-        padding: 5,
+        padding: hasTag ? '10px 5px' : 5,
         marginTop: isTopElement ? 0 : 2.5,
     },
     title: {
@@ -48,13 +54,26 @@ const SingleLineInfo: FunctionComponent<IProps> = (props) => {
 }
     return (
         <>
-            <div style={styles.wrapper}>
+            <div className='info-line' style={styles.wrapper}>
                 <p style={styles.title}>
                     {title} {hasSmallTxt ? (<> <br/> <span style={styles.small}>{smallTxt}</span> </>) : null}
                 </p>
-                <p style={styles.info}>
+                {hasTag ? (
+                  <Whisper placement='top' trigger={'hover'} speaker={(<Tooltip>
+                    {tooltipTxt}
+                  </Tooltip>)}>
+                    <Badge color='blue' content={(<InfoIcon width={15} height={13} />)}>
+                    <p style={styles.info}>
+                      {type == '€' ? numberWithCommas(info) : info} {type}
+                    </p>
+                    </Badge>
+                  </Whisper>
+                ) : (
+                  <p style={styles.info}>
                     {type == '€' ? numberWithCommas(info) : info} {type}
-                </p>
+                  </p>
+                )}
+
             </div>
             {
                 line ? (

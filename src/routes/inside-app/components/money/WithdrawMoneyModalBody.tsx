@@ -15,7 +15,7 @@ const WithdrawMoneyModalBody: FunctionComponent<IProps> = (props) => {
   return (
     <>
     <ModalHeader>
-      <ModalTitle>Deposit</ModalTitle>
+      <ModalTitle>Withdraw</ModalTitle>
     </ModalHeader>
     <ModalBody style={styles.wrap} className='flex-column'>
       <img src={WithdrawPhoto} alt="Withdraw money" style={styles.image} />

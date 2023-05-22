@@ -1,0 +1,40 @@
+$small: 450px;
+$limit: 650px;
+$mobile: 768px;
+$tablet: 1100px;
+$desktop: 1600px;
+
+$dark: #141628;
+$dark-light: rgb(75, 75, 75);
+$main: #3598FE;
+$white: #FEFEFE;
+$dark-blue: #3549FE;
+$border-color: #D9DEED;
+$red: rgb(195, 0, 16);
+$green: #4caf50;
+$blue-shadow: #359AFE7B;
+$dark-shadow: rgba(0, 0, 29, .25);
+$dark-blue-shadow: #3549FE7B;
+
+.userbalance-modal {
+  & .modal-title {
+    color: $dark;
+    font-weight: 700;
+    text-align: center;
+    font-size: xx-large;
+  }
+  & .modal-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 25px;
+    padding: 50px 0 100px;
+    & .body-title {
+      color: $dark;
+    }
+    & .btns {
+      display: flex;
+      column-gap: 25px;
+    }
+  }
+}

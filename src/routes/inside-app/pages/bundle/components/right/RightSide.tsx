@@ -76,7 +76,7 @@ const RightSide: FunctionComponent<IProps> = (props) => {
           paddingTop: isMobile ? 25 : 7 + 'rem',
       },
       card: {
-          height: isDesktop ? 800 : 400,
+          height: isDesktop ? 800 : 500,
           width: 100 + '%',
           backgroundColor: '#fbfbfb',
           marginTop: isMobile ? 10 : 0,
@@ -89,7 +89,6 @@ const RightSide: FunctionComponent<IProps> = (props) => {
           boxFit: 'border-box',
           borderRadius: 15,
           boxShadow: ' 0 5px 10px 0 rgba(0,0,29, .15)',
-          maxHeight: 600,
       }
   }
     return (
@@ -100,9 +99,10 @@ const RightSide: FunctionComponent<IProps> = (props) => {
             <Col as={FlexboxGridItem} colspan={isMobile ? 24 : 7}
                 style={styles.wrapper} className='flex-column'
             >
-                <ProgressItem project={project} en={en} />
+
                 <div style={styles.card} className='flex-column'>
                     <InfoLines project={project} en={en} />
+                    <ProgressItem project={project} en={en} />
                     <Button
                     title={project.currentlyInvested! >= project.goal! ? en ? 'Investment capacity reached for project' :
                      'Investitionskapazität für das Projekt erreicht': ''}

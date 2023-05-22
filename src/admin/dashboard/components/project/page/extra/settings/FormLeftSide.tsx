@@ -1,6 +1,6 @@
 import { ref, update } from 'firebase/database'
 import React, { useState } from 'react'
-import { Button, Input, Message, Stack, useToaster } from 'rsuite'
+import { Button, DatePicker, Input, Message, Stack, useToaster } from 'rsuite'
 import FlexboxGridItem from 'rsuite/esm/FlexboxGrid/FlexboxGridItem'
 import StackItem from 'rsuite/esm/Stack/StackItem'
 import { FirebaseBundle } from '../../../../../../../database/Objects'
@@ -13,8 +13,10 @@ const VProjectEditFormLeftSide = ({project, span} : {project: FirebaseBundle, sp
   const [name, setName] = useState<string>(project.name!)
   const [intro, setIntro] = useState<string>(project.intro!)
   const [description, setDescription] = useState<string>(project.description!)
-  const [startDate, setStartDate] = useState<string>(project.startDate!)
-  const [endDate, setEndDate] = useState<string>(project.endDate!)
+  const [startDate, setStartDate] = useState<any>(new Date(project.startDate!))
+  const [endDate, setEndDate] = useState<any>(new Date(project.endDate!))
+  const todayDT = new Date()
+  const [closure, setClosure] = useState<any>(project.closure !== "" ? new Date(project.closure) : todayDT)
   const [publication, setPublication] = useState<string>(project.publication!)
   const [pitchVideo, setPitchVideo] = useState<string>(project.pitch_video)
   const [resetting, setResetting] = useState<boolean>(false)
@@ -28,8 +30,9 @@ const VProjectEditFormLeftSide = ({project, span} : {project: FirebaseBundle, sp
     setName(project.name!)
     setIntro(project.intro!)
     setDescription(project.description!)
-    setStartDate(project.startDate!)
-    setEndDate(project.endDate!)
+    setStartDate(new Date(project.startDate!))
+    setEndDate(new Date(project.endDate!))
+    setClosure(project.closure !== "" ? project.closure : todayDT)
     setPublication(project.publication!)
     setPitchVideo(project.pitch_video)
     setResetting(false)
@@ -41,8 +44,9 @@ const VProjectEditFormLeftSide = ({project, span} : {project: FirebaseBundle, sp
     updates['name'] = name
     updates['intro'] = intro
     updates['description'] = description
-    updates['startDate'] = new Date(startDate).toDateString()
-    updates['endDate'] = new Date(endDate).toDateString()
+    updates['startDate'] = startDate.toDateString()
+    updates['endDate'] = endDate.toDateString()
+    updates['closure'] = closure !== todayDT ? closure.toJSON() : ""
     updates['publication'] = publication
     updates['pitch_video'] = pitchVideo
     await update(reference, updates).then(() => {
@@ -86,22 +90,35 @@ const VProjectEditFormLeftSide = ({project, span} : {project: FirebaseBundle, sp
       <Stack className='edit-item' spacing={6}>
         <p className='edit-label'>Start date:</p>
         <StackItem basis={300}>
-          <Input
+          <DatePicker
           value={resetting ? project.startDate : startDate}
           defaultValue={startDate}
           onChange={setStartDate} />
         </StackItem>
-        <p>Format: yyyy-MM-dd</p>
       </Stack>
       <Stack className='edit-item' spacing={6}>
         <p className='edit-label'>End date:</p>
         <StackItem basis={300}>
-          <Input
+          <DatePicker
           value={resetting ? project.endDate : endDate}
           defaultValue={endDate}
           onChange={setEndDate} />
         </StackItem>
-        <p>Format: yyyy-MM-dd</p>
+      </Stack>
+      <Stack className='edit-item' spacing={6}>
+        <p className='edit-label'>Closure:</p>
+        <StackItem basis={150}>
+          <DatePicker
+          value={resetting ? project.closure : closure}
+          defaultValue={closure}
+          onChange={setClosure} />
+        </StackItem>
+        {project.closure === "" ? (
+          <p>
+            The closure has not been set for this project.
+        </p>
+        ) : null}
+
       </Stack>
       <Stack className='edit-item' spacing={6}>
         <p className='edit-label'>Publication:</p>

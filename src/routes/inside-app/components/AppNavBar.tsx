@@ -26,6 +26,7 @@ import AppNavMenu from './AppNavMenu';
 import AppNavigationMenu from './AppNavigationMenu';
 import { getCurrentUserFunction, getNotificationValues, getUserNotificationCount, userRef, userRefOnValue } from '../../../firebase';
 import { FirebaseUser } from '../../../database/Objects';
+import UserBalanceModal from './userbalancemodal/UserBalanceModal';
 
 interface IProps {
   fixed: boolean,
@@ -62,6 +63,11 @@ const AppNavBar: React.FunctionComponent<IProps> = (props) => {
     const [notificationCount, setNotificationCount] = useState(0)
     const [notificationValues, setNotificationValues] = useState([])
     const [notiLoading, setNotiLoading] = useState(false)
+
+    // Balance modal
+    const [balanceModalOpen, setBalanceModalOpen] = useState<boolean>(false)
+    const openBalanceModal = () => setBalanceModalOpen(true)
+    const closeBalanceModal = () => setBalanceModalOpen(false)
 
     let userBalance = 0
 
@@ -181,7 +187,7 @@ const AppNavBar: React.FunctionComponent<IProps> = (props) => {
                     <Button style={styles.btn} appearance='primary' size='lg' onClick={openModal} >
                     {en ? dashboardStrings.navbarEN.btn : 'Einzahlen'}
                     </Button>
-                    <NavItem className='d-flex flex-column align-center justify-around like-a-btn'>
+                    <NavItem onClick={openBalanceModal} className='d-flex flex-column align-center justify-around like-a-btn'>
                       {
                         loading ? (<Loader content={en ? 'Loading...' : 'Laden...'} size='sm' speed='fast' vertical/>) : user === null ? 'Unknown' :
                         (<span>{user.money_available < 10000 ? en ? 'Balance:' : 'Guthaben' : null} {numberWithCommas(user.money_available)} €</span>)
@@ -206,6 +212,9 @@ const AppNavBar: React.FunctionComponent<IProps> = (props) => {
         openModal={openModal}
         logout={logout}
         />
+        {user !== null ? (
+          <UserBalanceModal en={en} open={balanceModalOpen} close={closeBalanceModal} balance={user!.money_available} />
+          ) : null}
       </>
     )
 }

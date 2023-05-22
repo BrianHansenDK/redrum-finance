@@ -19,7 +19,7 @@ const CreateMoviePage = () => {
     const [des, setDes] = useState('')
     const [trailerUrl, setTrailerUrl] = useState('')
     const [genres, setGenres] = useState('')
-    const [releaseDate, setReleaseDate] = useState('')
+    const [releaseDate, setReleaseDate] = useState<any>('')
     const [image, setImage] = useState(null)
     const [imageUrl, setUrl] = useState('')
 
@@ -31,7 +31,7 @@ const CreateMoviePage = () => {
 
         setLoading(true)
         writeMovieData(
-          Date.now().toString(), title, intro, des, new Date(releaseDate), genres, imageUrl, trailerUrl
+          Date.now().toString(), title, intro, des, releaseDate.toJSON(), genres, imageUrl, trailerUrl
           )
         setLoading(false)
 
@@ -110,7 +110,7 @@ const CreateMoviePage = () => {
                     </FormGroup>
                     <FormGroup>
                         <FormControlLabel style={styles.label}>Release date</FormControlLabel>
-                        <Input
+                        <DatePicker
                         placeholder='Format: yyyy-MM-dd'
                         onChange={setReleaseDate}
                         />

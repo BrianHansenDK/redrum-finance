@@ -37,12 +37,12 @@ const ProgressItem = ({ project, en }: { project: any, en: boolean }) => {
 const styles = {
     progressWrap: {
         width: 100 + '%',
-        marginTop: 7.5,
-        paddingTop: 7.5,
-        paddingBottom: 6,
-        marginBottom: '1rem',
-        paddingLeft: 20,
-        paddingRight: 20,
+        marginTop: 0,
+        paddingTop: 0,
+        paddingBottom: 0,
+        marginBottom: 0,
+        // paddingLeft: 20,
+        // paddingRight: 20,
     },
     bar: {
         paddingTop: 0,

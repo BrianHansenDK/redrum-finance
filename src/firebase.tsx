@@ -237,7 +237,9 @@ export function writeProjectData(
     presentationUrl: string,
     galleryUrls: string[],
     pitchVideo: string,
-    files: {name: string, url: string}[]
+    files: {name: string, url: string}[],
+    hasClosure: boolean,
+    closure: String
 ) {
     const reference = ref(database, 'projects/' + projectId)
     set(reference, {
@@ -259,7 +261,8 @@ export function writeProjectData(
         presentationImage: presentationUrl,
         image_gallery_urls: galleryUrls,
         pitch_video: pitchVideo,
-        files: files
+        files: files,
+        closure: hasClosure ? closure : ""
     })
 }
 
