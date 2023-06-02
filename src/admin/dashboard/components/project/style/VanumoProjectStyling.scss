@@ -5,6 +5,12 @@ $image-color-shadow: #a274ff3d;
 $card-color-shadow: #a274ff52;
 $image-shadow: 0 5px 10px 0 $card-color-shadow;
 
+#vanumo-projects-wrap {
+  max-width: 100%;
+  overflow-x: scroll;
+  padding: 20px 20px 40px;
+}
+
 .project-card {
   transition: all 150ms ease-out;
   &:hover {

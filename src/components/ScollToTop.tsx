@@ -8,7 +8,8 @@ const ScrollToTop = ({children}: {children: any}) => {
   const isMobile = useMediaQuery('(max-width: 1100px)')
   useEffect(() => {
     if (location.pathname.includes('extras')) {
-      window.scrollTo(0, isMobile ? 1101 : 750);
+      const section = document.querySelector( '#top' );
+      section?.scrollIntoView( { behavior: 'smooth', block: 'start' } );
     }
     else {
       window.scrollTo(0, 0);

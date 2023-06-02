@@ -121,6 +121,7 @@ class ProjectDetailsPage extends React.Component<IProps, IState> {
               paddingBottom: 5 + 'rem',
               paddingLeft: isMobile ? 20 : 1.5 + 'rem',
               paddingRight: isMobile ? 20 : 1.5 + 'rem',
+              marginTop: 50
           }
 
       }

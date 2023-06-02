@@ -8,6 +8,7 @@ import LOGO from '../../../assets/vanumo-logo-white.svg'
 import { vanumoColors } from '../../../theme/vanumoTheme'
 import AddIcon from '@rsuite/icons/Tree'
 import MovieIcon from '@rsuite/icons/legacy/VideoCamera'
+import PromoIcon from '@rsuite/icons/Coupon'
 import { mainColors } from '../../../../routes/inside-app/themes/colors'
 import NotificationsButton from './NotificationsButton'
 
@@ -45,6 +46,7 @@ const VanumoNavbar = () => {
         </Button>
       </Nav>
       <Nav pullRight style={styles.searchWrap}>
+        <IconButton icon={<PromoIcon/>} as={Link} to={'/vanumo/promo'} style={styles.iconBtn} />
         <NotificationsButton />
         <IconButton icon={<MovieIcon/>} as={Link} to={'/vanumo/create-movie'} style={styles.iconBtn} />
         <IconButton icon={<AddIcon/>} as={Link} to={'/vanumo/create-project'} style={styles.iconBtn} />

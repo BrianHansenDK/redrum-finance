@@ -57,7 +57,7 @@ class BundleOverview extends React.Component<IProps, IState> {
         return (
             this.state.projectData.map((project) => (
                 project.id == bundleId ? (
-                    <div style={styles.wrapper} className='flex-column' key={project.id}>
+                    <div style={styles.wrapper} className='flex-column' id='top' key={project.id}>
                         <TrailerCard movieIds={project.movies!} en={this.props.en}/>
                         <PresentationCard project={project} en={this.props.en} showGallery />
                         <FilesCard project={project!} en={this.props.en}/>

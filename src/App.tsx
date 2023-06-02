@@ -56,11 +56,12 @@ import ProjectSheetPage from './routes/inside-app/pages/bundle/extras/sheet/Inde
 import ProjectGalleryPage from './routes/inside-app/pages/bundle/extras/gallery/Index.js';
 import ProjectVideosPage from './routes/inside-app/pages/bundle/extras/videos/Index.js';
 import ProjectFilesPage from './routes/inside-app/pages/bundle/extras/documents/Index.js';
+import PromoSection from './admin/dashboard/components/promocodes/PromoSection.js';
 
 
 const App = () => {
   const [isVisible, setVisible] = useState(false)
-  const [isEnglish, setEnglish] = useState(true)
+  const [isEnglish, setEnglish] = useState(false)
   const openModal = () => setVisible(true)
   const closeModal = () => setVisible(false)
   const location = useLocation();
@@ -85,6 +86,7 @@ const App = () => {
         <Route index element={<VanumoDashboardIndex />}/>
         <Route path='create-project/' element={<CreateProjectPage />} />
         <Route path='create-movie' element={<CreateMoviePage/>} />
+        <Route path='promo' element={<PromoSection/>} />
         <Route path='users/' element={<AccountAdmin />} >
           <Route path=':userId' element={<UserCard />} />
         </Route>

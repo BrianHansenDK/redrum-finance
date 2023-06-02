@@ -37,7 +37,7 @@ const ProjectVideosPage = (props: IProps) => {
 
   // Mark: - FUNCTIONS
   return (
-    <div className='project-videos-page'>
+    <div className='project-videos-page' style={{paddingTop: 150}} id='top'>
       {
         loading || tLoading ? (<RedrumProLoader/>) : project !== null && trailers !== null ? (
           <>

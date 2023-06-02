@@ -16,13 +16,12 @@ interface IProps {
 const ProfileData = (props: IProps) => {
     const { user, en, visible, openModal, closeModal } = props;
     const birthdate = new Date(user.birth_date)
-    const birthdateDT = new Date(birthdate.getTime() + (1000 * 60 * 60 * 24))
     return (
         <>
             <div className='profile-data'>
                 <div>
                     <p className='birth-year'>
-                        <CalendarIcon className='info-icon' /> Birthdate: {user.birth_date !== '' ? formatDate(birthdateDT) : 'Unknown'}
+                        <CalendarIcon className='info-icon' /> Birthdate: {user.birth_date !== '' ? formatDate(birthdate) : 'Unknown'}
                     </p>
                     <p className='birth-year'>
                         <PinIcon className='info-icon' /> Location: {user.address !== '' ? getCity(user) :

@@ -1,9 +1,9 @@
 import React from 'react'
-import { Button, DatePicker, Input, InputNumber, InputPicker, Message, Radio, RadioGroup, Toggle, Tooltip, Whisper, useToaster } from 'rsuite'
+import { Button, DatePicker, Input, InputNumber, InputPicker, MaskedInput, Message, Radio, RadioGroup, Toggle, Tooltip, Whisper, useToaster } from 'rsuite'
 import { FirebaseUser } from '../../../../../../../database/Objects'
 import SpinnerIcon from '@rsuite/icons/legacy/Spinner';
 import { mainColors } from '../../../../../themes/colors';
-import { fetchContries, getCity, getUserHousenumber, getUserStreet, getZipCode, useMediaQuery } from '../../../../../../../misc/custom-hooks';
+import { fetchContries, formatDate, getCity, getUserHousenumber, getUserStreet, getZipCode, useMediaQuery } from '../../../../../../../misc/custom-hooks';
 import { auth, newUpdateAccount } from '../../../../../../../firebase';
 import { ValueType } from 'rsuite/esm/Radio/Radio';
 import { sendPasswordResetEmail, updateEmail } from 'firebase/auth';
@@ -35,9 +35,10 @@ const ProfileForm = (props: IProps) => {
   const [firstName, setFirstName] = React.useState('')
   const [lastName, setLastName] = React.useState('')
   const [birthdate, setBirthdate] = React.useState<any>(today)
-  const [birthYear, setBirthYear] = React.useState<any>(today)
-  const [birthMonth, setBirthMonth] = React.useState<any>(today)
-  const [birthDay, setBirthDay] = React.useState<any>(today)
+  const [birthYear, setBirthYear] = React.useState<any>("")
+  const [manualBDate, setManualBDate] = React.useState<any>("")
+  const [birthMonth, setBirthMonth] = React.useState<any>("")
+  const [birthDay, setBirthDay] = React.useState<any>("")
   const [email, setEmail] = React.useState('')
   const [role, setRole] = React.useState('')
   const [companyName, setCompanyName] = React.useState('')
@@ -79,6 +80,8 @@ addAddress2, phone, checked, companyAccount])
     {label: en ? 'Mr.' : 'Herr', value: 'Mr.'}, {label: en ? 'Miss.' : 'Frau', value: 'Miss.'},
     {label: en ? 'Other.' : 'Ander', value: 'Other'}
   ]
+
+  const nowDt = new Date();
 
   const [cLoading, setCLoading] = React.useState<boolean>(false)
   const [countries, setCountries] = React.useState<string[] | null>(null)
@@ -128,7 +131,7 @@ addAddress2, phone, checked, companyAccount])
       (firstName !== "" && lastName === "") ? `${firstName}${user.full_name !== "" ? ` ${user.full_name.split(" ").slice(1).join(" ")}` : ''}` :
       (firstName === '' && lastName !== '') ? `${user.full_name !== "" ? `${user.full_name.split(" ")[0]}` : ''} ${lastName}` :
       (firstName !== "" && lastName !== "") ? `${firstName} ${lastName}` : '' ,
-      birthdate.toDateString(),
+      `${manualBDate.split('/')[2]}-${manualBDate.split('/')[1]}-${manualBDate.split('/')[0]}`,
       email === '' ? user.email : email,
       country !== '' ? country : user.country,
       code !== '' && city !== '' && street !== '' ? `${street} ${houseNumber}${addAddress !== '' ? `, ${addAddress}` : ''}${addAddress2 !== '' ? `, ${addAddress2}` : ''}, ${code} ${city}` : user.address,
@@ -164,7 +167,7 @@ addAddress2, phone, checked, companyAccount])
       updateEmail(auth.currentUser!, email)
     }
     }
-    const givenDate = new Date(birthdate.toLocaleDateString())
+    const givenDate = new Date(`${manualBDate.split('/')[2]}-${manualBDate.split('/')[1]}-${manualBDate.split('/')[0]}`)
     if (new Date().getFullYear() - givenDate.getFullYear() < 18) {
       toaster.push(<Message showIcon type='warning' duration={5000}>
         {en ? 'Under 18: You cannot invest.' : 'Unser 18 jahre: Du kanns nicht investieren.'}
@@ -244,26 +247,19 @@ addAddress2, phone, checked, companyAccount])
         Needed to invest
       </Tooltip>)}>
       <div className="inner birthdate">
-        <label className="label">{en ? 'Birtdate' : 'Geburtsdatum'}*</label>
+        {/*<label className="label">{en ? 'Birtdate' : 'Geburtsdatum'}*</label>
         <DatePicker className='input'
         value={new Date(birthdate).toDateString() === today.toDateString() ? user.birth_date !== '' ? new Date(user.birth_date) : null: birthdate}
-      oneTap onChange={setBirthdate}/>
-        {/*<div className="box-inner year">
+      oneTap onChange={setBirthdate}/>*/}
+        <div className="box-inner year">
           <label className="label">{en ? 'Birtdate' : 'Geburtsdatum'}*</label>
-          <InputNumber value={user.birth_date !== '' ? }/>
+          <MaskedInput className='input' onChange={setManualBDate}
+          value={manualBDate == "" ? user.birth_date !== '' ? formatDate(new Date(user.birth_date)).split('.').join('/') : manualBDate
+          : manualBDate}
+          guide keepCharPositions placeholder={en ? 'dd/MM/YYYY' : 'tt/MM/JJJJ'}
+          mask={[/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/]}
+          />
         </div>
-        <div className="box-inner month">
-          <label className="label">{en ? 'Birtdate' : 'Geburtsdatum'}*</label>
-          <DatePicker className='input'
-          value={new Date(birthdate) === today ? user.birth_date !== '' ? new Date(user.birth_date) : null: birthdate}
-          oneTap onChange={setBirthdate}/>
-        </div>
-        <div className="box-inner day">
-          <label className="label">{en ? 'Birtdate' : 'Geburtsdatum'}*</label>
-          <DatePicker className='input'
-          value={new Date(birthdate) === today ? user.birth_date !== '' ? new Date(user.birth_date) : null: birthdate}
-          oneTap onChange={setBirthdate}/>
-      </div> */}
       </div>
       </Whisper>
       <div className="inner">

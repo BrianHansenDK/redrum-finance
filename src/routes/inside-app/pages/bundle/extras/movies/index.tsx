@@ -44,7 +44,7 @@ class BundleMoviesDetals extends React.Component<IProps, IState>{
 
 
         return (
-            <div style={styles.pageWrap} className='flex-column r-bundle-movies-section'>
+            <div style={styles.pageWrap} className='flex-column r-bundle-movies-section' id='top'>
                 {
                     this.state.projectData ? (
 
@@ -84,6 +84,7 @@ const styles = {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
+        paddingTop: 150
     },
     pageTitle: {
         marginBottom: 75,

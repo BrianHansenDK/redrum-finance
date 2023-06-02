@@ -17,7 +17,7 @@ class BundleUpdatesDetails extends React.Component {
 
     render() {
         return (
-            <div>BundleUpdatesDetails</div>
+            <div id='top'>BundleUpdatesDetails</div>
         )
     }
 }

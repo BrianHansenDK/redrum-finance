@@ -26,7 +26,7 @@ const ProjectFilesPage = (props: IProps) => {
   // Mark: - FUNCTIONS
 
   return (
-    <div className='project-files-page'>
+    <div className='project-files-page' id='top'>
       {loading || project === null ? (<RedrumProLoader/>) : (
         <FilesCard project={project} en={en}/>
       )}

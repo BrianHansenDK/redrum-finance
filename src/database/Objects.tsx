@@ -119,3 +119,13 @@ movie: number,
 owner: string,
 project: number
 }
+
+// PromoCode Object
+export interface FirebasePromo {
+  id: number,
+  invested: number,
+  promotion_gain: number,
+  investor_id: string,
+  promoter_id: string,
+  created_at: string
+}

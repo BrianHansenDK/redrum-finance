@@ -37,6 +37,10 @@
       "invoices": {
         ".read": "auth.uid !== null",
           ".write": "auth.uid !== null"
+      },
+      "promo-usages": {
+        ".read": "auth.uid !== null",
+        ".write": "auth.uid !== null"
       }
   }
 }

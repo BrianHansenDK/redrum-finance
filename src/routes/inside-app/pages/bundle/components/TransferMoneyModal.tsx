@@ -46,6 +46,9 @@ const TransferMoneyModal: React.FunctionComponent<IProps> = (props) => {
 
           // Create a notification
           createDepositNotification(user.id);
+
+          // Reload browser
+          window.location.reload();
         }
     }
 

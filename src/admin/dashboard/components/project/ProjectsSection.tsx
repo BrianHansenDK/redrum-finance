@@ -22,7 +22,7 @@ const ProjectsSection = () => {
         <h1 className='mb-1'>
           Projects
         </h1>
-        <div className='d-flex'>
+        <div className='d-flex' id='vanumo-projects-wrap'>
         {projects.map((project: any) => (
           <ProjectCard project={project} key={project.id}/>
           ))}

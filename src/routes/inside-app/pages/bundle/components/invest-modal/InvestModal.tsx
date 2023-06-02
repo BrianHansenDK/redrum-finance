@@ -2,7 +2,7 @@ import { ref, set, update } from 'firebase/database'
 import React, { useEffect, useState } from 'react'
 import INVESTIMG from '../../../../../assets/investment_growth_icon.svg'
 import { Button, ButtonGroup, Form, InputNumber, Message, Modal, useToaster, Toggle, Tooltip, Whisper, Notification } from 'rsuite'
-import { addUserMoney, auth, createInvestmentNotification, createInvoice, createPromoNotification, database, getAllUserIds, getCurrentUserFunction, getInvoiceCount, notifyRedrumOfPromotion, userRef } from '../../../../../../firebase'
+import { addUserMoney, auth, createInvestmentNotification, createInvoice, createPromoNotification, createPromoRequest, database, getAllUserIds, getCurrentUserFunction, getInvoiceCount, getPromoCount, notifyRedrumOfPromotion, userRef } from '../../../../../../firebase'
 import CheckIcon from '@rsuite/icons/Check';
 import CloseIcon from '@rsuite/icons/Close';
 import '../right/styles/invest-modal.scss'
@@ -59,8 +59,12 @@ const InvestModal: React.FunctionComponent<IProps> = (props) => {
     const [allCodes, setAllCodes] = React.useState<string[]>([]) // All codes
     const [code, setCode] = React.useState<string>('') // Given promo code
 
+    // Generate unique Promocode usage number
+    const [promoCount, setPromoCount] = React.useState(0)
+
     useEffect(() => {
       getInvoiceCount(setInvoiceCount)
+      getPromoCount(setPromoCount)
     }, [buying])
 
     useEffect(() => {
@@ -430,7 +434,8 @@ const InvestModal: React.FunctionComponent<IProps> = (props) => {
               // Notify Redrum
               notifyRedrumOfPromotion(user, code, project, investAmount, bonus);
               */
-             addUserMoney(code, investAmount * 0.1);
+             // addUserMoney(code, investAmount * 0.1);
+             createPromoRequest(promoCount, investAmount + bonus, investAmount * 0.1, user.id, code, new Date().toJSON())
 
              // Create notification
              createPromoNotification(code, user, project, investAmount);

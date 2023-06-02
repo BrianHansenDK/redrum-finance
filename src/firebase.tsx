@@ -5,7 +5,7 @@ import { getAuth } from "firebase/auth";
 import { DataSnapshot, get, getDatabase, onValue, ref, remove, set, update } from 'firebase/database';
 import { EventHandler, useEffect, useState } from "react";
 import { getRealAge } from "./misc/custom-hooks";
-import { FirebaseBundle, FirebaseInvestment, FirebaseMovie, FirebaseNotification, FirebaseShare, FirebaseUser } from "./database/Objects";
+import { FirebaseBundle, FirebaseInvestment, FirebaseMovie, FirebaseNotification, FirebasePromo, FirebaseShare, FirebaseUser } from "./database/Objects";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -81,7 +81,7 @@ export function createAccount (
 }
 
 export function newUpdateAccount (userId: string, title: string, full_name: string,
-  birth_date: Date, email: string, country: string, address: string, phone_number: string,
+  birth_date: string, email: string, country: string, address: string, phone_number: string,
   then: ((value: void) => void | PromiseLike<void>) | null | undefined,
   error: ErrorCallback, end: () => void,
   company: boolean, companyRole?: string | undefined,
@@ -105,7 +105,7 @@ export function newUpdateAccount (userId: string, title: string, full_name: stri
     if (companyWebsite !== undefined) {
       updates['website'] = companyWebsite
     }
-    if  (title !== "" && full_name !== "" && birth_date !== new  Date() &&
+    if  (title !== "" && full_name !== "" && new Date(birth_date) !== new  Date() &&
     country !== "" && address.split(",").length > 1 && phone_number !== "") {
       const age = getRealAge(new Date(birth_date))
       if (age < 18) updates["completion"] = 90
@@ -652,15 +652,10 @@ export function createPromoNotification(userId: string, investor: FirebaseUser, 
       'Dear Redrum Producer,',
 
       'We wanted to let you know that another user has recently used your promo code for our ' +
-      `${project.name} - bundle, which means you have earned ${invested * 0.1}€ to your balance. ` +
+      `${project.name} - bundle, which means you have earned ${invested * 0.1}€ to your Redrum Pro balance. ` +
+      'You will receive the promo value within the next 14 days. ',
+
       'Congratulations on this achievement!',
-
-      'Additionally, we wanted to remind you that you have already received an invoice and ' +
-      'framework agreement for your participation in our referral program. ' +
-      'If you have any questions or concerns about your earnings or the program in general, ' +
-      "please don't hesitate to reach out to us.",
-
-      'Thanks again for being a part of our community and for your contributions to our success!',
 
       'Best regards',
 
@@ -669,15 +664,12 @@ export function createPromoNotification(userId: string, investor: FirebaseUser, 
     content_de: [
       'Lieber Redrum Producer, ',
 
-      'Wir möchten Ihnen mitteilen, dass ein anderer Benutzer kürzlich Ihren Promo-Code für unser ' +
-      `${project.name} - Bundle verwendet hat. Das bedeutet, dass Sie ${invested * 0.1} € auf Ihr Konto gutgeschrieben bekommen haben. ` +
+      'Wir wollten dir mitteilen, dass ein anderer Benutzer kürzlich deinen Promo-Code für unser ' +
+      `${project.name} - Bundle verwendet hat. Das bedeutet, dass ${invested * 0.1} € auf deinem' +
+       internem RedrumPro-Konto gutgeschrieben wird. ` +
+       'Du wirst den Promo-Wert innerhalb der nächsten 14 Tage erhalten.',
+
       'Herzlichen Glückwunsch zu diesem Erfolg!',
-
-      'Wir möchten Sie außerdem daran erinnern, dass Sie bereits eine Rechnung und einen Rahmenvertrag ' +
-      'für Ihre Teilnahme an unserem Empfehlungsprogramm erhalten haben. Wenn Sie Fragen oder Bedenken zu Ihren Einnahmen oder ' +
-      'zum Programm im Allgemeinen haben, zögern Sie bitte nicht, uns zu kontaktieren.',
-
-      'Vielen Dank, dass Sie ein Teil unserer Community sind und zu unserem Erfolg beitragen!',
 
       'Mit freundlichen Grüßen',
 
@@ -890,4 +882,70 @@ export function getUserShares(userId: string, projectId: number, setShares: any,
     setShares(finalData)
     setSum(sum)
   })
+}
+
+// PromoCodes
+
+export function createPromoRequest (id: number, invested: number,
+  promotionGain: number,
+  investorId: string,
+  promoterId: string,
+  createdAt: string) {
+    const reference = ref(database, 'promo-usages/' + id)
+    set(reference, {
+      id: id,
+      invested: invested,
+      promotion_gain: promotionGain,
+      investor_id: investorId,
+      promoter_id: promoterId,
+      created_at: createdAt
+    })
+  }
+
+export function getPromoCount(setCount: any) {
+  const data: any[] = []
+  const reference = ref(database, 'promo-usages/')
+  onValue(reference, (snap) => {
+    snap.forEach((invoice) => {
+      data.push(invoice.val())
+    })
+    setCount(data.length + 1)
+  })
+}
+
+export function getPromoUsages(setPromos: any, setLoading: any) {
+  setLoading(true);
+  let data: any[] = []
+  const reference = ref(database, 'promo-usages/');
+  get(reference).then((snap) => {
+    snap.forEach((promo) => {
+      data.push(promo.val())
+    })
+  }).catch((err) => {
+    console.error(err.message)
+  }).finally(() => {
+    setPromos(data)
+    setLoading(false);
+  })
+}
+
+export function getPromoUsers(promo: FirebasePromo, setInvestor: any, setPromoter: any, setLoading: any) {
+  setLoading(true);
+  const investorRef = ref(database, 'users/' + promo.investor_id);
+  const promoterRef = ref(database, 'users/' + promo.promoter_id);
+
+  get(investorRef).then((snap) => {
+    setInvestor(snap.val())
+  }).catch((err) => console.error(err.message))
+  .finally(() => {
+    get(promoterRef).then((snap) => {
+      setPromoter(snap.val())
+    }).catch((err) => console.error(err.message))
+    .finally(() => setLoading(false))
+  })
+}
+
+export function deletePromo(id: number) {
+  const reference = ref(database, 'promo-usages/' + id)
+  remove(reference);
 }

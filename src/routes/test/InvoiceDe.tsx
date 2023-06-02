@@ -147,11 +147,11 @@ const InvoiceDe = (props: IProps) => {
   <div className="footer-box first">
 
 <p className="MsoBodyText" >Redrum <span >F</span>ilms <span >&amp;</span><span > </span>Entertainment
-GmbH Hauptstr.<span > </span>26</p>
+GmbH </p> <p> Hauptstr.<span > </span>26</p>
 
 <p className="MsoBodyText" >10827<span > </span><span >Berlin</span></p>
 
-<p className="MsoBodyText" ><span >CEO</span><span > </span><span >Sevila</span><span > </span><span >Akbayir</span></p>
+<p className="MsoBodyText" ><span >CEO</span><span > </span><span >Sevilay</span><span > </span><span >Akbayir</span></p>
 </div>
 
 <div className="footer-box">
