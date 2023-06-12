@@ -31,7 +31,7 @@ const InvoiceDe = (props: IProps) => {
 
 <div className="intro">
   <div className="box1">
-<p className="MsoBodyText" ><u>Redrum Films &amp; Entertainment GmbH. Hauptstr. 26. 10827 Berlin</u></p>
+{/*<p className="MsoBodyText" ><u>Redrum Films &amp; Entertainment GmbH. Hauptstr. 26. 10827 Berlin</u></p>*/}
 { user.company_account ? (
   <p className="MsoListParagraph"> {user.company_name}</p>
 ) : null }
@@ -61,7 +61,7 @@ const InvoiceDe = (props: IProps) => {
 
 <p className="MsoBodyText" ><span >&nbsp;</span></p>
 
-<p className="MsoListParagraph" >&nbsp;&nbsp;Investoren id: {user.id}</p>
+<p className="MsoListParagraph" >&nbsp;&nbsp;Investoren id: {user.dms_id}</p>
 
 <p className="MsoListParagraph" >&nbsp;&nbsp;Investitionsdatum: {formatDate(investmentDate)}</p>
 
@@ -173,7 +173,8 @@ GmbH </p> <p> Hauptstr.<span > </span>26</p>
 </div>
 
 <div className="footer-box last">
-<p className="MsoBodyText" ><a href="http://www.redrumpro.de/"><span >www.redrumpro.de</span></a><span > </span><a href="mailto:info@redrumpro.de"><span >info@redrumpro.de</span></a></p>
+<p className="MsoBodyText" ><a href="http://www.redrumpro.de/"><span >www.redrumpro.de</span></a><span > </span></p>
+<p><a href="mailto:info@redrumpro.de"><span >info@redrumpro.de</span></a></p>
 </div>
 </div>
 

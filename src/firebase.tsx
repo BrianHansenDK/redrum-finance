@@ -55,11 +55,12 @@ export function getAllUserIds(setCodes: any) {
 }
 
 export function createAccount (
-  userId: string, userName: string, email: string, profileCompletion: number, image?: string, phone_number?: string,
+  userId: string, userName: string, email: string, dmsId: number, profileCompletion: number, image?: string, phone_number?: string,
   ) {
   const reference = ref(database, 'users/' + userId)
   set(reference, {
     id: userId,
+    dms_id: dmsId,
     username: userName,
     image: image !== undefined ? image : "",
     full_name: "",
@@ -194,6 +195,17 @@ export function getUsers(arr: any[], keyArr: any[], state: any, keyState: any) {
         keyState(keyArr)
     }, { onlyOnce: true })
 }
+
+export function getUserLenght(setCount: any) {
+  let data: FirebaseUser[] = []
+  const reference = ref(database, 'users/')
+  get(reference).then((snap) => {
+    snap.forEach((user) => {
+      data.push(user.val())
+    })
+  }).finally(() => setCount(data.length + 1))
+}
+
 // Backend functions
 export function writeMovieData(
     movieId: string,
@@ -219,7 +231,7 @@ export function writeMovieData(
 }
 
 export function writeProjectData(
-    projectId: string,
+    projectId: number,
     name: string,
     intro: string,
     description: string,
@@ -357,6 +369,16 @@ export function getProjectCountWithProjects(setAll: any, ProjectsInvestedIn: Fir
     setAll(count); setProjects(projects)
     setLoading(false)
   })
+}
+
+export function getProjectCount(setCount: any) {
+  let data: FirebaseBundle[] = []
+  const reference = ref(database, 'projects/')
+  get(reference).then((snap) => {
+    snap.forEach((project) => {
+      data.push(project.val())
+    })
+  }).finally(() => setCount(data.length + 1))
 }
 
 
@@ -906,8 +928,8 @@ export function getPromoCount(setCount: any) {
   const data: any[] = []
   const reference = ref(database, 'promo-usages/')
   onValue(reference, (snap) => {
-    snap.forEach((invoice) => {
-      data.push(invoice.val())
+    snap.forEach((promo) => {
+      data.push(promo.val())
     })
     setCount(data.length + 1)
   })
@@ -948,4 +970,32 @@ export function getPromoUsers(promo: FirebasePromo, setInvestor: any, setPromote
 export function deletePromo(id: number) {
   const reference = ref(database, 'promo-usages/' + id)
   remove(reference);
+}
+
+export function overWriteProjects() {
+  const projects = [1676120027435, 1683292371321, 1683800875122]
+  projects.forEach((projectId, index) => {
+    const getReference = ref(database, `projects/${projectId}`)
+    get(getReference).then((snap) => {
+      const setReference = ref(database, `projects/${index + 1}`)
+      set(setReference, snap.val())
+    })
+  })
+}
+
+export function overwriteShares() {
+  let shareIds: string[] = [];
+  const getReference = ref(database, 'shares/')
+  get(getReference).then((snap) => {
+    snap.forEach((share) => {
+      shareIds.push(share.val().id)
+    });
+  }).finally(() => {
+    shareIds.forEach((id) => {
+      let updates: any = {};
+      updates['project'] = "1";
+      const setReference = ref(database, `shares/${id}`)
+      update(setReference, updates)
+    })
+  })
 }

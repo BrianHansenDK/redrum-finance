@@ -5,6 +5,7 @@ export interface FirebaseUser {
   country: string,
   email: string,
   id: string,
+  dms_id: number,
   money_available: number,
   username: string,
   image?: string,

@@ -1,16 +1,16 @@
 import React from 'react'
-import { Link, useNavigate, useParams } from 'react-router-dom'
-import { Button } from 'rsuite'
-import { useMediaQuery } from '../../../../misc/custom-hooks'
-import AppNavBar from '../../components/AppNavBar'
-import './thank-you.scss'
+import { Link, useNavigate } from 'react-router-dom';
+import { Button } from 'rsuite';
+import { useMediaQuery } from '../../../../misc/custom-hooks';
+import AppNavBar from '../../components/AppNavBar';
+
 interface IProps {
   en: boolean,
-  setEn: any,
+  setEn: any
 }
-const ThankYouPage = (props: IProps) => {
-  const {en, setEn} = props
-  const {projectName} = useParams()
+
+const DepositedPage = (props: IProps) => {
+  const {en, setEn} = props;
   const isMobile = useMediaQuery('(max-width: 1100px)')
     const [menuOpen, setMenuOpen] = React.useState<boolean>(false)
     const [navOpen, setNavOpen] = React.useState<boolean>(false)
@@ -35,9 +35,9 @@ const ThankYouPage = (props: IProps) => {
        </h1>
        <p className="under-title">
         {en ?
-        'You are now an official producer of' :
-        'Du bist nun offizieller Producer von'
-        } <strong>{projectName?.split('-').join(' ')}</strong>
+        'Your money was succesfully deposited to your account' :
+        'Ihr Geld wurde erfolgreich auf Ihr Konto eingezahlt.'
+        }
        </p>
        <p className="welcome">
         {en ? 'Welcome to the team!' : 'Willkommen im Team'} 😁
@@ -45,14 +45,12 @@ const ThankYouPage = (props: IProps) => {
        <p className="extra-information">
         {
           en ?
-          'In the' :
-          'Im Meine'
-        } <Link to={'/app/databank'}>{en ? 'Databank' : 'Meine Dokumente'}
-        </Link> {
-          en ?
-          'section you will find your invoice and the framework contract.' :
-          'Bereich findest du deine Rechnung und den Rahmenvertrag.'
-        }
+          'You can now invest in various projects and be a part of the production! ' +
+          'The projects can be found in the ' :
+          'Sie können nun in verschiedene Projekte investieren und Teil der Produktion werden! ' +
+          'Die Projekte finden Sie auf dem'
+        } <Link to={'/app'}>{en ? 'Dashboard' : 'Dashboard'}
+        </Link>
        </p>
        <Button
        appearance='primary'
@@ -67,4 +65,4 @@ const ThankYouPage = (props: IProps) => {
   )
 }
 
-export default ThankYouPage
+export default DepositedPage

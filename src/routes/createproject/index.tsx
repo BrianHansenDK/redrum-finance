@@ -5,7 +5,7 @@ import { Avatar, Button, ButtonGroup, CheckPicker, DatePicker, DateRangePicker, 
 import FormControlLabel from 'rsuite/esm/FormControlLabel'
 import FormGroup from 'rsuite/esm/FormGroup'
 import PushNotification from '../../components/Notification'
-import { database, writeProjectData } from '../../firebase'
+import { database, getProjectCount, overWriteProjects, overwriteShares, writeProjectData } from '../../firebase'
 import { storage, storageRef } from '../../firebaseStorage'
 import MainBtn from '../inside-app/components/MainBtn'
 import { mainColors } from '../inside-app/themes/colors'
@@ -228,31 +228,39 @@ const CreateProjectPage = () => {
               }
           }
 
+        // Set project count
+        const [making, setMaking] = useState<boolean>(false);
+        const [pCount, setPCount] = useState<number>(0);
+
+        React.useEffect(() => {
+          getProjectCount(setPCount)
+        }, [making])
+
 
     const makeProject = () => {
-        writeProjectData(Date.now().toString(), projectTitle, projectIntro, projectDescription,
-            projectStartDate.toJSON(),
-            projectEndDate.toJSON(),
-            projectPublication,
-            Number(projectGoal),
-            Number(projectInvested),
-            Number(projectReturn),
-            Number(projectValue),
-            projectMovies,
-            avatarUrl,
-            bannerUrl,
-            overviewUrl,
-            presentationUrl,
-            galleryUrls,
-            pitchVideo,
-            finalFiles,
-            hasClosure,
-            projectClosure.toJSON()
-        )
-
-        toaster.push(<Message type='success' style={pushSuccess} duration={10000}>
-          <span style={msgInner}>Succesfully added Project/Bundle to the Application 🚀</span>
-        </Message>, { placement: 'bottomCenter' })
+      setMaking(true)
+      writeProjectData(pCount, projectTitle, projectIntro, projectDescription,
+          projectStartDate.toJSON(),
+          projectEndDate.toJSON(),
+          projectPublication,
+          Number(projectGoal),
+          Number(projectInvested),
+          Number(projectReturn),
+          Number(projectValue),
+          projectMovies,
+          avatarUrl,
+          bannerUrl,
+          overviewUrl,
+          presentationUrl,
+          galleryUrls,
+          pitchVideo,
+          finalFiles,
+          hasClosure,
+          projectClosure.toJSON()
+      )
+      toaster.push(<Message type='success' style={pushSuccess} duration={10000}>
+        <span style={msgInner}>Succesfully added Project/Bundle to the Application 🚀</span>
+      </Message>, { placement: 'bottomCenter' })
     }
 
 

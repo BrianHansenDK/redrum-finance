@@ -11,6 +11,7 @@ import ChangePasswordModal from './ChangePasswordModal';
 import CheckIcon from '@rsuite/icons/Check';
 import CloseIcon from '@rsuite/icons/Close';
 import EModal from './EModal';
+import CustomInput from './CustomInput';
 
 interface IProps {
   user: FirebaseUser,
@@ -131,7 +132,7 @@ addAddress2, phone, checked, companyAccount])
       (firstName !== "" && lastName === "") ? `${firstName}${user.full_name !== "" ? ` ${user.full_name.split(" ").slice(1).join(" ")}` : ''}` :
       (firstName === '' && lastName !== '') ? `${user.full_name !== "" ? `${user.full_name.split(" ")[0]}` : ''} ${lastName}` :
       (firstName !== "" && lastName !== "") ? `${firstName} ${lastName}` : '' ,
-      `${manualBDate.split('/')[2]}-${manualBDate.split('/')[1]}-${manualBDate.split('/')[0]}`,
+      manualBDate === "" ? user.birth_date : `${manualBDate.split('/')[2]}-${manualBDate.split('/')[1]}-${manualBDate.split('/')[0]}`,
       email === '' ? user.email : email,
       country !== '' ? country : user.country,
       code !== '' && city !== '' && street !== '' ? `${street} ${houseNumber}${addAddress !== '' ? `, ${addAddress}` : ''}${addAddress2 !== '' ? `, ${addAddress2}` : ''}, ${code} ${city}` : user.address,
@@ -170,7 +171,7 @@ addAddress2, phone, checked, companyAccount])
     const givenDate = new Date(`${manualBDate.split('/')[2]}-${manualBDate.split('/')[1]}-${manualBDate.split('/')[0]}`)
     if (new Date().getFullYear() - givenDate.getFullYear() < 18) {
       toaster.push(<Message showIcon type='warning' duration={5000}>
-        {en ? 'Under 18: You cannot invest.' : 'Unser 18 jahre: Du kanns nicht investieren.'}
+        {en ? 'Under 18: You cannot invest.' : 'Du darfst erst ab einem Alter von 18 Jahren investieren'}
       </Message>, {placement: 'topCenter'})
     }
   }
@@ -227,17 +228,17 @@ addAddress2, phone, checked, companyAccount])
       <div className="form-element double-input">
         <div className="inner">
         <label className="label">{en ? 'First name' : 'Vorname'}*</label>
-        <Input className='input' placeholder={en ? 'Enter first name...' : 'Vorname schreiben...'}
+        <CustomInput className='input' placeholder={en ? 'Enter first name...' : 'Vorname schreiben...'}
           value={firstName === '' ? user.full_name !== '' ? user.full_name.split(' ')[0] : firstName : firstName}
           onChange={setFirstName}
-          type='text'
+          type='text' regexPattern={[/[^A-Za-z]+/g]}
           />
         </div>
         <div className="inner">
         <label className="label">{en ? 'Last name' : 'Nachname'}*</label>
-        <Input className='input' placeholder={en ? 'Enter Last name...' : 'Nachname schreiben...'}
+        <CustomInput className='input' placeholder={en ? 'Enter Last name...' : 'Nachname schreiben...'}
           value={lastName === '' ? user.full_name !== '' ? user.full_name.split(' ').slice(1).join(' ') : lastName : lastName}
-          onChange={setLastName}
+          onChange={setLastName} regexPattern={[/[^A-Za-z]+/g]}
           />
         </div>
       </div>
@@ -275,10 +276,10 @@ addAddress2, phone, checked, companyAccount])
               {en ? 'Company position' :
               'Position in Ihrem Unternehmen'}*
             </label>
-            <Input className='input'
+            <CustomInput className='input'
             placeholder={user.role === '' || user.role === 'Redrum Pro Member' ? en ? 'Enter role...' : 'Position schreiben...' : user.role}
             value={role === '' ? user.role === '' || user.role === 'Redrum Pro Member' ? role : user.role : role}
-            onChange={setRole}
+            onChange={setRole} regexPattern={[/[^A-Za-z\s]+/g]}
             />
           </div>
           <div className="inner">
@@ -302,12 +303,12 @@ addAddress2, phone, checked, companyAccount])
           <div className="inner postal-code">
             <div>
               <label htmlFor="" className="label">{en ? 'Postal code' : 'Postleitzahl'}*</label>
-              <Input className='input'
+              <CustomInput className='input'
               placeholder={user.company_address !== undefined ? user.company_address.split(', ')[1].split(' ')[0] :
               en ? 'Postal code...' : 'Postleitzahl...'}
               value={companyCode === '' ? user.company_address !== undefined ? user.company_address.split(', ')[1].split(' ')[0]
               : companyCode: companyCode}
-               onChange={setCompanyCode}
+               onChange={setCompanyCode} regexPattern={[/[^0-9]+/g]}
               />
             </div>
           </div>
@@ -340,12 +341,12 @@ addAddress2, phone, checked, companyAccount])
           <div className="inner nr">
             <div>
               <label htmlFor="" className="label">{en ? 'House nr' : 'Hausnummer'}*</label>
-              <Input className='input'
+              <CustomInput className='input'
               placeholder={user.company_address !== undefined ? user.company_address.split(', ')[0].split(" ")[user.company_address.split(', ')[0].split(" ").length - 1] :
               en ? 'Enter nr...' : 'Nummer schreiben...'}
               value={companyHN === '' ? user.company_address !== undefined ? user.company_address.split(', ')[0].split(" ")[user.company_address.split(', ')[0].split(" ").length - 1]
               : companyHN: companyHN}
-              onChange={setCompanyHN}
+              onChange={setCompanyHN}  regexPattern={[/[^0-9]+/g]}
               />
             </div>
           </div>
@@ -403,7 +404,7 @@ addAddress2, phone, checked, companyAccount])
         </>
       ) : null}
       <Button className='change-password-btn' appearance='link' onClick={sendPWResetMail}>
-        {en ? 'Change password' : 'Passwort beendern'}
+        {en ? 'Change password' : 'Passwort ändern'}
       </Button>
       <h4 className="new-section-title">
         {en ? 'Your address' : 'Deine Adresse'}
@@ -413,12 +414,12 @@ addAddress2, phone, checked, companyAccount])
           <div className="inner postal-code">
             <div>
               <label htmlFor="" className="label">{en ? 'Postal code' : 'Postleitzahl'}*</label>
-              <Input className='input'
+              <CustomInput className='input'
               placeholder={user.address !== '' ? getZipCode(user) :
               en ? 'Postal code...' : 'Postleitzahl...'}
               value={code === '' ? user.address !== '' ? getZipCode(user)
                : code: code}
-               onChange={setCode}
+               onChange={setCode} regexPattern={[/[^0-9]+/g]}
               />
             </div>
           </div>
@@ -451,13 +452,13 @@ addAddress2, phone, checked, companyAccount])
           <div className="inner nr">
             <div>
               <label htmlFor="" className="label">{en ? 'House nr' : 'Hausnummer'}*</label>
-              <Input className='input'
+              <CustomInput className='input'
               placeholder={user.address !== '' ?
               getUserHousenumber(user) :
               en ? 'Enter house number...' : 'Hausnummer schreiben...'}
               value={houseNumber === '' ? user.address !== '' ? getUserHousenumber(user)
               : houseNumber: houseNumber}
-              onChange={setHouseNumber}
+              onChange={setHouseNumber} regexPattern={[/[^0-9]+/g]}
               />
             </div>
           </div>
@@ -478,7 +479,7 @@ addAddress2, phone, checked, companyAccount])
         </div>
         <div className="inner add-address2">
           <div>
-            <label htmlFor="" className="label">{en ? 'Additional address information 2' : 'Zusätzliche Adressinformationen 2'} {addAddress2}</label>
+            <label htmlFor="" className="label">{en ? 'Additional address information 2' : 'Zusätzliche Adressinformationen 2'}</label>
             <Input className='input'
             placeholder={user.address.split(', ').length > 3 ? user.address.split(', ')[2] :
             en ? 'Write here...' : 'Hier schreiben...'}

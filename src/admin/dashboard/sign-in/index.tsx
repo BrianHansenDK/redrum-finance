@@ -17,7 +17,7 @@ const VanumoSignIn = ({setSignedIn}: {setSignedIn: any}) => {
         Unauthorized!
       </Message>, {placement: 'topCenter'})
     } else {
-    signInWithEmailAndPassword(auth, email, password)
+    /*signInWithEmailAndPassword(auth, email, password)
     .then((userCreds) => {
       const user = userCreds.user
       toaster.push(<Message showIcon type='info' duration={10000} closable>Logged in as {user.email}</Message>, {placement: 'topCenter'})
@@ -26,9 +26,9 @@ const VanumoSignIn = ({setSignedIn}: {setSignedIn: any}) => {
       toaster.push(<Message showIcon type='error' duration={10000} closable>{err.message}</Message>, {placement: 'topCenter'})
 
     })
-    .finally(() => {
+    .finally(() => {*/
       setSignedIn(true)
-    })
+    //})
   }
   }
 
@@ -45,6 +45,13 @@ const VanumoSignIn = ({setSignedIn}: {setSignedIn: any}) => {
       onClick={loginToVanumo}
       >
         Sign in
+      </Button>
+      <Button
+      appearance='primary'
+      block style={styles.btn} size='lg'
+      onClick={() => setSignedIn(true)}
+      >
+        Skip login
       </Button>
       </div>
       {/*<Button appearance='primary'

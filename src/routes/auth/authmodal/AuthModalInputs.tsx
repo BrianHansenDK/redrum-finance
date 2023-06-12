@@ -4,7 +4,7 @@ import signUpModalStrings from '../../../library/string/SignUpModal'
 import EyeIcon from '@rsuite/icons/legacy/Eye';
 import EyeSlashIcon from '@rsuite/icons/legacy/EyeSlash';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
-import { auth, createAccount, createAccountSuccessNotification, database } from '../../../firebase';
+import { auth, createAccount, createAccountSuccessNotification, database, getUserLenght } from '../../../firebase';
 import { useNavigate } from 'react-router-dom';
 import PushThemes from '../../inside-app/themes/PushThemes';
 import { onValue, ref, set } from 'firebase/database';
@@ -29,6 +29,9 @@ const AuthModalInputs: React.FunctionComponent<IProps> = (props) => {
   const [confirmVisible, setConfirmVisible] = React.useState<boolean>(false);
   const [captured, setCaptured] = React.useState<boolean>(false);
   const [pwModalOpen, setPwModalOpen] = React.useState<boolean>(false);
+  const [creating, setCreating] = React.useState<boolean>(false);
+  const [userCount, setUserCount] = React.useState<number>(0);
+
 
   const openPw = () => setPwModalOpen(true);
   const closePw = () => setPwModalOpen(false);
@@ -47,9 +50,14 @@ const AuthModalInputs: React.FunctionComponent<IProps> = (props) => {
     })
   }, [])
 
+  React.useEffect(() => {
+    getUserLenght(setUserCount)
+  }, [creating])
+
   const onlyOneSpace = userName.split(' ').length -1 < 2;
 
   const signUp = () => {
+    setCreating(true);
     if (userMails.includes(userEmail)) {
       toaster.push(
         <Message type='error' showIcon duration={8000}>
@@ -81,7 +89,7 @@ const AuthModalInputs: React.FunctionComponent<IProps> = (props) => {
           createUserWithEmailAndPassword(auth, userEmail, userPassword)
           .then(async (userCredentials) => {
             const user = userCredentials.user
-            createAccount(user.uid, userName, userEmail, 10)
+            createAccount(user.uid, userName, userEmail, userCount, 10)
             createAccountSuccessNotification(user.uid)
             navigate('/app')
             toaster.push(<Message showIcon duration={8000} closable>
@@ -96,6 +104,7 @@ const AuthModalInputs: React.FunctionComponent<IProps> = (props) => {
             })
           }
     }
+    setCreating(false);
   }
 
   const signIn = () => {
@@ -171,7 +180,7 @@ const AuthModalInputs: React.FunctionComponent<IProps> = (props) => {
       }
       </>
       <Button appearance='primary' className='r-btn r-main-btn mb-2 dark-blue'
-      disabled={signupPage && !captured}
+      disabled={(signupPage && !captured) || creating}
       onClick={signupPage ? signUp : signIn}>
         {
           signupPage ? en ? 'Create account' : 'Account erstellen'

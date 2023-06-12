@@ -9,6 +9,7 @@ import PaypalComponent from '../../../../../paypal/PaypalComponent'
 import { ref, update } from 'firebase/database'
 import { FirebaseUser } from '../../../../../database/Objects'
 import RedrumProLoader from '../../../components/RedrumProLoader'
+import { useNavigate } from 'react-router-dom'
 
 interface IProps {
     close: any,
@@ -22,6 +23,7 @@ const TransferMoneyModal: React.FunctionComponent<IProps> = (props) => {
     const [user, setUser] = React.useState<FirebaseUser | null>(null)
     const [loading, setLoading] = React.useState<boolean>(false)
     const [payAmount, setPayAmount] = useState<any>(0)
+    const navigate = useNavigate()
     useEffect(() => {
       getCurrentUserFunction(userId, setUser, setLoading)
     }, [])
@@ -48,7 +50,7 @@ const TransferMoneyModal: React.FunctionComponent<IProps> = (props) => {
           createDepositNotification(user.id);
 
           // Reload browser
-          window.location.reload();
+          navigate('/app/congratulations')
         }
     }
 

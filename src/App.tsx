@@ -57,6 +57,7 @@ import ProjectGalleryPage from './routes/inside-app/pages/bundle/extras/gallery/
 import ProjectVideosPage from './routes/inside-app/pages/bundle/extras/videos/Index.js';
 import ProjectFilesPage from './routes/inside-app/pages/bundle/extras/documents/Index.js';
 import PromoSection from './admin/dashboard/components/promocodes/PromoSection.js';
+import DepositedPage from './routes/inside-app/pages/purchase/DepositedPage.js';
 
 
 const App = () => {
@@ -120,7 +121,8 @@ const App = () => {
         <Route path='extras/documents' element={<ProjectFilesPage en={isEnglish} />} />
       </Route>
       <Route path='/app/profile/:userId' element={<ProfilePageWrapper en={isEnglish} setEn={changeLan} />}/>
-      <Route path='/app/congratulations' element={<ThankYouPage en={isEnglish} setEn={changeLan}/>}/>
+      <Route path='/app/thank-you/:projectName' element={<ThankYouPage en={isEnglish} setEn={changeLan}/>}/>
+      <Route path='/app/congratulations' element={<DepositedPage en={isEnglish} setEn={changeLan}/>}/>
       {/* Outside of App */}
       <Route path='*' element={<PageNotFound en={isEnglish} setEn={changeLan} isVisible={isVisible} openModal={openModal} closeModal={closeModal}/>} />
       <Route path='/' element={<Root en={isEnglish} setEn={changeLan} isVisible={isVisible} openModal={openModal} closeModal={closeModal} />} />

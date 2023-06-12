@@ -451,7 +451,7 @@ const InvestModal: React.FunctionComponent<IProps> = (props) => {
                 </Message> , { placement: 'topCenter' }
             )
             close()
-            navigate('/app/congratulations')
+            navigate(`/app/thank-you/${project.name.split(' ').join('-')}`)
             showReciept()
         }
       }

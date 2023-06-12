@@ -3,7 +3,7 @@ import { onValue, ref } from 'firebase/database'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { FirebaseUser } from '../../../database/Objects'
-import { auth, getCurrentUserFunction, writeUserData, database, createAccount, createAccountSuccessNotification } from '../../../firebase'
+import { auth, getCurrentUserFunction, writeUserData, database, createAccount, createAccountSuccessNotification, getUserLenght } from '../../../firebase'
 import AuthModalBtns from './AuthModalBtns'
 import AuthModalInputs from './AuthModalInputs'
 
@@ -20,6 +20,8 @@ const AuthModalOptions: React.FunctionComponent<IProps> = (props) => {
   const {en, visible, withMail, signupPage, handleChange, goWithMail} = props
   const [authing, setAuthing] = React.useState<boolean>(false)
   const [users, setUsers] = React.useState<any[]>([])
+  const [creating, setCreating] = React.useState<boolean>(false);
+  const [userCount, setUserCount] = React.useState<number>(0);
   const navigate = useNavigate()
 
   React.useEffect(() => {
@@ -32,6 +34,10 @@ const AuthModalOptions: React.FunctionComponent<IProps> = (props) => {
     })
     setUsers(data)
   }, [])
+
+  React.useEffect(() => {
+    getUserLenght(setUserCount)
+  }, [creating])
 
   const signInWithGoogle = async () => {
     setAuthing(true)
@@ -50,7 +56,7 @@ const AuthModalOptions: React.FunctionComponent<IProps> = (props) => {
 
   const signUpWithGoogle = async () => {
     setAuthing(true)
-
+    setCreating(true)
     signInWithPopup(auth, new GoogleAuthProvider())
         .then((response) => {
             if (response.user.email) {
@@ -59,6 +65,7 @@ const AuthModalOptions: React.FunctionComponent<IProps> = (props) => {
                     response.user.uid,
                     response.user.displayName ? response.user.displayName : 'Unknown',
                     response.user.email ? response.user.email : 'Nonexistent',
+                    userCount,
                     10,
                     response.user.photoURL !== null && response.user.photoURL !== undefined ? response.user.photoURL : "",
                     response.user.phoneNumber !== null ? response.user.phoneNumber : ""
