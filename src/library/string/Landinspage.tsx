@@ -217,9 +217,10 @@ export const hIWStrings = {
       'This makes you the official producer and shareholder of this project and you can participate in potential ',
       'profits or trade the shares in the app in the future. ',
       'The respective project determines an individual target sum with which the ',
-      'project is financed. Upon release, you will receive a guaranteed ',
-      'return on investment and the option to either keep the shares or ',
-      'get back your initial investment for the respective film in exchange for your shares. '
+      'project is financed.', 
+      //'Upon release, you will receive a guaranteed ',
+      //'return on investment and the option to either keep the shares or ',
+      //'get back your initial investment for the respective film in exchange for your shares. '
   ],
   introDE: [
     'Die Redrum Pro-App veröffentlicht ein Filmprojekt, an dem du ',
@@ -227,26 +228,26 @@ export const hIWStrings = {
     'Anteilseigner dieses Projektes und kannst dich an ',
     'potenziellen Gewinnen beteiligen oder zukünftig die Anteile in ',
     'der App handeln. Das jeweilige Projekt bestimmt eine ',
-    'individuelle Zielsumme, mit der das Projekt finanziert wird. Bei der ',
-    "Veröffentlichung erhältst du zum einen eine zugesicherte' ",
+    'individuelle Zielsumme, mit der das Projekt finanziert wird. ',
+    //"Bei der Veröffentlichung erhältst du zum einen eine zugesicherte' ",
   ],
   rightsEN: {
-    t: 'Investing in a bundle gives the Producer the following rights:',
+    t: 'Investing in a Project gives the Producer the following rights:',
     l1: 'a guaranteed return of 7% of the invested capital on the release date of the film',
     l2: [
       'a share in the profits according to the number of shares held',
     ],
-    l3: 'an option to repay the amount invested in exchange for the shares received on the release date of the film',
+    l3: 'An option for repayment of the invested amount in exchange for the acquired shares  once the film is released',
   },
   rightsDE: {
-    t: 'Die Investition in ein Bundle verbrieft dem Producer folgende Rechte:',
+    t: 'Die Investition in ein Projekt verbrieft dem Producer folgende Rechte:',
     l1: 'eine zugesicherte Rendite in Höhe von 7% des angelegten Kapitals zum Veröffentlichungstermin des Films',
     l2: [
       'eine Gewinnbeteiligung entsprechend der Anzahl der gehaltenen Anteile',
     ],
     l3: [
       'eine Option auf Rückzahlung des investierten Betrags im Austausch gegen die ',
-      'erhaltenen Anteile am Veröffentlichungstermin des Films',
+      'erworbenen Anteile, sobald der Film veröffentlicht wird',
     ],
   },
   exampleTitleEN: 'Example calculation:',
@@ -283,7 +284,7 @@ export const hIWStrings = {
     c1: '1. you keep the shares to potentially receive profits or trade the shares in the integrated secondary market',
     or: 'or',
     c2: [
-      'Redrum Pro offers you a one-time opportunity to give the ',
+      '2. Redrum Pro offers you a one-time opportunity to give the ',
       'shares you purchased back to Redrum Pro and in exchange you ',
       'will receive your initial capital of 200€. As a result, you will no ',
       'longer be a shareholder and will not be able to participate in ',

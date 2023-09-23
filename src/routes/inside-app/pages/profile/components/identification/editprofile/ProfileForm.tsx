@@ -79,7 +79,7 @@ addAddress2, phone, checked, companyAccount])
 
   const titleData = [
     {label: en ? 'Mr.' : 'Herr', value: 'Mr.'}, {label: en ? 'Miss.' : 'Frau', value: 'Miss.'},
-    {label: en ? 'Other.' : 'Ander', value: 'Other'}
+    {label: en ? 'Other.' : 'Divers', value: 'Other'}
   ]
 
   const nowDt = new Date();

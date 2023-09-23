@@ -23,7 +23,7 @@ const GermanWithdrawalRights = (props: IProps) => {
       <div className="WordSection1">
 
 <h1 className="r-main-title"><b><span>Widerrufsrecht &amp;
-Muster-Widerrufsformular</span></b></h1>
+Widerrufsformular</span></b></h1>
 <div className="inner">
 <p className="MsoNormal">&nbsp;</p>
 

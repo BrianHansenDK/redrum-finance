@@ -70,7 +70,7 @@ const Navigations: React.FunctionComponent<IProps> = (props) => {
             <Nav.Item as={Link} to='/how-it-works'>
               {en ? 'How It Works' : 'So Funktioniert Es'}
             </Nav.Item>
-            <Nav.Item as={Link} to='/'>
+            <Nav.Item as={Link} to='/faq'>
               FAQ
             </Nav.Item>
           </Nav>

@@ -34,7 +34,7 @@ or TV segment, or invite us to an event?</span></p>
 up! We appreciate your interest.</span></p>
 
 <p className="MsoNormal" ><span >Please
-contact us at: <a href='mailto:info@redrumpro.de?subject=Support'>info@redrumpro.de.</a></span></p>
+contact us at: <a href='mailto:info@redrumpro.com?subject=Support'>info@redrumpro.com.</a></span></p>
 
 <p className="MsoNormal" >&nbsp;</p>
 

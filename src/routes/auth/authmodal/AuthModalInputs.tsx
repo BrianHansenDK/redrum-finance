@@ -174,7 +174,7 @@ const AuthModalInputs: React.FunctionComponent<IProps> = (props) => {
         { signupPage ? (
         <>
         <div className="input-element">
-        <label>{en ? 'Confirm password' : 'Passwort bästetigen'}</label>
+        <label>{en ? 'Confirm password' : 'Passwort Bestätigen'}</label>
         <InputGroup inside>
           <Input type={confirmVisible ? 'text' : 'password'}
           placeholder={en ? 'Your password' : 'Dein Passwort'} onChange={setConfirm} />

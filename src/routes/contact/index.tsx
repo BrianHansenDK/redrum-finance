@@ -25,8 +25,8 @@ const ContactPage = (props: IProps) => {
           </p>
           <p className="street">Hauptstr. 26</p>
           <p className="city">10827 Berlin</p>
-          <a href="mailto:info@redrum.de" className="mail">
-            info@redrum.de
+          <a href="mailto:info@redrum.com" className="mail">
+            info@redrum.com
           </a>
           <p className="phone">0176 8000 8510</p>
         </div>

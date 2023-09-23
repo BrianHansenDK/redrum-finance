@@ -21,7 +21,7 @@ const EnglishWithdrawalRights = (props: IProps) => {
     dark={true} en={en} setEn={setEn}>
       <div className="WordSection1">
 
-<h1 className="r-main-title"><b><span >Withdrawal right &amp; Model
+<h1 className="r-main-title"><b><span >Withdrawal right &amp;
 Withdrawal</span></b></h1>
 <div className="inner">
 <p className="MsoNormal">&nbsp;</p>
