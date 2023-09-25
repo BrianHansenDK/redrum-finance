@@ -258,9 +258,9 @@ Project is thereby specified as:</p>
 
 <p className="MsoNormal" ><span >Contract term: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span >Indefinite</span></span></p>
 
-<p className="MsoNormal" ><span >Investment start date: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span >15.04.2023</span></span></p>
+<p className="MsoNormal" ><span >Investment start date: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span >{formatDate(new Date(project.startDate!))}</span></span></p>
 
-<p className="MsoNormal" ><span >Investment deadline:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span >15.07.2023</span></span></p>
+<p className="MsoNormal" ><span >Investment deadline:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span >{formatDate(new Date(project.endDate!))}</span></span></p>
 
 <p className="MsoNormal" ><span >Redrum film value: <span >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span >
   250.000,00 EUR

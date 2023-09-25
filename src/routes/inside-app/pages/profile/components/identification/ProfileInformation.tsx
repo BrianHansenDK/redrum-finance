@@ -24,6 +24,9 @@ const ProfileInformation: React.FunctionComponent<IProps> = (props) => {
                 </p>
                 <p className='badge'>
                   Rookie
+                </p> <br/>
+                <p className='badge'>
+                  Promo code: {user.id}
                 </p>
             </div>
             {
