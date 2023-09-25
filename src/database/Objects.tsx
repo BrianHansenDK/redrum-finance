@@ -25,6 +25,12 @@ export interface FirebaseUser {
   bank_information: string,
   title?: string,
   website?: string,
+  zip_code: string,
+  city: string,
+  street: string,
+  house_number: string,
+  address_extra_1: string,
+  address_extra_2: string
 }
 
 // Movie object

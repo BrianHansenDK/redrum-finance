@@ -77,12 +77,21 @@ export function createAccount (
     phone_number: phone_number !== undefined ? phone_number : "",
     state: "",
     withdrawal_method: "PayPal",
-    role: 'Redrum Pro Member'
+    role: 'Redrum Pro Member',
+    zip_code: '',
+    city: '',
+    street: '',
+    house_number: '',
+    address_extra_1: '',
+    address_extra_2: ''
   })
 }
 
 export function newUpdateAccount (userId: string, title: string, full_name: string,
-  birth_date: string, email: string, country: string, address: string, phone_number: string,
+  birth_date: string, email: string, country: string, 
+  zip_code: string, city: string, street: string, house_number: string,
+  address_extra_1: string, address_extra_2: string,
+  phone_number: string, 
   then: ((value: void) => void | PromiseLike<void>) | null | undefined,
   error: ErrorCallback, end: () => void,
   company: boolean, companyRole?: string | undefined,
@@ -92,7 +101,10 @@ export function newUpdateAccount (userId: string, title: string, full_name: stri
     let updates: any = {}
     updates['title'] = title; updates['full_name'] = full_name;
     updates['birth_date'] = birth_date; updates['email'] = email;
-    updates['country'] = country; updates['address'] = address;
+    updates['country'] = country; updates['zip_code'] = zip_code;
+    updates['city'] = city; updates['street'] = street;
+    updates['house_number'] = house_number; updates['address_extra_1'] = address_extra_1;
+    updates['address_extra_2'] = address_extra_2;
     updates['phone_number'] = phone_number; updates['company_account'] = company;
     if (companyRole !== undefined) {
       updates['role'] = companyRole
@@ -107,7 +119,7 @@ export function newUpdateAccount (userId: string, title: string, full_name: stri
       updates['website'] = companyWebsite
     }
     if  (title !== "" && full_name !== "" && new Date(birth_date) !== new  Date() &&
-    country !== "" && address.split(",").length > 1 && phone_number !== "") {
+    country !== "" && (zip_code !== '' && city !== '' && street !== '' && house_number !== '' ) && phone_number !== "") {
       const age = getRealAge(new Date(birth_date))
       if (age < 18) updates["completion"] = 90
       else updates["completion"] = 100
@@ -668,16 +680,16 @@ export function createPromoNotification(userId: string, investor: FirebaseUser, 
     created_at: today.toJSON(),
     read: false,
     user_id: userId,
-    title_en: `${investor.username} used your promo code!`,
-    title_de: `${investor.username} hat Ihren Promo-Code verwendet!`,
+    title_en: `${investor.username} has used your promo code!`,
+    title_de: `${investor.username} hat Deinen Promo-Code verwendet!`,
     content_en: [
       'Dear Redrum Producer,',
 
-      'We wanted to let you know that another user has recently used your promo code for our ' +
-      `${project.name} - bundle, which means you have earned ${invested * 0.1}€ to your Redrum Pro balance. ` +
-      'You will receive the promo value within the next 14 days. ',
+      'We would like to inform you that another user has recently used your promo code ' +
+      `for our Project "${project.name}". This means that you will be credited with ${invested * 0.1}€ to ` +
+      'your RedrumPro account in 14 days.',
 
-      'Congratulations on this achievement!',
+      'Congratulations on this success!',
 
       'Best regards',
 
@@ -685,15 +697,13 @@ export function createPromoNotification(userId: string, investor: FirebaseUser, 
     ],
     content_de: [
       'Lieber Redrum Producer, ',
-
-      'Wir wollten dir mitteilen, dass ein anderer Benutzer kürzlich deinen Promo-Code für unser ' +
-      `${project.name} - Bundle verwendet hat. Das bedeutet, dass ${invested * 0.1} € auf deinem' +
-       internem RedrumPro-Konto gutgeschrieben wird. ` +
-       'Du wirst den Promo-Wert innerhalb der nächsten 14 Tage erhalten.',
+      'Wir möchten Dir mitteilen, dass ein anderer Benutzer kürzlich Ihren Promo-Code für ' +
+      `unser Projekt "${project.name}" verwendet hat. Das bedeutet, dass Du in 14 Tagen ` +
+      `${invested * 0.1}€ auf Dein RedrumPro Konto gutgeschrieben bekommen wirst.` ,
 
       'Herzlichen Glückwunsch zu diesem Erfolg!',
 
-      'Mit freundlichen Grüßen',
+      'Liebe Grüße',
 
       'Khaled'
     ],

@@ -24,7 +24,7 @@ const ProfileData = (props: IProps) => {
                         <CalendarIcon className='info-icon' /> Birthdate: {user.birth_date !== '' ? formatDate(birthdate) : 'Unknown'}
                     </p>
                     <p className='birth-year'>
-                        <PinIcon className='info-icon' /> Location: {user.address !== '' ? getCity(user) :
+                        <PinIcon className='info-icon' /> Location: {user.city !== '' ? user.city :
                         'Unknown'}, {user.country !== '' ? user.country : 'Unknown'}
                     </p>
                 </div>

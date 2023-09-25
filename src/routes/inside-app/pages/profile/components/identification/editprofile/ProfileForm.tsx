@@ -135,7 +135,9 @@ addAddress2, phone, checked, companyAccount])
       manualBDate === "" ? user.birth_date : `${manualBDate.split('/')[2]}-${manualBDate.split('/')[1]}-${manualBDate.split('/')[0]}`,
       email === '' ? user.email : email,
       country !== '' ? country : user.country,
-      code !== '' && city !== '' && street !== '' ? `${street} ${houseNumber}${addAddress !== '' ? `, ${addAddress}` : ''}${addAddress2 !== '' ? `, ${addAddress2}` : ''}, ${code} ${city}` : user.address,
+      code !== '' ? code : user.zip_code, city !== '' ? city : user.city,
+      street !== '' ? street : user.street, houseNumber !== '' ? houseNumber : user.house_number,
+      addAddress !== '' ? addAddress : user.address_extra_1, addAddress2 !== '' ? addAddress2 : user.address_extra_2,
       phone !== '' ? phone : user.phone_number,
       () => {
         toaster.push(<Message showIcon type='success' duration={5000}>
@@ -415,9 +417,9 @@ addAddress2, phone, checked, companyAccount])
             <div>
               <label htmlFor="" className="label">{en ? 'Postal code' : 'Postleitzahl'}*</label>
               <CustomInput className='input'
-              placeholder={user.address !== '' ? getZipCode(user) :
+              placeholder={user.zip_code !== '' ? user.zip_code :
               en ? 'Postal code...' : 'Postleitzahl...'}
-              value={code === '' ? user.address !== '' ? getZipCode(user)
+              value={code === '' ? user.zip_code !== '' ? user.zip_code
                : code: code}
                onChange={setCode} regexPattern={[/[^0-9]+/g]}
               />
@@ -427,9 +429,9 @@ addAddress2, phone, checked, companyAccount])
             <div>
               <label htmlFor="" className="label">{en ? 'City' : 'Stadt'}*</label>
               <Input className='input'
-              placeholder={user.address !== '' ? getCity(user) :
+              placeholder={user.city !== '' ? user.city :
               en ? 'Enter city...' : 'Stadt schreiben...'}
-              value={city === '' ? user.address !== '' ? getCity(user)
+              value={city === '' ? user.city !== '' ? user.city
                : city: city}
                onChange={setCity}
               />
@@ -441,9 +443,9 @@ addAddress2, phone, checked, companyAccount])
             <div>
               <label htmlFor="" className="label">{en ? 'Street' : 'Straße'}*</label>
               <Input className='input'
-              placeholder={user.address !== '' ? getUserStreet(user) :
+              placeholder={user.street !== '' ? user.street :
               en ? 'Enter street...' : 'Straße schreiben...'}
-              value={street === '' ? user.address !== '' ? getUserStreet(user)
+              value={street === '' ? user.street !== '' ? user.street
               : street: street}
               onChange={setStreet}
               />
@@ -453,10 +455,9 @@ addAddress2, phone, checked, companyAccount])
             <div>
               <label htmlFor="" className="label">{en ? 'House nr' : 'Hausnummer'}*</label>
               <CustomInput className='input'
-              placeholder={user.address !== '' ?
-              getUserHousenumber(user) :
+              placeholder={user.house_number !== '' ? user.house_number :
               en ? 'Enter house number...' : 'Hausnummer schreiben...'}
-              value={houseNumber === '' ? user.address !== '' ? getUserHousenumber(user)
+              value={houseNumber === '' ? user.house_number !== '' ? user.house_number
               : houseNumber: houseNumber}
               onChange={setHouseNumber} regexPattern={[/[^0-9]+/g]}
               />
@@ -469,9 +470,9 @@ addAddress2, phone, checked, companyAccount])
           <div>
             <label htmlFor="" className="label">{en ? 'Additional address information' : 'Zusätzliche Adressinformationen'} {addAddress}</label>
             <Input className='input'
-            placeholder={user.address.split(', ').length > 2 ? user.address.split(', ')[1] :
+            placeholder={user.address_extra_1 !== '' ? user.address_extra_1 :
             en ? 'Write here...' : 'Hier schreiben...'}
-            value={addAddress === '' ? user.address.split(', ').length > 2 ? user.address.split(', ')[1]
+            value={addAddress === '' ? user.address_extra_1 !== '' ? user.address_extra_1
              : addAddress: addAddress}
              onChange={setAddAddress}
             />
@@ -481,9 +482,9 @@ addAddress2, phone, checked, companyAccount])
           <div>
             <label htmlFor="" className="label">{en ? 'Additional address information 2' : 'Zusätzliche Adressinformationen 2'}</label>
             <Input className='input'
-            placeholder={user.address.split(', ').length > 3 ? user.address.split(', ')[2] :
+            placeholder={user.address_extra_2 !== '' ? user.address_extra_2 :
             en ? 'Write here...' : 'Hier schreiben...'}
-            value={addAddress2 === '' ? user.address.split(', ').length > 3 ? user.address.split(', ')[2]
+            value={addAddress2 === '' ? user.address_extra_2 !== '' ? user.address_extra_2
              : addAddress2: addAddress2}
              onChange={setAddAddress2}
             />

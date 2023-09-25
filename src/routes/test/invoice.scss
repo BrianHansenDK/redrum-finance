@@ -74,7 +74,7 @@ $blue-border: 1px solid $main;
       display: flex;
       flex-direction: column;
       font-size: 7.5px;
-      max-width: max-content;
+      max-width: 100%;
       row-gap: 5px;
       &.first {
         max-width: 250px;

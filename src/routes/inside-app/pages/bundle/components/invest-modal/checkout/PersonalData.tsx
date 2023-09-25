@@ -7,7 +7,8 @@ import { FirebaseUser } from '../../../../../../../database/Objects'
 
 interface IProps {
   en: boolean,
-  address: string,
+  zip: string, city: string, street: string,
+  hNum: string, aA1: string, aA2: string,
   fullName: string,
   knownState: string,
   knownCountry: string,
@@ -16,12 +17,12 @@ interface IProps {
 
 const PersonalData = (props: IProps) => {
   const {
-    en, address, fullName, knownState, knownCountry, user} = props
+    en, zip, city, street, hNum, aA1, aA2, fullName, knownState, knownCountry, user} = props
   const [name, setName] = React.useState<any>('')
-  const [street, setStreet] = React.useState<any>('')
+  const [uStreet, setUStreet] = React.useState<any>('')
   const [hNumber, setHNumber] = React.useState<any>('')
-  const [zip, setZip] = React.useState<any>('')
-  const [city, setCity] = React.useState<any>('')
+  const [uZip, setUZip] = React.useState<any>('')
+  const [uCity, setUCity] = React.useState<any>('')
   const [state, setState] = React.useState<any>('')
   const [country, setCountry] = React.useState<any>('')
 
@@ -61,7 +62,8 @@ const PersonalData = (props: IProps) => {
       const reference = ref(database, 'users/' + auth.currentUser?.uid)
       const updates: any = {}
       updates['full_name'] = name
-      updates['address'] = `${street} ${hNumber}, ${zip} ${city}`
+      updates['zip_code'] = zip; updates['city'] = city;
+      updates['city'] = city; updates['house_number'] = hNumber;
       updates['state'] = state
       updates['country'] = country
       update(reference, updates).then(() => {
@@ -91,7 +93,7 @@ const PersonalData = (props: IProps) => {
         {en ? 'Personal data' : 'Persönliche Daten'}
       </h3>
       {
-        address ?
+        (zip !== '' && city !== '' && hNum !== '' && street !== '') ?
         (
           <div className="all-info">
             <p className="saved-info">
@@ -101,7 +103,8 @@ const PersonalData = (props: IProps) => {
               {user.email}
             </p>
             <p className="saved-info">
-            {address}
+            {user.company_account ? user.company_address : 
+            `${user.street} ${user.house_number}, ${user.zip_code} ${user.city}${user.address_extra_1 !== '' ? `, ${user.address_extra_1}`: ''}${user.address_extra_2 !== '' ? `, ${user.address_extra_2}`: ''}`}
             </p>
           </div>
         )
@@ -113,7 +116,7 @@ const PersonalData = (props: IProps) => {
             <label>
               {en ? 'Full name' : 'Voller Name'}
             </label>
-            <Input onChange={setName}/>
+            <Input value={fullName !== '' ? fullName : name} onChange={setName}/>
           </div>
         </div>
         <div className="input-element">
@@ -121,13 +124,13 @@ const PersonalData = (props: IProps) => {
             <label>
               {en ? 'Street name' : 'Straße'}
             </label>
-            <Input onChange={setStreet}/>
+            <Input value={street !== '' ? street : uStreet} onChange={setUStreet}/>
           </div>
           <div className="smaller">
             <label>
               {en ? 'House nr.' : 'Hausnummer'}
             </label>
-            <Input onChange={setHNumber}/>
+            <Input value={hNum !== '' ? hNum : hNumber} onChange={setHNumber}/>
           </div>
         </div>
         <div className="input-element">
@@ -135,13 +138,13 @@ const PersonalData = (props: IProps) => {
             <label>
               {en ? 'Zip-code' : 'Posteinzahl'}
             </label>
-            <Input onChange={setZip}/>
+            <Input value={zip !== '' ? zip : uZip} onChange={setUZip}/>
           </div>
           <div className="bigger">
             <label>
               {en ? 'City' : 'Stadt'}
             </label>
-            <Input onChange={setCity}/>
+            <Input value={city !== '' ? city : uCity} onChange={setUCity}/>
           </div>
         </div>
         <div className="input-element">
@@ -149,13 +152,13 @@ const PersonalData = (props: IProps) => {
             <label>
               {en ? 'State' : 'Bundesland'}
             </label>
-            <Input onChange={setState}/>
+            <Input value={user.state !== '' ? user.state : state} onChange={setState}/>
           </div>
           <div className="fair">
             <label>
               {en ? 'Country' : 'Land'}
             </label>
-            <Input onChange={setCountry}/>
+            <Input value={user.country !== '' ? user.country : country} onChange={setCountry}/>
           </div>
         </div>
           </div>

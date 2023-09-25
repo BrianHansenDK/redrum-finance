@@ -173,8 +173,8 @@ GmbH </p> <p> Hauptstr.<span > </span>26</p>
 </div>
 
 <div className="footer-box last">
-<p className="MsoBodyText" ><a href="http://www.redrumpro.de/"><span >www.redrumpro.de</span></a><span > </span></p>
-<p><a href="mailto:info@redrumpro.de"><span >info@redrumpro.de</span></a></p>
+<p className="MsoBodyText" ><a href="http://www.redrumpro.com/"><span >www.redrumpro.com</span></a><span > </span></p>
+<p><a href="mailto:info@redrumpro.de"><span >info@redrumpro.com</span></a></p>
 </div>
 </div>
 
