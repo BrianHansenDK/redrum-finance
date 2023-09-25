@@ -52,6 +52,8 @@ const CheckoutPage = (props: IProps) => {
   const [hNum, setHNum] = React.useState<any>('')
   const [aA1, setaA1] = React.useState<any>('')
   const [aA2, setaA2] = React.useState<any>('')
+  const [state, setState] = React.useState<any>('')
+  const [country, setCountry] = React.useState<any>('')
   const [fullName, setFullName] = React.useState<any>('')
   const [knownState, setKnownState] = React.useState<any>('')
   const [knownCountry, setKnownCountry] = React.useState<any>('')
@@ -69,6 +71,8 @@ const CheckoutPage = (props: IProps) => {
       setHNum(snap.val().house_number)
       setaA1(snap.val().address_extra_1)
       setaA2(snap.val().address_extra_2)
+      setState(snap.val().state)
+      setCountry(snap.val().country)
       setFullName(snap.val().full_name)
       setKnownState(snap.val().state)
       setKnownCountry(snap.val().country)
@@ -111,6 +115,7 @@ const CheckoutPage = (props: IProps) => {
             en={en}
             zip={zip} city={city} street={street}
             hNum={hNum} aA1={aA1} aA2={aA2}
+            state={state} country={country}
             fullName={fullName}
             knownState={knownState}
             knownCountry={knownCountry}

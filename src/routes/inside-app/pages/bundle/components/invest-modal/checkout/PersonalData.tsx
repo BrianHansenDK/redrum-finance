@@ -9,6 +9,7 @@ interface IProps {
   en: boolean,
   zip: string, city: string, street: string,
   hNum: string, aA1: string, aA2: string,
+  country: string, state: string,
   fullName: string,
   knownState: string,
   knownCountry: string,
@@ -17,14 +18,14 @@ interface IProps {
 
 const PersonalData = (props: IProps) => {
   const {
-    en, zip, city, street, hNum, aA1, aA2, fullName, knownState, knownCountry, user} = props
+    en, zip, city, street, hNum, aA1, aA2, country, state, fullName, knownState, knownCountry, user} = props
   const [name, setName] = React.useState<any>('')
   const [uStreet, setUStreet] = React.useState<any>('')
   const [hNumber, setHNumber] = React.useState<any>('')
   const [uZip, setUZip] = React.useState<any>('')
   const [uCity, setUCity] = React.useState<any>('')
-  const [state, setState] = React.useState<any>('')
-  const [country, setCountry] = React.useState<any>('')
+  const [uState, setUState] = React.useState<any>('')
+  const [uCountry, setUCountry] = React.useState<any>('')
 
 
 
@@ -152,13 +153,13 @@ const PersonalData = (props: IProps) => {
             <label>
               {en ? 'State' : 'Bundesland'}
             </label>
-            <Input value={user.state !== '' ? user.state : state} onChange={setState}/>
+            <Input value={state !== '' ? state : state} onChange={setUState}/>
           </div>
           <div className="fair">
             <label>
               {en ? 'Country' : 'Land'}
             </label>
-            <Input value={user.country !== '' ? user.country : country} onChange={setCountry}/>
+            <Input value={country !== '' ? country : country} onChange={setUCountry}/>
           </div>
         </div>
           </div>
