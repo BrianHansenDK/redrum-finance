@@ -14,6 +14,7 @@ import InfoTag from './InfoTag'
 import ProgressItem from './ProgressItem'
 import { getRealAge, useMediaQuery } from '../../../../../../misc/custom-hooks'
 import RedrumProLoader from '../../../../components/RedrumProLoader'
+import './styles/right-side.scss'
 
 interface IProps {
   project: FirebaseBundle,
@@ -102,6 +103,7 @@ const RightSide: FunctionComponent<IProps> = (props) => {
 
                 <div style={styles.card} className='flex-column'>
                     <InfoLines project={project} en={en} />
+                    <h1 className='right-box-invested-big'>{project.currentlyInvested}€</h1>
                     <ProgressItem project={project} en={en} />
                     <Button
                     title={project.currentlyInvested! >= project.goal! ? en ? 'Investment capacity reached for project' :

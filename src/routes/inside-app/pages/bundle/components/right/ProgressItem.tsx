@@ -18,8 +18,8 @@ const ProgressItem = ({ project, en }: { project: any, en: boolean }) => {
     return (
         <Whisper speaker={tooltip} trigger='hover' placement='top' >
             <div style={styles.progressWrap}>
-                <ProgressLine style={styles.bar} percent={percent} status={`${percent >= 100 ? 'success' : 'active'}`} />
-                <div style={styles.goalWrap}>
+                <ProgressLine style={styles.bar} strokeWidth={12} percent={percent} status={`${percent >= 100 ? 'success' : 'active'}`} />
+               {/* <div style={styles.goalWrap}>
                     <p style={styles.goalTxt}>
                       {en ? bundleStrings.infoCardEN.aI : bundleStrings.infoCardDE.aI}
                     </p>
@@ -28,7 +28,7 @@ const ProgressItem = ({ project, en }: { project: any, en: boolean }) => {
                 <div style={styles.goalWrap}>
                     <p style={styles.goalTxt}>{en ? bundleStrings.infoCardEN.iT : bundleStrings.infoCardDE.iT}</p>
                     <p style={styles.goalTxt}>{numberWithCommas(project.goal)} €</p>
-                </div>
+                </div> */}
             </div>
         </Whisper>
     )

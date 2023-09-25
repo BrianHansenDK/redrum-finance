@@ -47,12 +47,12 @@ const InfoLines = ({ project, en }: { project: any, en: boolean }) => {
             info={`${project.publication} ${en ? 'Months' : 'Monate'}`} hasSmallTxt
             smallTxt={en ? bundleStrings.infoCardEN.small : bundleStrings.infoCardDE.small}
             />
-            <SingleLineInfo
+            {/*<SingleLineInfo
             title={en ? bundleStrings.infoCardEN.aI : bundleStrings.infoCardDE.aI}
             info={project.currentlyInvested.toString()}
             type='€'
             isBlue
-            />
+            />*/}
         </div>
     )
 }

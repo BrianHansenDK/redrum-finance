@@ -47,7 +47,7 @@ const InvestmentPage = ({en} : {en: boolean}) => {
                       {/*<ProjectShowcase en={en} isMobile={isMobile} />*/}
                     </>
                   ) : (
-                    <NoInvestmentsCard title={en ? 'No investments yet.' : 'Noch keine Investitionen.'}/>
+                    <NoInvestmentsCard en={en} title={en ? 'No investments yet.' : 'Noch keine Investitionen.'}/>
                   )
                 }
 

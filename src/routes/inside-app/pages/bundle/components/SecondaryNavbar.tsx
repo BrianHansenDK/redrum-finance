@@ -43,7 +43,7 @@ const SecondaryNavbar: FunctionComponent<IProps> = (props) => {
         },
         {
             index: 2,
-            txt: en ? 'Gallery' : 'Galleri',
+            txt: en ? 'Gallery' : 'Gallerie',
             icon: <PhotoIcon />,
             to: `/app/bundle/${project.id}/extras/gallery`
         },

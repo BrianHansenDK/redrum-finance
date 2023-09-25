@@ -69,9 +69,9 @@ const PresentationCard = (props: IProps) => {
   }
     return (
         <div style={styles.presentationCard} className='flex-column'>
-          {
+          {/*
             showGallery ? (<h1 style={styles.title}>Presentation of the {project.name} project</h1>) : null
-          }
+          */}
 
             {
               project.image_gallery_urls.length > 0 && showGallery ? (

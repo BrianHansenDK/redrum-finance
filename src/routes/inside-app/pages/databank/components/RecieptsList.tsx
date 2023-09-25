@@ -17,7 +17,7 @@ const RecieptsList = ({investments, en}: {investments: any, en: boolean}) => {
         }
         </>
       ) : (
-        <NoInvestmentsCard title={en ? 'No receipts yet.' : 'Noch keine Rechnungen.'}/>
+        <NoInvestmentsCard en={en} title={en ? 'No receipts yet.' : 'Noch keine Rechnungen.'}/>
       )
     }
 

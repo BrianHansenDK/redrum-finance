@@ -28,7 +28,7 @@ const ProjectGalleryPage = (props: IProps) => {
   // Mark: - FUNCTIONS
 
   return (
-    <div className='project-gallery-page pt-5' id='top'>
+    <div className='project-gallery-page pt-0' id='top'>
       {loading || project === null ? (<RedrumProLoader/>) : (
         <GalleryCarousel en={en} projectName={project.name!} gallery={project.image_gallery_urls}/>
       )}

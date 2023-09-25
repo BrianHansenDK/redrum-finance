@@ -109,6 +109,8 @@ class ProjectDetailsPage extends React.Component<IProps, IState> {
               paddingRight: isMobile ? 20 : 5 + 'rem',
               paddingBottom: 5 + 'rem',
               minHeight: isDesktop ? '82.5vh' : 'auto',
+              maxWidth: isDesktop ? 1600 : '100%',
+              boxShadow: isDesktop ? '0 0 3px 2px rgba(29,29,29,.2)' : 'none',
           },
           wrapperInner: {
               display: 'flex',

@@ -30,7 +30,7 @@ const GalleryCarousel = (props: IProps) => {
   return (
     <>
       <h2 className="overview-image-gallery-title mb-2 mt-2">
-        {en ? 'Gallery' : 'Galleri'}
+        {en ? 'Project Gallery' : 'Projektgallerie'}
       </h2>
       <div className="overview-image-gallery">
         <div className="carousel">
