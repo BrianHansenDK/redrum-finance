@@ -4,7 +4,7 @@ import DashboardIcon from '@rsuite/icons/legacy/Dashboard';
 import InvestmentsIcon from '@rsuite/icons/legacy/ChartsLine'
 import SecondaryMarketIcon from '@rsuite/icons/legacy/Money';
 import DbIcon from '@rsuite/icons/legacy/Database'
-import GroupIcon from '@rsuite/icons/legacy/Group';
+import BonusIcon from '@rsuite/icons/legacy/PlusSquare';
 import MagicIcon from '@rsuite/icons/legacy/Magic';
 import UsersIcon from '@rsuite/icons/legacy/PeopleGroup'
 import MessageIcon from '@rsuite/icons/legacy/Wechat'
@@ -28,6 +28,9 @@ const SideBar = ({en} : {en: boolean}) => {
     }
     else if (location.pathname == '/app/databank') {
       setCurrentKey('4')
+    }
+    else if (location.pathname == '/app/cash-bonus') {
+      setCurrentKey('5')
     }
   })
   const closeModal = () => {
@@ -75,7 +78,11 @@ const SideBar = ({en} : {en: boolean}) => {
             {/*<h3 className='d-flex justify-center'>{en ? dashboardStrings.sidebarEN.t2 : dashboardStrings.sidebarDE.t2}</h3>*/}
             <Nav.Item className='pl-5' eventKey="4" icon={<DbIcon />} as={Link} to='/app/databank'>
             {en ? dashboardStrings.sidebarEN.db : dashboardStrings.sidebarDE.db}
-            </Nav.Item>{/*
+            </Nav.Item>
+            <Nav.Item className='pl-5' eventKey="5" icon={<BonusIcon />} as={Link} to='/app/cash-bonus'>
+            {en ? 'Cash Bonus Program' : 'Cash-Bonusprogram'}
+            </Nav.Item>
+            {/*
             <Nav.Item eventKey="6" icon={<UsersIcon />}>
             {en ? dashboardStrings.sidebarEN.nw : dashboardStrings.sidebarDE.nw}
             </Nav.Item>

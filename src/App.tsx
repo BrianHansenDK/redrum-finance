@@ -58,6 +58,7 @@ import ProjectVideosPage from './routes/inside-app/pages/bundle/extras/videos/In
 import ProjectFilesPage from './routes/inside-app/pages/bundle/extras/documents/Index.js';
 import PromoSection from './admin/dashboard/components/promocodes/PromoSection.js';
 import DepositedPage from './routes/inside-app/pages/purchase/DepositedPage.js';
+import CashBonusPage from './routes/inside-app/pages/cash-bonus/index.js';
 
 
 const App = () => {
@@ -108,6 +109,7 @@ const App = () => {
         <Route path='investments/' element={<InvestmentPage en={isEnglish}/>} />
         <Route path='databank/' element={<DatabankPage en={isEnglish}/>} />
         <Route path='notifications/' element={<NotificationsPage en={isEnglish}/>}/>
+        <Route path='cash-bonus/' element={<CashBonusPage en={isEnglish}/>}/>
       </Route>
       <Route path='/app/bundle/:bundleId' element={<ProjectDetailsPageWrapper en={isEnglish} setEn={changeLan} />} >
         <Route index element={<ProjectDetailsOverviewWrapper en={isEnglish} />} />

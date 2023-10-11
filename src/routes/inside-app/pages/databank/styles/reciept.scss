@@ -36,6 +36,10 @@ $dark: #141628;
     opacity: .8;
     width: 80%;
     text-align: center;
+    & span {
+      font-weight: 700;
+      font-family: var(--bs-body-font-family);
+    }
   }
   & .r-btn {
     margin: 15px 0 25px;
