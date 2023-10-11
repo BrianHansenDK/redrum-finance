@@ -1,6 +1,7 @@
 import React from 'react'
 import MainLayout from '../layouts/mainLayout'
 import './contact.scss'
+import { RedrumCompany } from '../../database/CompanyInfo'
 interface IProps {
   en: boolean,
   setEn: any,
@@ -21,12 +22,12 @@ const ContactPage = (props: IProps) => {
         </h1>
         <div className="inner">
           <p className="company">
-            Redrum Films & Entertainment GmbH
+            {RedrumCompany.name}
           </p>
-          <p className="street">Hauptstr. 26</p>
-          <p className="city">10827 Berlin</p>
-          <a href="mailto:info@redrum.com" className="mail">
-            info@redrum.com
+          <p className="street">{RedrumCompany.street}</p>
+          <p className="city">{RedrumCompany.city}</p>
+          <a href={`mailto:${RedrumCompany.mail}`} className="mail">
+            {RedrumCompany.mail}
           </a>
           <p className="phone">0176 8000 8510</p>
         </div>

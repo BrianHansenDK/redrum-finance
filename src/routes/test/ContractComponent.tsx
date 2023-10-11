@@ -2,6 +2,7 @@ import React from 'react'
 import { FirebaseBundle, FirebaseUser } from '../../database/Objects'
 import './contract-component.scss'
 import { formatDate } from '../../misc/custom-hooks';
+import { RedrumCompany } from '../../database/CompanyInfo';
 
 interface IProps {
   user: FirebaseUser,
@@ -21,12 +22,11 @@ const ContractComponent = (props: IProps) => {
 
 <p className="MsoNormal" >between</p> <br/>
 
-<p className="MsoNormal" >Redrum
-Films &amp; Entertainment Ltd.</p>
+<p className="MsoNormal" >{RedrumCompany.name}</p>
 
-<p className="MsoNormal" ><span lang="DE">Hauptstraße 26</span></p>
+<p className="MsoNormal" ><span lang="DE">{RedrumCompany.street}</span></p>
 
-<p className="MsoNormal" ><span lang="DE">10827 Berlin</span></p>
+<p className="MsoNormal" ><span lang="DE">{RedrumCompany.city}</span></p>
 
 <p className="MsoNormal" ><span lang="DE">E-mail: producer@redrumpro.com</span></p>
 

@@ -2,6 +2,7 @@ import IMG1 from '../../assets/redrumpro_invoice_files/image001.png'
 import './invoice.scss'
 import { FirebaseBundle, FirebaseInvestment, FirebaseInvoice, FirebaseUser } from '../../database/Objects'
 import { formatDate, getCity, getUserHousenumber, getUserStreet, getZipCode, numberWithCommas } from '../../misc/custom-hooks'
+import { RedrumCompany } from '../../database/CompanyInfo'
 
 interface IProps {
   user: FirebaseUser,
@@ -146,10 +147,12 @@ const InvoiceEn = (props: IProps) => {
 
   <div className="footer-box first">
 
-<p className="MsoBodyText" >Redrum <span >F</span>ilms <span >&amp;</span><span > </span>Entertainment
-GmbH </p> <p> Hauptstr.<span > </span>26</p>
+<p className="MsoBodyText" >
+  {RedrumCompany.name}
+</p> 
+<p>{RedrumCompany.street}</p>
 
-<p className="MsoBodyText" >10827<span > </span><span >Berlin</span></p>
+<p className="MsoBodyText" >{RedrumCompany.city}</p>
 
 <p className="MsoBodyText" ><span >CEO</span><span > </span><span >Sevilay</span><span > </span><span >Akbayir</span></p>
 </div>
@@ -159,8 +162,8 @@ GmbH </p> <p> Hauptstr.<span > </span>26</p>
 </span> Volksbank </p>
 <p><span >IBAN</span></p>
 
-<p className="MsoBodyText" ><span >DE28</span><span > </span><span >1009</span><span > </span><span >0000</span><span > </span><span >2785</span><span > </span><span >9180</span><span > </span><span >05 </span></p>
-<p>BIC<span > </span>BEVODEBB</p>
+<p className="MsoBodyText" >{RedrumCompany.IBAN}</p>
+<p>BIC<span > </span>{RedrumCompany.BIC}</p>
 
 </div>
 

@@ -1,4 +1,5 @@
 import React from 'react'
+import { RedrumCompany } from '../../database/CompanyInfo'
 interface IProps {en: boolean}
 const ImprintIntro: React.FunctionComponent<IProps> = (props) => {
   const {en} = props
@@ -8,9 +9,9 @@ const ImprintIntro: React.FunctionComponent<IProps> = (props) => {
         {en ? 'Information according to § 5 TMG:/ § 55 II R StV ' : 'Angaben gemäß § 5 TMG:/ § 55 II R StV '}
       </p>
       <p className="contact-info">
-        Redrum Films & Entertainment GmbH <br/>
-        Hauptstr.26 <br/>
-        10827 Berlin <br/>
+        {RedrumCompany.name} <br/>
+        {RedrumCompany.street} <br/>
+        {RedrumCompany.city} <br/>
         {en ? 'Germany' : 'Deutschland'}
       </p>
       <p className="entry">

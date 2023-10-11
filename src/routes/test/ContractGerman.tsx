@@ -1,6 +1,7 @@
 import React from 'react'
 import { FirebaseBundle, FirebaseUser } from '../../database/Objects'
 import { formatDate } from '../../misc/custom-hooks';
+import { RedrumCompany } from '../../database/CompanyInfo';
 
 interface IProps {
   user: FirebaseUser,
@@ -24,12 +25,11 @@ const ContractGerman = (props: IProps) => {
 
 
 
-<p className="MsoNormal" ><span >Redrum Films &amp;
-Entertainment GmbH</span></p>
+<p className="MsoNormal" ><span >{RedrumCompany.name}</span></p>
 
-<p className="MsoNormal" ><span >Hauptstr. 26</span></p>
+<p className="MsoNormal" ><span >{RedrumCompany.street}</span></p>
 
-<p className="MsoNormal" ><span >10827 Berlin</span></p>
+<p className="MsoNormal" ><span >{RedrumCompany.city}</span></p>
 
 <p className="MsoNormal" ><span >E-Mail: producer@Redrumpro.com</span></p>
 
