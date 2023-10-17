@@ -229,8 +229,8 @@ const InvestModal: React.FunctionComponent<IProps> = (props) => {
 
     const investInBundle = () => {
       const haveAllInfo =
-      (!user?.company_account && ((user?.full_name !== "" && user!.full_name.split(" ").length > 1) && user?.address !== ""
-      && user?.birth_date !== "" && user?.title !== undefined
+      (!user?.company_account && ((user?.full_name !== "" && user!.full_name.split(" ").length > 1) && user?.street !== ""
+      && user?.house_number !== "" && user?.city !== "" && user?.country !== "" && user?.state !== "" && user?.birth_date !== "" && user?.title !== undefined
       && user.phone_number && user.country !== "")) || (
         (user?.company_account) && (user?.full_name !== "" && user?.address !== ""
         && user?.birth_date !== "" && user?.title !== undefined

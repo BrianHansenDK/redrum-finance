@@ -34,12 +34,12 @@ const PersonalData = (props: IProps) => {
   const saveChanges = async () => {
     const statements = [
       name.split(' ').length < 2 || name == '',
-      street.length < 2 || street == '',
+      uStreet == '',
       hNumber == '',
-      zip == '',
-      city == '',
-      state == '',
-      country == ''
+      uZip == '',
+      uCity == '',
+      uState == '',
+      uCountry == ''
     ]
     const errorMessage =
       statements[0] ? 'Full name not entered correctly.' :
@@ -63,10 +63,10 @@ const PersonalData = (props: IProps) => {
       const reference = ref(database, 'users/' + auth.currentUser?.uid)
       const updates: any = {}
       updates['full_name'] = name
-      updates['zip_code'] = zip; updates['city'] = city;
-      updates['city'] = city; updates['house_number'] = hNumber;
-      updates['state'] = state
-      updates['country'] = country
+      updates['zip_code'] = uZip; updates['street'] = uStreet;
+      updates['city'] = uCity; updates['house_number'] = hNumber;
+      updates['state'] = uState
+      updates['country'] = uCountry
       update(reference, updates).then(() => {
         toaster.push(
           <Message style={PushThemes.pushGreen} type='success'>
@@ -153,13 +153,13 @@ const PersonalData = (props: IProps) => {
             <label>
               {en ? 'State' : 'Bundesland'}
             </label>
-            <Input value={state !== '' ? state : state} onChange={setUState}/>
+            <Input value={state !== '' ? state : uState} onChange={setUState}/>
           </div>
           <div className="fair">
             <label>
               {en ? 'Country' : 'Land'}
             </label>
-            <Input value={country !== '' ? country : country} onChange={setUCountry}/>
+            <Input value={country !== '' ? country : uCountry} onChange={setUCountry}/>
           </div>
         </div>
           </div>
