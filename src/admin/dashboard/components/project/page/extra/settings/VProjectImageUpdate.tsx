@@ -44,15 +44,15 @@ const VProjectImageUpdate: FunctionComponent<IProps> = (props) => {
                 )
             })
         }).catch((err) => {
-            toaster.push(<Message type='error' style={styles.error}>
+            toaster.push(<Message type='error' style={styles.error} duration={5000}>
               <span style={styles.msgInner}>
                 {err.message}
               </span>
             </Message>, { placement: 'bottomCenter' })
         }).finally(() => {
           window.setTimeout(() => {
-            toaster.clear()
-        }, 8000)
+            window.location.reload()
+        }, 3000)
         })
     }
 }

@@ -1,10 +1,14 @@
 import React, { FunctionComponent, useState } from 'react'
-import { Button, FlexboxGrid, Modal } from 'rsuite'
+import { Button, FlexboxGrid, Message, Modal, useToaster } from 'rsuite'
 import FlexboxGridItem from 'rsuite/esm/FlexboxGrid/FlexboxGridItem'
 import { FirebaseBundle } from '../../../../../../../database/Objects'
 import { useMediaQuery } from '../../../../../../../misc/custom-hooks'
 import { vanumoColors, vanumoShadows } from '../../../../../../theme/vanumoTheme'
 import VProjectImageUpdate from './VProjectImageUpdate'
+import { storage, storageRef } from '../../../../../../../firebaseStorage'
+import { deleteObject } from 'firebase/storage'
+import { ref, remove } from 'firebase/database'
+import { database } from '../../../../../../../firebase'
 interface IProps {
   project: FirebaseBundle,
   isOpen: boolean,
@@ -13,6 +17,7 @@ interface IProps {
 
 const VProjectImagesModal: FunctionComponent<IProps> = (props) => {
   const {project, isOpen, closeModal} = props
+  const toaster = useToaster()
   const isMobile = useMediaQuery('(max-width: 992px)')
   const [currentSrc, setSrc] = useState(project.smallImage!)
   const [currentType, setType] = useState('avatar')
@@ -21,6 +26,40 @@ const VProjectImagesModal: FunctionComponent<IProps> = (props) => {
   const [innerModalOpen, setInnerModalOpen] = useState(false)
   const openInner = () => {setInnerModalOpen(true)}
   const closeInner = () => {setInnerModalOpen(false)}
+
+  // Delete gallery image on click
+  const deleteGalleryImg = (imageRef: string) => {
+    // Transform image reference
+    const imgRef = 
+    imageRef.replace("https://firebasestorage.googleapis.com/v0/b/redrum-finance.appspot.com/o/", '')
+    .replace(/%2F/g, '/').split('?')[0];
+    // Create storage reference
+    const sReference = storageRef(storage, imgRef)
+    
+    // Delete the file
+    deleteObject(sReference).then(() => {
+      // Create database reference
+      project.image_gallery_urls.forEach((img: string, index) => {
+        if (img == imageRef) {
+          const dataRef = ref(database, `projects/${project.id}/image_gallery_urls/${index}`)
+          remove(dataRef)
+        }
+    })
+
+      // Notify user
+    toaster.push(
+      <Message type='success' showIcon duration={5000}>
+          Image deleted succesfully
+      </Message>
+    )
+    }).catch((error) => {
+      // Notify user
+      <Message type='success' showIcon duration={5000}>
+        {error.message}
+      </Message>
+    });
+  }
+
   return (
     <>
     <Modal open={isOpen} onClose={closeModal} size='full'>
@@ -85,11 +124,17 @@ const VProjectImagesModal: FunctionComponent<IProps> = (props) => {
           <FlexboxGridItem colspan={24} className='edit-img-modal-item'>
             <p>Gallery</p>
             <div className="gallery-edit-con">
-
             {project.image_gallery_urls !== null && project.image_gallery_urls !== undefined ? (
               <>
                 {project.image_gallery_urls.map((img, index) => (
-                  <img style={styles.bigImg} src={img} alt={`${project.name} gallery img ${index}`} />
+                  <div className="gallery-img-con">
+                    <img style={styles.bigImg} src={img} alt={`${project.name} gallery img ${index}`} />
+                    <Button className='delete-gallery-image-btn' style={styles.redBtn} 
+                    appearance='primary' size='md' 
+                    onClick={() => deleteGalleryImg(img)}>
+                      Delete
+                    </Button>
+                  </div>
                 ))}
               </>
               ) : null
@@ -131,6 +176,12 @@ const styles = {
   },
   btn: {
     backgroundColor: vanumoColors.main,
+    color: vanumoColors.white,
+    fontWeight: '700',
+    boxShadow: '0 3px 6px 0 #a274ff3d',
+  },
+  redBtn: {
+    backgroundColor: vanumoColors.red,
     color: vanumoColors.white,
     fontWeight: '700',
     boxShadow: '0 3px 6px 0 #a274ff3d',

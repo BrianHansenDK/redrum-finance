@@ -259,9 +259,9 @@ export function writeProjectData(
     imageUrl: string,
     overviewUrl: string,
     presentationUrl: string,
-    galleryUrls: string[],
+    galleryUrls: string[] | [],
     pitchVideo: string,
-    files: {name: string, url: string}[],
+    files: {name: string, url: string}[] | [],
     hasClosure: boolean,
     closure: String
 ) {
