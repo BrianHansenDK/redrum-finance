@@ -131,7 +131,12 @@ const VProjectImagesModal: FunctionComponent<IProps> = (props) => {
                     <img style={styles.bigImg} src={img} alt={`${project.name} gallery img ${index}`} />
                     <Button className='delete-gallery-image-btn' style={styles.redBtn} 
                     appearance='primary' size='md' 
-                    onClick={() => deleteGalleryImg(img)}>
+                    onClick={() => {
+                      if (confirm('Are you sure?')) {
+                        deleteGalleryImg(img)
+                      } else null
+                    }}
+                      >
                       Delete
                     </Button>
                   </div>
@@ -147,7 +152,7 @@ const VProjectImagesModal: FunctionComponent<IProps> = (props) => {
               setMultiple(true)
               openInner()
             }}>
-              Edit
+              Add
             </Button>
           </FlexboxGridItem>
         </FlexboxGrid>

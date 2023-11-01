@@ -68,7 +68,7 @@ const VProjectImageUpdate: FunctionComponent<IProps> = (props) => {
     }
   }
 
-    const handleGallerySubmit = () => {
+    const handleGallerySubmit = async () => {
       let data: string[] = []
         if (gallery.length > 0 && project.name! !== '') {
           gallery.forEach((img: any, index: number) => {
@@ -80,9 +80,9 @@ const VProjectImageUpdate: FunctionComponent<IProps> = (props) => {
                     toaster.push(<Message type='error' duration={10000}>
                       An error occured: {err.message} - Please try again!
                     </Message>, { placement: 'topCenter' })
-                }).finally(() => {
+                }).then(() => {
                   updateProjectGallery(project.id!, data)
-                })
+                }).finally(() => closeModal())
             })
           })
         }

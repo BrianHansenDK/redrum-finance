@@ -297,11 +297,24 @@ export function updateProjectFiles(projectId: number, files: {name: string, url:
   update(reference, updates).then(then)
 }
 
-export function updateProjectGallery(projectId: number, galleryImageUrls: string[]) {
-  const reference = ref(database, 'projects/' + projectId)
-  let updates: any = {}
-  updates['image_gallery_urls'] = galleryImageUrls
-  update(reference, updates)
+export async function updateProjectGallery(projectId: number, galleryImageUrls: string[]) {
+  const reference = ref(database, 'projects/' + projectId);
+  const imgRef = ref(database, `projects/${projectId}/image_gallery_urls`);
+
+  // Retrieve the existing gallery image URLs
+  const snap = await get(imgRef);
+  const existingUrls = snap.val() || [];
+
+  // Combine the existing and new gallery image URLs
+  const updatedUrls = existingUrls.concat(galleryImageUrls);
+
+  // Create an update object with the updated URLs
+  const updates: any = {
+    'image_gallery_urls': updatedUrls,
+  };
+
+  // Update the reference with the combined list
+  await update(reference, updates);
 }
 
 // Movies
