@@ -9,7 +9,7 @@ const AdminBtn = () => {
   const navigate = useNavigate()
   const goToVanumo = () => {
     const adminKey = window.prompt('Admin key: ')
-    if (adminKey == 'merhi@gmx.net') {
+    if (adminKey == import.meta.env.VITE_ADMIN_KEY) {
       navigate('/vanumo')
     }
   }

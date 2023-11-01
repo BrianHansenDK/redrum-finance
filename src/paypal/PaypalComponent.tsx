@@ -18,8 +18,6 @@ const PaypalComponent: React.FunctionComponent<IProps> = (props) => {
 
   const toaster = useToaster()
 
-  const testKey = "Ac-WLnlqTQB5NRhVK_KwJxjwqBVZ4K1M1UO2vlHD9oLtKz32JP7jDZ2ICqGxJWnQiOY0NqXcSo-86km0"
-
   // Function for Paypal order creation
   const makeOrder = (data:any, actions:any) => {
     return actions.order
@@ -52,7 +50,7 @@ const PaypalComponent: React.FunctionComponent<IProps> = (props) => {
   return (
     <PayPalScriptProvider
     options={{
-      "client-id": import.meta.env.VITE_PAYPAL_CLIENT_ID /*testKey*/,
+      "client-id": import.meta.env.VITE_PAYPAL_CLIENT_ID,
       currency: "EUR"
      }}
     >

@@ -13,8 +13,8 @@ const VanumoDashboard = () => {
 
   return (
     <div>
-      {(auth.currentUser?.email === import.meta.env.VITE_DEV_EMAIL || auth.currentUser?.email === import.meta.env.VITE_DEV_EMAIL)
-       || location.pathname.includes('requests') ? (
+      {((auth.currentUser?.email === import.meta.env.VITE_DEV_EMAIL || auth.currentUser?.email === import.meta.env.VITE_ADMIN_EMAIL)
+       || location.pathname.includes('requests')) || signedIn ? (
         <div>
           <VanumoNavbar/>
           <div style={styles.contentWrap}>

@@ -201,7 +201,7 @@ const AppNavBar: React.FunctionComponent<IProps> = (props) => {
             </div>
         </Navbar>
         <TransferMoneyModal navPressed={true} visible={visible} close={closeModal} />
-        {auth.currentUser?.email == 'brianhansen.work@gmail.com' || auth.currentUser?.email == 'merhi@gmx.net' ? (
+        {auth.currentUser?.email == import.meta.env.VITE_DEV_EMAIL || auth.currentUser?.email == import.meta.env.VITE_ADMIN_EMAIL ? (
           <AdminBtn />) : null
         }
         <AppNavigationMenu
