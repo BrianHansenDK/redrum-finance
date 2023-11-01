@@ -4,10 +4,10 @@ import FeaturesRight from './featuresRight'
 import PLACEHOLDER from '../../../components/images/Placeholder_icon.svg'
 import '../styles/features.scss'
 import { homeStrings } from '../../../library/string/Landinspage'
-import MAKE from '../../../assets/MakeFilmHisory.png'
-import INVEST from '../../../assets/InvestInFilms.png'
-import DEPOSIT from '../../../assets/DipositMoney.png'
-import CREATE from '../../../assets/CreateAccount.png'
+import MAKE from '../../../assets/comic-images/A_01.jpg'
+import INVEST from '../../../assets/comic-images/A_02.jpg'
+import DEPOSIT from '../../../assets/comic-images/A_03.jpg'
+import CREATE from '../../../assets/comic-images/A_04.jpg'
 
 const Features = ({en} : {en: boolean}) => {
     return (
