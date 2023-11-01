@@ -7,7 +7,7 @@ import { vanumoColors, vanumoShadows } from '../../../../../../theme/vanumoTheme
 import VProjectImageUpdate from './VProjectImageUpdate'
 import { storage, storageRef } from '../../../../../../../firebaseStorage'
 import { deleteObject } from 'firebase/storage'
-import { ref, remove } from 'firebase/database'
+import { ref, remove, update } from 'firebase/database'
 import { database } from '../../../../../../../firebase'
 interface IProps {
   project: FirebaseBundle,
@@ -27,38 +27,49 @@ const VProjectImagesModal: FunctionComponent<IProps> = (props) => {
   const openInner = () => {setInnerModalOpen(true)}
   const closeInner = () => {setInnerModalOpen(false)}
 
-  // Delete gallery image on click
-  const deleteGalleryImg = (imageRef: string) => {
+  const deleteGalleryImg = (imageRef: string, projectId: number, projectImageUrls: string[]) => {
     // Transform image reference
     const imgRef = 
-    imageRef.replace("https://firebasestorage.googleapis.com/v0/b/redrum-finance.appspot.com/o/", '')
-    .replace(/%2F/g, '/').split('?')[0];
+      imageRef.replace("https://firebasestorage.googleapis.com/v0/b/redrum-finance.appspot.com/o/", '')
+      .replace(/%2F/g, '/').split('?')[0];
+  
     // Create storage reference
-    const sReference = storageRef(storage, imgRef)
-    
+    const sReference = storageRef(storage, imgRef);
+  
     // Delete the file
-    deleteObject(sReference).then(() => {
-      // Create database reference
-      project.image_gallery_urls.forEach((img: string, index) => {
-        if (img == imageRef) {
-          const dataRef = ref(database, `projects/${project.id}/image_gallery_urls/${index}`)
-          remove(dataRef)
+    deleteObject(sReference)
+      .then(async () => {
+        // Find the index of the image URL to be deleted
+        const index = projectImageUrls.findIndex((url) => url === imageRef);
+  
+        if (index !== -1) {
+          // Remove the image URL from the project's image_gallery_urls array
+          projectImageUrls.splice(index, 1);
+  
+          // Update the project in the database to remove the deleted URL
+          const reference = ref(database, 'projects/' + projectId);
+          const updates: any = {
+            'image_gallery_urls': projectImageUrls,
+          };
+          await update(reference, updates);
         }
-    })
-
-      // Notify user
-    toaster.push(
-      <Message type='success' showIcon duration={5000}>
-          Image deleted succesfully
-      </Message>
-    )
-    }).catch((error) => {
-      // Notify user
-      <Message type='success' showIcon duration={5000}>
-        {error.message}
-      </Message>
-    });
-  }
+  
+        // Notify the user
+        toaster.push(
+          <Message type='success' showIcon duration={5000}>
+            Image deleted successfully
+          </Message>
+        );
+      })
+      .catch((error) => {
+        // Notify the user of the error
+        toaster.push(
+          <Message type='error' showIcon duration={5000}>
+            {error.message}
+          </Message>
+        );
+      });
+  };
 
   return (
     <>
@@ -124,26 +135,26 @@ const VProjectImagesModal: FunctionComponent<IProps> = (props) => {
           <FlexboxGridItem colspan={24} className='edit-img-modal-item'>
             <p>Gallery</p>
             <div className="gallery-edit-con">
-            {project.image_gallery_urls !== null && project.image_gallery_urls !== undefined ? (
-              <>
-                {project.image_gallery_urls.map((img, index) => (
+              {Array.isArray(project.image_gallery_urls) ? (
+                project.image_gallery_urls.map((img, index) => (
                   <div className="gallery-img-con">
                     <img style={styles.bigImg} src={img} alt={`${project.name} gallery img ${index}`} />
-                    <Button className='delete-gallery-image-btn' style={styles.redBtn} 
-                    appearance='primary' size='md' 
-                    onClick={() => {
-                      if (confirm('Are you sure?')) {
-                        deleteGalleryImg(img)
-                      } else null
-                    }}
-                      >
+                    <Button
+                      className='delete-gallery-image-btn'
+                      style={styles.redBtn}
+                      appearance='primary'
+                      size='md'
+                      onClick={() => {
+                        if (confirm('Are you sure?')) {
+                          deleteGalleryImg(img, project.id!, project.image_gallery_urls)
+                        } else null
+                      }}
+                    >
                       Delete
                     </Button>
                   </div>
-                ))}
-              </>
-              ) : null
-            }
+                ))
+              ) : null}
             </div>
             <Button style={styles.btn} appearance='primary' size='md'
             onClick={() => {

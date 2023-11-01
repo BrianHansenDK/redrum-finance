@@ -305,8 +305,14 @@ export async function updateProjectGallery(projectId: number, galleryImageUrls: 
   const snap = await get(imgRef);
   const existingUrls = snap.val() || [];
 
-  // Combine the existing and new gallery image URLs
-  const updatedUrls = existingUrls.concat(galleryImageUrls);
+  // Create a Set to store unique URLs
+  const uniqueUrls = new Set(existingUrls);
+
+  // Add the new gallery image URLs to the Set
+  galleryImageUrls.forEach((url) => uniqueUrls.add(url));
+
+  // Convert the Set back to an array
+  const updatedUrls = Array.from(uniqueUrls);
 
   // Create an update object with the updated URLs
   const updates: any = {
