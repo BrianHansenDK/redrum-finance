@@ -2,8 +2,8 @@ import React from 'react'
 import MainLayout from '../layouts/mainLayout'
 import BlockL from './blockL'
 
-import IMG1 from '../../components/images/about_us_page_imgs/wm_img1.svg'
-import IMG2 from '../../components/images/about_us_page_imgs/wm_img2.svg'
+import IMG1 from '../../assets/comic-images/Why_should_I_invest.jpg'
+import IMG2 from '../../assets/comic-images/Content_is_King.jpg'
 import IMG3 from '../../components/images/about_us_page_imgs/wm_img3.svg'
 import BlockR from './blockR'
 import { Button } from 'rsuite'
@@ -29,12 +29,14 @@ const WhyMovies: React.FunctionComponent<IProps> = (props) => {
 
                 <div>
                     <BlockR
+                    square
                     img={IMG1}
                     title={en ? whyMoviesStrings.topPartEN.sentence : whyMoviesStrings.topPartDE.sentence}
                     txt={en ? whyMoviesStrings.opinionEn : whyMoviesStrings.opinionDE}/>
                   </div>
             </div>
             <BlockL
+            square
             title={en ? 'Content Is King' : 'Content Ist King'}
                 txt={
                     <p>

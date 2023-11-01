@@ -3,11 +3,14 @@ import MovieDocViewerDE from '../../components/documentviewer/MovieDocViewerDE'
 import { useMediaQuery } from '../../misc/custom-hooks'
 import { mainP } from '../inside-app/themes/textStyles'
 import './styles/tac.scss'
+import BANNER from '../../assets/comic-images/Banner_AGB.jpg'
 
 const MovieTAC = () => {
   const isMobile = useMediaQuery('(max-width: 1100px)')
   return (
     <div className="WordSection1">
+
+      <img className='banner-image' src={BANNER} alt="Banner" />
 
 <h1 className="r-main-title" ><b><span lang="DE" >Allgemeine
 Geschäftsbedingungen der Redrum Films &amp; Entertainment GmbH <br/>(im Folgenden Redrum

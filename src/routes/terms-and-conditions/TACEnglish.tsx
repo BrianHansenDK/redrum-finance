@@ -1,8 +1,11 @@
 import React from 'react'
+import BANNER from '../../assets/comic-images/Banner_AGB.jpg'
 
 const TACEnglish = () => {
   return (
     <div className="WordSection1">
+
+<img className='banner-image' src={BANNER} alt="Banner" />
 
 <h1 className="r-main-title" ><b><span >General Terms and Conditions of Redrum Films &amp;
 Entertainment GmbH<br/>(hereinafter referred to as Redrum Pro)</span></b></h1>

@@ -2,10 +2,15 @@ import React from 'react'
 import { FlexboxGrid } from 'rsuite'
 import FlexboxGridItem from 'rsuite/esm/FlexboxGrid/FlexboxGridItem'
 
-const BlockL = ({ img, title, txt }: {img:string, title:any, txt:any}) => {
+interface IProps {
+    img:string, title:any, txt:any, square: boolean | undefined
+}
+
+const BlockL = (props: IProps) => {
+    const {img, title, txt, square=false} = props;
     return (
         <div className="section" style={{ background: 'none' }}>
-            <div className="left" style={{ backgroundImage: 'url(' + img + ')' }}>
+            <div className={`left  ${square? 'square' : ''}`} style={{ backgroundImage: 'url(' + img + ')' }}>
 
             </div>
             <div className="right">

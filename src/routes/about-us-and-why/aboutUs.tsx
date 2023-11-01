@@ -19,6 +19,7 @@ const AboutUsPage: React.FunctionComponent<IProps> = (props) => {
     return (
         <MainLayout en={en} setEn = {setEn} isVisible={isVisible} openModal={openModal} closeModal={closeModal} dark={true}>
             <BlockL
+                square={false}
                 img={IMG1}
                 title={en ? '...write a piece of film history for eternity.' :
                  '...ein Stück Filmgeschichte für die Ewigkeit.'}
@@ -29,6 +30,7 @@ const AboutUsPage: React.FunctionComponent<IProps> = (props) => {
                 </p>}
             />
             <BlockR
+                square={false}
                 img={IMG2}
                 title={en ? aboutUsStrings.section2EN.fat : aboutUsStrings.section2DE.fat}
                 txt={
@@ -38,6 +40,7 @@ const AboutUsPage: React.FunctionComponent<IProps> = (props) => {
                 }
             />
             <BlockL
+                square={false}
                 img={IMG3}
                 title={en ? aboutUsStrings.section3EN.title : aboutUsStrings.section3DE.title}
                 txt={<p >

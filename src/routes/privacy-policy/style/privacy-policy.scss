@@ -18,6 +18,10 @@ $dark-blue-shadow: #3549FE7B;
   max-width: 1200px;
   margin: auto;
   box-sizing: border-box;
+  & .banner-image {
+    display: block;
+    margin: 0 auto 50px;
+  }
   @media (max-width: 1200px) {
     max-width: 100%;
     padding: 150px 20px;

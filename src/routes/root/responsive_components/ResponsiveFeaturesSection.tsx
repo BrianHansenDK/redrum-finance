@@ -5,10 +5,10 @@ import FeatureLeft from '../components/featureLeft'
 import FeaturesRight from '../components/featuresRight'
 import { useMediaQuery } from '../../../misc/custom-hooks'
 import TabletFeatureItem from './TabletFeatureItem'
-import MAKE from '../../../assets/MakeFilmHisory.png'
-import INVEST from '../../../assets/InvestInFilms.png'
-import DEPOSIT from '../../../assets/DipositMoney.png'
-import CREATE from '../../../assets/CreateAccount.png'
+import MAKE from '../../../assets/comic-images/A_01.jpg'
+import INVEST from '../../../assets/comic-images/A_02.jpg'
+import DEPOSIT from '../../../assets/comic-images/A_03.jpg'
+import CREATE from '../../../assets/comic-images/A_04.jpg'
 
 const ResponsiveFeaturesSection = ({en}: {en:boolean}) => {
   const isMobile = useMediaQuery('(max-width: 1100px)')

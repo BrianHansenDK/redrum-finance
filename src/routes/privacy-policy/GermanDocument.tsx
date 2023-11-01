@@ -1,5 +1,6 @@
 import React from 'react'
 import MainLayout from '../layouts/mainLayout'
+import BANNER from '../../assets/comic-images/Banner_Datenschutz.jpg'
 
 interface IProps {
   en: boolean,
@@ -17,6 +18,8 @@ const GermanPrivacyPolicy = (props: IProps) => {
     isVisible={isVisible}
     dark={true} en={en} setEn={setEn}>
       <div className="WordSection1">
+
+      <img className='banner-image' src={BANNER} alt="Banner" />
 
 <h1 className="r-main-title"><b><span lang="DE" >Privatsphäre
 &amp; Datenschutz</span></b></h1>
