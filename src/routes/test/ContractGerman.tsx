@@ -273,57 +273,69 @@ Unterhaltungsprojekt/en zu dem dort angegebenen Preis. </span></p>
 <p className="MsoNormal" ><span >Das
 Unterhaltungsprojekt wird dabei spezifiziert als:</span></p>
 
+<br/>
 
 
-
-<p className="MsoNormal" >
-  <span  >Project:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<span >{project.name}</span></span>
+<p className="MsoNormal">
+  <span className='contract-project-fact'>Project:</span> <span>{project.name}</span>
 </p>
 
-<p className="MsoNormal" ><span  >Vertragslaufzeit:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<span >Indefinite</span></span>
+<p className="MsoNormal">
+  <span className='contract-project-fact'>Vertragslaufzeit:</span> <span>Indefinite</span>
 </p>
 
-<p className="MsoNormal" ><span  >Investitionsstart:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span >15.04.2023</span></span></p>
+<p className="MsoNormal">
+  <span className='contract-project-fact'>Investitionsstart:</span> <span>15.04.2023</span>
+</p>
 
-<p className="MsoNormal" ><span  >Investitionsschluss:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span >15.07.2023</span></span></p>
+<p className="MsoNormal">
+  <span className='contract-project-fact'>Investitionsschluss:</span> <span>15.07.2023</span>
+</p>
 
-<p className="MsoNormal" ><span  >Redrum Filmwert:<span >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span >250.000,00<span> </span>EUR </span></span></p>
+<p className="MsoNormal">
+  <span className='contract-project-fact'>Redrum Filmwert:</span> <span>250.000,00 EUR</span>
+</p>
 
-<p className="MsoNormal" ><span  >Gesamtanteile: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span >
-  {investAmount}
-  </span></span></p>
+<p className="MsoNormal">
+  <span className='contract-project-fact'>Gesamtanteile:</span> <span>{investAmount}</span>
+</p>
 
-  <p className="MsoNormal" ><span >Bonusanteile: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span>
-  {bonus}
-</span></span></p>
+<p className="MsoNormal">
+  <span className='contract-project-fact'>Bonusanteile:</span> <span>{bonus}</span>
+</p>
 
-<p className="MsoNormal" ><span  >Preis pro Anteil: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span >
-  1,00 EUR
-  </span></span></p>
+<p className="MsoNormal">
+  <span className='contract-project-fact'>Preis pro Anteil:</span> <span>1,00 EUR</span>
+</p>
 
-<p className="MsoNormal" ><span  >Transaktionsdatum: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span >Individuelles
-{formatDate(date)}
-</span></span></p>
+<p className="MsoNormal">
+  <span className='contract-project-fact'>Transaktionsdatum:</span> <span>Individuelles {formatDate(date)}</span>
+</p>
 
-<p className="MsoNormal" ><span  >Fixe Rendite: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span >
-  {project.guaranteedReturn}%
-  </span></span></p>
+<p className="MsoNormal">
+  <span className='contract-project-fact'>Fixe Rendite:</span> <span>{project.guaranteedReturn}%</span>
+</p>
 
-<p className="MsoNormal" ><span  >Erworbene Anteile: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span >Stückzahl
-{investAmount + bonus}</span></span></p>
+<p className="MsoNormal">
+  <span className='contract-project-fact'>Erworbene Anteile:</span> <span>Stückzahl {investAmount + bonus}</span>
+</p>
 
-<p className="MsoNormal" ><span  >Preis für Anteile: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span >
-{investAmount} EUR </span></span></p>
+<p className="MsoNormal">
+  <span className='contract-project-fact'>Preis für Anteile:</span> <span>{investAmount} EUR</span>
+</p>
 
-<p className="MsoNormal" ><span  >Service Pauschale: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span >0,00 EUR </span></span></p>
+<p className="MsoNormal">
+  <span className='contract-project-fact'>Service Pauschale:</span> <span>0,00 EUR</span>
+</p>
 
-<p className="MsoNormal" ><span  >Management-Gebühr: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span >0,00 EUR</span></span></p>
+<p className="MsoNormal">
+  <span className='contract-project-fact'>Management-Gebühr:</span> <span>0,00 EUR</span>
+</p>
 
-<p className="MsoNormal" ><span  >Gesamtbetrag:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span >
-{investAmount}
- EUR</span></span></p>
+<p className="MsoNormal">
+  <span className='contract-project-fact'>Gesamtbetrag:</span> <span>{investAmount} EUR</span>
+</p>
+
 
 <p className="MsoNormal" ><span  >&nbsp;&nbsp; </span></p>
 
@@ -362,18 +374,18 @@ der Webseite/App von RedrumPro eingesehen werden.</span></p>
 
 <h2 ><a></a><a><span >Übertragung des Eigentums am Kaufgegenstand</span></a></h2>
 
-<p className="MsoNormal" ><span >Das Eigentum an dem
+<p className="MsoNormal break-page" ><span >Das Eigentum an dem
 erworbenen Anteil am Unterhaltungsprojekt wird auf den Kunden übertragen. Diese
 Übereinkunft setzt jedoch voraus, dass der Gesamtpreis für den Kauf vollständig
 an Redrum Films gezahlt wurde und bei Redrum Films eingegangen ist.</span></p>
 
-
+<br/>
 
 <p className="MsoNormal"  ><span >5.</span></p>
 
 <h2 ><a></a><a><span >Gewährleistung für den Kaufgegenstand</span></a></h2>
 
-<p className="MsoNormal break-page" ><span >Die Verpflichtung
+<p className="MsoNormal" ><span >Die Verpflichtung
 von Redrum Films beschränkt sich ausschließlich auf die Übertragung des Anteils
 am Unterhaltungsprojekt gemäß der Beschreibung in (II.) Kaufgegenstand.</span></p>
 <br/>
@@ -478,16 +490,16 @@ handeln.</span></p>
 
 
 
-<p className="MsoNormal" ><span >B: RedrumPro bietet
+<p className="MsoNormal break-page" ><span >B: RedrumPro bietet
 dem Producer bei Projektveröffentlichung einmalig die Möglichkeit, die
 erworbenen Anteile an dem Unterhaltungsprojekt wieder an RedrumPro zu übergeben
 und erhält im Austausch das entsprechende Ausgangskapital der Anteile. Dadurch
 ist der Producer kein Anteilseigner mehr und kann nicht an den potenziellen
 Gewinnausschüttungen teilhaben.</span></p>
 
+<br/>
 
-
-<p className="MsoNormal break-page" ><span >Die Optionen werden
+<p className="MsoNormal" ><span >Die Optionen werden
 dem Producer bei Veröffentlichung des Projektes (spätestens 12-18 Monate nach
 Investitionsschluss) über die RedrumPro Website/App dargestellt, und er trifft
 die Entscheidung verbindlich über die RedrumPro Website/App. </span></p>

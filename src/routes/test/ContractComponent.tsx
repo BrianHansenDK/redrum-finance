@@ -252,59 +252,38 @@ one or more Entertainment Project(s) at the price specified therein. </p>
 <p className="MsoNormal" >The Entertainment
 Project is thereby specified as:</p>
 
-<p className="MsoNormal" ><span >Project:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span>
-  {project.name}
-  </span></span></p>
+<br/>
 
-<p className="MsoNormal" ><span >Contract term: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span >Indefinite</span></span></p>
+<p className="MsoNormal"><span className='contract-project-fact'>Project:</span> <span>{project.name}</span></p>
 
-<p className="MsoNormal" ><span >Investment start date: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span >{formatDate(new Date(project.startDate!))}</span></span></p>
+<p className="MsoNormal"><span className='contract-project-fact'>Contract term:</span> <span>Indefinite</span></p>
 
-<p className="MsoNormal" ><span >Investment deadline:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span >{formatDate(new Date(project.endDate!))}</span></span></p>
+<p className="MsoNormal"><span className='contract-project-fact'>Investment start date:</span> <span>{formatDate(new Date(project.startDate!))}</span></p>
 
-<p className="MsoNormal" ><span >Redrum film value: <span >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span >
-  250.000,00 EUR
-</span></span></p>
+<p className="MsoNormal"><span className='contract-project-fact'>Investment deadline:</span> <span>{formatDate(new Date(project.endDate!))}</span></p>
 
-<p className="MsoNormal" ><span >Total shares: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span>
-  {investAmount}
-</span></span></p>
+<p className="MsoNormal"><span className='contract-project-fact'>Redrum film value:</span> <span>250.000,00 EUR</span></p>
 
-<p className="MsoNormal" ><span >Bonus shares: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span>
-  {bonus}
-</span></span></p>
+<p className="MsoNormal"><span className='contract-project-fact'>Total shares:</span> <span>{investAmount}</span></p>
 
-<p className="MsoNormal" ><span >Price per share: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span >
-  1,00 EUR
-</span></span></p>
+<p className="MsoNormal"><span className='contract-project-fact'>Bonus shares:</span> <span>{bonus}</span></p>
 
-<p className="MsoNormal" ><span >Transaction date: &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span>
-  {formatDate(date)}
-</span></span></p>
+<p className="MsoNormal"><span className='contract-project-fact'>Price per share:</span> <span>1,00 EUR</span></p>
 
-<p className="MsoNormal" ><span >Fixed yield: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span>
-  {project.guaranteedReturn}%
-</span></span></p>
+<p className="MsoNormal"><span className='contract-project-fact'>Transaction date:</span> <span>{formatDate(date)}</span></p>
 
-<p className="MsoNormal" ><span >Acquired shares: &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span>
-  {investAmount + bonus}
-</span></span></p>
+<p className="MsoNormal"><span className='contract-project-fact'>Fixed yield:</span> <span>{project.guaranteedReturn}%</span></p>
 
-<p className="MsoNormal" ><span >Price for shares: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span>
-  {investAmount} EUR
-</span></span></p>
+<p className="MsoNormal"><span className='contract-project-fact'>Acquired shares:</span> <span>{investAmount + bonus}</span></p>
 
-<p className="MsoNormal" ><span >Service flat rate:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span >
-  0,00 EUR
-</span></span></p>
+<p className="MsoNormal"><span className='contract-project-fact'>Price for shares:</span> <span>{investAmount} EUR</span></p>
 
-<p className="MsoNormal" ><span >Management fee:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span >
-  0,00 EUR
-</span></span></p>
+<p className="MsoNormal"><span className='contract-project-fact'>Service flat rate:</span> <span>0,00 EUR</span></p>
 
-<p className="MsoNormal" ><span >Total amount:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span >
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span>
-{investAmount} EUR</span></span></p>
+<p className="MsoNormal"><span className='contract-project-fact'>Management fee:</span> <span>0,00 EUR</span></p>
+
+<p className="MsoNormal"><span className='contract-project-fact'>Total amount:</span> <span>{investAmount} EUR</span></p>
+
 
 <p className="MsoNormal" ><span >&nbsp;&nbsp; </span></p>
 
@@ -340,18 +319,18 @@ summary on the RedrumPro website/app.</p>
 
 <h2 ><a ></a><a >Transfer of ownership of the object of purchase</a></h2>
 
-<p className="MsoNormal" >Ownership
+<p className="MsoNormal break-page" >Ownership
 of the purchased share of the Entertainment Project is transferred to the
 client. However, this agreement is contingent upon the total purchase price
 being paid in full to and received by Redrum Films.</p>
 
-
+<br/>
 
 <p className="MsoNormal"  >5.</p>
 
 <h2 ><a ></a><a >Warranty for the object of purchase</a></h2>
 
-<p className="MsoNormal break-page" >Redrum
+<p className="MsoNormal" >Redrum
 Films' obligation is limited solely to the transfer of the interest in the Entertainment
 Project as described in (II.) Object of Purchase.</p>
 <br/>
@@ -461,18 +440,18 @@ potential profit distributions.</p>
 
 
 
-<p className="MsoNormal" >The options
+<p className="MsoNormal break-page" >The options
 are presented to the Producer via the RedrumPro website/app when the project is
 published (for the latest of 12-18 months after the investment deadline), and
 the Producer makes a binding decision via the RedrumPro website/app. </p>
 
 
-
+<br/>
 <p className="MsoNormal"  >12.</p>
 
 <h2 ><a ></a><a >Right of custody and ownership</a></h2>
 
-<p className="MsoNormal break-page" >Redrum
+<p className="MsoNormal" >Redrum
 Films agrees to <span >hold </span>the Entertainment
 Project in accordance with the following provisions.</p>
 
@@ -583,9 +562,11 @@ proceeds according to the number of shares per owner. </span></p>
 Producer trades its shares independently and at its own responsibility and
 discretion on the secondary market provided by RedrumPro. </span></p>
 
-<p className="MsoNormal" ><span >&nbsp;</span></p>
+<p className="MsoNormal break-page" ><span >&nbsp;</span></p>
 
-<p className="MsoNormal break-page" ><span >The following terms and conditions of the sales order are
+<br/>
+
+<p className="MsoNormal" ><span >The following terms and conditions of the sales order are
 agreed between the parties, provided that the Customer has accepted the
 separate General Terms and Conditions of RedrumPro.</span></p>
 <br/>

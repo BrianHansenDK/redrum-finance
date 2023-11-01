@@ -28,6 +28,11 @@
   & .break-before {
     page-break-before: always;
   }
+  & .contract-project-fact {
+    display: inline-block;
+    width: 150px;
+    margin-right: 100px;
+  }
 }
 
 .hide-this {
