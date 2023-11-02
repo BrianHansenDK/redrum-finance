@@ -16,7 +16,7 @@ const AppleBtn = (props: IProps) => {
           <p className='small'>
             {en ? 'Coming soon in' : 'Kommt bald rein'}
           </p>
-          <p className="brand">
+          <p style={{fontSize: 18}} className="brand">
             App Store
           </p>
         </div>

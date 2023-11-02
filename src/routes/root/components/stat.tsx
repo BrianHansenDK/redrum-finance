@@ -15,19 +15,10 @@ const Stat = ({ icon, title, stats }: {icon:string, title:string, stats:string})
   return (
         <div style={styles.wrap} className='flex-column position-relative'>
             <img src={icon} alt={title} className='stat-img' />
-            <p style={{
-              fontSize: isDesktop ? 30 : 18.5,
-              fontWeight: '700',
-              color: mainColors.dark,
-              opacity: .7,
-              }}>
+            <p className='stat-title'>
                 {title}
             </p>
-            <h3 style={{
-              fontSize: isDesktop ? 35 : 22.5,
-              fontWeight: '700',
-              color: mainColors.dark,
-              }}>
+            <h3 className='stat-info'>
                 {stats}
             </h3>
         </div>

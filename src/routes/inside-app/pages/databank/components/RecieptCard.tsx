@@ -70,7 +70,9 @@ const RecieptCard = ({investment, en}: {investment: FirebaseInvestment, en: bool
           format: 'a4',
           orientation: 'portrait'
         },
-        pagebreak: { after: '.break-page' }
+        pagebreak: { after: '.break-page' },
+        // Add the --zoom option here
+        html2canvas: { scale: 1.3 },
       };
   
       const element = document.querySelector(en ? '#english-document' : '#german-document');

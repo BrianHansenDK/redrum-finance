@@ -72,17 +72,21 @@ $dark-shadow: rgba(0, 0, 29, .25);
 .r-page-wrap {
   box-sizing: border-box;
   width: 100%;
-  // ---------- Landing Page ----------
+
+  // ----- Landing Page -----
+
   // ----- Hero -----
   & .r-fulll-hero {
     @media screen and (min-width: 1600px) {
       width: 100%;
     }
   }
+
   & .lp-hero {
     padding: 100px 20px;
     width: 100%;
-    background-color: $dark;
+    background-color: rgb(51,51,51); /* Updated background color */
+    
     @media screen and (max-width: 1100px) {
       padding: 0 20px;
     }
@@ -98,6 +102,7 @@ $dark-shadow: rgba(0, 0, 29, .25);
       flex-direction: column;
       align-items: center;
       justify-content: center;
+
       @media screen and (max-width: 1100px) {
         height: 100%;
         padding: 50px 0 50px;
@@ -106,22 +111,23 @@ $dark-shadow: rgba(0, 0, 29, .25);
       @media screen and (min-width: 1600px) {
         align-items: flex-start;
       }
-      // Tilte
+      // Title
       & .r-hero-title.r-main-title {
-        font-family: poppins;
-        color: $white;
+        font-family: Poppins; /* Updated font family */
+        color: #fff; /* Updated text color */
         text-align: center;
         @media screen and (min-width: 1600px) {
           margin-top: 25px;
           text-align: start;
         }
       }
-      // Desscription
+      // Description
       .r-hero-des {
         max-width: 100%;
-        color: $white;
-        opacity: .8;
+        color: #fff; /* Updated text color */
+        opacity: 0.8;
         text-align: center;
+
         @media screen and (max-width: 1100px) {
           font-size: 20px;
         }
@@ -151,116 +157,143 @@ $dark-shadow: rgba(0, 0, 29, .25);
     .r-hero-img {
       width: 250px;
       height: 250px;
+
       @media screen and (max-width: 1100px) {
         width: 150px;
         height: 150px;
       }
-     @media screen and (min-width: 1600px) {
-      width: 450px;
-      height: 300px;
-      object-fit: fill;
+      @media screen and (min-width: 1600px) {
+        width: 450px;
+        height: 300px;
+        object-fit: fill;
+      }
     }
-    }
-
   }
+
   // ----- Upper CTA -----
   .r-cta-upper {
     padding: 100px 20px;
+    
     @media (min-width: 1600px) {
       padding: 250px 20px;
-      background-color: $dark;
-
+      background-color: #141628; /* Updated background color */
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
     }
+
     .r-cta-upper-title {
-      color: $dark;
+      color: rgb(51,51,51); /* Updated text color */
       @media (min-width: 1600px) {
-        color: $white;
+        color: #fff; /* Updated text color */
         text-align: center;
       }
     }
+
     & .r-cta-upper-des {
       @media (min-width: 1600px) {
-        color: $white;
+        color: #fff; /* Updated text color */
         text-align: center;
       }
     }
   }
+
   // ----- Features -----
   .r-features-con {
     padding: 100px 20px;
+
     .r-feature-item {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       margin: 100px auto;
+
       .img-con {
         width: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
+
         & img {
           width: 80%;
           height: auto;
         }
       }
+
       & h3 {
-        font-family: poppins;
+        font-family: Poppins; /* Updated font family */
         font-size: 30px;
-        color: $dark;
+        color: rgb(51,51,51); /* Updated text color */
         line-height: 1.25;
+
         @media screen and (max-width: 1100px) {
           font-size: 25px;
         }
       }
     }
   }
+
   // ----- APP showcase -----
   // Wrap
   & .r-showcase-con {
     padding: 100px 20px;
+
     // APP img container
     & .r-showcase-img-con {
       order: 1;
+
       @media screen and (max-width: 1100px) {
         order: 2;
       }
+
       & img {
         image-orientation: none;
       }
     }
+
     .r-showcase-txt-con {
       order: 2;
 
       // Title
       & .r-main-title {
-        color: $dark;
+        color: rgb(51,51,51); /* Updated text color */
         margin-bottom: 75px;
+
         @media screen and (max-width: 1100px) {
           text-align: center;
         }
+
         @media (min-width: 1600px) {
           margin-bottom: 150px;
         }
       }
+
+      // Buttons
+      & .small, .brand {
+        color: #fefefe;
+      }
+      & .brand {
+        font-size: 20px;
+      }
     }
+
     // Image container on phone
     & .phone-img-con {
       width: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
+
       // Image
       & img {
         width: 75%;
       }
     }
   }
+
   // ----- CTA Down -----
   & .r-cta-down {
     padding: 100px 20px;
@@ -272,38 +305,43 @@ $dark-shadow: rgba(0, 0, 29, .25);
 
   // Components
   .r-main-title {
-    font-family: poppins;
+    font-family: Poppins; /* Updated font family */
     font-size: 35px;
-    color: $dark;
+    color: rgb(51,51,51); /* Updated text color */
     line-height: 1.25;
+
     @media screen and (max-width: 1100px) {
       font-size: 28px;
     }
+
     @media screen and (min-width: 1600px) {
       font-size: 50px;
     }
   }
 
   .r-sub-title {
-    font-family: poppins;
+    font-family: Poppins; /* Updated font family */
     font-size: 32px;
     font-weight: 500;
-    color: $dark;
+    color: rgb(51,51,51); /* Updated text color */
     line-height: 1.25;
+
     @media screen and (max-width: 1100px) {
       font-size: 28px;
     }
+
     @media screen and (min-width: 1600px) {
       font-size: 40px;
     }
   }
 
   .r-main-des {
-    font-family: poppins;
+    font-family: Poppins; /* Updated font family */
     font-size: 28px;
-    opacity: .8;
-    color: $dark;
+    opacity: 0.8;
+    color: rgb(51,51,51); /* Updated text color */
     line-height: 1.15;
+
     @media screen and (max-width: 1100px) {
       font-size: 22.5px;
     }
@@ -313,51 +351,58 @@ $dark-shadow: rgba(0, 0, 29, .25);
     border-radius: 7.5px;
     padding: 10px 25px;
     font-size: medium;
-    box-shadow: 0 3px 6px 0 $blue-shadow;
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.2);
     transition: all 300ms ease-in-out;
+
     &.r-main-btn {
       &.noti-btn {
         font-size: small;
-        padding: 5px!important;
-
+        padding: 5px !important;
       }
     }
+
     &:hover {
-      transform: scale(.95, .95) translateY(3px);
-      box-shadow: 0 2px 4px 0 $blue-shadow;
+      transform: scale(0.95, 0.95) translateY(3px);
+      box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
     }
+
     &:active {
-      transform: scale(.9, .9) translateY(3px);
-      box-shadow: 0 1px 2px 0 $blue-shadow;
+      transform: scale(0.9, 0.9) translateY(3px);
+      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
     }
+
     @media screen and (min-width: 1600px) {
       font-size: x-large;
       padding: 20px 45px;
-      box-shadow: 0 6px 12px 0 $blue-shadow;
-    }
-  }
-  .r-main-btn {
-    background-color: $main;
-    color: $white;
-  }
-  .r-secondary-btn {
-    background-color: $white;
-    color: $dark;
-    box-shadow: 0 10px 20px 0 $dark-shadow;
-    &:hover {
-      background-color: $white;
-      color: $dark;
-      box-shadow: 0 5px 10px 0 $dark-shadow;
-    }
-    &:active {
-      background-color: $white;
-      color: $dark;
-      opacity: .8;
-      box-shadow: 0 1px 2px 0 $dark-shadow;
+      box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.2);
     }
   }
 
+  .r-main-btn {
+    background-color: rgb(51,51,51); /* Updated button background color */
+    color: #fff; /* Updated button text color */
+  }
+
+  .r-secondary-btn {
+    background-color: #fff; /* Updated button background color */
+    color: rgb(51,51,51); /* Updated button text color */
+    box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.2);
+
+    &:hover {
+      background-color: #fff; /* Updated button background color */
+      color: rgb(51,51,51); /* Updated button text color */
+      box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2);
+    }
+
+    &:active {
+      background-color: #fff; /* Updated button background color */
+      color: rgb(51,51,51); /* Updated button text color */
+      opacity: 0.8;
+      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+    }
+  }
 }
+
 
 // ---------- Bundle Page ----------
 // ----- Overview -----

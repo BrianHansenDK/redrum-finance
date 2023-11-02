@@ -1,64 +1,64 @@
 .cta-up {
     align-self: flex-start;
-    min-width: 0px;
+    min-width: 0;
     order: 3;
-    min-height: 0px;
+    min-height: 0;
     height: max-content;
     flex-grow: 0;
     flex-shrink: 0;
-    width: calc(100% - 0px);
-    margin: 0px;
+    width: 100%;
+    margin: 0;
     justify-content: flex-start;
     row-gap: 20px;
     overflow: visible;
     background-color: rgb(19, 22, 40);
-    border-radius: 0px;
+    border-radius: 0;
     padding: 50px 25px;
     flex-direction: column;
     flex-wrap: nowrap;
     position: relative;
     display: flex;
+}
 
-    & .title {
-        align-self: center;
-        min-width: 0px;
-        min-height: 0px;
-        height: max-content;
-        flex-grow: 0;
-        flex-shrink: 0;
-        width: auto;
-        margin: 0px;
-        white-space: pre-wrap;
-        overflow: visible;
-        word-break: break-word;
-        font-family: Poppins;
-        font-size: 36px;
-        font-weight: 700;
-        color: #fefefe;
-        line-height: 1;
-        border-radius: 0px;
-    }
+.cta-up .title {
+    align-self: center;
+    min-width: 0;
+    min-height: 0;
+    height: max-content;
+    flex-grow: 0;
+    flex-shrink: 0;
+    width: auto;
+    margin: 0;
+    white-space: pre-wrap;
+    overflow: visible;
+    word-break: break-word;
+    font-family: Poppins;
+    font-size: 36px;
+    font-weight: 700;
+    color: #fefefe;
+    line-height: 1;
+    border-radius: 0;
+}
 
-    & .des {
-        align-self: center;
-        min-width: 200px;
-        max-width: 500px;
-        min-height: 0px;
-        height: max-content;
-        flex-grow: 0;
-        flex-shrink: 0;
-        width: auto;
-        margin: 0px;
-        white-space: pre-wrap;
-        overflow: visible;
-        word-break: break-word;
-        font-family: Poppins;
-        font-size: 16px;
-        font-weight: 600;
-        color: #fefefe;
-        opacity: .8;
-        text-align: center;
-        line-height: 1.4;
-        border-radius: 0px;
-    }
+.cta-up .des {
+    align-self: center;
+    min-width: 200px;
+    max-width: 500px;
+    min-height: 0;
+    height: max-content;
+    flex-grow: 0;
+    flex-shrink: 0;
+    width: auto;
+    margin: 0;
+    white-space: pre-wrap;
+    overflow: visible;
+    word-break: break-word;
+    font-family: Poppins;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fefefe;
+    opacity: 0.8;
+    text-align: center;
+    line-height: 1.4;
+    border-radius: 0;
 }

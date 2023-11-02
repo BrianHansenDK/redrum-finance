@@ -76,7 +76,6 @@ const InvoiceEn = (props: IProps) => {
 <div className="doc-info">
 
 <h1 className='small-title'>Your Investment</h1>
-<h1 className='small-title'>Page 1</h1>
 </div>
 
 </div>
@@ -116,27 +115,30 @@ const InvoiceEn = (props: IProps) => {
 <div className="investment-info">
   <p className="inf">
     <span className='lab'> Shares: </span>
-    <span className='val'>{numberWithCommas(investment.amount - investment.bonus)}</span>
+    <span className='val'>{numberWithCommas(investment.amount - investment.bonus)}<span className='unit'></span></span>
+    
   </p>
   <p className="inf">
     <span className='lab'> Bonus shares: </span>
-    <span className='val'>{investment.bonus}</span>
+    <span className='val'>{investment.bonus}<span className='unit'></span></span>
+    
   </p>
   <p className="inf">
     <span className='lab'> Service fee: </span>
-    <span className='val'>0 EUR</span>
+    <span className='val'>0<span className='unit'>EUR</span></span>
+
   </p>
   <p className="inf">
     <span className='lab'> Management fee: </span>
-    <span className='val'>0 EUR</span>
+    <span className='val'>0<span className='unit'>EUR</span></span>
   </p>
   <strong><p className="inf">
     <span className='lab'> Total shares: </span>
-    <span className='val'>{numberWithCommas(investment.amount)}</span>
+    <span className='val'>{numberWithCommas(investment.amount)}<span className='unit'></span></span>
   </p></strong>
   <strong><p className="inf">
     <span className='lab'> Total sum: </span>
-    <span className='val'>{numberWithCommas(investment.paid)} EUR</span>
+    <span className='val'>{numberWithCommas(investment.paid)}<span className='unit'>EUR</span></span>
   </p></strong>
 </div>
 
