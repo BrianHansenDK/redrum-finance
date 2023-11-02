@@ -39,11 +39,9 @@ const NewContractGerman = (props: IProps) => {
 <p className="MsoNormal" ><span >Geschäftsführer: Rabih
 Merhi </span></p>
 
-<p className="MsoNormal" ><span >
-  Handelsregister<span > </span>des<span > </span>Amtsgericht<span >
-    </span>Charlottenburg<span > </span>unter HRB 209180 B</span></p>
+<p className="MsoNormal" >{RedrumCompany.HRB}</p>
 
-<p className="MsoNormal" ><span >Umsatzsteuer-ID:<span > </span>DE328784557</span></p>
+<p className="MsoNormal" ><span >Umsatzsteuer-ID:<span > </span>{RedrumCompany.taxNumber}</span></p>
 
 
 

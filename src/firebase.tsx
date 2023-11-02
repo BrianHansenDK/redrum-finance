@@ -297,6 +297,20 @@ export function updateProjectFiles(projectId: number, files: {name: string, url:
   update(reference, updates).then(then)
 }
 
+export function updateProjectContract(projectId: number, contractUrl: string, then: any, ifErr: any, end: any) {
+  const reference = ref(database, 'projects/' + projectId)
+  let updates: any = {}
+  updates['contract'] = contractUrl;
+  update(reference, updates).then(then).catch(ifErr).finally(end)
+}
+
+export function updateProjectGermanContract(projectId: number, contractUrl: string, then: any, ifErr: any, end: any) {
+  const reference = ref(database, 'projects/' + projectId)
+  let updates: any = {}
+  updates['contract_german'] = contractUrl;
+  update(reference, updates).then(then).catch(ifErr).finally(end)
+}
+
 export async function updateProjectGallery(projectId: number, galleryImageUrls: string[]) {
   const reference = ref(database, 'projects/' + projectId);
   const imgRef = ref(database, `projects/${projectId}/image_gallery_urls`);

@@ -24,7 +24,7 @@ const NewContractComponent = (props: IProps) => {
 
             <p className="MsoNormal" >{RedrumCompany.name}</p>
 
-            <p className="MsoNormal" ><span lang="DE">{RedrumCompany.street}</span></p>
+            <p className="MsoNormal" ><span lang="DE">{RedrumCompany.streetEnglish}</span></p>
 
             <p className="MsoNormal" ><span lang="DE">{RedrumCompany.city}</span></p>
 
@@ -33,11 +33,10 @@ const NewContractComponent = (props: IProps) => {
             <p className="MsoNormal" >Managing
             Director: Rabih Merhi </p>
 
-            <p className="MsoNormal" >Commercial
-            register of the district court Charlottenburg under HRB 209180 B</p>
+            <p className="MsoNormal" >{RedrumCompany.CRB}</p>
 
             <p className="MsoNormal" >Sales tax
-            ID: DE328784557</p>
+            ID: {RedrumCompany.taxNumber}</p>
 
             <p className="MsoNormal" >Hereinafter
             referred to as "Redrum Films" -.</p>

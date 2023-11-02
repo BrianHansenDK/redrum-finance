@@ -8,6 +8,7 @@ import EditImagesBtn from './EditImagesBtn'
 import EditInfoForm from './EditInfoForm'
 import './VanumoProjectSettings.scss'
 import EditFilesBtn from './EditFilesBtn'
+import EditContractBtn from './EditContractBtn'
 
 const VProjectSettings = () => {
   const {projectId} = useParams()
@@ -29,8 +30,6 @@ const VProjectSettings = () => {
             Project settings
           </h1>
           <EditInfoForm project={project} />
-          <EditImagesBtn project={project} />
-          <EditFilesBtn project={project}/>
         </div>
       ) : null}
     </div>

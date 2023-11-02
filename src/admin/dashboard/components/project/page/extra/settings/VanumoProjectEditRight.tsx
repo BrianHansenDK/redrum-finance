@@ -2,6 +2,9 @@ import React from 'react'
 import FlexboxGridItem from 'rsuite/esm/FlexboxGrid/FlexboxGridItem'
 import { FirebaseBundle } from '../../../../../../../database/Objects'
 import VanumoNumbersSliderCard from './VanumoNumbersSliderCard'
+import EditImagesBtn from './EditImagesBtn'
+import EditFilesBtn from './EditFilesBtn'
+import EditContractBtn from './EditContractBtn'
 
 const VanumoProjectEditRight = ({project, span} : {project: FirebaseBundle, span: number}) => {
   return (
@@ -11,6 +14,9 @@ const VanumoProjectEditRight = ({project, span} : {project: FirebaseBundle, span
           ProjectProgress
         </h1>
         <VanumoNumbersSliderCard project={project} />
+        <EditImagesBtn project={project} />
+        <EditFilesBtn project={project}/>
+        <EditContractBtn project={project}/>
       </div>
     </FlexboxGridItem>
   )

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Divider, Input, Toggle, Tooltip, Whisper } from 'rsuite'
+import { Button, Divider, Input, Message, Toggle, Tooltip, Whisper, toaster } from 'rsuite'
 import { numberWithCommasAsString, useMediaQuery } from '../../../../../../../misc/custom-hooks'
 import CheckIcon from '@rsuite/icons/Check';
 import CloseIcon from '@rsuite/icons/Close';
@@ -17,6 +17,8 @@ import ContractGerman from '../../../../../../test/ContractGerman';
 import PaypalModal from './PaypalModal';
 import NewContractComponent from '../../../../../../test/NewContractComponent';
 import NewContractGerman from '../../../../../../test/NewContractGerman';
+import { storage, storageRef } from '../../../../../../../firebaseStorage';
+import { getDownloadURL } from 'firebase/storage';
 
 interface IProps {
   en: boolean,
@@ -60,7 +62,7 @@ const CheckoutSummary = (props: IProps) => {
   const isMobile = useMediaQuery('(max-width: 1200px)')
 
 
-  const generatePDF = () => {
+  const generatePDF = async () => {
     if (project !== null) {
       const options = {
         margin: 0,
@@ -72,13 +74,36 @@ const CheckoutSummary = (props: IProps) => {
         },
         pagebreak: { after: '.break-page' }
       };
-
+  
       const element = document.querySelector(en ? '#english-document' : '#german-document');
+  
+      try {
+        // Generate and download the PDF using html2pdf
+        await html2pdf()
+          .set(options)
+          .from(element)
+          .save();
 
-      html2pdf()
-        .set(options)
-        .from(element)
-        .save();
+        // Get the download URL of the other PDF file from Firebase Storage
+        const otherPDFPath = `documents/projects/${project.name?.replaceAll(' ', '_')}/${en ? 'framework_agreement' : 'rahmenvertrag'}.pdf`;
+        const otherPDFRef = storageRef(storage, otherPDFPath); // Replace 'storage' with your Firebase storage reference
+        const otherPDFDownloadURL = await getDownloadURL(otherPDFRef);
+        window.open(otherPDFDownloadURL, '_blank');
+
+        // Create an anchor element to trigger the download of the other PDF from Firebase Storage
+        /*const a2 = document.createElement('a');
+        a2.href = otherPDFDownloadURL;
+        //a2.download = `redrum_pro_${project.name!.split(' ').join('_')}_${en ? 'framework_agreement' : 'rahmenvertrag'}.pdf`;
+        a2.style.display = 'none';
+        document.body.appendChild(a2);
+        a2.click();
+        document.body.removeChild(a2); */
+      } catch (error) {
+        toaster.push(
+          <Message showIcon type='error' closable duration={8000}>
+            {`Error generating PDF:, ${error}`}
+          </Message>,{placement: 'topCenter'})
+      }
     }
   };
 

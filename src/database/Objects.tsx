@@ -66,7 +66,9 @@ value?: number,
 image_gallery_urls: string[],
 pitch_video: string,
 files: {name: string, url: string}[],
-closure: string
+closure: string,
+contract?: string,
+contract_german?: string
 }
 
 // Investment object

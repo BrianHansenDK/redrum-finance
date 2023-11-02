@@ -12,7 +12,7 @@ import TransferMoneyModal from '../TransferMoneyModal'
 import InfoLines from './InfoLines'
 import InfoTag from './InfoTag'
 import ProgressItem from './ProgressItem'
-import { getRealAge, useMediaQuery } from '../../../../../../misc/custom-hooks'
+import { getRealAge, numberWithCommas, useMediaQuery } from '../../../../../../misc/custom-hooks'
 import RedrumProLoader from '../../../../components/RedrumProLoader'
 import './styles/right-side.scss'
 
@@ -103,7 +103,7 @@ const RightSide: FunctionComponent<IProps> = (props) => {
 
                 <div style={styles.card} className='flex-column'>
                     <InfoLines project={project} en={en} />
-                    <h1 className='right-box-invested-big'>{project.currentlyInvested}€</h1>
+                    <h1 className='right-box-invested-big'>{numberWithCommas(project.currentlyInvested!)}€</h1>
                     <ProgressItem project={project} en={en} />
                     <Button
                     title={project.currentlyInvested! >= project.goal! ? en ? 'Investment capacity reached for project' :
