@@ -21,6 +21,7 @@ $dark-blue-shadow: #3549FE7B;
   & .banner-image {
     display: block;
     margin: 0 auto 50px;
+    max-width: 100%;
   }
   @media (max-width: 1200px) {
     max-width: 100%;

@@ -15,6 +15,8 @@ import jsPDF from 'jspdf';
 import html2pdf from 'html2pdf.js';
 import ContractGerman from '../../../../../../test/ContractGerman';
 import PaypalModal from './PaypalModal';
+import NewContractComponent from '../../../../../../test/NewContractComponent';
+import NewContractGerman from '../../../../../../test/NewContractGerman';
 
 interface IProps {
   en: boolean,
@@ -227,9 +229,9 @@ const CheckoutSummary = (props: IProps) => {
       <div className="hide-this">
         {
           user !== null ? en ? (
-            <ContractComponent day={today.toDateString()} user={user} project={project} investAmount={investAmount} bonus={bonus}/>
+            <NewContractComponent day={today.toDateString()} user={user} project={project} investAmount={investAmount} bonus={bonus}/>
           ) : (
-            <ContractGerman day={today.toDateString()} user={user} project={project} investAmount={investAmount} bonus={bonus}/>
+            <NewContractGerman day={today.toDateString()} user={user} project={project} investAmount={investAmount} bonus={bonus}/>
           ) : null
         }
 

@@ -12,7 +12,7 @@ const TabletFeatureItem: FunctionComponent<IProps> = (props) => {
       <div className='img-con'>
         <img src={img} alt={alt} />
       </div>
-      <h3>
+      <h3 className='text-center'>
         {title}
       </h3>
     </div>

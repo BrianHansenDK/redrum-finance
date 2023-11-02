@@ -261,15 +261,6 @@ Berücksichtigung der nachfolgenden Bedingungen.</span></p>
 die RedrumPro-Webseite/App, erwirbt der Kunde Anteile an einem oder mehreren
 Unterhaltungsprojekt/en zu dem dort angegebenen Preis. </span></p>
 
-
-
-
-
-
-
-
-
-
 <p className="MsoNormal" ><span >Das
 Unterhaltungsprojekt wird dabei spezifiziert als:</span></p>
 
