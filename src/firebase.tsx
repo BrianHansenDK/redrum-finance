@@ -87,7 +87,7 @@ export function createAccount (
   })
 }
 
-export function newUpdateAccount (userId: string, title: string, full_name: string,
+export function newUpdateAccount (user: FirebaseUser, userId: string, title: string, full_name: string,
   birth_date: string, email: string, country: string, 
   zip_code: string, city: string, street: string, house_number: string,
   address_extra_1: string, address_extra_2: string,
@@ -118,9 +118,10 @@ export function newUpdateAccount (userId: string, title: string, full_name: stri
     if (companyWebsite !== undefined) {
       updates['website'] = companyWebsite
     }
-    if  (title !== "" && full_name !== "" && new Date(birth_date) !== new  Date() &&
-    country !== "" && (zip_code !== '' && city !== '' && street !== '' && house_number !== '' ) && phone_number !== "") {
-      const age = getRealAge(new Date(birth_date))
+    if  ((title !== "" || user.title !== "") && (full_name !== "" || user.full_name !== "") && (birth_date !== "" || user.birth_date !== "") &&
+    (country !== "" || user.country !== "") && ((zip_code !== '' || user.zip_code !== "") && (city !== '' || user.city !== "") && 
+    (street !== '' || user.street !== "") && (house_number !== '' || user.house_number !=="")) && (phone_number !== "" || user.phone_number !== "")) {
+      const age = user.birth_date !== "" ? getRealAge(new Date(user.birth_date)) : getRealAge(new Date(birth_date))
       if (age < 18) updates["completion"] = 90
       else updates["completion"] = 100
     }

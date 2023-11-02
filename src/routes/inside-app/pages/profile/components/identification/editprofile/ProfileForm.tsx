@@ -126,7 +126,7 @@ addAddress2, phone, checked, companyAccount])
     if (((firstName !== '' && firstName.split(' ').length === 1) || firstName == '') && (!companyStatement) && !companyWithoutAccept)
     {
     newUpdateAccount(
-      user.id,
+      user, user.id,
       title === '' ? user.title !== undefined ? user.title : '' : title,
       firstName === '' && lastName === '' ? user.full_name :
       (firstName !== "" && lastName === "") ? `${firstName}${user.full_name !== "" ? ` ${user.full_name.split(" ").slice(1).join(" ")}` : ''}` :

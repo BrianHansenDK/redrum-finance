@@ -10,15 +10,21 @@ import { FirebaseBundle, FirebaseInvestment, FirebaseInvoice, FirebaseShare, Fir
 import ContractComponent from '../../../../test/ContractComponent'
 import ContractGerman from '../../../../test/ContractGerman'
 import RedrumProLoader from '../../../components/RedrumProLoader'
-import { Button } from 'rsuite'
+import { Button, Message, useToaster } from 'rsuite'
 import jsPDF from 'jspdf'
 import html2pdf from 'html2pdf.js';
 import InvoiceEn from '../../../../test/InvoiceEn'
 import InvoiceDe from '../../../../test/InvoiceDe'
+import { storage, storageRef } from '../../../../../firebaseStorage'
+import { getDownloadURL } from 'firebase/storage'
+import NewContractComponent from '../../../../test/NewContractComponent'
+import NewContractGerman from '../../../../test/NewContractGerman'
+import '../../../../test/contract-component.scss'
 
 const RecieptCard = ({investment, en}: {investment: FirebaseInvestment, en: boolean}) => {
   const [project, setProject] = useState<FirebaseBundle | null>(null)
   const [shares, setShares] = useState<any>(null)
+  const toaster = useToaster()
 
   // User
   const [user, setUser] = useState<FirebaseUser | null>(null)
@@ -54,11 +60,11 @@ const RecieptCard = ({investment, en}: {investment: FirebaseInvestment, en: bool
   const createdTime = new Date(investment.created_at).toLocaleTimeString()
 
 
-  const generatePDF = () => {
+  const generatePDF = async () => {
     if (project !== null) {
       const options = {
         margin: 0,
-        filename: `redrum_pro_${project.name!.split(' ').join('_')}_${en ? 'investment' : 'investierung'}_${investment.id}_${en ? 'framework_agreement' : 'rahmenvertrag'}.pdf`,
+        filename: `redrum_pro_${project.name!.split(' ').join('_')}_${en ? 'framework_agreement' : 'rahmenvertrag'}.pdf`,
         jsPDF: {
           unit: 'pt',
           format: 'a4',
@@ -66,13 +72,36 @@ const RecieptCard = ({investment, en}: {investment: FirebaseInvestment, en: bool
         },
         pagebreak: { after: '.break-page' }
       };
-
+  
       const element = document.querySelector(en ? '#english-document' : '#german-document');
+  
+      try {
+        // Generate and download the PDF using html2pdf
+        await html2pdf()
+          .set(options)
+          .from(element)
+          .save();
 
-      html2pdf()
-        .set(options)
-        .from(element)
-        .save();
+        // Get the download URL of the other PDF file from Firebase Storage
+        const otherPDFPath = `documents/projects/${project.name?.replaceAll(' ', '_')}/${en ? 'framework_agreement' : 'rahmenvertrag'}.pdf`;
+        const otherPDFRef = storageRef(storage, otherPDFPath); // Replace 'storage' with your Firebase storage reference
+        const otherPDFDownloadURL = await getDownloadURL(otherPDFRef);
+        window.open(otherPDFDownloadURL, '_blank');
+
+        // Create an anchor element to trigger the download of the other PDF from Firebase Storage
+        /*const a2 = document.createElement('a');
+        a2.href = otherPDFDownloadURL;
+        //a2.download = `redrum_pro_${project.name!.split(' ').join('_')}_${en ? 'framework_agreement' : 'rahmenvertrag'}.pdf`;
+        a2.style.display = 'none';
+        document.body.appendChild(a2);
+        a2.click();
+        document.body.removeChild(a2); */
+      } catch (error) {
+        toaster.push(
+          <Message showIcon type='error' closable duration={8000}>
+            {`Error generating PDF:, ${error}`}
+          </Message>,{placement: 'topCenter'})
+      }
     }
   };
 
@@ -115,9 +144,9 @@ const RecieptCard = ({investment, en}: {investment: FirebaseInvestment, en: bool
     <div className='hide-this'>
         {
            en ? (
-            <ContractComponent day={investment.created_at} user={user} project={project!} investAmount={investment.amount} bonus={investment.bonus}/>
+            <NewContractComponent day={investment.created_at} user={user} project={project!} investAmount={investment.amount} bonus={investment.bonus}/>
           ) : (
-            <ContractGerman day={investment.created_at} user={user} project={project!} investAmount={investment.amount} bonus={investment.bonus}/>
+            <NewContractGerman day={investment.created_at} user={user} project={project!} investAmount={investment.amount} bonus={investment.bonus}/>
           )
         }
       </div>
