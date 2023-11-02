@@ -3,7 +3,7 @@ import MovieDocViewerDE from '../../components/documentviewer/MovieDocViewerDE'
 import { useMediaQuery } from '../../misc/custom-hooks'
 import { mainP } from '../inside-app/themes/textStyles'
 import './styles/tac.scss'
-import BANNER from '../../assets/comic-images/Banner_AGB.jpg'
+import BANNER from '../../assets/comic-images/pictureredrumapp02_11_2023/Banner_AGB.jpg'
 
 const MovieTAC = () => {
   const isMobile = useMediaQuery('(max-width: 1100px)')

@@ -2,6 +2,8 @@ import React from 'react'
 import MainLayout from '../layouts/mainLayout'
 import './contact.scss'
 import { RedrumCompany } from '../../database/CompanyInfo'
+import BANNER from '../../assets/comic-images/pictureredrumapp02_11_2023/Banner_CONTACTus.jpg'
+
 interface IProps {
   en: boolean,
   setEn: any,
@@ -17,7 +19,8 @@ const ContactPage = (props: IProps) => {
     isVisible={isVisible}
     dark={true} en={en} setEn={setEn}>
       <div className="content">
-        <h1 className="page-title">
+        <img src={BANNER} alt="Banner" style={{display: 'block', margin: '0 auto 50px'}} />
+        <h1 className="page-title" style={{textAlign: 'center'}}>
           {en ? 'Contact Us' : 'Kontaktiere Uns'}
         </h1>
         <div className="inner">

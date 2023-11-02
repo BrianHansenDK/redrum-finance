@@ -8,8 +8,8 @@ interface IProps {
 const TabletFeatureItem: FunctionComponent<IProps> = (props) => {
   const {img, alt, title} = props
   return (
-    <div className='r-feature-item'>
-      <div className='img-con'>
+    <div className='r-feature-item mb-4'>
+      <div className='img-con mb-2'>
         <img src={img} alt={alt} />
       </div>
       <h3 className='text-center'>

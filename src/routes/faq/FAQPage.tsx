@@ -5,6 +5,7 @@ import FAQDE from './FAQDE';
 import './styles/faqpage.scss'
 import GeneralFaqSection from './GeneralFaqSection';
 import DetailedFaqSection from './DetailedFaqSection';
+import BANNER from '../../assets/comic-images/pictureredrumapp02_11_2023/Banner_FAQ.jpg'
 
 interface IProps {
   en: boolean,
@@ -23,6 +24,7 @@ const FAQPage = (props: IProps) => {
     isVisible={isVisible}
     dark={true} en={en} setEn={setEn}>
       <div className="faqpage-inner">
+        <img src={BANNER} alt="Banner" style={{display: 'block', margin: '0 auto 50px'}} />
       <h1 className="page-title">{en ? 'Frequently asked questions' : 'Häufig gestellte Fragen'}</h1>
       <GeneralFaqSection en={en}/>
       <DetailedFaqSection en={en}/>

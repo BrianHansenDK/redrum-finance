@@ -5,6 +5,7 @@ import Paragraph1 from './Paragraph1'
 import Paragraph2 from './Paragraph2'
 import Paragraph3 from './Paragraph3'
 import Paragraph4 from './Paragraph4'
+import BANNER from '../../assets/comic-images/pictureredrumapp02_11_2023/Banner_Imprint.jpg'
 import './style/imprint.scss'
 
 interface IProps {
@@ -25,6 +26,7 @@ const ImprintPage: React.FunctionComponent<IProps> = (props) => {
       en={en}
       setEn={setEn}>
       <div className="r-page-wrap imprint-content">
+        <img className='banner-image' style={{display: 'block', margin: '0 auto 50px'}} src={BANNER} alt="Banner" />
         <h1 className="r-main-title">
           {en ? 'Imprint' : 'Impressum'}
         </h1>

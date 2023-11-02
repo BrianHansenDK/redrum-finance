@@ -24,7 +24,7 @@ const FeatureLeft: React.FunctionComponent<IProps> = (props) => {
                   </h2>) : null
             }
             <div className='img-div'>
-                <img src={img} alt={alt} height={200} width={200} />
+                <img src={img} alt={alt}/>
             </div>
             <div className='txt-div-left'
             >

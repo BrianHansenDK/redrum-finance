@@ -2,6 +2,8 @@ import React from 'react'
 import { Button } from 'rsuite'
 import MainLayout from '../layouts/mainLayout'
 import DocumentModal from './DocumentModal'
+import BANNER from '../../assets/comic-images/pictureredrumapp02_11_2023/Banner_Wiederufsrecht.jpg'
+
 interface IProps {
   en: boolean,
   setEn: any,
@@ -21,6 +23,8 @@ const GermanWithdrawalRights = (props: IProps) => {
     isVisible={isVisible}
     dark={true} en={en} setEn={setEn}>
       <div className="WordSection1">
+
+      <img className='banner-image' src={BANNER} alt="Banner" />
 
 <h1 className="r-main-title"><b><span>Widerrufsrecht &amp;
 Widerrufsformular</span></b></h1>

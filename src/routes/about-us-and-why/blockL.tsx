@@ -3,16 +3,14 @@ import { FlexboxGrid } from 'rsuite'
 import FlexboxGridItem from 'rsuite/esm/FlexboxGrid/FlexboxGridItem'
 
 interface IProps {
-    img:string, title:any, txt:any, square: boolean | undefined
+    img:string, title:any, txt:any, square: boolean, wide?: boolean
 }
 
 const BlockL = (props: IProps) => {
-    const {img, title, txt, square=false} = props;
+    const {img, title, txt, square=false, wide=false} = props;
     return (
         <div className="section" style={{ background: 'none' }}>
-            <div className={`left  ${square? 'square' : ''}`} style={{ backgroundImage: 'url(' + img + ')' }}>
-
-            </div>
+            <img src={img} alt="Photo" className={`left  ${square? 'square' : ''} ${wide? 'wide' : ''}`} />
             <div className="right">
                 {title ? (
                     <h1 className='mb-1'>

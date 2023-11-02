@@ -4,10 +4,10 @@ import FeaturesRight from './featuresRight'
 import PLACEHOLDER from '../../../components/images/Placeholder_icon.svg'
 import '../styles/features.scss'
 import { homeStrings } from '../../../library/string/Landinspage'
-import MAKE from '../../../assets/comic-images/A_01.jpg'
+import CREATE from '../../../assets/comic-images/A_01.jpg'
 import INVEST from '../../../assets/comic-images/A_02.jpg'
 import DEPOSIT from '../../../assets/comic-images/A_03.jpg'
-import CREATE from '../../../assets/comic-images/A_04.jpg'
+import MAKE from '../../../assets/comic-images/A_04.jpg'
 
 const Features = ({en} : {en: boolean}) => {
     return (
@@ -22,14 +22,14 @@ const Features = ({en} : {en: boolean}) => {
               />
             <FeaturesRight
                 mainTitle={null}
-                img={DEPOSIT}
+                img={INVEST}
                 alt='Placeholder'
                 title={en ? homeStrings.featuresEN.t2 : homeStrings.featuresDE.t2}
                 />
             <FeatureLeft
                 mainTitle={null}
                 subTitle={null}
-                img={INVEST}
+                img={DEPOSIT}
                 alt='Placeholder'
                 title={en ? homeStrings.featuresEN.t3 : homeStrings.featuresDE.t3}
                 />

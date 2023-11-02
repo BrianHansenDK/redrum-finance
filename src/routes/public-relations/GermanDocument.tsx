@@ -1,5 +1,7 @@
 import React from 'react'
 import MainLayout from '../layouts/mainLayout'
+import BANNER from '../../assets/comic-images/pictureredrumapp02_11_2023/Banner_PublicRelation.jpg'
+
 interface IProps {
   en: boolean,
   setEn: any,
@@ -15,6 +17,8 @@ const GermanRelations = (props: IProps) => {
     isVisible={isVisible}
     dark={true} en={en} setEn={setEn}>
       <div className="WordSection1">
+
+      <img className='banner-image' src={BANNER} alt="Banner" />
 
 <h1 className="r-main-title"><b><span>Public Relations</span></b></h1>
 <div className="inner">

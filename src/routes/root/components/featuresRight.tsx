@@ -17,7 +17,7 @@ const FeaturesRight = ({ img, alt, title, mainTitle }: {img:string, alt:string, 
                 </h2>
             </div>
             <div className='img-div'>
-                <img src={img} alt={alt} height={200} width={200} />
+                <img src={img} alt={alt}/>
             </div>
         </div>
     )

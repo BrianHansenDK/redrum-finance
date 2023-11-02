@@ -3,11 +3,11 @@ import { FlexboxGrid } from 'rsuite'
 import FlexboxGridItem from 'rsuite/esm/FlexboxGrid/FlexboxGridItem'
 
 interface IProps {
-    img:string, title:any, txt:any, square: boolean | undefined
+    img:string, title:any, txt:any, square: boolean | undefined, wide?: boolean
 }
 
 const BlockR = (props: IProps) => {
-    const {img, title, txt, square=false} = props;
+    const {img, title, txt, square=false, wide=false} = props;
     return (
         <div className="section" style={{ background: 'none' }}>
             <div className="right">
@@ -18,9 +18,7 @@ const BlockR = (props: IProps) => {
                 ) : null}
                 <p className='block-txt'>{txt}</p>
             </div>
-            <div className={`left ${square? 'square' :  ''}`} style={{ backgroundImage: 'url(' + img + ')' }}>
-
-            </div>
+            <img src={img} alt="Photo" className={`left  ${square? 'square' : ''} ${wide? 'wide' : ''}`} />
         </div>
     )
 }

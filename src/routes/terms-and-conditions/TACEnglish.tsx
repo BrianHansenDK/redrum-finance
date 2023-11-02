@@ -1,5 +1,5 @@
 import React from 'react'
-import BANNER from '../../assets/comic-images/Banner_AGB.jpg'
+import BANNER from '../../assets/comic-images/pictureredrumapp02_11_2023/Banner_AGB.jpg'
 
 const TACEnglish = () => {
   return (

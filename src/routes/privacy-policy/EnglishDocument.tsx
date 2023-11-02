@@ -1,7 +1,7 @@
 import React from 'react'
 import MainLayout from '../layouts/mainLayout'
 import './style/privacy-policy.scss'
-import BANNER from '../../assets/comic-images/Banner_Datenschutz.jpg'
+import BANNER from '../../assets/comic-images/pictureredrumapp02_11_2023/Banner_Datenschutz_1.jpg'
 
 interface IProps {
   en: boolean,
