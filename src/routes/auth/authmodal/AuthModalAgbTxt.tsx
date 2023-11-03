@@ -9,7 +9,7 @@ const AuthModalAgbTxt = (props: Props) => {
   const navigate = useNavigate()
 
   return (
-    <p className={`modal-privacy-policy ${whithMail ? 'hidden' : ''}`}>
+    <p className={`modal-privacy-policy ${whithMail ? 'hidden' : ''}`} style={{fontSize: 18}}>
       {en ? (
         <span className="inner">
           By continuing to use the App, you agree to the <a href="/privacy-policy" target="_blank" style={{padding: 0}}>Privacy Policy</a> and Redrum Pro <a href="/terms-and-conditions" target="_blank" style={{padding: 0}}>Terms and Conditions.</a>

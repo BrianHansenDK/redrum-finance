@@ -25,14 +25,14 @@ $dark-blue-shadow: #3549FE7B;
   & .page-title {
     text-align: start;
     width: 100%;
-    padding: 0 20px;
+    padding: 0;
     font-family: poppins;
     font-size: 35px;
     color: $dark;
     line-height: 1.25;
   }
   & .inner {
-    max-width: 600px;
+    max-width: 100%;
     margin: 75px auto;
     & p {
       font-size: 16px;

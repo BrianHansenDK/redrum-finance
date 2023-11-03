@@ -28,19 +28,26 @@ $dark-blue-shadow: #3549FE7B;
   @media (min-width: $desktop) {
     max-width: 1600px;
   }
-  & .r-main-title {
-    text-align: center;
-    width: 100%;
-    padding: 0 20px;
-    font-size: x-large;
-  }
   & .imprint-inner {
-    max-width: 600px;
+    max-width: 1200px;
     margin: 15px auto;
     text-align: justify;
-    @media (max-width: $mobile) {
+    @media (max-width: 1200px) {
       max-width: 100%;
       padding: 20px;
+    }
+    & .banner-image {
+      display: block;
+      margin: 0px auto 50px;
+      max-width: 100%;
+      width: 100%;
+    }
+    & .r-main-title {
+      text-align: start;
+      width: 100%;
+      padding: 0;
+      margin: 0 0 86px;
+      font-size: x-large;
     }
     & .intro {
       margin-bottom: 25px;

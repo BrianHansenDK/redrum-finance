@@ -19,8 +19,8 @@ const ContactPage = (props: IProps) => {
     isVisible={isVisible}
     dark={true} en={en} setEn={setEn}>
       <div className="content">
-        <img src={BANNER} alt="Banner" style={{display: 'block', margin: '0 auto 50px'}} />
-        <h1 className="page-title" style={{textAlign: 'center'}}>
+        <img src={BANNER} alt="Banner" style={{display: 'block', margin: '0 auto 50px', width: '100%'}} />
+        <h1 className="page-title">
           {en ? 'Contact Us' : 'Kontaktiere Uns'}
         </h1>
         <div className="inner">
@@ -30,7 +30,7 @@ const ContactPage = (props: IProps) => {
           <p className="street">{RedrumCompany.street}</p>
           <p className="city">{RedrumCompany.city}</p>
           <a href={`mailto:${RedrumCompany.mail}`} className="mail">
-            {RedrumCompany.mail}
+            <p style={{margin: 0}}>{RedrumCompany.mail}</p>
           </a>
           <p className="phone">0176 8000 8510</p>
         </div>

@@ -20,3 +20,8 @@
       max-width: 150px;
     }
 }
+.stats-section {
+  & .stat-info {
+    font-family: poppins;
+  }
+}

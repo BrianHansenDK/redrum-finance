@@ -26,11 +26,11 @@ const ImprintPage: React.FunctionComponent<IProps> = (props) => {
       en={en}
       setEn={setEn}>
       <div className="r-page-wrap imprint-content">
+        <div className="imprint-inner">
         <img className='banner-image' style={{display: 'block', margin: '0 auto 50px'}} src={BANNER} alt="Banner" />
         <h1 className="r-main-title">
           {en ? 'Imprint' : 'Impressum'}
         </h1>
-        <div className="imprint-inner">
         <ImprintIntro en={en} />
         <Paragraph1 en={en} />
         <Paragraph2 en={en} />

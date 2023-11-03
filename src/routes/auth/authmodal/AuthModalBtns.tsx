@@ -20,7 +20,7 @@ const AuthModalBtns: React.FunctionComponent<IProps> = (props) => {
     <div className={`btns-con`}>
       <Button appearance='primary' className='choose-auth-btn' block onClick={goWithMail}>
         <img src={Envelope} alt="Closed envelope" className='icon' />
-        <p className='btn-txt'>{en ? 'Continue with E-Mail' :
+        <p className='btn-txt' style={{fontSize: 18}}>{en ? 'Continue with E-Mail' :
         isSmall ? 'Weiter mit E-Mail' :
         'Weiter mit der E-Mail-Adresse'}</p>
       </Button>
@@ -28,7 +28,7 @@ const AuthModalBtns: React.FunctionComponent<IProps> = (props) => {
       onClick={signupPage ? signUpWithGoogle : signInWithGoogle}
       disabled={authing}>
       <img src={GoogleLogo} alt="Google Logo" className='icon' />
-      <p className='btn-txt'>{en ? 'Continue with Google' : 'Weiter mit Google'}</p>
+      <p className='btn-txt' style={{fontSize: 18}}>{en ? 'Continue with Google' : 'Weiter mit Google'}</p>
       </Button>
     </div>
   )

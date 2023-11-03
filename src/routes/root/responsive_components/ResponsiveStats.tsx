@@ -20,7 +20,7 @@ const ResponsiveStats = ({en}: {en: boolean}) => {
   //const average = sum / investments.length > 0 ? sum / investments.length : 0 // Real average
   const average = sum > 0 ? sum / users.length : 0 // Fake average
   return (
-    <FlexboxGrid className='mt-3 mb-3'>
+    <FlexboxGrid className='mt-3 mb-3 stats-section'>
       <FlexboxGridItem colspan={isMobile ? 24 : 8}>
       <div className='txt-center' >
         <Stat
