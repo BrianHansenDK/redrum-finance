@@ -67,6 +67,7 @@ const ResponsiveFeaturesSection = ({en}: {en:boolean}) => {
         title={en ? homeStrings.featuresEN.t3 : homeStrings.featuresDE.t3}
         />
       <FeaturesRight
+        end
         mainTitle={null}
         img={MAKE}
         alt='Placeholder'
