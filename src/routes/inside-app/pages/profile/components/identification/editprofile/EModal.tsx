@@ -17,9 +17,9 @@ const EModal = (props: IProps) => {
   return (
     <Modal open={open} onClose={close} className='emodal'>
       <Modal.Header className='emodal-header'>
-        <Modal.Title className='title'>
+        {/*<Modal.Title className='title'>
           {en ? 'Unsaved changes' : ' Egentwas geändert'}
-        </Modal.Title>
+  </Modal.Title>*/}
       </Modal.Header>
       <Modal.Body className='emodal-body'>
         {en ?

@@ -19,6 +19,7 @@ const AboutUsPage: React.FunctionComponent<IProps> = (props) => {
     return (
         <MainLayout en={en} setEn = {setEn} isVisible={isVisible} openModal={openModal} closeModal={closeModal} dark={true}>
             <BlockL
+                close top
                 wide
                 square={false}
                 img={IMG1}
@@ -31,6 +32,7 @@ const AboutUsPage: React.FunctionComponent<IProps> = (props) => {
                 </p>}
             />
             <BlockR
+                close
                 wide
                 square={false}
                 img={IMG2}
@@ -42,6 +44,7 @@ const AboutUsPage: React.FunctionComponent<IProps> = (props) => {
                 }
             />
             <BlockL
+                close
                 wide
                 square={false}
                 img={IMG3}
