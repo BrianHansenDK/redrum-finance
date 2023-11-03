@@ -53,10 +53,11 @@ $dark-blue-shadow: #3549FE7B;
       margin-bottom: 25px;
     }
     & p {
-      font-size: 16px;
+      font-size: 25px;
       color: $dark;
-      opacity: .9;
-      margin-bottom: 20px;
+      opacity: 0.9;
+      margin: 0px;
+      line-height: 1.5;
     }
     & .juri-paragraph {
 
@@ -65,8 +66,12 @@ $dark-blue-shadow: #3549FE7B;
         padding: 0;
       }
       & .title {
-        font-size: 20px;
+        font-family: poppins;
+        font-size: 50px;
+        line-height: 50px;
         color: $dark;
+        text-align: start;
+        margin: 50px 0 10px;
       }
     }
   }

@@ -42,8 +42,8 @@ zu verlieren.</span></b></p>
 
 <p className="MsoNormal" ><span lang="DE" >&nbsp;</span></p>
 
-<p className="MsoNormal" ><b><span lang="DE" >BESONDERE BESTIMMUNGEN UND HINWEISE FÜR
-INVESTMENTS IN FILMWERK-PROJEKTE</span></b></p>
+<h4 className="MsoNormal" ><b><span lang="DE" >BESONDERE BESTIMMUNGEN UND HINWEISE FÜR
+INVESTMENTS IN FILMWERK-PROJEKTE</span></b></h4>
 
 <p className="MsoNormal" ><span lang="DE" >&nbsp;</span></p>
 
@@ -84,7 +84,7 @@ genannt) erfolgen erst, wenn das Geld bei Redrum Pro eingetroffen ist.</span></p
 
 <p className="MsoNormal" ><span lang="DE" >&nbsp;</span></p>
 
-<p className="MsoNormal" ><b><span lang="DE" >1. Voraussetzungen des Vertragsabschlusses</span></b></p>
+<h4 className="MsoNormal" ><b><span lang="DE" >1. Voraussetzungen des Vertragsabschlusses</span></b></h4>
 
 <p className="MsoNormal" ><span lang="DE" >&nbsp;</span></p>
 
@@ -142,7 +142,7 @@ löschen, die gegen diese Grundlagen verstoßen.</span></p>
 
 <p className="MsoNormal" ><span lang="DE" >&nbsp;</span></p>
 
-<p className="MsoNormal" ><b><span lang="DE" >2. Investition in Filmprojekte</span></b></p>
+<h4 className="MsoNormal" ><b><span lang="DE" >2. Investition in Filmprojekte</span></b></h4>
 
 <p className="MsoNormal" ><b><span lang="DE" >&nbsp;</span></b></p>
 
@@ -171,7 +171,7 @@ anderes Projekt umgeleitet werden.</span></p>
 
 <p className="MsoNormal" ><span lang="DE" >&nbsp;</span></p>
 
-<p className="MsoNormal" ><b><span lang="DE" >3. Zahlungsabwicklung</span></b></p>
+<h4 className="MsoNormal" ><b><span lang="DE" >3. Zahlungsabwicklung</span></b></h4>
 
 <p className="MsoNormal" ><b><span lang="DE" >&nbsp;</span></b></p>
 
@@ -187,7 +187,7 @@ anfallenden Gebühren ihm allein belastet werden.</span></p>
 
 <p className="MsoNormal" ><b><span lang="DE" >&nbsp;</span></b></p>
 
-<p className="MsoNormal" ><b><span lang="DE" >4. Provisionen, Agios und Gebühren</span></b></p>
+<h4 className="MsoNormal" ><b><span lang="DE" >4. Provisionen, Agios und Gebühren</span></b></h4>
 
 <p className="MsoNormal" ><b><span lang="DE" >&nbsp;</span></b></p>
 
@@ -204,8 +204,8 @@ festgestellt oder unbestritten sind.</span></p>
 
 <p className="MsoNormal" ><b><span lang="DE" >&nbsp;</span></b></p>
 
-<p className="MsoNormal" ><b><span lang="DE" >5. Status der von Redrum Pro erbrachten
-Online Dienste</span></b></p>
+<h4 className="MsoNormal" ><b><span lang="DE" >5. Status der von Redrum Pro erbrachten
+Online Dienste</span></b></h4>
 
 <p className="MsoNormal" ><span lang="DE" >&nbsp;</span></p>
 
@@ -221,7 +221,7 @@ Webseite können von Redrum Pro geändert oder eingestellt werden.</span></p>
 
 <p className="MsoNormal" ><b><span lang="DE" >&nbsp;</span></b></p>
 
-<p className="MsoNormal" ><b><span lang="DE" >6. Datenschutz </span></b></p>
+<h4 className="MsoNormal" ><b><span lang="DE" >6. Datenschutz </span></b></h4>
 
 <p className="MsoNormal" ><b><span lang="DE" >&nbsp;</span></b></p>
 
@@ -255,7 +255,7 @@ Freistellungsaufträgen und die Steueridentifikationsnummer des Producers.</span
 
 <p className="MsoNormal" ><span lang="DE" >&nbsp;</span></p>
 
-<p className="MsoNormal" ><b><span lang="DE" >7. Haftungsbeschränkung</span></b></p>
+<h4 className="MsoNormal" ><b><span lang="DE" >7. Haftungsbeschränkung</span></b></h4>
 
 <p className="MsoNormal" ><span lang="DE" >&nbsp;</span></p>
 
@@ -299,7 +299,7 @@ sonstiger Dritter, derer Redrum Pro sich zur Vertragserfüllung bedient.</span><
 
 <p className="MsoNormal" ><span lang="DE" >&nbsp;</span></p>
 
-<p className="MsoNormal" ><b><span lang="DE" >8. Beendigung des Nutzungsverhältnisses</span></b></p>
+<h4 className="MsoNormal" ><b><span lang="DE" >8. Beendigung des Nutzungsverhältnisses</span></b></h4>
 
 <p className="MsoNormal" ><span lang="DE" >&nbsp;</span></p>
 
@@ -339,7 +339,7 @@ bleibt unberührt.</span></p>
 
 <p className="MsoNormal" ><span lang="DE" >&nbsp;</span></p>
 
-<p className="MsoNormal" ><b><span lang="DE" >9.&nbsp;Risikohinweise</span></b></p>
+<h4 className="MsoNormal" ><b><span lang="DE" >9.&nbsp;Risikohinweise</span></b></h4>
 
 <p className="MsoNormal" ><span lang="DE" >&nbsp;</span></p>
 
@@ -407,7 +407,7 @@ investieren, deren eventuellen Verlust er sich leisten kann.</span></p>
 
 <p className="MsoNormal" ><span lang="DE" >&nbsp;</span></p>
 
-<p className="MsoNormal" ><b><span lang="DE" >10. Vertragsübernahme</span></b></p>
+<h4 className="MsoNormal" ><b><span lang="DE" >10. Vertragsübernahme</span></b></h4>
 
 <p className="MsoNormal" ><span lang="DE" >&nbsp;</span></p>
 
@@ -420,8 +420,8 @@ nach ihrer Maßgabe zu übernehmen.</span></p>
 
 <p className="MsoNormal" ><span lang="DE" >&nbsp;</span></p>
 
-<p className="MsoNormal" ><b><span lang="DE" >11.&nbsp;Auszahlungen, Rückzahlungen auf die
-Investition</span></b></p>
+<h4 className="MsoNormal" ><b><span lang="DE" >11.&nbsp;Auszahlungen, Rückzahlungen auf die
+Investition</span></b></h4>
 
 <p className="MsoNormal" ><b><span lang="DE" >&nbsp;</span></b></p>
 
@@ -446,7 +446,7 @@ Abrechnungen oder sonstige gesellschaftsrechtliche Stellungen. </span></p>
 
 <p className="MsoNormal" ><b><span lang="DE" >&nbsp;</span></b></p>
 
-<p className="MsoNormal" ><b><span lang="DE" >12. Schlussbestimmungen</span></b></p>
+<h4 className="MsoNormal" ><b><span lang="DE" >12. Schlussbestimmungen</span></b></h4>
 
 <p className="MsoNormal" ><b><span lang="DE" >&nbsp;</span></b></p>
 

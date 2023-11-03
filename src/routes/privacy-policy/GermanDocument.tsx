@@ -73,8 +73,8 @@ gewährleisten, möchten wir vorab die verwendeten Begrifflichkeiten erläutern.
 <p ><span lang="DE" >Wir
 verwenden in dieser Datenschutzerklärung unter anderem die folgenden Begriffe: </span></p>
 
-<br/><br/><h4 ><span lang="DE" >·<span >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span><span lang="DE" >a)&nbsp;&nbsp;&nbsp;
+<br/><br/><h4 ><span lang="DE" >·<span >&nbsp;
+</span></span><span lang="DE" >a)&nbsp;
 personenbezogene Daten</span></h4>
 
 <p ><span lang="DE" >Personenbezogene Daten sind alle Informationen, die sich
@@ -87,8 +87,8 @@ der physischen, physiologischen, genetischen, psychischen, wirtschaftlichen,
 kulturellen oder sozialen Identität dieser natürlichen Person sind,
 identifiziert werden kann. </span></p>
 
-<br/><br/><h4 ><span lang="DE" >·<span >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span><span lang="DE" >b)&nbsp;&nbsp;&nbsp;
+<br/><br/><h4 ><span lang="DE" >·<span >&nbsp;
+</span></span><span lang="DE" >b)&nbsp;
 betroffene Person</span></h4>
 
 <p ><span lang="DE" >Betroffene
@@ -96,8 +96,8 @@ Person ist jede identifizierte oder identifizierbare natürliche Person, deren
 personenbezogene Daten von dem für die Verarbeitung Verantwortlichen
 verarbeitet werden. </span></p>
 
-<br/><br/><h4 ><span lang="DE" >·<span >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span><span lang="DE" >c)&nbsp;&nbsp;&nbsp;
+<br/><br/><h4 ><span lang="DE" >·<span >&nbsp;
+</span></span><span lang="DE" >c)&nbsp;
 Verarbeitung</span></h4>
 
 <p ><span lang="DE" >Verarbeitung ist jeder mit oder ohne Hilfe automatisierter
@@ -108,16 +108,16 @@ Abfragen, die Verwendung, die Offenlegung durch Übermittlung, Verbreitung oder
 eine andere Form der Bereitstellung, den Abgleich oder die Verknüpfung, die
 Einschränkung, das Löschen oder die Vernichtung. </span></p>
 
-<br/><br/><h4 ><span lang="DE" >·<span >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span><span lang="DE" >d)&nbsp;&nbsp;&nbsp;
+<br/><br/><h4 ><span lang="DE" >·<span >&nbsp;
+</span></span><span lang="DE" >d)&nbsp;
 Einschränkung der Verarbeitung</span></h4>
 
 <p ><span lang="DE" >Einschränkung
 der Verarbeitung ist die Markierung gespeicherter personenbezogener Daten mit
 dem Ziel, ihre künftige Verarbeitung einzuschränken. </span></p>
 
-<br/><br/><h4 ><span lang="DE" >·<span >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span><span lang="DE" >e)&nbsp;&nbsp;&nbsp;
+<br/><br/><h4 ><span lang="DE" >·<span >&nbsp;
+</span></span><span lang="DE" >e)&nbsp;
 Profiling</span></h4>
 
 <p ><span lang="DE" >Profiling ist jede Art der automatisierten Verarbeitung
@@ -128,8 +128,8 @@ Arbeitsleistung, wirtschaftlicher Lage, Gesundheit, persönlicher Vorlieben,
 Interessen, Zuverlässigkeit, Verhalten, Aufenthaltsort oder Ortswechsel dieser
 natürlichen Person zu analysieren oder vorherzusagen. </span></p>
 
-<br/><br/><h4 ><span lang="DE" >·<span >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span><span lang="DE" >f)&nbsp;&nbsp;&nbsp;&nbsp;
+<br/><br/><h4 ><span lang="DE" >·<span >&nbsp;
+</span></span><span lang="DE" >f)&nbsp;
 Pseudonymisierung</span></h4>
 
 <p ><span lang="DE" >Pseudonymisierung ist die Verarbeitung personenbezogener
@@ -140,9 +140,8 @@ aufbewahrt werden und technischen und organisatorischen Maßnahmen unterliegen,
 die gewährleisten, dass die personenbezogenen Daten nicht einer identifizierten
 oder identifizierbaren natürlichen Person zugewiesen werden. </span></p>
 
-<br/><br/><h4 ><span lang="DE" >·<span >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span><span lang="DE" >g)&nbsp;&nbsp;&nbsp;
-Verantwortlicher oder für die Verarbeitung Verantwortlicher</span></h4>
+<br/><br/><h4 ><span lang="DE" >·<span >&nbsp;
+</span></span><span style={{textAlign: 'left'}} lang="DE" >g) Verantwortlicher oder für die Verarbeitung Verantwortlicher</span></h4>
 
 <p ><span lang="DE" >Verantwortlicher oder für die Verarbeitung Verantwortlicher
 ist die natürliche oder juristische Person, Behörde, Einrichtung oder andere
@@ -153,8 +152,8 @@ Mitgliedstaaten vorgegeben, so kann der Verantwortliche beziehungsweise können
 die bestimmten Kriterien seiner Benennung nach dem Unionsrecht oder dem Recht
 der Mitgliedstaaten vorgesehen werden. </span></p>
 
-<br/><br/><h4 ><span lang="DE" >·<span >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span><span lang="DE" >h)&nbsp;&nbsp;&nbsp;
+<br/><br/><h4 ><span lang="DE" >·<span >&nbsp;
+</span></span><span lang="DE" >h)&nbsp;
 Auftragsverarbeiter</span></h4>
 
 <p ><span lang="DE" >Auftragsverarbeiter
@@ -162,8 +161,8 @@ ist eine natürliche oder juristische Person, Behörde, Einrichtung oder andere
 Stelle, die personenbezogene Daten im Auftrag des Verantwortlichen verarbeitet.
 </span></p>
 
-<br/><br/><h4 ><span lang="DE" >·<span >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span><span lang="DE" >i)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br/><br/><h4 ><span lang="DE" >·<span >&nbsp;
+</span></span><span lang="DE" >i)&nbsp;
 Empfänger</span></h4>
 
 <p ><span lang="DE" >Empfänger ist eine natürliche oder juristische Person, Behörde,
@@ -173,8 +172,8 @@ Behörden, die im Rahmen eines bestimmten Untersuchungsauftrags nach dem
 Unionsrecht oder dem Recht der Mitgliedstaaten möglicherweise personenbezogene
 Daten erhalten, gelten jedoch nicht als Empfänger. </span></p>
 
-<br/><br/><h4 ><span lang="DE" >·<span >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span><span lang="DE" >j)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br/><br/><h4 ><span lang="DE" >·<span >&nbsp;
+</span></span><span lang="DE" >j)&nbsp;
 Dritter</span></h4>
 
 <p ><span lang="DE" >Dritter ist eine natürliche oder juristische Person,
@@ -183,8 +182,8 @@ Verantwortlichen, dem Auftragsverarbeiter und den Personen, die unter der
 unmittelbaren Verantwortung des Verantwortlichen oder des Auftragsverarbeiters
 befugt sind, die personenbezogenen Daten zu verarbeiten. </span></p>
 
-<br/><br/><h4 ><span lang="DE" >·<span >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span><span lang="DE" >k)&nbsp;&nbsp;&nbsp;
+<br/><br/><h4 ><span lang="DE" >·<span >&nbsp;
+</span></span><span lang="DE" >k)&nbsp;
 Einwilligung</span></h4>
 
 <p ><span lang="DE" >Einwilligung ist jede von der betroffenen Person freiwillig
@@ -423,7 +422,7 @@ entsprechend den gesetzlichen Vorschriften gesperrt oder gelöscht. </span></p>
 <br/><br/><h4><span lang="DE" >10. Rechte der
 betroffenen Person</span></h4>
 
-<br/><br/><h4 ><span lang="DE" >·<span >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br/><br/><h4 ><span lang="DE" >·<span >&nbsp;
 </span></span><span lang="DE" >a)&nbsp;&nbsp;&nbsp;
 Recht auf Bestätigung</span></h4>
 
@@ -435,7 +434,7 @@ Person dieses Bestätigungsrecht in Anspruch nehmen, kann sie sich hierzu
 jederzeit an einen Mitarbeiter des für die Verarbeitung Verantwortlichen
 wenden. </span></p>
 
-<br/><br/><h4 ><span lang="DE" >·<span >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br/><br/><h4 ><span lang="DE" >·<span >&nbsp;
 </span></span><span lang="DE" >b)&nbsp;&nbsp;&nbsp;
 Recht auf Auskunft</span></h4>
 
@@ -487,7 +486,7 @@ eine betroffene Person dieses Auskunftsrecht in Anspruch nehmen, kann sie sich
 hierzu jederzeit an einen Mitarbeiter des für die Verarbeitung Verantwortlichen
 wenden. </span></p>
 
-<br/><br/><h4 ><span lang="DE" >·<span >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br/><br/><h4 ><span lang="DE" >·<span >&nbsp;
 </span></span><span lang="DE" >c)&nbsp;&nbsp;&nbsp;
 Recht auf Berichtigung</span></h4>
 
@@ -503,7 +502,7 @@ ergänzenden Erklärung — zu verlangen. </span></p>
 Anspruch nehmen, kann sie sich hierzu jederzeit an einen Mitarbeiter des für
 die Verarbeitung Verantwortlichen wenden. </span></p>
 
-<br/><br/><h4 ><span lang="DE" >·<span >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br/><br/><h4 ><span lang="DE" >·<span >&nbsp;
 </span></span><span lang="DE" >d)&nbsp;&nbsp;&nbsp;
 Recht auf Löschung (Recht auf Vergessen werden)</span></h4>
 
@@ -561,7 +560,7 @@ oder Replikationen dieser personenbezogenen Daten verlangt hat, soweit die
 Verarbeitung nicht erforderlich ist. Der Mitarbeiter der Redrum Films &amp;
 Entertainment GmbH wird im Einzelfall das Notwendige veranlassen. </span></p>
 
-<br/><br/><h4 ><span lang="DE" >·<span >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br/><br/><h4 ><span lang="DE" >·<span >&nbsp;
 </span></span><span lang="DE" >e)&nbsp;&nbsp;&nbsp;
 Recht auf Einschränkung der Verarbeitung</span></h4>
 
@@ -598,7 +597,7 @@ möchte, kann sie sich hierzu jederzeit an einen Mitarbeiter des für die
 Verarbeitung Verantwortlichen wenden. Der Mitarbeiter der Redrum Films &amp;
 Entertainment GmbH wird die Einschränkung der Verarbeitung veranlassen. </span></p>
 
-<br/><br/><h4 ><span lang="DE" >·<span >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br/><br/><h4 ><span lang="DE" >·<span >&nbsp;
 </span></span><span lang="DE" >f)&nbsp;&nbsp;&nbsp;&nbsp;
 Recht auf Datenübertragbarkeit</span></h4>
 
@@ -628,7 +627,7 @@ beeinträchtigt werden. </span></p>
 sich die betroffene Person jederzeit an einen Mitarbeiter der Redrum Films
 &amp; Entertainment GmbH wenden. </span></p>
 
-<br/><br/><h4 ><span lang="DE" >·<span >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br/><br/><h4 ><span lang="DE" >·<span >&nbsp;
 </span></span><span lang="DE" >g)&nbsp;&nbsp;&nbsp;
 Recht auf Widerspruch</span></h4>
 
@@ -673,7 +672,7 @@ ungeachtet der Richtlinie 2002/58/EG, ihr Widerspruchsrecht mittels
 automatisierter Verfahren auszuüben, bei denen technische Spezifikationen
 verwendet werden. </span></p>
 
-<br/><br/><h4 ><span lang="DE" >·<span >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br/><br/><h4 ><span lang="DE" >·<span >&nbsp;
 </span></span><span lang="DE" >h)&nbsp;&nbsp;&nbsp;
 Automatisierte Entscheidungen im Einzelfall einschließlich Profiling</span></h4>
 
@@ -705,7 +704,7 @@ Entscheidung gehört. </span></p>
 automatisierte Entscheidungen geltend machen, kann sie sich hierzu jederzeit an
 einen Mitarbeiter des für die Verarbeitung Verantwortlichen wenden. </span></p>
 
-<br/><br/><h4 ><span lang="DE" >·<span >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br/><br/><h4 ><span lang="DE" >·<span >&nbsp;
 </span></span><span lang="DE" >i)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Recht auf Widerruf einer datenschutzrechtlichen Einwilligung</span></h4>
 

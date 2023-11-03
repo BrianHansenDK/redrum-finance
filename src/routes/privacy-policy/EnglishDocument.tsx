@@ -69,7 +69,7 @@ terms used in advance. </span></p>
 <p ><span >We
 use the following terms, among others, in this Privacy Policy: </span></p>
 
-<br/><br/><h4 ><span lang="DE" >·<span >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br/><br/><h4 ><span lang="DE" >·<span >&nbsp;
 </span></span><span lang="DE" >a) Personal
 data</span></h4>
 
@@ -82,7 +82,7 @@ data, an online identifier or to one or more factors specific to the physical,
 physiological, genetic, mental, economic, cultural or social identity of that
 natural person. </span></p>
 
-<br/><br/><h4 ><span lang="DE" >·<span >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br/><br/><h4 ><span lang="DE" >·<span >&nbsp;
 </span></span><span lang="DE" >b) Person
 concerned</span></h4>
 
@@ -90,7 +90,7 @@ concerned</span></h4>
 subject means any identified or identifiable natural person whose personal data
 are processed by the controller. </span></p>
 
-<br/><br/><h4 ><span lang="DE" >·<span >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br/><br/><h4 ><span lang="DE" >·<span >&nbsp;
 </span></span><span lang="DE" >c)
 Processing</span></h4>
 
@@ -101,7 +101,7 @@ filing, storage, adaptation or alteration, retrieval, consultation, use,
 disclosure by transmission, dissemination or otherwise making available,
 alignment or combination, restriction, erasure or destruction. </span></p>
 
-<br/><br/><h4 ><span lang="DE" >·<span >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br/><br/><h4 ><span lang="DE" >·<span >&nbsp;
 </span></span><span lang="DE" >d)
 Restriction of processing</span></h4>
 
@@ -109,7 +109,7 @@ Restriction of processing</span></h4>
 of processing is the marking of stored personal data with the aim of limiting
 their future processing. </span></p>
 
-<br/><br/><h4 ><span lang="DE" >·<span >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br/><br/><h4 ><span lang="DE" >·<span >&nbsp;
 </span></span><span lang="DE" >e) Profiling</span></h4>
 
 <p ><span >Profiling
@@ -119,7 +119,7 @@ person, in particular to analyze or predict aspects relating to that natural
 person's job performance, economic situation, health, personal preferences,
 interests, reliability, behavior, location or change of location. </span></p>
 
-<br/><br/><h4 ><span lang="DE" >·<span >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br/><br/><h4 ><span lang="DE" >·<span >&nbsp;
 </span></span><span lang="DE" >f)
 Pseudonymization</span></h4>
 
@@ -130,9 +130,10 @@ information, provided that such additional information is kept separate and is
 subject to technical and organizational measures to ensure that the personal
 data is not attributed to an identified or identifiable natural person. </span></p>
 
-<br/><br/><h4 ><span >·<span >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br/><br/><h4 ><span lang="DE" >·<span >&nbsp;
 </span></span><span >g) Controller or
 person responsible for the processing</span></h4>
+
 
 <p ><span >The
 controller or controller is the natural or legal person, public authority,
@@ -142,14 +143,14 @@ such processing are determined by Union or Member State law, the controller or
 the specific criteria for its designation may be provided for under Union or
 Member State law. </span></p>
 
-<br/><br/><h4 ><span lang="DE" >·<span >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br/><br/><h4 ><span lang="DE" >·<span >&nbsp;
 </span></span><span lang="DE" >h) Processor</span></h4>
 
 <p ><span >Processor
 means a natural or legal person, public authority, agency or other body that
 processes personal data on behalf of the Controller. </span></p>
 
-<br/><br/><h4 ><span lang="DE" >·<span >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br/><br/><h4 ><span lang="DE" >·<span >&nbsp;
 </span></span><span lang="DE" >i) Recipient</span></h4>
 
 <p ><span >A
@@ -159,8 +160,8 @@ public authorities that may receive personal data in the context of a specific
 investigation mandate under Union or Member State law shall not be considered
 as recipients. </span></p>
 
-<br/><br/><h4 ><span lang="DE" >·<span >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span><span lang="DE" >j)&nbsp;&nbsp; Third</span></h4>
+<br/><br/><h4 ><span lang="DE" >·<span >&nbsp;
+</span></span><span lang="DE" >j)&nbsp;Third</span></h4>
 
 <p ><span >Third
 party means a natural or legal person, public authority, agency or other body other
@@ -168,7 +169,7 @@ than the data subject, the controller, the processor and the persons authorized
 to process the personal data under the direct responsibility of the controller
 or the processor. </span></p>
 
-<br/><br/><h4 ><span lang="DE" >·<span >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br/><br/><h4 ><span lang="DE" >·<span >&nbsp;
 </span></span><span lang="DE" >k) Consent</span></h4>
 
 <p ><span >Consent
@@ -378,7 +379,7 @@ statutory provisions. </span></p>
 
 <br/><br/><h4><span >10. Rights of the data subject</span></h4>
 
-<br/><br/><h4 ><span lang="DE" >·<span >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br/><br/><h4 ><span lang="DE" >·<span >&nbsp;
 </span></span><span lang="DE" >a) Right to
 confirmation</span></h4>
 
@@ -389,7 +390,7 @@ data concerning him or her are being processed. If a data subject wishes to
 exercise this right, he or she may, at any time, contact any employee of the
 controller. </span></p>
 
-<br/><br/><h4><span lang="DE">·<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br/><br/><h4><span lang="DE">·<span>&nbsp;
 </span></span><span lang="DE" >b) Right to
 information</span></h4>
 
@@ -440,7 +441,7 @@ transfer. </span></p>
 data subject wishes to exercise this right of access, he or she may, at any
 time, contact any employee of the controller. </span></p>
 
-<br/><br/><h4><span lang="DE">·<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br/><br/><h4><span lang="DE">·<span>&nbsp;
 </span></span><span lang="DE">c) Right to
 rectification</span></h4>
 
@@ -456,7 +457,7 @@ processing. </span></p>
 a data subject wishes to exercise this right to rectify, he or she may, at any
 time, contact any employee of the controller. </span></p>
 
-<br/><br/><h4><span>·<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br/><br/><h4><span>·<span>&nbsp;
 </span></span><span>d) Right to erasure
 (right to be forgotten)</span></h4>
 
@@ -512,7 +513,7 @@ of the personal data, unless the processing is necessary. The employee of the
 Redrum Films &amp; Entertainment GmbH will arrange the necessary in individual
 cases. </span></p>
 
-<br/><br/><h4><span>·<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br/><br/><h4><span>·<span>&nbsp;
 </span></span><span>e) Right to
 restriction of processing</span></h4>
 
@@ -549,7 +550,7 @@ GmbH, he or she may, at any time, contact any employee of the controller. The
 employee of the Redrum Films &amp; Entertainment GmbH will arrange the
 restriction of the processing. </span></p>
 
-<br/><br/><h4><span lang="DE">·<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br/><br/><h4><span lang="DE">·<span>&nbsp;
 </span></span><span lang="DE">f) Right to
 data portability</span></h4>
 
@@ -577,7 +578,7 @@ adversely affect the rights and freedoms of other individuals. </span></p>
 order to assert the right to data portability, the data subject may at any time
 contact any employee of the Redrum Films &amp; Entertainment GmbH. </span></p>
 
-<br/><br/><h4><span lang="DE">·<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br/><br/><h4><span lang="DE">·<span>&nbsp;
 </span></span><span lang="DE">g) Right of
 objection</span></h4>
 
@@ -619,7 +620,7 @@ The data subject is also free to exercise his/her right to object in connection
 with the use of information society services, notwithstanding Directive
 2002/58/EC, by means of automated procedures using technical specifications. </span></p>
 
-<br/><br/><h4><span>·<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br/><br/><h4><span>·<span>&nbsp;
 </span></span><span>h) Automated
 decisions in individual cases including profiling</span></h4>
 
@@ -648,7 +649,7 @@ his or her point of view and contest the decision. </span></p>
 the data subject wishes to exercise the rights concerning automated decisions,
 he or she may, at any time, contact any employee of the controller. </span></p>
 
-<br/><br/><h4><span>·<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br/><br/><h4><span>·<span>&nbsp;
 </span></span><span>i) Right to revoke
 consent under data protection law</span></h4>
 

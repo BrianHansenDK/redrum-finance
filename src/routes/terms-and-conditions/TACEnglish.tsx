@@ -38,8 +38,8 @@ losing the investment completely.</span></b></p>
 
 <p className="MsoNormal" ><span >&nbsp;</span></p>
 
-<p className="MsoNormal" ><b><span >SPECIAL
-PROVISIONS AND NOTES FOR INVESTMENTS IN FILMWERK PROJECTS</span></b></p>
+<h4 className="MsoNormal" ><b><span >SPECIAL
+PROVISIONS AND NOTES FOR INVESTMENTS IN FILMWERK PROJECTS</span></b></h4>
 
 <p className="MsoNormal" ><span >&nbsp;</span></p>
 
@@ -78,8 +78,8 @@ made only after the money has been received by Redrum Pro.</span></p>
 
 <p className="MsoNormal" ><span >&nbsp;</span></p>
 
-<p className="MsoNormal" ><b><span >1.
-Requirements for the conclusion of the contract</span></b></p>
+<h4 className="MsoNormal" ><b><span >1.
+Requirements for the conclusion of the contract</span></b></h4>
 
 <p className="MsoNormal" ><span >&nbsp;</span></p>
 
@@ -142,8 +142,8 @@ delete contributions that violate these principles.</span></p>
 
 <p className="MsoNormal" ><span >&nbsp;</span></p>
 
-<p className="MsoNormal" ><b><span >2.
-Investment in film projects</span></b></p>
+<h4 className="MsoNormal" ><b><span >2.
+Investment in film projects</span></b></h4>
 
 <p className="MsoNormal" ><b><span >&nbsp;</span></b></p>
 
@@ -174,8 +174,8 @@ consent if the desired value of the film is not achieved.</span></p>
 
 <p className="MsoNormal" ><span >&nbsp;</span></p>
 
-<p className="MsoNormal" ><b><span >3.
-payment processing</span></b></p>
+<h4 className="MsoNormal" ><b><span >3.
+payment processing</span></b></h4>
 
 <p className="MsoNormal" ><b><span >&nbsp;</span></b></p>
 
@@ -192,8 +192,8 @@ to him alone.</span></p>
 
 <p className="MsoNormal" ><b><span >&nbsp;</span></b></p>
 
-<p className="MsoNormal" ><b><span >4.
-Commissions, premiums and fees</span></b></p>
+<h4 className="MsoNormal" ><b><span >4.
+Commissions, premiums and fees</span></b></h4>
 
 <p className="MsoNormal" ><b><span >&nbsp;</span></b></p>
 
@@ -210,8 +210,8 @@ established or are undisputed.</span></p>
 
 <p className="MsoNormal" ><b><span >&nbsp;</span></b></p>
 
-<p className="MsoNormal" ><b><span >5.
-Status of online services provided by Redrum Pro</span></b></p>
+<h4 className="MsoNormal" ><b><span >5.
+Status of online services provided by Redrum Pro</span></b></h4>
 
 <p className="MsoNormal" ><span >&nbsp;</span></p>
 
@@ -228,8 +228,8 @@ discontinued by Redrum Pro.</span></p>
 
 <p className="MsoNormal" ><b><span >&nbsp;</span></b></p>
 
-<p className="MsoNormal" ><b><span >6.
-Data protection </span></b></p>
+<h4 className="MsoNormal" ><b><span >6.
+Data protection </span></b></h4>
 
 <p className="MsoNormal" ><b><span >&nbsp;</span></b></p>
 
@@ -266,8 +266,8 @@ information on exemption orders and the Producer's tax identification number.</s
 
 <p className="MsoNormal" ><span >&nbsp;</span></p>
 
-<p className="MsoNormal" ><b><span >7.
-Limitation of liability</span></b></p>
+<h4 className="MsoNormal" ><b><span >7.
+Limitation of liability</span></b></h4>
 
 <p className="MsoNormal" ><span >&nbsp;</span></p>
 
@@ -315,8 +315,8 @@ performance of the contract.</span></p>
 
 <p className="MsoNormal" ><span >&nbsp;</span></p>
 
-<p className="MsoNormal" ><b><span >8.
-Termination of the user relationship</span></b></p>
+<h4 className="MsoNormal" ><b><span >8.
+Termination of the user relationship</span></b></h4>
 
 <p className="MsoNormal" ><span >&nbsp;</span></p>
 
@@ -358,8 +358,8 @@ Statutory rights of termination shall remain unaffected.</span></p>
 
 <p className="MsoNormal" ><span >&nbsp;</span></p>
 
-<p className="MsoNormal" ><b><span >9.
-Risk information</span></b></p>
+<h4 className="MsoNormal" ><b><span >9.
+Risk information</span></b></h4>
 
 <p className="MsoNormal" ><span >&nbsp;</span></p>
 
@@ -427,8 +427,8 @@ therefore only invest funds whose possible loss he can afford.</span></p>
 
 <p className="MsoNormal" ><span >&nbsp;</span></p>
 
-<p className="MsoNormal" ><b><span >10.
-Contract assumption</span></b></p>
+<h4 className="MsoNormal" ><b><span >10.
+Contract assumption</span></b></h4>
 
 <p className="MsoNormal" ><span >&nbsp;</span></p>
 
@@ -441,8 +441,8 @@ administrators shall be entitled to assume the contract as they see fit.</span><
 
 <p className="MsoNormal" ><span >&nbsp;</span></p>
 
-<p className="MsoNormal" ><b><span >11.
-Disbursements, repayments on the investment</span></b></p>
+<h4 className="MsoNormal" ><b><span >11.
+Disbursements, repayments on the investment</span></b></h4>
 
 <p className="MsoNormal" ><b><span >&nbsp;</span></b></p>
 
@@ -469,8 +469,8 @@ positions under company law. </span></p>
 
 <p className="MsoNormal" ><b><span >&nbsp;</span></b></p>
 
-<p className="MsoNormal" ><b><span >12.
-final provisions</span></b></p>
+<h4 className="MsoNormal" ><b><span >12.
+final provisions</span></b></h4>
 
 <p className="MsoNormal" ><b><span >&nbsp;</span></b></p>
 
