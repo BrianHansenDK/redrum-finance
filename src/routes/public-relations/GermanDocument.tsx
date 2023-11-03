@@ -1,6 +1,6 @@
 import React from 'react'
 import MainLayout from '../layouts/mainLayout'
-import BANNER from '../../assets/comic-images/pictureredrumapp02_11_2023/Banner_PublicRelation.jpg'
+import BANNER from '../../assets/comic-images/pictureredrumapp02_11_2023/appbannerpicure/Banner_PublicRelation.jpg'
 
 interface IProps {
   en: boolean,

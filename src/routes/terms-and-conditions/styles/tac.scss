@@ -22,7 +22,9 @@
       font-family: poppins;
       font-size: 50px;
       line-height: 32px;
-      text-align: start;
+      &.MsoNormal {
+        text-align: start;
+      }
     }
     & p {
       font-size: 25px;

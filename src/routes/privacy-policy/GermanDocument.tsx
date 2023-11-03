@@ -1,6 +1,6 @@
 import React from 'react'
 import MainLayout from '../layouts/mainLayout'
-import BANNER from '../../assets/comic-images/pictureredrumapp02_11_2023/Banner_Datenschutz_1.jpg'
+import BANNER from '../../assets/comic-images/pictureredrumapp02_11_2023/appbannerpicure/Banner_Datenschutz_2.jpg'
 
 interface IProps {
   en: boolean,
@@ -423,7 +423,7 @@ entsprechend den gesetzlichen Vorschriften gesperrt oder gelöscht. </span></p>
 betroffenen Person</span></h4>
 
 <br/><br/><h4 ><span lang="DE" >·<span >&nbsp;
-</span></span><span lang="DE" >a)&nbsp;&nbsp;&nbsp;
+</span></span><span lang="DE" >a)&nbsp;
 Recht auf Bestätigung</span></h4>
 
 <p ><span lang="DE" >Jede betroffene Person hat das vom Europäischen
@@ -435,7 +435,7 @@ jederzeit an einen Mitarbeiter des für die Verarbeitung Verantwortlichen
 wenden. </span></p>
 
 <br/><br/><h4 ><span lang="DE" >·<span >&nbsp;
-</span></span><span lang="DE" >b)&nbsp;&nbsp;&nbsp;
+</span></span><span lang="DE" >b)&nbsp;
 Recht auf Auskunft</span></h4>
 
 <p ><span lang="DE" >Jede von der Verarbeitung personenbezogener Daten
@@ -487,7 +487,7 @@ hierzu jederzeit an einen Mitarbeiter des für die Verarbeitung Verantwortlichen
 wenden. </span></p>
 
 <br/><br/><h4 ><span lang="DE" >·<span >&nbsp;
-</span></span><span lang="DE" >c)&nbsp;&nbsp;&nbsp;
+</span></span><span lang="DE" >c)&nbsp;
 Recht auf Berichtigung</span></h4>
 
 <p ><span lang="DE" >Jede von der Verarbeitung personenbezogener Daten
@@ -503,7 +503,7 @@ Anspruch nehmen, kann sie sich hierzu jederzeit an einen Mitarbeiter des für
 die Verarbeitung Verantwortlichen wenden. </span></p>
 
 <br/><br/><h4 ><span lang="DE" >·<span >&nbsp;
-</span></span><span lang="DE" >d)&nbsp;&nbsp;&nbsp;
+</span></span><span lang="DE" >d)&nbsp;
 Recht auf Löschung (Recht auf Vergessen werden)</span></h4>
 
 <p ><span lang="DE" >Jede von der Verarbeitung personenbezogener Daten
@@ -561,7 +561,7 @@ Verarbeitung nicht erforderlich ist. Der Mitarbeiter der Redrum Films &amp;
 Entertainment GmbH wird im Einzelfall das Notwendige veranlassen. </span></p>
 
 <br/><br/><h4 ><span lang="DE" >·<span >&nbsp;
-</span></span><span lang="DE" >e)&nbsp;&nbsp;&nbsp;
+</span></span><span lang="DE" >e)&nbsp;
 Recht auf Einschränkung der Verarbeitung</span></h4>
 
 <p ><span lang="DE" >Jede von der Verarbeitung personenbezogener Daten
@@ -598,7 +598,7 @@ Verarbeitung Verantwortlichen wenden. Der Mitarbeiter der Redrum Films &amp;
 Entertainment GmbH wird die Einschränkung der Verarbeitung veranlassen. </span></p>
 
 <br/><br/><h4 ><span lang="DE" >·<span >&nbsp;
-</span></span><span lang="DE" >f)&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang="DE" >f)&nbsp;
 Recht auf Datenübertragbarkeit</span></h4>
 
 <p ><span lang="DE" >Jede von der Verarbeitung personenbezogener Daten
@@ -628,7 +628,7 @@ sich die betroffene Person jederzeit an einen Mitarbeiter der Redrum Films
 &amp; Entertainment GmbH wenden. </span></p>
 
 <br/><br/><h4 ><span lang="DE" >·<span >&nbsp;
-</span></span><span lang="DE" >g)&nbsp;&nbsp;&nbsp;
+</span></span><span lang="DE" >g)&nbsp;
 Recht auf Widerspruch</span></h4>
 
 <p ><span lang="DE" >Jede von der Verarbeitung personenbezogener Daten
@@ -673,7 +673,7 @@ automatisierter Verfahren auszuüben, bei denen technische Spezifikationen
 verwendet werden. </span></p>
 
 <br/><br/><h4 ><span lang="DE" >·<span >&nbsp;
-</span></span><span lang="DE" >h)&nbsp;&nbsp;&nbsp;
+</span></span><span lang="DE" >h)&nbsp;
 Automatisierte Entscheidungen im Einzelfall einschließlich Profiling</span></h4>
 
 <p ><span lang="DE" >Jede von der Verarbeitung personenbezogener Daten

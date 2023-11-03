@@ -209,10 +209,10 @@ const CheckoutSummary = (props: IProps) => {
           {en ?
           `I hereby agree to the Redrum` :
           'Hiermit stimme ich dem Redrum'
-          } <Button appearance='link' onClick={generatePDF}
-          style={{padding: 0}}>
+          } <a onClick={generatePDF}
+          style={{padding: 0, fontWeight: '600', color: '#1675e0', cursor: 'pointer'}}>
             {en ? 'Framework Agreement.' : 'Rahmenvertrag'}
-          </Button> {en ?
+          </a> {en ?
             `` :
             'zu.'
             }

@@ -8,25 +8,33 @@
   & .WordSection1 {
     width: 100%;
     text-align: justify;
+    font-family: Arial, sans-serif;
     padding: 0; margin: 0;
   }
   & .WordSection2 {
     width: 100%;
     text-align: justify;
     padding: 0; margin: 0;
+    font-family: Arial, sans-serif;
   }
   & h1 {
     font-size: large;
     line-height: 1.2;
+    font-family: Arial, sans-serif;
   }
   & h2 {
     font-size: medium;
     line-height: 1.2;
     margin-top: 15px;
+    font-family: Arial, sans-serif;
   }
   & p {
     font-size: small;
     line-height: 1.15;
+    font-family: Arial, sans-serif;
+  }
+  & p.MsoNormal {
+    font-family: Arial, sans-serif;
   }
   & .break-before {
     page-break-before: always;

@@ -125,6 +125,8 @@ const App = () => {
       <Route path='/app/profile/:userId' element={<ProfilePageWrapper en={isEnglish} setEn={changeLan} />}/>
       <Route path='/app/thank-you/:projectName' element={<ThankYouPage en={isEnglish} setEn={changeLan}/>}/>
       <Route path='/app/congratulations' element={<DepositedPage en={isEnglish} setEn={changeLan}/>}/>
+
+      
       {/* Outside of App */}
       <Route path='*' element={<PageNotFound en={isEnglish} setEn={changeLan} isVisible={isVisible} openModal={openModal} closeModal={closeModal}/>} />
       <Route path='/' element={<Root en={isEnglish} setEn={changeLan} isVisible={isVisible} openModal={openModal} closeModal={closeModal} />} />

@@ -3,7 +3,7 @@ import MainLayout from '../layouts/mainLayout'
 import BlockL from './blockL'
 
 import IMG1 from '../../assets/comic-images/pictureredrumapp02_11_2023/01_WhyMovie_OMG.jpg'
-import IMG2 from '../../assets/comic-images/pictureredrumapp02_11_2023/02_WhyMovie_Please.jpg'
+import IMG2 from '../../assets/comic-images/pictureredrumapp02_11_2023/appbannerpicure/02_WhyMovie_Please.jpg'
 import IMG3 from '../../components/images/about_us_page_imgs/wm_img3.svg'
 import BlockR from './blockR'
 import { Button } from 'rsuite'
