@@ -59,15 +59,23 @@ import ProjectFilesPage from './routes/inside-app/pages/bundle/extras/documents/
 import PromoSection from './admin/dashboard/components/promocodes/PromoSection.js';
 import DepositedPage from './routes/inside-app/pages/purchase/DepositedPage.js';
 import CashBonusPage from './routes/inside-app/pages/cash-bonus/index.js';
+import LoginFirst from './LoginFirst.js';
 
 
 const App = () => {
+
+  // Check if on public domain
+  const currentLink = window.location.href;
+
+  // Check if user is admin
+  const [isAdmin, setIsAdmin] = React.useState<boolean>(false);
+
+
   const [isVisible, setVisible] = useState(false)
   const [isEnglish, setEnglish] = useState(false)
   const openModal = () => setVisible(true)
   const closeModal = () => setVisible(false)
   const location = useLocation();
-
   const changeLan = () => {
     setEnglish(!isEnglish)
   }
@@ -75,6 +83,10 @@ const App = () => {
   const isMobile = useMediaQuery('(max-width: 1100px)')
 
   return (
+  <> 
+    {currentLink.includes('redrumpro.com') && !isAdmin ? 
+    (<LoginFirst setIsAdmin={setIsAdmin}/>) :
+    (
     <PayPalScriptProvider options={{
       "client-id" : 'Ac-WLnlqTQB5NRhVK_KwJxjwqBVZ4K1M1UO2vlHD9oLtKz32JP7jDZ2ICqGxJWnQiOY0NqXcSo-86km0',
       currency : 'EUR',
@@ -162,7 +174,8 @@ const App = () => {
       {/*<Route path='/test' element={<TestPage />} />*/}
     </Routes>
       </ScrollToTop>
-    </PayPalScriptProvider>
+    </PayPalScriptProvider>)}
+    </>
   )
 }
 

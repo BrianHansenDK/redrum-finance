@@ -18,7 +18,6 @@ const MainLayout: React.FunctionComponent<IProps> = (props) => {
     const openMenu = () => setMenuOpen(true)
     const openNav = () => setNavOpen(true)
     const closeNav = () => setNavOpen(false)
-    console.log(isDesktop)
     return (
         <Container>
             <Header>

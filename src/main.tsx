@@ -12,7 +12,7 @@ import "rsuite/dist/rsuite.min.css";
 import App from './App.jsx';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-    <BrowserRouter>
+    <BrowserRouter> 
       <App />
     </BrowserRouter>
 )
