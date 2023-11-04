@@ -48,6 +48,14 @@ $dark-blue-shadow: #3549FE7B;
       opacity: 0.9;
       margin: 0px;
       line-height: 1.5;
+      & button {
+        font-size: 25px;
+        font-weight: 600;
+        opacity: 0.9;
+        margin: 0px;
+        line-height: 1.5;
+        padding: 0;
+      }
     }
     & h4 {
       font-family: poppins;
@@ -55,7 +63,7 @@ $dark-blue-shadow: #3549FE7B;
       color: $dark;
       line-height: 1.25;
       margin-bottom: 15px;
-      text-align: justify;
+      text-align: start;
     }
     & h4 span[lang="DE"] {
       font-family: poppins;

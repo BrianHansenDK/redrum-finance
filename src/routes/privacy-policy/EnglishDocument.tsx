@@ -998,22 +998,25 @@ accessing our website. </span></p>
 <p><span>The
 privacy policy published by YouTube, which is available at
 https://www.google.de/intl/de/policies/privacy/, provides information about the
-collection, processing and use of personal data by YouTube and Google.<br/>
-<br/>
-<b>17. Email advertising with newsletter registration<br/>
-</b><br/>
+collection, processing and use of personal data by YouTube and Google.</span></p>
+<br/><br/>
+
+<h4><span>17. Email advertising with newsletter registration</span>
+</h4><br/>
+
+<p>
 If you register for our newsletter, we use the data required for this purpose
 or separately provided by you to regularly send you our e-mail newsletter based
 on your consent pursuant to Art. 6 (1) p. 1 lit. a DSGVO. Unsubscribing from
-the newsletter is possible at any time and can be <br/>
-done <br/>
+the newsletter is possible at any time and can be
+done
 either by sending a message to the contact option described above or via a <br/>
-link provided for <br/>
-this purpose <br/>
+link provided for
+this purpose
 in the newsletter. After unsubscribing, we will delete your email address
 unless you have expressly consented to further use of your data or we reserve
 the right to use data beyond this, which is permitted by law and about which we
-inform you in this statement." </span></p>
+inform you in this statement." </p>
 
 <br/><br/><h4><span>18.
 Legal basis of the processing</span></h4>
@@ -1093,7 +1096,7 @@ responsible company, we do not use automatic decision-making or profiling. </spa
 
 <p><span>This
 sample data protection </span><span lang="DE"><a href="https://dg-datenschutz.de/datenschutzerklaerung/"><span lang="EN-US" >declaration</span></a></span><span > was created by the </span><span lang="DE"><a href="https://dg-datenschutz.de/datenschutzerklaerung/"><span lang="EN-US" >DS-GVO data protection
-declaration generator of</span></a></span><span>
+declaration generator of </span></a></span><span>
 the German Association for Data Protection, in cooperation with the </span><span lang="DE"><a href="https://www.wbs-law.de/taetigkeitsgebiete/medienrecht/"><span lang="EN-US" >media law</span></a></span><span > attorneys WILDE BEUGER SOLMECKE |
 Rechtsanwälte from Cologne.</span></p>
 

@@ -44,8 +44,9 @@ const NewContractComponent = (props: IProps) => {
             <p className="MsoNormal" ><span>and</span></p><br/>
 
             <p className="MsoNormal" >{user.full_name}</p>
-            <p className="MsoNormal">{user.address.split(', ')[0]}</p>
-            <p className="MsoNormal">{user.address.split(', ')[1]}</p>
+            <p className="MsoNormal">{user.street} {user.house_number}{user.address_extra_1 !== "" ? `, ${user.address_extra_1}` : ''}{user.address_extra_2 !== "" ? `, ${user.address_extra_2}` : ''}</p>
+            <p className="MsoNormal">{user.zip_code} {user.city}</p>
+            <p className="MsoNormal">{user.country}</p>
             <p className="MsoNormal">E-mail: {user.email}</p>
 
             <p className="MsoNormal" >- (hereinafter

@@ -5,9 +5,9 @@ const ImprintIntro: React.FunctionComponent<IProps> = (props) => {
   const {en} = props
   return (
     <div className='intro'>
-      <p className="juristiction">
+      {/*<p className="juristiction">
         {en ? 'Information according to § 5 TMG:/ § 55 II R StV ' : 'Angaben gemäß § 5 TMG:/ § 55 II R StV '}
-      </p>
+      </p>*/}
       <p className="contact-info">
         {RedrumCompany.name} <br/>
         {RedrumCompany.street} <br/>
@@ -19,13 +19,13 @@ const ImprintIntro: React.FunctionComponent<IProps> = (props) => {
           <span>
             Entry in the commercial register.<br/>
             Register Court: Amtsgericht Charlottenburg<br/>
-            Registration number: HRB 209180 B
+            Registration number: HRB 255604 B
           </span>
         ) : (
           <span>
             Eintragung im Handelsregister.<br/>
             Registergericht: Amtsgericht Charlottenburg <br/>
-            Registernummer: HRB 209180 B
+            Registernummer: HRB 255604 B
           </span>
         )}
       </p>
@@ -33,13 +33,13 @@ const ImprintIntro: React.FunctionComponent<IProps> = (props) => {
         {en ? (
           <span>
             Rabih Merhi <br/>
-            Contact: info@redrumpro.de <br/>
+            Contact: {RedrumCompany.mail} <br/>
             Phone: 0176 80008510
           </span>
         ) : (
           <span>
             Rabih Merhi <br/>
-            Kontakt: info@redrumpro.de <br/>
+            Kontakt: {RedrumCompany.mail} <br/>
             Telefon: 0176 80008510
           </span>
         )}

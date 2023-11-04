@@ -83,7 +83,7 @@ and functioning of the goods.</span></p>
 
 <h4 className="MsoNormal"><span >Model withdrawal form</span></h4>
 
-<p className="MsoNormal"><span >Our Model withdrawal as a PDF document:
+<p className="MsoNormal"><span >Our Model withdrawal as a PDF document:&nbsp;
   <Button appearance='link' onClick={openDocumentModal}>
   DOWNLOAD
   </Button></span></p>

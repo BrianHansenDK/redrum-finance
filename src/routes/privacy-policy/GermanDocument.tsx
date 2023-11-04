@@ -705,7 +705,7 @@ automatisierte Entscheidungen geltend machen, kann sie sich hierzu jederzeit an
 einen Mitarbeiter des für die Verarbeitung Verantwortlichen wenden. </span></p>
 
 <br/><br/><h4 ><span lang="DE" >·<span >&nbsp;
-</span></span><span lang="DE" >i)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang="DE" >i)&nbsp;
 Recht auf Widerruf einer datenschutzrechtlichen Einwilligung</span></h4>
 
 <p ><span lang="DE" >Jede von der Verarbeitung personenbezogener Daten
@@ -1096,21 +1096,22 @@ sich vor einem Aufruf unserer Internetseite aus ihrem YouTube-Account ausloggt.
 von YouTube veröffentlichten Datenschutzbestimmungen, die unter
 https://www.google.de/intl/de/policies/privacy/ abrufbar sind, geben Aufschluss
 über die Erhebung, Verarbeitung und Nutzung personenbezogener Daten durch
-YouTube und Google.<br/>
-<br/>
-<b>17. E-Mail-Werbung mit Anmeldung zum Newsletter<br/>
-</b><br/>
+YouTube und Google.</span></p>
+<br/> <br/>
+<h4>17. E-Mail-Werbung mit Anmeldung zum Newsletter
+</h4>
+<p>
 Wenn Sie sich zu unserem Newsletter anmelden, verwenden wir die hierfür
 erforderlichen oder gesondert von Ihnen mitgeteilten Daten, um Ihnen regelmäßig
 unseren E-Mail-Newsletter aufgrund Ihrer Einwilligung gemäß Art. 6 Abs. 1 S. 1
 lit. a DSGVO zuzusenden.&nbsp;Die Abmeldung vom Newsletter ist jederzeit
 möglich und kann entweder durch eine Nachricht an die oben beschriebene
-Kontaktmöglichkeit oder über einen dafür<br/>
+Kontaktmöglichkeit oder über einen dafür
 vorgesehenen Link im Newsletter erfolgen. Nach Abmeldung löschen wir Ihre
 E-Mail-Adresse, soweit Sie nicht ausdrücklich in eine weitere Nutzung Ihrer
 Daten eingewilligt haben oder wir uns eine darüber hinausgehende
 Datenverwendung vorbehalten, die gesetzlich erlaubt ist und über die wir Sie in
-dieser Erklärung informieren." </span></p>
+dieser Erklärung informieren." </p>
 
 <br/><br/><h4 ><span lang="DE" >18.
 Rechtsgrundlage der Verarbeitung</span></h4>

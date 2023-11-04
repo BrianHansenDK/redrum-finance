@@ -86,11 +86,10 @@ nicht notwendigen Umgang mit ihnen zurückzuführen ist.<br/>
 
 <h4 className="MsoNormal"><span>Muster-Widerrufsformular</span></h4>
 
-<p className="MsoNormal"><span >Unser Muster-Widerrufsformular im PDF-Format:
+<p className="MsoNormal"><span >Unser Muster-Widerrufsformular im PDF-Format:&nbsp;
   <Button appearance='link' onClick={openDocumentModal}>
     DOWNLOAD
   </Button>
-<br/>
 <br/>
 Um die zum Download angebotenen PDF-Dateien zu öffnen, benötigen Sie ein
 Zusatzprogramm, wie zum Beispiel den Adobe Reader, welchen Sie im Internet
