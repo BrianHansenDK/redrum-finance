@@ -248,6 +248,7 @@ export function writeProjectData(
     name: string,
     intro: string,
     description: string,
+    status: number,
     startDate: string,
     endDate: string,
     publication: string,
@@ -272,6 +273,7 @@ export function writeProjectData(
         name: name,
         intro: intro,
         description: description,
+        status: status,
         startDate: startDate,
         endDate: endDate,
         publication: publication,
@@ -338,6 +340,58 @@ export async function updateProjectGallery(projectId: number, galleryImageUrls: 
   await update(reference, updates);
 }
 
+export async function updateProjectSAndCImages(projectId: number, SAndCImageUrls: string[]) {
+  const getReference = ref(database, `projects/${projectId}/story_and_concept_arts/images`);
+  const reference = ref(database, `projects/${projectId}/story_and_concept_arts/`);
+
+  // Retrieve the existing gallery image URLs
+  const snap = await get(getReference);
+  const existingUrls = snap.val() || [];
+
+  // Create a Set to store unique URLs
+  const uniqueUrls = new Set(existingUrls);
+
+  // Add the new gallery image URLs to the Set
+  SAndCImageUrls.forEach((url) => uniqueUrls.add(url));
+
+  // Convert the Set back to an array
+  const updatedUrls = Array.from(uniqueUrls);
+
+  // Create an update object with the updated URLs
+  const updates: any = {
+    'images': updatedUrls,
+  };
+
+  // Update the reference with the combined list
+  await update(reference, updates);
+}
+
+export async function updateProjectSAndCVideos(projectId: number, SAndCVideoUrls: string[]) {
+  const getReference = ref(database, `projects/${projectId}/story_and_concept_arts/videos`);
+  const reference = ref(database, `projects/${projectId}/story_and_concept_arts/`);
+
+  // Retrieve the existing gallery image URLs
+  const snap = await get(getReference);
+  const existingUrls = snap.val() || [];
+
+  // Create a Set to store unique URLs
+  const uniqueUrls = new Set(existingUrls);
+
+  // Add the new gallery image URLs to the Set
+  SAndCVideoUrls.forEach((url) => uniqueUrls.add(url));
+
+  // Convert the Set back to an array
+  const updatedUrls = Array.from(uniqueUrls);
+
+  // Create an update object with the updated URLs
+  const updates: any = {
+    'videos': updatedUrls,
+  };
+
+  // Update the reference with the combined list
+  await update(reference, updates);
+}
+
 // Movies
 
 export function getMovies(movieState: any, loaderState: any) {
@@ -390,7 +444,7 @@ export function getSpecificMovies(MovieIds: number[], setMovies: any, setLoading
 
 // Projects
 
-export function getSpecificProject(projectId: string, setState: any, setLoading?: any) {
+export function getSpecificProject(projectId: any, setState: any, setLoading?: any) {
   if (setLoading !== undefined) { setLoading(true); }
   const reference = ref(database, 'projects/' + projectId);
   get(reference).then((snap) => setState(snap.val())).catch((err) => console.log(err))

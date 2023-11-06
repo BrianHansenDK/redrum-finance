@@ -69,6 +69,8 @@ files: {name: string, url: string}[],
 closure: string,
 contract?: string,
 contract_german?: string
+status: number,
+story_and_concept_arts?: {images: string[], videos: string[]},
 }
 
 // Investment object

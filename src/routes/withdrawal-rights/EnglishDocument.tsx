@@ -3,6 +3,7 @@ import { Button } from 'rsuite'
 import MainLayout from '../layouts/mainLayout'
 import DocumentModal from './DocumentModal'
 import BANNER from '../../assets/comic-images/pictureredrumapp02_11_2023/appbannerpicure/Banner_Wiederufsrecht.jpg'
+import { RedrumCompany } from '../../database/CompanyInfo'
 
 
 interface IProps {
@@ -43,7 +44,7 @@ by you acquires, physical possession of the goods.</span></p>
 Films &amp; Entertainment GmbH, Hauptstr.26, 10827 Berlin, email:
 info@redrumpro.de, represented by Rabih Merhi, phone: +49 176 8000 85 10,
 registered in the commercial register, Register court: Amtsgericht
-Charlottenburg, Register number: HRB 209180 B) of your decision to withdraw
+Charlottenburg, Register number: {RedrumCompany.HRBVal}) of your decision to withdraw
 from this contract by an unequivocal statement (e.g. a letter sent by post, fax
 or e-mail). You may use the attached model withdrawal form, but it is not
 obligatory.</span></p>

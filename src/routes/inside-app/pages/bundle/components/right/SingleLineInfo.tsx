@@ -15,11 +15,13 @@ interface IProps {
   hasSmallTxt?: boolean,
   smallTxt?: string,
   hasTag?: boolean,
-  tooltipTxt?: String
+  tooltipTxt?: String,
+  hasColor?: boolean,
+  color?: string,
  }
 const SingleLineInfo: FunctionComponent<IProps> = (props) => {
   const { title, info, type, line = true, isBlue, isTopElement,
-    hasSmallTxt, smallTxt, hasTag = false, tooltipTxt = "" } = props
+    hasSmallTxt, smallTxt, hasTag = false, tooltipTxt = "", hasColor=false, color = mainColors.main } = props
   const styles = {
     wrapper: {
         width: 100 + '%',
@@ -32,12 +34,15 @@ const SingleLineInfo: FunctionComponent<IProps> = (props) => {
     title: {
         fontSize: 18.2,
         lineHeight: 1,
+        color: hasColor ? color : 'rgb(51,51,51)'
     },
     info: {
         fontSize: 18.2,
         fontWeight: '700',
         marginTop: 0,
-        color: isBlue ? mainColors.main : mainColors.dark
+        color: hasColor ? '#fefefe' : isBlue ? mainColors.main : mainColors.dark ,
+        backgroundColor: hasColor ? color : 'rgba(0,0,0,0)',
+        padding: hasColor ? '0 5px' : 0,
     },
     line: {
         width: 100 + '%',

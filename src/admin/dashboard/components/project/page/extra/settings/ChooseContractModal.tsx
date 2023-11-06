@@ -15,7 +15,7 @@ const ChooseContractModal = (props: IProps) => {
   const {project, isOpen, close} = props;
 
     const [english, setEnglish] = React.useState<boolean>(true)
-    const [innerOpen, setInnerOpen] = React.useState<boolean>(true)
+    const [innerOpen, setInnerOpen] = React.useState<boolean>(false)
 
     const openInner = () => setInnerOpen(true); const closeInner = () => setInnerOpen(false)
 

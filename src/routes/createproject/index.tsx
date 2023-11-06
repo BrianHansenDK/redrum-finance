@@ -1,7 +1,7 @@
 import { onValue, ref } from 'firebase/database'
 import { getDownloadURL, uploadBytes } from 'firebase/storage'
 import React, { useEffect, useState } from 'react'
-import { Avatar, Button, ButtonGroup, CheckPicker, DatePicker, DateRangePicker, Divider, Form, Input, InputGroup, Message, Toggle, Uploader, useToaster } from 'rsuite'
+import { Avatar, Button, ButtonGroup, CheckPicker, DatePicker, DateRangePicker, Divider, Form, Input, InputGroup, InputPicker, Message, SelectPicker, Toggle, Uploader, useToaster } from 'rsuite'
 import FormControlLabel from 'rsuite/esm/FormControlLabel'
 import FormGroup from 'rsuite/esm/FormGroup'
 import PushNotification from '../../components/Notification'
@@ -27,6 +27,7 @@ const CreateProjectPage = () => {
     const [projectValue, setProjectValue] = useState('')
     const [projectReturn, setProjectReturn] = useState('')
     const [projectMovies, setProjectMovies] = useState([])
+    const [status, setStatus] = useState(1)
     const [avatar, setAvatar] = useState(null)
     const [avatarUrl, setAvatarUrl] = useState('')
     const [banner, setBanner] = useState(null)
@@ -239,7 +240,7 @@ const CreateProjectPage = () => {
 
     const makeProject = () => {
       setMaking(true)
-      writeProjectData(pCount, projectTitle, projectIntro, projectDescription,
+      writeProjectData(pCount, projectTitle, projectIntro, projectDescription, status,
           projectStartDate.toJSON(),
           projectEndDate.toJSON(),
           projectPublication,
@@ -392,6 +393,18 @@ const CreateProjectPage = () => {
                         <CheckPicker
                             onChange={setProjectMovies}
                             label='movies' data={movieData}
+                        />
+                    </FormGroup>
+                    <FormGroup>
+                        <FormControlLabel style={styles.label}>Project Status</FormControlLabel>
+                        <InputPicker
+                            onChange={setStatus}
+                            data={[
+                                {label: 'Funding', value: 1},
+                                {label: 'Shooting', value: 2},
+                                {label: 'Postproduction', value: 3},
+                                {label: 'Released', value: 4},
+                            ]}
                         />
                     </FormGroup>
 

@@ -115,6 +115,7 @@ export function checkIfFirefox() {
 // Format date
 export function formatDate(date: Date) {
   return `${date.toJSON().split('-')[2].split('T')[0]}.${date.toJSON().split('-')[1].split('T')[0]}.${date.toJSON().split('-')[0]}`
+  .replace(/\.(0\d|1[0-2])\.(19|20)\d{2}\./, (match, p1, p2) => p1 + '.' + p2)
 }
 
 export function sortNotifications(a: any,b: any){

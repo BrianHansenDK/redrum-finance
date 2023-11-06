@@ -37,7 +37,7 @@ Radio- oder TV-Beitrag senden&nbsp;oder zu einem Event einladen? </span></p>
 hoch! Wir freuen uns über Ihr Interesse. </span></p>
 
 <p className="MsoNormal" ><span >Wenden
-Sie sich bitte an:&nbsp;<a href='mailto:info@redrumpro.com?subject=Support'>info@redrumpro.com.</a></span></p>
+Sie sich bitte an:&nbsp;<a href='mailto:info@redrumpro.com?subject=Support'>info@redrumpro.com</a></span></p>
 
 <p className="MsoNormal" >&nbsp;</p>
 

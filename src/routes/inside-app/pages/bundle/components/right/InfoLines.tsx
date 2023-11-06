@@ -14,11 +14,7 @@ const InfoLines = ({ project, en }: { project: any, en: boolean }) => {
             <SingleLineInfo
             title={en ? bundleStrings.infoCardEN.iD : bundleStrings.infoCardDE.iD}
             info={
-              [
-                end.toLocaleDateString().split('/').map((x) => parseInt(x) < 10 ? x = `0${x[1]}` : x)[1],
-                end.toLocaleDateString().split('/').map((x) => parseInt(x) < 10 ? x = `0${x[0]}` : x)[0],
-                end.toLocaleDateString().split('/').map((x) => parseInt(x) < 10 ? x = `0${x[2]}` : x)[2],
-              ].join('.')
+              formatDate(end)
             }
             />
             {project.closure !== "" ? (
@@ -46,6 +42,11 @@ const InfoLines = ({ project, en }: { project: any, en: boolean }) => {
             title={en ? bundleStrings.infoCardEN.publication : bundleStrings.infoCardDE.publication}
             info={`${project.publication} ${en ? 'Months' : 'Monate'}`} hasSmallTxt
             smallTxt={en ? bundleStrings.infoCardEN.small : bundleStrings.infoCardDE.small}
+            />
+            <SingleLineInfo
+            title={'Status'}
+            info={project.status == 1 ? 'Funding' : project.status == 2 ? 'Shooting' : project.status == 3 ? 'Postproduction' : 'Released'}
+            hasColor
             />
             {/*<SingleLineInfo
             title={en ? bundleStrings.infoCardEN.aI : bundleStrings.infoCardDE.aI}

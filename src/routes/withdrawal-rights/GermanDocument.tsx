@@ -3,6 +3,7 @@ import { Button } from 'rsuite'
 import MainLayout from '../layouts/mainLayout'
 import DocumentModal from './DocumentModal'
 import BANNER from '../../assets/comic-images/pictureredrumapp02_11_2023/appbannerpicure/Banner_Wiederufsrecht.jpg'
+import { RedrumCompany } from '../../database/CompanyInfo'
 
 interface IProps {
   en: boolean,
@@ -44,7 +45,7 @@ haben bzw. hat. </span></p>
 Widerrufsrecht auszuüben, müssen Sie uns (Redrum Films &amp; Entertainment GmbH,
 Hauptstr.26, 10827 Berlin, E-Mail:&nbsp;info@redrumpro.de, vertreten durch,
 Rabih Merhi, Tel. +49 176 8000 85 10, Eintragung im Handelsregister.,
-Registergericht: Amtsgericht Charlottenburg, Registernummer: <b>HRB 209180 B</b>)&nbsp;mittels
+Registergericht: Amtsgericht Charlottenburg, Registernummer: <b>{RedrumCompany.HRBVal}</b>)&nbsp;mittels
 einer eindeutigen Erklärung (z.B. ein mit der Post versandter Brief oder
 E-Mail) über Ihren Entschluss, diesen Vertrag zu widerrufen, informieren. Sie
 können dafür das beigefügte Muster-Widerrufsformular verwenden, das jedoch

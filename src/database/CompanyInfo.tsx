@@ -8,5 +8,6 @@ export const RedrumCompany = {
     BIC: 'BEVODEBB',
     CRB: 'Commercial register number: HRB 255604 B',
     HRB: 'Handelsregister des Amtsgericht Charlottenburg unter HRB 255604 B',
-    taxNumber: 'DE 312253459'
+    taxNumber: 'DE 312253459',
+    HRBVal: 'HRB255604 B',
 }

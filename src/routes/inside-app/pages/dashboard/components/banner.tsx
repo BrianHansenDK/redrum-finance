@@ -2,6 +2,7 @@ import React from 'react'
 import { Button } from 'rsuite'
 import BANNER from '../../../../../components/images/banner_placeholder.svg'
 import { useMediaQuery } from '../../../../../misc/custom-hooks'
+import BANNER2 from '../../../../../assets/Banner_schmal_PublicRelation.jpg'
 
 const BannerComponent = ({isMobile} : {isMobile: boolean}) => {
 
@@ -36,8 +37,9 @@ const BannerComponent = ({isMobile} : {isMobile: boolean}) => {
     }
   }
 
-  return (
-    <div className={`${isMobile ? '' : 'd-flex'} txt-white trans align-center txt-center banner`}
+  return (<>
+    <img src={BANNER2} alt="Banner" style={{maxWidth: small? '100%' : 800, margin: '0 0 50px'}} />
+    {/*<div className={`${isMobile ? '' : 'd-flex'} txt-white trans align-center txt-center banner`}
       style={styles.wrap}
     >
       <div>
@@ -57,7 +59,7 @@ const BannerComponent = ({isMobile} : {isMobile: boolean}) => {
           Watch on youtube
         </Button>
       </div>
-    </div>
+  </div>*/}</>
   )
 }
 

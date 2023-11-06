@@ -4,10 +4,13 @@ import NavItem from 'rsuite/esm/Nav/NavItem'
 import OverviewIcon from '@rsuite/icons/Treemap'
 import VideoIcon from '@rsuite/icons/legacy/LogoVideo'
 import MovieIcon from '@rsuite/icons/legacy/VideoCamera'
+import StoryIcon from '@rsuite/icons/legacy/Book'
 import DocIcon from '@rsuite/icons/DocPass'
 import InfoIcon from '@rsuite/icons/HelpOutline'
 import PhotoIcon from '@rsuite/icons/legacy/Camera'
-import InverstorsIcon from '@rsuite/icons/Peoples'
+import CastIcon from '@rsuite/icons/Peoples'
+import UpdatesIcon from '@rsuite/icons/Notice'
+import ProducerIcon from '@rsuite/icons/legacy/UserO'
 import SecondaryNavbarItem from './SecondaryNavbarItem'
 import MainBtn from '../../../components/MainBtn'
 import ConfirmAgeModal from './ConfirmAgeModal'
@@ -55,20 +58,32 @@ const SecondaryNavbar: FunctionComponent<IProps> = (props) => {
         },
         {
             index: 4,
-            txt: en ? 'Films' : 'Filme',
-            icon: <MovieIcon />,
-            to: `/app/bundle/${project.id}/extras/movies`
+            txt: 'S&C',
+            icon: <StoryIcon />,
+            to: `/app/bundle/${project.id}/extras/story-and-concept`
         },
         {
           index: 5,
+          txt: 'C&C',
+          icon: <CastIcon />,
+          to: `/app/bundle/${project.id}/extras/cast-and-crew`
+      },
+        {
+          index: 6,
           txt: en ? 'Docs' : 'Docs',
           icon: <DocIcon />,
           to: `/app/bundle/${project.id}/extras/documents`
       },
       {
-          index: 6,
-          txt: en ? bundleStrings.secondaryNavbarEN.iv : bundleStrings.secondaryNavbarDE.iv,
-          icon: <InverstorsIcon />,
+        index: 7,
+        txt: 'UPDATE',
+        icon: <UpdatesIcon />,
+        to: `/app/bundle/${project.id}/extras/investors`
+      },
+      {
+          index: 8,
+          txt: 'Producer',
+          icon: <ProducerIcon />,
           to: ''//`/app/bundle/${project.id}/extras/investors`
       },
     ]

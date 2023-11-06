@@ -1,6 +1,7 @@
 import React from 'react'
 import MainLayout from '../layouts/mainLayout'
 import BANNER from '../../assets/comic-images/pictureredrumapp02_11_2023/appbannerpicure/Banner_Datenschutz_2.jpg'
+import { RedrumCompany } from '../../database/CompanyInfo'
 
 interface IProps {
   en: boolean,
@@ -207,7 +208,7 @@ Haupstraße 26<br/>
 10827 Berlin <br/>
 Deutschland <br/>
 Tel.: 0176 80008510 <br/>
-E-Mail: info@redrumpro.de <br/>
+E-Mail: {RedrumCompany.mail} <br/>
 Website: www.redrumpro.de </span></a></p>
 
 <br/><br/><h4><span lang="DE" >3. Cookies</span></h4>

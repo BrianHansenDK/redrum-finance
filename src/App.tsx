@@ -60,6 +60,7 @@ import PromoSection from './admin/dashboard/components/promocodes/PromoSection.j
 import DepositedPage from './routes/inside-app/pages/purchase/DepositedPage.js';
 import CashBonusPage from './routes/inside-app/pages/cash-bonus/index.js';
 import LoginFirst from './LoginFirst.js';
+import ProjectStoryAndConceptArtsPage from './routes/inside-app/pages/bundle/extras/s-and-c/index.js';
 
 
 const App = () => {
@@ -133,6 +134,7 @@ const App = () => {
         <Route path='extras/gallery' element={<ProjectGalleryPage en={isEnglish} />} />
         <Route path='extras/videos' element={<ProjectVideosPage en={isEnglish} />} />
         <Route path='extras/documents' element={<ProjectFilesPage en={isEnglish} />} />
+        <Route path='extras/story-and-concept' element={<ProjectStoryAndConceptArtsPage en={isEnglish} />} />
       </Route>
       <Route path='/app/profile/:userId' element={<ProfilePageWrapper en={isEnglish} setEn={changeLan} />}/>
       <Route path='/app/thank-you/:projectName' element={<ThankYouPage en={isEnglish} setEn={changeLan}/>}/>

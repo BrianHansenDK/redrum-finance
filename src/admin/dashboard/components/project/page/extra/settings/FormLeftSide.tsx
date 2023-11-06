@@ -1,6 +1,6 @@
 import { ref, update } from 'firebase/database'
 import React, { useState } from 'react'
-import { Button, DatePicker, Input, Message, Stack, useToaster } from 'rsuite'
+import { Button, DatePicker, Input, InputPicker, Message, Stack, useToaster } from 'rsuite'
 import FlexboxGridItem from 'rsuite/esm/FlexboxGrid/FlexboxGridItem'
 import StackItem from 'rsuite/esm/Stack/StackItem'
 import { FirebaseBundle } from '../../../../../../../database/Objects'
@@ -19,6 +19,7 @@ const VProjectEditFormLeftSide = ({project, span} : {project: FirebaseBundle, sp
   const [closure, setClosure] = useState<any>(project.closure !== "" ? new Date(project.closure) : todayDT)
   const [publication, setPublication] = useState<string>(project.publication!)
   const [pitchVideo, setPitchVideo] = useState<string>(project.pitch_video)
+  const [status, setStatus] = useState<number>(project.status)
   const [resetting, setResetting] = useState<boolean>(false)
   const theSame =
   name == project.name && intro == project.intro && description == project.description &&
@@ -35,6 +36,7 @@ const VProjectEditFormLeftSide = ({project, span} : {project: FirebaseBundle, sp
     setClosure(project.closure !== "" ? project.closure : todayDT)
     setPublication(project.publication!)
     setPitchVideo(project.pitch_video)
+    setStatus(project.status)
     setResetting(false)
   }
 
@@ -49,6 +51,7 @@ const VProjectEditFormLeftSide = ({project, span} : {project: FirebaseBundle, sp
     updates['closure'] = closure !== todayDT ? closure.toJSON() : ""
     updates['publication'] = publication
     updates['pitch_video'] = pitchVideo
+    updates['status'] = status
     await update(reference, updates).then(() => {
       toaster.push(
         <Message type='success' style={styles.succes} duration={10000} closable>
@@ -131,6 +134,20 @@ const VProjectEditFormLeftSide = ({project, span} : {project: FirebaseBundle, sp
         <p>
           Format: Months
         </p>
+      </Stack>
+      <Stack className='edit-item' spacing={6}>
+        <p className='edit-label'>Status:</p>
+        <StackItem basis={300}>
+          <InputPicker
+              value={resetting ? project.status : status}
+              defaultValue={status}
+              onChange={setStatus} data={[
+                {label: 'Funding', value: 1},
+                {label: 'Shooting', value: 2},
+                {label: 'Postproduction', value: 3},
+                {label: 'Released', value: 4},
+              ]} />
+        </StackItem>
       </Stack>
       <Stack className='edit-item' spacing={6}>
         <p className='edit-label'>Pitch video:</p>
