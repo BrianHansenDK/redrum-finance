@@ -9,7 +9,7 @@ import PageSections from './PageSections';
 
 interface IProps {en: boolean}
 
-const UpdatesPage = (props: IProps) => {
+const CastAndCrewPage = (props: IProps) => {
     const {en} = props;
     const projectId = useLocation().pathname.split('/')[3];
     const authorized = auth.currentUser?.email === import.meta.env.VITE_ADMIN_EMAIL || auth.currentUser?.email === import.meta.env.VITE_DEV_EMAIL;
@@ -21,10 +21,10 @@ const UpdatesPage = (props: IProps) => {
 
     // Load project
     React.useEffect(() => getSpecificProject(projectId, setProject, setLoading), []);
-    // Load when new section is added to the server
+
   return (
     <div>
-        <h1>Updates</h1>
+        <h1>Cast & Crew</h1>
         { loading ? (<RedrumProLoader/>) : project !== null && project !== undefined ? (
             <>
         <PageSections project={project} en={en} authorized={authorized}/>
@@ -42,4 +42,4 @@ const UpdatesPage = (props: IProps) => {
   )
 }
 
-export default UpdatesPage
+export default CastAndCrewPage

@@ -40,9 +40,9 @@ const SecondaryNavbar: FunctionComponent<IProps> = (props) => {
         },
         {
             index: 1,
-            txt: en ? 'Sheet' : 'Sheet',
+            txt: en ? 'pitch' : 'pitch',
             icon: <InfoIcon />,
-            to: `/app/bundle/${project.id}/extras/project-sheet`
+            to: `/app/bundle/${project.id}/extras/project-pitch`
         },
         {
             index: 2,
@@ -78,7 +78,7 @@ const SecondaryNavbar: FunctionComponent<IProps> = (props) => {
         index: 7,
         txt: 'UPDATE',
         icon: <UpdatesIcon />,
-        to: `/app/bundle/${project.id}/extras/investors`
+        to: `/app/bundle/${project.id}/extras/updates`
       },
       {
           index: 8,

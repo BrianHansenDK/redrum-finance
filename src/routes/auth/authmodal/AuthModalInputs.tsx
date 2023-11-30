@@ -23,7 +23,6 @@ const AuthModalInputs: React.FunctionComponent<IProps> = (props) => {
   const {en, visible, signupPage, handleChange} = props;
   const [userName, setUserName] = React.useState<any>('');
   const [userEmail, setUserEmail] = React.useState<any>('');
-  const [mailConfirm, setMailConfirm] = React.useState<any>('');
   const [userPassword, setUserPassword] = React.useState<any>('');
   const [confirm, setConfirm] = React.useState<any>('');
   const [userMails, setUserMails] = React.useState<string[]>([]);
@@ -66,20 +65,6 @@ const AuthModalInputs: React.FunctionComponent<IProps> = (props) => {
         </Message>
       )
     } else {
-        if (mailConfirm == '') {
-          toaster.push(
-            <Message type='error' showIcon duration={8000}>
-              Error: Please confirm your email address
-            </Message>
-          )
-        }
-        if (userEmail != mailConfirm && mailConfirm != '') {
-          toaster.push(
-            <Message type='error' showIcon duration={8000}>
-              Error: Your confirmed email address does not match with original
-            </Message>
-          )
-        }
         if (!onlyOneSpace) {
           toaster.push(<Message type='error' showIcon duration={8000} closable>
             Username cannot include multiple spaces.
@@ -101,7 +86,6 @@ const AuthModalInputs: React.FunctionComponent<IProps> = (props) => {
           </Message>, {placement: 'topCenter'})
         }
         if ((onlyOneSpace) && (userPassword != '') && (userPassword === confirm) && (userPassword.length >= 6)
-        && (mailConfirm != '') && (mailConfirm == userEmail)
         ) {
           createUserWithEmailAndPassword(auth, userEmail, userPassword)
           .then(async (userCredentials) => {
@@ -154,10 +138,6 @@ const AuthModalInputs: React.FunctionComponent<IProps> = (props) => {
       <div className="input-element">
         <label>{en ? signUpModalStrings.EN.mail : signUpModalStrings.DE.mail}</label>
         <Input placeholder={en ? 'Your email' : 'Dein Email'} onChange={setUserEmail}/>
-      </div>
-      <div className="input-element">
-        <label>{en ? "Confirm email" : "E-Mail-Adresse Bestätigen"}</label>
-        <Input placeholder={en ? 'Your email' : 'Dein Email'} onChange={setMailConfirm}/>
       </div>
       <div className="input-element">
         <label>{en ? signUpModalStrings.EN.ps : signUpModalStrings.DE.ps}</label>

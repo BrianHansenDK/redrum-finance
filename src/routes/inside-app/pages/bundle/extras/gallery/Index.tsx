@@ -30,7 +30,7 @@ const ProjectGalleryPage = (props: IProps) => {
   return (
     <div className='project-gallery-page pt-0' id='top'>
       {loading || project === null ? (<RedrumProLoader/>) : (
-        <GalleryCarousel en={en} projectName={project.name!} gallery={project.image_gallery_urls}/>
+        <GalleryCarousel project={project} en={en} projectName={project.name!} gallery={project.image_gallery_urls}/>
       )}
     </div>
   )

@@ -245,52 +245,67 @@ export function writeMovieData(
 
 export function writeProjectData(
     projectId: number,
+    projectType: string,
     name: string,
     intro: string,
     description: string,
-    status: number,
-    startDate: string,
-    endDate: string,
-    publication: string,
-    goal: number,
-    currentlyInvested: number,
-    guaranteedReturn: number,
-    value: number,
-    movies: Array<any>,
     avatarUrl: string,
     imageUrl: string,
     overviewUrl: string,
     presentationUrl: string,
-    galleryUrls: string[] | [],
-    pitchVideo: string,
-    files: {name: string, url: string}[] | [],
+    status: number,
+    startDate: string,
+    endDate: string,
+    publication: string,
     hasClosure: boolean,
-    closure: String
+    closure: String,
+    goal: number,
+    currentlyInvested: number,
+    value: number,
+    projectedReturn: number,
+    shareReturn: string,
+    shareRunTime: string,
+    shareMin: number,
+    guaranteedReturn: number,
+    stakeRunTime: string,
+    stakeMin: number,
+    galleryUrls: string[] | [],
+    files: {name: string, url: string}[] | [],
+    pitchVideo: string,
+    then: any,
+    error: any,
+    end: any
 ) {
     const reference = ref(database, 'projects/' + projectId)
     set(reference, {
         id: projectId,
+        category: projectType,
         name: name,
         intro: intro,
         description: description,
-        status: status,
-        startDate: startDate,
-        endDate: endDate,
-        publication: publication,
-        goal: goal,
-        currentlyInvested: currentlyInvested,
-        guaranteedReturn: guaranteedReturn,
-        value: value,
-        movies: movies,
         smallImage: avatarUrl,
         banner: imageUrl,
         overviewImage: overviewUrl,
         presentationImage: presentationUrl,
+        status: status,
+        startDate: startDate,
+        endDate: endDate,
+        publication: publication,
+        closure: hasClosure ? closure : "",
+        goal: goal,
+        currentlyInvested: currentlyInvested,
+        value: value,
+        projectedReturn: projectedReturn,
+        shareholderReturnCap: shareReturn,
+        shareholderRuntime: shareRunTime,
+        shareholderMinimum: shareMin,
+        guaranteedReturn: guaranteedReturn,
+        stakeholderRuntime: stakeRunTime,
+        stakeholderMinimum: stakeMin,
         image_gallery_urls: galleryUrls,
         pitch_video: pitchVideo,
         files: files,
-        closure: hasClosure ? closure : ""
-    })
+    }).then(then).catch(error).finally(end)
 }
 
 export function updateProjectFiles(projectId: number, files: {name: string, url: string}[], then: any) {
@@ -386,6 +401,62 @@ export async function updateProjectSAndCVideos(projectId: number, SAndCVideoUrls
   // Create an update object with the updated URLs
   const updates: any = {
     'videos': updatedUrls,
+  };
+
+  // Update the reference with the combined list
+  await update(reference, updates);
+}
+
+export async function updateProjectCACSection(projectId: number, 
+  section: {title: string, title_german: string, body: string, body_german: string, image_url: string, video_url: string}[]
+  ) {
+  const getReference = ref(database, `projects/${projectId}/cast_and_crew_sections`);
+  const reference = ref(database, `projects/${projectId}`);
+
+  // Retrieve the existing sections
+  const snap = await get(getReference);
+  const existingSections = snap.val() || [];
+
+  // Create a Set to store unique URLs
+  const uniqueSections = new Set(existingSections);
+
+  // Add the new gallery image URLs to the Set
+  section.forEach((item) => uniqueSections.add(item));
+
+  // Convert the Set back to an array
+  const updatedUrls = Array.from(uniqueSections);
+
+  // Create an update object with the updated URLs
+  const updates: any = {
+    'cast_and_crew_sections': updatedUrls,
+  };
+
+  // Update the reference with the combined list
+  await update(reference, updates);
+}
+
+export async function updateProjectUpdateSection(projectId: number, 
+  section: {title: string, title_german: string, body: string, body_german: string, image_url: string, video_url: string}[]
+  ) {
+  const getReference = ref(database, `projects/${projectId}/updates`);
+  const reference = ref(database, `projects/${projectId}`);
+
+  // Retrieve the existing sections
+  const snap = await get(getReference);
+  const existingSections = snap.val() || [];
+
+  // Create a Set to store unique URLs
+  const uniqueSections = new Set(existingSections);
+
+  // Add the new gallery image URLs to the Set
+  section.forEach((item) => uniqueSections.add(item));
+
+  // Convert the Set back to an array
+  const updatedUrls = Array.from(uniqueSections);
+
+  // Create an update object with the updated URLs
+  const updates: any = {
+    'updates': updatedUrls,
   };
 
   // Update the reference with the combined list

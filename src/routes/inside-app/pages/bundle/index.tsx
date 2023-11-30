@@ -12,6 +12,7 @@ import LeftSide from './components/left/LeftSide'
 import RightSide from './components/right/RightSide'
 import SecondaryNavbar from './components/SecondaryNavbar'
 import { useMediaQuery } from '../../../../misc/custom-hooks'
+import BANNER from '../../../../assets/Banner_schmal_PublicRelation.jpg'
 
 interface IProps {
     params: any,

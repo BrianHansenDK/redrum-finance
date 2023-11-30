@@ -15,6 +15,7 @@ import ProgressItem from './ProgressItem'
 import { getRealAge, numberWithCommas, useMediaQuery } from '../../../../../../misc/custom-hooks'
 import RedrumProLoader from '../../../../components/RedrumProLoader'
 import './styles/right-side.scss'
+import InvestInfoModal from '../invest-modal/InvestInfoModal'
 
 interface IProps {
   project: FirebaseBundle,
@@ -35,6 +36,7 @@ const RightSide: FunctionComponent<IProps> = (props) => {
     const [isVisible, setVisible] = useState(false);
     const [isInvestVisible, setInvestVisible] = useState(false);
     const [isTransferVisible, setTransferVisible] = useState(false);
+    const [infoVisible, setInfoVisible] = useState<boolean>(false);
     const [available, setAvailable] = useState<any>(0);
     const [reciept, setReciept] = useState(false);
     const [user, setUser] = React.useState<FirebaseUser | null>(null);
@@ -62,6 +64,9 @@ const RightSide: FunctionComponent<IProps> = (props) => {
         //}
     }
 
+    const openInfoModal = () => setInfoVisible(true);
+    const closeInfoModal = () => setInfoVisible(false);
+
     const closeInvestModal = () => {
         setInvestVisible(false)
         setTransferVisible(false)
@@ -71,13 +76,13 @@ const RightSide: FunctionComponent<IProps> = (props) => {
 
     const styles = {
       wrapper: {
-          height: 100 + '%',
+          height: 'auto',
           display: 'flex',
           alignItems: 'center',
           paddingTop: isMobile ? 25 : 7 + 'rem',
       },
       card: {
-          height: isDesktop ? 800 : 500,
+          height: 'auto',
           width: 100 + '%',
           backgroundColor: '#fbfbfb',
           marginTop: isMobile ? 10 : 0,
@@ -103,16 +108,16 @@ const RightSide: FunctionComponent<IProps> = (props) => {
 
                 <div style={styles.card} className='flex-column'>
                     <InfoLines project={project} en={en} />
-                    <h1 className='right-box-invested-big'>{numberWithCommas(project.currentlyInvested!)}€</h1>
+                    <h1 className='right-box-invested-big mt-1'>{numberWithCommas(project.currentlyInvested!)}€</h1>
                     <ProgressItem project={project} en={en} />
                     <Button
                     title={project.currentlyInvested! >= project.goal! ? en ? 'Investment capacity reached for project' :
                      'Investitionskapazität für das Projekt erreicht': ''}
                     disabled={project.currentlyInvested! >= project.goal!}
                     appearance='primary'
-                    className='r-btn r-main-btn'
+                    className='r-btn r-main-btn mb-2 mt-2'
                     onClick={age >= 18 ?
-                      openInvestModal :
+                      openInfoModal :
                       openModal}
                     >
                       {en ? 'Secure shares now' : 'Jetzt Anteile sichern'}
@@ -120,6 +125,7 @@ const RightSide: FunctionComponent<IProps> = (props) => {
                 </div>
             </Col>
             <ConfirmAgeModal visible={isVisible} close={closeModal} openInvestModal={openInvestModal} en={en} age={age} user={user}/>
+            <InvestInfoModal en={en} project={project} open={infoVisible} close={closeInfoModal}/>
             <InvestModal en={en} project={project} close={closeInvestModal} visible={isInvestVisible} showReciept={showReciept}
             navOpen={navOpen} setEn={setEn} openMenu={openMenu} openNav={openNav} closeNav={closeNav} />
             <TransferMoneyModal navPressed={false} close={closeInvestModal} visible={isTransferVisible} />

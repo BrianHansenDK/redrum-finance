@@ -1,3 +1,13 @@
+$dark: #141628;
+$dark-light: rgb(75, 75, 75);
+$main: #3598FE;
+$white: #FEFEFE;
+$dark-blue: #3549FE;
+$border-color: #D9DEED;
+$blue-shadow: #359AFE7B;
+$dark-shadow: rgba(0, 0, 29, .25);
+$dark-blue-shadow: #3549FE7B;
+
 .navbarhidden {
   display: none!important;
 }
@@ -7,4 +17,34 @@
 
 #top {
   margin-top: 50px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: Poppins;
+  font-weight: 700;
+  color: $dark;
+  line-height: 1.5;
+  margin: 0; /* Reset margin to ensure consistent spacing */
+  padding: 0; /* Reset padding to ensure consistent spacing */
+}
+
+/* Common styles for paragraphs */
+p {
+  font-family: Poppins;
+  font-weight: 600;
+  color: $dark;
+  opacity: .8;
+  line-height: 1.4;
+  margin: 0; /* Reset margin to ensure consistent spacing */
+  padding: 0; /* Reset padding to ensure consistent spacing */
+}
+
+/* Responsive adjustments */
+@media screen and (min-width: 1600px) {
+  h1, h2, h3, h4, h5, h6 {
+      font-size: 50px; /* Adjust font size for larger screens */
+  }
+  p {
+      font-size: 25px; /* Adjust paragraph font size for larger screens */
+  }
 }

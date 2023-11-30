@@ -1,21 +1,38 @@
 import React from 'react'
 import bundleStrings from '../../../../../../library/string/Bundle'
 import SingleLineInfo from './SingleLineInfo'
-import { formatDate } from '../../../../../../misc/custom-hooks'
+import { formatDate, numberWithCommasAsString } from '../../../../../../misc/custom-hooks'
+import { FirebaseBundle } from '../../../../../../database/Objects'
+import { mainColors } from '../../../../themes/colors'
 
-const InfoLines = ({ project, en }: { project: any, en: boolean }) => {
-  const end = new Date(project.endDate)
+const InfoLines = ({ project, en }: { project: FirebaseBundle, en: boolean }) => {
+  const end = new Date(project.endDate!)
     return (
         <div style={styles.wrap}>
-            <SingleLineInfo
-            title={en ? bundleStrings.infoCardEN.aR : bundleStrings.infoCardDE.aR}
-            info={project.guaranteedReturn.toString()} type='%' isTopElement={true}
+          <SingleLineInfo
+            title={en ? 'Project category' : 'Projekt Kategorie'}
+            info={project.category} isTopElement={true}
             />
             <SingleLineInfo
-            title={en ? bundleStrings.infoCardEN.iD : bundleStrings.infoCardDE.iD}
-            info={
-              formatDate(end)
-            }
+            title={en ? 'Funding Target': 'Finanzierungziel'}
+            info={project.goal!.toString()} type='€'
+            />
+            <SingleLineInfo
+            title={en ? 'Project Evaluation' : 'Projekt Bewertung'}
+            info={project.value!.toString()} type='€'
+            />
+            <SingleLineInfo
+            title={en ? 'Projected Return' : 'Angestrebte Rendite'}
+            info={project.projectedReturn!.toString()} type='%'
+            />
+            <SingleLineInfo
+            title={en ? 'Investment Deadline' : 'Investitionsschluss'}
+            info={formatDate(new Date(project.endDate!))}
+            />
+            <SingleLineInfo
+            title={en ? 'Start of return' : 'Angestrebte Rendite'}
+            info={project.publication} type={en ? 'Months' : 'Monate'} hasTag tooltipTxt={en ?
+              'English info' : 'Deutches Info'}
             />
             {project.closure !== "" ? (
               <SingleLineInfo title={en ? 'Project closure' : 'Projektabschluss'}
@@ -31,22 +48,51 @@ const InfoLines = ({ project, en }: { project: any, en: boolean }) => {
               }/>
               ) : null}
             <SingleLineInfo
-            title={en ? bundleStrings.infoCardEN.iT : bundleStrings.infoCardDE.iT}
-            info={project.goal.toString()}
-            type='€'
-            />
-            <SingleLineInfo
-            title={en ? bundleStrings.infoCardEN.mI : bundleStrings.infoCardDE.mI}
-            info={project.movies.length} type='€' />
-            <SingleLineInfo
-            title={en ? bundleStrings.infoCardEN.publication : bundleStrings.infoCardDE.publication}
-            info={`${project.publication} ${en ? 'Months' : 'Monate'}`} hasSmallTxt
-            smallTxt={en ? bundleStrings.infoCardEN.small : bundleStrings.infoCardDE.small}
-            />
-            <SingleLineInfo
             title={'Status'}
             info={project.status == 1 ? 'Funding' : project.status == 2 ? 'Shooting' : project.status == 3 ? 'Postproduction' : 'Released'}
             hasColor
+            />
+            {/*<SingleLineInfo
+            title={''}
+            info={'Shareholder'}
+            hasColor color={mainColors.dark} 
+            hasTag tooltipTxt={en ?
+              'English info' : 'Deutches Info'}
+            />
+            <SingleLineInfo
+            title={en ? 'Return Cap' : 'Rendtite Limit'}
+            info={project.ShareholderReturnCap}
+            type={'%'}
+            />
+            <SingleLineInfo
+            title={en ? 'Runtime' : 'Laufzeit'}
+            info={project.shareholderRuntime}
+            />
+            <SingleLineInfo
+            title={en ? 'Minimum investment' : 'Mindest Investment'}
+            info={project.shareholderMinimum.toString()}
+            type='€'
+            />
+            <SingleLineInfo
+            title={''}
+            info={'Stakeholder'}
+            hasColor color={mainColors.dark} 
+            hasTag tooltipTxt={en ?
+              'English info' : 'Deutches Info'}
+            />
+            <SingleLineInfo
+            title={en ? 'Return Cap' : 'Rendtite Limit'}
+            info={project.guaranteedReturn}
+            type={'%'}
+            />
+            <SingleLineInfo
+            title={en ? 'Runtime' : 'Laufzeit'}
+            info={project.stakeholderRuntime}
+            />
+            <SingleLineInfo
+            title={en ? 'Minimum investment' : 'Mindest Investment'}
+            info={numberWithCommasAsString(project.stakeholderMinimum)}
+            type='€'
             />
             {/*<SingleLineInfo
             title={en ? bundleStrings.infoCardEN.aI : bundleStrings.infoCardDE.aI}

@@ -3,7 +3,7 @@ import mainShadows from "./shadows";
 
 export const mainCard = {
     padding: 50,
-    width: '90%',
+    width: '60%',
     borderRadius: 10,
     boxShadow: mainShadows.card,
     margin: 'auto',

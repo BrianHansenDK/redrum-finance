@@ -75,7 +75,7 @@ const PresentationCard = (props: IProps) => {
 
             {
               project.image_gallery_urls.length > 0 && showGallery ? (
-                <GalleryCarousel en={en} projectName={project.name!} gallery={project.image_gallery_urls} />
+                <GalleryCarousel overViewPage project={project} en={en} projectName={project.name!} gallery={project.image_gallery_urls} />
               ) : null
             }
             <PitchVideo en={en} project={project} />

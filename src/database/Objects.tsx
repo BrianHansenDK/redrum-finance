@@ -47,12 +47,14 @@ trailer_url: string,
 
 // Bundle/Project object
 export interface FirebaseBundle {
+category: string,
 banner?: string,
 currentlyInvested?: number,
 description?: string,
 endDate?: string,
 goal?: number,
 guaranteedReturn?: number,
+projectedReturn: number,
 id?: number,
 intro?: string,
 movies?: Array<number>,
@@ -71,6 +73,27 @@ contract?: string,
 contract_german?: string
 status: number,
 story_and_concept_arts?: {images: string[], videos: string[]},
+cast_and_crew_sections?: {
+  title: string,
+  title_german: string,
+  body: string,
+  body_german: string,
+  image_url: string,
+  video_url: string
+}[],
+updates?: {
+  title: string,
+  title_german: string,
+  body: string,
+  body_german: string,
+  image_url: string,
+  video_url: string
+}[],
+ShareholderReturnCap: string,
+shareholderRuntime: string,
+shareholderMinimum: number,
+stakeholderRuntime: string,
+stakeholderMinimum: number
 }
 
 // Investment object

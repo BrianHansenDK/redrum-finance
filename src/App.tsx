@@ -16,7 +16,6 @@ import ProjectDetailsPageWrapper from './routes/inside-app/pages/bundle/indexFun
 import ProjectDetailsOverviewWrapper from './routes/inside-app/pages/bundle/extras/overview/indexFunction'
 import ProjectDetailsMovieWrapper from './routes/inside-app/pages/bundle/extras/movies/indexFunction'
 import ProjectDetailsQAndAWrapper from './routes/inside-app/pages/bundle/extras/q-and-a/indexFunction'
-import ProjectDetailsUpdatesWrapper from './routes/inside-app/pages/bundle/extras/updates/indexFunction'
 import ProjectDetailsInvestorWrapper from './routes/inside-app/pages/bundle/extras/investors/indexFunction'
 import PortfolioPage from './routes/inside-app/pages/portfolio/index.js';
 import TestPage from './routes/test/index.js';
@@ -61,6 +60,8 @@ import DepositedPage from './routes/inside-app/pages/purchase/DepositedPage.js';
 import CashBonusPage from './routes/inside-app/pages/cash-bonus/index.js';
 import LoginFirst from './LoginFirst.js';
 import ProjectStoryAndConceptArtsPage from './routes/inside-app/pages/bundle/extras/s-and-c/index.js';
+import CastAndCrewPage from './routes/inside-app/pages/bundle/extras/cast-and-crew/index.js';
+import UpdatesPage from './routes/inside-app/pages/bundle/extras/updates/index.js';
 
 
 const App = () => {
@@ -128,13 +129,14 @@ const App = () => {
         <Route index element={<ProjectDetailsOverviewWrapper en={isEnglish} />} />
         <Route path='extras/movies' element={<ProjectDetailsMovieWrapper />} />
         <Route path='extras/q-and-a' element={<ProjectDetailsQAndAWrapper en={isEnglish} />} />
-        <Route path='extras/updates' element={<ProjectDetailsUpdatesWrapper />} />
+        <Route path='extras/updates' element={<UpdatesPage en={isEnglish} />} />
         <Route path='extras/investors' element={<ProjectDetailsInvestorWrapper />} />
-        <Route path='extras/project-sheet' element={<ProjectSheetPage en={isEnglish} />} />
+        <Route path='extras/project-pitch' element={<ProjectSheetPage en={isEnglish} />} />
         <Route path='extras/gallery' element={<ProjectGalleryPage en={isEnglish} />} />
         <Route path='extras/videos' element={<ProjectVideosPage en={isEnglish} />} />
         <Route path='extras/documents' element={<ProjectFilesPage en={isEnglish} />} />
         <Route path='extras/story-and-concept' element={<ProjectStoryAndConceptArtsPage en={isEnglish} />} />
+        <Route path='extras/cast-and-crew' element={<CastAndCrewPage en={isEnglish} />} />
       </Route>
       <Route path='/app/profile/:userId' element={<ProfilePageWrapper en={isEnglish} setEn={changeLan} />}/>
       <Route path='/app/thank-you/:projectName' element={<ThankYouPage en={isEnglish} setEn={changeLan}/>}/>
